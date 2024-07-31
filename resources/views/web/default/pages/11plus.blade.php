@@ -34,7 +34,7 @@
 
 @section('content')
 <section class="content-section">
-    <section class="position-relative job-singup-sub-header gallery-sub-header pb-90 pt-80 mb-70">
+    <section class="position-relative job-singup-sub-header gallery-sub-header page-sub-header pb-90 pt-80 mb-70">
         <div class="container h-100">
             <div class="row h-100">
                 <div class="col-12 col-md-6 col-lg-6">
@@ -196,7 +196,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="element-title">
+                    <div class="section-title">
                         <h2 itemprop="title" class="mb-5 font-40">What Our 11 Plus (11+) Entrance Exam Practices Covers</h2>
                         <p itemprop="description" class="font-19 text-gray">Tailored Curriculum, 11+ resources and Preparation for 11+ exam Success and elevate the excellence.
                         </p>
@@ -292,7 +292,7 @@
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="section-title mb-50 text-center">
-                        <h2 itemprop="title" class="text-white font-72">Explore 11 Plus and Entrance Exam Resources</h2>
+                        <h2 itemprop="title" class="text-white font-40">Explore 11 Plus and Entrance Exam Resources</h2>
                     </div>
                 </div>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
@@ -830,7 +830,7 @@
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="section-title mb-50 text-center">
-                        <h2 itemprop="section title" class="mb-10 font-72">Real practice, Proven Results</h2>
+                        <h2 itemprop="section title" class="mb-10 font-40">Real practice, Proven Results</h2>
                         <p itemprop="description" class="font-19 text-gray">It’s hugely trusted by parents, recommended by teachers and loved by students</p>
                     </div>
                 </div>
@@ -873,18 +873,20 @@
 	{{do_shortcode('reviews')}}
 	{{do_shortcode('packages', array('packages' => array(6,7,9), 'show_details' => false))}}
 	
-    <section class="lms-newsletter mt-60 py-70">
+    <section class="lms-newsletter py-70">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="newsletter-inner">
                         <div class="row">
                             <div class="col-12 col-lg-8 col-md-8">
-                                <h2 itemprop="title" class="mb-10 text-white font-40">Kickstart your 11 plus exam Prep today</h2>
-                                <p itemprop="description" class="mb-0 text-white font-16">
-                                    Let us help you achieve the score you deserve and unlock <br/>
-                                    doors to your future academic success.
-                                </p>
+                                <div class="section-title">
+                                    <h2 itemprop="title" class="mb-10 text-white font-40">Kickstart your 11 plus exam Prep today</h2>
+                                    <p itemprop="description" class="mb-0 text-white font-16">
+                                        Let us help you achieve the score you deserve and unlock <br/>
+                                        doors to your future academic success.
+                                    </p>
+                                </div>
                             </div>
                             <div class="col-12 col-lg-4 col-md-4">
                                 <div class="form-field position-relative text-right">

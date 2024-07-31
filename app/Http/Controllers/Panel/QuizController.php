@@ -464,6 +464,7 @@ class QuizController extends Controller
                     'quiz_breakdown'   => $quiz_breakdown,
                     'quiz_level'       => $quiz_level,
 					'journey_item_id' => $journey_item_id,
+					'attempt_mode' => $test_type,
                 ]);
 
                 $prev_active_question_id = isset($resultLogObj->active_question_id) ? $resultLogObj->active_question_id : 0;
@@ -612,6 +613,7 @@ class QuizController extends Controller
                                 'disable_prev'          => 'true',
                                 'total_points'          => isset($RewardAccountingObj->score) ? $RewardAccountingObj->score : 0,
                             ];
+							
 							$actual_question_ids[$newQuestionResult->id] = $questionObj->id;
                         } else {
                             $results_questions_array[$newQuestionResult->id] = [
@@ -703,8 +705,19 @@ class QuizController extends Controller
 						
 						//print
 						//pre($resultsQuestionsData['word_data']['exam_sentenses']);
+						
+						$newQuestionResult = isset( $resultsQuestionsData['newQuestionResult'] )? $resultsQuestionsData['newQuestionResult'] : array();
+						
+						
 
-                        $question_response_layout = view('web.default.panel.questions.spell_'.$test_type_file.'_question_layout', $resultsQuestionsData)->render();
+						if( $test_type_file == ''){
+							$question_response_layout = view('web.default.panel.questions.spell_question_layout', $resultsQuestionsData)->render();
+						}else{
+							$question_response_layout = view('web.default.panel.questions.spell_'.$test_type_file.'_question_layout', $resultsQuestionsData)->render();
+						}
+						if( isset( $newQuestionResult->id)){
+							$newQuestionResult->update(['quiz_layout' => htmlentities(base64_encode(json_encode($question_response_layout)))]);
+						}
 						
                         //$question_response_layout = view('web.default.panel.questions.spell_question_layout', $resultsQuestionsData)->render();
                     } else {
@@ -944,7 +957,25 @@ class QuizController extends Controller
                 if ($QuizzesResult->quiz_result_type == 'vocabulary') {
                     $group_questions_layout = $QuestionsAttemptController->get_question_result_layout($QuizzResultQuestionObj->id);
 
-                    $question_response_layout .= view('web.default.panel.questions.question_layout', [
+					$correct_answer = $user_answer = '';
+					$correct_answers = isset( $QuizzResultQuestionObj->correct_answer )? json_decode($QuizzResultQuestionObj->correct_answer) : '';
+					foreach( $correct_answers as $correct_answer){
+						$correct_answer = isset( $correct_answer[0] )? $correct_answer[0] : '';
+					}
+					$user_answers = isset( $QuizzResultQuestionObj->user_answer )? json_decode($QuizzResultQuestionObj->user_answer) : '';
+					if( !empty( $user_answers)){
+						foreach( $user_answers as $user_answer){
+							$user_answer = isset( $user_answer[0] )? $user_answer[0] : '';
+						}
+					}
+					$attempt_mode = $QuizzesResult->attempt_mode;
+					$test_type_file = get_test_type_file($attempt_mode);
+					$vocabulary_file_path = 'question_layout';
+					if( $test_type_file != ''){
+						//$vocabulary_file_path = 'spell_'.$test_type_file.'_question_result_layout';
+					}
+
+                    $question_result_layout = view('web.default.panel.questions.'. $vocabulary_file_path, [
                         'question'               => $questionObj,
                         'prev_question'          => 0,
                         'next_question'          => 0,
@@ -959,7 +990,39 @@ class QuizController extends Controller
                         //'class'                  => 'disable-div',
                         'layout_type'            => 'results',
                         'group_questions_layout' => $group_questions_layout,
+                        'correct_answer'            => $correct_answer,
+                        'user_answer'            => $user_answer,
+						
                     ])->render();
+					
+					
+					$classesToRemove = ['spells-quiz-info', 'form-btn-field', 'spells-quiz-sound'];
+
+					// Create a new \DOMDocument instance
+					$doc = new \DOMDocument();
+
+					// Load the HTML string into the \DOMDocument
+					// Use @ to suppress any warnings due to malformed HTML
+					@$doc->loadHTML($question_result_layout);
+
+					// Create a new \DOMXPath instance
+					$xpath = new \DOMXPath($doc);
+
+					foreach ($classesToRemove as $class) {
+						// Find elements with the specified class
+						$elements = $xpath->query('//*[@class="' . $class . '"]');
+
+						foreach ($elements as $element) {
+							// Remove each element from its parent node
+							$element->parentNode->removeChild($element);
+						}
+					}
+
+
+					// Save the updated HTML back to a string
+					$question_result_layout = $doc->saveHTML();
+					
+					$question_response_layout .= $question_result_layout;
                 }
 
 

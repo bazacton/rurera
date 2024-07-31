@@ -101,7 +101,7 @@ shuffle($characters_list);
                             $field_html .= '<input type="text" value="" maxlength="1" data-counter_id="'.$words_counter.'" class="editor-field-inputs drop-target'.$question->id.'" style="width: '.$field_width.'ch;
                                                     background: repeating-linear-gradient(90deg, #747474 0, #747474 1ch, transparent 0, transparent 1.5ch) 0 100%/ 1ch 2px no-repeat;
                                                     font: 1.2rem buntu Mono, monospace;
-                                                    letter-spacing: 0.5ch;">';
+                                                    letter-spacing: 0.5ch;" readonly>';
                         $words_counter++;@endphp
                         @endwhile
 					

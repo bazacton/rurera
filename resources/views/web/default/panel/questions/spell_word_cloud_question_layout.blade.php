@@ -2,8 +2,15 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <style>
     .rurera-hide{display:none;}
-</style>
+	.word-cloud-box {
+    width: fit-content;
+    display: list-item;
+    position: relative;
+    height: 100%;
+    margin: auto;
+}
 
+</style>
 
 
 <div class="question-step quiz-complete" style="display:none">
@@ -47,13 +54,10 @@ if( isset( $duration_type ) ){
 }
 
 $quiz_level = isset( $quiz_level )? $quiz_level : 'easy';
-$hidden_indexes = getRandomIndexes($correct_answer);
-$characters_list = [];
-foreach( $hidden_indexes as $index_no){
+$characters_list = str_split($correct_answer);
+/*foreach( $hidden_indexes as $index_no){
 	$characters_list[] = substr($correct_answer, $index_no,1);
-}
-$random_characters = getRandomCharacters($characters_list);
-$characters_list = array_merge($characters_list, $random_characters);
+}*/
 shuffle($characters_list);
 @endphp
 <div class="question-area spell-question-area">
@@ -91,41 +95,21 @@ shuffle($characters_list);
                 <div class="spells-quiz-from question-layout">
                     <div class="form-field">
 					
+						<div class="word-cloud-box" id="word-cloud-{{ $question->id }}"></div>
 					
-						@php $words_counter = 0; $field_html = ''; @endphp
+						@php $words_counter = 0; @endphp
                         @while($words_counter < $no_of_words)
                             @php $words_counterplus = $words_counter+1;
-                            $field_width = ($words_counterplus >= $no_of_words)? '1.5' : '1.5';
-							$word_character = substr($correct_answer, $words_counter, 1);
-							$word_character = in_array($words_counter, $hidden_indexes)? '' : $word_character;
-                            
-                            $field_html .= '<input type="text" value="" maxlength="1" data-counter_id="'.$words_counter.'" class="editor-field-inputs drop-target'.$question->id.'" style="width: '.$field_width.'ch;
+                            $field_width = ($words_counterplus >= $no_of_words)? '1.5' : '1';
+                            @endphp
+                            <input type="text" value="" maxlength="1" data-counter_id="{{$words_counter}}" class="editor-field-inputs drop-target{{ $question->id }}" style="width: {{$field_width}}ch;
                                                     background: repeating-linear-gradient(90deg, #747474 0, #747474 1ch, transparent 0, transparent 1.5ch) 0 100%/ 1ch 2px no-repeat;
-                                                    font: 1.2rem buntu Mono, monospace;
-                                                    letter-spacing: 0.5ch;" readonly>';
-                        $words_counter++;@endphp
+                                                    font: 1.2rem 'Ubuntu Mono', monospace;
+                                                    letter-spacing: 0.5ch;">
+                        @php $words_counter++;@endphp
                         @endwhile
 					
-					@php 
-					$sentence_value = isset( $word_data['audio_sentense'] )? $word_data['audio_sentense'] : '';
-					$sentence_value = str_replace($correct_answer,'[BLANK]',$sentence_value);
-					$sentence_value = str_replace(ucfirst($correct_answer),'[BLANK]',$sentence_value);
-					$sentence_value = str_replace(strtolower($correct_answer),'[BLANK]',$sentence_value);
-					$exam_sentenses = array($sentence_value);
-					@endphp
-					
-						@if( !empty( $exam_sentenses ) )
-						@php $random_index = array_rand($exam_sentenses);
-							$sentenceValue = $exam_sentenses[$random_index]; 
-							$sentenceValue = str_replace('[BLANK]',$field_html,$sentenceValue);
-							
-							@endphp
-							
-							{!! $sentenceValue !!}
-						@endif
-						
-						<input type="text" class="editor-field hide" data-field_id="{{$field_id}}" data-id="{{$field_id}}" id="field-{{$field_id}}">
-					
+                        <input type="text" class="editor-field hide" data-field_id="{{$field_id}}" data-id="{{$field_id}}" id="field-{{$field_id}}">
                     </div>
 
 
@@ -228,6 +212,9 @@ shuffle($characters_list);
 
 <script>
 
+	
+
+
 	/*$(document).ready(function() {
 		const draggableItems = document.querySelectorAll('.draggable');
 		const dropTargets = document.getElementsByClassName('drop-target{{ $question->id }}');
@@ -283,17 +270,6 @@ shuffle($characters_list);
         userInput = false;
         hint_counter = 0;
     });
-	
-	$(document).on('change', ".editor-field-option", function (e) {
-        var current_option = $(this).val();
-		$(".editor-field-inputs").val('');
-		var inputs = $(".editor-field-inputs");
-		for (var i = 0; i < inputs.length && i < current_option.length; i++) {
-			$(inputs[i]).val(current_option.charAt(i)); // Set each character
-		}
-    });
-	
-	
 
     $(document).on('input keydown paste', ".editor-field-inputs", function (event) {
         var $this = $(this);
@@ -344,6 +320,7 @@ shuffle($characters_list);
 
 
 </script>
+@php $characters_json = json_encode($characters_list); @endphp
 <script type="text/javascript">
     window.onload = function() {
       var context = new AudioContext();
@@ -441,5 +418,30 @@ shuffle($characters_list);
 
             _keystroke("lower");
         });
+		
+	
+
+// Example usage
+var config = {
+    trace: true,
+    spiralResolution: 1,
+    spiralLimit: 360 * 5,
+    lineHeight: 0.8,
+    xWordPadding: 0,
+    yWordPadding: 3,
+    font: "sans-serif"
+};
+//var charactersList = "{{$characters_json}}";
+var charactersList = <?php echo $characters_json; ?>;
+var words1 = charactersList.map(function(word) {
+    return {
+        word: word,
+        freq: Math.floor(Math.random() * 50) + 10
+    };
+});
+createWordCloud("word-cloud-{{ $question->id }}", words1, config);
+
+
+		
 </script>
 

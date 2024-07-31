@@ -9247,6 +9247,10 @@ function get_test_type_file($test_type){
 		case "word-missing":
             $test_type_file = 'word_missing';
             break;
+			
+		case "word-cloud":
+            $test_type_file = 'word_cloud';
+            break;
 	}
 	return $test_type_file;
 }

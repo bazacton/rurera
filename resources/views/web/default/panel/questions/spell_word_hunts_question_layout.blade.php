@@ -105,11 +105,13 @@ shuffle($characters_list);
                             $field_width = ($words_counterplus >= $no_of_words)? '1.5' : '1';
 							$word_character = substr($correct_answer, $words_counter, 1);
 							$word_character = in_array($words_counter, $hidden_indexes)? '' : $word_character;
+							$field_attr = in_array($words_counter, $hidden_indexes)? '' : 'readonly';
+							$field_class = in_array($words_counter, $hidden_indexes)? 'empty-field' : '';
                             @endphp
-                            <input type="text" value="{{$word_character}}" maxlength="1" data-counter_id="{{$words_counter}}" class="editor-field-inputs drop-target{{ $question->id }}" style="width: {{$field_width}}ch;
+                            <input type="text" value="{{$word_character}}" maxlength="1" data-counter_id="{{$words_counter}}" class="editor-field-inputs drop-target{{ $question->id }} {{$field_class}}" style="width: {{$field_width}}ch;
                                                     background: repeating-linear-gradient(90deg, #747474 0, #747474 1ch, transparent 0, transparent 1.5ch) 0 100%/ 1ch 2px no-repeat;
                                                     font: 1.2rem 'Ubuntu Mono', monospace;
-                                                    letter-spacing: 0.5ch;">
+                                                    letter-spacing: 0.5ch;" {{$field_attr}}>
                         @php $words_counter++;@endphp
                         @endwhile
 					

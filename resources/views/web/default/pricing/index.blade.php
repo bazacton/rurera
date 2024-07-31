@@ -6,12 +6,12 @@
 @section('content')
 
 <div class="lms-membership-section" data-currency_sign="{{getCurrencySign()}}">
-    <section class="lms-setup-progress-section mb-0 pt-70 pb-60" style="background-color: #fff;">
+    <section class="lms-setup-progress-section mb-0 pt-70 pb-60 page-sub-header" style="background-color: #fff;">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-lg-12 text-center">
                     <div class="element-title text-center mb-40">
-                        <h2 itemprop="title" class="font-72 text-dark-charcoal mb-0">Choose the right plan for you</h2>
+                        <h1 itemprop="title" class="font-72 text-dark-charcoal mb-0">Choose the right plan for you</h1>
                         <p class="font-16 pt-10">Save more with annual pricing</p>
                     </div>
                 </div>
@@ -149,8 +149,10 @@
                             <figure><img src="/assets/default/img/About-Us-CTA-Image.jpg" alt="" /> <img class="attachment-img" src="/assets/default/img/hero-ornament.png" alt="" /></figure>
                         </div>
                         <div class="text-box">
-                            <h3 class="font-48 mb-20 font-weight-500">Do you have any questions? Our team will be happy to assist.</h3>
+                            <div class="section-title">
+                            <h2 class="font-40 mb-20 font-weight-500">Do you have any questions? Our team will be happy to assist.</h2>
                             <span>Ask about UiCore products, pricing, implementation, or anything else. Our highly trained reps are standing by, ready to help.</span>
+                            </div>
                             <div class="contact-info"><a href="#" class="contact-btn">Contact Us</a><span>Or call +12 3456 7890</span></div>
                         </div>
                     </div>

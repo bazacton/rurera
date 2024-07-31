@@ -354,7 +354,6 @@ $timer_counter = $practice_time;
 <script>
     //init_question_functions();
 
-
     $("body").on("click", ".js_link_clickable", function (e) {
         var href_link = $(this).attr('data-href');
         var quiz_id = $(this).attr('data-id');
@@ -516,6 +515,9 @@ $timer_counter = $practice_time;
 			$(".total-points span").html(total_points);
 		}
     }
+	
+	
+	
 
 
 </script>

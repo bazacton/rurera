@@ -198,9 +198,10 @@
                                                 <h3 class="font-18 font-weight-bold">{{$dataObj->getTitleAttribute()}}</h3>
 												<div class="spell-links">
 												<a href="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/word-hunts/exercise">Word Hunts</a>
-												<a href="javascript:;">Complete the Sentence</a>
+												<a href="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/word-search/exercise">Word Search</a>
+												<a href="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/word-cloud/exercise">Word Cloud</a>
+												<a href="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/word-missing/exercise">Complete the Sentence</a>
 												<a href="javascript:;">Flashcards</a>
-												<a href="javascript:;" class="take-test">Take the tests</a>
 												</div>
                                                 @if($overall_percentage > 0 && $overall_percentage != 100)
                                                 <div class="levels-progress horizontal">

@@ -166,9 +166,9 @@ shuffle($characters_list);
                 <div class="spells-quiz-from question-layout">
                     <div class="form-field">
 					
-						
+						{{$correct_answer}}
                         <input type="text" class="editor-field hide" data-field_id="{{$field_id}}" data-id="{{$field_id}}" id="field-{{$field_id}}">
-						<div id="rurera-words-search" width="100%"></div>
+						<div id="rurera-words-search" class="rurera-words-search-{{ $question->id }}" width="100%"></div>
                     </div>
 
 
@@ -475,88 +475,6 @@ shuffle($characters_list);
         });
 		
 		
-		/*!
- * The Word Search Game Widget
- *
- * Copyright 2011, Ryan Fernandes (https://code.google.com/u/@VBFTRFJWDxFDXgJ4/)
- * Licensed under The MIT License.
- * see license.txt
- *
- */
-
-//==============================================================================
-//------------------------------------------------------------------------------  
-//The Word Search Game Widget
-//------------------------------------------------------------------------------  
-//  
-//  ------
-//  Usage:
-//  ------
-//      $(document).ready( function () {
-//      var words = "earth,mars,mercury,neptune,pluto,saturn,jupiter,one,two,
-//              three,four,five,six,seven,eight,mozart,bach,meyer,rose,mahler";
-//      $("#theGrid").wordsearchwidget({"wordlist" : words,"gridsize" : 12});
-//  });
-//  
-//  -------
-//  Inputs: 
-//  -------
-//  gridsize - Size of grid to generate (this will be a square)
-//  wordlist - Comma separated list of words to place on the grid
-//  
-//  -------------
-//  What it does:               
-//  -------------
-//  Creates a grid of letters with words from the wordlist
-//  These words are randomly placed in the following directions
-//  1. Horizontal
-//  2. Vertical
-//  3. Left-Diagonal
-//  4. Right-Diagonal
-//  In addition, the letters are placed in forward or reverse order, randomly
-//  Provision is made to overlap words
-//  
-//  The User is expected to click on a letter and drag to the last letter of the 
-//  word. If the selected letters form a word that is in the word list the UI
-//  will indicate that by crossing it out from the wordlist
-//  
-//  If the user cannot find a word, she has to click on that word in the 
-//  wordlist and the UI will hightlight the word in the grid and cross it out
-//  
-//  ------------------
-//  Technical Details:
-//  ------------------ 
-//  
-//      Contains 3 areas: 
-//          a) main game grid (#rf-searchgamecontainer)
-//          b) list of words to be found (#rf-wordcontainer)
-//          c) list of words that have been found (#rf-foundwordcontainer)
-//      
-//      Data Structures used:
-//      ---------------------
-//          Objects related to the Data Model
-//          0) Model
-//              a) Grid
-//                  1) Cell
-//                  2) HorizontalPopulator
-//                  3) VerticalPopulator
-//                  4) LeftDiagonalPopulator
-//                  5) RightDiagonalPopulator
-//                  
-//              b) WordList
-//                  1) Word
-//          
-//          Objects related to View
-//          1) Root
-//          2) Hotzone
-//          3) Arms
-//          4) Visualizer
-//          
-//          Objects related to the controller
-//          1) GameWidgetHelper         
-//          
-//          
-//==============================================================================
 
 (function( $, undefined ) {
     
@@ -1652,13 +1570,16 @@ function Word(val) {
     this.checkIfSimilar = function (w) {
         if (this.originalValue == w || this.value == w) {
             this.isFound = true;
-			$(".editor-field").val(this.value);
+			$(".editor-field").val(w);
 			$('#question-submit-btn')[0].click();
-			
-
             return true;
-        }
-        return false;
+        }else{
+			this.isFound = true;
+			$(".editor-field").val(w);
+			$('#question-submit-btn')[0].click();
+            return true;
+		}
+        //return false;
     }
     
 
@@ -1804,7 +1725,7 @@ var GameWidgetHelper = {
 $(document).ready( function () {
     var words = "{{$correct_answer}}";
         //attach the game to a div
-        $("#rurera-words-search").wordsearchwidget({
+        $(".rurera-words-search-{{$question->id}}").wordsearchwidget({
             "wordlist" : words,
             "gridsize" : 15,
             "width" : 300});

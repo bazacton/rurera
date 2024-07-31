@@ -326,12 +326,11 @@ $(document).ready(function () {
             pagination: {el: ".swiper-pagination", clickable: !0},
             breakpoints: {
                 991: {
-                    slidesPerView: 3,
-                    spaceBetween: 30
+                    slidesPerView: 3
                 },
                 660: {
                     slidesPerView: 2,
-                    spaceBetween: 30
+                    spaceBetween: 0
                 },
                 480: {
                     slidesPerView: 1,
@@ -648,50 +647,20 @@ $(document).ready(function () {
         $('.mega-menu-head').addClass(value);
     });
 
-    if (jQuery('.rurera-tooltip').length > 0) {
-        $('.rurera-tooltip').on('click', function() {
+    // if (jQuery('.rurera-tooltip').length > 0) {
+    //     $('.rurera-tooltip').on('click', function() {
             
-            $(this).find(".lms-tooltip").toggleClass("show");
+    //         $(this).find(".lms-tooltip").toggleClass("show");
             
-        });
-    }
-    if (jQuery('.rurera-tooltip').length > 0) {
-        $('.rurera-tooltip').on('click', function() {
-            
-            $(this).addClass("show");
-            
-        });
-    }
-    var mediaQuery = window.matchMedia('(max-width: 992px)')
-        // Check if the media query is true
-        if (mediaQuery.matches) {
-            if (jQuery('.widget-title').length > 0) {
-                $(document).ready(function () {
-                    $(".widget-title").click(function () {
-                      $(this)
-                        .toggleClass("active")
-                        .next(".widget-body")
-                        .slideToggle()
-                        .parent()
-                        .siblings()
-                        .find(".widget-body")
-                        .slideUp()
-                        .prev()
-                        .removeClass("active");
-                    });
-                  });
-            }
-            
-        
-    }
-    
-    // if (jQuery('.spell-levels .panel-subheader + .treasure-stage .rurera-tooltip').length > 0) {
-    //     $(".spell-levels .panel-subheader + .treasure-stage .rurera-tooltip").click(function() {
-    //         $('html, body').animate({
-    //             scrollTop: $(".lms-tooltip").offset().top - 100
-    //         }, 100);
     //     });
     // }
+    if (jQuery('.spell-levels .panel-subheader + .treasure-stage .rurera-tooltip').length > 0) {
+        $(".spell-levels .panel-subheader + .treasure-stage .rurera-tooltip").click(function() {
+            $('html, body').animate({
+                scrollTop: $(".lms-tooltip").offset().top - 100
+            }, 100);
+        });
+    }
 
 });
 
@@ -1400,7 +1369,6 @@ $(document).on('submit', '.child-register-form', function (e) {
     if (returnType == false) {
         return false;
     }
-	return false;
     formData.append('selected_package', selectedPackage);
     rurera_loader($('.subscription-content'), 'div');
     $.ajax({
@@ -1585,3 +1553,127 @@ function update_user_game_time(updated_game_time) {
 $(document).on('click', '.alert-btn-close', function (e) {
 	$(this).closest('.rurera-flash-msg').remove();
 });
+
+
+function createWordCloud(elementId, words, config) {
+    /* ======================= SETUP ======================= */
+    var cloud = document.getElementById(elementId);
+    cloud.style.position = "relative";
+    cloud.style.fontFamily = config.font;
+
+    var traceCanvas = document.createElement("canvas");
+    traceCanvas.width = cloud.offsetWidth;
+    traceCanvas.height = cloud.offsetHeight;
+    var traceCanvasCtx = traceCanvas.getContext("2d");
+    cloud.appendChild(traceCanvas);
+
+    var startPoint = {
+        x: cloud.offsetWidth / 2,
+        y: cloud.offsetHeight / 2
+    };
+
+    var wordsDown = [];
+    /* ======================= END SETUP ======================= */
+
+    /* =======================  PLACEMENT FUNCTIONS =======================  */
+    function createWordObject(word, freq) {
+        var wordContainer = document.createElement("div");
+        wordContainer.style.position = "absolute";
+        wordContainer.style.fontSize = freq + "px";
+        wordContainer.style.lineHeight = config.lineHeight;
+        wordContainer.appendChild(document.createTextNode(word));
+        return wordContainer;
+    }
+
+    function placeWord(word, x, y) {
+        cloud.appendChild(word);
+        //word.style.left = x - word.offsetWidth / 2 + "px";
+        //word.style.top = y - word.offsetHeight / 2 + "px";
+		
+		word.style.left = Math.floor(Math.random() * (100 - 2 + 1)) + 1 + "px";
+		word.style.top = Math.floor(Math.random() * (100 - 1 + 1)) + 1 + "px";
+		
+        wordsDown.push(word.getBoundingClientRect());
+    }
+
+    function trace(x, y) {
+        traceCanvasCtx.fillRect(x, y, 1, 1);
+    }
+
+    function spiral(i, callback) {
+        var angle = config.spiralResolution * i;
+        var x = (1 + angle) * Math.cos(angle);
+        var y = (1 + angle) * Math.sin(angle);
+        return callback ? callback(x, y) : null;
+    }
+
+    function intersect(word, x, y) { 
+        cloud.appendChild(word);   
+		//word.style.left = (parseInt(x) - 0 / 2) + "px";
+		//word.style.top = (parseInt(y) - 0 / 2) + "px";
+		word.style.left = Math.floor(Math.random() * (100 - 2 + 1)) + 1 + "px";
+		word.style.top = Math.floor(Math.random() * (100 - 1 + 1)) + 1 + "px";
+        //word.style.left = parseInt(x) - parseInt(word.offsetWidth) / 2 + "px";
+        //word.style.top = y - word.offsetHeight / 2 + "px";
+		console.log(word);
+        var currentWord = word.getBoundingClientRect();
+        cloud.removeChild(word);
+
+        for (var i = 0; i < wordsDown.length; i += 1) {
+            var comparisonWord = wordsDown[i];
+            if (!(currentWord.right + config.xWordPadding < comparisonWord.left - config.xWordPadding ||
+                  currentWord.left - config.xWordPadding > comparisonWord.right + config.xWordPadding ||
+                  currentWord.bottom + config.yWordPadding < comparisonWord.top - config.yWordPadding ||
+                  currentWord.top - config.yWordPadding > comparisonWord.bottom + config.yWordPadding)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    /* ======================= END PLACEMENT FUNCTIONS ======================= */
+
+    /* =======================  LETS GO! =======================  */
+    (function placeWords() {
+        for (var i = 0; i < words.length; i += 1) {
+            var word = createWordObject(words[i].word, words[i].freq);
+			
+			//console.log(word);
+
+            for (var j = 0; j < config.spiralLimit; j++) {
+                if (spiral(j, function(xaxis, yaxis) {
+					placeWord(word, startPoint.x + xaxis, startPoint.y + yaxis);
+					return true;
+                    /*if (!intersect(word, startPoint.x + xaxis, startPoint.y + yaxis)) {
+                        placeWord(word, startPoint.x + xaxis, startPoint.y + yaxis);
+                        return true;
+                    }*/
+                })) {
+                    break;
+                }
+            }
+        }
+    })();
+    /* ======================= WHEW. THAT WAS FUN. We should do that again sometime ... ======================= */
+
+    /* =======================  Draw the placement spiral if trace lines is on ======================= */
+    (function traceSpiral() {
+        traceCanvasCtx.beginPath();
+        if (config.trace) {
+            var frame = 1;
+
+            function animate() {
+                spiral(frame, function(x, y) {
+                    trace(startPoint.x + x, startPoint.y + y);
+                });
+
+                frame += 1;
+
+                if (frame < config.spiralLimit) {
+                    window.requestAnimationFrame(animate);
+                }
+            }
+
+            animate();
+        }
+    })();
+}

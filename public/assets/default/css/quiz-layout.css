@@ -146,6 +146,18 @@ Rurera Row Style
 .leform-element .leform-col .leform-element {padding: 0;}
 .quiz-group .leform-column-label {margin-bottom: 15px;}
 .quiz-group .leform-column-label:has(label:empty) {display: none;}
+.spells-quiz-from .lms-radio-select.rurera-in-row {
+    align-items: center;
+    justify-content: center;
+    padding: 15px 15px 0;
+}
+.spells-quiz-from .lms-radio-select label {
+    max-height: 50px;
+    padding-right: 15px !important;
+    justify-content: center;
+}
+.spells-quiz-from .rurera-in-row .field-holder,
+.spells-quiz-from .rurera-in-row .form-field {width: 20%;}
 /**********************************
 Rurera Col Style 
 **********************************/

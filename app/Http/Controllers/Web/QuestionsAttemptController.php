@@ -52,6 +52,8 @@ class QuestionsAttemptController extends Controller
         $quiz_breakdown = isset($params['quiz_breakdown']) ? $params['quiz_breakdown'] : '';
         $quiz_level = isset($params['quiz_level']) ? $params['quiz_level'] : 'easy';
 		$journey_item_id = isset($params['journey_item_id']) ? $params['journey_item_id'] : 0;
+		$attempt_mode = isset($params['attempt_mode']) ? $params['attempt_mode'] : '';
+		
 
 
         $newQuizStart = QuizzesResult::where('parent_type_id', $parent_type_id)->where('quiz_result_type', $quiz_result_type)->where('user_id', $user->id)->where('status', 'waiting')->first();
@@ -71,6 +73,7 @@ class QuestionsAttemptController extends Controller
                 'user_ip'          => getUserIP(),
                 'quiz_breakdown'   => $quiz_breakdown,
                 'quiz_level'       => $quiz_level,
+                'attempt_mode'     => $attempt_mode,
             ]);
 			
 			if( $quiz_result_type == 'learning_journey'){	

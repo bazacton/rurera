@@ -8377,7 +8377,7 @@ Lms Performace Table Style End
 /*****************************
 Lms SignUp Page Style Start
 ******************************/
-.job-singup-sub-header {background-color:#fff; padding: 60px 0 90px; margin: 0 0 70px; min-height: 570px; display: flex; align-items: center; overflow: hidden;}
+.job-singup-sub-header {background-color:#fff; padding: 60px 0 60px; margin: 0; min-height: 570px; display: flex; overflow: hidden;}
 .job-singup-sub-header h1 {margin: 0 0 10px;}
 .job-singup-sub-header p {font-size: 19px; line-height: 26px; font-weight: 400;margin: 0 0 25px;color: #586165;}
 .job-singup-sub-header .btn-primary {padding: 18px 40px;display: inline-block;line-height: normal;box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3) inset;}
@@ -10484,7 +10484,27 @@ body .lms-quiz-section .flipbook-quiz {width: 800px;}
 .spells-quiz-from {text-align: center;}
 .spells-quiz-from .form-field {margin: 0 0 40px;}
 .spells-quiz-from input[type="text"],
-.question-layout.spells-quiz-from input[type="text"] {border: 0; width: 10.5ch; font: 1.2rem 'Ubuntu Mono', monospace; letter-spacing: 0.5ch; height: auto; min-height: auto; border: 0; border-radius: 0; padding: 0; text-transform: uppercase; font-size: 28px; font-weight: 600 !important; background: repeating-linear-gradient(90deg, #747474 0, #747474 1ch, transparent 0, transparent 1.5ch) 0 100%/ 10ch 2px no-repeat;}
+.question-layout.spells-quiz-from input[type="text"] { /*background: repeating-linear-gradient(90deg, #747474 0, #747474 1ch, transparent 0, transparent 1.5ch) 0 100%/ 10ch 2px no-repeat; width: 10.5ch;*/ font: 1.2rem 'Ubuntu Mono', monospace; letter-spacing: 0.5ch; min-height: auto; padding: 0; text-transform: uppercase; font-size: 28px; font-weight: 600 !important; width: 45px !important;height: 45px;border: 2px dashed #747474;background: none !important;border-radius: 7px !important; letter-spacing: normal !important; text-align: center; margin: 0 2px;}
+.question-layout.spells-quiz-from input.editor-field-inputs.empty-field {
+    background-color: #ebebeb !important;
+    border-color: #dcdcdc !important;
+}
+.droppable-characters {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    gap: 5px;
+}
+.droppable-characters li {
+    background-color: var(--primary);
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 8px 12px;
+    min-width: 35px;
+    border-radius: 5px;
+}
 .spells-quiz-from button {min-width: 150px; background-color: #46484a; border: 0; padding: 18px 50px; font-size: 18px; font-weight: 500; text-transform: uppercase; border-radius: 5px; color: #fff;}
 .spells-quiz-from button:hover {background-color: #46484a; color: #fff;}
 .spells-quiz-from .form-btn-field {padding-top: 30px;}
@@ -12273,7 +12293,8 @@ Lms Responsive Style Start
         margin-bottom: 50px;
     }
     .page-sub-header h2,
-    .page-sub-header p {
+    .page-sub-header p,
+    .page-sub-header strong {
         text-align: center;
     }
     .page-sub-header p,
@@ -12285,12 +12306,19 @@ Lms Responsive Style Start
     .page-sub-header p {
         margin-bottom: 35px;
     }
+    .lms-testimonials.testimonials-fancy {padding-top: 0; margin-top: 30px;}
+    .job-singup-sub-header {padding-bottom: 30px;}
+    .page-sub-header p br,
     .page-sub-header .btn-primary,
-    .top-navbar .nav-icons-or-start-live {
+    .top-navbar .nav-icons-or-start-live,
+    .page-sub-header h1 br {
         display: none;
     }
     .section-title {
         text-align: center !important;
+    }
+    .home-sections:has(.blog-grid-card) .section-title {
+        text-align: left !important;
     }
     .marquee-sec .section-title {
         padding: 0 15px;
@@ -12305,10 +12333,17 @@ Lms Responsive Style Start
         justify-content: center;
     }
     .job-singup-sub-header h1,
-    .pages-sub-header h1 {text-align: center; font-size: 36px !important; line-height: 46px !important;}
+    .page-sub-header h1 {text-align: center; font-size: 36px !important; line-height: 46px !important;}
     .gallery-sub-header .masonry-grid-gallery {display: none;}
     .footer-dots-img {
         transform: none !important;
+        margin-top: 30px;
+    }
+    .footer-dots-img img {
+        width: 70%;
+        object-fit: contain;
+        display: block;
+        margin: 0 auto;
     }
     .process-step-number {
         display: block;
@@ -12327,6 +12362,9 @@ Lms Responsive Style Start
     .process-card {
         text-align: left !important;
         padding-left: 80px;
+    }
+    .reward-process .process-card {
+        padding-left: 0;
     }
     .process-step-number:before {
         background-color: #fff;
@@ -12350,6 +12388,140 @@ Lms Responsive Style Start
         border-radius: 100%;
         content: "";
         margin-left: -13px;
+    }
+    .has-no-bg .process-step-number {
+        color: var(--primary);
+    }
+    .has-no-bg .process-step-number:before,
+    .has-no-bg .process-step-number:after {
+        background-image: radial-gradient(circle, #0272b6, #0272b6, #0272b6, #0272b6, #ffffff);
+    }
+    .custom-footer .widget-body {
+        display: none;
+        padding-bottom: 25px;
+    }
+    .custom-footer .widget-links li, 
+    .custom-footer .widget-location li {
+        margin-bottom: 10px;
+        width: auto;
+        padding: 0 5px;
+    }
+    .custom-footer .widget-links a, 
+    .custom-footer .widget-location a {
+        text-decoration: underline;
+        font-size: 16px;
+    }
+    .widget.widget-links, .widget.widget-location,
+    .footer-newsletter {
+        border-bottom: 1px solid var(--primary);
+        margin-bottom: 20px;
+    }
+    .widget.widget-links h2, .widget.widget-location h2,
+    .footer-newsletter h2 {
+        margin-bottom: 20px;
+    }
+    .widget.widget-location .widget-title,
+    .widget.widget-links .widget-title,
+    .footer-newsletter .widget-title {
+        position: relative;
+    }
+    .widget.widget-location .widget-title:after,
+    .widget.widget-links .widget-title:after,
+    .footer-newsletter .widget-title:after {
+        content: "";
+        height: 6px;
+        width: 6px;
+        border-width: 0 0 1px 1px;
+        border-style: solid;
+        border-color: #ccc;
+        position: absolute;
+        right: 5px;
+        top: 8px;
+        transform: rotate(-45deg);
+    }
+    .widget.widget-links .widget-title.active:after,
+    .widget.widget-location .widget-title.active:after,
+    .footer-newsletter .widget-title.active:after {
+        border-width: 1px 1px 0 0;
+        margin-top: 5px;
+    }
+    .login-holder .row {
+        align-items: flex-start;
+    }
+    .login-card .login-option div {
+        margin-left: 0;
+    }
+    .process-holder .svg-shapes-bottom {
+        left: 108px;
+    }
+    .widget-title.rurera-hide {
+        display: block;
+    }
+    .custom-footer .footer-newsletter {margin-top: 0;}
+    .lms-accordion-modern.accordion {padding: 0;}
+    .lms-accordion-modern.accordion .card {max-width: 100%; margin-left: 0;}
+    .section-title h2 {word-wrap: break-word;}
+    .home-banner h1.font-72 {
+        font-size: 3rem !important;
+    }
+    .home-banner h1 br,
+    .home-banner p br {display: none;}
+    .section-title h2.font-40,
+    .section-title h2.font-72,
+    .reward-program-section h2.font-72,
+    .newsletter-inner h2.font-72,
+    .categories-element-title h2.font-40 {
+        font-size: 1.8rem !important;
+    }
+    .section-title.section-inner-title h2 {
+        font-size: 1.2rem !important;
+    }
+    .blog-grid-card .blog-grid-detail .blog-grid-title {
+        font-size: 1.4rem;
+    }
+    .home-banner .choose-sats .sats-box {margin-bottom: 80px;}
+    .lms-search-services img {max-width: 100%;}
+    .job-singup-sub-header h1 br {display: none;}
+    .find-instructor-section figure img,
+    .lms-text-section img { max-width: 100%; object-fit: contain; }
+    .find-instructor-section figure img.find-instructor-section-circle { right: 10% !important; }
+    .find-instructor-section figure img.find-instructor-section-circle { right: 10% !important; }
+    .lms-jobs-form .card-header:has(.form-field-counter) button {
+        padding-right: 130px;
+    }
+    .lms-newsletter.blog-newsletter {
+        padding: 50px 0;
+        position: relative;
+        overflow: hidden;
+    }
+    .blog-newsletter [class*="col-"] {
+        max-width: 100%;
+        flex: 0 0 100%;
+        position: initial;
+    }
+    .blog-newsletter .svg-holder {
+        position: absolute;
+        top: 6px;
+        height: 100%;
+        width: 60%;
+        right: 0;
+    }
+    .blog-newsletter .section-title {position: relative; z-index: 1;}
+    .blog-newsletter .lms-btn-group {
+        justify-content: center;
+        position: relative;
+        z-index: 1;
+    }
+    .have-question-card .contact-info .contact-btn {
+    padding: 12px 20px;
+    }
+    .have-question-card .contact-info {
+        padding-top: 40px;
+        margin-top: 40px;
+    }
+    .lms-categories-section.has-bg, .lms-our-mission-section.has-bg {background-size: cover !important;}
+    .lms-our-mission-section.has-bg .lms-mission-holder {
+        padding-top: 60px;
     }
 }
 
@@ -12412,7 +12584,6 @@ Lms Responsive Style Start
     .lms-counter-section {text-align: center;}
     .lms-counter-section,
     .read-quiz-content {padding-top: 0 !important;}
-    section.lms-counter-section {padding-top: 70px !important;}
     .read-quiz-content {max-width: 100%;}
     body .quiz-topbar {position: relative; z-index: 3;}
     .topbar-right .quiz-timer {position: initial; padding-top: 10px;}
@@ -12431,7 +12602,9 @@ Lms Responsive Style Start
     .process-card.process-foure:before,
     .process-card.process-three:before,
     .process-card.process-three:after,
-    .process-card.process-foure:after{display: none;}
+    .process-card.process-foure:after,
+    .process-holder .svg-shapes-bottom,
+    .process-holder .svg-shapes-top {display: none;}
     .process-card.process-one .text-holder,
     .process-card.process-foure .img-holder,
     .process-card.process-two .img-holder,
@@ -12442,9 +12615,6 @@ Lms Responsive Style Start
     .newsletter-inner .form-field { text-align: center !important; margin-top: 30px; }
     .lms-text-section blockquote p { padding: 0; }
     .testimonials-container .swiper-container {padding: 0 !important;}
-    .find-instructor-section figure img { max-width: 100%; object-fit: contain; }
-    .find-instructor-section figure img.find-instructor-section-circle { right: 10% !important; }
-    .find-instructor-section figure img.find-instructor-section-circle { right: 10% !important; }
     .find-instructor-section [class*="col-"] > .pl-50,
     .find-instructor-section [class*="col-"] > .ml-50{ padding-left: 0 !important; margin-left: 0 !important; }
     .find-instructor-section .sub-thumb { right: 30px; bottom: -50px; max-width: 50%; }
@@ -12458,7 +12628,6 @@ Lms Responsive Style Start
     .process-holder {padding-bottom: 0; overflow: visible;}
     .lms-text-section .lms-img-holder figure img {width: 100% !important; object-fit: contain;}
     .pages-sub-header {max-height: inherit;}
-    .home-banner .choose-sats .sats-box {margin-bottom: 80px;}
     .home-banner .choose-sats [class*="col-"]:last-child .sats-box {margin-bottom: 0;}
     .user-assign-topics .dropdown-menu {right: 0; left: auto;}
     .chart-filters,
@@ -12501,8 +12670,6 @@ Lms Responsive Style Start
     .lms-column-section img {margin-top: 30px; max-width: 100%;}
     .lms-accordion-modern.accordion .card .lms-img-holder img,
     .lms-text-holder .icon-svg img  {margin-top: 0;}
-    .lms-search-services img {max-width: 100%;}
-    .job-singup-sub-header h1 br {display: none;}
     .testimonials-fancy-bg:before {top: 1px;}
     .db-members .card .column-2 .list-group-item {max-width: 100%; width: 100%;}
     .db-form-tabs .nav-tabs a,
@@ -12567,7 +12734,7 @@ Lms Responsive Style Start
     .rewards-layout-box.column-3 .col-12 {grid-column: 1/3;}
     .rewards-header p br {display: none;}
     .referral-price-card {margin-bottom: 15px;}
-    .login-card {margin-bottom: 30px;}
+    .login-card {margin-bottom: 30px; padding: 0 20px;}
     .login-container .login-holder {padding: 20px;max-width: 100%;min-width: auto;}
     .login-container .login-holder > [class*="col"]:last-child{padding-right: 0;}
     .login-container .login-holder > [class*="col-"] {padding: 0;}
@@ -12601,7 +12768,7 @@ Lms Responsive Style Start
     .how-it-work .text-holder {padding-bottom: 25px;}
     .services-section .services-box {margin-bottom: 25px;}
     .footer-logo-wrapper {margin-left: 0;}
-    .custom-footer {overflow: hidden;}
+    .custom-footer {overflow: hidden; padding-top: 50px !important;}
     .learning-start .learning-text {margin-bottom: 30px;}
     .learning-start .learning-text h5 {font-size: 1.2rem !important;}
     .learning-start .learning-text p {font-size: 1rem !important;margin-bottom: 20px;}
@@ -12782,22 +12949,6 @@ Lms Responsive Style Start
     body .wizard-steps .radio-buttons .card-radio:has(img) {
         width: 30%;
     }
-    .section-title h2 {word-wrap: break-word;}
-    .home-banner h1.font-72 {
-        font-size: 3rem !important;
-    }
-    .section-title h2.font-40,
-    .section-title h2.font-72,
-    .reward-program-section h2.font-72,
-    .newsletter-inner h2.font-72 {
-        font-size: 1.8rem !important;
-    }
-    .section-title.section-inner-title h2 {
-        font-size: 1.2rem !important;
-    }
-    .blog-grid-card .blog-grid-detail .blog-grid-title {
-        font-size: 1.4rem;
-    }
     .lms-accordion-modern.accordion {padding: 15px;}
     .lms-accordion-modern.accordion .card {margin-left: 0; max-width: 100%;}
     .marquee-list-holder {overflow: hidden;}
@@ -12817,7 +12968,8 @@ Lms Responsive Style Start
         max-width: 33%;
     }
     .section-title br,
-    .exploring-curriculum .lms-text-holder br {
+    .exploring-curriculum .lms-text-holder br,
+    .banner-holder .text-holder h2 br {
         display: none;
     }
     .exploring-curriculum .lms-text-holder {
@@ -12825,6 +12977,20 @@ Lms Responsive Style Start
         gap: 15px;
     }
     .exploring-curriculum .lms-text-holder h4 {text-align: left;}
+    .banner-holder .text-holder h2 {text-align: center;}
+    .lms-accordion-modern.accordion .card-body p.font-16 {font-size: 16px !important;}
+    .results-revenue-card {
+        justify-content: center;
+        text-align: center;
+    }
+    .results-revenue-card .author-info {
+        display: inline-flex;
+        text-align: left;
+    }
+    .have-question-card {
+        justify-content: center;
+        text-align: center;
+    }
 }
 
 @media screen and (max-width: 640px) {
@@ -12992,6 +13158,9 @@ Lms Responsive Style Start
     .footer .footer-copyright [class*="col-"] {max-width: 100%; flex: 0 0 100%;}
     .footer.footer-home .footer-logo {margin: 15px auto;}
     .rurera-home-categories>.row>[class*="col-"] {flex: 0 0 50%; max-width: 50%;}
+    .rurera-home-categories .row {
+        padding-left: 30px;
+    }
     .blog-grid-card.rurera-grid {margin-bottom: 25px;}
     .blog-sub-header.lms-call-to-action input[type="text"], 
     .sub-header.lms-call-to-action input[type="text"] {width: 100%;}
@@ -13068,6 +13237,9 @@ Lms Responsive Style Start
         width: 100%;
     }
     .lms-quiz-section .input-holder.textarea_lines {margin-left: 0;max-width: none;}
+    .lms-testimonial-slider .testimonial-card {
+        min-height: 745px;
+    }
 }
 @media screen and (max-width: 480px) {
     .lms-count-field .lms-text-holder {flex-direction: column;}
@@ -13082,8 +13254,8 @@ Lms Responsive Style Start
     .rurera-in-row {flex-direction: column;}
     body .rurera-in-row .field-holder, body .rurera-in-row .form-field {width: 100%;}
     nav.top-navbar .login-btn, nav .register-btn {padding: 4px 10px !important; font-size: 12px; white-space: nowrap;}
-    .counter-holder .svg-shapes-top {right: 60px;}
-    .counter-holder .svg-shapes-bottom {left: 32px;}
+    .counter-holder .svg-shapes-top {right: 90px;}
+    .counter-holder .svg-shapes-bottom {left: 60px;}
     .spells-quiz-from .form-btn-field {display: flex;flex-direction: column-reverse; padding-left: 20px; padding-right: 20px;}
     .spell-levels li {align-items: flex-start;}
     .spell-levels li > a:before {height: 100%; margin-top: 14px;}
@@ -13112,6 +13284,10 @@ Lms Responsive Style Start
         max-width: 100%;
         min-width: auto;
     }
+    .home-sections:has(.blog-grid-card) .btn {
+        padding-right: 10px;
+        padding-left: 10px;
+    }
 }
 .disabled-style{opacity: 0.5;}
 .preference_field option:disabled {
@@ -13139,8 +13315,6 @@ Lms Responsive Style Start
     background-color: #ffadad;
     color: #fff;
 }
-
-
 .marquee-list .card-body {
     padding: 0;
 }

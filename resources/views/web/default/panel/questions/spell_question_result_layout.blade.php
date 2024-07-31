@@ -2,6 +2,7 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
 
+
 <div class="question-step quiz-complete" style="display:none">
     <div class="question-layout-block">
         <div class="left-content has-bg">
@@ -19,6 +20,7 @@
 $question_layout = html_entity_decode(json_decode(base64_decode(trim(stripslashes($question->question_layout)))));
 $search_tags = ($question->search_tags != '')? explode(' | ', $question->search_tags) : array();
 $is_development = (!empty( $search_tags ) && in_array('development', $search_tags))? true : false;
+
 @endphp
 
 <div class="question-area spell-question-area">
