@@ -109,7 +109,7 @@ $rand_no = rand(99,9999);
 @stack('styles_bottom')
 @stack('scripts_bottom')
 
-<script src="/assets/default/js/parts/main.min.js"></script>
+<script src="/assets/default/js/parts/main.min.js?ver={{$rand_no}}"></script>
 <script src="/assets/default/vendors/swiper/swiper-bundle.min.js"></script>
 <script src="/assets/default/vendors/data-table/dataTables.min.js"></script>
 <script src="/assets/vendors/flipbook/js/flipbook.min.js"></script>

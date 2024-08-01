@@ -437,7 +437,6 @@ class QuizController extends Controller
         }
         $newQuizStart = $newQuizStart->first();
 
-
         if ($no_of_questions > 0) {
             $questions_list = array_slice($questions_list, 0, $no_of_questions);
         }
@@ -594,7 +593,7 @@ class QuizController extends Controller
 
                             $total_questions_count = is_array(json_decode($attemptLogObj->questions_list)) ? json_decode($attemptLogObj->questions_list) : array();
                             $total_questions_count = count($total_questions_count);
-                            $RewardAccountingObj = RewardAccounting::where('user_id', $user->id)->where('type', 'coins')->where('parent_type', $resultLogObj->quiz_result_type)->first();
+                            $RewardAccountingObj = RewardAccounting::where('user_id', $user->id)->where('type', 'coins')->where('result_id', $resultLogObj->id)->first();
 
                             $results_questions_array[$newQuestionResult->id] = [
                                 'question'              => $questionObj,
@@ -710,6 +709,7 @@ class QuizController extends Controller
 						
 						
 
+						$question_response_layout = '';
 						if( $test_type_file == ''){
 							$question_response_layout = view('web.default.panel.questions.spell_question_layout', $resultsQuestionsData)->render();
 						}else{

@@ -2,6 +2,7 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <style>
     .rurera-hide{display:none;}
+	.rurera-selectable-options li.active {background:#86b46c}
 </style>
 
 
@@ -79,24 +80,22 @@ shuffle($characters_list);
                 </div>
                 <div class="left-content has-bg">
                 <div class="spells-quiz-sound">
-                    <strong>Hear It: <a href="javascript:;"  id="sound-icon-{{ $question->id }}" data-id="audio_file_{{ $question->id }}" class="play-btn sound-icon pause">
+                    <strong>Word <a href="javascript:;"  id="sound-icon-{{ $question->id }}-word" data-id="audio_file_{{ $question->id }}-word" class="play-btn sound-icon">
                       <img class="play-icon" src="/assets/default/svgs/play-circle.svg" alt="" height="20" width="20">
                       <img class="pause-icon" src="/assets/default/svgs/pause-circle.svg" alt="" height="20" width="20">
-                    </a></strong>
+                    </a> Sentence <a href="javascript:;"  id="sound-icon-{{ $question->id }}" data-id="audio_file_{{ $question->id }}" class="play-btn sound-icon play-sentence-sound pause">
+                      <img class="play-icon" src="/assets/default/svgs/play-circle.svg" alt="" height="20" width="20">
+                      <img class="pause-icon" src="/assets/default/svgs/pause-circle.svg" alt="" height="20" width="20">
+                    </a> </strong>
                 </div>
                 <div class="player-box">
-                   <audio  class="player-box-audio" id="audio_file_{{ $question->id }}" src="{{isset($word_data['audio_file'])? $word_data['audio_file'] : ''}}"> </audio>
+				   <audio  class="player-box-audio" id="audio_file_{{ $question->id }}-word" src="{{isset($word_data['word_audio'])? $word_data['word_audio'] : ''}}"> </audio>
+				   <audio  class="player-box-audio" id="audio_file_{{ $question->id }}" src="{{isset($word_data['audio_file'])? $word_data['audio_file'] : ''}}"> </audio>
                 </div>
                 <div class="spells-quiz-from question-layout">
                     <div class="form-field">
 					
-						<ul class="spell-characters-list droppable-characters">
-						@if( !empty( $characters_list ) )
-							@foreach( $characters_list as $character_index => $character_char)
-								<li class="draggable" id="item-1{{ $character_index }}" draggable="true">{{$character_char}}</li>
-							@endforeach
-						@endif	
-						</ul>
+						
 					
 					
 						@php $words_counter = 0; @endphp
@@ -114,6 +113,14 @@ shuffle($characters_list);
                                                     letter-spacing: 0.5ch;" {{$field_attr}}>
                         @php $words_counter++;@endphp
                         @endwhile
+						
+						<ul class="spell-characters-list droppable-characters rurera-selectable-options mt-20">
+						@if( !empty( $characters_list ) )
+							@foreach( $characters_list as $character_index => $character_char)
+								<li class="draggable" id="item-1{{ $character_index }}" draggable="true">{{$character_char}}</li>
+							@endforeach
+						@endif	
+						</ul>
 					
                         <input type="text" class="editor-field hide" data-field_id="{{$field_id}}" data-id="{{$field_id}}" id="field-{{$field_id}}">
                     </div>
@@ -342,20 +349,51 @@ shuffle($characters_list);
         }
         //SpellQuestionintervalFunc();
         var player_id = $(this).attr('data-id');
+		
+		document.getElementById(player_id).play();
+		$(this).addClass("pause");
         
 
-        $(this).toggleClass("pause");
-        if ($(this).hasClass('pause')) {
+        /*if ($(this).hasClass('pause')) {
             document.getElementById(player_id).play();
         } else {
             document.getElementById(player_id).pause();
-        }
+        }*/
     });
     var audio = document.getElementById("audio_file_{{ $question->id }}");
 
-    audio.addEventListener('ended', function () {
+    audio.addEventListener('ended', function () {	
         $('#sound-icon-{{ $question->id }}').toggleClass("pause");
     });
+	
+	$(document).on('click', '#sound-icon-{{ $question->id }}-word', function (e) {
+        var context = new AudioContext();
+        $('.editor-field-inputs:eq(0)').focus();
+        //$('#field-{{$field_id}}').focus();
+        if( currentFunctionStart == null) {
+            SpellQuestionintervalCountDownFunc();
+        }
+        //SpellQuestionintervalFunc();
+        var player_id = $(this).attr('data-id');
+        
+
+        document.getElementById(player_id).play();
+		$(this).addClass("pause");
+        /*if ($(this).hasClass('pause')) {
+			//$(this).toggleClass("pause");
+            document.getElementById(player_id).play();
+        } else {
+			//$(this).toggleClass("pause");
+            document.getElementById(player_id).pause();
+        }*/
+
+    });
+    
+	
+	
+	
+	
+	
 
     $(document).on('click', '.start-spell-quiz', function (e) {
     //jQuery(document).ready(function() {
@@ -365,6 +403,9 @@ shuffle($characters_list);
         $('.editor-field-inputs:eq(0)').focus();
         //$('#field-{{$field_id}}').focus();
         $('#sound-icon-{{ $question->id }}').click();
+		
+		
+		
           var $keyboardWrapper = $('.virtual-keyboard'),
           $key = $keyboardWrapper.find("input"),
           $key_delete = $('.delete'),

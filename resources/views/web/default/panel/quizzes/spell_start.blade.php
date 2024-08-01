@@ -326,14 +326,24 @@ $timer_counter = $practice_time;
   </div>
 </div>
 
-<div class="modal fade review_submit" id="review_submit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-   <div class="modal-dialog">
+<div class="modal fade review_submit1" id="review_submit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+   <div class="modal-dialog modal-dialog-centered">
        <div class="modal-content">
-           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+           <button type="button" class="close unpause-quiz" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
            <div class="modal-body">
-               <p></p>
-               <a href="javascript:;" class="submit_quiz_final nav-link mt-20 btn-primary rounded-pill" id="home-tab" data-toggle="tab" data-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true"> Submit </a>
-           </div>
+			  <div class="modal-box">
+				<span class="icon-box d-block mb-15">
+					<img src="../assets/default/img/clock-modal-img.png" alt="">
+				</span>
+				<h3 class="font-24 font-weight-normal mb-10">Are you sure?</h3>
+				<p class="mb-15 font-14">
+					You've  been gone a while, we have paused you, you still can continue learning by using following&nbsp;links.
+				</p>
+				<div class="inactivity-controls flex-column d-flex">
+					<a href="javascript:;" class="review-btn submit_quiz_final">Finish Test</a>
+				</div>
+			  </div>
+			</div>
        </div>
    </div>
 </div>
@@ -350,10 +360,41 @@ $timer_counter = $practice_time;
 <a href="#" data-toggle="modal" class="hide review_submit_btn" data-target="#review_submit">modal button</a>
 
 
+<div class="modal fade question_inactivity_modal" id="question_inactivity_modal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content">
+    <div class="modal-body">
+      <div class="modal-box">
+        <span class="icon-box d-block mb-15">
+            <img src="../assets/default/img/clock-modal-img.png" alt="">
+        </span>
+        <h3 class="font-24 font-weight-normal mb-10">Are you still there?</h3>
+        <p class="mb-15 font-14">
+            You've been inactive for a while, and your session was paused. You can continue learning by using the following links
+        </p>
+		<ul class="activity-info">
+			<li>Total Questions: <strong class="total-questions">10</strong></li>
+			<li><span class="icon-box"></span> Correct: <strong class="correct-questions">1</strong></li>
+			<li>Incorrect: <strong class="incorrect-questions">2</strong></li>
+			<li>Unanswered: <strong class="unanswered-questions">7</strong></li>
+		</ul>
+        <div class="inactivity-controls">
+            <a href="javascript:;" class="continue-btn" data-dismiss="modal" aria-label="Continue">Continue Test</a>
+            <a href="javascript:;" class="review-btn submit_quiz_final">Finish Test</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
 
 <script>
     //init_question_functions();
 
+	var attempted_questions = 0;
+	var incorrect_questions = 0;
+	var correct_questions = 0;
     $("body").on("click", ".js_link_clickable", function (e) {
         var href_link = $(this).attr('data-href');
         var quiz_id = $(this).attr('data-id');
@@ -374,10 +415,58 @@ $timer_counter = $practice_time;
     var duration_type = '{{$duration_type}}';
     var timePaused = false;
 	
+	var focusInterval = null;
+	var focusIntervalCount = 10;
+	var TimerActive = true;
 	
 	
 
     function quiz_default_functions() {
+		
+		
+		
+		window.addEventListener('blur', function () {
+            //var attempt_id = $(".question-area .question-step").attr('data-qattempt');
+            //inactivity-timer
+            if( focusInterval == null) {
+
+                focusInterval = setInterval(function () {
+                    var focus_count = focusIntervalCount-1;
+                    console.log('focusout--'+focus_count);
+                    focusIntervalCount = focus_count;
+                    if (focus_count <= 0 && TimerActive == true) {
+                        TimerActive = false;
+						var total_questions = $('.quiz-pagination li').length;
+						$(".question_inactivity_modal .modal-body .total-questions").html(total_questions);
+						$(".question_inactivity_modal .modal-body .correct-questions").html(correct_questions);
+						$(".question_inactivity_modal .modal-body .incorrect-questions").html(incorrect_questions);
+						$(".question_inactivity_modal .modal-body .unanswered-questions").html(parseInt(total_questions) - parseInt(attempted_questions));
+						
+						
+                        $(".question_inactivity_modal").modal('show');
+                        focusIntervalCount = 10;
+                        clearInterval(focusInterval);
+                        focusInterval = null;
+                    }
+                }, 1000);
+
+            }
+        });
+
+
+        window.addEventListener('focus', function () {
+            focusIntervalCount = 10;
+            clearInterval(focusInterval);
+            focusInterval = null;
+        });
+
+        $(document).on('click', '.continue-btn', function (e) {
+            TimerActive = true;
+            focusIntervalCount = 10;
+            focusInterval = null;
+        });
+		
+		
 		
 
 
@@ -446,6 +535,8 @@ $timer_counter = $practice_time;
             $('.learning-page').css('font-size', curSize);
         });
 		
+		
+		
 		var active_question_id = $(".question-area-block").attr('data-active_question_id');
 		if( active_question_id > 0){
 			$('.quiz-pagination ul li[data-actual_question_id="'+active_question_id+'"]').click();
@@ -507,6 +598,7 @@ $timer_counter = $practice_time;
 	
 	function afterQuestionValidation(return_data, thisForm, question_id) {
 		var question_status_class = (return_data.incorrect_flag == true) ? 'incorrect' : 'correct';
+		attempted_questions = return_data.attempted_questions;
 		var total_points = $(".lms-quiz-section").attr('data-total_points');
 		if( question_status_class == 'correct' ){
 			total_points = parseInt(total_points)+1;

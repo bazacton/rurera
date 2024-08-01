@@ -30,6 +30,8 @@ let timeLimit = 60; // Set the time limit in seconds
 
 var quiz_user_data = [];
 var attempted_questions = 0;
+var correct_questions = 0;
+var incorrect_questions = 0;
 quiz_user_data[0] = {};
 quiz_user_data[0]['attempt'] = {};
 quiz_user_data[0]['incorrect'] = {};
@@ -189,11 +191,19 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
             attempted_questions = parseInt(attempted_questions)+1;
             question_submit_process = false;
 			var question_status_class = (return_data.incorrect_flag == true) ? 'incorrect' : 'correct';
+			if( question_status_class == 'incorrect'){
+				incorrect_questions = parseInt(incorrect_questions)+1;
+			}else{
+				correct_questions = parseInt(correct_questions)+1;
+			}
             
 			
 			
 			if (typeof afterQuestionValidation === "function") {
 				// myFunction exists and is a function
+				return_data.attempted_questions = attempted_questions;
+				return_data.correct_questions = correct_questions;
+				return_data.incorrect_questions = incorrect_questions;
 				afterQuestionValidation(return_data, thisForm, question_id);
 			}
 			
@@ -1051,6 +1061,7 @@ function init_question_functions() {
         var total_questions = $(".question-area").attr('data-total_questions');
 
         $(".review_submit .modal-body p").html('You have attempted ' + attempted_questions + ' questions. Are you sure you want to submit?');
+		$(".review_submit1 .modal-body p").html('You have attempted ' + attempted_questions + ' questions. are you sure you want to submit your test? you will not able to access this test again.');
 
 
         /*var thisObj = $(this);

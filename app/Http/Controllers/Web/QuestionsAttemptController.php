@@ -57,6 +57,9 @@ class QuestionsAttemptController extends Controller
 
 
         $newQuizStart = QuizzesResult::where('parent_type_id', $parent_type_id)->where('quiz_result_type', $quiz_result_type)->where('user_id', $user->id)->where('status', 'waiting')->first();
+		if( $quiz_result_type == 'vocabulary'){
+			$newQuizStart = (object) array();
+		}
 
         if (empty($newQuizStart) || !isset($newQuizStart->id) || $newQuizStart->count() < 1) {
             $newQuizStart = QuizzesResult::create([
@@ -3069,6 +3072,7 @@ class QuestionsAttemptController extends Controller
 		$user = getUser();
 		$parent_type_id = ($assignment_id > 0)? $assignment_id : $quiz->id;
 		$newQuizStart = QuizzesResult::where('parent_type_id', $parent_type_id)->where('quiz_level', $quiz_level)->where('user_id', $user->id)->where('status', 'waiting')->first();
+		$newQuizStart = (object) array();
 		if( isset( $newQuizStart->id)){
 			$questions_list = json_decode($newQuizStart->questions_list);
 			$questions_list = QuizzResultQuestions::whereIn('id', $questions_list)	
