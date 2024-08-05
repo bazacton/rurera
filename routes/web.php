@@ -590,6 +590,7 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
        Route::get('/words_list' , 'SpellsController@words_list');
        Route::get('/{quiz_year}/{quiz_slug}' , 'SpellsController@start');
         Route::get('/search' , 'SpellsController@search');
+        Route::get('/words-data' , 'SpellsController@words_data');
        //Route::get('/{quiz_id}/start' , 'ElevenplusController@start');
 
    });

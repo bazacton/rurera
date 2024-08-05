@@ -104,7 +104,7 @@ shuffle($characters_list);
                             $field_width = ($words_counterplus >= $no_of_words)? '1.5' : '1';
 							$word_character = substr($correct_answer, $words_counter, 1);
 							$word_character = in_array($words_counter, $hidden_indexes)? '' : $word_character;
-							$field_attr = in_array($words_counter, $hidden_indexes)? '' : 'readonly';
+							$field_attr = in_array($words_counter, $hidden_indexes)? 'readonly' : 'readonly';
 							$field_class = in_array($words_counter, $hidden_indexes)? 'empty-field' : '';
                             @endphp
                             <input type="text" value="{{$word_character}}" maxlength="1" data-counter_id="{{$words_counter}}" class="editor-field-inputs drop-target{{ $question->id }} {{$field_class}}" style="width: {{$field_width}}ch;
@@ -134,7 +134,7 @@ shuffle($characters_list);
 
                     <div class="form-btn-field">
                         <button type="button" class="question-review-btn" data-id="{{ $question->id }}">Finish</button>
-                        <button type="submit" class="question-submit-btn">Enter</button>
+                        <button type="submit" class="question-submit-btn">Mark Answer</button>
                         <a href="javascript:;" id="question-next-btn" class="question-next-btn rurera-hide">
                             Next
                             <svg style="width: 22px;height: 22px;" xmlns="http://www.w3.org/2000/svg" version="1.0"

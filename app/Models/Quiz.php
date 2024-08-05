@@ -148,6 +148,30 @@ class Quiz extends Model implements TranslatableContract
 
         return null;
     }
+	
+	public function vocabulary_words()
+    {
+		
+		$words_list = array();
+		if (!empty($this->quizQuestionsList)) {
+            foreach ($this->quizQuestionsList as $questionsListData) {
+				$SingleQuestionData = $questionsListData->SingleQuestionData;
+				$layout_elements = isset($SingleQuestionData->layout_elements) ? json_decode($SingleQuestionData->layout_elements) : array();
+				$correct_answer = '';
+				if (!empty($layout_elements)) {
+                    foreach ($layout_elements as $elementData) {
+						$element_type = isset($elementData->type) ? $elementData->type : '';
+                        $correct_answer = isset($elementData->correct_answer) ? $elementData->correct_answer : $correct_answer;
+						if ($element_type == 'textfield_quiz') {
+                            $correct_answer = $correct_answer;
+                        }
+						$words_list[$SingleQuestionData->id] = $correct_answer;
+                    }
+                }
+			}
+		}
+		return $words_list;
+	}
 
     static function getQuizPercentage($SubChapterID, $all_data = false)
     {

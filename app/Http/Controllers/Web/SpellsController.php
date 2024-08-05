@@ -39,7 +39,6 @@ class SpellsController extends Controller
         $non_mastered_words = isset($UserVocabulary->non_mastered_words) ? (array)json_decode($UserVocabulary->non_mastered_words) : array();
 
 
-
         $start_date = strtotime('2023-09-20');
         $end_date = strtotime('2023-09-26');
 
@@ -70,6 +69,8 @@ class SpellsController extends Controller
         }
 
         $spellsData = $query->paginate(200);
+		
+
 
 
         $categories = Category::where('parent_id', null)
@@ -307,8 +308,11 @@ class SpellsController extends Controller
 		
         $category_slug = substr(collect(Route::getCurrentRoute()->action['prefix'])->last(), 1);
         $categoryObj = Category::where('slug', $category_slug)->first();
-        $spellQuiz = Quiz::where('quiz_slug', $quiz_slug)->where('year_id', $categoryObj->id)->first();
-        $quiz = Quiz::where('quiz_slug', $quiz_slug)->first();
+		$quiz = Quiz::where('quiz_slug', $quiz_slug)->where('year_id', $categoryObj->id)->with([
+            'quizQuestionsList' => function ($query) {
+                $query->where('status', 'active');
+            },
+        ])->first();
         $id = $quiz->id;
 		
         //$quiz = Quiz::find($id);
@@ -374,6 +378,33 @@ class SpellsController extends Controller
         echo $response_layout;
         exit;
     }
+	
+	public function words_data(Request $request)
+    {
+        $spell_id = $request->get('spell_id', null);
+		$spell_type = $request->get('spell_type', null);
+		$spellData = Quiz::find($spell_id);
+		$vocabulary_words = $spellData->vocabulary_words();
+		$QuestionsAttemptController = new QuestionsAttemptController();
+		
+		$questionResults = $QuestionsAttemptController->get_questions_results($vocabulary_words, 'vocabulary', '');
+		$response = '';
+		if( !empty( $vocabulary_words ) ){
+			foreach( $vocabulary_words as $question_id => $word){
+				$no_of_attempts = isset( $questionResults[$question_id] )? $questionResults[$question_id] : 0;
+				//pre($questionResults->count());
+				$response .= '<div class="word-block">';
+				$response .= '<h3>'.$word.' ('.$no_of_attempts.')</h3>';
+				$response .= '<div class="word-details">';
+				$response .= 'Test Text goes here....';
+				$response .= '</div>';
+				
+				$response .= '</div>';
+			}
+		}
+		echo $response;exit;
+		
+	}
 
 
 }

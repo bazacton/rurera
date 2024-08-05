@@ -3072,7 +3072,7 @@ class QuestionsAttemptController extends Controller
 		$user = getUser();
 		$parent_type_id = ($assignment_id > 0)? $assignment_id : $quiz->id;
 		$newQuizStart = QuizzesResult::where('parent_type_id', $parent_type_id)->where('quiz_level', $quiz_level)->where('user_id', $user->id)->where('status', 'waiting')->first();
-		$newQuizStart = (object) array();
+		//$newQuizStart = (object) array();
 		if( isset( $newQuizStart->id)){
 			$questions_list = json_decode($newQuizStart->questions_list);
 			$questions_list = QuizzResultQuestions::whereIn('id', $questions_list)	
@@ -3220,6 +3220,25 @@ class QuestionsAttemptController extends Controller
         $alloted_game_time = gameTime($parent_type);
         $user->update(['game_time'=> $current_game_time+$alloted_game_time]);
     }
+	
+	public function get_questions_results($vocabulary_words, $quiz_result_type = '', $attempt_mode = ''){
+		$questionIDs = array_keys($vocabulary_words);
+        $user = auth()->user();
+		$results = QuizzResultQuestions::whereIn('question_id', $questionIDs)
+			->where('quiz_result_type', $quiz_result_type)
+			->where('user_id', $user->id)
+			->where('status', '!=', 'waiting')
+			->get();
+
+		$response = [];
+		foreach ($questionIDs as $questionID) {
+			$response[$questionID] = $results->where('question_id', $questionID)->count();
+		}
+        return $response;
+    }
+	
+	
+	
 
 
 }

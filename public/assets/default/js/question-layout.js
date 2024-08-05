@@ -811,7 +811,7 @@ function init_question_functions() {
         });
     });
     $(document).on('click', '.confirm-btn', function (e) {
-        $('#next-btn')[0].click();
+        //$('#next-btn')[0].click();
     });
     $(document).on('click', '.question-next-btn', function (e) {
         //$(".quiz-status-bar").addClass('rurera-hide');
