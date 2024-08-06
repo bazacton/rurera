@@ -25,10 +25,10 @@
                                 @else
                                     @php $no_records_data = '<div class="no-record-found-head mb-20">
                                             <ul class="d-flex align-items-center justify-content-between">
-                                                <li><h6 class="listing-title font-14 font-weight-500">Title</h6></li>
-                                                <li><h6 class="listing-title font-14 font-weight-500">Student</h6></li>
-                                                <li><h6 class="listing-title font-14 font-weight-500">Type</h6></li>
-                                                <li><h6 class="listing-title font-14 font-weight-500">Action</h6></li>
+                                                <li><h6 class="listing-title font-16 font-weight-500">Title</h6></li>
+                                                <li><h6 class="listing-title font-16 font-weight-500">Student</h6></li>
+                                                <li><h6 class="listing-title font-16 font-weight-500">Type</h6></li>
+                                                <li><h6 class="listing-title font-16 font-weight-500">Action</h6></li>
                                             </ul>
                                     </div>'; @endphp
                                     @include('web.default.default.list_no_record',['no_records_data' => $no_records_data])

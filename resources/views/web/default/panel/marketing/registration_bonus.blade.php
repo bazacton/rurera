@@ -17,7 +17,7 @@
                 <i data-feather="credit-card" width="18" height="18" class=""></i>
             </div>
             <div class="ml-10">
-                <div class="font-14 font-weight-bold ">{{ trans('update.you_got_the_bonus') }}</div>
+                <div class="font-16 font-weight-bold ">{{ trans('update.you_got_the_bonus') }}</div>
                 <div class="font-12 ">{{ trans('update.your_registration_bonus_was_unlocked_on_date',['date' => dateTimeFormat($accounting->created_at, 'j M Y')]) }}</div>
             </div>
         </div>
@@ -70,7 +70,7 @@
                         <div class="col-7">
                             <h4 class="font-16 font-weight-bold">{{ trans('update.bonus_status') }}</h4>
 
-                            <p class="mt-10 font-14 font-weight-500 text-gray">{{ trans('update.your_bonus_is_locked_To_unlock_the_bonus_please_check_the_following_statuses') }}:</p>
+                            <p class="mt-10 font-16 font-weight-500 text-gray">{{ trans('update.your_bonus_is_locked_To_unlock_the_bonus_please_check_the_following_statuses') }}:</p>
 
                             @if(!empty($registrationBonusSettings['number_of_referred_users']))
                                 <div class="d-flex align-items-center position-relative mt-15 p-15 border border-gray200 rounded-lg">
@@ -79,7 +79,7 @@
                                     </div>
 
                                     <div class="ml-5">
-                                        <span class="d-block font-14 font-weight-bold text-gray">{{ trans('update.referred_users') }}</span>
+                                        <span class="d-block font-16 font-weight-bold text-gray">{{ trans('update.referred_users') }}</span>
                                         <span class="d-block font-12 text-gray">{{ $bonusStatusReferredUsersChart['complete'] == 0 ? trans('update.you_havent_referred_any_users') : trans('update.you_referred_count_users_to_the_platform',['count' => "{$bonusStatusReferredUsersChart['referred_users']}/{$registrationBonusSettings['number_of_referred_users']}"]) }}</span>
                                     </div>
 
@@ -98,7 +98,7 @@
                                     </div>
 
                                     <div class="ml-5">
-                                        <span class="d-block font-14 font-weight-bold text-gray">{{ trans('update.users_purchases') }}</span>
+                                        <span class="d-block font-16 font-weight-bold text-gray">{{ trans('update.users_purchases') }}</span>
                                         <span class="d-block font-12 text-gray">{{ $bonusStatusUsersPurchasesChart['complete'] == 0 ? trans('update.you_havent_referred_any_users_to_purchase') : trans('update.count_users_achieved_purchase_target',['count' => "{$bonusStatusUsersPurchasesChart['reached_user_purchased']}/{$bonusStatusUsersPurchasesChart['total_user_purchased']}"]) }}</span>
                                     </div>
 
@@ -134,7 +134,7 @@
                                             <img src="{{ $termItem['icon'] }}" alt="{{ $termItem['title'] }}" width="16" height="16">
                                         </div>
                                         <div class="ml-10">
-                                            <span class="d-block font-14 font-weight-bold text-dark">{{ $termItem['title'] }}</span>
+                                            <span class="d-block font-16 font-weight-bold text-dark">{{ $termItem['title'] }}</span>
                                             <span class="d-block font-12 font-weight-500 text-gray mt-5">{{ $termItem['description'] }}</span>
                                         </div>
                                     </div>

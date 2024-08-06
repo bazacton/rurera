@@ -24,31 +24,31 @@
             <div class="ml-lg-25 w-100 mt-20 mt-lg-0">
                 <h2 class="font-24 font-weight-bold text-dark-blue">{{ trans('update.installment_overview') }}</h2>
                 @if($itemType == 'course')
-                    <a href="{{ $item->getUrl() }}" target="_blank" class="font-14 font-weight-500 text-gray">{{ $item->title }}</a>
+                    <a href="{{ $item->getUrl() }}" target="_blank" class="font-16 font-weight-500 text-gray">{{ $item->title }}</a>
                 @else
-                    <div class="font-14 font-weight-500 text-gray">{{ $item->title }}</div>
+                    <div class="font-16 font-weight-500 text-gray">{{ $item->title }}</div>
                 @endif
 
                 <div class="d-flex flex-wrap align-items-center justify-content-between w-100">
 
                     <div class="d-flex align-items-center mt-20">
                         <i data-feather="check-square" width="20" height="20" class="text-gray"></i>
-                        <span class="font-14 text-gray ml-5">{{ !empty($installment->upfront) ? handlePrice($installment->getUpfront($itemPrice)).' '. trans('update.upfront') : trans('update.no_upfront') }}</span>
+                        <span class="font-16 text-gray ml-5">{{ !empty($installment->upfront) ? handlePrice($installment->getUpfront($itemPrice)).' '. trans('update.upfront') : trans('update.no_upfront') }}</span>
                     </div>
 
                     <div class="d-flex align-items-center mt-20">
                         <i data-feather="menu" width="20" height="20" class="text-gray"></i>
-                        <span class="font-14 text-gray ml-5">{{ $installment->steps_count }} {{ trans('update.installments') }} ({{ handlePrice($installment->totalPayments($itemPrice, false)) }})</span>
+                        <span class="font-16 text-gray ml-5">{{ $installment->steps_count }} {{ trans('update.installments') }} ({{ handlePrice($installment->totalPayments($itemPrice, false)) }})</span>
                     </div>
 
                     <div class="d-flex align-items-center mt-20">
                         <i data-feather="dollar-sign" width="20" height="20" class="text-gray"></i>
-                        <span class="font-14 text-gray ml-5">{{ handlePrice($installment->totalPayments($itemPrice)) }} {{ trans('financial.total_amount') }}</span>
+                        <span class="font-16 text-gray ml-5">{{ handlePrice($installment->totalPayments($itemPrice)) }} {{ trans('financial.total_amount') }}</span>
                     </div>
 
                     <div class="d-flex align-items-center mt-20">
                         <i data-feather="calendar" width="20" height="20" class="text-gray"></i>
-                        <span class="font-14 text-gray ml-5">{{ $installment->steps->max('deadline') }} {{ trans('update.days_duration') }}</span>
+                        <span class="font-16 text-gray ml-5">{{ $installment->steps->max('deadline') }} {{ trans('update.days_duration') }}</span>
                     </div>
 
                 </div>
@@ -102,14 +102,14 @@
                                 <div class="js-main-row row">
                                     <div class="col-12 col-md-6 mt-15">
                                         <div class="form-group mb-0">
-                                            <label class="font-14 text-dark-blue">{{ trans('public.title') }}</label>
+                                            <label class="font-16 text-dark-blue">{{ trans('public.title') }}</label>
                                             <input type="text" name="attachments[record][title]" class="form-control">
                                         </div>
                                     </div>
 
                                     <div class="col-12 col-md-6 mt-15">
                                         <div class="form-group">
-                                            <label class="font-14 text-dark-blue">{{ trans('update.attach_a_file_optional') }}</label>
+                                            <label class="font-16 text-dark-blue">{{ trans('update.attach_a_file_optional') }}</label>
 
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
@@ -141,8 +141,8 @@
                 <div class="font-16 text-gray">{!! nl2br(getInstallmentsTermsSettings('terms_description')) !!}</div>
 
                 <div class="mt-10 border bg-info-light p-15 rounded-sm">
-                    <h4 class="font-14 text-gray font-weight-bold">{{ trans('update.important') }}</h4>
-                    <p class="mt-5 font-14 text-gray">{{ trans('update.by_purchasing_installment_plans_you_will_accept_installment_terms_and_rules') }}</p>
+                    <h4 class="font-16 text-gray font-weight-bold">{{ trans('update.important') }}</h4>
+                    <p class="mt-5 font-16 text-gray">{{ trans('update.by_purchasing_installment_plans_you_will_accept_installment_terms_and_rules') }}</p>
                 </div>
             </div>
 

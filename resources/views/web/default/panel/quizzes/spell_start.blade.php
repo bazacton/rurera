@@ -336,7 +336,7 @@ $timer_counter = $practice_time;
 					<img src="../assets/default/img/clock-modal-img.png" alt="">
 				</span>
 				<h3 class="font-24 font-weight-normal mb-10">Are you sure?</h3>
-				<p class="mb-15 font-14">
+				<p class="mb-15 font-16">
 					You've  been gone a while, we have paused you, you still can continue learning by using following&nbsp;links.
 				</p>
 				<div class="inactivity-controls flex-column d-flex">
@@ -369,7 +369,7 @@ $timer_counter = $practice_time;
             <img src="../assets/default/img/clock-modal-img.png" alt="">
         </span>
         <h3 class="font-24 font-weight-normal mb-10">Are you still there?</h3>
-        <p class="mb-15 font-14">
+        <p class="mb-15 font-16">
             You've been inactive for a while, and your session was paused. You can continue learning by using the following links
         </p>
 		<ul class="activity-info">

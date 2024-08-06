@@ -69,7 +69,7 @@
                         <div class="d-flex align-items-center justify-content-between">
                             <div>
                                 <h3 class="font-weight-bold font-16 text-secondary">{{ $question->question_title }}</h3>
-                                <p class="text-gray font-14 mt-5">
+                                <p class="text-gray font-16 mt-5">
                                     <span>{{ trans('quiz.question_grade') }} : {{ $question->grade }}</span> | <span>{{ trans('quiz.your_grade') }} : {{ (!empty($userAnswers[$question->id]) and !empty($userAnswers[$question->id]["grade"])) ? $userAnswers[$question->id]["grade"] : 0 }}</span>
                                 </p>
                                 {!! $question_layout !!}

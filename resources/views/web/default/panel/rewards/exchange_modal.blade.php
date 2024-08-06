@@ -4,7 +4,7 @@
     <div class="text-center">
         <img src="/assets/default/img/rewards/wallet.png" class="exchange-points-modal-img" alt="wallet">
 
-        <p class="font-14 font-weight-500 text-gray mt-30">
+        <p class="font-16 font-weight-500 text-gray mt-30">
             <span class="d-block">{{ trans('update.you_will_get_n_for_points',['amount' => addCurrencyToPrice($earnByExchange) ,'points' => $availablePoints]) }}</span>
             <span class="d-block">{{ trans('update.the_amount_will_be_charged_to_your_wallet') }}</span>
             <span class="d-block">{{ trans('update.do_you_want_to_proceed') }}</span>

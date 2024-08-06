@@ -373,7 +373,7 @@
         <form action="/course/{{ $course->id }}/report" method="post" class="mt-25">
 
             <div class="form-group">
-                <label class="text-dark-blue font-14">{{ trans('product.reason') }}</label>
+                <label class="text-dark-blue font-16">{{ trans('product.reason') }}</label>
                 <select id="reason" name="reason" class="form-control">
                     <option value="" selected disabled>{{ trans('product.select_reason') }}</option>
 
@@ -385,7 +385,7 @@
             </div>
 
             <div class="form-group">
-                <label class="text-dark-blue font-14" for="message_to_reviewer">{{ trans('public.message_to_reviewer') }}</label>
+                <label class="text-dark-blue font-16" for="message_to_reviewer">{{ trans('public.message_to_reviewer') }}</label>
                 <textarea name="message" id="message_to_reviewer" class="form-control" rows="10"></textarea>
                 <div class="invalid-feedback"></div>
             </div>

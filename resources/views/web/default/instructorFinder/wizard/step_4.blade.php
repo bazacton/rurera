@@ -17,7 +17,7 @@
 
     <div class="mb-30 custom-control custom-checkbox mt-30 full-checkbox w-100">
         <input type="checkbox" name="flexible_date" value="1" class="custom-control-input" id="date">
-        <label class="custom-control-label font-14 w-100" for="date">{{ trans('update.im_flexible') }}</label>
+        <label class="custom-control-label font-16 w-100" for="date">{{ trans('update.im_flexible') }}</label>
     </div>
 
     <div id="dateTimeCard">

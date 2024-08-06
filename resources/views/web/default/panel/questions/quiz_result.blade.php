@@ -4,7 +4,7 @@
     <div class="container">
         <section class="mt-40">
             <h2 class="font-weight-bold font-16 text-dark-blue">{{ $quizResult->quiz->title }}</h2>
-            <p class="text-gray font-14 mt-5">
+            <p class="text-gray font-16 mt-5">
                 <a href="{{ $quizResult->quiz->webinar->getUrl() }}" target="_blank" class="text-gray">{{ $quizResult->quiz->webinar->title }}</a>
                 | {{ trans('public.by') }}
                 <span class="font-weight-bold">
@@ -67,7 +67,7 @@
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div>
                                         <h3 class="font-weight-bold font-16 text-secondary">{{ $question->title }}?</h3>
-                                        <p class="text-gray font-14 mt-5">
+                                        <p class="text-gray font-16 mt-5">
                                             <span>{{ trans('quiz.question_grade') }} : {{ $question->grade }}</span> | <span>{{ trans('quiz.your_grade') }} : {{ (!empty($userAnswers[$question->id]) and !empty($userAnswers[$question->id]["grade"])) ? $userAnswers[$question->id]["grade"] : 0 }}</span>
                                         </p>
                                     </div>
@@ -116,7 +116,7 @@
                                                     <label for="asw-{{ $answer->id }}" class="answer-label font-16 d-flex align-items-center text-dark-blue justify-content-center ">
                                                         <div class="image-container">
                                                             @if(!empty($userAnswers[$question->id]) and (int)$userAnswers[$question->id]["answer"] ===  $answer->id)
-                                                                <span class="selected font-14">{{ trans('quiz.student_answer') }}</span>
+                                                                <span class="selected font-16">{{ trans('quiz.student_answer') }}</span>
                                                             @endif
                                                             <img src="{{ config('app_url') . $answer->image }}" class="img-cover" alt="">
                                                         </div>

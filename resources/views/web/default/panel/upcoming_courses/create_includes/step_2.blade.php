@@ -219,7 +219,7 @@
 
                         @foreach($filter->options as $option)
                             <div class="form-group mt-10 d-flex align-items-center justify-content-between">
-                                <label class="cursor-pointer font-14 text-gray" for="filterOptions{{ $option->id }}">{{ $option->title }}</label>
+                                <label class="cursor-pointer font-16 text-gray" for="filterOptions{{ $option->id }}">{{ $option->title }}</label>
                                 <div class="custom-control custom-checkbox">
                                     <input type="checkbox" name="filters[]" value="{{ $option->id }}" {{ ((!empty($upcomingCourseFilterOptions) && in_array($option->id, $upcomingCourseFilterOptions)) ? 'checked' : '') }} class="custom-control-input" id="filterOptions{{ $option->id }}">
                                     <label class="custom-control-label" for="filterOptions{{ $option->id }}"></label>

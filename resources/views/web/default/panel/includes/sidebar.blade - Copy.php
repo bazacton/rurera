@@ -31,7 +31,7 @@
                             <a href="#!" class="navbar-user d-flex align-items-center ml-50 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                                aria-expanded="false">
                                 <img src="{{ $authUser->getAvatar() }}" class="rounded-circle" alt="{{ $authUser->get_full_name() }}" width="100%" height="auto" itemprop="image" alt="rounded circle" loading="eager" title="rounded circle">
-                                <span class="font-16 user-name ml-10 text-dark-blue font-14">{{ $authUser->get_full_name() }}</span>
+                                <span class="font-16 user-name ml-10 text-dark-blue font-16">{{ $authUser->get_full_name() }}</span>
                             </a>
 
                             <div class="dropdown-menu user-profile-dropdown" aria-labelledby="dropdownMenuButton">
@@ -41,24 +41,24 @@
 
                                 <a class="dropdown-item" href="{{ $authUser->isAdmin() ? '/admin' : '/panel' }}">
                                     <img src="/assets/default/img/icons/sidebar/dashboard.svg" width="25" height="auto" itemprop="image" alt="nav-icon" title="nav-icon" loading="eager">
-                                    <span class="font-14 text-dark-blue">{{ trans('public.my_panel') }}</span>
+                                    <span class="font-16 text-dark-blue">{{ trans('public.my_panel') }}</span>
                                 </a>
                                 @if($authUser->isTeacher() or $authUser->isOrganization())
                                 <a class="dropdown-item" href="{{ $authUser->getProfileUrl() }}">
                                     <img src="/assets/default/img/icons/profile.svg" width="25" height="auto" itemprop="image" alt="nav-icon"  title="nav-icon" loading="eager">
-                                    <span class="font-14 text-dark-blue">{{ trans('publimc.y_profile') }}</span>
+                                    <span class="font-16 text-dark-blue">{{ trans('publimc.y_profile') }}</span>
                                 </a>
                                 @endif
                                 <a class="dropdown-item" href="/logout">
                                     <img src="/assets/default/img/icons/sidebar/logout.svg" height="auto" itemprop="image" width="25" alt="nav-icon"  title="nav-icon" loading="eager">
-                                    <span class="font-14 text-dark-blue">{{ trans('panel.log_out') }}</span>
+                                    <span class="font-16 text-dark-blue">{{ trans('panel.log_out') }}</span>
                                 </a>
                             </div>
                         </div>
                         @else
                         <div class="d-flex align-items-center ml-md-50">
-                            <a href="/login" class="py-5 px-15 mr-10 text-dark-blue font-14 login-btn">{{ trans('auth.login') }}</a>
-                            <a href="/register" class="py-5 px-15 text-dark-blue font-14 register-btn">Get Started</a>
+                            <a href="/login" class="py-5 px-15 mr-10 text-dark-blue font-16 login-btn">{{ trans('auth.login') }}</a>
+                            <a href="/register" class="py-5 px-15 text-dark-blue font-16 register-btn">Get Started</a>
                         </div>
                         @endif
                     </div>
@@ -73,7 +73,7 @@
                 <span class="sidenav-item-icon mr-10">
                     @include('web.default.panel.includes.sidebar_icons.dashboard')
                 </span>
-                <span class="font-14 text-dark-blue font-weight-500">{{ trans('panel.dashboard') }}</span>
+                <span class="font-16 text-dark-blue font-weight-500">{{ trans('panel.dashboard') }}</span>
             </a>
         </li>
 
@@ -83,7 +83,7 @@
                 <span class="sidenav-item-icon mr-10">
                     @include('web.default.panel.includes.sidebar_icons.teachers')
                 </span>
-                    <span class="font-14 text-dark-blue font-weight-500">{{ trans('public.instructors') }}</span>
+                    <span class="font-16 text-dark-blue font-weight-500">{{ trans('public.instructors') }}</span>
                 </a>
 
                 <div class="sidenav-dropdown {{ (request()->is('panel/instructors') or request()->is('panel/manage/instructors*')) ? 'show' : '' }}" id="instructorsCollapse">
@@ -103,7 +103,7 @@
                 <span class="sidenav-item-icon mr-10">
                     @include('web.default.panel.includes.sidebar_icons.students')
                 </span>
-                    <span class="font-14 text-dark-blue font-weight-500">{{ trans('quiz.students') }}</span>
+                    <span class="font-16 text-dark-blue font-weight-500">{{ trans('quiz.students') }}</span>
                 </a>
 
                 <div class="sidenav-dropdown {{ (request()->is('panel/students') or request()->is('panel/manage/students*')) ? 'show' : '' }}" id="studentsCollapse">
@@ -124,7 +124,7 @@
                 <span class="sidenav-item-icon mr-10">
                     @include('web.default.panel.includes.sidebar_icons.webinars')
                 </span>
-                <span class="font-14 text-dark-blue font-weight-500">{{ trans('panel.webinars') }}</span>
+                <span class="font-16 text-dark-blue font-weight-500">{{ trans('panel.webinars') }}</span>
             </a>
 
             <div class="sidenav-dropdown {{ (request()->is('panel/webinars') or request()->is('panel/webinars/*')) ? 'show' : '' }}" id="webinarCollapse">
@@ -176,7 +176,7 @@
                 <span class="sidenav-item-icon assign-fill mr-10">
                     @include('web.default.panel.includes.sidebar_icons.bundles')
                 </span>
-                    <span class="font-14 text-dark-blue font-weight-500">{{ trans('update.bundles') }}</span>
+                    <span class="font-16 text-dark-blue font-weight-500">{{ trans('update.bundles') }}</span>
                 </a>
 
                 <div class="sidenav-dropdown {{ (request()->is('panel/bundles') or request()->is('panel/bundles/*')) ? 'show' : '' }}" id="bundlesCollapse">
@@ -199,7 +199,7 @@
                 <span class="sidenav-item-icon mr-10">
                     @include('web.default.panel.includes.sidebar_icons.assignments')
                 </span>
-                    <span class="font-14 text-dark-blue font-weight-500">{{ trans('update.assignments') }}</span>
+                    <span class="font-16 text-dark-blue font-weight-500">{{ trans('update.assignments') }}</span>
                 </a>
 
                 <div class="sidenav-dropdown {{ (request()->is('panel/assignments') or request()->is('panel/custom_quiz/*')) ? 'show' : '' }}" id="assignmentCollapse">
@@ -225,7 +225,7 @@
                 <span class="sidenav-item-icon mr-10">
                     @include('web.default.panel.includes.sidebar_icons.requests')
                 </span>
-                <span class="font-14 text-dark-blue font-weight-500">{{ trans('panel.meetings') }}</span>
+                <span class="font-16 text-dark-blue font-weight-500">{{ trans('panel.meetings') }}</span>
             </a>
 
             <div class="sidenav-dropdown {{ (request()->is('panel/meetings') or request()->is('panel/meetings/*')) ? 'show' : '' }}" id="meetingCollapse">
@@ -253,7 +253,7 @@
                 <span class="sidenav-item-icon mr-10">
                     @include('web.default.panel.includes.sidebar_icons.quizzes')
                 </span>
-                <span class="font-14 text-dark-blue font-weight-500">{{ trans('panel.quizzes') }}</span>
+                <span class="font-16 text-dark-blue font-weight-500">{{ trans('panel.quizzes') }}</span>
             </a>
 
             <div class="sidenav-dropdown {{ (request()->is('panel/quizzes') or request()->is('panel/quizzes/*')) ? 'show' : '' }}" id="quizzesCollapse">
@@ -286,7 +286,7 @@
                 <span class="sidenav-item-icon mr-10">
                     @include('web.default.panel.includes.sidebar_icons.certificate')
                 </span>
-                <span class="font-14 text-dark-blue font-weight-500">{{ trans('panel.certificates') }}</span>
+                <span class="font-16 text-dark-blue font-weight-500">{{ trans('panel.certificates') }}</span>
             </a>
 
             <div class="sidenav-dropdown {{ (request()->is('panel/certificates') or request()->is('panel/certificates/*')) ? 'show' : '' }}" id="certificatesCollapse">
@@ -318,7 +318,7 @@
                 <span class="sidenav-item-icon assign-fill mr-10">
                     @include('web.default.panel.includes.sidebar_icons.store')
                 </span>
-                    <span class="font-14 text-dark-blue font-weight-500">{{ trans('update.store') }}</span>
+                    <span class="font-16 text-dark-blue font-weight-500">{{ trans('update.store') }}</span>
                 </a>
 
                 <div class="sidenav-dropdown {{ (request()->is('panel/store') or request()->is('panel/store/*')) ? 'show' : '' }}" id="storeCollapse">
@@ -368,7 +368,7 @@
                 <span class="sidenav-item-icon mr-10">
                     @include('web.default.panel.includes.sidebar_icons.financial')
                 </span>
-                <span class="font-14 text-dark-blue font-weight-500">{{ trans('panel.financial') }}</span>
+                <span class="font-16 text-dark-blue font-weight-500">{{ trans('panel.financial') }}</span>
             </a>
 
             <div class="sidenav-dropdown {{ (request()->is('panel/financial') or request()->is('panel/financial/*')) ? 'show' : '' }}" id="financialCollapse">
@@ -410,7 +410,7 @@
                 <span class="sidenav-item-icon assign-fill mr-10">
                     @include('web.default.panel.includes.sidebar_icons.support')
                 </span>
-                <span class="font-14 text-dark-blue font-weight-500">{{ trans('panel.support') }}</span>
+                <span class="font-16 text-dark-blue font-weight-500">{{ trans('panel.support') }}</span>
             </a>
 
             <div class="sidenav-dropdown {{ (request()->is('panel/support') or request()->is('panel/support/*')) ? 'show' : '' }}" id="supportCollapse">
@@ -434,7 +434,7 @@
                 <span class="sidenav-item-icon mr-10">
                     @include('web.default.panel.includes.sidebar_icons.marketing')
                 </span>
-                    <span class="font-14 text-dark-blue font-weight-500">{{ trans('panel.marketing') }}</span>
+                    <span class="font-16 text-dark-blue font-weight-500">{{ trans('panel.marketing') }}</span>
                 </a>
 
                 <div class="sidenav-dropdown {{ (request()->is('panel/marketing') or request()->is('panel/marketing/*')) ? 'show' : '' }}" id="marketingCollapse">
@@ -464,7 +464,7 @@
                 <span class="sidenav-item-icon assign-fill mr-10">
                     @include('web.default.panel.includes.sidebar_icons.forums')
                 </span>
-                    <span class="font-14 text-dark-blue font-weight-500">{{ trans('update.forums') }}</span>
+                    <span class="font-16 text-dark-blue font-weight-500">{{ trans('update.forums') }}</span>
                 </a>
 
                 <div class="sidenav-dropdown {{ (request()->is('panel/forums') or request()->is('panel/forums/*')) ? 'show' : '' }}" id="forumsCollapse">
@@ -495,7 +495,7 @@
                 <span class="sidenav-item-icon assign-fill mr-10">
                     @include('web.default.panel.includes.sidebar_icons.blog')
                 </span>
-                    <span class="font-14 text-dark-blue font-weight-500">{{ trans('update.articles') }}</span>
+                    <span class="font-16 text-dark-blue font-weight-500">{{ trans('update.articles') }}</span>
                 </a>
 
                 <div class="sidenav-dropdown {{ (request()->is('panel/blog') or request()->is('panel/blog/*')) ? 'show' : '' }}" id="blogCollapse">
@@ -523,7 +523,7 @@
                     @include('web.default.panel.includes.sidebar_icons.noticeboard')
                 </span>
 
-                    <span class="font-14 text-dark-blue font-weight-500">{{ trans('panel.noticeboard') }}</span>
+                    <span class="font-16 text-dark-blue font-weight-500">{{ trans('panel.noticeboard') }}</span>
                 </a>
 
                 <div class="sidenav-dropdown {{ (request()->is('panel/noticeboard*') or request()->is('panel/course-noticeboard*')) ? 'show' : '' }}" id="noticeboardCollapse">
@@ -558,7 +558,7 @@
                 <span class="sidenav-item-icon assign-strock mr-10">
                     @include('web.default.panel.includes.sidebar_icons.rewards')
                 </span>
-                    <span class="font-14 text-dark-blue font-weight-500">{{ trans('update.rewards') }}</span>
+                    <span class="font-16 text-dark-blue font-weight-500">{{ trans('update.rewards') }}</span>
                 </a>
             </li>
         @endif
@@ -568,7 +568,7 @@
             <span class="sidenav-notification-icon sidenav-item-icon mr-10">
                     @include('web.default.panel.includes.sidebar_icons.notifications')
                 </span>
-                <span class="font-14 text-dark-blue font-weight-500">{{ trans('panel.notifications') }}</span>
+                <span class="font-16 text-dark-blue font-weight-500">{{ trans('panel.notifications') }}</span>
             </a>
         </li>
 
@@ -577,7 +577,7 @@
                 <span class="sidenav-setting-icon sidenav-item-icon mr-10">
                     @include('web.default.panel.includes.sidebar_icons.setting')
                 </span>
-                <span class="font-14 text-dark-blue font-weight-500">{{ trans('panel.settings') }}</span>
+                <span class="font-16 text-dark-blue font-weight-500">{{ trans('panel.settings') }}</span>
             </a>
         </li>
 
@@ -587,7 +587,7 @@
                 <span class="sidenav-item-icon assign-strock mr-10">
                     <i data-feather="user" stroke="#1f3b64" stroke-width="1.5" width="24" height="24" class="mr-10 webinar-icon"></i>
                 </span>
-                    <span class="font-14 text-dark-blue font-weight-500">{{ trans('public.my_profile') }}</span>
+                    <span class="font-16 text-dark-blue font-weight-500">{{ trans('public.my_profile') }}</span>
                 </a>
             </li>
         @endif
@@ -597,7 +597,7 @@
                 <span class="sidenav-logout-icon sidenav-item-icon mr-10">
                     @include('web.default.panel.includes.sidebar_icons.logout')
                 </span>
-                <span class="font-14 text-dark-blue font-weight-500">{{ trans('panel.log_out') }}</span>
+                <span class="font-16 text-dark-blue font-weight-500">{{ trans('panel.log_out') }}</span>
             </a>
         </li>
     </ul>

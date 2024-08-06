@@ -28,7 +28,7 @@
                             <span class="font-36 line-height-1 subscribe-plan-price">{{ addCurrencyToPrice($promotion->price) }}</span>
                         </div>
 
-                        <p class="text-dark-blue font-14 mt-25">{!! nl2br($promotion->description) !!}</p>
+                        <p class="text-dark-blue font-16 mt-25">{!! nl2br($promotion->description) !!}</p>
 
                         <button type="button" data-promotion-id="{{ $promotion->id }}"
                                 class="js-pay-promotion btn btn-primary btn-block mt-50">{{ trans('financial.purchase') }}</button>
@@ -45,7 +45,7 @@
 
                 <div
                     class="d-flex align-items-center flex-row-reverse flex-md-row justify-content-start justify-content-md-center mt-20 mt-md-0">
-                    <label class="mb-0 mr-10 text-gray font-14 font-weight-500"
+                    <label class="mb-0 mr-10 text-gray font-16 font-weight-500"
                            for="activePromotionSwitch">{{ trans('panel.show_only_active_promotions') }}</label>
                     <div class="custom-control custom-switch">
                         <input type="checkbox" name="active_promotions" class="custom-control-input"

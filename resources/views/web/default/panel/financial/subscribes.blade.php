@@ -65,7 +65,7 @@
                         </div>
 
                         <h3 class="mt-20 font-30 text-secondary">{{ $subscribe->title }}</h3>
-                        <p class="font-weight-500 font-14 text-gray mt-10">{{ $subscribe->description }}</p>
+                        <p class="font-weight-500 font-16 text-gray mt-10">{{ $subscribe->description }}</p>
 
                         <div class="d-flex align-items-start text-primary mt-30">
                             <span class="font-36 line-height-1">{{ addCurrencyToPrice($subscribe->price) }}</span>

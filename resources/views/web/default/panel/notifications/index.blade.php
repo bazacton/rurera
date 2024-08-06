@@ -20,7 +20,7 @@
                         </div>
 
                         <div class="col-12 col-lg-5 mt-10 mt-lg-0">
-                            <span class="font-weight-500 text-gray font-14">{!! truncate($notification->message, 150, true) !!}</span>
+                            <span class="font-weight-500 text-gray font-16">{!! truncate($notification->message, 150, true) !!}</span>
                         </div>
 
                         <div class="col-12 col-lg-4 mt-10 mt-lg-0 text-right">

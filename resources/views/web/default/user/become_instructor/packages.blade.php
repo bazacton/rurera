@@ -19,7 +19,7 @@
 
                 <div class="ml-lg-25 w-100 mt-20 mt-lg-0">
                     <h2 class="font-24 font-weight-bold text-dark-blue">{{ trans('update.default_package') }}</h2>
-                    <p class="font-14 font-weight-500 text-gray">{{ trans('update.default_package_hint') }}</p>
+                    <p class="font-16 font-weight-500 text-gray">{{ trans('update.default_package_hint') }}</p>
 
                     <div class="d-flex flex-wrap align-items-center justify-content-between w-100">
 
@@ -31,7 +31,7 @@
                             <span class="font-12 text-dark-blue font-weight-bold mx-1">
                                {{ $defaultPackage->courses_count ?? trans('update.unlimited') }}
                             </span>
-                            <span class="font-14 font-weight-500 text-gray">{{ trans('product.courses') }}</span>
+                            <span class="font-16 font-weight-500 text-gray">{{ trans('product.courses') }}</span>
                         </div>
 
                         <div class="d-flex align-items-center mt-20">
@@ -42,7 +42,7 @@
                             <span class="font-12 text-dark-blue font-weight-bold mx-1">
                                {{ $defaultPackage->courses_capacity ?? trans('update.unlimited') }}
                             </span>
-                            <span class="font-14 font-weight-500 text-gray">{{ trans('update.live_students') }}</span>
+                            <span class="font-16 font-weight-500 text-gray">{{ trans('update.live_students') }}</span>
                         </div>
 
                         <div class="d-flex align-items-center mt-20">
@@ -53,7 +53,7 @@
                             <span class="font-12 text-dark-blue font-weight-bold mx-1">
                                {{ $defaultPackage->meeting_count ?? trans('update.unlimited') }}
                             </span>
-                            <span class="font-14 font-weight-500 text-gray">{{ trans('update.meeting_hours') }}</span>
+                            <span class="font-16 font-weight-500 text-gray">{{ trans('update.meeting_hours') }}</span>
                         </div>
 
                         <div class="d-flex align-items-center mt-20">
@@ -64,7 +64,7 @@
                             <span class="font-12 text-dark-blue font-weight-bold mx-1">
                                {{ $defaultPackage->product_count ?? trans('update.unlimited') }}
                             </span>
-                            <span class="font-14 font-weight-500 text-gray">{{ trans('update.products') }}</span>
+                            <span class="font-16 font-weight-500 text-gray">{{ trans('update.products') }}</span>
                         </div>
 
                         @if($selectedRole == 'organizations')
@@ -76,7 +76,7 @@
                                 <span class="font-12 text-dark-blue font-weight-bold mx-1">
                                    {{ $defaultPackage->instructors_count ?? trans('update.unlimited') }}
                                 </span>
-                                <span class="font-14 font-weight-500 text-gray">{{ trans('home.instructors') }}</span>
+                                <span class="font-16 font-weight-500 text-gray">{{ trans('home.instructors') }}</span>
                             </div>
 
                             <div class="d-flex align-items-center mt-20">
@@ -87,7 +87,7 @@
                                 <span class="font-12 text-dark-blue font-weight-bold mx-1">
                                    {{ $defaultPackage->students_count ?? trans('update.unlimited') }}
                                 </span>
-                                <span class="font-14 font-weight-500 text-gray">{{ trans('public.students') }}</span>
+                                <span class="font-16 font-weight-500 text-gray">{{ trans('public.students') }}</span>
                             </div>
                         @endif
 
@@ -122,7 +122,7 @@
                             </div>
 
                             <h3 class="mt-20 font-30 text-secondary">{{ $package->title }}</h3>
-                            <p class="font-weight-500 font-14 text-gray mt-10">{{ $package->description }}</p>
+                            <p class="font-weight-500 font-16 text-gray mt-10">{{ $package->description }}</p>
 
                             <div class="d-flex align-items-start text-primary mt-30">
                                 <span class="font-36 line-height-1">{{ addCurrencyToPrice($package->price) }}</span>

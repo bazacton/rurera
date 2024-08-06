@@ -8,15 +8,15 @@
         <div class="mt-25">
             <div class="d-flex align-items-center">
                 <span class="cart-label-color rounded-circle bg-primary mr-5"></span>
-                <span class="font-14 font-weight-500 text-gray">{{ $cardPrimaryLabel }}</span>
+                <span class="font-16 font-weight-500 text-gray">{{ $cardPrimaryLabel }}</span>
             </div>
             <div class="d-flex align-items-center">
                 <span class="cart-label-color rounded-circle bg-secondary mr-5"></span>
-                <span class="font-14 font-weight-500 text-gray">{{ $cardSecondaryLabel }}</span>
+                <span class="font-16 font-weight-500 text-gray">{{ $cardSecondaryLabel }}</span>
             </div>
             <div class="d-flex align-items-center">
                 <span class="cart-label-color rounded-circle bg-warning mr-5"></span>
-                <span class="font-14 font-weight-500 text-gray">{{ $cardWarningLabel }}</span>
+                <span class="font-16 font-weight-500 text-gray">{{ $cardWarningLabel }}</span>
             </div>
         </div>
     </div>

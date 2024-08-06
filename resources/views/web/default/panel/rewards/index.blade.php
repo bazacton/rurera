@@ -47,10 +47,10 @@
                             <table class="table text-center custom-table simple-table">
                                 <thead>
                                 <tr>
-                                    <th class="text-left font-14 font-weight-500">{{ trans('public.title') }}</th>
-                                    <th class="text-center font-14 font-weight-500">{{ trans('update.points') }}</th>
-                                    <th class="text-center font-14 font-weight-500">{{ trans('public.type') }}</th>
-                                    <th class="text-center font-14 font-weight-500">{{ trans('public.date_time') }}</th>
+                                    <th class="text-left font-16 font-weight-500">{{ trans('public.title') }}</th>
+                                    <th class="text-center font-16 font-weight-500">{{ trans('update.points') }}</th>
+                                    <th class="text-center font-16 font-weight-500">{{ trans('public.type') }}</th>
+                                    <th class="text-center font-16 font-weight-500">{{ trans('public.date_time') }}</th>
                                 </tr>
                                 </thead>
                                 <tbody>

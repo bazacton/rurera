@@ -28,7 +28,7 @@
                                         <div class="search-input bg-white">
                                             <form action="/books" method="get">
                                                 <div class="form-group d-flex align-items-center m-0">
-                                                    <input type="text" name="search" class="form-control border-0 font-14" value="{{ request()->get('search','') }}" placeholder="Search by Author, Title, or Keyword"/>
+                                                    <input type="text" name="search" class="form-control border-0 font-16" value="{{ request()->get('search','') }}" placeholder="Search by Author, Title, or Keyword"/>
                                                     <button type="submit" class="btn btn-primary rounded-pill">{{ trans('home.find') }}</button>
                                                 </div>
                                             </form>
@@ -40,7 +40,7 @@
                                 @foreach( $books as $book_category => $category_books)
                                 <div class="col-lg-12">
                                     <h3 class="mb-10 font-22" itemprop="title">{{$book_category}}</h3>
-                                    <span class="mb-35 d-block font-14" itemprop="sub title">For kids ages 0-3</span>
+                                    <span class="mb-35 d-block font-16" itemprop="sub title">For kids ages 0-3</span>
                                 </div>
                                 @if( !empty( $category_books ))
                                 @foreach( $category_books as $bookData)

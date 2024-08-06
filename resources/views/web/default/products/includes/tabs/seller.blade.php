@@ -26,12 +26,12 @@
                 <div class="w-100 mt-10 d-flex align-items-center justify-content-center justify-content-lg-start">
                     <div class="d-flex flex-column followers-status">
                         <span class="font-20 font-weight-bold text-dark-blue">{{ $sellerFollowers->count() }}</span>
-                        <span class="font-14 text-gray">{{ trans('panel.followers') }}</span>
+                        <span class="font-16 text-gray">{{ trans('panel.followers') }}</span>
                     </div>
 
                     <div class="d-flex flex-column ml-25 pl-5 following-status">
                         <span class="font-20 font-weight-bold text-dark-blue">{{ $sellerFollowing->count() }}</span>
-                        <span class="font-14 text-gray">{{ trans('panel.following') }}</span>
+                        <span class="font-16 text-gray">{{ trans('panel.following') }}</span>
                     </div>
                 </div>
 
@@ -66,7 +66,7 @@
         <div class="user-offline-alert d-flex mt-40">
             <div class="p-15">
                 <h3 class="font-16 text-dark-blue">{{ trans('public.instructor_is_not_available') }}</h3>
-                <p class="font-14 font-weight-500 text-gray mt-15">{{ $seller->offline_message }}</p>
+                <p class="font-16 font-weight-500 text-gray mt-15">{{ $seller->offline_message }}</p>
             </div>
 
             <div class="offline-icon offline-icon-right ml-auto d-flex align-items-stretch">

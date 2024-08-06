@@ -4,7 +4,7 @@
             <h4 class="font-16 font-weight-bold text-dark-blue">{{ $installment->main_title }}</h4>
 
             <div class="">
-                <p class="text-gray font-14 text-ellipsis">{{ nl2br($installment->description) }}</p>
+                <p class="text-gray font-16 text-ellipsis">{{ nl2br($installment->description) }}</p>
             </div>
 
             @if(!empty($installment->capacity))
@@ -37,7 +37,7 @@
                     @foreach($installmentOptions as $installmentOption)
                         <div class="d-flex align-items-center mb-1">
                             <i data-feather="check" width="25" height="25" class="text-primary"></i>
-                            <span class="ml-10 font-14 text-gray">{{ $installmentOption }}</span>
+                            <span class="ml-10 font-16 text-gray">{{ $installmentOption }}</span>
                         </div>
                     @endforeach
                 </div>

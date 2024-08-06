@@ -23,7 +23,7 @@
                 <div class="col-12">
                     <div class="section-title text-left mb-30">
                         <h2 class="mt-0 mb-10 font-22">Spelling word lists</h2>
-                        <p class="font-14"> Work through a variety of practice questions to improve your skills and become familiar with
+                        <p class="font-16"> Work through a variety of practice questions to improve your skills and become familiar with
                             the types of questions you'll encounter on the SATs. </p>
                     </div>
                 </div>
@@ -97,7 +97,7 @@
                                             <div class="spell-top-left">
                                                 <h3 class="font-18 font-weight-bold">{{$dataObj->getTitleAttribute()}}</h3>
 												<div class="spell-links">
-												<a href="javascript:;" class="spell-popup-btn" data-spell_type="word-hunts" data-spell_id="{{$dataObj->id}}">Word Hunts</a>
+												<a href="javascript:;" class="spell-popup-btn" data-play_link="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/word-search/exercise" data-spell_type="word-hunts" data-spell_id="{{$dataObj->id}}">Word Hunts</a>
 												<a href="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/word-search/exercise">Word Search</a>
 												<a href="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/word-cloud/exercise">Word Cloud</a>
 												<a href="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/word-missing/exercise">Complete the Sentence</a>
@@ -150,23 +150,23 @@
 <div class="modal-dialog" role="document">
   <div class="modal-content">
 	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-    <div class="modal-body">
+    <div class="modal-body spell_words_popup_body">
       <div class="container container-nosidebar">
 	  
 		<h2>Filter Words</h2>
 		<p>From sources across the web</p>
-		<div class="spell-words-filters">
+		<div class="spell-words-filters" data-spell_id="0" data-spell_type="">
 		<div class="row">
-		<div class="col-4 col-lg-4 col-md-12">
+		<div class="col-3 col-lg-3 col-md-12">
 			Sort By
 			<div class="form-group">
-				<select>
-					<option>Alphabetically</option>
-					<option>Difficulty</option>
+				<select name="sort_by" class="sort_by_filter">
+					<option value="alphabetically">Alphabetically</option>
+					<option value="attempts">No of Attempts</option>
 				</select>
 			</div>
 		</div>
-		<div class="col-4 col-lg-4 col-md-12">
+		<div class="col-3 col-lg-3 col-md-12">
 			Difficulty Level
 			<div class="form-group">
 				<select>
@@ -182,14 +182,16 @@
 				</div>
 			</div>
 		</div>
+		<div class="col-2 col-lg-2 col-md-12">
+			<a href="javascript:;" data-href="javascript:;" class="play-again" data-dismiss="modal" aria-label="Continue">Play Again</a>
 		</div>
+		</div>
+		<form class="spell-quiz-form">
+		
 		<div class="spell-words-data">
 		</div>
 		
-        <div class="inactivity-controls">
-            <a href="javascript:;" class="play-again" data-dismiss="modal" aria-label="Continue">Play Again</a>
-            <a href="javascript:;" class="continue-prev-practice submit_quiz_final">Continue Previous</a>
-        </div>
+		</form>
       </div>
     </div>
   </div>
@@ -283,11 +285,18 @@
     });
 	
 	var spellPopupRequest = null;
+	
 	$(document).on('click', '.spell-popup-btn', function (e) {
 		var thisObj = $(this);
 		var spell_id = $(this).attr('data-spell_id');
 		var spell_type = $(this).attr('data-spell_type');
+		var play_link = $(this).attr('data-play_link');
+		$(".play-again").attr('data-href', play_link);
+		
 		rurera_loader(thisObj.closest(".spell-levels "), 'div');
+		$(".spell-words-filters").attr('data-spell_id', spell_id);
+		$(".spell-words-filters").attr('data-spell_type', spell_type);
+		$(".spell-words-filters").attr('data-play_link', play_link);
 		spellPopupRequest = jQuery.ajax({
 			type: "GET",
 			beforeSend: function () {
@@ -310,6 +319,78 @@
 		});
 
     });
+	
+	var playRequest = null;
+	$(document).on('click', '.play-again', function (e) {
+		//spell-quiz-form
+		var play_link = $(".play-again").attr('data-href');
+		
+		playRequest = jQuery.ajax({
+			type: "GET",
+			beforeSend: function () {
+				if (playRequest != null) {
+					playRequest.abort();
+				}
+			},
+			url: play_link,
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			},
+			data: {"spell_id": spell_id, "spell_type": spell_type},
+			success: function (return_data) {
+				rurera_remove_loader(thisObj.closest(".spell-levels "), 'div');
+				$(".spell-words-data").html(return_data);
+				$(".spell_words_popup").modal('show');
+			}
+		});
+
+    });
+	
+	
+	
+	
+	var spellFilterRequest = null;
+	$(document).on('change', '.sort_by_filter', function (e) {
+		filter_words();
+    });
+	
+	$(document).on('keyup change', '.search-word', function (e) {
+		filter_words();
+    });
+	
+	function filter_words(){
+		var sort_by = $('.sort_by_filter').val();
+		var spell_id = $(".spell-words-filters").attr('data-spell_id');
+		var spell_type = $(".spell-words-filters").attr('data-spell_type');
+		
+		var search_word = $('.search-word').val();
+		
+
+		var thisObj = $('.spell-words-data');
+		rurera_loader(thisObj, 'div');
+		$(".spell-words-filters").attr('data-spell_id', spell_id);
+		$(".spell-words-filters").attr('data-spell_type', spell_type);
+		spellFilterRequest = jQuery.ajax({
+			type: "GET",
+			beforeSend: function () {
+				if (spellFilterRequest != null) {
+					rurera_remove_loader($(".spell-levels "), 'div');
+					spellFilterRequest.abort();
+					rurera_loader(thisObj, 'div');
+				}
+			},
+			url: '/spells/words-data',
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			},
+			data: {"spell_id": spell_id, "spell_type": spell_type, 'sort_by' : sort_by, 'search_word' : search_word},
+			success: function (return_data) {
+				rurera_remove_loader(thisObj, 'div');
+				$(".spell-words-data").html(return_data);
+			}
+		});
+	}
+	
 	
 	
 

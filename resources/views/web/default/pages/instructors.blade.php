@@ -123,7 +123,7 @@
                 <div class="d-flex justify-content-between">
                     <div>
                         <h2 class="font-24 text-dark-blue">{{ trans('site.best_rated_instructors') }}</h2>
-                        <span class="font-14 text-gray">{{ trans('site.best_rated_instructors_subtitle') }}</span>
+                        <span class="font-16 text-gray">{{ trans('site.best_rated_instructors_subtitle') }}</span>
                     </div>
 
                     <a href="/{{ $page }}?sort=top_rate" class="btn btn-border-white">{{ trans('home.view_all') }}</a>
@@ -155,7 +155,7 @@
                 <div class="d-flex justify-content-between">
                     <div>
                         <h2 class="font-24 text-dark-blue">{{ trans('site.top_sellers') }}</h2>
-                        <span class="font-14 text-gray">{{ trans('site.top_sellers_subtitle') }}</span>
+                        <span class="font-16 text-gray">{{ trans('site.top_sellers_subtitle') }}</span>
                     </div>
 
                     <a href="/{{ $page }}?sort=top_sale" class="btn btn-border-white">{{ trans('home.view_all') }}</a>

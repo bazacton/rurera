@@ -51,7 +51,7 @@
 
             <form action="" method="get">
                 <div class="d-flex align-items-center flex-row-reverse flex-md-row justify-content-start justify-content-md-center mt-20 mt-md-0">
-                    <label class="cursor-pointer mb-0 mr-10 font-weight-500 font-14 text-gray" for="conductedSwitch">{{ trans('panel.only_not_conducted_webinars') }}</label>
+                    <label class="cursor-pointer mb-0 mr-10 font-weight-500 font-16 text-gray" for="conductedSwitch">{{ trans('panel.only_not_conducted_webinars') }}</label>
                     <div class="custom-control custom-switch">
                         <input type="checkbox" name="not_conducted" @if(request()->get('not_conducted','') == 'on') checked @endif class="custom-control-input" id="conductedSwitch">
                         <label class="custom-control-label" for="conductedSwitch"></label>

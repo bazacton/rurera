@@ -18,7 +18,7 @@
                     <span class="d-block font-12 text-gray">{{ $instructor->bio }}</span>
 
                     @if(!empty($instructor->occupations))
-                        <div class="d-block font-14 text-gray mt-5">
+                        <div class="d-block font-16 text-gray mt-5">
                             @foreach($instructor->occupations as $occupation)
                                 @if(!empty($occupation->category))
                                     <span>{{ $occupation->category->title }}{{ !($loop->last) ? ', ' : '' }}</span>
@@ -28,7 +28,7 @@
                     @endif
                 </div>
 
-                <p class="font-14 text-gray mt-10">{{ truncate($instructor->about, 200) }}</p>
+                <p class="font-16 text-gray mt-10">{{ truncate($instructor->about, 200) }}</p>
             </div>
         </div>
 
@@ -44,13 +44,13 @@
                             <span class="font-20 font-weight-bold text-primary">{{ addCurrencyToPrice(!empty($discount) ? ($price - ($price * $discount / 100)) : $price) }}</span>
 
                             @if(!empty($discount))
-                                <span class="font-14 font-weight-500 text-gray text-decoration-line-through">{{ addCurrencyToPrice($price) }}</span>
+                                <span class="font-16 font-weight-500 text-gray text-decoration-line-through">{{ addCurrencyToPrice($price) }}</span>
                             @endif
                         </div>
 
-                        <span class="font-14 font-weight-500 text-gray mt-5">/{{ trans('update.hour') }}</span>
+                        <span class="font-16 font-weight-500 text-gray mt-5">/{{ trans('update.hour') }}</span>
                     @else
-                        <span class="font-weight-bold text-primary font-14">{{ trans('public.free') }}</span>
+                        <span class="font-weight-bold text-primary font-16">{{ trans('public.free') }}</span>
                     @endif
                 @else
                     <span class="font-weight-bold text-danger font-12">{{ trans('update.not_available_for_meeting') }}</span>
@@ -62,7 +62,7 @@
             <div class="d-flex align-items-center mt-20">
                 <i data-feather="clock" width="18" height="18" class="text-dark-blue"></i>
 
-                <span class="font-14 font-weight-500 text-dark-blue ml-10">{{ $instructor->getTotalHoursTutoring() }} {{ trans('update.hours_tutoring') }}</span>
+                <span class="font-16 font-weight-500 text-dark-blue ml-10">{{ $instructor->getTotalHoursTutoring() }} {{ trans('update.hours_tutoring') }}</span>
             </div>
 
             <div class="d-flex align-items-center mt-25">

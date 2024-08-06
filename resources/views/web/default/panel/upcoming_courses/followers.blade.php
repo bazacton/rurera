@@ -36,7 +36,7 @@
                         <div class="d-flex-center flex-column h-100 text-center">
                             <img src="/assets/default/img/upcoming/no_followers.svg" alt="no followers" width="251" height="239">
                             <h4 class="mt-10 font-20 font-weight-bold text-dark-blue">{{ trans('update.no_followers') }}</h4>
-                            <p class="mt-5 font-14 font-weight-500 text-gray">{{ trans('update.this_course_doesnt_have_any_followers') }}</p>
+                            <p class="mt-5 font-16 font-weight-500 text-gray">{{ trans('update.this_course_doesnt_have_any_followers') }}</p>
                         </div>
                     @endif
                 </div>
@@ -52,9 +52,9 @@
                         <h4 class="mt-20 font-20 font-weight-bold text-dark-blue">{{ trans('update.send_a_notification') }}</h4>
 
                         @if(!empty($upcomingCourse->webinar_id))
-                            <p class="mt-5 font-14 font-weight-500 text-gray">{{ trans('update.published_upcoming_course_send_a_notification_hint') }}</p>
+                            <p class="mt-5 font-16 font-weight-500 text-gray">{{ trans('update.published_upcoming_course_send_a_notification_hint') }}</p>
                         @else
-                            <p class="mt-5 font-14 font-weight-500 text-gray">{{ trans('update.upcoming_course_send_a_notification_hint') }}</p>
+                            <p class="mt-5 font-16 font-weight-500 text-gray">{{ trans('update.upcoming_course_send_a_notification_hint') }}</p>
                         @endif
                     </div>
 

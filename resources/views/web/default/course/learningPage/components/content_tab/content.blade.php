@@ -29,7 +29,7 @@
 
     <div>
         <div class="">
-            <span class="font-weight-500 font-14 text-dark-blue d-block">{{ $item->title }}</span>
+            <span class="font-weight-500 font-16 text-dark-blue d-block">{{ $item->title }}</span>
             <span class="font-12 text-gray d-block">{{ $hintText }}</span>
         </div>
 
@@ -44,7 +44,7 @@
             </p>
 
             <div class="d-flex align-items-center justify-content-between mt-15">
-                <label class="mb-0 mr-10 cursor-pointer font-weight-normal font-14 text-dark-blue" for="readToggle{{ $type }}{{ $item->id }}">{{ trans('public.i_passed_this_lesson') }}</label>
+                <label class="mb-0 mr-10 cursor-pointer font-weight-normal font-16 text-dark-blue" for="readToggle{{ $type }}{{ $item->id }}">{{ trans('public.i_passed_this_lesson') }}</label>
                 <div class="custom-control custom-switch">
                     <input type="checkbox" @if($sequenceContentHasError) disabled @endif id="readToggle{{ $type }}{{ $item->id }}" data-item-id="{{ $item->id }}" data-item="{{ $type }}_id" value="{{ $item->webinar_id }}" class="js-passed-lesson-toggle custom-control-input" @if(!empty($item->learningStatus)) checked @endif>
                     <label class="custom-control-label" for="readToggle{{ $type }}{{ $item->id }}"></label>

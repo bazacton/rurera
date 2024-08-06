@@ -123,7 +123,7 @@
 
             <form action="/panel/quizzes" method="get" class="">
                 <div class="d-flex align-items-center flex-row-reverse flex-md-row justify-content-start justify-content-md-center mt-20 mt-md-0">
-                    <label class="mb-0 mr-10 cursor-pointer text-gray font-14 font-weight-500" for="activeQuizzesSwitch">{{ trans('quiz.show_only_active_quizzes') }}</label>
+                    <label class="mb-0 mr-10 cursor-pointer text-gray font-16 font-weight-500" for="activeQuizzesSwitch">{{ trans('quiz.show_only_active_quizzes') }}</label>
                     <div class="custom-control custom-switch">
                         <input type="checkbox" name="active_quizzes" class="custom-control-input" id="activeQuizzesSwitch" @if(request()->get('active_quizzes',null) == 'on') checked @endif>
                         <label class="custom-control-label" for="activeQuizzesSwitch"></label>

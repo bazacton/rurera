@@ -10,7 +10,7 @@
             <div class="flex-grow-1">
                 <h2 class="font-20 font-weight-bold text-secondary">{{ $topic->title }}</h2>
 
-                <span class="d-block font-14 font-weight-500 text-gray mt-5">{{ trans('public.by') }} <span class="font-weight-bold">{{ $topic->creator->get_full_name() }}</span> {{ trans('public.in') }} {{ dateTimeFormat($topic->created_at, 'j M Y | H:i') }}</span>
+                <span class="d-block font-16 font-weight-500 text-gray mt-5">{{ trans('public.by') }} <span class="font-weight-bold">{{ $topic->creator->get_full_name() }}</span> {{ trans('public.in') }} {{ dateTimeFormat($topic->created_at, 'j M Y | H:i') }}</span>
 
                 <div class="mt-15 ">
                     <nav aria-label="breadcrumb">
@@ -47,7 +47,7 @@
                 </div>
 
                 <h4 class="font-20 font-weight-bold text-secondary">{{ trans('update.login_to_reply') }}</h4>
-                <p class="font-14 font-weight-500 text-gray mt-5">{{ trans('update.login_to_reply_hint') }}</p>
+                <p class="font-16 font-weight-500 text-gray mt-5">{{ trans('update.login_to_reply_hint') }}</p>
             </div>
         @elseif($topic->close or $forum->close)
             <div class="reply-login-close-card d-flex flex-column align-items-center w-100 p-15 rounded-lg border bg-white mt-15 p-40">
@@ -56,7 +56,7 @@
                 </div>
 
                 <h4 class="font-20 font-weight-bold text-secondary">{{ trans('update.topic_closed') }}</h4>
-                <p class="font-14 font-weight-500 text-gray mt-5">{{ trans('update.topic_closed_hint') }}</p>
+                <p class="font-16 font-weight-500 text-gray mt-5">{{ trans('update.topic_closed_hint') }}</p>
             </div>
         @else
             <div class="mt-30">
@@ -68,8 +68,8 @@
 
                         <div class="topic-posts-reply-card d-none position-relative px-20 py-15 rounded-sm bg-info-light mb-15">
                             <input type="hidden" name="reply_post_id" class="js-reply-post-id">
-                            <div class="js-reply-post-title font-14 font-weight-500 text-gray">{!! trans('update.you_are_replying_to_the_message') !!}</div>
-                            <div class="js-reply-post-description mt-5 font-14 text-gray"></div>
+                            <div class="js-reply-post-title font-16 font-weight-500 text-gray">{!! trans('update.you_are_replying_to_the_message') !!}</div>
+                            <div class="js-reply-post-description mt-5 font-16 text-gray"></div>
 
                             <button type="button" class="js-close-reply-post btn-transparent">
                                 <i data-feather="x" width="22" height="22"></i>
@@ -120,7 +120,7 @@
             <input type="hidden" name="item_type" class="js-item-type-input"/>
 
             <div class="form-group">
-                <label class="text-dark-blue font-14" for="message_to_reviewer">{{ trans('public.message_to_reviewer') }}</label>
+                <label class="text-dark-blue font-16" for="message_to_reviewer">{{ trans('public.message_to_reviewer') }}</label>
                 <textarea name="message" id="message_to_reviewer" class="form-control" rows="10"></textarea>
                 <div class="invalid-feedback"></div>
             </div>

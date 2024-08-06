@@ -87,7 +87,7 @@
                 <h2 class="section-title after-line">{{ trans('public.files') }}</h2>
             </div>
             <div class="mt-15">
-                <p class="font-14 text-gray">- {{ trans('update.product_files_hint_1') }}</p>
+                <p class="font-16 text-gray">- {{ trans('update.product_files_hint_1') }}</p>
             </div>
             <button id="productAddFile" data-product-id="{{ $product->id }}" type="button" class="btn btn-primary btn-sm mt-15">{{ trans('public.add_new_files') }}</button>
 

@@ -111,7 +111,7 @@
                 <h2 class="section-title">{{ trans('panel.discounts') }}</h2>
 
                 <form action="" method="get" class="d-flex align-items-center flex-row-reverse flex-md-row justify-content-start justify-content-md-center mt-20 mt-md-0">
-                    <label class="cursor-pointer mb-0 mr-10 text-gray font-14 font-weight-500" for="activeDiscountsSwitch">{{ trans('panel.show_only_active_discounts') }}</label>
+                    <label class="cursor-pointer mb-0 mr-10 text-gray font-16 font-weight-500" for="activeDiscountsSwitch">{{ trans('panel.show_only_active_discounts') }}</label>
                     <div class="custom-control custom-switch">
                         <input type="checkbox" name="active_discounts" class="js-panel-list-switch-filter custom-control-input" {{ request()->get('active_discounts', '') == 'on' ? 'checked' : '' }}
                         id="activeDiscountsSwitch">

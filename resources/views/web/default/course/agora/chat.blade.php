@@ -27,7 +27,7 @@
             </div>
             <div class="d-flex align-items-center flex-column mt-30 text-center">
                 <h3 class="text-dark-blue font-16">{{ trans('update.chat_not_active') }}</h3>
-                <p class="mt-5 text-center text-gray font-14">{{ trans('update.chat_not_active_hint') }}</p>
+                <p class="mt-5 text-center text-gray font-16">{{ trans('update.chat_not_active_hint') }}</p>
             </div>
         </div>
     @endif

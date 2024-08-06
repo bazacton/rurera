@@ -4,7 +4,7 @@
     <div class="container">
         <section class="mt-40">
             <h2 class="font-weight-bold font-16 text-dark-blue">{{ trans('quiz.level_identification_quiz') }}</h2>
-            <p class="text-gray font-14 mt-5">{{ $quiz->title }} | {{ trans('public.by') }} <span class="font-weight-bold">{{ $quiz->creator->get_full_name() }}</span></p>
+            <p class="text-gray font-16 mt-5">{{ $quiz->title }} | {{ trans('public.by') }} <span class="font-weight-bold">{{ $quiz->creator->get_full_name() }}</span></p>
 
             <div class="activities-container shadow-sm rounded-lg mt-25 p-20 p-lg-35">
                 <div class="row">

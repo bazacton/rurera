@@ -54,7 +54,7 @@
                 @foreach($categoriesLists as $categoryItem)
                     @if(!empty($categoryItem->subCategories) and count($categoryItem->subCategories))
 
-                        <span class="d-block font-14 font-weight-bold  mt-20">{{ $categoryItem->title }}</span>
+                        <span class="d-block font-16 font-weight-bold  mt-20">{{ $categoryItem->title }}</span>
 
                         <div class="pl-10">
                             @foreach($categoryItem->subCategories as $subCategory)
@@ -62,7 +62,7 @@
                                     $urlParams['category_id'] = $subCategory->id;
                                 @endphp
 
-                                <a href="/upcoming_courses?{{ http_build_query($urlParams) }}" class="d-flex align-items-center font-14 font-weight-normal mt-20 {{ (!empty($selectedCategory) and $selectedCategory->id == $subCategory->id) ? 'text-primary' : '' }}">
+                                <a href="/upcoming_courses?{{ http_build_query($urlParams) }}" class="d-flex align-items-center font-16 font-weight-normal mt-20 {{ (!empty($selectedCategory) and $selectedCategory->id == $subCategory->id) ? 'text-primary' : '' }}">
                                     @if(!empty($selectedCategory) and $selectedCategory->id == $subCategory->id)
                                         <i data-feather="chevron-right" width="20" height="20" class="mr-5"></i>
                                     @endif
@@ -76,7 +76,7 @@
                             $urlParams['category_id'] = $categoryItem->id;
                         @endphp
 
-                        <a href="/upcoming_courses?{{ http_build_query($urlParams) }}" class="d-flex align-items-center font-14 font-weight-bold mt-20 {{ (!empty($selectedCategory) and $selectedCategory->id == $categoryItem->id) ? 'text-primary' : '' }}">
+                        <a href="/upcoming_courses?{{ http_build_query($urlParams) }}" class="d-flex align-items-center font-16 font-weight-bold mt-20 {{ (!empty($selectedCategory) and $selectedCategory->id == $categoryItem->id) ? 'text-primary' : '' }}">
                             @if(!empty($selectedCategory) and $selectedCategory->id == $categoryItem->id)
                                 <i data-feather="chevron-right" width="20" height="20" class="mr-5"></i>
                             @endif

@@ -19,28 +19,28 @@
                 <div class="progress course-progress rounded-sm">
                     <span class="progress-bar rounded-sm" style="width: {{ $product->reviews->avg('product_quality') / 5 * 100 }}%"></span>
                 </div>
-                <span class="ml-15 font-14 text-gray text-left">{{ trans('update.products') }} ({{ $product->reviews->count() > 0 ? round($product->reviews->avg('product_quality'), 1) : 0 }})</span>
+                <span class="ml-15 font-16 text-gray text-left">{{ trans('update.products') }} ({{ $product->reviews->count() > 0 ? round($product->reviews->avg('product_quality'), 1) : 0 }})</span>
             </div>
 
             <div class="mt-25 d-flex align-items-center">
                 <div class="progress course-progress rounded-sm">
                     <span class="progress-bar rounded-sm" style="width: {{ $product->reviews->avg('purchase_worth') / 5 * 100 }}%"></span>
                 </div>
-                <span class="ml-15 font-14 text-gray text-left">{{ trans('product.purchase_worth') }} ({{ $product->reviews->count() > 0 ? round($product->reviews->avg('purchase_worth'), 1) : 0 }})</span>
+                <span class="ml-15 font-16 text-gray text-left">{{ trans('product.purchase_worth') }} ({{ $product->reviews->count() > 0 ? round($product->reviews->avg('purchase_worth'), 1) : 0 }})</span>
             </div>
 
             <div class="mt-25 d-flex align-items-center">
                 <div class="progress course-progress rounded-sm">
                     <span class="progress-bar rounded-sm" style="width: {{ $product->reviews->avg('delivery_quality') / 5 * 100 }}%"></span>
                 </div>
-                <span class="ml-15 font-14 text-gray text-left">{{ trans('update.delivery') }} ({{ $product->reviews->count() > 0 ? round($product->reviews->avg('delivery_quality'), 1) : 0 }})</span>
+                <span class="ml-15 font-16 text-gray text-left">{{ trans('update.delivery') }} ({{ $product->reviews->count() > 0 ? round($product->reviews->avg('delivery_quality'), 1) : 0 }})</span>
             </div>
 
             <div class="mt-25 d-flex align-items-center">
                 <div class="progress course-progress rounded-sm">
                     <span class="progress-bar rounded-sm" style="width: {{ $product->reviews->avg('seller_quality') / 5 * 100 }}%"></span>
                 </div>
-                <span class="ml-15 font-14 text-gray text-left">{{ trans('update.seller') }} ({{ $product->reviews->count() > 0 ? round($product->reviews->avg('seller_quality'), 1) : 0 }})</span>
+                <span class="ml-15 font-16 text-gray text-left">{{ trans('update.seller') }} ({{ $product->reviews->count() > 0 ? round($product->reviews->avg('seller_quality'), 1) : 0 }})</span>
             </div>
 
         </div>
@@ -60,7 +60,7 @@
             <div class="reviews-stars row align-items-center">
 
                 <div class="col-6 col-md-3 d-flex flex-column align-items-center justify-content-center barrating-stars">
-                    <span class="font-14 text-gray">{{ trans('update.products') }}</span>
+                    <span class="font-16 text-gray">{{ trans('update.products') }}</span>
                     <select name="product_quality" data-rate="1">
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -71,7 +71,7 @@
                 </div>
 
                 <div class="col-6 col-md-3 d-flex flex-column align-items-center justify-content-center barrating-stars">
-                    <span class="font-14 text-gray">{{ trans('product.purchase_worth') }}</span>
+                    <span class="font-16 text-gray">{{ trans('product.purchase_worth') }}</span>
                     <select name="purchase_worth" data-rate="1">
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -82,7 +82,7 @@
                 </div>
 
                 <div class="col-6 col-md-3 d-flex flex-column align-items-center justify-content-center barrating-stars">
-                    <span class="font-14 text-gray">{{ trans('update.delivery') }}</span>
+                    <span class="font-16 text-gray">{{ trans('update.delivery') }}</span>
                     <select name="delivery_quality" data-rate="1">
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -93,7 +93,7 @@
                 </div>
 
                 <div class="col-6 col-md-3 d-flex flex-column align-items-center justify-content-center barrating-stars">
-                    <span class="font-14 text-gray">{{ trans('update.seller') }}</span>
+                    <span class="font-16 text-gray">{{ trans('update.seller') }}</span>
                     <select name="seller_quality" data-rate="1">
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -146,7 +146,7 @@
                             </div>
                         </div>
 
-                        <div class="mt-20 text-gray font-14">
+                        <div class="mt-20 text-gray font-16">
                             {{ clean($review->description,'description') }}
                         </div>
 

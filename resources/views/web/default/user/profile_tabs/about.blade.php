@@ -2,7 +2,7 @@
     <div class="user-offline-alert d-flex mt-40">
         <div class="p-15">
             <h3 class="font-16 text-dark-blue">{{ trans('public.instructor_is_not_available') }}</h3>
-            <p class="font-14 font-weight-500 text-gray mt-15">{{ $user->offline_message }}</p>
+            <p class="font-16 font-weight-500 text-gray mt-15">{{ $user->offline_message }}</p>
         </div>
 
         <div class="offline-icon offline-icon-right ml-auto d-flex align-items-stretch">
@@ -54,7 +54,7 @@
 
             <div class="d-flex flex-wrap align-items-center pt-10">
                 @foreach($occupations as $occupation)
-                    <div class="bg-gray200 font-14 rounded mt-10 px-10 py-5 text-gray mr-15">{{ $occupation->category->title }}</div>
+                    <div class="bg-gray200 font-16 rounded mt-10 px-10 py-5 text-gray mr-15">{{ $occupation->category->title }}</div>
                 @endforeach
             </div>
         </div>

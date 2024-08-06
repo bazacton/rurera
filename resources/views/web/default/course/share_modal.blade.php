@@ -4,15 +4,15 @@
     <div class="text-center">
         <i data-feather="share-2" width="50" height="50" class="webinar-icon"></i>
 
-        <p class="mt-20 font-14">{{ trans('public.share_this_course_with_others') }}</p>
+        <p class="mt-20 font-16">{{ trans('public.share_this_course_with_others') }}</p>
 
         <div class="position-relative d-flex align-items-center justify-content-between p-15 mt-15 border border-gray250 rounded-sm mt-5">
-            <div class="js-course-share-link font-weight-bold px-16 text-ellipsis font-14">{{ $course->getUrl() }}</div>
+            <div class="js-course-share-link font-weight-bold px-16 text-ellipsis font-16">{{ $course->getUrl() }}</div>
 
-            <button type="button" class="js-course-share-link-copy btn btn-primary btn-sm font-14 font-weight-500 flex-none" data-toggle="tooltip" data-placement="top" title="{{ trans('public.copy') }}">{{ trans('public.copy') }}</button>
+            <button type="button" class="js-course-share-link-copy btn btn-primary btn-sm font-16 font-weight-500 flex-none" data-toggle="tooltip" data-placement="top" title="{{ trans('public.copy') }}">{{ trans('public.copy') }}</button>
         </div>
 
-        <div class="mt-32 mt-lg-40 row align-items-center font-14">
+        <div class="mt-32 mt-lg-40 row align-items-center font-16">
             <a href="{{ $course->getShareLink('telegram') }}" target="_blank" class="col text-center">
                 <img src="/assets/default/img/social/telegram.svg" width="50" height="50" alt="telegram">
                 <span class="mt-10 d-block">{{ trans('public.telegram') }}</span>

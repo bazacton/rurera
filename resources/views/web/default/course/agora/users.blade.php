@@ -9,7 +9,7 @@
             <img src="" alt="" class="img-cover rounded-circle">
         </div>
         <div class="ml-10">
-            <span class="font-14 font-weight-500 d-block text-dark"></span>
+            <span class="font-16 font-weight-500 d-block text-dark"></span>
             <span class="font-12 text-gray">Host</span>
         </div>
     </div>
@@ -20,7 +20,7 @@
             <img src="" alt="" class="img-cover rounded-circle">
         </div>
         <div class="ml-10">
-            <span class="font-14 font-weight-500 d-block text-dark"></span>
+            <span class="font-16 font-weight-500 d-block text-dark"></span>
             <span class="font-12 text-gray">Student</span>
         </div>
     </div>

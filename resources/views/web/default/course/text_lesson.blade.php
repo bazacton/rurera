@@ -92,7 +92,7 @@
 
                         <ul class="p-0 m-0 pt-10">
                             @foreach($textLesson->attachments as $attachment)
-                                <li class="mt-10 p-10 rounded bg-info-light font-14 font-weight-500 text-dark-blue d-flex align-items-center justify-content-between text-ellipsis">
+                                <li class="mt-10 p-10 rounded bg-info-light font-16 font-weight-500 text-dark-blue d-flex align-items-center justify-content-between text-ellipsis">
                                     <span class="">{{ $attachment->file->title }}</span>
 
                                     <a href="{{ $course->getUrl() }}/file/{{ $attachment->file->id }}/download">
@@ -111,7 +111,7 @@
                         <div class="p-0 m-0 pt-10">
                             @foreach($course->textLessons as $lesson)
                                 <a href="{{ $course->getUrl() }}/lessons/{{ $lesson->id }}/read"
-                                   class="d-block mt-10 px-10 py-15 rounded font-14 font-weight-500 text-ellipsis @if($lesson->id == $textLesson->id) bg-primary text-white @else bg-info-light text-dark-blue @endif">
+                                   class="d-block mt-10 px-10 py-15 rounded font-16 font-weight-500 text-ellipsis @if($lesson->id == $textLesson->id) bg-primary text-white @else bg-info-light text-dark-blue @endif">
                                     {{ $loop->iteration .'- '. $lesson->title }}
                                 </a>
                             @endforeach

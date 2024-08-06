@@ -12,7 +12,7 @@
                 @if($userCurrency == $currencyItem->currency)
                     <div class="custom-dropdown-toggle d-flex align-items-center cursor-pointer">
                         <div class="mr-5 text-secondary">
-                            <span class="js-lang-title font-14">{{ $currencyItem->currency }} ({{ currencySign($currencyItem->currency) }})</span>
+                            <span class="js-lang-title font-16">{{ $currencyItem->currency }} ({{ currencySign($currencyItem->currency) }})</span>
                         </div>
                         <i data-feather="chevron-down" class="icons" width="14px" height="14px"></i>
                     </div>
@@ -29,7 +29,7 @@
                             {{ currencySign($currencyItem->currency) }}
                         </div>
 
-                        <span class="ml-5 font-14">{{ currenciesLists($currencyItem->currency) }}</span>
+                        <span class="ml-5 font-16">{{ currenciesLists($currencyItem->currency) }}</span>
                     </div>
                 </div>
             @endforeach

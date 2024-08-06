@@ -10,7 +10,7 @@
                     <img src="{{ $cardUser->getAvatar(72) }}" class="img-cover rounded-circle" alt="{{ $cardUser->get_full_name() }}">
                 </div>
                 <a href="{{ $cardUser->getProfileUrl() }}" target="_blank">
-                    <h4 class="js-post-user-name font-14 text-secondary mt-15 font-weight-bold w-100 text-center">{{ $cardUser->get_full_name() }}</h4>
+                    <h4 class="js-post-user-name font-16 text-secondary mt-15 font-weight-bold w-100 text-center">{{ $cardUser->get_full_name() }}</h4>
                 </a>
 
                 <span class="px-10 py-5 mt-5 rounded-lg border bg-info-light text-center font-12 text-gray">
@@ -119,31 +119,31 @@
                 </div>
 
                 <div class="d-flex align-items-center justify-content-between mt-15 pt-15 border-top">
-                    <span class="font-14 font-weight-500 text-gray">{{ dateTimeFormat(!empty($post) ? $post->created_at : $topic->created_at,'j M Y | H:i') }}</span>
+                    <span class="font-16 font-weight-500 text-gray">{{ dateTimeFormat(!empty($post) ? $post->created_at : $topic->created_at,'j M Y | H:i') }}</span>
 
                     <div class="d-flex align-items-center">
                         @if(!empty($authUser) and !$topic->close)
                             @if($authUser->id == $cardUser->id)
                                 @if(!empty($post))
-                                    <button type="button" data-action="{{ $post->getEditUrl($forum->slug,$topic->slug) }}" class="js-post-edit btn-transparent mr-25 font-14 font-weight-500 text-gray">{{ trans('public.edit') }}</button>
+                                    <button type="button" data-action="{{ $post->getEditUrl($forum->slug,$topic->slug) }}" class="js-post-edit btn-transparent mr-25 font-16 font-weight-500 text-gray">{{ trans('public.edit') }}</button>
                                 @else
-                                    <a href="{{ $topic->getEditUrl($forum->slug) }}" class="mr-25 font-14 font-weight-500 text-gray">{{ trans('public.edit') }}</a>
+                                    <a href="{{ $topic->getEditUrl($forum->slug) }}" class="mr-25 font-16 font-weight-500 text-gray">{{ trans('public.edit') }}</a>
                                 @endif
                             @endif
 
                             @if(!empty($post) and $authUser->id == $topic->creator_id)
                                 @if($post->pin)
-                                    <button type="button" data-action="{{ $topic->getPostsUrl() }}/{{ $post->id }}/un_pin" class="js-btn-post-un-pin btn-transparent font-14 font-weight-500 text-warning mr-25">{{ trans('update.un_pin') }}</button>
+                                    <button type="button" data-action="{{ $topic->getPostsUrl() }}/{{ $post->id }}/un_pin" class="js-btn-post-un-pin btn-transparent font-16 font-weight-500 text-warning mr-25">{{ trans('update.un_pin') }}</button>
                                 @else
-                                    <button type="button" data-action="{{ $topic->getPostsUrl() }}/{{ $post->id }}/pin" class="js-btn-post-pin btn-transparent font-14 font-weight-500 text-gray mr-25">{{ trans('update.pin') }}</button>
+                                    <button type="button" data-action="{{ $topic->getPostsUrl() }}/{{ $post->id }}/pin" class="js-btn-post-pin btn-transparent font-16 font-weight-500 text-gray mr-25">{{ trans('update.pin') }}</button>
                                 @endif
                             @endif
 
                             @if(!empty($post))
-                                <button type="button" data-id="{{ $post->id }}" class="js-reply-post-btn btn-transparent mr-25 font-14 font-weight-500 text-gray">{{ trans('panel.reply') }}</button>
+                                <button type="button" data-id="{{ $post->id }}" class="js-reply-post-btn btn-transparent mr-25 font-16 font-weight-500 text-gray">{{ trans('panel.reply') }}</button>
                             @endif
 
-                            <button type="button" data-id="{{ !empty($post) ? $post->id : $topic->id }}" data-type="{{ !empty($post) ? 'topic_post' : 'topic' }}" class="js-topic-post-report btn-transparent mr-25 font-14 font-weight-500 text-gray">{{ trans('panel.report') }}</button>
+                            <button type="button" data-id="{{ !empty($post) ? $post->id : $topic->id }}" data-type="{{ !empty($post) ? 'topic_post' : 'topic' }}" class="js-topic-post-report btn-transparent mr-25 font-16 font-weight-500 text-gray">{{ trans('panel.report') }}</button>
                         @endif
 
                         <div class="topic-post-like-btn d-flex align-items-center">

@@ -266,7 +266,7 @@
                                             <img src="/avatar/svgA5311352175689545.png" alt="">
                                             <span class="author-text font-19 font-weight-bold">
                                                 Jonh Smith
-                                                <span class="d-block font-14 font-weight-normal">Administrator</span>
+                                                <span class="d-block font-16 font-weight-normal">Administrator</span>
                                             </span>
                                         </a>
                                         <a href="#" class="pocket-btn btn-link collapsed d-inline-flex flex-column justify-content-center align-items-center" data-toggle="collapse" data-target="#pocket-menu" aria-expanded="false" aria-controls="pocket-menu">
@@ -276,10 +276,10 @@
                                         </a>
                                     </div>
                                     <div id="pocket-menu" class="pocket-menu collapse pt-10" aria-labelledby="pocket-menu">
-                                        <a href="#" class="font-15 font-weight-500 d-flex align-items-center mt-15"><span class="nav-icon"><img src="/assets/default/svgs/user-account.svg" alt=""></span>My Account</a>
-                                        <a href="#" class="font-15 font-weight-500 d-flex align-items-center mt-15"><span class="nav-icon"><img src="/assets/default/svgs/user-setting.svg" alt=""></span>Settings</a>
-                                        <a href="#" class="font-15 font-weight-500 d-flex align-items-center mt-15"><span class="nav-icon"><img src="/assets/default/svgs/lock-closed.svg" alt=""></span>Lock Screen</a>
-                                        <a href="#" class="font-15 font-weight-500 d-flex align-items-center mt-15"><span class="nav-icon"><img src="/assets/default/svgs/user-logout.svg" alt=""></span>Logout</a>
+                                        <a href="#" class="font-16 font-weight-500 d-flex align-items-center mt-15"><span class="nav-icon"><img src="/assets/default/svgs/user-account.svg" alt=""></span>My Account</a>
+                                        <a href="#" class="font-16 font-weight-500 d-flex align-items-center mt-15"><span class="nav-icon"><img src="/assets/default/svgs/user-setting.svg" alt=""></span>Settings</a>
+                                        <a href="#" class="font-16 font-weight-500 d-flex align-items-center mt-15"><span class="nav-icon"><img src="/assets/default/svgs/lock-closed.svg" alt=""></span>Lock Screen</a>
+                                        <a href="#" class="font-16 font-weight-500 d-flex align-items-center mt-15"><span class="nav-icon"><img src="/assets/default/svgs/user-logout.svg" alt=""></span>Logout</a>
                                     </div>
                                 </div>
                             </div>
@@ -320,7 +320,7 @@
                                     <div class="quests-list panel-border bg-white rounded-sm p-20">
                                         <h3 class="font-19 font-weight-bold">
                                             Daily Quests
-                                            <a href="/quests" class="view-all font-weight-bold font-15">View All</a>
+                                            <a href="/quests" class="view-all font-weight-bold font-16">View All</a>
                                         </h3>
                                         <ul>
                                             @foreach( $authUser->getUserQuests(array(), array('learning_journey'), array('daily')) as $questObj)
@@ -885,7 +885,7 @@
             <img src="../assets/default/img/clock-modal-img.png" alt="">
         </span>
         <h3 class="font-24 font-weight-normal mb-10">Are you sure you want to remove?</h3>
-        <p class="mb-15 font-14">
+        <p class="mb-15 font-16">
             You've been inactive for a while, and your session was paused. You can continue learning by using the following links
         </p>
         <div class="inactivity-controls">

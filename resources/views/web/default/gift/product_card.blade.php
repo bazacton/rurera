@@ -11,7 +11,7 @@
                 <div class="avatar bg-gray200">
                     <img src="{{ $product->creator->getAvatar() }}" class="img-cover" alt="{{ $product->creator->get_full_name() }}">
                 </div>
-                <a href="{{ $product->creator->getProfileUrl() }}" target="_blank" class="user-name ml-5 font-14">{{ $product->creator->get_full_name() }}</a>
+                <a href="{{ $product->creator->getProfileUrl() }}" target="_blank" class="user-name ml-5 font-16">{{ $product->creator->get_full_name() }}</a>
             </div>
 
             <a href="{{ $product->getUrl() }}">
@@ -31,7 +31,7 @@
                         <span class="real">{{ handlePrice($product->price) }}</span>
                     @endif
                 @else
-                    <span class="real font-14">{{ trans('public.free') }}</span>
+                    <span class="real font-16">{{ trans('public.free') }}</span>
                 @endif
             </div>
         </figcaption>

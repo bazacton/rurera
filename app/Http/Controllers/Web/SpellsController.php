@@ -383,19 +383,50 @@ class SpellsController extends Controller
     {
         $spell_id = $request->get('spell_id', null);
 		$spell_type = $request->get('spell_type', null);
+		$sort_by = $request->get('sort_by', 'alphabetically');
+		$search_word = $request->get('search_word', '');
+		
 		$spellData = Quiz::find($spell_id);
 		$vocabulary_words = $spellData->vocabulary_words();
 		$QuestionsAttemptController = new QuestionsAttemptController();
 		
 		$questionResults = $QuestionsAttemptController->get_questions_results($vocabulary_words, 'vocabulary', '');
 		$response = '';
+		$words_list  = array();
 		if( !empty( $vocabulary_words ) ){
 			foreach( $vocabulary_words as $question_id => $word){
+				if ($search_word != '') {
+					if(stripos($word, $search_word) === false){
+						continue;
+					}
+				}
 				$no_of_attempts = isset( $questionResults[$question_id] )? $questionResults[$question_id] : 0;
+				$words_list[$question_id] = array(
+					'no_of_attempts' => $no_of_attempts,
+					'word' => $word,
+				);
+			}
+		}
+		if( $sort_by == 'alphabetically'){
+			uasort($words_list, function($a, $b) {
+				return strcmp($a['word'], $b['word']);
+			});
+		}
+		if( $sort_by == 'attempts'){
+			usort($words_list, function($a, $b) {
+				return $b['no_of_attempts'] - $a['no_of_attempts'];
+			});
+		}
+		
+		if( !empty( $words_list ) ){
+			foreach( $words_list as $question_id => $wordData){
+				$no_of_attempts = isset( $wordData['no_of_attempts'] )? $wordData['no_of_attempts'] : 0;
+				$word = isset( $wordData['word'] )? $wordData['word'] : 0;
 				//pre($questionResults->count());
 				$response .= '<div class="word-block">';
-				$response .= '<h3>'.$word.' ('.$no_of_attempts.')</h3>';
-				$response .= '<div class="word-details">';
+				$response .= '  <h3 class="collapsed" data-toggle="collapse" data-target="#word-details-{{$question_id}}" aria-expanded="false">'.$word.' ('.$no_of_attempts.')</h3>';
+				$response .= '  <input type="checkbox" name="spell_words[]" value="'.$question_id.'">';
+				$response .= '<div class="word-details" id="word-details-{{$question_id}}" aria-labelledby="word-details-{{$question_id}}" data-parent="#accordion">';
 				$response .= 'Test Text goes here....';
 				$response .= '</div>';
 				
@@ -405,6 +436,7 @@ class SpellsController extends Controller
 		echo $response;exit;
 		
 	}
+	
 
 
 }

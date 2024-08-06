@@ -11,7 +11,7 @@
                 <i data-feather="feather" width="20" height="20" class="text-gray"></i>
             </span>
 
-            <span class="font-weight-bold text-secondary font-14 file-title">{{ $assignment->title }}</span>
+            <span class="font-weight-bold text-secondary font-16 file-title">{{ $assignment->title }}</span>
         </div>
 
         <i class="collapse-chevron-icon" data-feather="chevron-down" height="20" href="#collapseAssignment{{ !empty($assignment) ? $assignment->id :'record' }}" aria-controls="collapseAssignment{{ !empty($assignment) ? $assignment->id :'record' }}" data-parent="#{{ $accordionParent }}" role="button" data-toggle="collapse" aria-expanded="true"></i>
@@ -26,7 +26,7 @@
             <div class="d-flex align-items-center justify-content-between mt-20">
 
                 <div class="d-flex align-items-center">
-                    <div class="d-flex align-items-center text-gray text-center font-14 mr-20">
+                    <div class="d-flex align-items-center text-gray text-center font-16 mr-20">
                         <i data-feather="clock" width="18" height="18" class="text-gray mr-5"></i>
                         <span class="line-height-1">{{ trans('update.min_grade') }}: {{ $assignment->pass_grade }}</span>
                     </div>

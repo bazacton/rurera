@@ -5,11 +5,11 @@
         <img src="/assets/default/img/meeting/live_session.svg" alt="" class="" width="150" height="150">
 
         <h4 class="js-for-create-session-text d-none mt-5">{{ trans('update.new_in-app_call_session') }}</h4>
-        <p class="js-for-create-session-text d-none mt-5 text-gray font-14">{{  trans('update.are_you_sure_to_create_an_in-app_live_session_for_this_meeting') }}</p>
-        <p class="js-for-create-session-text d-none mt-5 text-gray font-14"> {{ trans('update.your_meeting_date_is') }} <span class="js-meeting-date"></span></p>
+        <p class="js-for-create-session-text d-none mt-5 text-gray font-16">{{  trans('update.are_you_sure_to_create_an_in-app_live_session_for_this_meeting') }}</p>
+        <p class="js-for-create-session-text d-none mt-5 text-gray font-16"> {{ trans('update.your_meeting_date_is') }} <span class="js-meeting-date"></span></p>
 
         <h4 class="js-for-join-session-text d-none mt-5">{{ trans('update.join_the_live_session_now') }}</h4>
-        <p class="js-for-join-session-text d-none mt-5 text-gray font-14">{{ trans('update.live_session_created_successfully_and_you_can_join_it_right_now') }}</p>
+        <p class="js-for-join-session-text d-none mt-5 text-gray font-16">{{ trans('update.live_session_created_successfully_and_you_can_join_it_right_now') }}</p>
     </div>
 
     <div class="mt-30 d-flex align-items-center justify-content-end">

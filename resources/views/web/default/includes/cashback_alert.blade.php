@@ -6,7 +6,7 @@
             </div>
 
             <div class="ml-10">
-                <div class="font-14 font-weight-bold ">{{ trans('update.get_cashback') }}</div>
+                <div class="font-16 font-weight-bold ">{{ trans('update.get_cashback') }}</div>
 
                 @if(!empty($itemType) and $itemType == 'meeting')
                     @if($cashbackRule->min_amount)

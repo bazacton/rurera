@@ -25,7 +25,7 @@
                     @endif
 
                     @if(!empty($floatingBar->description))
-                        <div class="font-14" style="{{ !empty($floatingBar->description_color) ? "color: $floatingBar->description_color" : '' }}">{{ $floatingBar->description }}</div>
+                        <div class="font-16" style="{{ !empty($floatingBar->description_color) ? "color: $floatingBar->description_color" : '' }}">{{ $floatingBar->description }}</div>
                     @endif
                 </div>
             </div>

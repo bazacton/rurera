@@ -5,7 +5,7 @@
         <div class="text-center">
             <img src="/assets/default/img/rewards/medal-2.png" class="buy-with-points-modal-img" alt="medal">
 
-            <p class="font-14 font-weight-500 text-gray mt-30">
+            <p class="font-16 font-weight-500 text-gray mt-30">
                 <span class="d-block">{{ trans('update.this_course_requires_n_points',['points' => $course->points]) }}</span>
                 <span class="d-block">{{ trans('update.you_have_n_points',['points' => $user->getRewardPoints()]) }}</span>
 

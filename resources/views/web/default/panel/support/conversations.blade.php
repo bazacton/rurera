@@ -51,9 +51,9 @@
                         <div class="table-responsive">
                             <table class="table table-md">
                                 <tr>
-                                    <th class="text-left text-gray font-14 font-weight-500">{{ trans('navbar.contact') }}</th>
-                                    <th class="text-left text-gray font-14 font-weight-500">{{ trans('public.title') }}</th>
-                                    <th class="text-center text-gray font-14 font-weight-500">{{ trans('public.status') }}</th>
+                                    <th class="text-left text-gray font-16 font-weight-500">{{ trans('navbar.contact') }}</th>
+                                    <th class="text-left text-gray font-16 font-weight-500">{{ trans('public.title') }}</th>
+                                    <th class="text-center text-gray font-16 font-weight-500">{{ trans('public.status') }}</th>
                                 </tr>
                                 <tbody>
 
@@ -66,7 +66,7 @@
                                                         <img src="{{ (!empty($support->webinar) and $support->webinar->teacher_id != $authUser->id) ? $support->webinar->teacher->getAvatar() : $support->user->getAvatar() }}" class="img-cover" alt="">
                                                     </div>
                                                     <div class="ml-10">
-                                                        <span class="d-block font-14 text-dark-blue font-weight-500">{{ (!empty($support->webinar) and $support->webinar->teacher_id != $authUser->id) ? $support->webinar->teacher->get_full_name() : $support->user->get_full_name() }}</span>
+                                                        <span class="d-block font-16 text-dark-blue font-weight-500">{{ (!empty($support->webinar) and $support->webinar->teacher_id != $authUser->id) ? $support->webinar->teacher->get_full_name() : $support->user->get_full_name() }}</span>
                                                         <span class="mt-1 font-12 text-gray d-block">
                                                             {{ (!empty($support->webinar) and $support->webinar->teacher_id != $authUser->id) ? trans('panel.teacher') : ( ($support->user->isUser()) ? trans('quiz.student') : trans('panel.staff')) }}
                                                         </span>
@@ -78,12 +78,12 @@
                                         <td class="text-left">
                                             @if($authUser->isUser())
                                                 <a href="/panel/support/{{ $support->id }}/conversations" class="">
-                                                    <span class="font-weight-500 font-14 text-dark-blue d-block">{{ $support->title }}</span>
+                                                    <span class="font-weight-500 font-16 text-dark-blue d-block">{{ $support->title }}</span>
                                                     <span class="mt-1 font-12 text-gray d-block">{{ truncate((!empty($support->webinar)) ? $support->webinar->title : '', 20) }} | {{ (!empty($support->conversations) and count($support->conversations)) ? dateTimeFormat($support->conversations->first()->created_at,'j M Y | H:i') : dateTimeFormat($support->created_at,'j M Y | H:i') }}</span>
                                                 </a>
                                             @else
                                                 <a href="/panel/support/{{ $support->id }}/conversations" class="">
-                                                    <span class="font-weight-500 font-14 text-dark-blue d-block">{{ $support->title }}</span>
+                                                    <span class="font-weight-500 font-16 text-dark-blue d-block">{{ $support->title }}</span>
                                                     <span class="mt-1 font-12 text-gray d-block">{{ (!empty($support->conversations) and count($support->conversations)) ? dateTimeFormat($support->conversations->first()->created_at,'j M Y | H:i') : dateTimeFormat($support->created_at,'j M Y | H:i') }}</span>
                                                 </a>
                                             @endif
@@ -91,11 +91,11 @@
 
                                         <td class="text-center align-middle">
                                             @if($support->status == 'close')
-                                                <span class="text-danger font-weight-500 font-14">{{  trans('panel.closed') }}</span>
+                                                <span class="text-danger font-weight-500 font-16">{{  trans('panel.closed') }}</span>
                                             @elseif($support->status == 'supporter_replied')
-                                                <span class="text-primary font-weight-500 font-14">{{  trans('panel.replied') }}</span>
+                                                <span class="text-primary font-weight-500 font-16">{{  trans('panel.replied') }}</span>
                                             @else
-                                                <span class="text-warning font-weight-500 font-14">{{  trans('public.waiting') }}</span>
+                                                <span class="text-warning font-weight-500 font-16">{{  trans('public.waiting') }}</span>
                                             @endif
                                         </td>
 
@@ -111,7 +111,7 @@
                         <div class="col-12 col-lg-7 border-left border-gray300">
                             <div class="conversation-box p-15 d-flex align-items-center justify-content-between">
                                 <div>
-                                    <span class="font-weight-500 font-14 text-dark-blue d-block">{{ $selectSupport->title }}</span>
+                                    <span class="font-weight-500 font-16 text-dark-blue d-block">{{ $selectSupport->title }}</span>
                                     <span class="font-12 mt-1 text-gray d-block">{{ trans('public.created') }}: {{ dateTimeFormat($support->created_at,'j M Y | H:i') }}</span>
 
                                     @if(!empty($selectSupport->webinar))
@@ -136,7 +136,7 @@
                                                         <img src="{{ (!empty($conversations->supporter)) ? $conversations->supporter->getAvatar() : $conversations->sender->getAvatar() }}" class="img-cover" alt="">
                                                     </div>
                                                     <div class="ml-10">
-                                                        <span class="d-block text-dark-blue font-14 font-weight-500">{{ (!empty($conversations->supporter)) ? $conversations->supporter->get_full_name() : $conversations->sender->get_full_name() }}</span>
+                                                        <span class="d-block text-dark-blue font-16 font-weight-500">{{ (!empty($conversations->supporter)) ? $conversations->supporter->get_full_name() : $conversations->sender->get_full_name() }}</span>
                                                         <span class="mt-1 font-12 text-gray d-block">{{ (!empty($conversations->supporter)) ? trans('panel.staff') : $conversations->sender->role_name }}</span>
                                                     </div>
                                                 </div>
@@ -149,7 +149,7 @@
                                                     @endif
                                                 </div>
                                             </div>
-                                            <p class="text-gray font-14 mt-15 font-weight-500">{!! nl2br($conversations->message) !!}</p>
+                                            <p class="text-gray font-16 mt-15 font-weight-500">{!! nl2br($conversations->message) !!}</p>
                                         </div>
                                     @endforeach
 
@@ -157,7 +157,7 @@
                             </div>
 
                             <div class="conversation-box mt-30 py-10 px-15">
-                                <h3 class="font-14 text-dark-blue font-weight-bold">{{ trans('panel.reply_to_the_conversation') }}</h3>
+                                <h3 class="font-16 text-dark-blue font-weight-bold">{{ trans('panel.reply_to_the_conversation') }}</h3>
                                 <form action="/panel/support/{{ $selectSupport->id }}/conversations" method="post" class="mt-5">
                                     {{ csrf_field() }}
 

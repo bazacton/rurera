@@ -19,7 +19,7 @@
         <ul class="mt-15 unread-notification-lists">
             @if(!empty($unReadNotifications) and !$unReadNotifications->isEmpty())
             @foreach($unReadNotifications->take(5) as $unReadNotification)
-            <li class="font-14 mt-1 text-gray">- {{ $unReadNotification->title }}</li>
+            <li class="font-16 mt-1 text-gray">- {{ $unReadNotification->title }}</li>
             @endforeach
 
             @if(count($unReadNotifications) > 5)

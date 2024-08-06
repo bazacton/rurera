@@ -646,7 +646,7 @@
                                 <div class="item-text">
                                     <h5 class="item-title">House Plant Invigorator</h5>
                                     <span class="item-points">100% off . 500 points</span>
-                                    <a href="#" class="view-btn font-14 font-weight-normal">View product</a>
+                                    <a href="#" class="view-btn font-16 font-weight-normal">View product</a>
                                 </div>
                             </div>
                         </div>
@@ -658,7 +658,7 @@
                                 <div class="item-text">
                                     <h5 class="item-title">Digital Plant Thermometer 🌡️</h5>
                                     <span class="item-points">100% off . 1,800 points</span>
-                                    <a href="#" class="view-btn font-14 font-weight-normal">View product</a>
+                                    <a href="#" class="view-btn font-16 font-weight-normal">View product</a>
                                 </div>
                             </div>
                         </div>
@@ -670,7 +670,7 @@
                                 <div class="item-text">
                                     <h5 class="item-title">Pride Plant Magnets</h5>
                                     <span class="item-points">100% off . 600 points</span>
-                                    <a href="#" class="view-btn font-14 font-weight-normal">View product</a>
+                                    <a href="#" class="view-btn font-16 font-weight-normal">View product</a>
                                 </div>
                             </div>
                         </div>
@@ -682,7 +682,7 @@
                                 <div class="item-text">
                                     <h5 class="item-title">Coco Coir Pole</h5>
                                     <span class="item-points">100% off . 1,200 points</span>
-                                    <a href="#" class="view-btn font-14 font-weight-normal">View product</a>
+                                    <a href="#" class="view-btn font-16 font-weight-normal">View product</a>
                                 </div>
                             </div>
                         </div>
@@ -694,7 +694,7 @@
                                 <div class="item-text">
                                     <h5 class="item-title">Plant Picks For A Purpose</h5>
                                     <span class="item-points">100% off . 600 points</span>
-                                    <a href="#" class="view-btn font-14 font-weight-normal">View product</a>
+                                    <a href="#" class="view-btn font-16 font-weight-normal">View product</a>
                                 </div>
                             </div>
                         </div>
@@ -706,7 +706,7 @@
                                 <div class="item-text">
                                     <h5 class="item-title">Arber Organic Plant Food</h5>
                                     <span class="item-points">100% off . 2,200 points</span>
-                                    <a href="#" class="view-btn font-14 font-weight-normal">View product</a>
+                                    <a href="#" class="view-btn font-16 font-weight-normal">View product</a>
                                 </div>
                             </div>
                         </div>
@@ -718,7 +718,7 @@
                                 <div class="item-text">
                                     <h5 class="item-title">Arber Organic Bio Insecticide</h5>
                                     <span class="item-points">100% off . 2,200 points</span>
-                                    <a href="#" class="view-btn font-14 font-weight-normal">View product</a>
+                                    <a href="#" class="view-btn font-16 font-weight-normal">View product</a>
                                 </div>
                             </div>
                         </div>
@@ -730,7 +730,7 @@
                                 <div class="item-text">
                                     <h5 class="item-title">Lively Root Icon Dad Hat</h5>
                                     <span class="item-points">100% off . 2,200 points</span>
-                                    <a href="#" class="view-btn font-14 font-weight-normal">View product</a>
+                                    <a href="#" class="view-btn font-16 font-weight-normal">View product</a>
                                 </div>
                             </div>
                         </div>
@@ -781,7 +781,7 @@
                                         <span>15 points per $1</span>
                                     </div>
                                     <div class="tier-item-footer">
-                                      <span class="font-14">Subscribe to any product</span>
+                                      <span class="font-16">Subscribe to any product</span>
                                     </div>
                                 </div>
                             </div>
@@ -796,7 +796,7 @@
                                         <span>10 points per $1</span>
                                     </div>
                                     <div class="tier-item-footer">
-                                      <span class="font-14">Subscribe to any product</span>
+                                      <span class="font-16">Subscribe to any product</span>
                                     </div>
                                 </div>
                             </div>
@@ -951,8 +951,8 @@
                     <div class="tooltip-box">
                         <h5 class="font-18 font-weight-bold text-white mb-5">Use basic phrases</h5>
                         <span class="d-block mb-15 text-white">Prove yor proficiency with Legendary</span>
-                        <button class="tooltip-btn practice font-14 d-block mb-15 text-center" onclick='window.location.href = ""'>practice +5 XP</button>
-                        <button class="tooltip-btn legendary d-block font-14 text-center" onclick='window.location.href = ""'>Legendary +4 XP</button>
+                        <button class="tooltip-btn practice font-16 d-block mb-15 text-center" onclick='window.location.href = ""'>practice +5 XP</button>
+                        <button class="tooltip-btn legendary d-block font-16 text-center" onclick='window.location.href = ""'>Legendary +4 XP</button>
                     </div>
                   </div>
                 </a>

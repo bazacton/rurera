@@ -28,7 +28,7 @@
         @if(!empty($featureWebinars) and !$featureWebinars->isEmpty())
             <section class="mb-25 mb-lg-0">
                 <h2 class="font-24 text-dark-blue">{{ trans('home.featured_webinars') }}</h2>
-                <span class="font-14 text-gray font-weight-400">{{ trans('site.newest_courses_subtitle') }}</span>
+                <span class="font-16 text-gray font-weight-400">{{ trans('site.newest_courses_subtitle') }}</span>
 
                 <div class="position-relative mt-20">
                     <div class="swiper-container">

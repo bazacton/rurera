@@ -142,7 +142,7 @@
             <h2 class="section-title">{{ trans('panel.meeting_requests_list') }}</h2>
 
             <div class="d-flex align-items-center flex-row-reverse flex-md-row justify-content-start justify-content-md-center mt-20 mt-md-0">
-                <label class="cursor-pointer mb-0 mr-10 text-gray font-14 font-weight-500" for="openMeetingResult">{{ trans('panel.show_only_open_meetings') }}</label>
+                <label class="cursor-pointer mb-0 mr-10 text-gray font-16 font-weight-500" for="openMeetingResult">{{ trans('panel.show_only_open_meetings') }}</label>
                 <div class="custom-control custom-switch">
                     <input type="checkbox" name="open_meetings" {{ (request()->get('open_meetings', '') == 'on') ? 'checked' : '' }} class="js-panel-list-switch-filter custom-control-input" id="openMeetingResult">
                     <label class="custom-control-label" for="openMeetingResult"></label>
@@ -194,7 +194,7 @@
                                             <span>{{ dateTimeFormat($ReserveMeeting->start_at, 'j M Y') }}</span>
                                         </td>
                                         <td class="align-middle">
-                                            <div class="d-inline-flex align-items-center rounded bg-gray200 py-5 px-15 font-14 font-weight-500">
+                                            <div class="d-inline-flex align-items-center rounded bg-gray200 py-5 px-15 font-16 font-weight-500">
                                                 <span class="">{{ dateTimeFormat($ReserveMeeting->start_at, 'H:i') }}</span>
                                                 <span class="mx-1">-</span>
                                                 <span class="">{{ dateTimeFormat($ReserveMeeting->end_at, 'H:i') }}</span>

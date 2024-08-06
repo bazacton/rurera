@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-12 col-md-7">
                     <h1 class="font-36 text-secondary font-weight-bold">{!! nl2br(trans('update.download_mobile_app_and_enjoy')) !!}</h1>
-                    <p class="mt-15 font-14 text-gray">{!! $mobileAppSettings['mobile_app_description'] ?? '' !!}</p>
+                    <p class="mt-15 font-16 text-gray">{!! $mobileAppSettings['mobile_app_description'] ?? '' !!}</p>
 
                     @if(!empty($mobileAppSettings) and !empty($mobileAppSettings['mobile_app_buttons']))
                         <div class="mt-20 d-flex align-items-center flex-wrap">

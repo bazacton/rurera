@@ -105,7 +105,7 @@
                                                         <div class="avatar bg-gray200">
                                                             <img src="{{ $feature->webinar->teacher->getAvatar() }}" class="img-cover" alt="{{ $feature->webinar->teacher->full_naem }}">
                                                         </div>
-                                                        <a href="{{ $feature->webinar->teacher->getProfileUrl() }}" target="_blank" class="user-name font-14 ml-5">{{ $feature->webinar->teacher->get_full_name() }}</a>
+                                                        <a href="{{ $feature->webinar->teacher->getProfileUrl() }}" target="_blank" class="user-name font-16 ml-5">{{ $feature->webinar->teacher->get_full_name() }}</a>
                                                     </div>
 
                                                     <p class="mt-25 feature-desc text-gray">{{ $feature->description }}</p>
@@ -116,14 +116,14 @@
                                                         <div class="d-flex justify-content-between">
                                                             <div class="d-flex align-items-center">
                                                                 <i data-feather="clock" width="20" height="20" class="webinar-icon"></i>
-                                                                <span class="duration ml-5 text-dark-blue font-14">{{ convertMinutesToHourAndMinute($feature->webinar->duration) }} {{ trans('home.hours') }}</span>
+                                                                <span class="duration ml-5 text-dark-blue font-16">{{ convertMinutesToHourAndMinute($feature->webinar->duration) }} {{ trans('home.hours') }}</span>
                                                             </div>
 
                                                             <div class="vertical-line mx-10"></div>
 
                                                             <div class="d-flex align-items-center">
                                                                 <i data-feather="calendar" width="20" height="20" class="webinar-icon"></i>
-                                                                <span class="date-published ml-5 text-dark-blue font-14">{{ dateTimeFormat(!empty($feature->webinar->start_date) ? $feature->webinar->start_date : $feature->webinar->created_at,'j M Y') }}</span>
+                                                                <span class="date-published ml-5 text-dark-blue font-16">{{ dateTimeFormat(!empty($feature->webinar->start_date) ? $feature->webinar->start_date : $feature->webinar->created_at,'j M Y') }}</span>
                                                             </div>
                                                         </div>
 
@@ -433,11 +433,11 @@
                                                     <img src="{{ $testimonial->user_avatar }}" alt="{{ $testimonial->user_name }}" class="img-cover rounded-circle">
                                                 </div>
                                                 <h4 class="font-16 font-weight-bold text-secondary mt-30">{{ $testimonial->user_name }}</h4>
-                                                <span class="d-block font-14 text-gray">{{ $testimonial->user_bio }}</span>
+                                                <span class="d-block font-16 text-gray">{{ $testimonial->user_bio }}</span>
                                                 @include('web.default.includes.webinar.rate',['rate' => $testimonial->rate, 'dontShowRate' => true])
                                             </div>
 
-                                            <p class="mt-25 text-gray font-14">{!! nl2br($testimonial->comment) !!}</p>
+                                            <p class="mt-25 text-gray font-16">{!! nl2br($testimonial->comment) !!}</p>
 
                                             <div class="bottom-gradient"></div>
                                         </div>
@@ -574,7 +574,7 @@
                                 </div>
 
                                 <div class="flex-grow-1 ml-15">
-                                    <span class="font-14 font-weight-bold text-secondary d-block">{{ trans('update.looking_for_an_instructor') }}</span>
+                                    <span class="font-16 font-weight-bold text-secondary d-block">{{ trans('update.looking_for_an_instructor') }}</span>
                                     <span class="text-gray font-12 font-weight-500">{{ trans('update.find_the_best_instructor_now') }}</span>
                                 </div>
                             </div>
@@ -597,7 +597,7 @@
                                 </div>
 
                                 <div class="flex-grow-1 ml-15">
-                                    <span class="font-14 font-weight-bold text-secondary d-block">{{ trans('update.you_got_50_points') }}</span>
+                                    <span class="font-16 font-weight-bold text-secondary d-block">{{ trans('update.you_got_50_points') }}</span>
                                     <span class="text-gray font-12 font-weight-500">{{ trans('update.for_completing_the_course') }}</span>
                                 </div>
                             </div>
@@ -656,7 +656,7 @@
                                 </div>
 
                                 <div class="flex-grow-1 ml-15">
-                                    <span class="font-14 font-weight-bold text-secondary d-block">{{ trans('update.become_an_instructor') }}</span>
+                                    <span class="font-16 font-weight-bold text-secondary d-block">{{ trans('update.become_an_instructor') }}</span>
                                     <span class="text-gray font-12 font-weight-500">{{ trans('update.become_instructor_tagline') }}</span>
                                 </div>
                             </div>
@@ -739,7 +739,7 @@
                                                 <h3 class="font-16 font-weight-bold text-dark-blue">{{ $instructor->get_full_name() }}</h3>
                                             </a>
 
-                                            <p class="font-14 text-gray mt-5">{{ $instructor->bio }}</p>
+                                            <p class="font-16 text-gray mt-5">{{ $instructor->bio }}</p>
                                             <div class="stars-card d-flex align-items-center justify-content-center mt-10">
                                                 @php
                                                     $i = 5;

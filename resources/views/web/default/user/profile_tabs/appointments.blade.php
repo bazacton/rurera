@@ -22,7 +22,7 @@
             </div>
             <div class="ml-15">
                 <div class="font-16 font-weight-bold text-dark-blue">{{ trans('update.note') }}:</div>
-                <p class="font-14 font-weight-500 text-gray">{{ trans('update.appointment_timezone_note_hint',['timezone' => $meetingTimezone .' '. toGmtOffset($meetingTimezone)]) }}</p>
+                <p class="font-16 font-weight-500 text-gray">{{ trans('update.appointment_timezone_note_hint',['timezone' => $meetingTimezone .' '. toGmtOffset($meetingTimezone)]) }}</p>
             </div>
         </div>
 
@@ -48,9 +48,9 @@
 
             <div class="d-flex flex-column mt-10">
                 @if($meeting->disabled)
-                    <span class="font-14 text-gray">{{ trans('public.unavailable_description') }}</span>
+                    <span class="font-16 text-gray">{{ trans('public.unavailable_description') }}</span>
                 @else
-                    <span class="d-block font-14 text-gray font-weight-500">
+                    <span class="d-block font-16 text-gray font-weight-500">
                         {{ trans('site.instructor_hourly_charge') }}
 
                         @if(!empty($meeting->amount) and $meeting->amount > 0)
@@ -66,7 +66,7 @@
                     </span>
 
                     @if($meeting->in_person)
-                    <span class="d-block font-14 text-gray font-weight-500">
+                    <span class="d-block font-16 text-gray font-weight-500">
                         {{ trans('update.instructor_hourly_charge_in_person_amount') }}
 
                         @if(!empty($meeting->in_person_amount) and $meeting->in_person_amount > 0)
@@ -82,12 +82,12 @@
                     </span>
                   @endif
                   @if($meeting->group_meeting)
-                    <span class="d-block font-14 text-gray font-weight-500">{{ trans('update.instructor_conducts_group_meetings',['min' => $meeting->online_group_min_student,'max' => $meeting->online_group_max_student]) }}</span>
+                    <span class="d-block font-16 text-gray font-weight-500">{{ trans('update.instructor_conducts_group_meetings',['min' => $meeting->online_group_min_student,'max' => $meeting->online_group_max_student]) }}</span>
                   @endif
 
                 @endif
 
-                <span class="font-14 text-gray mt-5 selected_date font-weight-500">{{ trans('site.selected_date') }}: <span></span></span>
+                <span class="font-16 text-gray mt-5 selected_date font-weight-500">{{ trans('site.selected_date') }}: <span></span></span>
             </div>
 
             @if(!$meeting->disabled)
@@ -101,7 +101,7 @@
 
                 <div class="mt-25 d-none js-finalize-reserve">
                     <h3 class="font-16 font-weight-bold text-dark-blue">{{ trans('update.finalize_your_meeting') }}</h3>
-                    <span class="selected-date-time font-14 text-gray font-weight-500">{{ trans('update.meeting_time') }}: <span></span></span>
+                    <span class="selected-date-time font-16 text-gray font-weight-500">{{ trans('update.meeting_time') }}: <span></span></span>
 
                     <div class="mt-15">
                         <span class="font-16 font-weight-500 text-dark-blue">{{ trans('update.meeting_type') }}</span>
@@ -121,7 +121,7 @@
 
                     @if($meeting->group_meeting)
                         <div class="js-group-meeting-switch d-none align-items-center mt-20">
-                            <label class="mb-0 mr-10 text-gray font-14 font-weight-500 cursor-pointer"
+                            <label class="mb-0 mr-10 text-gray font-16 font-weight-500 cursor-pointer"
                                    for="withGroupMeetingSwitch">{{ trans('update.group_meeting') }}</label>
                             <div class="custom-control custom-switch">
                                 <input type="checkbox" name="with_group_meeting" class="custom-control-input"
@@ -149,14 +149,14 @@
                                 </div>
                             </div>
 
-                            <div class="js-online-group-amount d-none font-14 font-weight-500 mt-15">
+                            <div class="js-online-group-amount d-none font-16 font-weight-500 mt-15">
                                 <span class="text-gray d-block">{{ trans('update.online') }} {{ trans('update.group_meeting_hourly_rate_per_student',['amount' => addCurrencyToPrice($meeting->online_group_amount)]) }}</span>
                                 <span class="text-danger mt-5 d-block">{{ trans('update.group_meeting_student_count_hint',['min' => $meeting->online_group_min_student, 'max' => $meeting->online_group_max_student]) }}</span>
                                 <span class="text-danger mt-5 d-block">{{ trans('update.group_meeting_max_student_count_hint',['max' => $meeting->online_group_max_student]) }}</span>
                             </div>
 
                             @if($meeting->in_person)
-                            <div class="js-in-person-group-amount d-none font-14 font-weight-500 mt-15">
+                            <div class="js-in-person-group-amount d-none font-16 font-weight-500 mt-15">
                                 <span class="text-gray d-block">{{ trans('update.in_person') }} {{ trans('update.group_meeting_hourly_rate_per_student',['amount' => addCurrencyToPrice($meeting->in_person_group_amount)]) }}</span>
                                 <span class="text-danger mt-5 d-block">{{ trans('update.group_meeting_student_count_hint',['min' => $meeting->in_person_group_min_student, 'max' => $meeting->in_person_group_max_student]) }}</span>
                                 <span class="text-danger mt-5 d-block">{{ trans('update.group_meeting_max_student_count_hint',['max' => $meeting->in_person_group_max_student]) }}</span>

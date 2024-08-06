@@ -9,12 +9,12 @@
                     </div>
 
                     <div class="ml-10">
-                        <h3 class="font-14 font-weight-bold">{{ $noticeboard->title }}</h3>
+                        <h3 class="font-16 font-weight-bold">{{ $noticeboard->title }}</h3>
                         <span class="d-block font-12">{{ $noticeboard->creator->get_full_name() }} {{ trans('public.in') }} {{ dateTimeFormat($noticeboard->created_at,'j M Y') }}</span>
                     </div>
                 </div>
 
-                <div class="mt-10 font-14">{!! $noticeboard->message !!}</div>
+                <div class="mt-10 font-16">{!! $noticeboard->message !!}</div>
             </div>
         @endforeach
     @endif

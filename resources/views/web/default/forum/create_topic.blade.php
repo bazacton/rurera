@@ -8,7 +8,7 @@
     <div class="container">
         <section class="topics-title-section mt-30 mt-md-50 px-20 px-md-30 py-25 py-md-35 rounded-lg">
             <h1 class="font-30 font-weight-bold text-white">{{ !empty($topic) ? trans('update.edit_topic') : trans('update.new_topic') }}</h1>
-            <p class="font-14 text-white">{{ trans('update.new_topic_hint') }}</p>
+            <p class="font-16 text-white">{{ trans('update.new_topic_hint') }}</p>
 
             <div class="mt-10">
                 <nav aria-label="breadcrumb">
@@ -134,8 +134,8 @@
 
             <div class="mt-15 p-10 bg-info-light rounded-lg d-flex align-items-center justify-content-between">
                 <div class="py-5">
-                    <div class="font-14 font-weight-bold text-gray">{{ trans('update.terms_and_rules_confirmation') }}</div>
-                    <p class="d-block font-14 text-gray mt-5">{{ trans('update.terms_and_rules_confirmation_hint') }}</p>
+                    <div class="font-16 font-weight-bold text-gray">{{ trans('update.terms_and_rules_confirmation') }}</div>
+                    <p class="d-block font-16 text-gray mt-5">{{ trans('update.terms_and_rules_confirmation_hint') }}</p>
                 </div>
 
                 <button type="submit" class="btn btn-primary">

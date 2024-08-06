@@ -27,7 +27,7 @@
 
     <div>
         <div class="">
-            <span class="font-weight-500 font-14 text-dark-blue d-block">{{ $item->title }}</span>
+            <span class="font-weight-500 font-16 text-dark-blue d-block">{{ $item->title }}</span>
             @if(empty($itemHistory) or ($itemHistory->status == \App\Models\WebinarAssignmentHistory::$notSubmitted))
                 <span class="text-danger font-12 d-block">{{ trans('update.assignment_history_status_not_submitted') }}</span>
             @else

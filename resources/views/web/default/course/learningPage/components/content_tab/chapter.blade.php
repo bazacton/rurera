@@ -15,7 +15,7 @@
             </div>
         </div>
 
-        <select name="sort" class="form-control font-14 chapter_dropdown">
+        <select name="sort" class="form-control font-16 chapter_dropdown">
             @foreach($sub_chapters[$current_webinar] as $chapter_id => $sub_chapter)
                 @php
                     $selected = ($current_chapter == $sub_chapter['id'])? 'selected' : '';

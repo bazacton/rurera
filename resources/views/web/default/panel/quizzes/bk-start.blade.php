@@ -35,11 +35,11 @@
 <div class="container">
     <section class="mt-40">
         <h2 class="font-weight-bold font-16 text-dark-blue">{{ $quiz->title }}</h2>
-        <p class="text-gray font-14 mt-5">
+        <p class="text-gray font-16 mt-5">
             <a href="{{ $quiz->webinar->getUrl() }}" target="_blank" class="text-gray">{{ $quiz->webinar->title }}</a>
             | {{ trans('public.by') }}
             <span class="font-weight-bold">
-                <a href="{{ $quiz->creator->getProfileUrl() }}" target="_blank" class="font-14"> {{ $quiz->creator->get_full_name() }}</a>
+                <a href="{{ $quiz->creator->getProfileUrl() }}" target="_blank" class="font-16"> {{ $quiz->creator->get_full_name() }}</a>
             </span>
         </p>
 
@@ -101,7 +101,7 @@
                     <div class="quiz-card">
 
                         <div class="d-flex align-items-center justify-content-between">
-                            <p class="text-gray font-14">
+                            <p class="text-gray font-16">
                                 <span>{{ trans('quiz.question_grade') }} : {{ $question->grade }} </span>
                             </p>
 

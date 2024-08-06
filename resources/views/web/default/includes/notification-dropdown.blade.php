@@ -25,7 +25,7 @@
                                 <img src="../assets/default/svgs/user-alt-2-svgrepo-com.svg" alt="">
                             </span>
                             <div class="navbar-notification-item border-bottom">
-                                <h4 class="font-14 font-weight-bold text-secondary">{{ $unReadNotification->title }}</h4>
+                                <h4 class="font-16 font-weight-bold text-secondary">{{ $unReadNotification->title }}</h4>
                                 <span class="notify-at d-block mt-5">{{ dateTimeFormat($unReadNotification->created_at,'j M Y | H:i') }}</span>
                             </div>
                         </a>

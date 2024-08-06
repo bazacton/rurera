@@ -4,7 +4,7 @@
             <div class="d-flex flex-column align-items-center text-center">
                 <img src="/assets/default/img/activity/47.svg" class="course-forum-top-stats__icon" alt="">
                 <strong class="font-20 text-dark-blue font-weight-bold mt-5">{{ $questionsCount }}</strong>
-                <span class="font-14 text-gray font-weight-500">{{ trans('public.questions') }}</span>
+                <span class="font-16 text-gray font-weight-500">{{ trans('public.questions') }}</span>
             </div>
         </div>
 
@@ -12,7 +12,7 @@
             <div class="d-flex flex-column align-items-center text-center">
                 <img src="/assets/default/img/activity/120.svg" class="course-forum-top-stats__icon" alt="">
                 <strong class="font-20 text-dark-blue font-weight-bold mt-5">{{ $resolvedCount }}</strong>
-                <span class="font-14 text-gray font-weight-500">{{ trans('update.resolved') }}</span>
+                <span class="font-16 text-gray font-weight-500">{{ trans('update.resolved') }}</span>
             </div>
         </div>
 
@@ -20,7 +20,7 @@
             <div class="d-flex flex-column align-items-center text-center">
                 <img src="/assets/default/img/activity/119.svg" class="course-forum-top-stats__icon" alt="">
                 <strong class="font-20 text-dark-blue font-weight-bold mt-5">{{ $openQuestionsCount }}</strong>
-                <span class="font-14 text-gray font-weight-500">{{ trans('update.open_questions') }}</span>
+                <span class="font-16 text-gray font-weight-500">{{ trans('update.open_questions') }}</span>
             </div>
         </div>
 
@@ -28,7 +28,7 @@
             <div class="d-flex flex-column align-items-center text-center">
                 <img src="/assets/default/img/activity/39.svg" class="course-forum-top-stats__icon" alt="">
                 <strong class="font-20 text-dark-blue font-weight-bold mt-5">{{ $commentsCount }}</strong>
-                <span class="font-14 text-gray font-weight-500">{{ trans('update.answers') }}</span>
+                <span class="font-16 text-gray font-weight-500">{{ trans('update.answers') }}</span>
             </div>
         </div>
 
@@ -36,17 +36,17 @@
             <div class="d-flex flex-column align-items-center text-center">
                 <img src="/assets/default/img/activity/49.svg" class="course-forum-top-stats__icon" alt="">
                 <strong class="font-20 text-dark-blue font-weight-bold mt-5">{{ $activeUsersCount }}</strong>
-                <span class="font-14 text-gray font-weight-500">{{ trans('update.active_users') }}</span>
+                <span class="font-16 text-gray font-weight-500">{{ trans('update.active_users') }}</span>
             </div>
         </div>
     </div>
 
-    <div class="container-fluid p-15 rounded-lg bg-info-light font-14 text-gray mt-20">
+    <div class="container-fluid p-15 rounded-lg bg-info-light font-16 text-gray mt-20">
         <div class="row align-items-center">
             <div class="col-12 col-lg-4">
                 <div class="">
                     <h3 class="font-16 font-weight-bold text-dark-blue">{{ trans('update.course_forum') }}</h3>
-                    <span class="d-block font-14 font-weight-500 text-gray mt-1">{{ trans('update.communicate_others_and_ask_your_questions') }}</span>
+                    <span class="d-block font-16 font-weight-500 text-gray mt-1">{{ trans('update.communicate_others_and_ask_your_questions') }}</span>
                 </div>
             </div>
             <div class="col-12 col-lg-5 mt-15 mt-lg-0">
@@ -85,7 +85,7 @@
 
                             <span class="d-block font-12 text-gray mt-5">{{ trans('public.by') }} {{ $forum->user->get_full_name() }} {{ trans('public.in') }} {{ dateTimeFormat($forum->created_at, 'j M Y | H:i') }}</span>
 
-                            <p class="d-block font-14 text-gray mt-10">{!! nl2br($forum->description) !!}</p>
+                            <p class="d-block font-16 text-gray mt-10">{!! nl2br($forum->description) !!}</p>
                         </div>
                     </div>
                 </div>
@@ -101,7 +101,7 @@
                         <div class="py-15 row">
                             <div class="col-3">
                                 <span class="d-block font-12 text-gray">{{ trans('public.answers') }}</span>
-                                <span class="d-block font-14 text-dark mt-10">{{ $forum->answer_count }}</span>
+                                <span class="d-block font-16 text-dark mt-10">{{ $forum->answer_count }}</span>
                             </div>
 
                             <div class="col-3">
@@ -123,7 +123,7 @@
 
                             <div class="col-6 position-relative">
                                 <span class="d-block font-12 text-gray">{{ trans('update.last_activity') }}</span>
-                                <span class="d-block font-14 text-dark mt-10">{{ dateTimeFormat($forum->lastAnswer->created_at,'j M Y | H:i') }}</span>
+                                <span class="d-block font-16 text-dark mt-10">{{ dateTimeFormat($forum->lastAnswer->created_at,'j M Y | H:i') }}</span>
                             </div>
                         </div>
 
@@ -135,7 +135,7 @@
                                     <img src="{{ $forum->lastAnswer->user->getAvatar(30) }}" class="img-cover rounded-circle" alt="{{ $forum->lastAnswer->user->get_full_name() }}">
                                 </div>
                                 <div class="ml-10">
-                                    <h4 class="font-14 text-dark font-weight-bold">{{ $forum->lastAnswer->user->get_full_name() }}</h4>
+                                    <h4 class="font-16 text-dark font-weight-bold">{{ $forum->lastAnswer->user->get_full_name() }}</h4>
                                     <p class="font-12 font-weight-500 text-gray mt-5">{!! truncate($forum->lastAnswer->description, 160) !!}</p>
                                 </div>
                             </div>
@@ -151,7 +151,7 @@
                         </div>
                     @else
                         <div class="d-flex flex-column justify-content-center text-center py-15 h-100">
-                            <p class="text-gray font-14 font-weight-bold">{{ trans('update.be_the_first_to_answer_this_question') }}</p>
+                            <p class="text-gray font-16 font-weight-bold">{{ trans('update.be_the_first_to_answer_this_question') }}</p>
 
                             <div class="">
                                 <a href="{{ $course->getForumPageUrl() }}/{{ $forum->id }}/answers" class="btn btn-primary btn-sm mt-15">{{ trans('public.answer') }}</a>
@@ -170,7 +170,7 @@
 
         <div class="d-flex align-items-center flex-column mt-10 text-center">
             <h3 class="font-20 font-weight-bold text-dark-blue text-center"></h3>
-            <p class="font-14 font-weight-500 text-gray mt-5 text-center">{{ trans('update.learning_page_empty_content_title_hint') }}</p>
+            <p class="font-16 font-weight-500 text-gray mt-5 text-center">{{ trans('update.learning_page_empty_content_title_hint') }}</p>
         </div>
     </div>
 @endif

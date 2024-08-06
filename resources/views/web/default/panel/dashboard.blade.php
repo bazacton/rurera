@@ -12,7 +12,7 @@
 
             @if(!$authUser->isUser())
                 <div class="d-flex align-items-center flex-row-reverse flex-md-row justify-content-start justify-content-md-center mt-20 mt-md-0">
-                    <label class="mb-0 mr-10 cursor-pointer text-gray font-14 font-weight-500" for="iNotAvailable">{{ trans('panel.i_not_available') }}</label>
+                    <label class="mb-0 mr-10 cursor-pointer text-gray font-16 font-weight-500" for="iNotAvailable">{{ trans('panel.i_not_available') }}</label>
                     <div class="custom-control custom-switch">
                         <input type="checkbox" name="disabled" @if($authUser->offline) checked @endif class="custom-control-input" id="iNotAvailable">
                         <label class="custom-control-label" for="iNotAvailable"></label>
@@ -30,7 +30,7 @@
             <ul class="mt-15 unread-notification-lists">
                 @if(!empty($unReadNotifications) and !$unReadNotifications->isEmpty())
                     @foreach($unReadNotifications->take(5) as $unReadNotification)
-                        <li class="font-14 mt-1 text-gray">- {{ $unReadNotification->title }}</li>
+                        <li class="font-16 mt-1 text-gray">- {{ $unReadNotification->title }}</li>
                     @endforeach
 
                     @if(count($unReadNotifications) > 5)

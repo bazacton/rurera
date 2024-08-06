@@ -65,7 +65,7 @@
                     </div>
                 </div>
 
-                <div class="font-14 mt-20 text-gray">
+                <div class="font-16 mt-20 text-gray">
                     {!! nl2br(clean($comment->comment)) !!}
                 </div>
 
@@ -112,7 +112,7 @@
                                 </div>
                             </div>
 
-                            <div class="font-14 mt-20 text-gray">
+                            <div class="font-16 mt-20 text-gray">
                                 {!! nl2br(clean($reply->comment)) !!}
                             </div>
                         </div>

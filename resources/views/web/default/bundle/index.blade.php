@@ -31,30 +31,30 @@
 
                         <div class="d-flex align-items-center">
                             @include('web.default.includes.webinar.rate',['rate' => $bundle->getRate()])
-                            <span class="ml-10 mt-15 font-14">({{ $bundle->reviews->pluck('creator_id')->count() }} {{ trans('public.ratings') }})</span>
+                            <span class="ml-10 mt-15 font-16">({{ $bundle->reviews->pluck('creator_id')->count() }} {{ trans('public.ratings') }})</span>
                         </div>
 
                         <div class="mt-15">
-                            <span class="font-14">{{ trans('public.created_by') }}</span>
-                            <a href="{{ $bundle->teacher->getProfileUrl() }}" target="_blank" class="text-decoration-underline text-white font-14 font-weight-500">{{ $bundle->teacher->get_full_name() }}</a>
+                            <span class="font-16">{{ trans('public.created_by') }}</span>
+                            <a href="{{ $bundle->teacher->getProfileUrl() }}" target="_blank" class="text-decoration-underline text-white font-16 font-weight-500">{{ $bundle->teacher->get_full_name() }}</a>
                         </div>
                     </div>
 
                     <div class="mt-20 pt-20  mt-md-40 pt-md-40">
                         <ul class="nav nav-tabs bg-secondary rounded-sm p-15 d-flex align-items-center justify-content-between" id="tabs-tab" role="tablist">
                             <li class="nav-item">
-                                <a class="position-relative font-14 text-white {{ (request()->get('tab','') == 'content') ? 'active' : '' }}" id="content-tab" data-toggle="tab"
+                                <a class="position-relative font-16 text-white {{ (request()->get('tab','') == 'content') ? 'active' : '' }}" id="content-tab" data-toggle="tab"
                                    href="#content" role="tab" aria-controls="content"
                                    aria-selected="false">{{ trans('product.content') }} ({{ $bundle->bundleWebinars->count() }})</a>
                             </li>
                             <li class="nav-item">
-                                <a class="position-relative font-14 text-white {{ (empty(request()->get('tab','')) or request()->get('tab','') == 'information') ? 'active' : '' }}" id="information-tab"
+                                <a class="position-relative font-16 text-white {{ (empty(request()->get('tab','')) or request()->get('tab','') == 'information') ? 'active' : '' }}" id="information-tab"
                                    data-toggle="tab" href="#information" role="tab" aria-controls="information"
                                    aria-selected="true">{{ trans('product.information') }}</a>
                             </li>
                             
                             <li class="nav-item">
-                                <a class="position-relative font-14 text-white {{ (request()->get('tab','') == 'reviews') ? 'active' : '' }}" id="reviews-tab" data-toggle="tab"
+                                <a class="position-relative font-16 text-white {{ (request()->get('tab','') == 'reviews') ? 'active' : '' }}" id="reviews-tab" data-toggle="tab"
                                    href="#reviews" role="tab" aria-controls="reviews"
                                    aria-selected="false">{{ trans('product.reviews') }} ({{ $bundle->reviews->count() > 0 ? $bundle->reviews->pluck('creator_id')->count() : 0 }})</a>
                             </li>
@@ -111,7 +111,7 @@
                                                id="courseOff{{ $ticket->id }}">
                                         <label class="form-check-label d-flex flex-column cursor-pointer" for="courseOff{{ $ticket->id }}">
                                             <span class="font-16 font-weight-500 text-dark-blue">{{ $ticket->title }} @if(!empty($ticket->discount)) ({{ $ticket->discount }}% {{ trans('public.off') }}) @endif</span>
-                                            <span class="font-14 text-gray">{{ $ticket->getSubTitle() }}</span>
+                                            <span class="font-16 text-gray">{{ $ticket->getSubTitle() }}</span>
                                         </label>
                                     </div>
                                 @endforeach
@@ -130,7 +130,7 @@
                                         </span>
 
                                         @if(!empty($realPrice['tax']) and empty($activeSpecialOffer))
-                                            <span class="d-block font-14 text-gray">+ {{ $realPrice['tax'] }} tax</span>
+                                            <span class="d-block font-16 text-gray">+ {{ $realPrice['tax'] }} tax</span>
                                         @endif
                                     </div>
 
@@ -145,7 +145,7 @@
                                             </span>
 
                                             @if(!empty($priceWithDiscount['tax']))
-                                                <span class="d-block font-14 text-gray">+ {{ $priceWithDiscount['tax'] }} tax</span>
+                                                <span class="d-block font-16 text-gray">+ {{ $priceWithDiscount['tax'] }} tax</span>
                                             @endif
                                         </div>
                                     @endif
@@ -191,7 +191,7 @@
                         @if(!empty(getOthersPersonalizationSettings('show_guarantee_text')) and getOthersPersonalizationSettings('show_guarantee_text'))
                             <div class="mt-20 d-flex align-items-center justify-content-center text-gray">
                                 <i data-feather="thumbs-up" width="20" height="20"></i>
-                                <span class="ml-5 font-14">{{ getOthersPersonalizationSettings('guarantee_text') }}</span>
+                                <span class="ml-5 font-16">{{ getOthersPersonalizationSettings('guarantee_text') }}</span>
                             </div>
                         @endif
 
@@ -224,7 +224,7 @@
 
                         <div class="p-15">
                             <h3 class="font-16 text-dark-blue">{{ trans('public.instructor_is_not_available') }}</h3>
-                            <p class="font-14 font-weight-500 text-gray mt-15">{{ $bundle->teacher->offline_message }}</p>
+                            <p class="font-16 font-weight-500 text-gray mt-15">{{ $bundle->teacher->offline_message }}</p>
                         </div>
                     </div>
                 @endif
@@ -236,33 +236,33 @@
                         <div class="mt-20 d-flex align-items-center justify-content-between text-gray">
                             <div class="d-flex align-items-center">
                                 <i data-feather="clock" width="20" height="20"></i>
-                                <span class="ml-5 font-14 font-weight-500">{{ trans('public.duration') }}:</span>
+                                <span class="ml-5 font-16 font-weight-500">{{ trans('public.duration') }}:</span>
                             </div>
-                            <span class="font-14">{{ convertMinutesToHourAndMinute($bundle->getBundleDuration()) }} {{ trans('home.hours') }}</span>
+                            <span class="font-16">{{ convertMinutesToHourAndMinute($bundle->getBundleDuration()) }} {{ trans('home.hours') }}</span>
                         </div>
 
                         <div class="mt-20 d-flex align-items-center justify-content-between text-gray">
                             <div class="d-flex align-items-center">
                                 <i data-feather="users" width="20" height="20"></i>
-                                <span class="ml-5 font-14 font-weight-500">{{ trans('quiz.students') }}:</span>
+                                <span class="ml-5 font-16 font-weight-500">{{ trans('quiz.students') }}:</span>
                             </div>
-                            <span class="font-14">{{ $bundle->sales_count }}</span>
+                            <span class="font-16">{{ $bundle->sales_count }}</span>
                         </div>
 
                         <div class="mt-20 d-flex align-items-center justify-content-between text-gray">
                             <div class="d-flex align-items-center">
                                 <img src="/assets/default/img/icons/sessions.svg" width="20" alt="">
-                                <span class="ml-5 font-14 font-weight-500">{{ trans('product.courses') }}:</span>
+                                <span class="ml-5 font-16 font-weight-500">{{ trans('product.courses') }}:</span>
                             </div>
-                            <span class="font-14">{{ $bundle->bundleWebinars->count() }}</span>
+                            <span class="font-16">{{ $bundle->bundleWebinars->count() }}</span>
                         </div>
 
                         <div class="mt-20 d-flex align-items-center justify-content-between text-gray">
                             <div class="d-flex align-items-center">
                                 <img src="/assets/default/img/icons/sessions.svg" width="20" alt="">
-                                <span class="ml-5 font-14 font-weight-500">{{ trans('public.created_at') }}:</span>
+                                <span class="ml-5 font-16 font-weight-500">{{ trans('public.created_at') }}:</span>
                             </div>
-                            <span class="font-14">{{ dateTimeFormat($bundle->created_at,'j M Y') }}</span>
+                            <span class="font-16">{{ dateTimeFormat($bundle->created_at,'j M Y') }}</span>
                         </div>
 
                     </div>
@@ -283,7 +283,7 @@
 
                         <div class="d-flex flex-wrap mt-10">
                             @foreach($bundle->tags as $tag)
-                                <a href="" class="tag-item bg-gray200 p-5 font-14 text-gray font-weight-500 rounded">{{ $tag->title }}</a>
+                                <a href="" class="tag-item bg-gray200 p-5 font-16 text-gray font-weight-500 rounded">{{ $tag->title }}</a>
                             @endforeach
                         </div>
                     </div>

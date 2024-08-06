@@ -22,7 +22,7 @@
                 <span class="sidenav-item-icon mr-10">
                     @include('web.default.panel.includes.sidebar_icons.dashboard')
                 </span>
-                <span class="font-14 text-dark-blue font-weight-500">{{ trans('panel.dashboard') }}</span>
+                <span class="font-16 text-dark-blue font-weight-500">{{ trans('panel.dashboard') }}</span>
             </a>
         </li>
 
@@ -32,7 +32,7 @@
                 <span class="sidenav-item-icon mr-10">
                     @include('web.default.panel.includes.sidebar_icons.teachers')
                 </span>
-                    <span class="font-14 text-dark-blue font-weight-500">{{ trans('public.instructors') }}</span>
+                    <span class="font-16 text-dark-blue font-weight-500">{{ trans('public.instructors') }}</span>
                 </a>
 
                 <div class="collapse {{ (request()->is('panel/instructors') or request()->is('panel/manage/instructors*')) ? 'show' : '' }}" id="instructorsCollapse">
@@ -52,7 +52,7 @@
                 <span class="sidenav-item-icon mr-10">
                     @include('web.default.panel.includes.sidebar_icons.students')
                 </span>
-                    <span class="font-14 text-dark-blue font-weight-500">{{ trans('quiz.students') }}</span>
+                    <span class="font-16 text-dark-blue font-weight-500">{{ trans('quiz.students') }}</span>
                 </a>
 
                 <div class="collapse {{ (request()->is('panel/students') or request()->is('panel/manage/students*')) ? 'show' : '' }}" id="studentsCollapse">
@@ -73,7 +73,7 @@
                 <span class="sidenav-item-icon mr-10">
                     @include('web.default.panel.includes.sidebar_icons.webinars')
                 </span>
-                <span class="font-14 text-dark-blue font-weight-500">{{ trans('panel.webinars') }}</span>
+                <span class="font-16 text-dark-blue font-weight-500">{{ trans('panel.webinars') }}</span>
             </a>
 
             <div class="collapse {{ (request()->is('panel/webinars') or request()->is('panel/webinars/*')) ? 'show' : '' }}" id="webinarCollapse">
@@ -125,7 +125,7 @@
                 <span class="sidenav-item-icon assign-fill mr-10">
                     @include('web.default.panel.includes.sidebar_icons.bundles')
                 </span>
-                    <span class="font-14 text-dark-blue font-weight-500">{{ trans('update.bundles') }}</span>
+                    <span class="font-16 text-dark-blue font-weight-500">{{ trans('update.bundles') }}</span>
                 </a>
 
                 <div class="collapse {{ (request()->is('panel/bundles') or request()->is('panel/bundles/*')) ? 'show' : '' }}" id="bundlesCollapse">
@@ -148,7 +148,7 @@
                 <span class="sidenav-item-icon mr-10">
                     @include('web.default.panel.includes.sidebar_icons.assignments')
                 </span>
-                    <span class="font-14 text-dark-blue font-weight-500">{{ trans('update.assignments') }}</span>
+                    <span class="font-16 text-dark-blue font-weight-500">{{ trans('update.assignments') }}</span>
                 </a>
 
                 <div class="collapse {{ (request()->is('panel/assignments') or request()->is('panel/custom_quiz/*')) ? 'show' : '' }}" id="assignmentCollapse">
@@ -174,7 +174,7 @@
                 <span class="sidenav-item-icon mr-10">
                     @include('web.default.panel.includes.sidebar_icons.requests')
                 </span>
-                <span class="font-14 text-dark-blue font-weight-500">{{ trans('panel.meetings') }}</span>
+                <span class="font-16 text-dark-blue font-weight-500">{{ trans('panel.meetings') }}</span>
             </a>
 
             <div class="collapse {{ (request()->is('panel/meetings') or request()->is('panel/meetings/*')) ? 'show' : '' }}" id="meetingCollapse">
@@ -202,7 +202,7 @@
                 <span class="sidenav-item-icon mr-10">
                     @include('web.default.panel.includes.sidebar_icons.quizzes')
                 </span>
-                <span class="font-14 text-dark-blue font-weight-500">{{ trans('panel.quizzes') }}</span>
+                <span class="font-16 text-dark-blue font-weight-500">{{ trans('panel.quizzes') }}</span>
             </a>
 
             <div class="collapse {{ (request()->is('panel/quizzes') or request()->is('panel/quizzes/*')) ? 'show' : '' }}" id="quizzesCollapse">
@@ -235,7 +235,7 @@
                 <span class="sidenav-item-icon mr-10">
                     @include('web.default.panel.includes.sidebar_icons.certificate')
                 </span>
-                <span class="font-14 text-dark-blue font-weight-500">{{ trans('panel.certificates') }}</span>
+                <span class="font-16 text-dark-blue font-weight-500">{{ trans('panel.certificates') }}</span>
             </a>
 
             <div class="collapse {{ (request()->is('panel/certificates') or request()->is('panel/certificates/*')) ? 'show' : '' }}" id="certificatesCollapse">
@@ -268,7 +268,7 @@
                 <span class="sidenav-item-icon assign-fill mr-10">
                     @include('web.default.panel.includes.sidebar_icons.store')
                 </span>
-                    <span class="font-14 text-dark-blue font-weight-500">{{ trans('update.store') }}</span>
+                    <span class="font-16 text-dark-blue font-weight-500">{{ trans('update.store') }}</span>
                 </a>
 
                 <div class="collapse {{ (request()->is('panel/store') or request()->is('panel/store/*')) ? 'show' : '' }}" id="storeCollapse">
@@ -319,7 +319,7 @@
                 <span class="sidenav-item-icon mr-10">
                     @include('web.default.panel.includes.sidebar_icons.financial')
                 </span>
-                <span class="font-14 text-dark-blue font-weight-500">{{ trans('panel.financial') }}</span>
+                <span class="font-16 text-dark-blue font-weight-500">{{ trans('panel.financial') }}</span>
             </a>
 
             <div class="collapse {{ (request()->is('panel/financial') or request()->is('panel/financial/*')) ? 'show' : '' }}" id="financialCollapse">
@@ -361,7 +361,7 @@
                 <span class="sidenav-item-icon assign-fill mr-10">
                     @include('web.default.panel.includes.sidebar_icons.support')
                 </span>
-                <span class="font-14 text-dark-blue font-weight-500">{{ trans('panel.support') }}</span>
+                <span class="font-16 text-dark-blue font-weight-500">{{ trans('panel.support') }}</span>
             </a>
 
             <div class="collapse {{ (request()->is('panel/support') or request()->is('panel/support/*')) ? 'show' : '' }}" id="supportCollapse">
@@ -385,7 +385,7 @@
                 <span class="sidenav-item-icon mr-10">
                     @include('web.default.panel.includes.sidebar_icons.marketing')
                 </span>
-                    <span class="font-14 text-dark-blue font-weight-500">{{ trans('panel.marketing') }}</span>
+                    <span class="font-16 text-dark-blue font-weight-500">{{ trans('panel.marketing') }}</span>
                 </a>
 
                 <div class="collapse {{ (request()->is('panel/marketing') or request()->is('panel/marketing/*')) ? 'show' : '' }}" id="marketingCollapse">
@@ -415,7 +415,7 @@
                 <span class="sidenav-item-icon assign-fill mr-10">
                     @include('web.default.panel.includes.sidebar_icons.forums')
                 </span>
-                    <span class="font-14 text-dark-blue font-weight-500">{{ trans('update.forums') }}</span>
+                    <span class="font-16 text-dark-blue font-weight-500">{{ trans('update.forums') }}</span>
                 </a>
 
                 <div class="collapse {{ (request()->is('panel/forums') or request()->is('panel/forums/*')) ? 'show' : '' }}" id="forumsCollapse">
@@ -446,7 +446,7 @@
                 <span class="sidenav-item-icon assign-fill mr-10">
                     @include('web.default.panel.includes.sidebar_icons.blog')
                 </span>
-                    <span class="font-14 text-dark-blue font-weight-500">{{ trans('update.articles') }}</span>
+                    <span class="font-16 text-dark-blue font-weight-500">{{ trans('update.articles') }}</span>
                 </a>
 
                 <div class="collapse {{ (request()->is('panel/blog') or request()->is('panel/blog/*')) ? 'show' : '' }}" id="blogCollapse">
@@ -474,7 +474,7 @@
                     @include('web.default.panel.includes.sidebar_icons.noticeboard')
                 </span>
 
-                    <span class="font-14 text-dark-blue font-weight-500">{{ trans('panel.noticeboard') }}</span>
+                    <span class="font-16 text-dark-blue font-weight-500">{{ trans('panel.noticeboard') }}</span>
                 </a>
 
                 <div class="collapse {{ (request()->is('panel/noticeboard*') or request()->is('panel/course-noticeboard*')) ? 'show' : '' }}" id="noticeboardCollapse">
@@ -509,7 +509,7 @@
                 <span class="sidenav-item-icon assign-strock mr-10">
                     @include('web.default.panel.includes.sidebar_icons.rewards')
                 </span>
-                    <span class="font-14 text-dark-blue font-weight-500">{{ trans('update.rewards') }}</span>
+                    <span class="font-16 text-dark-blue font-weight-500">{{ trans('update.rewards') }}</span>
                 </a>
             </li>
         @endif
@@ -519,7 +519,7 @@
             <span class="sidenav-notification-icon sidenav-item-icon mr-10">
                     @include('web.default.panel.includes.sidebar_icons.notifications')
                 </span>
-                <span class="font-14 text-dark-blue font-weight-500">{{ trans('panel.notifications') }}</span>
+                <span class="font-16 text-dark-blue font-weight-500">{{ trans('panel.notifications') }}</span>
             </a>
         </li>
 
@@ -528,7 +528,7 @@
                 <span class="sidenav-setting-icon sidenav-item-icon mr-10">
                     @include('web.default.panel.includes.sidebar_icons.setting')
                 </span>
-                <span class="font-14 text-dark-blue font-weight-500">{{ trans('panel.settings') }}</span>
+                <span class="font-16 text-dark-blue font-weight-500">{{ trans('panel.settings') }}</span>
             </a>
         </li>
 
@@ -538,7 +538,7 @@
                 <span class="sidenav-item-icon assign-strock mr-10">
                     <i data-feather="user" stroke="#1f3b64" stroke-width="1.5" width="24" height="24" class="mr-10 webinar-icon"></i>
                 </span>
-                    <span class="font-14 text-dark-blue font-weight-500">{{ trans('public.my_profile') }}</span>
+                    <span class="font-16 text-dark-blue font-weight-500">{{ trans('public.my_profile') }}</span>
                 </a>
             </li>
         @endif
@@ -548,7 +548,7 @@
                 <span class="sidenav-logout-icon sidenav-item-icon mr-10">
                     @include('web.default.panel.includes.sidebar_icons.logout')
                 </span>
-                <span class="font-14 text-dark-blue font-weight-500">{{ trans('panel.log_out') }}</span>
+                <span class="font-16 text-dark-blue font-weight-500">{{ trans('panel.log_out') }}</span>
             </a>
         </li>
     </ul>

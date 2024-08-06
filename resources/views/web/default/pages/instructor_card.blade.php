@@ -30,7 +30,7 @@
         <h3 class="mt-20 font-16 font-weight-bold text-dark-blue text-center">{{ $instructor->get_full_name() }}</h3>
     </a>
 
-    <div class="mt-5 font-14 text-gray">
+    <div class="mt-5 font-16 text-gray">
         @if(!empty($instructor->bio))
             {{ $instructor->bio }}
         @endif
@@ -52,7 +52,7 @@
         @if(!empty($instructor->meeting) and !$instructor->meeting->disabled and !empty($instructor->meeting->amount))
             @if(!empty($instructor->meeting->discount))
                 <span class="font-20 text-primary font-weight-bold">{{ addCurrencyToPrice($instructor->meeting->amount - (($instructor->meeting->amount * $instructor->meeting->discount) / 100)) }}</span>
-                <span class="font-14 text-gray text-decoration-line-through ml-10">{{ addCurrencyToPrice($instructor->meeting->amount) }}</span>
+                <span class="font-16 text-gray text-decoration-line-through ml-10">{{ addCurrencyToPrice($instructor->meeting->amount) }}</span>
             @else
                 <span class="font-20 text-primary font-weight-500">{{ addCurrencyToPrice($instructor->meeting->amount) }}</span>
             @endif

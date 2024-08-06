@@ -38,9 +38,9 @@
 
                         <h3 class="mt-30 font-16 font-weight-bold text-dark-blue">{{ trans('site.our_address') }}</h3>
                         @if(!empty($contactSettings['address']))
-                        <p class="font-weight-500 font-14 text-gray mt-10">{!! nl2br($contactSettings['address']) !!}</p>
+                        <p class="font-weight-500 font-16 text-gray mt-10">{!! nl2br($contactSettings['address']) !!}</p>
                         @else
-                        <p class="font-weight-500 text-gray font-14 mt-10">{{ trans('site.not_defined') }}</p>
+                        <p class="font-weight-500 text-gray font-16 mt-10">{{ trans('site.not_defined') }}</p>
                         @endif
                     </div>
                 </div>
@@ -53,9 +53,9 @@
 
                         <h3 class="mt-30 font-16 font-weight-bold text-dark-blue">{{ trans('site.phone_number') }}</h3>
                         @if(!empty($contactSettings['phones']))
-                        <p class="font-weight-500 text-gray font-14 mt-10">{!! nl2br(str_replace(',','<br/>',$contactSettings['phones'])) !!}</p>
+                        <p class="font-weight-500 text-gray font-16 mt-10">{!! nl2br(str_replace(',','<br/>',$contactSettings['phones'])) !!}</p>
                         @else
-                        <p class="font-weight-500 text-gray font-14 mt-10">{{ trans('site.not_defined') }}</p>
+                        <p class="font-weight-500 text-gray font-16 mt-10">{{ trans('site.not_defined') }}</p>
                         @endif
                     </div>
                 </div>
@@ -68,9 +68,9 @@
 
                         <h3 class="mt-30 font-16 font-weight-bold text-dark-blue">{{ trans('public.email') }}</h3>
                          @if(!empty($contactSettings['emails']))
-                        <p class="font-weight-500 text-gray font-14 mt-10">{!! nl2br(str_replace(',','<br/>',$contactSettings['emails'])) !!}</p>
+                        <p class="font-weight-500 text-gray font-16 mt-10">{!! nl2br(str_replace(',','<br/>',$contactSettings['emails'])) !!}</p>
                         @else
-                        <p class="font-weight-500 text-gray font-14 mt-10">{{ trans('site.not_defined') }}</p>
+                        <p class="font-weight-500 text-gray font-16 mt-10">{{ trans('site.not_defined') }}</p>
                         @endif
                     </div>
                 </div>

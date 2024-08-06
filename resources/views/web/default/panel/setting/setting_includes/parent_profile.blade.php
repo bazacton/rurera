@@ -30,16 +30,16 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                         <div class="rurera-hide col-lg-4 col-md-4 col-sm-12 col-12">
                             <div class="info-text">
                                 <h3 class="font-18 font-weight-500 mb-5">General info</h3>
-                                <span class="font-14">Some information we need to know about you, and to process legal matters.</span>
+                                <span class="font-16">Some information we need to know about you, and to process legal matters.</span>
                             </div>
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="edit-info-list">
-                                <h4 class="font-14 font-weight-500 pb-15 px-15">About you</h4>
+                                <h4 class="font-16 font-weight-500 pb-15 px-15">About you</h4>
                                 <ul>
                                     <li>
                                         <a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
-                                            <span class="info-list-label font-14">
+                                            <span class="info-list-label font-16">
                                                 Display name
                                                 <strong class="d-block font-weight-500">{{$user->display_name}}</strong>
                                             </span>
@@ -57,16 +57,16 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                         <div class="rurera-hide col-lg-4 col-md-4 col-sm-12 col-12">
                             <div class="info-text">
                                 <h3 class="font-18 font-weight-500 mb-5">Personal info</h3>
-                                <span class="font-14">Some information we need to know about you, and to process legal matters.</span>
+                                <span class="font-16">Some information we need to know about you, and to process legal matters.</span>
                             </div>
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="edit-info-list">
-                                <h4 class="font-14 font-weight-500 pb-15 px-15">Additional info</h4>
+                                <h4 class="font-16 font-weight-500 pb-15 px-15">Additional info</h4>
                                 <ul>
                                     <li>
                                         <a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
-                                            <span class="info-list-label font-14">
+                                            <span class="info-list-label font-16">
                                                 Date of birth
                                                 <strong class="d-block font-weight-500">12/10/1988</strong>
                                             </span>
@@ -78,7 +78,7 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                                     </li>
                                     <li>
                                         <a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
-                                            <span class="info-list-label font-14">
+                                            <span class="info-list-label font-16">
                                                 Preference
                                                 <strong class="d-block font-weight-500">{{$user->user_preference}}</strong>
                                             </span>
@@ -90,7 +90,7 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                                     </li>
                                     <li>
                                         <a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
-                                            <span class="info-list-label font-14">
+                                            <span class="info-list-label font-16">
                                                 Email Addres
                                                 <strong class="d-block font-weight-500">{{$user->email}}</strong>
                                             </span>
@@ -102,7 +102,7 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                                     </li>
                                     <li>
                                         <a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
-                                            <span class="info-list-label font-14">
+                                            <span class="info-list-label font-16">
                                                 Contact no
                                                 <strong class="d-block font-weight-500">{{$user->mobile}}</strong>
                                             </span>
@@ -162,7 +162,7 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                             <div class="edit-profile-content panel-border bg-white rounded-sm p-25 tab-pane fade show active" id="edit-profile" role="tabpanel" aria-labelledby="edit-profile-tab">
                                 <!-- <div class="edit-profile-top d-flex align-items-center flex-wrap justify-content-between mb-50">
                                     <div class="top-heading">
-                                        <h5 class="font-14 font-weight-500">
+                                        <h5 class="font-16 font-weight-500">
                                             GENERAL INFO
                                             <span class="d-block pt-5 font-12">Edit your account's general information</span>
                                         </h5>
@@ -179,7 +179,7 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                                         <div class="profile-image text-center">
                                             <figure class="d-inline-flex position-relative">
                                                 <img src="{{ (!empty($user)) ? $user->getAvatar(150) : '' }}" height="96" width="96" alt="">
-                                                <a href="javascript:;" class="profile-image-btn cancel-btn d-inline-flex align-items-center justify-content-center font-14 bg-white"><img src="/assets/default/svgs/edit-2.svg" alt="" style="width:18px; height:18px"></a>
+                                                <a href="javascript:;" class="profile-image-btn cancel-btn d-inline-flex align-items-center justify-content-center font-16 bg-white"><img src="/assets/default/svgs/edit-2.svg" alt="" style="width:18px; height:18px"></a>
                                             </figure>
                                         </div>
                                     </div>

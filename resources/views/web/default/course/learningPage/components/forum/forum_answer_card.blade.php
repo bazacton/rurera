@@ -9,7 +9,7 @@
                 <div class="user-avatar rounded-circle {{ (!empty($answer) and $cardUser->isTeacher()) ? 'is-instructor' : '' }}">
                     <img src="{{ $cardUser->getAvatar(72) }}" class="img-cover rounded-circle" alt="{{ $cardUser->get_full_name() }}">
                 </div>
-                <h4 class="font-14 text-secondary mt-15 font-weight-bold">{{ $cardUser->get_full_name() }}</h4>
+                <h4 class="font-16 text-secondary mt-15 font-weight-bold">{{ $cardUser->get_full_name() }}</h4>
 
                 <span class="px-10 py-5 mt-5 rounded-lg border bg-info-light text-center font-12 text-gray">
                     @if($cardUser->isUser())
@@ -34,7 +34,7 @@
         <div class="col-12 col-md-9 mt-15 mt-md-0">
             <div class="d-flex flex-column justify-content-between h-100">
                 <div class="">
-                    <p class="font-14 text-gray d-block">{!! nl2br(!empty($answer) ? $answer->description : $courseForum->description) !!}</p>
+                    <p class="font-16 text-gray d-block">{!! nl2br(!empty($answer) ? $answer->description : $courseForum->description) !!}</p>
 
                     @if(empty($answer) and !empty($courseForum->attach))
                         <div class="mt-25 d-inline-block">

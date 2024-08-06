@@ -7,13 +7,13 @@
                 @foreach($category->subCategories as $subCategory)
                     <div class="checkbox-button mr-15 mt-10">
                         <input type="checkbox" name="occupations[]" id="checkbox{{ $subCategory->id }}" value="{{ $subCategory->id }}" @if(in_array($subCategory->id,$occupations)) checked="checked" @endif>
-                        <label class="font-14" for="checkbox{{ $subCategory->id }}">{{ $subCategory->title }}</label>
+                        <label class="font-16" for="checkbox{{ $subCategory->id }}">{{ $subCategory->title }}</label>
                     </div>
                 @endforeach
             @else
                 <div class="checkbox-button mr-15 mt-10">
                     <input type="checkbox" name="occupations[]" id="checkbox{{ $category->id }}" value="{{ $category->id }}" @if(in_array($category->id,$occupations)) checked="checked" @endif>
-                    <label class="font-14" for="checkbox{{ $category->id }}">{{ $category->title }}</label>
+                    <label class="font-16" for="checkbox{{ $category->id }}">{{ $category->title }}</label>
                 </div>
             @endif
         @endforeach

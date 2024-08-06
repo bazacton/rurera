@@ -14,12 +14,12 @@
                 <div class="d-flex align-items-center">
                     <div class="custom-control custom-radio">
                         <input type="radio" name="gender" value="man" {{ (!empty($user->gender) and $user->gender == 'man') ? 'checked="checked"' : ''}} id="man" class="custom-control-input">
-                        <label class="custom-control-label font-14 cursor-pointer" for="man">{{ trans('update.man') }}</label>
+                        <label class="custom-control-label font-16 cursor-pointer" for="man">{{ trans('update.man') }}</label>
                     </div>
 
                     <div class="custom-control custom-radio ml-15">
                         <input type="radio" name="gender" value="woman" id="woman" {{ (!empty($user->gender) and $user->gender == 'woman') ? 'checked="checked"' : ''}} class="custom-control-input">
-                        <label class="custom-control-label font-14 cursor-pointer" for="woman">{{ trans('update.woman') }}</label>
+                        <label class="custom-control-label font-16 cursor-pointer" for="woman">{{ trans('update.woman') }}</label>
                     </div>
                 </div>
             </div>
@@ -35,17 +35,17 @@
                 <div class="d-flex align-items-center">
                     <div class="custom-control custom-radio">
                         <input type="radio" name="meeting_type" value="in_person" id="in_person" {{ (!empty($user->meeting_type) and $user->meeting_type == 'in_person') ? 'checked="checked"' : ''}} class="custom-control-input">
-                        <label class="custom-control-label font-14 cursor-pointer" for="in_person">{{ trans('update.in_person') }}</label>
+                        <label class="custom-control-label font-16 cursor-pointer" for="in_person">{{ trans('update.in_person') }}</label>
                     </div>
 
                     <div class="custom-control custom-radio ml-10">
                         <input type="radio" name="meeting_type" value="online" id="online" {{ (!empty($user->meeting_type) and $user->meeting_type == 'online') ? 'checked="checked"' : ''}} class="custom-control-input">
-                        <label class="custom-control-label font-14 cursor-pointer" for="online">{{ trans('update.online') }}</label>
+                        <label class="custom-control-label font-16 cursor-pointer" for="online">{{ trans('update.online') }}</label>
                     </div>
 
                     <div class="custom-control custom-radio ml-10">
                         <input type="radio" name="meeting_type" value="all" id="all" {{ (!empty($user->meeting_type) and $user->meeting_type == 'all') ? 'checked="checked"' : ''}} class="custom-control-input">
-                        <label class="custom-control-label font-14 cursor-pointer" for="all">{{ trans('public.all') }}</label>
+                        <label class="custom-control-label font-16 cursor-pointer" for="all">{{ trans('public.all') }}</label>
                     </div>
                 </div>
             </div>
@@ -56,17 +56,17 @@
                 <div class="d-flex align-items-center">
                     <div class="custom-control custom-checkbox">
                         <input type="checkbox" name="level_of_training[]" value="beginner" id="beginner" {{ (!empty($user->level_of_training) and is_array($user->level_of_training) and in_array('beginner',$user->level_of_training)) ? 'checked="checked"' : ''}} class="custom-control-input">
-                        <label class="custom-control-label font-14 cursor-pointer" for="beginner">{{ trans('update.beginner') }}</label>
+                        <label class="custom-control-label font-16 cursor-pointer" for="beginner">{{ trans('update.beginner') }}</label>
                     </div>
 
                     <div class="custom-control custom-checkbox ml-10">
                         <input type="checkbox" name="level_of_training[]" value="middle" id="middle" {{ (!empty($user->level_of_training) and is_array($user->level_of_training) and in_array('middle',$user->level_of_training)) ? 'checked="checked"' : ''}} class="custom-control-input">
-                        <label class="custom-control-label font-14 cursor-pointer" for="middle">{{ trans('update.middle') }}</label>
+                        <label class="custom-control-label font-16 cursor-pointer" for="middle">{{ trans('update.middle') }}</label>
                     </div>
 
                     <div class="custom-control custom-checkbox ml-10">
                         <input type="checkbox" name="level_of_training[]" value="expert" id="expert" {{ (!empty($user->level_of_training) and is_array($user->level_of_training) and in_array('expert',$user->level_of_training)) ? 'checked="checked"' : ''}} class="custom-control-input">
-                        <label class="custom-control-label font-14 cursor-pointer" for="expert">{{ trans('update.expert') }}</label>
+                        <label class="custom-control-label font-16 cursor-pointer" for="expert">{{ trans('update.expert') }}</label>
                     </div>
                 </div>
             </div>

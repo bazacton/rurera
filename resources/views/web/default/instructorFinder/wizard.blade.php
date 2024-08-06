@@ -14,7 +14,7 @@
                                 <i data-feather="user" width="30" height="30" class="text-white"></i>
                             </span>
                             <span class="font-30 font-weight-bold text-white mt-10">{{ $instructorsCount }}</span>
-                            <span class="font-14 text-white">{{ trans('home.instructors') }}</span>
+                            <span class="font-16 text-white">{{ trans('home.instructors') }}</span>
                         </div>
 
                         <div class="d-flex flex-column align-items-center">
@@ -22,7 +22,7 @@
                                 <i data-feather="briefcase" width="30" height="30" class="text-white"></i>
                             </span>
                             <span class="font-30 font-weight-bold text-white mt-10">{{ $organizationsCount }}</span>
-                            <span class="font-14 text-white">{{ trans('home.organizations') }}</span>
+                            <span class="font-16 text-white">{{ trans('home.organizations') }}</span>
                         </div>
 
                         <div class="d-flex flex-column align-items-center">
@@ -30,7 +30,7 @@
                                 <i data-feather="map-pin" width="30" height="30" class="text-white"></i>
                             </span>
                             <span class="font-30 font-weight-bold text-white mt-10">{{ $citiesCount }}</span>
-                            <span class="font-14 text-white">{{ trans('update.cities') }}</span>
+                            <span class="font-16 text-white">{{ trans('update.cities') }}</span>
                         </div>
                     </div>
                 </div>

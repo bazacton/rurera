@@ -38,7 +38,7 @@
                                         <span class="user-name d-block mt-0">
                                             {{$studentObj->get_full_name()}}
                                         </span>
-                                        <span class="student-rank font-14 font-weight-normal d-block">
+                                        <span class="student-rank font-16 font-weight-normal d-block">
                                             <span>Ranking: {{($studentObj->trophy_badge != '')? $studentObj->trophy_badge : '-'}} <img src="/assets/default/svgs/trophy-rank.svg" alt=""></span>
                                             <span>Coins: {{$studentObj->getRewardPoints()}} <img src="/assets/default/svgs/stats-coins.svg" alt=""></span>
                                         </span>
@@ -83,7 +83,7 @@
                                         <span class="user-name d-block mt-0">
                                             {{$studentObj->get_full_name()}}
                                         </span>
-                                        <span class="student-rank font-14 font-weight-normal d-block">
+                                        <span class="student-rank font-16 font-weight-normal d-block">
                                             <span>Ranking: {{($studentObj->trophy_badge != '')? $studentObj->trophy_badge : '-'}} <img src="/assets/default/svgs/trophy-rank.svg" alt=""></span>
                                             <span>Coins: {{$studentObj->getRewardPoints()}} <img src="/assets/default/svgs/stats-coins.svg" alt=""></span>
                                         </span>

@@ -12,7 +12,7 @@
                             <a href="{{ $topic->getPostsUrl() }}" class="">
                                 <h4 class="font-16 font-weight-bold text-secondary text-ellipsis">{{ $topic->title }}</h4>
                             </a>
-                            <span class="d-block font-14 text-gray">{{ trans('public.by') }} {{ $user->get_full_name() }} {{ trans('public.in') }} {{ dateTimeFormat($topic->created_at,'j M Y | H:i') }}</span>
+                            <span class="d-block font-16 text-gray">{{ trans('public.by') }} {{ $user->get_full_name() }} {{ trans('public.in') }} {{ dateTimeFormat($topic->created_at,'j M Y | H:i') }}</span>
                         </div>
                     </div>
                 </div>
@@ -20,7 +20,7 @@
                 <div class="col-12 col-md-6">
                     <div class="row">
                         <div class="col-3 text-center">
-                            <span class="d-block font-14 text-gray font-weight-bold">{{ $topic->posts_count }}</span>
+                            <span class="d-block font-16 text-gray font-weight-bold">{{ $topic->posts_count }}</span>
                             <span class="d-block font-12 text-gray">{{ trans('site.posts') }}</span>
                         </div>
                         <div class="col-3 d-flex align-items-center">
@@ -43,7 +43,7 @@
                                         <img src="{{ $topic->lastPost->user->getAvatar(30) }}" class="img-cover rounded-circle" alt="{{ $topic->lastPost->user->get_full_name() }}">
                                     </div>
                                     <div class="ml-10">
-                                        <h4 class="font-14 font-weight-500 text-gray">{{ $topic->lastPost->user->get_full_name() }}</h4>
+                                        <h4 class="font-16 font-weight-500 text-gray">{{ $topic->lastPost->user->get_full_name() }}</h4>
                                         <span class="d-block font-12 font-weight-500 text-gray">{{ trans('public.in') }} {{ dateTimeFormat($topic->lastPost->created_at,'j M Y | H:i') }}</span>
                                     </div>
                                 </div>

@@ -27,11 +27,11 @@
                     @foreach($productCategories as $productCategory)
                     @if(!empty($productCategory->subCategories) and count($productCategory->subCategories))
 
-                    <span class="d-block font-14 font-weight-bold  mt-20">{{ $productCategory->title }}</span>
+                    <span class="d-block font-16 font-weight-bold  mt-20">{{ $productCategory->title }}</span>
 
                     <div class="pl-10">
                         @foreach($productCategory->subCategories as $subCategory)
-                        <a href="{{ $subCategory->getUrl() }}" class="d-flex align-items-center font-14 font-weight-normal mt-20 {{ (!empty($selectedCategory) and $selectedCategory->id == $subCategory->id) ? 'text-primary' : '' }}" itemprop="url">
+                        <a href="{{ $subCategory->getUrl() }}" class="d-flex align-items-center font-16 font-weight-normal mt-20 {{ (!empty($selectedCategory) and $selectedCategory->id == $subCategory->id) ? 'text-primary' : '' }}" itemprop="url">
                             @if(!empty($selectedCategory) and $selectedCategory->id == $subCategory->id)
                             <i data-feather="chevron-right" width="20" height="20" class="mr-5"></i>
                             @endif
@@ -41,7 +41,7 @@
                         @endforeach
                     </div>
                     @else
-                    <a href="{{ $productCategory->getUrl() }}" class="d-flex align-items-center font-14 font-weight-bold mt-20 {{ (!empty($selectedCategory) and $selectedCategory->id == $productCategory->id) ? 'text-primary' : '' }}" itemprop="url">
+                    <a href="{{ $productCategory->getUrl() }}" class="d-flex align-items-center font-16 font-weight-bold mt-20 {{ (!empty($selectedCategory) and $selectedCategory->id == $productCategory->id) ? 'text-primary' : '' }}" itemprop="url">
                         @if(!empty($selectedCategory) and $selectedCategory->id == $productCategory->id)
                         <i data-feather="chevron-right" width="20" height="20" class="mr-5"></i>
                         @endif

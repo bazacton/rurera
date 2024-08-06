@@ -55,7 +55,7 @@
                                             @endif
                                         @endif
 
-                                        <span class="text-gray font-14 mt-auto">
+                                        <span class="text-gray font-16 mt-auto">
                                             {{ trans('public.by') }}
                                             <a href="{{ isset( $cartItemInfo['profileUrl'] )? $cartItemInfo['profileUrl'] : '' }}" target="_blank" class="text-gray text-decoration-underline">{{ isset( $cartItemInfo['teacherName'] )? $cartItemInfo['teacherName'] : '' }}</a>
                                         </span>
@@ -110,7 +110,7 @@
                     <section class="mt-45">
                         <h3 class="section-title">{{ trans('cart.coupon_code') }}</h3>
                         <div class="rounded-sm shadow mt-20 py-25 px-20">
-                            <p class="text-gray font-14">{{ trans('cart.coupon_code_hint') }}</p>
+                            <p class="text-gray font-16">{{ trans('cart.coupon_code_hint') }}</p>
 
                             @if(!empty($userGroup) and !empty($userGroup->discount))
                                 <p class="text-gray mt-25">{{ trans('cart.in_user_group',['group_name' => $userGroup->name , 'percent' => $userGroup->discount]) }}</p>
@@ -138,38 +138,38 @@
                         <div class="rounded-sm shadow mt-20 pb-20 px-20">
 
                             <div class="cart-checkout-item">
-                                <h4 class="text-secondary font-14 font-weight-500">{{ trans('cart.sub_total') }}</h4>
-                                <span class="font-14 text-gray font-weight-bold">{{ addCurrencyToPrice(handlePriceFormat($subTotal)) }}</span>
+                                <h4 class="text-secondary font-16 font-weight-500">{{ trans('cart.sub_total') }}</h4>
+                                <span class="font-16 text-gray font-weight-bold">{{ addCurrencyToPrice(handlePriceFormat($subTotal)) }}</span>
                             </div>
 
                             <div class="cart-checkout-item">
-                                <h4 class="text-secondary font-14 font-weight-500">{{ trans('public.discount') }}</h4>
-                                <span class="font-14 text-gray font-weight-bold">
+                                <h4 class="text-secondary font-16 font-weight-500">{{ trans('public.discount') }}</h4>
+                                <span class="font-16 text-gray font-weight-bold">
                                 <span id="totalDiscount">{{ addCurrencyToPrice(handlePriceFormat($totalDiscount)) }}</span>
                             </span>
                             </div>
 
                             <div class="cart-checkout-item">
-                                <h4 class="text-secondary font-14 font-weight-500">{{ trans('cart.tax') }}
+                                <h4 class="text-secondary font-16 font-weight-500">{{ trans('cart.tax') }}
                                     @if(!$taxIsDifferent)
-                                        <span class="font-14 text-gray ">({{ $tax }}%)</span>
+                                        <span class="font-16 text-gray ">({{ $tax }}%)</span>
                                     @endif
                                 </h4>
-                                <span class="font-14 text-gray font-weight-bold"><span id="taxPrice">{{ addCurrencyToPrice(handlePriceFormat($taxPrice)) }}</span></span>
+                                <span class="font-16 text-gray font-weight-bold"><span id="taxPrice">{{ addCurrencyToPrice(handlePriceFormat($taxPrice)) }}</span></span>
                             </div>
 
                             @if(!empty($productDeliveryFee))
                                 <div class="cart-checkout-item">
-                                    <h4 class="text-secondary font-14 font-weight-500">
+                                    <h4 class="text-secondary font-16 font-weight-500">
                                         {{ trans('update.delivery_fee') }}
                                     </h4>
-                                    <span class="font-14 text-gray font-weight-bold"><span id="taxPrice">{{ addCurrencyToPrice(handlePriceFormat($productDeliveryFee)) }}</span></span>
+                                    <span class="font-16 text-gray font-weight-bold"><span id="taxPrice">{{ addCurrencyToPrice(handlePriceFormat($productDeliveryFee)) }}</span></span>
                                 </div>
                             @endif
 
                             <div class="cart-checkout-item border-0">
-                                <h4 class="text-secondary font-14 font-weight-500">{{ trans('cart.total') }}</h4>
-                                <span class="font-14 text-gray font-weight-bold"><span id="totalAmount">{{ addCurrencyToPrice(handlePriceFormat($total)) }}</span></span>
+                                <h4 class="text-secondary font-16 font-weight-500">{{ trans('cart.total') }}</h4>
+                                <span class="font-16 text-gray font-weight-bold"><span id="totalAmount">{{ addCurrencyToPrice(handlePriceFormat($total)) }}</span></span>
                             </div>
 
                             <button type="submit" class="btn btn-sm btn-primary mt-15">{{ trans('cart.checkout') }}</button>

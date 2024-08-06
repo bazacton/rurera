@@ -10,7 +10,7 @@
                         <span class="text-danger">{{ trans('panel.expired') }}</span>
                     @endif
                 </strong>
-                <span class="font-14 text-gray font-weight-500">{{ trans('update.deadline') }}</span>
+                <span class="font-16 text-gray font-weight-500">{{ trans('update.deadline') }}</span>
             </div>
         </div>
 
@@ -24,7 +24,7 @@
                         {{ trans('update.unlimited') }}
                     @endif
                 </strong>
-                <span class="font-14 text-gray font-weight-500">{{ trans('update.submission_times') }}</span>
+                <span class="font-16 text-gray font-weight-500">{{ trans('update.submission_times') }}</span>
             </div>
         </div>
 
@@ -32,7 +32,7 @@
             <div class="d-flex flex-column align-items-center text-center">
                 <img src="/assets/default/img/activity/45.svg" class="assignment-top-stats__icon" alt="">
                 <strong class="font-20 text-dark-blue font-weight-bold mt-5">{{ $assignmentHistory->grade ?? 0 }}/{{ $assignment->grade }}</strong>
-                <span class="font-14 text-gray font-weight-500">{{ trans('quiz.your_grade') }}</span>
+                <span class="font-16 text-gray font-weight-500">{{ trans('quiz.your_grade') }}</span>
             </div>
         </div>
 
@@ -40,7 +40,7 @@
             <div class="d-flex flex-column align-items-center text-center">
                 <img src="/assets/default/img/activity/58.svg" class="assignment-top-stats__icon" alt="">
                 <strong class="font-20 text-dark-blue font-weight-bold mt-5">{{ $assignment->pass_grade }}</strong>
-                <span class="font-14 text-gray font-weight-500">{{ trans('update.min_grade') }}</span>
+                <span class="font-16 text-gray font-weight-500">{{ trans('update.min_grade') }}</span>
             </div>
         </div>
 
@@ -48,12 +48,12 @@
             <div class="d-flex flex-column align-items-center text-center">
                 <img src="/assets/default/img/activity/88.svg" class="assignment-top-stats__icon" alt="">
                 <strong class="font-20 text-dark-blue font-weight-bold mt-5">{{ trans('update.assignment_history_status_'.$assignmentHistory->status) }}</strong>
-                <span class="font-14 text-gray font-weight-500">{{ trans('public.status') }}</span>
+                <span class="font-16 text-gray font-weight-500">{{ trans('public.status') }}</span>
             </div>
         </div>
     </div>
 
-    <div class="p-15 rounded-lg bg-info-light font-14 text-gray mt-20">{!! $assignment->description !!}</div>
+    <div class="p-15 rounded-lg bg-info-light font-16 text-gray mt-20">{!! $assignment->description !!}</div>
 </section>
 
 @if(!empty($assignment->attachments) and count($assignment->attachments))
@@ -110,16 +110,16 @@
                         <div class="d-flex align-items-center flex-column mt-10 text-center">
                             @if($assignmentHistory->status == \App\Models\WebinarAssignmentHistory::$passed)
                                 <h3 class="font-20 font-weight-bold text-dark-blue text-center">{{ trans('update.assignment_passed_title') }}</h3>
-                                <p class="mt-5 text-gray font-14 text-center">{{ trans('update.assignment_passed_desc') }}</p>
+                                <p class="mt-5 text-gray font-16 text-center">{{ trans('update.assignment_passed_desc') }}</p>
                             @elseif($assignmentHistory->status == \App\Models\WebinarAssignmentHistory::$notPassed)
                                 <h3 class="font-20 font-weight-bold text-dark-blue text-center">{{ trans('update.assignment_not_passed_title') }}</h3>
-                                <p class="mt-5 text-gray font-14 text-center">{{ trans('update.assignment_not_passed_desc') }}</p>
+                                <p class="mt-5 text-gray font-16 text-center">{{ trans('update.assignment_not_passed_desc') }}</p>
                             @elseif(!$assignmentDeadline)
                                 <h3 class="font-20 font-weight-bold text-dark-blue text-center">{{ trans('update.assignment_deadline_error_title') }}</h3>
-                                <p class="mt-5 text-gray font-14 text-center">{{ trans('update.assignment_deadline_error_desc') }}</p>
+                                <p class="mt-5 text-gray font-16 text-center">{{ trans('update.assignment_deadline_error_desc') }}</p>
                             @else
                                 <h3 class="font-20 font-weight-bold text-dark-blue text-center">{{ trans('update.assignment_submission_error_title') }}</h3>
-                                <p class="mt-5 text-gray font-14 text-center">{{ trans('update.assignment_submission_error_desc') }}</p>
+                                <p class="mt-5 text-gray font-16 text-center">{{ trans('update.assignment_submission_error_desc') }}</p>
                             @endif
                         </div>
                     </div>
@@ -209,11 +209,11 @@
                                         <img src="{{ $message->sender->getAvatar(50) }}" class="img-cover rounded-circle" alt="{{ $message->sender->get_full_name() }}">
                                     </div>
                                     <div class="ml-10">
-                                        <h4 class="font-14 font-weight-500 text-dark-blue">{{ $message->sender->get_full_name() }}</h4>
+                                        <h4 class="font-16 font-weight-500 text-dark-blue">{{ $message->sender->get_full_name() }}</h4>
                                         <span class="d-block font-12 text-gray">{{ dateTimeFormat($message->created_at, 'j M Y | H:i') }}</span>
                                     </div>
                                 </div>
-                                <div class="mt-15 font-14 text-gray">
+                                <div class="mt-15 font-16 text-gray">
                                     {!! $message->message !!}
                                 </div>
 
@@ -235,7 +235,7 @@
 
                             <div class="d-flex align-items-center flex-column mt-10 text-center">
                                 <h3 class="font-20 font-weight-bold text-dark-blue text-center">{{ trans('update.no_assignment') }}</h3>
-                                <p class="mt-5 text-gray font-14 text-center">{{ trans('update.submit_your_assignment_and_evaluate_your_learning') }}</p>
+                                <p class="mt-5 text-gray font-16 text-center">{{ trans('update.submit_your_assignment_and_evaluate_your_learning') }}</p>
                             </div>
                         </div>
                     @endif

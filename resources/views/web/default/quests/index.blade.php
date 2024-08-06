@@ -43,7 +43,7 @@
                                                         </span>
                                                         <span class="progress-numbers">{{isset( $questUserData['quest_bar_label'] )? $questUserData['quest_bar_label'] : ''}}</span>
                                                     </div>
-                                                    <span class="progress-icon font-14">
+                                                    <span class="progress-icon font-16">
                                                         <img src="/assets/default/img/quests-coin.png" alt="">
                                                         +{{isset( $questUserData['questScore'] )? $questUserData['questScore'] : 0}}
                                                     </span>

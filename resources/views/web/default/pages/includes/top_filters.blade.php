@@ -51,7 +51,7 @@
         </div>
 
         <div class="col-lg-3 d-flex align-items-center">
-            <select name="sort" class="form-control font-14">
+            <select name="sort" class="form-control font-16">
                 <option disabled selected>{{ trans('public.sort_by') }}</option>
                 <option value="">{{ trans('public.all') }}</option>
                 <option value="newest" @if(request()->get('sort', null) == 'newest') selected="selected" @endif>{{ trans('public.newest') }}</option>

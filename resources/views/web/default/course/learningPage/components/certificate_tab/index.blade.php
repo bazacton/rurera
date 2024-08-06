@@ -17,7 +17,7 @@
                         </span>
 
                         <div class="flex-grow-1">
-                            <span class="font-weight-500 font-14 text-dark-blue d-block">{{ $courseQuiz->title }}</span>
+                            <span class="font-weight-500 font-16 text-dark-blue d-block">{{ $courseQuiz->title }}</span>
 
                             <div class="d-flex align-items-center">
                                 <span class="font-12 text-gray">{{ $courseQuiz->pass_mark }}/{{ $courseQuiz->quizQuestions->sum('grade') }}</span>
@@ -42,7 +42,7 @@
 
             <div class="d-flex align-items-center flex-column mt-10 text-center">
                 <h3 class="font-20 font-weight-bold text-dark-blue text-center">{{ trans('update.learning_page_empty_certificate_title') }}</h3>
-                <p class="font-14 font-weight-500 text-gray mt-5 text-center">{{ trans('update.learning_page_empty_certificate_hint') }}</p>
+                <p class="font-16 font-weight-500 text-gray mt-5 text-center">{{ trans('update.learning_page_empty_certificate_hint') }}</p>
             </div>
         </div>
     @endif

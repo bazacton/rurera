@@ -91,7 +91,7 @@
             <img src="../assets/default/img/clock-modal-img.png" alt="">
         </span>
         <h3 class="font-24 font-weight-normal mb-10">Are you sure you want to remove?</h3>
-        <p class="mb-15 font-14">
+        <p class="mb-15 font-16">
             You've been inactive for a while, and your session was paused. You can continue learning by using the following links
         </p>
         <div class="inactivity-controls">

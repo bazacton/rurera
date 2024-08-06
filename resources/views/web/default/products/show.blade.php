@@ -77,7 +77,7 @@
                         @if(!empty($selectableSpecifications) and count($selectableSpecifications))
                             @foreach($selectableSpecifications as $selectableSpecification)
                                 <div class="product-show-selectable-specification mt-10">
-                                    <span class="font-14 font-weight-bold text-dark">{{ $selectableSpecification->specification->title }}</span>
+                                    <span class="font-16 font-weight-bold text-dark">{{ $selectableSpecification->specification->title }}</span>
 
                                     <div class="d-flex align-items-center flex-wrap">
                                         @foreach($selectableSpecification->selectedMultiValues as $specificationValue)
@@ -119,7 +119,7 @@
                                         <i data-feather="package" class="" width="20" height="20"></i>
                                     </div>
                                     <div class="ml-5">
-                                        <span class="d-block font-14 font-weight-bold text-dark">{{ trans('update.physical_product') }}</span>
+                                        <span class="d-block font-16 font-weight-bold text-dark">{{ trans('update.physical_product') }}</span>
                                         <span class="d-block font-12 text-gray">{{ trans('update.delivery_estimated_time_days_alert',['days' => $product->delivery_estimated_time]) }}</span>
                                     </div>
                                 </div>
@@ -129,7 +129,7 @@
                                         <i data-feather="package" class="" width="20" height="20"></i>
                                     </div>
                                     <div class="ml-5">
-                                        <span class="d-block font-14 font-weight-bold text-dark">{{ trans('update.virtual_product') }}</span>
+                                        <span class="d-block font-16 font-weight-bold text-dark">{{ trans('update.virtual_product') }}</span>
                                         <span class="d-block font-12 text-gray">{{ trans('update.download_all_files_after_payment') }}</span>
                                     </div>
                                 </div>
@@ -140,7 +140,7 @@
                                     <i data-feather="share-2" class="" width="20" height="20"></i>
                                 </div>
                                 <div class="ml-5">
-                                    <span class="d-block font-14 font-weight-bold text-dark">{{ trans('public.share') }}</span>
+                                    <span class="d-block font-16 font-weight-bold text-dark">{{ trans('public.share') }}</span>
                                     <span class="d-block font-12 text-gray">{{ trans('update.product_share_text') }}</span>
                                 </div>
                             </div>

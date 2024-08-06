@@ -9,7 +9,7 @@
                     <img src="{{ !empty($userBadge->badge_id) ? $userBadge->badge->image : $userBadge->image }}" class="rounded-circle" alt="{{ !empty($userBadge->badge_id) ? $userBadge->badge->title : $userBadge->title }}">
 
                     <span class="font-16 font-weight-bold text-dark-blue mt-15 mt-lg-25">{{ !empty($userBadge->badge_id) ? $userBadge->badge->title : $userBadge->title }}</span>
-                    <span class="font-14 text-gray mt-5 mt-lg-10 text-center">{!! (!empty($userBadge->badge_id) ? nl2br($userBadge->badge->description) : nl2br($userBadge->description)) !!}</span>
+                    <span class="font-16 text-gray mt-5 mt-lg-10 text-center">{!! (!empty($userBadge->badge_id) ? nl2br($userBadge->badge->description) : nl2br($userBadge->description)) !!}</span>
                 </div>
             </div>
 

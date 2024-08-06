@@ -4,7 +4,7 @@
     <div class="text-center">
         <img src="/assets/default/img/icons/diamond.png" class="buy-with-points-modal-img" alt="diamond">
 
-        <p class="font-14 font-weight-500 text-gray mt-30">
+        <p class="font-16 font-weight-500 text-gray mt-30">
             <span class="d-block">{{ trans('update.your_account_limited') }}</span>
             <span class="d-block">{{ trans('update.your_account_'. $type .'_limited_hint') }}</span>
             @if(!empty($currentCount))

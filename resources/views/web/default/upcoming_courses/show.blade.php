@@ -26,8 +26,8 @@
                         @endif
 
                         <div class="mt-15">
-                            <span class="font-14">{{ trans('public.created_by') }}</span>
-                            <a href="{{ $upcomingCourse->teacher->getProfileUrl() }}" target="_blank" class="text-decoration-underline text-white font-14 font-weight-500">{{ $upcomingCourse->teacher->get_full_name() }}</a>
+                            <span class="font-16">{{ trans('public.created_by') }}</span>
+                            <a href="{{ $upcomingCourse->teacher->getProfileUrl() }}" target="_blank" class="text-decoration-underline text-white font-16 font-weight-500">{{ $upcomingCourse->teacher->get_full_name() }}</a>
                         </div>
 
                         <div class="mt-auto">
@@ -41,13 +41,13 @@
                                         @endforeach
 
                                         @if($followingUsersCount - $followingUsers->count() > 0)
-                                            <div class="overlay-avatars__count size-40 rounded-circle d-flex align-items-center justify-content-center font-14 text-gray">
+                                            <div class="overlay-avatars__count size-40 rounded-circle d-flex align-items-center justify-content-center font-16 text-gray">
                                                 +{{ $followingUsersCount - $followingUsers->count() }}
                                             </div>
                                         @endif
                                     </div>
                                     <div class="ml-5">
-                                        <span class="d-block font-14 font-weight-bold text-white">{{ $followingUsersCount }} {{ trans('panel.users') }}</span>
+                                        <span class="d-block font-16 font-weight-bold text-white">{{ $followingUsersCount }} {{ trans('panel.users') }}</span>
                                         <span class="d-block font-12 text-white">{{ trans('update.are_following_this_upcoming_course') }}</span>
                                     </div>
                                 </div>
@@ -93,7 +93,7 @@
 
                         <div class="mt-20 d-flex align-items-center justify-content-center text-gray">
                             <i data-feather="bell" width="20" height="20"></i>
-                            <span class="ml-5 font-14">{{ trans('update.youll_get_notified_about_course_publish') }}</span>
+                            <span class="ml-5 font-16">{{ trans('update.youll_get_notified_about_course_publish') }}</span>
                         </div>
 
                         <div class="mt-35">
@@ -102,35 +102,35 @@
                             @if($upcomingCourse->downloadable)
                                 <div class="mt-20 d-flex align-items-center text-gray">
                                     <i data-feather="download-cloud" width="20" height="20"></i>
-                                    <span class="ml-5 font-14 font-weight-500">{{ trans('webinars.downloadable_content') }}</span>
+                                    <span class="ml-5 font-16 font-weight-500">{{ trans('webinars.downloadable_content') }}</span>
                                 </div>
                             @endif
 
                             @if($upcomingCourse->certificate)
                                 <div class="mt-20 d-flex align-items-center text-gray">
                                     <i data-feather="award" width="20" height="20"></i>
-                                    <span class="ml-5 font-14 font-weight-500">{{ trans('webinars.official_certificate') }}</span>
+                                    <span class="ml-5 font-16 font-weight-500">{{ trans('webinars.official_certificate') }}</span>
                                 </div>
                             @endif
 
                             @if($upcomingCourse->include_quizzes)
                                 <div class="mt-20 d-flex align-items-center text-gray">
                                     <i data-feather="file-text" width="20" height="20"></i>
-                                    <span class="ml-5 font-14 font-weight-500">{{ trans('quiz.quizzes') }}</span>
+                                    <span class="ml-5 font-16 font-weight-500">{{ trans('quiz.quizzes') }}</span>
                                 </div>
                             @endif
 
                             @if($upcomingCourse->support)
                                 <div class="mt-20 d-flex align-items-center text-gray">
                                     <i data-feather="headphones" width="20" height="20"></i>
-                                    <span class="ml-5 font-14 font-weight-500">{{ trans('webinars.instructor_support') }}</span>
+                                    <span class="ml-5 font-16 font-weight-500">{{ trans('webinars.instructor_support') }}</span>
                                 </div>
                             @endif
 
                             @if($upcomingCourse->forum)
                                 <div class="mt-20 d-flex align-items-center text-gray">
                                     <i data-feather="headphones" width="20" height="20"></i>
-                                    <span class="ml-5 font-14 font-weight-500">{{ trans('update.course_forum') }}</span>
+                                    <span class="ml-5 font-16 font-weight-500">{{ trans('update.course_forum') }}</span>
                                 </div>
                             @endif
                         </div>
@@ -161,7 +161,7 @@
                         </div>
 
                         <div class="mt-30 text-center">
-                            <button type="button" id="webinarReportBtn" class="font-14 text-gray btn-transparent">{{ trans('update.report_this_course') }}</button>
+                            <button type="button" id="webinarReportBtn" class="font-16 text-gray btn-transparent">{{ trans('update.report_this_course') }}</button>
                         </div>
                     </div>
                 </div>
@@ -176,7 +176,7 @@
 
                         <div class="p-15">
                             <h3 class="font-16 text-dark-blue">{{ trans('public.instructor_is_not_available') }}</h3>
-                            <p class="font-14 font-weight-500 text-gray mt-15">{{ $upcomingCourse->teacher->offline_message }}</p>
+                            <p class="font-16 font-weight-500 text-gray mt-15">{{ $upcomingCourse->teacher->offline_message }}</p>
                         </div>
                     </div>
                 @endif
@@ -189,9 +189,9 @@
                             <div class="mt-20 d-flex align-items-center justify-content-between text-gray">
                                 <div class="d-flex align-items-center">
                                     <i data-feather="calendar" width="20" height="20"></i>
-                                    <span class="ml-5 font-14 font-weight-500">{{ trans('update.publish_date') }}:</span>
+                                    <span class="ml-5 font-16 font-weight-500">{{ trans('update.publish_date') }}:</span>
                                 </div>
-                                <span class="font-14">{{ dateTimeFormat($upcomingCourse->publish_date, 'j M Y | H:i') }}</span>
+                                <span class="font-16">{{ dateTimeFormat($upcomingCourse->publish_date, 'j M Y | H:i') }}</span>
                             </div>
                         @endif
 
@@ -199,9 +199,9 @@
                             <div class="mt-20 d-flex align-items-center justify-content-between text-gray">
                                 <div class="d-flex align-items-center">
                                     <i data-feather="clock" width="20" height="20"></i>
-                                    <span class="ml-5 font-14 font-weight-500">{{ trans('public.duration') }}:</span>
+                                    <span class="ml-5 font-16 font-weight-500">{{ trans('public.duration') }}:</span>
                                 </div>
-                                <span class="font-14">{{ convertMinutesToHourAndMinute($upcomingCourse->duration) }} {{ trans('home.hours') }}</span>
+                                <span class="font-16">{{ convertMinutesToHourAndMinute($upcomingCourse->duration) }} {{ trans('home.hours') }}</span>
                             </div>
                         @endif
 
@@ -209,9 +209,9 @@
                             <div class="mt-20 d-flex align-items-center justify-content-between text-gray">
                                 <div class="d-flex align-items-center">
                                     <i data-feather="layers" width="20" height="20"></i>
-                                    <span class="ml-5 font-14 font-weight-500">{{ trans('update.sections') }}:</span>
+                                    <span class="ml-5 font-16 font-weight-500">{{ trans('update.sections') }}:</span>
                                 </div>
-                                <span class="font-14">{{ $upcomingCourse->sections }}</span>
+                                <span class="font-16">{{ $upcomingCourse->sections }}</span>
                             </div>
                         @endif
 
@@ -219,9 +219,9 @@
                             <div class="mt-20 d-flex align-items-center justify-content-between text-gray">
                                 <div class="d-flex align-items-center">
                                     <i data-feather="film" width="20" height="20"></i>
-                                    <span class="ml-5 font-14 font-weight-500">{{ trans('public.parts') }}:</span>
+                                    <span class="ml-5 font-16 font-weight-500">{{ trans('public.parts') }}:</span>
                                 </div>
-                                <span class="font-14">{{ $upcomingCourse->parts }}</span>
+                                <span class="font-16">{{ $upcomingCourse->parts }}</span>
                             </div>
                         @endif
 
@@ -229,9 +229,9 @@
                             <div class="mt-20 d-flex align-items-center justify-content-between text-gray">
                                 <div class="d-flex align-items-center">
                                     <i data-feather="users" width="20" height="20"></i>
-                                    <span class="ml-5 font-14 font-weight-500">{{ trans('public.capacity') }}:</span>
+                                    <span class="ml-5 font-16 font-weight-500">{{ trans('public.capacity') }}:</span>
                                 </div>
-                                <span class="font-14">{{ $upcomingCourse->capacity }}</span>
+                                <span class="font-16">{{ $upcomingCourse->capacity }}</span>
                             </div>
                         @endif
 
@@ -239,18 +239,18 @@
                         <div class="mt-20 d-flex align-items-center justify-content-between text-gray">
                             <div class="d-flex align-items-center">
                                 <i data-feather="tag" width="20" height="20"></i>
-                                <span class="ml-5 font-14 font-weight-500">{{ trans('public.price') }}:</span>
+                                <span class="ml-5 font-16 font-weight-500">{{ trans('public.price') }}:</span>
                             </div>
-                            <span class="font-14">{{ (!empty($upcomingCourse->price) and $upcomingCourse->price > 0) ? handlePrice($upcomingCourse->price) : trans('public.free') }}</span>
+                            <span class="font-16">{{ (!empty($upcomingCourse->price) and $upcomingCourse->price > 0) ? handlePrice($upcomingCourse->price) : trans('public.free') }}</span>
                         </div>
 
                         @if(!empty($upcomingCourse->course_progress))
                             <div class="mt-20 d-flex align-items-center justify-content-between text-gray">
                                 <div class="d-flex align-items-center">
                                     <i data-feather="trending-up" width="20" height="20"></i>
-                                    <span class="ml-5 font-14 font-weight-500">{{ trans('update.progress') }}:</span>
+                                    <span class="ml-5 font-16 font-weight-500">{{ trans('update.progress') }}:</span>
                                 </div>
-                                <span class="font-14">{{ $upcomingCourse->course_progress }}%</span>
+                                <span class="font-16">{{ $upcomingCourse->course_progress }}%</span>
                             </div>
 
                             <div class="progress upcoming-course-progress mt-15">
@@ -276,7 +276,7 @@
 
                         <div class="d-flex flex-wrap mt-10">
                             @foreach($upcomingCourse->tags as $tag)
-                                <a href="" class="tag-item bg-gray200 p-5 font-14 text-gray font-weight-500 rounded">{{ $tag->title }}</a>
+                                <a href="" class="tag-item bg-gray200 p-5 font-16 text-gray font-weight-500 rounded">{{ $tag->title }}</a>
                             @endforeach
                         </div>
                     </div>
@@ -321,7 +321,7 @@
         <form action="/upcoming_courses/{{ $upcomingCourse->id }}/report" method="post" class="mt-25">
 
             <div class="form-group">
-                <label class="text-dark-blue font-14">{{ trans('product.reason') }}</label>
+                <label class="text-dark-blue font-16">{{ trans('product.reason') }}</label>
                 <select id="reason" name="reason" class="form-control">
                     <option value="" selected disabled>{{ trans('product.select_reason') }}</option>
 
@@ -333,7 +333,7 @@
             </div>
 
             <div class="form-group">
-                <label class="text-dark-blue font-14" for="message_to_reviewer">{{ trans('public.message_to_reviewer') }}</label>
+                <label class="text-dark-blue font-16" for="message_to_reviewer">{{ trans('public.message_to_reviewer') }}</label>
                 <textarea name="message" id="message_to_reviewer" class="form-control" rows="10"></textarea>
                 <div class="invalid-feedback"></div>
             </div>

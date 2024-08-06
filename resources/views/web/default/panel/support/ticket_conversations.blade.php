@@ -107,7 +107,7 @@
                     </div>
 
                     <div class="col-12 col-lg-3 d-flex align-items-center justify-content-end">
-                        <button type="submit" class="btn btn-sm font-14 btn-primary w-100 mt-2">{{ trans('public.show_results') }}</button>
+                        <button type="submit" class="btn btn-sm font-16 btn-primary w-100 mt-2">{{ trans('public.show_results') }}</button>
                     </div>
                 </div>
             </form>
@@ -125,10 +125,10 @@
                         <div class="table-responsive">
                             <table class="table table-md">
                                 <tr>
-                                    <th class="text-left font-14 text-gray font-weight-500">{{ trans('navbar.title') }}</th>
-                                    <th class="text-center font-14 text-gray font-weight-500">{{ trans('public.updated_at') }}</th>
-                                    <th class="text-center font-14 text-gray font-weight-500">{{ trans('panel.department') }}</th>
-                                    <th class="text-center font-14 text-gray font-weight-500">{{ trans('public.status') }}</th>
+                                    <th class="text-left font-16 text-gray font-weight-500">{{ trans('navbar.title') }}</th>
+                                    <th class="text-center font-16 text-gray font-weight-500">{{ trans('public.updated_at') }}</th>
+                                    <th class="text-center font-16 text-gray font-weight-500">{{ trans('panel.department') }}</th>
+                                    <th class="text-center font-16 text-gray font-weight-500">{{ trans('public.status') }}</th>
                                 </tr>
                                 <tbody>
 
@@ -141,27 +141,27 @@
                                                         <img src="/assets/default/img/support.png" class="img-cover" alt="">
                                                     </div>
                                                     <div class="ml-10">
-                                                        <span class="d-block font-14 text-dark-blue font-weight-500">{{ $support->title }}</span>
+                                                        <span class="d-block font-16 text-dark-blue font-weight-500">{{ $support->title }}</span>
                                                     </div>
                                                 </div>
                                             </a>
                                         </td>
 
                                         <td class="text-center align-middle">
-                                            <span class="font-weight-500 text-dark-blue font-14 text-gray d-block">{{ (!empty($support->conversations) and count($support->conversations)) ? dateTimeFormat($support->conversations->first()->created_at,'j M Y | H:i') : dateTimeFormat($support->created_at,'j M Y | H:i') }}</span>
+                                            <span class="font-weight-500 text-dark-blue font-16 text-gray d-block">{{ (!empty($support->conversations) and count($support->conversations)) ? dateTimeFormat($support->conversations->first()->created_at,'j M Y | H:i') : dateTimeFormat($support->created_at,'j M Y | H:i') }}</span>
                                         </td>
 
                                         <td class="text-center align-middle">
-                                            <span class="font-weight-500 text-dark-blue font-14 d-block">{{ $support->department->title }}</span>
+                                            <span class="font-weight-500 text-dark-blue font-16 d-block">{{ $support->department->title }}</span>
                                         </td>
 
                                         <td class="text-center align-middle">
                                             @if($support->status == 'close')
-                                                <span class="text-danger font-14 font-weight-500">{{  trans('panel.closed') }}</span>
+                                                <span class="text-danger font-16 font-weight-500">{{  trans('panel.closed') }}</span>
                                             @elseif($support->status == 'supporter_replied')
-                                                <span class="text-primary font-14 font-weight-500">{{  trans('panel.replied') }}</span>
+                                                <span class="text-primary font-16 font-weight-500">{{  trans('panel.replied') }}</span>
                                             @else
-                                                <span class="text-warning font-14 font-weight-500">{{  trans('public.waiting') }}</span>
+                                                <span class="text-warning font-16 font-weight-500">{{  trans('public.waiting') }}</span>
                                             @endif
                                         </td>
 
@@ -177,7 +177,7 @@
                         <div class="col-12 col-lg-7 border-left border-gray300">
                             <div class="conversation-box p-15 d-flex align-items-center justify-content-between">
                                 <div>
-                                    <span class="font-weight-500 font-14 text-dark-blue d-block">{{ $selectSupport->title }}</span>
+                                    <span class="font-weight-500 font-16 text-dark-blue d-block">{{ $selectSupport->title }}</span>
                                     <span class="font-12 text-gray d-block mt-5">{{ trans('public.created') }}: {{ dateTimeFormat($support->created_at,'j M Y | H:i') }}</span>
 
                                     @if(!empty($selectSupport->webinar))
@@ -202,7 +202,7 @@
                                                         <img src="{{ (!empty($conversations->supporter)) ? $conversations->supporter->getAvatar() : $conversations->sender->getAvatar() }}" class="img-cover" alt="">
                                                     </div>
                                                     <div class="ml-10">
-                                                        <span class="d-block text-dark-blue font-14 font-weight-500">{{ (!empty($conversations->supporter)) ? $conversations->supporter->get_full_name() : $conversations->sender->get_full_name() }}</span>
+                                                        <span class="d-block text-dark-blue font-16 font-weight-500">{{ (!empty($conversations->supporter)) ? $conversations->supporter->get_full_name() : $conversations->sender->get_full_name() }}</span>
                                                         <span class="mt-1 font-12 text-gray d-block">{{ (!empty($conversations->supporter)) ? trans('panel.staff') : $conversations->sender->role_name }}</span>
                                                     </div>
                                                 </div>
@@ -215,7 +215,7 @@
                                                     @endif
                                                 </div>
                                             </div>
-                                            <p class="text-gray mt-15 font-weight-500 font-14">{!! nl2br($conversations->message) !!}</p>
+                                            <p class="text-gray mt-15 font-weight-500 font-16">{!! nl2br($conversations->message) !!}</p>
                                         </div>
                                     @endforeach
 
@@ -223,7 +223,7 @@
                             </div>
 
                             <div class="conversation-box mt-30 py-10 px-15">
-                                <h3 class="font-14 text-dark-blue font-weight-bold">{{ trans('panel.reply_to_the_conversation') }}</h3>
+                                <h3 class="font-16 text-dark-blue font-weight-bold">{{ trans('panel.reply_to_the_conversation') }}</h3>
                                 <form action="/panel/support/{{ $selectSupport->id }}/conversations" method="post" class="mt-5">
                                     {{ csrf_field() }}
 

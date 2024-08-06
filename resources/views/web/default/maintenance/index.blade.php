@@ -26,7 +26,7 @@
                 @endif
 
                 @if(!empty($maintenanceSettings['description']))
-                    <p class="font-14 font-weight-500 text-gray mt-15">{!! nl2br($maintenanceSettings['description']) !!}</p>
+                    <p class="font-16 font-weight-500 text-gray mt-15">{!! nl2br($maintenanceSettings['description']) !!}</p>
                 @endif
 
                 @if(!empty($remainingTimes))

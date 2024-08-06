@@ -45,7 +45,7 @@
     <div class="mt-20 text-center">
         <img src="/assets/default/img/info.png" width="108" height="96" class="rounded-circle" alt="">
         <h4 class="font-16 mt-20 text-dark-blue font-weight-bold">{{ trans('site.new_experience_hint') }}</h4>
-        <span class="d-block mt-10 text-gray font-14">{{ trans('site.new_experience_exam') }}</span>
+        <span class="d-block mt-10 text-gray font-16">{{ trans('site.new_experience_exam') }}</span>
         <div class="form-group mt-15 px-50">
             <input type="text" id="new_experience_val" class="form-control">
             <div class="invalid-feedback">{{ trans('validation.required',['attribute' => 'value']) }}</div>

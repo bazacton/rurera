@@ -4,7 +4,7 @@
     <div class="container">
         <section class="topics-title-section mt-30 mt-md-50 px-20 px-md-30 py-25 py-md-35 rounded-lg">
             <h1 class="font-30 font-weight-bold text-white">{{ $forum->title }}</h1>
-            <p class="font-14 text-white">{{ $forum->description }}</p>
+            <p class="font-16 text-white">{{ $forum->description }}</p>
 
             <div class="mt-10">
                 <nav aria-label="breadcrumb">
@@ -23,9 +23,9 @@
                     <h3 class="font-16 font-weight-bold text-secondary">{{ trans('update.topics_in_this_forum',['count' => $topics->count()]) }}</h3>
 
                     <div class="d-flex align-items-center mt-5">
-                        <a href="{{ request()->url() }}?sort=newest" class="font-14 font-weight-500 mr-20 {{ (empty(request()->get('sort')) or request()->get('sort') == 'newest') ? 'text-primary' : 'text-gray' }}">{{ trans('public.newest') }}</a>
-                        <a href="{{ request()->url() }}?sort=popular_topics" class="font-14 font-weight-500 mr-20 {{ (request()->get('sort') == 'popular_topics') ? 'text-primary' : 'text-gray' }}">{{ trans('update.popular_topics') }}</a>
-                        <a href="{{ request()->url() }}?sort=not_answered" class="font-14 font-weight-500 {{ (request()->get('sort') == 'not_answered') ? 'text-primary' : 'text-gray' }}">{{ trans('update.not_answered') }}</a>
+                        <a href="{{ request()->url() }}?sort=newest" class="font-16 font-weight-500 mr-20 {{ (empty(request()->get('sort')) or request()->get('sort') == 'newest') ? 'text-primary' : 'text-gray' }}">{{ trans('public.newest') }}</a>
+                        <a href="{{ request()->url() }}?sort=popular_topics" class="font-16 font-weight-500 mr-20 {{ (request()->get('sort') == 'popular_topics') ? 'text-primary' : 'text-gray' }}">{{ trans('update.popular_topics') }}</a>
+                        <a href="{{ request()->url() }}?sort=not_answered" class="font-16 font-weight-500 {{ (request()->get('sort') == 'not_answered') ? 'text-primary' : 'text-gray' }}">{{ trans('update.not_answered') }}</a>
                     </div>
                 </div>
 
@@ -75,7 +75,7 @@
                                                 </div>
                                                 <div class="ml-10 mw-100">
                                                     <a href="{{ $topic->getPostsUrl() }}" class="">
-                                                        <h4 class="font-14 font-weight-bold text-secondary text-ellipsis">{{ $topic->title }}</h4>
+                                                        <h4 class="font-16 font-weight-bold text-secondary text-ellipsis">{{ $topic->title }}</h4>
                                                     </a>
                                                     <span class="d-block font-12 mt-5 text-gray">{{ trans('public.by') }} {{ $topic->creator->get_full_name() }} {{ trans('public.in') }} {{ dateTimeFormat($topic->created_at,'j M Y | H:i') }}</span>
                                                 </div>
@@ -85,7 +85,7 @@
                                         <div class="col-12 col-md-6 d-none d-md-block">
                                             <div class="row">
                                                 <div class="col-3 text-center">
-                                                    <span class="d-block font-14 text-gray font-weight-bold">{{ $topic->posts_count }}</span>
+                                                    <span class="d-block font-16 text-gray font-weight-bold">{{ $topic->posts_count }}</span>
                                                     <span class="d-block font-12 text-gray">{{ trans('site.posts') }}</span>
                                                 </div>
                                                 <div class="col-3 d-flex align-items-center">
@@ -132,7 +132,7 @@
 
                                 <div class="d-flex align-items-center flex-column mt-10 text-center">
                                     <h3 class="font-20 font-weight-bold text-dark-blue text-center">{{ trans('update.result_not_found') }}</h3>
-                                    <p class="font-14 font-weight-500 text-gray mt-5 text-center">{{ trans('update.try_another_word_to_reach_results') }}</p>
+                                    <p class="font-16 font-weight-500 text-gray mt-5 text-center">{{ trans('update.try_another_word_to_reach_results') }}</p>
                                 </div>
                             </div>
                         @endif
@@ -144,7 +144,7 @@
 
                             <div class="d-flex align-items-center flex-column mt-10 text-center">
                                 <h3 class="font-20 font-weight-bold text-dark-blue text-center">{{ trans('update.result_not_found') }}</h3>
-                                <p class="font-14 font-weight-500 text-gray mt-5 text-center">{{ trans('update.you_not_access_to_this_forum') }}</p>
+                                <p class="font-16 font-weight-500 text-gray mt-5 text-center">{{ trans('update.you_not_access_to_this_forum') }}</p>
                             </div>
                         </div>
                     @endif
@@ -163,7 +163,7 @@
                                         </div>
                                         <div class="ml-10">
                                             <a href="{{ $topUser->getProfileUrl() }}" class="d-block">
-                                                <span class="font-14 font-weight-500 text-secondary">{{ $topUser->get_full_name() }}</span>
+                                                <span class="font-16 font-weight-500 text-secondary">{{ $topUser->get_full_name() }}</span>
                                             </a>
                                             <span class="d-block font-12 font-weight-500 text-gray">{{ trans('update.n_posts',['count' => $topUser->posts]) }} | {{ trans('update.n_topics',['count' => $topUser->topics]) }}</span>
                                         </div>
@@ -184,7 +184,7 @@
                                     </div>
                                     <div class="ml-10">
                                         <a href="{{ $popularTopic->getPostsUrl() }}" class="d-block pb-5">
-                                            <span class="font-14 font-weight-500 text-secondary">{{ $popularTopic->title }}</span>
+                                            <span class="font-16 font-weight-500 text-secondary">{{ $popularTopic->title }}</span>
                                         </a>
                                         <span class="d-block font-12 font-weight-500 text-gray">{{ trans('public.by') }} {{ $popularTopic->creator->get_full_name() }} | {{ trans('update.n_posts',['count' => $popularTopic->posts_count]) }}</span>
                                     </div>

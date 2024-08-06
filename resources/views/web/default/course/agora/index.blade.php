@@ -32,7 +32,7 @@
             <div class="agora-tabs show">
                 <ul class="nav nav-tabs pb-15 d-flex align-items-center justify-content-start px-15" id="tabs-tab" role="tablist">
                     <li class="nav-item">
-                        <a class="position-relative font-14 d-flex align-items-center active" id="chat-tab"
+                        <a class="position-relative font-16 d-flex align-items-center active" id="chat-tab"
                            data-toggle="tab" href="#chat" role="tab" aria-controls="chat"
                            aria-selected="true">
                             <i data-feather="message-circle" width="16" height="16" class="agora-tabs-icons mr-1"></i>
@@ -41,7 +41,7 @@
                     </li>
 
                     {{--<li class="nav-item">
-                        <a class="position-relative font-14 d-flex align-items-center" id="users-tab" data-toggle="tab"
+                        <a class="position-relative font-16 d-flex align-items-center" id="users-tab" data-toggle="tab"
                            href="#users" role="tab" aria-controls="users"
                            aria-selected="false">
                             <i data-feather="users" width="16" height="16" class="agora-tabs-icons mr-1"></i>

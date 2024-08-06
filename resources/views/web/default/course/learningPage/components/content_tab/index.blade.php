@@ -13,7 +13,7 @@
 
             <div class="d-flex align-items-center flex-column mt-10 text-center">
                 <h3 class="font-20 font-weight-bold text-dark-blue text-center">{{ trans('update.learning_page_empty_content_title') }}</h3>
-                <p class="font-14 font-weight-500 text-gray mt-5 text-center">{{ trans('update.learning_page_empty_content_hint') }}</p>
+                <p class="font-16 font-weight-500 text-gray mt-5 text-center">{{ trans('update.learning_page_empty_content_hint') }}</p>
             </div>
         </div>
     @else

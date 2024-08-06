@@ -184,13 +184,13 @@ $QuestionsAttemptController = new QuestionsAttemptController();
     <div class="form-group">
         <div class="row">
             <div class="col-12 col-lg-3">
-                <label class="input-label font-15">Assignment Title</label>
+                <label class="input-label font-16">Assignment Title</label>
             </div>
             <div class="col-12 col-lg-3">
                 {{$assignmentObj->title}}
             </div>
             <div class="col-12 col-lg-3">
-                <label class="input-label font-15">Type</label>
+                <label class="input-label font-16">Type</label>
             </div>
             <div class="col-12 col-lg-3">
                 {{get_topic_type($assignmentObj->assignment_type)}}
@@ -200,13 +200,13 @@ $QuestionsAttemptController = new QuestionsAttemptController();
 
         <div class="row">
             <div class="col-12 col-lg-3">
-                <label class="input-label font-15">Practice Type</label>
+                <label class="input-label font-16">Practice Type</label>
             </div>
             <div class="col-12 col-lg-3">
                 {{$assignmentObj->assignment_type}}
             </div>
             <div class="col-12 col-lg-3">
-                <label class="input-label font-15">Subjects / Topics / Tables</label>
+                <label class="input-label font-16">Subjects / Topics / Tables</label>
             </div>
             <div class="col-12 col-lg-3">
                 @if( $assignmentObj->assignment_type == 'timestables')
@@ -222,13 +222,13 @@ $QuestionsAttemptController = new QuestionsAttemptController();
 
         <div class="row">
             <div class="col-12 col-lg-3">
-                <label class="input-label font-15">Practice Start Date</label>
+                <label class="input-label font-16">Practice Start Date</label>
             </div>
             <div class="col-12 col-lg-3">
                 {{ dateTimeFormat($assignmentObj->assignment_start_date, 'j M Y') }}
             </div>
             <div class="col-12 col-lg-3">
-                <label class="input-label font-15">Practice Due Date</label>
+                <label class="input-label font-16">Practice Due Date</label>
             </div>
             <div class="col-12 col-lg-3">
                 {{ dateTimeFormat($assignmentObj->assignment_end_date, 'j M Y') }}
@@ -238,13 +238,13 @@ $QuestionsAttemptController = new QuestionsAttemptController();
 
         <div class="row">
             <div class="col-12 col-lg-3">
-                <label class="input-label font-15">No of Questions</label>
+                <label class="input-label font-16">No of Questions</label>
             </div>
             <div class="col-12 col-lg-3">
                 {{ $assignmentObj->no_of_questions }}
             </div>
             <div class="col-12 col-lg-3">
-                <label class="input-label font-15">No of Attempts</label>
+                <label class="input-label font-16">No of Attempts</label>
             </div>
             <div class="col-12 col-lg-3">
                 {{ $assignmentObj->no_of_attempts }}
@@ -254,7 +254,7 @@ $QuestionsAttemptController = new QuestionsAttemptController();
 
         <div class="row">
             <div class="col-12 col-lg-3">
-                <label class="input-label font-15">Time Limit</label>
+                <label class="input-label font-16">Time Limit</label>
             </div>
             <div class="col-12 col-lg-3">
                 @if( $assignmentObj->duration_type == 'no_time_limit')
@@ -284,7 +284,7 @@ $QuestionsAttemptController = new QuestionsAttemptController();
                                  data-childs="12">
 
                                 <div class="table-responsive">
-                                    <table class="table table-striped font-14">
+                                    <table class="table table-striped font-16">
                                         <tr>
                                             <th class="text-center">Student</th>
                                             <th class="text-center">Attempts</th>

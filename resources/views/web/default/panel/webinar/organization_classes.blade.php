@@ -84,7 +84,7 @@
 
             <form action="" method="get">
                 <div class="d-flex align-items-center flex-row-reverse flex-md-row justify-content-start justify-content-md-center mt-20 mt-md-0">
-                    <label class="cursor-pointer mb-0 mr-10 text-gray font-14 font-weight-500" for="freeClassesSwitch">{{ trans('panel.only_free_classes') }}</label>
+                    <label class="cursor-pointer mb-0 mr-10 text-gray font-16 font-weight-500" for="freeClassesSwitch">{{ trans('panel.only_free_classes') }}</label>
                     <div class="custom-control custom-switch">
                         <input type="checkbox" name="free" @if(request()->get('free','') == 'on') checked @endif class="custom-control-input" id="freeClassesSwitch">
                         <label class="custom-control-label" for="freeClassesSwitch"></label>

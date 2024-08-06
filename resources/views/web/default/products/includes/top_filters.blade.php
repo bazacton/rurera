@@ -10,7 +10,7 @@
 
         <div class="col-lg-4 d-flex align-items-center" itemprop="products filter">
             <label>{{ trans('public.sort_by') }}:</label>
-            <select name="sort" class="form-control font-14">
+            <select name="sort" class="form-control font-16">
                 <option value="">{{ trans('public.all') }}</option>
                 <option value="newest" @if(request()->get('sort', null) == 'newest') selected="selected" @endif>{{ trans('public.newest') }}</option>
                 <option value="expensive" @if(request()->get('sort', null) == 'expensive') selected="selected" @endif>{{ trans('public.expensive') }}</option>

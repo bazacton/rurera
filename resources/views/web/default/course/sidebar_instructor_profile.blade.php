@@ -18,7 +18,7 @@
         @endif
     </div>
     <h3 class="mt-10 font-16 font-weight-bold text-secondary">{{ $courseTeacher->get_full_name() }}</h3>
-    <span class="mt-5 font-14 font-weight-500 text-gray text-center">{{ $courseTeacher->bio }}</span>
+    <span class="mt-5 font-16 font-weight-500 text-gray text-center">{{ $courseTeacher->bio }}</span>
 
     @include('web.default.includes.webinar.rate',['rate' => $courseTeacher->rates()])
 

@@ -46,56 +46,56 @@
                 <div class="registration-package-statistics-icon">
                     <img src="/assets/default/img/icons/play.svg" alt="">
                 </div>
-                <span class="font-14 text-dark-blue font-weight-bold mt-5">
+                <span class="font-16 text-dark-blue font-weight-bold mt-5">
                     @if(!empty($activePackage) and !empty($activePackage->courses_count))
                         {{ $accountStatistics['myCoursesCount'] }}/{{ $activePackage->courses_count }}
                     @else
                         {{ trans('update.unlimited') }}
                     @endif
                 </span>
-                <span class="font-14 font-weight-500 text-gray">{{ trans('product.courses') }}</span>
+                <span class="font-16 font-weight-500 text-gray">{{ trans('product.courses') }}</span>
             </div>
 
             <div class="registration-package-statistics d-flex flex-column align-items-center">
                 <div class="registration-package-statistics-icon">
                     <img src="/assets/default/img/icons/video-2.svg" alt="">
                 </div>
-                <span class="font-14 text-dark-blue font-weight-bold mt-5">
+                <span class="font-16 text-dark-blue font-weight-bold mt-5">
                     @if(!empty($activePackage) and !empty($activePackage->courses_capacity))
                         {{ $activePackage->courses_capacity }}
                     @else
                         {{ trans('update.unlimited') }}
                     @endif
                 </span>
-                <span class="font-14 font-weight-500 text-gray">{{ trans('update.live_students') }}</span>
+                <span class="font-16 font-weight-500 text-gray">{{ trans('update.live_students') }}</span>
             </div>
 
             <div class="registration-package-statistics d-flex flex-column align-items-center">
                 <div class="registration-package-statistics-icon">
                     <img src="/assets/default/img/icons/clock.svg" alt="">
                 </div>
-                <span class="font-14 text-dark-blue font-weight-bold mt-5">
+                <span class="font-16 text-dark-blue font-weight-bold mt-5">
                     @if(!empty($activePackage) and !empty($activePackage->meeting_count))
                         {{ $accountStatistics['myMeetingCount'] }}/{{ $activePackage->meeting_count }}
                     @else
                         {{ trans('update.unlimited') }}
                     @endif
                 </span>
-                <span class="font-14 font-weight-500 text-gray">{{ trans('update.meeting_hours') }}</span>
+                <span class="font-16 font-weight-500 text-gray">{{ trans('update.meeting_hours') }}</span>
             </div>
 
             <div class="registration-package-statistics d-flex flex-column align-items-center">
                 <div class="registration-package-statistics-icon">
                     <img src="/assets/default/img/activity/products.svg" alt="">
                 </div>
-                <span class="font-14 text-dark-blue font-weight-bold mt-5">
+                <span class="font-16 text-dark-blue font-weight-bold mt-5">
                     @if(!empty($activePackage) and !empty($activePackage->product_count))
                         {{ $accountStatistics['myProductCount'] }}/{{ $activePackage->product_count }}
                     @else
                         {{ trans('update.unlimited') }}
                     @endif
                 </span>
-                <span class="font-14 font-weight-500 text-gray">{{ trans('update.products') }}</span>
+                <span class="font-16 font-weight-500 text-gray">{{ trans('update.products') }}</span>
             </div>
 
             @if($authUser->isOrganization())
@@ -103,28 +103,28 @@
                     <div class="registration-package-statistics-icon">
                         <img src="/assets/default/img/icons/users.svg" alt="">
                     </div>
-                    <span class="font-14 text-dark-blue font-weight-bold mt-5">
+                    <span class="font-16 text-dark-blue font-weight-bold mt-5">
                         @if(!empty($activePackage) and !empty($activePackage->instructors_count))
                             {{ $accountStatistics['myInstructorsCount'] }}/{{ $activePackage->instructors_count }}
                         @else
                             {{ trans('update.unlimited') }}
                         @endif
                     </span>
-                    <span class="font-14 font-weight-500 text-gray">{{ trans('home.instructors') }}</span>
+                    <span class="font-16 font-weight-500 text-gray">{{ trans('home.instructors') }}</span>
                 </div>
 
                 <div class="registration-package-statistics d-flex flex-column align-items-center">
                     <div class="registration-package-statistics-icon">
                         <img src="/assets/default/img/icons/user.svg" alt="">
                     </div>
-                    <span class="font-14 text-dark-blue font-weight-bold mt-5">
+                    <span class="font-16 text-dark-blue font-weight-bold mt-5">
                         @if(!empty($activePackage) and !empty($activePackage->students_count))
                             {{ $accountStatistics['myStudentsCount'] }}/{{ $activePackage->students_count }}
                         @else
                             {{ trans('update.unlimited') }}
                         @endif
                     </span>
-                    <span class="font-14 font-weight-500 text-gray">{{ trans('public.students') }}</span>
+                    <span class="font-16 font-weight-500 text-gray">{{ trans('public.students') }}</span>
                 </div>
             @endif
         </div>
@@ -149,7 +149,7 @@
                         </div>
 
                         <h3 class="mt-20 font-30 text-secondary">{{ $package->title }}</h3>
-                        <p class="font-weight-500 font-14 text-gray mt-10">{{ $package->description }}</p>
+                        <p class="font-weight-500 font-16 text-gray mt-10">{{ $package->description }}</p>
 
                         <div class="d-flex align-items-start text-primary mt-30">
                             <span class="font-36 line-height-1">{{ addCurrencyToPrice($package->price) }}</span>

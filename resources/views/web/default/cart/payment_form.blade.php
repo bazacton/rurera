@@ -21,7 +21,7 @@
                 </label>
                 <p class="font-weight-500 text-dark-blue">
                     {{ trans('financial.pay_via') }}
-                    <span class="font-weight-bold font-14">{{ $paymentChannel->title }}</span>
+                    <span class="font-weight-bold font-16">{{ $paymentChannel->title }}</span>
                 </p>
             </div>
             @endforeach

@@ -14,7 +14,7 @@
 
         @if( ($product->point - $authUser->getRewardPoints()) > 0)
         <div class="product-price-box mt-10">
-            <span class="real font-15" itemprop="price"><i data-feather="zap" width="20" height="20" class=""></i> {{ ($product->point - $authUser->getRewardPoints()) }} Coins <span class="coins-remaining">Remaining</span></span>
+            <span class="real font-16" itemprop="price"><i data-feather="zap" width="20" height="20" class=""></i> {{ ($product->point - $authUser->getRewardPoints()) }} Coins <span class="coins-remaining">Remaining</span></span>
         </div>
         @endif
     </figcaption>

@@ -193,7 +193,7 @@ $user_subscribed_for = isset( $user_subscribed_for)? $user_subscribed_for : 1;
                                         </div>
                                         <div class="reviews-text">
                                             <a href="#">Lynn Burkitt<span>reviewed</span>TENS Machines Australia</a>
-                                            <p class="font-14">""Easy to order and fast free postage.""</p>
+                                            <p class="font-16">""Easy to order and fast free postage.""</p>
                                         </div>
                                     </div>
                                 </div>

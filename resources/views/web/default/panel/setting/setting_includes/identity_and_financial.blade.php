@@ -2,9 +2,9 @@
     <h2 class="section-title after-line">{{ trans('site.identity_and_financial') }}</h2>
     <div class="mt-15">
         @if($user->financial_approval)
-            <p class="font-14 text-primary">{{ trans('site.identity_and_financial_verified') }}</p>
+            <p class="font-16 text-primary">{{ trans('site.identity_and_financial_verified') }}</p>
         @else
-            <p class="font-14 text-danger">{{ trans('site.identity_and_financial_not_verified') }}</p>
+            <p class="font-16 text-danger">{{ trans('site.identity_and_financial_not_verified') }}</p>
         @endif
     </div>
 

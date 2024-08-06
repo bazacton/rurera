@@ -72,7 +72,7 @@
                                     </div>
                                     <a href="{{ $teacher->getProfileUrl() }}">
                                         <h4 class="font-16 font-weight-bold text-dark-blue mt-10">{{ $teacher->get_full_name() }}</h4>
-                                        <span class="d-block font-14 text-gray mt-5">{{ $teacher->bio }}</span>
+                                        <span class="d-block font-16 text-gray mt-5">{{ $teacher->bio }}</span>
                                     </a>
                                 </div>
                             </div>

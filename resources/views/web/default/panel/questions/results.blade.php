@@ -139,7 +139,7 @@
 
             <form action="/panel/quizzes/results" method="get" class="">
                 <div class="d-flex align-items-center flex-row-reverse flex-md-row justify-content-start justify-content-md-center mt-20 mt-md-0">
-                    <label class="mb-0 mr-10 cursor-pointer font-14 text-gray font-weight-500" for="onlyOpenQuizzesSwitch">{{ trans('quiz.show_only_open_results') }}</label>
+                    <label class="mb-0 mr-10 cursor-pointer font-16 text-gray font-weight-500" for="onlyOpenQuizzesSwitch">{{ trans('quiz.show_only_open_results') }}</label>
                     <div class="custom-control custom-switch">
                         <input type="checkbox" name="open_results" class="custom-control-input" id="onlyOpenQuizzesSwitch" @if(request()->get('open_results',null) == 'on') checked @endif>
                         <label class="custom-control-label" for="onlyOpenQuizzesSwitch"></label>

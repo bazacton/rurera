@@ -3,7 +3,7 @@
 @endphp
 
 <div class="cookie-security-dialog p-20 bg-gray rounded-lg">
-    <h3 class="font-14 font-weight-bold text-white">{{ trans('update.your_privacy') }}</h3>
+    <h3 class="font-16 font-weight-bold text-white">{{ trans('update.your_privacy') }}</h3>
     <p class="mt-5 text-white font-12">{{ trans('update.your_privacy_hint') }}</p>
 
     <div class="mt-10 d-flex flex-wrap align-items-center">
@@ -31,7 +31,7 @@
                             <input type="checkbox" name="settings" value="{{ mb_strtolower(str_replace(' ','_',$cookieModalItem['title'])) }}" class="custom-control-input" {{ $isRequiredModalItem ? ' checked="checked" disabled="disabled" ' : '' }} id="cookieModalItem{{ $cookieModalItemKey }}_record">
                             <label class="custom-control-label" for="cookieModalItem{{ $cookieModalItemKey }}_record"></label>
                         </div>
-                        <label class="cursor-pointer font-14 text-gray mb-0 {{ $isRequiredModalItem ? 'c-not-allowed' : '' }}" for="cookieModalItem{{ $cookieModalItemKey }}_record">{{ $cookieModalItem['title'] }}</label>
+                        <label class="cursor-pointer font-16 text-gray mb-0 {{ $isRequiredModalItem ? 'c-not-allowed' : '' }}" for="cookieModalItem{{ $cookieModalItemKey }}_record">{{ $cookieModalItem['title'] }}</label>
 
                         @if($isRequiredModalItem)
                             <input type="hidden" name="settings" value="{{ mb_strtolower(str_replace(' ','_',$cookieModalItem['title'])) }}">
@@ -61,7 +61,7 @@
         <button type="button" class="js-accept-all-cookies d-inline-flex d-md-none btn btn-outline-primary btn-sm mx-15">{{ trans('update.accept_all') }}</button>
         <button type="button" class="js-accept-all-cookies d-none d-md-inline-flex btn btn-outline-primary btn-sm mx-15">{{ trans('update.accept_all_cookies') }}</button>
 
-        <button type="button" class="btn-transparent close-swl ml-auto font-14 text-danger">{{ trans('public.cancel') }}</button>
+        <button type="button" class="btn-transparent close-swl ml-auto font-16 text-danger">{{ trans('public.cancel') }}</button>
     </div>
 </div>
 

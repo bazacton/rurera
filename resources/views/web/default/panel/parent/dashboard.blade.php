@@ -54,7 +54,7 @@
 									</div>
 
 									<div class="col-12 col-lg-5 mt-10 mt-lg-0">
-										<span class="font-weight-500 text-gray font-14"><p>By granting them access, you are allowing the {{$studentsRequestObj->requestBy->get_full_name()}} to manage the {{$studentsRequestObj->student->get_full_name()}} account.</p></span>
+										<span class="font-weight-500 text-gray font-16"><p>By granting them access, you are allowing the {{$studentsRequestObj->requestBy->get_full_name()}} to manage the {{$studentsRequestObj->student->get_full_name()}} account.</p></span>
 									</div>
 
 									<div class="col-12 col-lg-4 mt-10 mt-lg-0 text-right">
@@ -160,7 +160,7 @@
 								
                                     <div class="row align-items-center">
 										<a href="/{{panelRoute()}}/students/{{$childObj->username}}" class="col-auto">
-                                            <h6 class="listing-title font-14 font-weight-500">Student</h6>
+                                            <h6 class="listing-title font-16 font-weight-500">Student</h6>
                                             <img
                                                         src="{{$childObj->getAvatar()}}"
                                                         alt="{{$childObj->get_full_name()}}"
@@ -168,15 +168,15 @@
 										</a>
 
 										<a href="/{{panelRoute()}}/students/{{$childObj->username}}" class="col-auto  ms-2">
-												<h6 class="font-15 font-weight-normal">{{$childObj->get_full_name()}}</h6>
+												<h6 class="font-16 font-weight-normal">{{$childObj->get_full_name()}}</h6>
 												
 												<small class="text-muted">
 													{{isset($childObj->userYear->id )? $childObj->userYear->getTitleAttribute() : ''}} {{isset($childObj->userClass->title)? $childObj->userClass->title : ''}} {{isset( $childObj->userSection->title )? $childObj->userSection->title : ''}}
 												</small>
 										</a>
                                         <div class="col-auto last-activity">
-                                            <h6 class="listing-title font-14 font-weight-500">Membership</h6>
-                                            <span class="font-14 d-block">
+                                            <h6 class="listing-title font-16 font-weight-500">Membership</h6>
+                                            <span class="font-16 d-block">
                                                 @php $package_id = 0;
 
                                                 @endphp
@@ -197,21 +197,21 @@
                                             </span>
                                         </div>
 										<a href="/{{panelRoute()}}/students/{{$childObj->username}}" class="col-auto last-activity">
-                                            <h6 class="listing-title font-14 font-weight-500">School</h6>
-                                            <span class="font-14 d-block">
+                                            <h6 class="listing-title font-16 font-weight-500">School</h6>
+                                            <span class="font-16 d-block">
                                                 {{isset($childObj->userSchool->title)? $childObj->userSchool->title : '-'}}
                                             </span>
                                         </a>
 
 										<a href="/{{panelRoute()}}/students/{{$childObj->username}}" class="col-auto last-activity">
-                                            <h6 class="listing-title font-14 font-weight-500">Last Activity</h6>
-                                            <span class="font-15 d-block"><strong class="font-weight-normal d-block">{{ ($childObj->getLastActivity() != '')? dateTimeFormat($childObj->getLastActivity(), 'j M Y') : '' }}</strong>
+                                            <h6 class="listing-title font-16 font-weight-500">Last Activity</h6>
+                                            <span class="font-16 d-block"><strong class="font-weight-normal d-block">{{ ($childObj->getLastActivity() != '')? dateTimeFormat($childObj->getLastActivity(), 'j M Y') : '' }}</strong>
                                                 {{ ($childObj->getLastActivity() != '')? 'Last Activity' : '' }}
                                             </span>
                                         </a>
                                         <div class="col-auto ms-auto last-activity profile-dropdown">
-                                            <h6 class="listing-title font-14 font-weight-500">Action</h6>
-                                            <a href="javascript:;" class="font-15 font-weight-normal">
+                                            <h6 class="listing-title font-16 font-weight-500">Action</h6>
+                                            <a href="javascript:;" class="font-16 font-weight-normal">
                                                 <span class="icon-box">
                                                     <img src="/assets/default/svgs/dots-circle.svg" alt="">
                                                 </span>

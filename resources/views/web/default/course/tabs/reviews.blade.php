@@ -18,28 +18,28 @@
                 <div class="progress course-progress rounded-sm">
                     <span class="progress-bar rounded-sm" style="width: {{ $course->reviews->avg('content_quality') / 5 * 100 }}%"></span>
                 </div>
-                <span class="ml-15 font-14 text-gray text-left">{{ trans('product.content_quality') }} ({{ $course->reviews->count() > 0 ? round($course->reviews->avg('content_quality'), 1) : 0 }})</span>
+                <span class="ml-15 font-16 text-gray text-left">{{ trans('product.content_quality') }} ({{ $course->reviews->count() > 0 ? round($course->reviews->avg('content_quality'), 1) : 0 }})</span>
             </div>
 
             <div class="mt-25 d-flex align-items-center">
                 <div class="progress course-progress rounded-sm">
                     <span class="progress-bar rounded-sm" style="width: {{ $course->reviews->avg('instructor_skills') / 5 * 100 }}%"></span>
                 </div>
-                <span class="ml-15 font-14 text-gray text-left">{{ trans('product.instructor_skills') }} ({{ $course->reviews->count() > 0 ? round($course->reviews->avg('instructor_skills'), 1) : 0 }})</span>
+                <span class="ml-15 font-16 text-gray text-left">{{ trans('product.instructor_skills') }} ({{ $course->reviews->count() > 0 ? round($course->reviews->avg('instructor_skills'), 1) : 0 }})</span>
             </div>
 
             <div class="mt-25 d-flex align-items-center">
                 <div class="progress course-progress rounded-sm">
                     <span class="progress-bar rounded-sm" style="width: {{ $course->reviews->avg('purchase_worth') / 5 * 100 }}%"></span>
                 </div>
-                <span class="ml-15 font-14 text-gray text-left">{{ trans('product.purchase_worth') }} ({{ $course->reviews->count() > 0 ? round($course->reviews->avg('purchase_worth'), 1) : 0 }})</span>
+                <span class="ml-15 font-16 text-gray text-left">{{ trans('product.purchase_worth') }} ({{ $course->reviews->count() > 0 ? round($course->reviews->avg('purchase_worth'), 1) : 0 }})</span>
             </div>
 
             <div class="mt-25 d-flex align-items-center">
                 <div class="progress course-progress rounded-sm">
                     <span class="progress-bar rounded-sm" style="width: {{ $course->reviews->avg('support_quality') / 5 * 100 }}%"></span>
                 </div>
-                <span class="ml-15 font-14 text-gray text-left">{{ trans('product.support_quality') }} ({{ $course->reviews->count() > 0 ? round($course->reviews->avg('support_quality'), 1) : 0 }})</span>
+                <span class="ml-15 font-16 text-gray text-left">{{ trans('product.support_quality') }} ({{ $course->reviews->count() > 0 ? round($course->reviews->avg('support_quality'), 1) : 0 }})</span>
             </div>
 
         </div>
@@ -60,7 +60,7 @@
         <div class="reviews-stars row align-items-center">
 
             <div class="col-6 col-md-3 d-flex flex-column align-items-center justify-content-center barrating-stars">
-                <span class="font-14 text-gray">{{ trans('product.content_quality') }}</span>
+                <span class="font-16 text-gray">{{ trans('product.content_quality') }}</span>
                 <select name="content_quality" data-rate="1">
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -71,7 +71,7 @@
             </div>
 
             <div class="col-6 col-md-3 d-flex flex-column align-items-center justify-content-center barrating-stars">
-                <span class="font-14 text-gray">{{ trans('product.instructor_skills') }}</span>
+                <span class="font-16 text-gray">{{ trans('product.instructor_skills') }}</span>
                 <select name="instructor_skills" data-rate="1">
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -82,7 +82,7 @@
             </div>
 
             <div class="col-6 col-md-3 d-flex flex-column align-items-center justify-content-center barrating-stars">
-                <span class="font-14 text-gray">{{ trans('product.purchase_worth') }}</span>
+                <span class="font-16 text-gray">{{ trans('product.purchase_worth') }}</span>
                 <select name="purchase_worth" data-rate="1">
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -93,7 +93,7 @@
             </div>
 
             <div class="col-6 col-md-3 d-flex flex-column align-items-center justify-content-center barrating-stars">
-                <span class="font-14 text-gray">{{ trans('product.support_quality') }}</span>
+                <span class="font-16 text-gray">{{ trans('product.support_quality') }}</span>
                 <select name="support_quality" data-rate="1">
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -146,7 +146,7 @@
                         </div>
                     </div>
 
-                    <div class="mt-20 text-gray font-14">
+                    <div class="mt-20 text-gray font-16">
                         {{ clean($review->description,'description') }}
                     </div>
 

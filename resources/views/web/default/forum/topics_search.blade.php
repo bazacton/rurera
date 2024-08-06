@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="col-12 col-md-5">
                     <h3 class="font-16 font-weight-bold text-secondary">{{ trans('update.still_no_luck') }}</h3>
-                    <div class="d-flex align-items-center mt-5 font-14 text-gray font-weight-500">{{ trans('update.try_again_or_create_a_topic_for_it') }}</div>
+                    <div class="d-flex align-items-center mt-5 font-16 text-gray font-weight-500">{{ trans('update.try_again_or_create_a_topic_for_it') }}</div>
                 </div>
 
                 <div class="col-12 col-md-7  mt-15 mt-lg-0">
@@ -51,8 +51,8 @@
                 <div class="col-12 col-md-9">
 
                     <div class="py-15 px-20 rounded-sm bg-info-light border mb-15">
-                        <h4 class="font-14 font-weight-bold text-gray">{{ trans('update.search_results_found',['count' => $resultCount]) }}</h4>
-                        <p class="mt-5 font-14 text-gray">{{ trans('update.explore_them_from_the_following_list') }}</p>
+                        <h4 class="font-16 font-weight-bold text-gray">{{ trans('update.search_results_found',['count' => $resultCount]) }}</h4>
+                        <p class="mt-5 font-16 text-gray">{{ trans('update.explore_them_from_the_following_list') }}</p>
                     </div>
 
                     @if(!empty($topics) and count($topics))
@@ -69,7 +69,7 @@
                                                 <a href="{{ $topic->getPostsUrl() }}" class="">
                                                     <h4 class="font-16 font-weight-bold text-secondary text-ellipsis">{{ $topic->title }}</h4>
                                                 </a>
-                                                <span class="d-block font-14 text-gray">{{ trans('public.by') }} {{ $topic->creator->get_full_name() }} {{ trans('public.in') }} {{ dateTimeFormat($topic->created_at,'j M Y | H:i') }}</span>
+                                                <span class="d-block font-16 text-gray">{{ trans('public.by') }} {{ $topic->creator->get_full_name() }} {{ trans('public.in') }} {{ dateTimeFormat($topic->created_at,'j M Y | H:i') }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -77,7 +77,7 @@
                                     <div class="col-12 col-md-6">
                                         <div class="row">
                                             <div class="col-3 text-center">
-                                                <span class="d-block font-14 text-gray font-weight-bold">{{ $topic->posts_count }}</span>
+                                                <span class="d-block font-16 text-gray font-weight-bold">{{ $topic->posts_count }}</span>
                                                 <span class="d-block font-12 text-gray">{{ trans('site.posts') }}</span>
                                             </div>
                                             <div class="col-3 d-flex align-items-center">
@@ -100,7 +100,7 @@
                                                             <img src="{{ $topic->lastPost->user->getAvatar(30) }}" class="img-cover rounded-circle" alt="{{ $topic->lastPost->user->get_full_name() }}">
                                                         </div>
                                                         <div class="ml-10">
-                                                            <h4 class="font-14 font-weight-500 text-gray">{{ $topic->lastPost->user->get_full_name() }}</h4>
+                                                            <h4 class="font-16 font-weight-500 text-gray">{{ $topic->lastPost->user->get_full_name() }}</h4>
                                                             <span class="d-block font-12 font-weight-500 text-gray">{{ trans('public.in') }} {{ dateTimeFormat($topic->lastPost->created_at,'j M Y | H:i') }}</span>
                                                         </div>
                                                     </div>
@@ -124,7 +124,7 @@
 
                             <div class="d-flex align-items-center flex-column mt-10 text-center">
                                 <h3 class="font-20 font-weight-bold text-dark-blue text-center">{{ trans('update.result_not_found') }}</h3>
-                                <p class="font-14 font-weight-500 text-gray mt-5 text-center">{{ trans('update.try_another_word_to_reach_results') }}</p>
+                                <p class="font-16 font-weight-500 text-gray mt-5 text-center">{{ trans('update.try_another_word_to_reach_results') }}</p>
                             </div>
                         </div>
                     @endif
@@ -143,7 +143,7 @@
                                         </div>
                                         <div class="ml-10">
                                             <a href="{{ $topUser->getProfileUrl() }}" class="d-block">
-                                                <span class="font-14 font-weight-500 text-secondary">{{ $topUser->get_full_name() }}</span>
+                                                <span class="font-16 font-weight-500 text-secondary">{{ $topUser->get_full_name() }}</span>
                                             </a>
                                             <span class="d-block font-12 font-weight-500 text-gray">{{ trans('update.n_posts',['count' => $topUser->posts]) }} | {{ trans('update.n_topics',['count' => $topUser->topics]) }}</span>
                                         </div>
@@ -163,7 +163,7 @@
                                 </div>
                                 <div class="ml-10">
                                     <a href="{{ $popularTopic->getPostsUrl() }}" class="d-block">
-                                        <span class="font-14 font-weight-500 text-secondary">{{ $popularTopic->title }}</span>
+                                        <span class="font-16 font-weight-500 text-secondary">{{ $popularTopic->title }}</span>
                                     </a>
                                     <span class="d-block font-12 font-weight-500 text-gray">{{ trans('public.by') }} {{ $popularTopic->creator->get_full_name() }} | {{ trans('update.n_posts',['count' => $popularTopic->posts_count]) }}</span>
                                 </div>

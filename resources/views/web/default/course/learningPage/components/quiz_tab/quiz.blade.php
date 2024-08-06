@@ -7,7 +7,7 @@
 
     <div class="d-flex align-items-center">
         <div class="flex-grow-1">
-            <span class="font-weight-500 font-14 text-dark-blue d-block">{{ $item->title }}</span>
+            <span class="font-weight-500 font-16 text-dark-blue d-block">{{ $item->title }}</span>
 
             <div class="d-flex align-items-center justify-content-between">
                 <span class="font-12 text-gray d-block">

@@ -24,14 +24,14 @@
         </div>
 
         @if(!empty($upcomingCourse->category))
-            <span class="d-block font-14 mt-10">{{ trans('public.in') }} <a href="{{ $upcomingCourse->category->getUrl() }}" target="_blank" class="text-decoration-underline">{{ $upcomingCourse->category->title }}</a></span>
+            <span class="d-block font-16 mt-10">{{ trans('public.in') }} <a href="{{ $upcomingCourse->category->getUrl() }}" target="_blank" class="text-decoration-underline">{{ $upcomingCourse->category->title }}</a></span>
         @endif
 
         <div class="user-inline-avatar d-flex align-items-center mt-10">
             <div class="avatar bg-gray200">
                 <img src="{{ $upcomingCourse->teacher->getAvatar() }}" class="img-cover" alt="{{ $upcomingCourse->teacher->get_full_name() }}">
             </div>
-            <a href="{{ $upcomingCourse->teacher->getProfileUrl() }}" target="_blank" class="user-name ml-5 font-14">{{ $upcomingCourse->teacher->get_full_name() }}</a>
+            <a href="{{ $upcomingCourse->teacher->getProfileUrl() }}" target="_blank" class="user-name ml-5 font-16">{{ $upcomingCourse->teacher->get_full_name() }}</a>
         </div>
 
 
@@ -41,7 +41,7 @@
                 @if(!empty($upcomingCourse->duration))
                     <div class="d-flex align-items-center">
                         <i data-feather="clock" width="20" height="20" class="webinar-icon"></i>
-                        <span class="duration ml-5 font-14">{{ convertMinutesToHourAndMinute($upcomingCourse->duration) }} {{ trans('home.hours') }}</span>
+                        <span class="duration ml-5 font-16">{{ convertMinutesToHourAndMinute($upcomingCourse->duration) }} {{ trans('home.hours') }}</span>
                     </div>
                 @endif
 
@@ -53,7 +53,7 @@
 
                     <div class="d-flex align-items-center">
                         <i data-feather="calendar" width="20" height="20" class="webinar-icon"></i>
-                        <span class="date-published ml-5 font-14">{{ dateTimeFormat($upcomingCourse->published_date, 'j M Y') }}</span>
+                        <span class="date-published ml-5 font-16">{{ dateTimeFormat($upcomingCourse->published_date, 'j M Y') }}</span>
                     </div>
                 @endif
             </div>
@@ -62,7 +62,7 @@
                 @if(!empty($upcomingCourse->price))
                     <span class="real">{{ handlePrice($upcomingCourse->price) }}</span>
                 @else
-                    <span class="real font-14">{{ trans('public.free') }}</span>
+                    <span class="real font-16">{{ trans('public.free') }}</span>
                 @endif
             </div>
         </div>

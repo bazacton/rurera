@@ -40,12 +40,12 @@
                         <div class="w-100 mt-10 d-flex align-items-center justify-content-center justify-content-lg-start">
                             <div class="d-flex flex-column followers-status">
                                 <span class="font-20 font-weight-bold text-dark-blue">{{ $userFollowers->count() }}</span>
-                                <span class="font-14 text-gray">{{ trans('panel.followers') }}</span>
+                                <span class="font-16 text-gray">{{ trans('panel.followers') }}</span>
                             </div>
 
                             <div class="d-flex flex-column ml-25 pl-5 following-status">
                                 <span class="font-20 font-weight-bold text-dark-blue">{{ $userFollowing->count() }}</span>
-                                <span class="font-14 text-gray">{{ trans('panel.following') }}</span>
+                                <span class="font-16 text-gray">{{ trans('panel.following') }}</span>
                             </div>
                         </div>
 
@@ -84,7 +84,7 @@
                         <img src="/assets/default/img/profile/students.svg" alt="">
                     </div>
                     <span class="font-20 text-dark-blue font-weight-bold mt-5">{{ $user->students_count }}</span>
-                    <span class="font-14 text-gray">{{ trans('quiz.students') }}</span>
+                    <span class="font-16 text-gray">{{ trans('quiz.students') }}</span>
                 </div>
 
                 <div class="col-6 col-md-3 user-profile-state d-flex flex-column align-items-center">
@@ -92,7 +92,7 @@
                         <img src="/assets/default/img/profile/webinars.svg" alt="">
                     </div>
                     <span class="font-20 text-dark-blue font-weight-bold mt-5">{{ count($webinars) }}</span>
-                    <span class="font-14 text-gray">{{ trans('webinars.classes') }}</span>
+                    <span class="font-16 text-gray">{{ trans('webinars.classes') }}</span>
                 </div>
 
                 <div class="col-6 col-md-3 mt-20 mt-md-0 user-profile-state d-flex flex-column align-items-center">
@@ -100,7 +100,7 @@
                         <img src="/assets/default/img/profile/reviews.svg" alt="">
                     </div>
                     <span class="font-20 text-dark-blue font-weight-bold mt-5">{{ $user->reviewsCount() }}</span>
-                    <span class="font-14 text-gray">{{ trans('product.reviews') }}</span>
+                    <span class="font-16 text-gray">{{ trans('product.reviews') }}</span>
                 </div>
 
 
@@ -109,7 +109,7 @@
                         <img src="/assets/default/img/profile/appointments.svg" alt="">
                     </div>
                     <span class="font-20 text-dark-blue font-weight-bold mt-5">{{ $appointments }}</span>
-                    <span class="font-14 text-gray">{{ trans('site.appointments') }}</span>
+                    <span class="font-16 text-gray">{{ trans('site.appointments') }}</span>
                 </div>
 
             </div>

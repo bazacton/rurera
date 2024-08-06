@@ -26,7 +26,7 @@
                 <i data-feather="mic" width="24" height="24" class=""></i>
             </span>
 
-            <span class="mt-1 text-gray font-14">{{ trans('update.microphone') }}</span>
+            <span class="mt-1 text-gray font-16">{{ trans('update.microphone') }}</span>
         </button>
 
 
@@ -35,13 +35,13 @@
                 <i data-feather="video" width="24" height="24" class=""></i>
             </span>
 
-            <span class="mt-1 text-gray font-14">{{ trans('update.camera') }}</span>
+            <span class="mt-1 text-gray font-16">{{ trans('update.camera') }}</span>
         </button>
     @endif
 
     <div class="stream-bottom-actions d-flex flex-column align-items-center">
         <i data-feather="clock" width="24" height="24" class=""></i>
-        <span id="streamTimer" class="mt-1 font-14 text-gray d-flex align-items-center justify-content-center">
+        <span id="streamTimer" class="mt-1 font-16 text-gray d-flex align-items-center justify-content-center">
             <span class="d-flex align-items-center justify-content-center text-dark time-item hours">00</span>:
             <span class="d-flex align-items-center justify-content-center text-dark time-item minutes">00</span>:
             <span class="d-flex align-items-center justify-content-center text-dark time-item seconds">00</span>
@@ -51,12 +51,12 @@
     @if($isHost)
         <button type="button" id="shareScreen" class="stream-bottom-actions btn-transparent d-flex flex-column align-items-center ">
             <i data-feather="airplay" width="24" height="24" class=""></i>
-            <span class="mt-1 text-gray font-14">{{ trans('update.share_screen') }}</span>
+            <span class="mt-1 text-gray font-16">{{ trans('update.share_screen') }}</span>
         </button>
 
         <button type="button" class="stream-bottom-actions btn-transparent d-flex flex-column align-items-center text-danger" data-toggle="modal" data-target="#leaveModal">
             <i data-feather="x-square" width="24" height="24" class=" "></i>
-            <span class="mt-1 font-14">{{ trans('update.end_live') }}</span>
+            <span class="mt-1 font-16">{{ trans('update.end_live') }}</span>
         </button>
 
         <div class="modal fade" id="leaveModal" tabindex="-1" role="dialog" aria-labelledby="leaveModalLabel" aria-hidden="true">

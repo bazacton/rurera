@@ -11,7 +11,7 @@
                                         <i data-feather="award" width="20" height="20" class="text-gray"></i>
                                     </span>
 
-                                <span class="font-weight-bold font-14 text-secondary d-block">{{ $quiz->title }}</span>
+                                <span class="font-weight-bold font-16 text-secondary d-block">{{ $quiz->title }}</span>
                             </div>
 
                             <i class="collapse-chevron-icon" data-feather="chevron-down" height="20" href="#collapseQuizCertificate{{ !empty($quiz) ? $quiz->id :'record' }}" aria-controls="collapseQuizCertificate{{ !empty($quiz) ? $quiz->id :'record' }}" data-parent="#certificateAccordion" role="button" data-toggle="collapse" aria-expanded="true"></i>
@@ -22,13 +22,13 @@
                                 <div class="d-flex align-items-center justify-content-between mt-20">
                                     <div class="d-flex align-items-center">
                                         @if(!empty($quiz->result))
-                                            <div class="d-flex align-items-center text-gray text-center font-14 mr-20">
+                                            <div class="d-flex align-items-center text-gray text-center font-16 mr-20">
                                                 <i data-feather="calendar" width="18" height="18" class="text-gray mr-5"></i>
                                                 <span class="line-height-1">{{ dateTimeFormat($quiz->result->created_at, 'j M Y') }}</span>
                                             </div>
                                         @endif
 
-                                        <div class="d-flex align-items-center text-gray text-center font-14 mr-20">
+                                        <div class="d-flex align-items-center text-gray text-center font-16 mr-20">
                                             <i data-feather="check-square" width="18" height="18" class="text-gray mr-5"></i>
                                             <span class="line-height-1">{{ trans('update.passed_grade') }}: {{ $quiz->pass_mark }}/{{ $quiz->quizQuestions->sum('grade') }}</span>
                                         </div>

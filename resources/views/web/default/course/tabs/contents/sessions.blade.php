@@ -17,7 +17,7 @@
                     <i data-feather="bell" width="20" height="20" class="text-gray"></i>
                 </span>
             @endif
-            <span class="font-weight-bold text-secondary font-14">{{ $session->title }}</span>
+            <span class="font-weight-bold text-secondary font-16">{{ $session->title }}</span>
         </div>
 
         <i class="collapse-chevron-icon" data-feather="chevron-down" height="20" href="#collapseSession{{ !empty($session) ? $session->id :'record' }}" aria-controls="collapseSession{{ !empty($session) ? $session->id :'record' }}" data-parent="#{{ $accordionParent }}" role="button" data-toggle="collapse" aria-expanded="true"></i>
@@ -41,12 +41,12 @@
 
             <div class="d-flex align-items-center justify-content-between mt-20">
                 <div class="d-flex align-items-center">
-                    <div class="d-flex align-items-center text-gray text-center font-14 mr-20">
+                    <div class="d-flex align-items-center text-gray text-center font-16 mr-20">
                         <i data-feather="clock" width="18" height="18" class="text-gray mr-5"></i>
                         <span class="line-height-1">{{ convertMinutesToHourAndMinute($session->duration) }} {{ trans('home.hours') }}</span>
                     </div>
 
-                    <div class="d-flex align-items-center text-gray text-center font-14 mr-20">
+                    <div class="d-flex align-items-center text-gray text-center font-16 mr-20">
                         <i data-feather="calendar" width="18" height="18" class="text-gray mr-5"></i>
                         <span class="line-height-1">{{ dateTimeFormat($session->date, 'j M Y | H:i') }}</span>
                     </div>

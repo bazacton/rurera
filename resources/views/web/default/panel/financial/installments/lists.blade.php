@@ -8,7 +8,7 @@
                 <i data-feather="credit-card" width="18" height="18" class=""></i>
             </div>
             <div class="ml-10">
-                <div class="font-14 font-weight-bold ">{{ trans('update.overdue_installments') }}</div>
+                <div class="font-16 font-weight-bold ">{{ trans('update.overdue_installments') }}</div>
                 <div class="font-12 ">{{ trans('update.you_have_count_overdue_installments_please_pay_them_to_avoid_restrictions_and_negative_effects_on_your_account',['count' => $overdueInstallmentsCount]) }}</div>
             </div>
         </div>

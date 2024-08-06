@@ -68,7 +68,7 @@
                         <input type="radio" class="online-gateway" name="gateway" id="{{ $paymentChannel->class_name }}" @if(old('gateway') == $paymentChannel->class_name) checked @endif value="{{ $paymentChannel->class_name }}">
                         <label for="{{ $paymentChannel->class_name }}" class="rounded-sm p-20 p-lg-45 d-flex flex-column align-items-center justify-content-center">
                             <img src="{{ $paymentChannel->image }}" width="120" height="60" alt="">
-                            <p class="mt-30 font-14 font-weight-500 text-dark-blue">{{ trans('financial.pay_via') }}
+                            <p class="mt-30 font-16 font-weight-500 text-dark-blue">{{ trans('financial.pay_via') }}
                                 <span class="font-weight-bold">{{ $paymentChannel->title }}</span>
                             </p>
                         </label>
@@ -79,7 +79,7 @@
                     <input type="radio" name="gateway" id="offline" value="offline" @if(old('gateway') == 'offline' or !empty($editOfflinePayment)) checked @endif>
                     <label for="offline" class="rounded-sm p-20 p-lg-45 d-flex flex-column align-items-center justify-content-center">
                         <img src="/assets/default/img/activity/pay.svg" width="120" height="60" alt="">
-                        <p class="mt-30 font-14 font-weight-500 text-dark-blue">{{ trans('financial.pay_via') }}
+                        <p class="mt-30 font-16 font-weight-500 text-dark-blue">{{ trans('financial.pay_via') }}
                             <span class="font-weight-bold">{{ trans('financial.offline') }}</span>
                         </p>
                     </label>
@@ -91,7 +91,7 @@
 
                 <div class="row">
                     <div class="col-12 col-lg-3 mb-25 mb-lg-0">
-                        <label class="font-weight-500 font-14 text-dark-blue d-block">{{ trans('panel.amount') }}</label>
+                        <label class="font-weight-500 font-16 text-dark-blue d-block">{{ trans('panel.amount') }}</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text text-white font-16">
@@ -197,23 +197,23 @@
                             <div class="mt-15 mt-30 w-100">
 
                                 <div class="d-flex align-items-center justify-content-between">
-                                    <span class="font-14 font-weight-500 text-secondary">{{ trans('public.name') }}:</span>
-                                    <span class="font-14 font-weight-500 text-gray">{{ $siteBankAccount['title'] }}</span>
+                                    <span class="font-16 font-weight-500 text-secondary">{{ trans('public.name') }}:</span>
+                                    <span class="font-16 font-weight-500 text-gray">{{ $siteBankAccount['title'] }}</span>
                                 </div>
 
                                 <div class="d-flex align-items-center justify-content-between mt-10">
-                                    <span class="font-14 font-weight-500 text-secondary">{{ trans('financial.card_id') }}:</span>
-                                    <span class="font-14 font-weight-500 text-gray">{{ $siteBankAccount['card_id'] }}</span>
+                                    <span class="font-16 font-weight-500 text-secondary">{{ trans('financial.card_id') }}:</span>
+                                    <span class="font-16 font-weight-500 text-gray">{{ $siteBankAccount['card_id'] }}</span>
                                 </div>
 
                                 <div class="d-flex align-items-center justify-content-between mt-10">
-                                    <span class="font-14 font-weight-500 text-secondary">{{ trans('financial.account_id') }}:</span>
-                                    <span class="font-14 font-weight-500 text-gray">{{ $siteBankAccount['account_id'] }}</span>
+                                    <span class="font-16 font-weight-500 text-secondary">{{ trans('financial.account_id') }}:</span>
+                                    <span class="font-16 font-weight-500 text-gray">{{ $siteBankAccount['account_id'] }}</span>
                                 </div>
 
                                 <div class="d-flex align-items-center justify-content-between mt-10">
-                                    <span class="font-14 font-weight-500 text-secondary">{{ trans('financial.iban') }}:</span>
-                                    <span class="font-14 font-weight-500 text-gray">{{ $siteBankAccount['iban'] }}</span>
+                                    <span class="font-16 font-weight-500 text-secondary">{{ trans('financial.iban') }}:</span>
+                                    <span class="font-16 font-weight-500 text-gray">{{ $siteBankAccount['iban'] }}</span>
                                 </div>
                             </div>
                         </div>

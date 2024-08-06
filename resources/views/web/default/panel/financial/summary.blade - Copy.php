@@ -12,11 +12,11 @@
                             <table class="table text-center custom-table">
                                 <thead>
                                 <tr>
-                                    <th class="font-14 font-weight-500">{{ trans('public.title') }}</th>
-                                    <th class="font-14 font-weight-500">{{ trans('public.description') }}</th>
-                                    <th class="text-center font-14 font-weight-500">{{ trans('panel.amount') }} ({{ $currency }})</th>
-                                    <th class="text-center font-14 font-weight-500">{{ trans('public.creator') }}</th>
-                                    <th class="text-center font-14 font-weight-500">{{ trans('public.date') }}</th>
+                                    <th class="font-16 font-weight-500">{{ trans('public.title') }}</th>
+                                    <th class="font-16 font-weight-500">{{ trans('public.description') }}</th>
+                                    <th class="text-center font-16 font-weight-500">{{ trans('panel.amount') }} ({{ $currency }})</th>
+                                    <th class="text-center font-16 font-weight-500">{{ trans('public.creator') }}</th>
+                                    <th class="text-center font-16 font-weight-500">{{ trans('public.date') }}</th>
                                 </tr>
                                 </thead>
                                 <tbody>

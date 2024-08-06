@@ -44,14 +44,14 @@
         </div>
 
         @if(!empty($webinar->category))
-            <span class="d-block font-14 mt-10">{{ trans('public.in') }} <a href="{{ $webinar->category->getUrl() }}" target="_blank" class="text-decoration-underline">{{ $webinar->category->title }}</a></span>
+            <span class="d-block font-16 mt-10">{{ trans('public.in') }} <a href="{{ $webinar->category->getUrl() }}" target="_blank" class="text-decoration-underline">{{ $webinar->category->title }}</a></span>
         @endif
 
         <div class="user-inline-avatar d-flex align-items-center mt-10">
             <div class="avatar bg-gray200">
                 <img src="{{ $webinar->teacher->getAvatar() }}" class="img-cover" alt="{{ $webinar->teacher->get_full_name() }}">
             </div>
-            <a href="{{ $webinar->teacher->getProfileUrl() }}" target="_blank" class="user-name ml-5 font-14">{{ $webinar->teacher->get_full_name() }}</a>
+            <a href="{{ $webinar->teacher->getProfileUrl() }}" target="_blank" class="user-name ml-5 font-16">{{ $webinar->teacher->get_full_name() }}</a>
         </div>
 
         @include(getTemplate() . '.includes.webinar.rate',['rate' => $webinar->getRate()])
@@ -60,14 +60,14 @@
             <div class="d-flex align-items-center">
                 <div class="d-flex align-items-center">
                     <i data-feather="clock" width="20" height="20" class="webinar-icon"></i>
-                    <span class="duration ml-5 font-14">{{ convertMinutesToHourAndMinute($webinar->duration) }} {{ trans('home.hours') }}</span>
+                    <span class="duration ml-5 font-16">{{ convertMinutesToHourAndMinute($webinar->duration) }} {{ trans('home.hours') }}</span>
                 </div>
 
                 <div class="vertical-line h-25 mx-15"></div>
 
                 <div class="d-flex align-items-center">
                     <i data-feather="calendar" width="20" height="20" class="webinar-icon"></i>
-                    <span class="date-published ml-5 font-14">{{ dateTimeFormat(!empty($webinar->start_date) ? $webinar->start_date : $webinar->created_at,'j M Y') }}</span>
+                    <span class="date-published ml-5 font-16">{{ dateTimeFormat(!empty($webinar->start_date) ? $webinar->start_date : $webinar->created_at,'j M Y') }}</span>
                 </div>
             </div>
 
@@ -80,7 +80,7 @@
                         <span class="real">{{ handlePrice($webinar->price) }}</span>
                     @endif
                 @else
-                    <span class="real font-14">{{ trans('public.free') }}</span>
+                    <span class="real font-16">{{ trans('public.free') }}</span>
                 @endif
             </div>
         </div>

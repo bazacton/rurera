@@ -11,7 +11,7 @@
                 <div class="avatar bg-gray200">
                     <img src="{{ $bundle->teacher->getAvatar() }}" class="img-cover" alt="{{ $bundle->teacher->get_full_name() }}">
                 </div>
-                <a href="{{ $bundle->teacher->getProfileUrl() }}" target="_blank" class="user-name ml-5 font-14">{{ $bundle->teacher->get_full_name() }}</a>
+                <a href="{{ $bundle->teacher->getProfileUrl() }}" target="_blank" class="user-name ml-5 font-16">{{ $bundle->teacher->get_full_name() }}</a>
             </div>
 
             <a href="{{ $bundle->getUrl() }}">
@@ -31,7 +31,7 @@
                         <span class="real">{{ handlePrice($bundle->price) }}</span>
                     @endif
                 @else
-                    <span class="real font-14">{{ trans('public.free') }}</span>
+                    <span class="real font-16">{{ trans('public.free') }}</span>
                 @endif
             </div>
         </figcaption>

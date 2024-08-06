@@ -78,7 +78,7 @@ button:disabled {
                     <h5 class="mb-10">{{$packageObj->title}}</h5>
                     <p class="mb-10">Text here</p>
                     <div class="package-price mb-25" data-price_amount="{{$packageObj->price*$subscribed_for_months}}"><strong>{{ addCurrencyToPrice(($selected_package_price)) }}</strong> / {{$subscribed_for_label}}</div>
-                    <div class="packages-back-btn font-weight-500 mb-15 font-15" data-subscribed_for="{{$subscribed_for_months}}" data-user_id="{{$user_id}}">Change Package</div>
+                    <div class="packages-back-btn font-weight-500 mb-15 font-16" data-subscribed_for="{{$subscribed_for_months}}" data-user_id="{{$user_id}}">Change Package</div>
                 </div>
             </div>
         </div>

@@ -80,7 +80,7 @@
                 <div class="col-12 col-md-12 col-lg-3">
                     <form action="#">
                         <div class="d-flex align-items-center reading-levels">
-                            <select name="sort" class="form-control font-14">
+                            <select name="sort" class="form-control font-16">
                                 <option value="">All Reading Levels</option>
                                 <option value="newest">Newest</option>
                                 <option value="expensive">Highest Price</option>

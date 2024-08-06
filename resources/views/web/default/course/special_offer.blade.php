@@ -1,7 +1,7 @@
 <div class="special-offer-card d-flex flex-column flex-md-row align-items-center justify-content-between rounded-lg shadow-xs bg-white p-15 p-md-30">
     <div class="d-flex flex-column">
         <strong class="special-offer-title font-16 text-dark-blue font-weight-bold">{{ trans('panel.special_offer') }}</strong>
-        <span class="font-14 text-gray">{{ $activeSpecialOffer->name }}</span>
+        <span class="font-16 text-gray">{{ $activeSpecialOffer->name }}</span>
     </div>
 
     <div class="mt-20 mt-md-0 mb-30 mb-md-0">

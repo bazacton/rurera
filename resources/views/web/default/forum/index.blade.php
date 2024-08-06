@@ -9,7 +9,7 @@
                         <span>{{ trans('update.need_help?') }}</span><br/>
                         <span>{{ trans('update.create_a_topic_in_forum') }}</span>
                     </h1>
-                    <p class="font-14 text-gray mt-15">{{ trans('update.forum_top_section_hint') }}</p>
+                    <p class="font-16 text-gray mt-15">{{ trans('update.forum_top_section_hint') }}</p>
 
                     <div class="search-input bg-white p-10 flex-grow-1 mt-25">
                         <form action="/forums/search" method="get">
@@ -71,7 +71,7 @@
 
             <div class="text-center mb-30">
                 <h2 class="font-30 font-weight-bold text-secondary">{{ trans('update.featured_topics') }}</h2>
-                <p class="font-14 text-gray">{{ trans('update.featured_topics_hint') }}</p>
+                <p class="font-16 text-gray">{{ trans('update.featured_topics_hint') }}</p>
             </div>
 
             @foreach($featuredTopics as $featuredTopic)
@@ -84,7 +84,7 @@
                         <a href="{{ $featuredTopic->topic->getPostsUrl() }}" class="">
                             <h4 class="font-16 font-weight-bold text-dark">{{ $featuredTopic->topic->title }}</h4>
                         </a>
-                        <p class="font-14 text-gray">{!! truncate(strip_tags($featuredTopic->topic->description),100) !!}</p>
+                        <p class="font-16 text-gray">{!! truncate(strip_tags($featuredTopic->topic->description),100) !!}</p>
                         <div class="mt-15 d-flex align-items-end">
                             @if($featuredTopic->topic->posts_count > 0 or (!empty($featuredTopic->usersAvatars) and count($featuredTopic->usersAvatars)))
                                 <div class="forums-featured-card-users-avatar d-flex align-items-center mr-10">
@@ -118,7 +118,7 @@
         <section class="container forums-categories-section mt-30">
             <div class="text-center">
                 <h2 class="font-30 text-secondary font-weight-bold">{{ trans('update.forums') }}</h2>
-                <p class="font-14 text-gray mt-5">{{ trans('update.forums_categories_hints') }}</p>
+                <p class="font-16 text-gray mt-5">{{ trans('update.forums_categories_hints') }}</p>
             </div>
 
             @foreach($forums as $forum)
@@ -141,7 +141,7 @@
         <section class="container forum-recommended-topics-section position-relative">
             <div class="text-center">
                 <h2 class="font-30 font-weight-bold text-secondary">{{ trans('update.recommended_topics') }}</h2>
-                <p class="font-14 text-gray">{{ trans('update.recommended_topics_hint') }}</p>
+                <p class="font-16 text-gray">{{ trans('update.recommended_topics_hint') }}</p>
             </div>
 
             <div class="row mt-20 position-relative">
@@ -156,7 +156,7 @@
 
                             <div class="forum-recommended-topics__lists mt-5">
                                 @foreach($recommendedTopic->topics as $topic)
-                                    <a href="{{ $topic->getPostsUrl() }}" class="d-flex align-items-center text-gray font-14 font-weight-500 mt-15">
+                                    <a href="{{ $topic->getPostsUrl() }}" class="d-flex align-items-center text-gray font-16 font-weight-500 mt-15">
                                         <i data-feather="chevron-right" class="mr-5 text-primary" width="16" height="16"></i>
                                         <span>{{ truncate($topic->title,25) }}</span>
                                     </a>
@@ -180,7 +180,7 @@
                         <span class="d-block">{{ trans('update.ask_it_in_forum_and_get_answer') }}</span>
                     </h1>
 
-                    <p class="mt-15 text-gray font-14">{{ trans('update.have_a_question_hint') }}</p>
+                    <p class="mt-15 text-gray font-16">{{ trans('update.have_a_question_hint') }}</p>
 
                     <div class="d-flex flex-column flex-md-row align-items-stretch align-items-md-center mt-15">
                         <a href="/forums/create-topic" class="btn btn-primary">

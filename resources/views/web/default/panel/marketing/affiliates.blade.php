@@ -15,7 +15,7 @@
                       <div class="referral-text mb-30">
                           <h3 class="font-18 font-weight-bold mb-5" itemprop="title">How to use Referral Program</h3>
                           <p class="text-gray mb-15">Use images to enhance your post, improve its folow, add humor and explain complex topics</p>
-                          <a href="#" class="started-btn font-15 font-weight-500">Get Started</a>
+                          <a href="#" class="started-btn font-16 font-weight-500">Get Started</a>
                       </div>
                   </div>
                   <div class="col-12 col-lg-6">
@@ -23,8 +23,8 @@
                           <h3 class="font-18 font-weight-bold mb-5" itemprop="title">Your Referral Link</h3>
                           <p class="text-gray mb-15">Plan your blog post by choosing a topic, creating an outline conduct <br> research, and checking facts</p>
                           <div class="referral-link">
-                              <input type="text" class="link-address font-15 font-weight-500" name="affiliate_url" value="{{ $affiliateCode->getAffiliateUrl() }}">
-                              <a href="javascript:;" class="link-btn font-15 font-weight-500 js-copy" data-input="affiliate_url">Copy Link</a>
+                              <input type="text" class="link-address font-16 font-weight-500" name="affiliate_url" value="{{ $affiliateCode->getAffiliateUrl() }}">
+                              <a href="javascript:;" class="link-btn font-16 font-weight-500 js-copy" data-input="affiliate_url">Copy Link</a>
                           </div>
                       </div>
                   </div>
@@ -74,7 +74,7 @@
                           </div>
                           <div class="withdraw-text">
                               <h3 class="blog-grid-title font-18 font-weight-bold mb-5" itemprop="title">Withdraw Your Money to a Bank Account</h3>
-                              <p class="font-15">Withdraw money securily to your bank account. Commision is $25 per transaction under $50,000</p>
+                              <p class="font-16">Withdraw money securily to your bank account. Commision is $25 per transaction under $50,000</p>
                           </div>
                           <div class="withdraw-btn-holder">
                               <a href="#" class="withdraw-btn">Withdraw Money</a>
@@ -96,10 +96,10 @@
                         <table class="table text-center custom-table">
                             <thead>
                             <tr>
-                                <th class="font-14 font-weight-500">{{ trans('panel.user') }}</th>
-                                <th class="font-14 font-weight-500">{{ trans('panel.registration_bonus') }}</th>
-                                <th class="font-14 font-weight-500">{{ trans('panel.affiliate_bonus') }}</th>
-                                <th class="font-14 font-weight-500">{{ trans('panel.registration_date') }}</th>
+                                <th class="font-16 font-weight-500">{{ trans('panel.user') }}</th>
+                                <th class="font-16 font-weight-500">{{ trans('panel.registration_bonus') }}</th>
+                                <th class="font-16 font-weight-500">{{ trans('panel.affiliate_bonus') }}</th>
+                                <th class="font-16 font-weight-500">{{ trans('panel.registration_date') }}</th>
                             </tr>
                             </thead>
                             <tbody>

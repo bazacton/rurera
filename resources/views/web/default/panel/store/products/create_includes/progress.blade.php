@@ -39,7 +39,7 @@
             </button>
 
             <div class="ml-10 {{ $key == $currentStep ? '' : 'd-lg-none' }}">
-                <span class="font-14 text-gray">{{ trans('webinars.progress_step', ['step' => $key,'count' => 5]) }}</span>
+                <span class="font-16 text-gray">{{ trans('webinars.progress_step', ['step' => $key,'count' => 5]) }}</span>
                 <h4 class="font-16 text-secondary font-weight-bold">{{ trans('public.' . $step['name']) }}</h4>
             </div>
         </div>

@@ -51,7 +51,7 @@
 
             <form action="" method="get">
                 <div class="d-flex align-items-center flex-row-reverse flex-md-row justify-content-start justify-content-md-center mt-20 mt-md-0">
-                    <label class="cursor-pointer mb-0 mr-10 font-weight-500 font-14 text-gray" for="onlyReleasedSwitch">{{ trans('update.only_not_released_courses') }}</label>
+                    <label class="cursor-pointer mb-0 mr-10 font-weight-500 font-16 text-gray" for="onlyReleasedSwitch">{{ trans('update.only_not_released_courses') }}</label>
                     <div class="custom-control custom-switch">
                         <input type="checkbox" name="only_not_released_courses" @if(request()->get('only_not_released_courses','') == 'on') checked @endif class="custom-control-input" id="onlyReleasedSwitch">
                         <label class="custom-control-label" for="onlyReleasedSwitch"></label>

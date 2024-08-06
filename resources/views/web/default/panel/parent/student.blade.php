@@ -152,7 +152,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
 							<div class="col-lg-4 col-md-4 col-sm-12 col-12">
 								<div class="info-text">
 									<h3 class="font-18 font-weight-500 mb-5">Linked Accounts</h3>
-									<span class="font-14">Some basic information that we need to know about student.</span>
+									<span class="font-16">Some basic information that we need to know about student.</span>
 								</div>
 							</div>
 							<div class="col-lg-8 col-md-8 col-sm-12 col-12">
@@ -164,7 +164,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
 											@if( auth()->user()->id != $parentObj->id)
 											<li>
 												<a href="javascript:;" data-parent_id="{{$parentObj->id}}" class="d-flex align-items-center unlink-parent-btn justify-content-between p-15">
-													<span class="info-list-label font-14">
+													<span class="info-list-label font-16">
 														{{$parentObj->role_name}}
 														<strong class="d-block font-weight-500">{{$parentObj->get_full_name()}}</strong>
 													</span>
@@ -195,7 +195,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                         <div class="col-lg-4 col-md-4 col-sm-12 col-12">
 							<div class="info-text">
 								<h3 class="font-18 font-weight-500 mb-5">Account Overview</h3>
-								<span class="font-14">Some basic information that we need to know about student.</span>
+								<span class="font-16">Some basic information that we need to know about student.</span>
 							</div>
 						</div>
 						<div class="col-lg-8 col-md-8 col-sm-12 col-12">
@@ -204,7 +204,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                                 <ul class="profile-view-data">
 									<li>
                                         <a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
-                                            <span class="info-list-label font-14">
+                                            <span class="info-list-label font-16">
                                                 First Name
                                                 <strong class="d-block font-weight-500">{{$user->get_first_name()}}</strong>
                                             </span>
@@ -216,7 +216,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                                     </li>
 									<li>
                                         <a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
-                                            <span class="info-list-label font-14">
+                                            <span class="info-list-label font-16">
                                                 Last name
                                                 <strong class="d-block font-weight-500">{{$user->get_last_name()}}</strong>
                                             </span>
@@ -228,7 +228,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                                     </li>
                                     <li>
                                         <a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
-                                            <span class="info-list-label font-14">
+                                            <span class="info-list-label font-16">
                                                 Display name
                                                 <strong class="d-block font-weight-500">{{$user->display_name}}</strong>
                                             </span>
@@ -240,7 +240,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                                     </li>
 									 <li>
                                         <a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
-                                            <span class="info-list-label font-14">
+                                            <span class="info-list-label font-16">
                                                 Preference
                                                 <strong class="d-block font-weight-500">{{$user->user_preference}}</strong>
                                             </span>
@@ -252,7 +252,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                                     </li>
 									 <li>
                                         <a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
-                                            <span class="info-list-label font-14">
+                                            <span class="info-list-label font-16">
                                                 Year Group
                                                 <strong class="d-block font-weight-500">{{isset($user->userYear->id )? $user->userYear->getTitleAttribute() : ''}}</strong>
                                             </span>
@@ -371,7 +371,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                         <div class="col-lg-4 col-md-4 col-sm-12 col-12">
 							<div class="info-text">
 								<h3 class="font-18 font-weight-500 mb-5">School Preference</h3>
-								<span class="font-14">List the schools with exam date you're applying for in order of preference.</span>
+								<span class="font-16">List the schools with exam date you're applying for in order of preference.</span>
 							</div>
 						</div>
 						<div class="col-lg-8 col-md-8 col-sm-12 col-12">
@@ -380,7 +380,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                                 <ul class="profile-view-data">
 									<li>
                                         <a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
-                                            <span class="info-list-label font-14">
+                                            <span class="info-list-label font-16">
                                                 Test Prep School Choice
                                                 <strong class="d-block font-weight-500">{{isset($user->userSchoolPreffernce1->title)? $user->userSchoolPreffernce1->title : '-'}}</strong>
                                             </span>
@@ -392,7 +392,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                                     </li>
                                     <li>
                                         <a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
-                                            <span class="info-list-label font-14">
+                                            <span class="info-list-label font-16">
                                                 School Preference 1
                                                 <strong class="d-block font-weight-500">{{isset($user->userSchoolPreffernce1->title)? $user->userSchoolPreffernce1->title : '-'}} {{($user->school_preference_1_date != '')? '( '.dateTimeFormat($user->school_preference_1_date, 'j M Y').' )' : ''}} </strong>
                                             </span>
@@ -405,7 +405,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
 									
                                     <li>
                                         <a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
-                                            <span class="info-list-label font-14">
+                                            <span class="info-list-label font-16">
                                                 School Preference 2
                                                 <strong class="d-block font-weight-500">{{isset( $user->userSchoolPreffernce2->title )? $user->userSchoolPreffernce2->title : '-'}} {{($user->school_preference_2_date != '')? '( '.dateTimeFormat($user->school_preference_2_date, 'j M Y').' )' : ''}} </strong>
                                             </span>
@@ -417,7 +417,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                                     </li>
                                     <li>
                                         <a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
-                                            <span class="info-list-label font-14">
+                                            <span class="info-list-label font-16">
                                                 School Preference 3
                                                 <strong class="d-block font-weight-500">{{isset( $user->userSchoolPreffernce3->title )? $user->userSchoolPreffernce3->title : '-'}} {{($user->school_preference_3_date != '')? '( '.dateTimeFormat($user->school_preference_3_date, 'j M Y').' )' : ''}} </strong>
                                             </span>
@@ -523,7 +523,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                         <div class="col-lg-4 col-md-4 col-sm-12 col-12">
 							<div class="info-text">
 								<h3 class="font-18 font-weight-500 mb-5">Display Settings</h3>
-								<span class="font-14">Display settings control the layout and behavior of the student panel. You can toggle the visibility of different elements to customize what students can see.</span>
+								<span class="font-16">Display settings control the layout and behavior of the student panel. You can toggle the visibility of different elements to customize what students can see.</span>
 							</div>
 						</div>
 						<div class="col-lg-8 col-md-8 col-sm-12 col-12">
@@ -532,7 +532,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                                 <ul class="profile-view-data">
                                     <li>
                                         <a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
-                                            <span class="info-list-label font-14">
+                                            <span class="info-list-label font-16">
                                                 Timestables
                                                 <strong class="d-block font-weight-500">{{$user->show_timestables == 1 ? 'Show' : 'Hide'}}</strong>
                                             </span>
@@ -544,7 +544,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                                     </li>
                                     <li>
                                         <a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
-                                            <span class="info-list-label font-14">
+                                            <span class="info-list-label font-16">
                                                 Spellings
                                                 <strong class="d-block font-weight-500">{{$user->show_spellings == 1 ? 'Show' : 'Hide'}}</strong>
                                             </span>
@@ -556,7 +556,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                                     </li>
                                     <li>
                                         <a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
-                                            <span class="info-list-label font-14">
+                                            <span class="info-list-label font-16">
                                                 Games
                                                 <strong class="d-block font-weight-500">{{$user->show_games == 1 ? 'Show' : 'Hide'}}</strong>
                                             </span>
@@ -568,7 +568,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                                     </li>
                                     <li>
                                         <a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
-                                            <span class="info-list-label font-14">
+                                            <span class="info-list-label font-16">
                                                 Books
                                                 <strong class="d-block font-weight-500">{{$user->show_books == 1 ? 'Show' : 'Hide'}}</strong>
                                             </span>
@@ -580,7 +580,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                                     </li>
                                     <li>
                                         <a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
-                                            <span class="info-list-label font-14">
+                                            <span class="info-list-label font-16">
                                                 Enterance Exams
                                                 <strong class="d-block font-weight-500">{{$user->show_enterance_exams == 1 ? 'Show' : 'Hide'}}</strong>
                                             </span>
@@ -592,7 +592,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                                     </li>
                                     <li>
                                         <a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
-                                            <span class="info-list-label font-14">
+                                            <span class="info-list-label font-16">
                                                 SATs
                                                 <strong class="d-block font-weight-500">{{$user->show_sats == 1 ? 'Show' : 'Hide'}}</strong>
                                             </span>
@@ -609,7 +609,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
 											@foreach( $courses_list as $courseObj)
 												<li>
 													<a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
-														<span class="info-list-label font-14">
+														<span class="info-list-label font-16">
 															{{$courseObj->getTitleAttribute()}}
 															<strong class="d-block font-weight-500">{{!in_array($courseObj->id, $hide_subjects)? 'Show' : 'Hide'}}</strong>
 														</span>
@@ -792,7 +792,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                         <div class="col-lg-4 col-md-4 col-sm-12 col-12">
 							<div class="info-text">
 								<h3 class="font-18 font-weight-500 mb-5">Login Details</h3>
-								<span class="font-14">login credential can be changed,Set a unique password to protect student account. Don't forget to change it from time to time.</span>
+								<span class="font-16">login credential can be changed,Set a unique password to protect student account. Don't forget to change it from time to time.</span>
 							</div>
 						</div>
 						<div class="col-lg-8 col-md-8 col-sm-12 col-12">
@@ -885,13 +885,13 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                         <div class="col-lg-4 col-md-4 col-sm-12 col-12">
 							<div class="info-text">
 								<h3 class="font-18 font-weight-500 mb-5">Subscription Details</h3>
-								<span class="font-14">Some information we need to know about you, and to process legal matters.</span>
+								<span class="font-16">Some information we need to know about you, and to process legal matters.</span>
 							</div>
 						</div>
 						<div class="col-lg-8 col-md-8 col-sm-12 col-12">
 							<h2 class="font-16 font-weight-500 mb-25 inner-heading pb-15">Subscription Details</h2>
                             <div class="edit-info-list">
-								@if( !isset( $user->userSubscriptions->id))<a href="javascript:;" class="membership-btn font-14 float-right package-payment-btn subscription-modal" data-type="child_payment" data-id="{{$user->id}}">+ Subscription</a>@endif
+								@if( !isset( $user->userSubscriptions->id))<a href="javascript:;" class="membership-btn font-16 float-right package-payment-btn subscription-modal" data-type="child_payment" data-id="{{$user->id}}">+ Subscription</a>@endif
 								@if( isset( $user->userSubscriptions->id))
 										<div class="subscribe-plan active current-plan position-relative d-flex flex-column rounded-lg p-20 mb-10 mt-10">
 											<div class="package-block">
@@ -941,7 +941,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                 <div class="col-lg-4 col-md-4 col-sm-12 col-12">
                     <div class="info-text">
                         <h3 class="font-18 font-weight-500 mb-5">Main Card</h3>
-                        <span class="font-14">This is your company main credit card. You can use it to pay for any type of expenses</span>
+                        <span class="font-16">This is your company main credit card. You can use it to pay for any type of expenses</span>
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-12 col-12">
@@ -964,13 +964,13 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                                             </span>
                                             <div class="user-card-info d-flex align-items-center flex-wrap justify-content-between">
                                                 <div class="card-info-text">
-                                                    <span class="user-name d-block font-15">{{$user->get_full_name()}}</span>
-                                                    <span class="card-number d-block font-14">&#x2022; &#x2022; &#x2022; &#x2022; &#x2022; &#x2022; &#x2022; &#x2022; &#x2022; {{$user->card_last_four}}</span>
+                                                    <span class="user-name d-block font-16">{{$user->get_full_name()}}</span>
+                                                    <span class="card-number d-block font-16">&#x2022; &#x2022; &#x2022; &#x2022; &#x2022; &#x2022; &#x2022; &#x2022; &#x2022; {{$user->card_last_four}}</span>
                                                     <div class="card-exp">
-                                                        <span class="d-inline-block font-14">EXP</span>
-                                                        <span class="d-inline-block font-14">&#x2022; &#x2022;/&#x2022; &#x2022;</span>
-                                                        <span class="d-inline-block font-14">CVC</span>
-                                                        <span class="d-inline-block font-14">&#x2022; &#x2022; &#x2022;</span>
+                                                        <span class="d-inline-block font-16">EXP</span>
+                                                        <span class="d-inline-block font-16">&#x2022; &#x2022;/&#x2022; &#x2022;</span>
+                                                        <span class="d-inline-block font-16">CVC</span>
+                                                        <span class="d-inline-block font-16">&#x2022; &#x2022; &#x2022;</span>
                                                     </div>
                                                 </div>
                                                 <span class="card-info-icon">
@@ -980,7 +980,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                                         </div>
                                     </div>
                                 </div>
-                                <a href="#" class="edtit-btn d-inline-flex align-items-center font-weight-500 font-15">Manage your cards <span class="font-16">&#8594;</span></a>
+                                <a href="#" class="edtit-btn d-inline-flex align-items-center font-weight-500 font-16">Manage your cards <span class="font-16">&#8594;</span></a>
                             </li>
                         </ul>
                     </div>

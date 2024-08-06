@@ -13,7 +13,7 @@
                 <h2 class="section-title">{{ trans('panel.my_timesheet') }}</h2>
 
                 <div class="d-flex align-items-center flex-row-reverse flex-md-row justify-content-start justify-content-md-center mt-20 mt-md-0">
-                    <label class="mb-0 mr-10 cursor-pointer font-14 text-gray font-weight-500" for="temporaryDisableMeetingsSwitch">{{ trans('panel.temporary_disable_meetings') }}</label>
+                    <label class="mb-0 mr-10 cursor-pointer font-16 text-gray font-weight-500" for="temporaryDisableMeetingsSwitch">{{ trans('panel.temporary_disable_meetings') }}</label>
                     <div class="custom-control custom-switch">
                         <input type="checkbox" name="disabled" class="custom-control-input" id="temporaryDisableMeetingsSwitch" {{ $meeting->disabled ? 'checked' : '' }}>
                         <label class="custom-control-label" for="temporaryDisableMeetingsSwitch"></label>
@@ -91,7 +91,7 @@
             <div class="row align-items-center mt-20">
 
                 <div class="col-12 col-md-3">
-                    <label class="font-weight-500 font-14 text-dark-blue d-block">{{ trans('panel.amount') }}</label>
+                    <label class="font-weight-500 font-16 text-dark-blue d-block">{{ trans('panel.amount') }}</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text text-white font-16">
@@ -103,7 +103,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-3">
-                    <label class="font-weight-500 font-14 text-dark-blue d-block">{{ trans('panel.discount') }} (%)</label>
+                    <label class="font-weight-500 font-16 text-dark-blue d-block">{{ trans('panel.discount') }} (%)</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text text-white font-16">%</span>
@@ -130,7 +130,7 @@
                 </div>
 
                 <div class="col-12 col-lg-3 {{ ((!empty($meeting) and $meeting->in_person) or old('in_person') == 'on') ? '' :  'd-none' }}" id="inPersonMeetingAmount">
-                    <label class="font-weight-500 font-14 text-dark-blue d-block">{{ trans('update.hourly_amount') }}</label>
+                    <label class="font-weight-500 font-16 text-dark-blue d-block">{{ trans('update.hourly_amount') }}</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text text-white font-16">
@@ -164,19 +164,19 @@
 
                     <div class="row mt-15">
                         <div class="col-12 col-lg-3">
-                            <label class="font-weight-500 font-14 text-dark-blue d-block">{{ trans('update.minimum_students') }}</label>
+                            <label class="font-weight-500 font-16 text-dark-blue d-block">{{ trans('update.minimum_students') }}</label>
                             <input type="number" min="2" name="online_group_min_student" value="{{ !empty($meeting) ? $meeting->online_group_min_student : old('online_group_min_student') }}" class="form-control" placeholder="{{ trans('panel.number_only') }}"/>
                             <div class="invalid-feedback"></div>
                         </div>
 
                         <div class="col-12 col-lg-3">
-                            <label class="font-weight-500 font-14 text-dark-blue d-block">{{ trans('update.maximum_students') }}</label>
+                            <label class="font-weight-500 font-16 text-dark-blue d-block">{{ trans('update.maximum_students') }}</label>
                             <input type="number" name="online_group_max_student" value="{{ !empty($meeting) ? $meeting->online_group_max_student : old('online_group_max_student') }}" class="form-control" placeholder="{{ trans('panel.number_only') }}"/>
                             <div class="invalid-feedback"></div>
                         </div>
 
                         <div class="col-12 col-lg-3">
-                            <label class="font-weight-500 font-14 text-dark-blue d-block">{{ trans('update.hourly_amount') }}</label>
+                            <label class="font-weight-500 font-16 text-dark-blue d-block">{{ trans('update.hourly_amount') }}</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text text-white font-16">
@@ -196,19 +196,19 @@
 
                     <div class="row mt-15">
                         <div class="col-12 col-lg-3">
-                            <label class="font-weight-500 font-14 text-dark-blue d-block">{{ trans('update.minimum_students') }}</label>
+                            <label class="font-weight-500 font-16 text-dark-blue d-block">{{ trans('update.minimum_students') }}</label>
                             <input type="number" min="2" name="in_person_group_min_student" value="{{ !empty($meeting) ? $meeting->in_person_group_min_student : old('in_person_group_min_student') }}" class="form-control" placeholder="{{ trans('panel.number_only') }}"/>
                             <div class="invalid-feedback"></div>
                         </div>
 
                         <div class="col-12 col-lg-3">
-                            <label class="font-weight-500 font-14 text-dark-blue d-block">{{ trans('update.maximum_students') }}</label>
+                            <label class="font-weight-500 font-16 text-dark-blue d-block">{{ trans('update.maximum_students') }}</label>
                             <input type="number" name="in_person_group_max_student" value="{{ !empty($meeting) ? $meeting->in_person_group_max_student : old('in_person_group_max_student') }}" class="form-control" placeholder="{{ trans('panel.number_only') }}"/>
                             <div class="invalid-feedback"></div>
                         </div>
 
                         <div class="col-12 col-lg-3">
-                            <label class="font-weight-500 font-14 text-dark-blue d-block">{{ trans('update.hourly_amount') }}</label>
+                            <label class="font-weight-500 font-16 text-dark-blue d-block">{{ trans('update.hourly_amount') }}</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text text-white font-16">

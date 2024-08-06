@@ -8,7 +8,7 @@
                     <img src="/assets/default/img/installment/request_rejected.svg" alt="{{ trans('update.installment_request_rejected') }}" width="267" height="265">
 
                     <h1 class="font-20 mt-30">{{ trans('update.installment_request_rejected') }}</h1>
-                    <p class="font-14 text-gray mt-5">{{ trans('update.installment_request_rejected_hint') }}</p>
+                    <p class="font-16 text-gray mt-5">{{ trans('update.installment_request_rejected_hint') }}</p>
 
                     <a href="/panel/" class="btn btn-primary mt-15">{{ trans('update.back_to_installments') }}</a>
                 </div>
