@@ -13,6 +13,13 @@
 	.word-block.active {
 		background: #edffea;
 	}
+	.word-block-inner {
+		display: contents;
+	}
+	.word-block-inner-data {
+		display: none;
+		width:100%;
+	}
 
 </style>
 @endpush
@@ -103,9 +110,11 @@
                                             <div class="spell-top-left">
                                                 <h3 class="font-18 font-weight-bold">{{$dataObj->getTitleAttribute()}}</h3>
 												<div class="spell-links">
-												<a href="javascript:;" class="spell-popup-btn1 rurera-tooltip">Word Hunts
+												<a href="javascript:;" class="spell-popup-btn1 rurera-tooltip dropup">
 												
-												<div class="lms-tooltip">
+												<span class="dropdown-toggle h-100 w-100 d-flex align-items-center justify-content-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Word Hunts</span>
+												
+												<div class="lms-tooltip dropdown-menu">
 													<div class="tooltip-box">	
 														<button class="tooltip-btn practice font-16 d-block mb-15 text-center spell-popup-btn"  data-play_link="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/word-hunts/exercise" data-spell_type="word-hunts" data-spell_id="{{$dataObj->id}}">Play Again</button>
 														@if($word_hunts_count > 0)
@@ -116,8 +125,8 @@
 												</a>
 												
 												
-												<a href="javascript:;" class="spell-popup-btn1 rurera-tooltip">Word Search
-												<div class="lms-tooltip">
+												<a href="javascript:;" class="spell-popup-btn1 rurera-tooltip dropup"><span class="dropdown-toggle h-100 w-100 d-flex align-items-center justify-content-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Word Search</span>
+												<div class="lms-tooltip dropdown-menu">
 													<div class="tooltip-box">	
 														<button class="tooltip-btn practice font-16 d-block mb-15 text-center spell-popup-btn"  data-play_link="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/word-search/exercise" data-spell_type="word-search" data-spell_id="{{$dataObj->id}}">Play Again</button>
 														@if($word_search_count > 0)
@@ -128,8 +137,8 @@
 												</a>
 												
 												
-												<a href="javascript:;" class="spell-popup-btn1 rurera-tooltip">Word Cloud
-												<div class="lms-tooltip">
+												<a href="javascript:;" class="spell-popup-btn1 rurera-tooltip dropup"><span class="dropdown-toggle h-100 w-100 d-flex align-items-center justify-content-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Word Cloud</span>
+												<div class="lms-tooltip dropdown-menu">
 													<div class="tooltip-box">	
 														<button class="tooltip-btn practice font-16 d-block mb-15 text-center spell-popup-btn"  data-play_link="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/word-cloud/exercise" data-spell_type="word-cloud" data-spell_id="{{$dataObj->id}}">Play Again</button>
 														@if($word_cloud_count > 0)
@@ -139,8 +148,8 @@
 												  </div>
 												</a>
 												
-												<a href="javascript:;" class="spell-popup-btn1 rurera-tooltip">Complete the Sentence
-												<div class="lms-tooltip">
+												<a href="javascript:;" class="spell-popup-btn1 rurera-tooltip dropup"><span class="dropdown-toggle h-100 w-100 d-flex align-items-center justify-content-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Complete the Sentence</span>
+												<div class="lms-tooltip dropdown-menu">
 													<div class="tooltip-box">	
 														<button class="tooltip-btn practice font-16 d-block mb-15 text-center spell-popup-btn"  data-play_link="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/word-missing/exercise" data-spell_type="word-missing" data-spell_id="{{$dataObj->id}}">Play Again</button>
 														@if($word_missing_count > 0)
@@ -150,7 +159,8 @@
 												  </div>
 												</a>
 												
-												<a href="javascript:;">Flashcards</a>
+												<a href="javascript:;">Take a test</a>
+												<a href="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/word-missing/exercise" class="rurera-hide">Flashcards</a>
 												</div>
                                                 @if($overall_percentage > 0 && $overall_percentage != 100)
                                                 <div class="levels-progress horizontal">
@@ -512,9 +522,15 @@ $(document).on('click', '.phonics-btn', function (e) {
             });
         });
 	
-	
 
 
+$(document).on('click', '.word-block label', function (e) {
+	$('.word-block-inner-data').slideUp();
+	var target_id = $(this).attr('data-target');
+	var target_data = $(target_id).html();
+	$(this).closest('.word-block-inner').find('.word-block-inner-data').html('<div class="word-details">'+target_data+'</div>');
+	$(this).closest('.word-block-inner').find('.word-block-inner-data').slideDown();
+});
 
 </script>
 @endpush

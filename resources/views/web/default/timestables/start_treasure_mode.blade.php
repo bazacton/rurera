@@ -36,6 +36,10 @@ if( $duration_type == 'total_practice'){
     $timer_counter = $practice_time;
 }
 @endphp
+<audio id="background-music" loop>
+	<source src="/audios/timestables-bg.mp3" type="audio/mpeg">
+	Your browser does not support the audio element.
+</audio>
 <div class="content-section">
 
     <section class="lms-quiz-section1 justify-content-start">
@@ -728,5 +732,12 @@ if( $duration_type == 'total_practice'){
     if (isMobileOrTablet()) {
         $(".editor-fields").attr('readonly', 'readonly');
     }
+	var sound_playing = 'no';	
+	$(document).on('click', 'body', function (e) {
+		if( sound_playing == 'no'){
+			sound_playing = 'yes';
+			document.getElementById('background-music').play();
+		}
+	});	
 </script>
 @endpush

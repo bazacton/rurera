@@ -117,14 +117,14 @@
                                         @endphp
                                         <li class="intermediate {{$li_custom_class}} {{($is_acheived == 1 || $is_active == 1 || $last_stage_completed == 1)? 'completed' : ''}} {{$last_stage}}" data-id="{{$nuggetObj['id']}}" data-quiz_level="medium">
                                             <a href="javascript:;" class="{{$treasure_mission_class}} rurera-tooltip dropup" data-id="{{$nuggetObj['id']}}">
-                                                @if($is_acheived == 1 )
+                                                @if($is_acheived == 1 && isset( $timestableResultObj->id) )
                                                     <span class="dropdown-toggle h-100 w-100 d-flex align-items-center justify-content-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                         <img src="/assets/default/img/tick-white.png" alt="">
                                                     </span>
 													<div class="lms-tooltip dropdown-menu">
 														<div class="tooltip-box">
 															<h5 class="font-18 font-weight-bold text-white mb-5">															
-															Active practice: {{getTimeWithText($timestableResultObj->total_time_consumed)}}<br> 
+															Active practice: {{isset( $timestableResultObj->total_time_consumed )? getTimeWithText($timestableResultObj->total_time_consumed) : 0}}<br> 
 															Questions answered: {{$timestableResultObj->quizz_result_questions_list->whereNotIn('status', array('waiting','not_attempted'))->count()}} <br>
 															<img src="/assets/default/img/panel-sidebar/coins.svg" alt="" width="30">Coins earned:{{$timestableResultObj->quizz_result_questions_list->where('status', 'correct')->sum('quiz_grade')}}
 															</h5>

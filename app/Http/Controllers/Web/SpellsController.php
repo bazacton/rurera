@@ -161,9 +161,21 @@ class SpellsController extends Controller
                 $phonics_counter = 1;
                 if( !empty( $phonics_array ) ){
                     foreach( $phonics_array as $phonic_data){
-                        $phonics_text .= isset( $phonic_data['letter'] )? $phonic_data['letter'].'  ': '';
+						$phonics_text .= '<div class="word-char">';
+						$phonics_text .= '<span class="pronounce-letter">';
+                        $phonics_text .= isset( $phonic_data['letter'] )? $phonic_data['letter']: '';
+						$phonics_text .= '</span><span class="pronounce-word">';
+                        $phonics_text .= isset( $phonic_data['word'] )? '/'.$phonic_data['word'].'/': '';
+						$phonics_text .= '</span><span class="pronounce-audio">';
                         $phonicSound = isset( $phonic_data['sound'] )? $phonic_data['sound'] : '';
-                        $phonics_sounds .= '<audio class="player-box-audio" id="player-phonics-' . $SingleQuestionData->id . '-'.$phonics_counter.'" src="/phonics/'.$phonicSound.'"></audio>';
+						$phonics_text .= '<a href="javascript:;" class="play-btn" data-id="player-phonics-' . $SingleQuestionData->id . '-'.$phonics_counter.'">
+						   <img class="play-icon" src="/assets/default/svgs/play-circle.svg" alt="" height="20" width="20">
+						   <img class="pause-icon" src="/assets/default/svgs/pause-circle.svg" alt="" height="20" width="20">
+						   <div class="player-box">
+						   <audio class="player-box-audio" id="player-phonics-' . $SingleQuestionData->id . '-'.$phonics_counter.'" src="/phonics/'.$phonicSound.'"></audio>
+						   </div>
+					   </a></span>';
+						$phonics_text .= '</div>';
                         $phonics_counter++;
                     }
                 }
@@ -422,19 +434,29 @@ class SpellsController extends Controller
 		}
 		
 		if( !empty( $words_list ) ){
+			$response .= '<div class="word-block-inner">';
+			$counter = 0;
 			foreach( $words_list as $question_id => $wordData){
 				$no_of_attempts = isset( $wordData['no_of_attempts'] )? $wordData['no_of_attempts'] : 0;
 				$word = isset( $wordData['word'] )? $wordData['word'] : 0;
+				$counter++;
+				if( $counter > 3){
+					$response .= '<div class="word-block-inner-data"></div>';
+					$response .= '</div><div class="word-block-inner">';
+					$counter = 1;
+				}
 				//pre($questionResults->count());
 				$response .= '<div class="word-block">';
-				$response .= '  <label class="collapsed" for="checkbox-'.$question_id.'" data-toggle="collapse" data-target="#word-details-'.$question_id.'" aria-expanded="false">'.$word.' ('.$no_of_attempts.')</label>';
+				$response .= '  <label class="collapsed" for="checkbox-'.$question_id.'" data-toggle="collapses" data-target="#word-details-'.$question_id.'" aria-expanded="false">'.$word.'</label>';
 				$response .= '  <input type="checkbox" class="spell_checkbox hide" id="checkbox-'.$question_id.'" name="spell_words[]" value="'.$question_id.'">';
 				$response .= '<div class="word-details collapse" id="word-details-'.$question_id.'" aria-labelledby="word-details-'.$question_id.'" data-parent="#accordion">';
 				$response .= isset( $word_details_array[$question_id] )? $word_details_array[$question_id] : '';
 				$response .= '</div>';
+
 				
 				$response .= '</div>';
 			}
+			$response .= '</div>';
 		}
 		echo $response;exit;
 		

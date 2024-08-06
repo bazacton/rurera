@@ -189,9 +189,22 @@ class Quiz extends Model implements TranslatableContract
                 $phonics_counter = 1;
                 if( !empty( $phonics_array ) ){
                     foreach( $phonics_array as $phonic_data){
-                        $phonics_text .= isset( $phonic_data['letter'] )? $phonic_data['letter'].'  ': '';
+						
+						$phonics_text .= '<div class="word-char">';
+						$phonics_text .= '<span class="pronounce-letter">';
+                        $phonics_text .= isset( $phonic_data['letter'] )? $phonic_data['letter']: '';
+						$phonics_text .= '</span><span class="pronounce-word">';
+                        $phonics_text .= isset( $phonic_data['word'] )? '/'.$phonic_data['word'].'/': '';
+						$phonics_text .= '</span><span class="pronounce-audio">';
                         $phonicSound = isset( $phonic_data['sound'] )? $phonic_data['sound'] : '';
-                        $phonics_sounds .= '<audio class="player-box-audio" id="player-phonics-' . $SingleQuestionData->id . '-'.$phonics_counter.'" src="/phonics/'.$phonicSound.'"></audio>';
+						$phonics_text .= '<a href="javascript:;" class="play-btn" data-id="player-phonics-' . $SingleQuestionData->id . '-'.$phonics_counter.'">
+						   <img class="play-icon" src="/assets/default/svgs/play-circle.svg" alt="" height="20" width="20">
+						   <img class="pause-icon" src="/assets/default/svgs/pause-circle.svg" alt="" height="20" width="20">
+						   <div class="player-box">
+						   <audio class="player-box-audio" id="player-phonics-' . $SingleQuestionData->id . '-'.$phonics_counter.'" src="/phonics/'.$phonicSound.'"></audio>
+						   </div>
+					   </a></span>';
+						$phonics_text .= '</div>';
                         $phonics_counter++;
                     }
                 }
@@ -207,15 +220,7 @@ class Quiz extends Model implements TranslatableContract
                    </a>
                    </td>
                    <td>' . $audio_text . '<br>
-                   <strong>Phonics:</strong> '.$phonics_text.'
-                   <a href="javascript:;" class="phonics-btn" data-id="player-phonics-' . $SingleQuestionData->id . '">
-                                          <img class="play-icon" src="/assets/default/svgs/play-circle.svg" alt="" height="20" width="20">
-                                          <img class="pause-icon" src="/assets/default/svgs/pause-circle.svg" alt="" height="20" width="20">
-                                      <div class="player-box">
-                                      '.$phonics_sounds.'
-                                      </div>
-                                      </a>
-                   </td>
+                   '.$phonics_text.'</td>
                    <td>
                   <p><strong>Definition:</strong> ' . $audio_defination . '</p>
                   </td>
