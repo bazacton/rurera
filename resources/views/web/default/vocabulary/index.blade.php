@@ -186,7 +186,7 @@
 			<a href="javascript:;" data-href="javascript:;" class="play-again" data-dismiss="modal" aria-label="Continue">Play Again</a>
 		</div>
 		</div>
-		<form class="spell-quiz-form">
+		<form class="spell-quiz-form" action="#" method="POST">
 		
 		<div class="spell-words-data">
 		</div>
@@ -320,32 +320,11 @@
 
     });
 	
-	var playRequest = null;
 	$(document).on('click', '.play-again', function (e) {
-		//spell-quiz-form
-		var play_link = $(".play-again").attr('data-href');
-		
-		playRequest = jQuery.ajax({
-			type: "GET",
-			beforeSend: function () {
-				if (playRequest != null) {
-					playRequest.abort();
-				}
-			},
-			url: play_link,
-			headers: {
-				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-			},
-			data: {"spell_id": spell_id, "spell_type": spell_type},
-			success: function (return_data) {
-				rurera_remove_loader(thisObj.closest(".spell-levels "), 'div');
-				$(".spell-words-data").html(return_data);
-				$(".spell_words_popup").modal('show');
-			}
-		});
-
+		var play_link = $(".spell-words-filters").attr('data-play_link');
+		$(".spell-quiz-form").attr('action',play_link);
+		$(".spell-quiz-form").submit();
     });
-	
 	
 	
 	

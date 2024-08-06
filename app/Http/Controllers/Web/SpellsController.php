@@ -301,6 +301,7 @@ class SpellsController extends Controller
         if (auth()->check() && auth()->user()->isParent()) {
             return redirect('/'.panelRoute());
         }
+		pre('test');
 
         /*if (!auth()->subscription('vocabulary')) {
             return view('web.default.quizzes.not_subscribed');

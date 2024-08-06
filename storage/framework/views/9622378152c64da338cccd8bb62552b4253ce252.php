@@ -16,7 +16,7 @@
             <img src="<?php echo e($advertisingModalSettings['image'] ?? ''); ?>" class="img-fluid rounded-lg" alt="<?php echo e($advertisingModalSettings['title'] ?? 'ads'); ?>">
         </div>
 
-        <p class="font-14 text-gray mt-20"><?php echo $advertisingModalSettings['description'] ?? ''; ?></p>
+        <p class="font-16 text-gray mt-20"><?php echo $advertisingModalSettings['description'] ?? ''; ?></p>
 
         <div class="row align-items-center mt-20">
             <?php if(!empty($advertisingModalSettings['button1']) and !empty($advertisingModalSettings['button1']['link']) and !empty($advertisingModalSettings['button1']['title'])): ?>
