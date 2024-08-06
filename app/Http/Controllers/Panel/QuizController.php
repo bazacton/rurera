@@ -384,6 +384,8 @@ class QuizController extends Controller
         $learning_journey = $request->get('learning_journey', 'no');
         $journey_item_id = $request->get('journey_item_id', 'no');
 		$test_type = $request->get('test_type', '');
+		$question_ids = $request->get('question_ids', []);
+		$question_ids = is_array( $question_ids )? $question_ids : json_decode($question_ids);
 		$test_type_file = get_test_type_file($test_type);
 		
 
@@ -398,7 +400,7 @@ class QuizController extends Controller
 
         $QuestionsAttemptController = new QuestionsAttemptController();
 
-        $questions_list_data_array = $QuestionsAttemptController->getQuizQuestionsList($quiz, $quiz_level, $learning_journey);
+        $questions_list_data_array = $QuestionsAttemptController->getQuizQuestionsList($quiz, $quiz_level, $learning_journey, 0, $question_ids);
 		
 		
         $questions_list = isset($questions_list_data_array['questions_list']) ? $questions_list_data_array['questions_list'] : array();

@@ -72,7 +72,6 @@ class SpellsController extends Controller
 		
 
 
-
         $categories = Category::where('parent_id', null)
             ->with('subCategories')->orderBy('order', 'asc')
             ->get();
@@ -301,7 +300,7 @@ class SpellsController extends Controller
         if (auth()->check() && auth()->user()->isParent()) {
             return redirect('/'.panelRoute());
         }
-		pre('test');
+		$question_ids = $request->get('spell_words', []);
 
         /*if (!auth()->subscription('vocabulary')) {
             return view('web.default.quizzes.not_subscribed');
@@ -342,7 +341,8 @@ class SpellsController extends Controller
                 'pageTitle'  => 'Start',
                 'quiz'       => $quiz,
                 'test_type'  => $test_type,
-                'resultData' => $resultData
+                'resultData' => $resultData,
+                'question_ids'  => $question_ids,
             ];
             return view('web.default.quizzes.start', $data);
         }
@@ -388,7 +388,9 @@ class SpellsController extends Controller
 		$search_word = $request->get('search_word', '');
 		
 		$spellData = Quiz::find($spell_id);
-		$vocabulary_words = $spellData->vocabulary_words();
+		$vocabulary_response = $spellData->vocabulary_words();
+		$vocabulary_words = isset( $vocabulary_response['words_list'] )? $vocabulary_response['words_list'] : array();
+		$word_details_array = isset( $vocabulary_response['words_response'] )? $vocabulary_response['words_response'] : array();
 		$QuestionsAttemptController = new QuestionsAttemptController();
 		
 		$questionResults = $QuestionsAttemptController->get_questions_results($vocabulary_words, 'vocabulary', '');
@@ -425,10 +427,10 @@ class SpellsController extends Controller
 				$word = isset( $wordData['word'] )? $wordData['word'] : 0;
 				//pre($questionResults->count());
 				$response .= '<div class="word-block">';
-				$response .= '  <h3 class="collapsed" data-toggle="collapse" data-target="#word-details-{{$question_id}}" aria-expanded="false">'.$word.' ('.$no_of_attempts.')</h3>';
-				$response .= '  <input type="checkbox" name="spell_words[]" value="'.$question_id.'">';
-				$response .= '<div class="word-details" id="word-details-{{$question_id}}" aria-labelledby="word-details-{{$question_id}}" data-parent="#accordion">';
-				$response .= 'Test Text goes here....';
+				$response .= '  <label class="collapsed" for="checkbox-'.$question_id.'" data-toggle="collapse" data-target="#word-details-'.$question_id.'" aria-expanded="false">'.$word.' ('.$no_of_attempts.')</label>';
+				$response .= '  <input type="checkbox" class="spell_checkbox hide" id="checkbox-'.$question_id.'" name="spell_words[]" value="'.$question_id.'">';
+				$response .= '<div class="word-details collapse" id="word-details-'.$question_id.'" aria-labelledby="word-details-'.$question_id.'" data-parent="#accordion">';
+				$response .= isset( $word_details_array[$question_id] )? $word_details_array[$question_id] : '';
 				$response .= '</div>';
 				
 				$response .= '</div>';

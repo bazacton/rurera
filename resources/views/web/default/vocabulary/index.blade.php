@@ -10,6 +10,9 @@
     .hide {
         display: none !important;
     }
+	.word-block.active {
+		background: #edffea;
+	}
 
 </style>
 @endpush
@@ -68,7 +71,10 @@
                                     @php
 									
 									$total_questions = isset( $dataObj->quizQuestionsList )? count($dataObj->quizQuestionsList) : 0;
-									
+									$word_hunts_count = $dataObj->parentResults->where('quiz_result_type', 'vocabulary')->where('attempt_mode', 'word-hunts')->where('status', 'waiting')->count();
+									$word_search_count = $dataObj->parentResults->where('quiz_result_type', 'vocabulary')->where('attempt_mode', 'word-search')->where('status', 'waiting')->count();
+									$word_cloud_count = $dataObj->parentResults->where('quiz_result_type', 'vocabulary')->where('attempt_mode', 'word-cloud')->where('status', 'waiting')->count();
+									$word_missing_count = $dataObj->parentResults->where('quiz_result_type', 'vocabulary')->where('attempt_mode', 'word-missing')->where('status', 'waiting')->count();
 
 
                                     $overall_percentage = 0;
@@ -97,10 +103,53 @@
                                             <div class="spell-top-left">
                                                 <h3 class="font-18 font-weight-bold">{{$dataObj->getTitleAttribute()}}</h3>
 												<div class="spell-links">
-												<a href="javascript:;" class="spell-popup-btn" data-play_link="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/word-search/exercise" data-spell_type="word-hunts" data-spell_id="{{$dataObj->id}}">Word Hunts</a>
-												<a href="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/word-search/exercise">Word Search</a>
-												<a href="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/word-cloud/exercise">Word Cloud</a>
-												<a href="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/word-missing/exercise">Complete the Sentence</a>
+												<a href="javascript:;" class="spell-popup-btn1 rurera-tooltip">Word Hunts
+												
+												<div class="lms-tooltip">
+													<div class="tooltip-box">	
+														<button class="tooltip-btn practice font-16 d-block mb-15 text-center spell-popup-btn"  data-play_link="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/word-hunts/exercise" data-spell_type="word-hunts" data-spell_id="{{$dataObj->id}}">Play Again</button>
+														@if($word_hunts_count > 0)
+															<button class="tooltip-btn legendary d-block font-16 text-center" onclick='window.location.href = "/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/word-hunts/exercise"'>Continue</button>
+														@endif
+													</div>
+												  </div>
+												</a>
+												
+												
+												<a href="javascript:;" class="spell-popup-btn1 rurera-tooltip">Word Search
+												<div class="lms-tooltip">
+													<div class="tooltip-box">	
+														<button class="tooltip-btn practice font-16 d-block mb-15 text-center spell-popup-btn"  data-play_link="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/word-search/exercise" data-spell_type="word-search" data-spell_id="{{$dataObj->id}}">Play Again</button>
+														@if($word_search_count > 0)
+															<button class="tooltip-btn legendary d-block font-16 text-center" onclick='window.location.href = "/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/word-search/exercise"'>Continue</button>
+														@endif
+													</div>
+												  </div>
+												</a>
+												
+												
+												<a href="javascript:;" class="spell-popup-btn1 rurera-tooltip">Word Cloud
+												<div class="lms-tooltip">
+													<div class="tooltip-box">	
+														<button class="tooltip-btn practice font-16 d-block mb-15 text-center spell-popup-btn"  data-play_link="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/word-cloud/exercise" data-spell_type="word-cloud" data-spell_id="{{$dataObj->id}}">Play Again</button>
+														@if($word_cloud_count > 0)
+															<button class="tooltip-btn legendary d-block font-16 text-center" onclick='window.location.href = "/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/word-cloud/exercise"'>Continue</button>
+														@endif
+													</div>
+												  </div>
+												</a>
+												
+												<a href="javascript:;" class="spell-popup-btn1 rurera-tooltip">Complete the Sentence
+												<div class="lms-tooltip">
+													<div class="tooltip-box">	
+														<button class="tooltip-btn practice font-16 d-block mb-15 text-center spell-popup-btn"  data-play_link="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/word-missing/exercise" data-spell_type="word-missing" data-spell_id="{{$dataObj->id}}">Play Again</button>
+														@if($word_missing_count > 0)
+															<button class="tooltip-btn legendary d-block font-16 text-center" onclick='window.location.href = "/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/word-missing/exercise"'>Continue</button>
+														@endif
+													</div>
+												  </div>
+												</a>
+												
 												<a href="javascript:;">Flashcards</a>
 												</div>
                                                 @if($overall_percentage > 0 && $overall_percentage != 100)
@@ -187,8 +236,9 @@
 		</div>
 		</div>
 		<form class="spell-quiz-form" action="#" method="POST">
+		{{ csrf_field() }}
 		
-		<div class="spell-words-data">
+		<div class="spell-words-data" id="accordion">
 		</div>
 		
 		</form>
@@ -373,9 +423,96 @@
 	
 	
 
+$(document).on('change', '.spell_checkbox', function (e) {
+    if ($(this).is(':checked')) {
+        $(this).closest('.word-block').addClass('active');
+    } else {
+        $(this).closest('.word-block').removeClass('active');
+    }
+});
 
 
+$(document).on('click', '.phonics-btn', function (e) {
+        var player_id = $(this).attr('data-id');
+        var audio_elements = $(this).find('.player-box-audio');
+        console.log(player_id);
+        var current_index = 0;
 
+        // Function to play next audio with delay
+        function playNextWithDelay() {
+            if (current_index < audio_elements.length) {
+                // Play the current audio
+                console.log(audio_elements);
+                audio_elements[current_index].play();
+
+                // Increment index for the next audio
+                current_index++;
+
+                // Call recursively with a delay of 1 second
+                setTimeout(playNextWithDelay, 1000);
+            }
+        }
+
+        // Toggle pause class
+        $(this).toggleClass("pause");
+
+        // Check if paused or not
+        if ($(this).hasClass('pause')) {
+            // Start playing the sequence
+            playNextWithDelay();
+        } else {
+            // Pause the current audio
+            audio_elements[current_index - 1].pause();
+        }
+    });
+	
+	document.addEventListener('DOMContentLoaded', () => {
+            let isDragging = false;
+            let selecting = true;
+
+            document.body.addEventListener('mousedown', (event) => {
+                isDragging = true;
+                const element = document.elementFromPoint(event.clientX, event.clientY);
+                const checkbox = element.classList.contains('spell_checkbox') ? element :
+                                (element.tagName === 'LABEL' ? document.getElementById(element.htmlFor) : null);
+                if (checkbox) {
+                    selecting = !checkbox.checked;
+                } else {
+                    selecting = true;
+                }
+				$(".spell_checkbox").change();
+            });
+
+            document.body.addEventListener('mouseup', () => {
+                isDragging = false;
+            });
+
+            document.body.addEventListener('mousemove', (event) => {
+                if (isDragging) {
+                    const element = document.elementFromPoint(event.clientX, event.clientY);
+                    const checkbox = element.classList.contains('spell_checkbox') ? element :
+                                    (element.tagName === 'LABEL' ? document.getElementById(element.htmlFor) : null);
+                    if (checkbox) {
+                        checkbox.checked = selecting;
+                    }
+					$(".spell_checkbox").change();
+                }
+            });
+
+            // Handle when mouse leaves the window
+            document.addEventListener('mouseleave', () => {
+                isDragging = false;
+            });
+
+            // Handle when mouse enters the window
+            document.addEventListener('mouseenter', () => {
+                if (isDragging) {
+                    document.body.dispatchEvent(new Event('mouseup'));
+                }
+            });
+        });
+	
+	
 
 
 

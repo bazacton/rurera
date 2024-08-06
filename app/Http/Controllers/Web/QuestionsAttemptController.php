@@ -2767,7 +2767,7 @@ class QuestionsAttemptController extends Controller
      *
      * @return questions_list Array
      */
-    public function getQuizQuestionsList($quiz, $quiz_level = '', $learning_journey = 'no', $assignment_id = 0)
+    public function getQuizQuestionsList($quiz, $quiz_level = '', $learning_journey = 'no', $assignment_id = 0, $include_question_ids = array())
     {
 
         $entrance_exams = array(
@@ -2782,7 +2782,14 @@ class QuestionsAttemptController extends Controller
         if (!empty($quiz->quizQuestionsList)) {
             foreach ($quiz->quizQuestionsList as $questionlistData) {
                 $question_id = ($quiz->quiz_type == 'assignment') ? $questionlistData->reference_question_id : $questionlistData->question_id;
-                $questions_list[] = $question_id;
+				if( !empty( $include_question_ids )){
+					if( in_array( $question_id, $include_question_ids)){
+						$questions_list[] = $question_id;
+					}
+				}else{
+					$questions_list[] = $question_id;
+				}
+                
             }
         }
 
@@ -3072,7 +3079,7 @@ class QuestionsAttemptController extends Controller
 		$user = getUser();
 		$parent_type_id = ($assignment_id > 0)? $assignment_id : $quiz->id;
 		$newQuizStart = QuizzesResult::where('parent_type_id', $parent_type_id)->where('quiz_level', $quiz_level)->where('user_id', $user->id)->where('status', 'waiting')->first();
-		//$newQuizStart = (object) array();
+		$newQuizStart = (object) array();
 		if( isset( $newQuizStart->id)){
 			$questions_list = json_decode($newQuizStart->questions_list);
 			$questions_list = QuizzResultQuestions::whereIn('id', $questions_list)	

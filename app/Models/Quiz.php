@@ -152,25 +152,82 @@ class Quiz extends Model implements TranslatableContract
 	public function vocabulary_words()
     {
 		
-		$words_list = array();
+		$words_list = $words_response = array();
 		if (!empty($this->quizQuestionsList)) {
             foreach ($this->quizQuestionsList as $questionsListData) {
 				$SingleQuestionData = $questionsListData->SingleQuestionData;
 				$layout_elements = isset($SingleQuestionData->layout_elements) ? json_decode($SingleQuestionData->layout_elements) : array();
-				$correct_answer = '';
+				$correct_answer = $audio_file = $word_audio_file = $audio_text = $audio_sentense = $audio_defination = '';
+				
 				if (!empty($layout_elements)) {
                     foreach ($layout_elements as $elementData) {
 						$element_type = isset($elementData->type) ? $elementData->type : '';
                         $correct_answer = isset($elementData->correct_answer) ? $elementData->correct_answer : $correct_answer;
+						$content = isset($elementData->content) ? $elementData->content : '';
+                        $word_audio = isset($elementData->word_audio) ? $elementData->word_audio : '';
+                        $audio_text = isset($elementData->audio_text) ? $elementData->audio_text : $audio_text;
+                        $audio_sentense = isset($elementData->audio_sentense) ? $elementData->audio_sentense : $audio_sentense;
+                        $audio_defination = isset($elementData->audio_defination) ? $elementData->audio_defination : $audio_defination;
+						if ($element_type == 'audio_file') {
+                            $audio_file = $content;
+                            $word_audio_file = $word_audio;
+                            $audio_text = $audio_text;
+                            $audio_sentense = $audio_sentense;
+                            $audio_defination = $audio_defination;
+                        }
 						if ($element_type == 'textfield_quiz') {
                             $correct_answer = $correct_answer;
                         }
 						$words_list[$SingleQuestionData->id] = $correct_answer;
                     }
                 }
+				
+				$audio_sentense = str_replace($audio_text, '<strong>' . $audio_text . '</strong>', $audio_sentense);
+                $audio_sentense = str_replace(strtolower($audio_text), '<strong>' . strtolower($audio_text) . '</strong>', $audio_sentense);
+				$phonics_text = $phonics_sounds = '';
+                $phonics_array = get_words_phonics($audio_text);
+                $phonics_counter = 1;
+                if( !empty( $phonics_array ) ){
+                    foreach( $phonics_array as $phonic_data){
+                        $phonics_text .= isset( $phonic_data['letter'] )? $phonic_data['letter'].'  ': '';
+                        $phonicSound = isset( $phonic_data['sound'] )? $phonic_data['sound'] : '';
+                        $phonics_sounds .= '<audio class="player-box-audio" id="player-phonics-' . $SingleQuestionData->id . '-'.$phonics_counter.'" src="/phonics/'.$phonicSound.'"></audio>';
+                        $phonics_counter++;
+                    }
+                }
+				
+				$words_response[$SingleQuestionData->id] = '<tr>
+                   <td>
+                   <strong>Word:</strong> <a href="javascript:;" class="play-btn" data-id="player-' . $SingleQuestionData->id . '">
+                       <img class="play-icon" src="/assets/default/svgs/play-circle.svg" alt="" height="20" width="20">
+                       <img class="pause-icon" src="/assets/default/svgs/pause-circle.svg" alt="" height="20" width="20">
+                   <div class="player-box">
+                   <audio class="player-box-audio" id="player-' . $SingleQuestionData->id . '" src="' . $word_audio_file . '"> </audio>
+                   </div>
+                   </a>
+                   </td>
+                   <td>' . $audio_text . '<br>
+                   <strong>Phonics:</strong> '.$phonics_text.'
+                   <a href="javascript:;" class="phonics-btn" data-id="player-phonics-' . $SingleQuestionData->id . '">
+                                          <img class="play-icon" src="/assets/default/svgs/play-circle.svg" alt="" height="20" width="20">
+                                          <img class="pause-icon" src="/assets/default/svgs/pause-circle.svg" alt="" height="20" width="20">
+                                      <div class="player-box">
+                                      '.$phonics_sounds.'
+                                      </div>
+                                      </a>
+                   </td>
+                   <td>
+                  <p><strong>Definition:</strong> ' . $audio_defination . '</p>
+                  </td>
+                   <td>
+                   <p><strong>Sentence:</strong> ' . $audio_sentense . '</p>
+                   </td>
+               </tr>';
+				
+				
 			}
 		}
-		return $words_list;
+		return array('words_list' => $words_list, 'words_response' => $words_response);
 	}
 
     static function getQuizPercentage($SubChapterID, $all_data = false)

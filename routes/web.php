@@ -116,9 +116,9 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
                        Route::get('/{quiz_slug}/spelling-list' , 'SpellsController@words_list');
                        Route::get('/{quiz_slug}/spelling/exercise/{quiz_level}' , 'SpellsController@start');
                        Route::get('/{quiz_slug}/spelling/exercise' , 'SpellsController@start');
-					   Route::get('/{quiz_slug}/{test_type}/exercise' , 'SpellsController@start');
 					   
 					   Route::post('/{quiz_slug}/{test_type}/exercise' , 'SpellsController@start');
+					   Route::get('/{quiz_slug}/{test_type}/exercise' , 'SpellsController@start');
 					   
 					   
 					   
