@@ -2767,7 +2767,7 @@ class QuestionsAttemptController extends Controller
      *
      * @return questions_list Array
      */
-    public function getQuizQuestionsList($quiz, $quiz_level = '', $learning_journey = 'no', $assignment_id = 0, $include_question_ids = array())
+    public function getQuizQuestionsList($quiz, $quiz_level = '', $learning_journey = 'no', $assignment_id = 0, $include_question_ids = array(), $is_new = 'no')
     {
 
         $entrance_exams = array(
@@ -2812,7 +2812,7 @@ class QuestionsAttemptController extends Controller
         }
 		
 		if ($quiz->quiz_type == 'vocabulary') {
-            $questions_list_data_array = $this->get_vocabulary_questions_list($quiz, $questions_list, $quiz_level, $assignment_id);
+            $questions_list_data_array = $this->get_vocabulary_questions_list($quiz, $questions_list, $quiz_level, $assignment_id, $is_new);
 			$QuizzesResultID = isset($questions_list_data_array['QuizzesResultID']) ? $questions_list_data_array['QuizzesResultID'] : 0;
             $questions_list = isset($questions_list_data_array['questions_list']) ? $questions_list_data_array['questions_list'] : array();
             $other_data = isset($questions_list_data_array['other_data']) ? $questions_list_data_array['other_data'] : '';
@@ -3074,12 +3074,14 @@ class QuestionsAttemptController extends Controller
      *
      * @return questions_list Array
      */
-    public function get_vocabulary_questions_list($quiz, $questions_list, $quiz_level, $assignment_id = 0)
+    public function get_vocabulary_questions_list($quiz, $questions_list, $quiz_level, $assignment_id = 0, $is_new = 'no')
     {
 		$user = getUser();
 		$parent_type_id = ($assignment_id > 0)? $assignment_id : $quiz->id;
 		$newQuizStart = QuizzesResult::where('parent_type_id', $parent_type_id)->where('quiz_level', $quiz_level)->where('user_id', $user->id)->where('status', 'waiting')->first();
-		$newQuizStart = (object) array();
+		if( $is_new == 'yes'){
+			$newQuizStart = (object) array();
+		}
 		if( isset( $newQuizStart->id)){
 			$questions_list = json_decode($newQuizStart->questions_list);
 			$questions_list = QuizzResultQuestions::whereIn('id', $questions_list)	
@@ -3234,12 +3236,13 @@ class QuestionsAttemptController extends Controller
 		$results = QuizzResultQuestions::whereIn('question_id', $questionIDs)
 			->where('quiz_result_type', $quiz_result_type)
 			->where('user_id', $user->id)
-			->where('status', '!=', 'waiting')
 			->get();
 
 		$response = [];
 		foreach ($questionIDs as $questionID) {
-			$response[$questionID] = $results->where('question_id', $questionID)->count();
+			$response[$questionID]['total_attempts'] = $results->where('question_id', $questionID)->where('status', '!=', 'waiting')->count();
+			$response[$questionID]['correct_attempts'] = $results->where('question_id', $questionID)->where('status', 'correct')->count();
+			$response[$questionID]['incorrect_attempts'] = $results->where('question_id', $questionID)->where('status', 'wrong')->count();
 		}
         return $response;
     }

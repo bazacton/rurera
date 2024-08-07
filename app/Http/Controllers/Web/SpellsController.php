@@ -313,6 +313,7 @@ class SpellsController extends Controller
             return redirect('/'.panelRoute());
         }
 		$question_ids = $request->get('spell_words', []);
+		$is_new = $request->get('is_new', 'no');
 
         /*if (!auth()->subscription('vocabulary')) {
             return view('web.default.quizzes.not_subscribed');
@@ -355,6 +356,7 @@ class SpellsController extends Controller
                 'test_type'  => $test_type,
                 'resultData' => $resultData,
                 'question_ids'  => $question_ids,
+                'is_new'  => $is_new,
             ];
             return view('web.default.quizzes.start', $data);
         }
@@ -415,9 +417,13 @@ class SpellsController extends Controller
 						continue;
 					}
 				}
-				$no_of_attempts = isset( $questionResults[$question_id] )? $questionResults[$question_id] : 0;
+				$no_of_attempts = isset( $questionResults[$question_id]['total_attempts'] )? $questionResults[$question_id]['total_attempts'] : 0;
+				$correct_attempts = isset( $questionResults[$question_id]['correct_attempts'] )? $questionResults[$question_id]['correct_attempts'] : 0;
+				$incorrect_attempts = isset( $questionResults[$question_id]['incorrect_attempts'] )? $questionResults[$question_id]['incorrect_attempts'] : 0;
 				$words_list[$question_id] = array(
 					'no_of_attempts' => $no_of_attempts,
+					'correct_attempts' => $correct_attempts,
+					'incorrect_attempts' => $incorrect_attempts,
 					'word' => $word,
 				);
 			}
@@ -438,6 +444,8 @@ class SpellsController extends Controller
 			$counter = 0;
 			foreach( $words_list as $question_id => $wordData){
 				$no_of_attempts = isset( $wordData['no_of_attempts'] )? $wordData['no_of_attempts'] : 0;
+				$correct_attempts = isset( $wordData['correct_attempts'] )? $wordData['correct_attempts'] : 0;
+				$incorrect_attempts = isset( $wordData['incorrect_attempts'] )? $wordData['incorrect_attempts'] : 0;
 				$word = isset( $wordData['word'] )? $wordData['word'] : 0;
 				$counter++;
 				if( $counter > 3){
@@ -447,7 +455,7 @@ class SpellsController extends Controller
 				}
 				//pre($questionResults->count());
 				$response .= '<div class="word-block">';
-				$response .= '  <label class="collapsed" for="checkbox-'.$question_id.'" data-toggle="collapses" data-target="#word-details-'.$question_id.'" aria-expanded="false">'.$word.'</label>';
+				$response .= '  <label class="collapsed" for="checkbox-'.$question_id.'" data-toggle="collapses" data-target="#word-details-'.$question_id.'" aria-expanded="false">'.$word.' ('.$correct_attempts.')</label>';
 				$response .= '  <input type="checkbox" class="spell_checkbox hide" id="checkbox-'.$question_id.'" name="spell_words[]" value="'.$question_id.'">';
 				$response .= '<div class="word-details collapse" id="word-details-'.$question_id.'" aria-labelledby="word-details-'.$question_id.'" data-parent="#accordion"><button class="close-btn" type="button">&#10005;</button>';
 				$response .= isset( $word_details_array[$question_id] )? $word_details_array[$question_id] : '';

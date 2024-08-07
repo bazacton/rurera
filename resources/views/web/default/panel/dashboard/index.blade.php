@@ -159,7 +159,7 @@
 @endif
 
 
-<div class="quests-list quests-learning">
+<div class="quests-list quests-learning mt-30">
 	<div class="section-title text-left mb-30">
 		<h2 class="font-22">Weekly Learning Journeys</h2>
 	</div>

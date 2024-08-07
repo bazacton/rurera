@@ -253,6 +253,7 @@
 		</div>
 		</div>
 		<form class="spell-quiz-form" action="#" method="POST">
+		<input type="hidden" name="is_new" value="yes">
 		{{ csrf_field() }}
 		
 		<div class="spell-words-data" id="accordion">
@@ -359,8 +360,9 @@
 		var spell_type = $(this).attr('data-spell_type');
 		var play_link = $(this).attr('data-play_link');
 		$(".play-again").attr('data-href', play_link);
-		
-		rurera_loader(thisObj.closest(".spell-levels "), 'div');
+			
+		//rurera_loader(thisObj.closest(".spell-levels "), 'div');
+		rurera_loader(thisObj, 'div');
 		$(".spell-words-filters").attr('data-spell_id', spell_id);
 		$(".spell-words-filters").attr('data-spell_type', spell_type);
 		$(".spell-words-filters").attr('data-play_link', play_link);
@@ -370,7 +372,8 @@
 				if (spellPopupRequest != null) {
 					rurera_remove_loader($(".spell-levels "), 'div');
 					spellPopupRequest.abort();
-					rurera_loader(thisObj.closest(".spell-levels "), 'div');
+					rurera_loader(thisObj, 'div');
+					//rurera_loader(thisObj.closest(".spell-levels "), 'div');
 				}
 			},
 			url: '/spells/words-data',
@@ -379,6 +382,7 @@
 			},
 			data: {"spell_id": spell_id, "spell_type": spell_type},
 			success: function (return_data) {
+				spellPopupRequest = null;
 				rurera_remove_loader(thisObj.closest(".spell-levels "), 'div');
 				$(".spell-words-data").html(return_data);
 				$(".spell_words_popup").modal('show');
@@ -542,6 +546,13 @@ $(document).on('click', '.word-block label', function (e) {
 $(document).on('click', '.word-details .close-btn', function (e) {
 	$('.word-block-inner-data').slideUp();
 });
+
+
+
+/*$(document).on('click', '.lms-tooltip', function (e) {
+	e.stopPropagation();
+});*/
+
 
 </script>
 @endpush
