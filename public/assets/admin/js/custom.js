@@ -775,12 +775,11 @@ $(document).on('submit', '.rurera-form-validation', function (e) {
 /*
  * Validation Process by Form
  */
-function rurera_validation_process(form_name) {
+function rurera_validation_process(form_name, error_dispaly_type = '') {
     var has_empty = new Array();
     var alert_messages = new Array();
     var radio_fields = new Array();
     var checkbox_fields = new Array();
-	console.log('sdfsdfsdfsdfsdf');
     form_name.find('.rurera-req-field:not(img), .editor-field:not(img), .editor-fields:not(img)').each(function (index_no) {
         is_visible = true;
         var thisObj = jQuery(this);
@@ -856,7 +855,7 @@ function rurera_validation_process(form_name) {
             }
         }
     }
-    var error_messages = '';
+    var error_messages = ' <br><br>';
     if (has_empty.length > 0 && jQuery.inArray(true, has_empty) != -1) {
         array_length = alert_messages.length;
         for (i = 0; i < array_length; i++) {
@@ -867,9 +866,17 @@ function rurera_validation_process(form_name) {
         }
         //jQuery.growl.remove();
 
-        if( $('.validation-error').length > 0){
-            $('.validation-error').html(error_messages);
-        }else {
+        if( error_dispaly_type == 'under_field') {
+            $(".rurera-error-msg").remove();
+            $.each(error_objects, function (key, errorObj) {
+                var error_msg = errorObj.error_msg;
+                var error_obj = errorObj.error_obj;
+                error_msg = '<div class="rurera-error-msg">' + error_msg + '</div>';
+                $(error_msg).insertAfter(error_obj);
+            });
+        }
+
+        if( error_dispaly_type == 'growl') {
             var error_message = jQuery.growl.error({
                 message: error_messages,
                 duration: 10000,

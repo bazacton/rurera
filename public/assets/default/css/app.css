@@ -9388,6 +9388,12 @@ Lms Choose Membership Model Style Start
 .usernames-suggestions br {display: none;}
 .lms-choose-membership .emoji-icons .emoji-icon {padding: 0 5px;}
 .lms-choose-membership .pin-list {min-height: 28px; display: flex; align-items: center; color: #666; font-weight: 500;}
+.modal.spell_words_popup {
+    padding-right: 25px !important;
+    scrollbar-gutter: stable both-edges;
+    margin-left: -18px;
+    width: 103%;
+}
 /*************************************
 Lms Choose Membership Model Style End
 *************************************/
@@ -10376,16 +10382,12 @@ body .lms-quiz-section .flipbook-quiz {width: 800px;}
 .spells-quiz-from .form-field {margin: 0 0 40px;}
 .spells-quiz-from input[type="text"],
 .question-layout.spells-quiz-from input[type="text"] { /*background: repeating-linear-gradient(90deg, #747474 0, #747474 1ch, transparent 0, transparent 1.5ch) 0 100%/ 10ch 2px no-repeat; width: 10.5ch;*/ font: 1.2rem 'Ubuntu Mono', monospace; letter-spacing: 0.5ch; min-height: auto; padding: 0; text-transform: uppercase; font-size: 28px; font-weight: 600 !important; width: 45px !important;height: 45px;border: 2px dashed #747474;background: none !important;border-radius: 7px !important; letter-spacing: normal !important; text-align: center; margin: 0 2px;}
-.question-layout.spells-quiz-from input.editor-field-inputs.empty-field {background-color: #ebebeb !important; border-color: #dcdcdc !important;}
-.spell_words_popup .modal-content {
-    height: 100%;
-}
+.question-layout.spells-quiz-from input.editor-field-inputs.empty-field {background-color: #ebebeb !important; border-color: #dcdcdc;}
+.spell_words_popup .modal-content {height: 100%;}
 .spell_words_popup .modal-body {background-color: #fff; padding-top: 30px; padding-bottom: 30px;}
 .spell_words_popup h2 {font-size: 1.375rem; font-weight: 700; line-height: 1.2;}
 .spell-words-filters {padding-top: 30px; }
-.spell-words-filters .row {
-    align-items: center;
-}
+.spell-words-filters .row {align-items: center;}
 .spell-words-filters .form-group {margin-bottom: 0; display: inline-block; vertical-align: middle; margin-left: 10px;}
 .spell-words-filters .form-group select {border: 1px solid #ddd; padding: 7px 25px 7px 10px; border-radius: 6px; appearance: none;}
 .spell-words-filters .form-group:has(select):before,
@@ -10402,14 +10404,20 @@ body .lms-quiz-section .flipbook-quiz {width: 800px;}
 .spell-words-data .word-details {
     color: #999;
     font-weight: 400;
-    position: absolute;
+    position: relative;
     background-color: #fff;
     width: 100%;
     border-top: 1px solid #ececec;
     border-bottom: 1px solid #ececec;
     padding: 20px 0;
-    left: 0;
     z-index: 1;
+}
+.word-details .close-btn {
+    position: absolute;
+    right: 0;
+    border: 0;
+    background-color: inherit;
+    font-weight: 600;
 }
 .spell-words-filters .play-again {color: #fff; padding: 8px 35px 8px 15px; background-color: var(--primary); text-transform: uppercase; border-radius: 2px; box-shadow: 0px 4px 0 1px rgba(0, 0, 0, 0.8); font-weight: 500; position: relative;}
 .spell-words-filters .play-again:after {
@@ -10429,6 +10437,7 @@ body .lms-quiz-section .flipbook-quiz {width: 800px;}
 .word-details > .play-btn {
     padding: 0 10px;
     margin-right: 4px;
+    position: relative;
 }
 .word-char {
     display: inline-flex;
@@ -10446,6 +10455,7 @@ body .lms-quiz-section .flipbook-quiz {width: 800px;}
     display: inline-block;
     height: 20px;
     width: 20px;
+    position: relative;
 }
 .word-char > span {
     line-height: normal;
@@ -10471,7 +10481,13 @@ body .lms-quiz-section .flipbook-quiz {width: 800px;}
 .spells-quiz-from button:hover {background-color: #46484a; color: #fff;}
 .spells-quiz-from .form-btn-field {padding-top: 30px; margin-top: auto;}
 .spells-quiz-sound strong .sound-icon,
-.question-status-modal .modal-title h3 .sound-icon {background-color: #fff; display: inline-block; vertical-align: middle; color: #9c0e28; font-size: 22px; height: 40px; width: 40px; box-shadow: 0 0 4px rgba(0,0,0,0.4); line-height: 40px; border-radius: 100%; cursor: pointer;}
+.question-status-modal .modal-title h3 .sound-icon {background-color: #fff; display: inline-block; vertical-align: middle; color: #9c0e28; font-size: 22px; height: 30px; width: 30px; box-shadow: 0 0 4px rgba(0,0,0,0.4); line-height: 30px; border-radius: 100%; cursor: pointer;}
+.spells-quiz-from button svg {vertical-align: middle; height: 18px !important; width: 18px !important; margin-left: 5px;}
+.spells-quiz-from button svg g {fill: #929198;}
+.spells-quiz-from button:hover svg g {fill: #fff;}
+.spells-quiz-from .question-submit-btn {border-color: #8fc963; color: #8fc963; position: relative; padding-right: 38px;}
+.spells-quiz-from .question-submit-btn:after{content: ""; position: absolute; right: 15px; top: 50%; height: 7px; width: 14px; border: 2px solid; border-top: 0; border-right: 0; transform: rotate(-50deg); margin: -5px 0 0 0;}
+.spells-quiz-from .question-submit-btn:hover {border-color: transparent;}
 /* body .learning-page .learning-content {background: url(/assets/default/img/mountain.jpg) no-repeat; background-size: cover; overflow: hidden;} */
 .lms-quiz-section .questions-data-block {border: 0;}
 .spells-quiz-from .form-field:has(.frontend-field-error) {width: auto; display: inline-block; position: relative; border: 0;}
@@ -11647,6 +11663,7 @@ address .info-list-label {color: #64748b;}
 .set-work-tags li {cursor: pointer;}
 .set-work-tags li:not(.clear-tags) {color: #666; border: 1px solid #e6e3e3; background-color: #efefef; padding: 5px 10px; border-radius: 5px;}
 .set-work-tags .clear-tags {color: var(--primary); font-weight: 500; text-decoration: underline;}
+.section-title ~ section.dashboard {margin-top: 20px;}
 /* Wizard-Steps Style End */
 
 /*Edit Profile Style Start*/
@@ -12099,173 +12116,64 @@ Lms Responsive Style Start
     .page-sub-header .btn-primary,
     .top-navbar .nav-icons-or-start-live,
     .page-sub-header h1 br {display: none;}
-    .section-title {        text-align: center !important;
-    }
-    .panel-content .section-title.text-left {
-        text-align: left !important;
-    }
-    .home-sections:has(.blog-grid-card) .section-title {
-        text-align: left !important;
-    }
-    .marquee-sec .section-title {
-        padding: 0 15px;
-    }
-    .instructor-img-first .row {
-        flex-direction: column-reverse;
-    }
-    .instructor-img-first .img-holder {
-        margin-top: 30px;
-    }
-    .find-instructor-section .btn-holder {
-        justify-content: center;
-    }
+    .section-title {text-align: center !important;}
+    .panel-content .section-title.text-left {text-align: left !important;}
+    .home-sections:has(.blog-grid-card) .section-title {text-align: left !important;}
+    .marquee-sec .section-title {padding: 0 15px;}
+    .instructor-img-first .row {flex-direction: column-reverse;}
+    .instructor-img-first .img-holder {margin-top: 30px;}
+    .find-instructor-section .btn-holder {justify-content: center;}
     .job-singup-sub-header h1,
     .page-sub-header h1 {text-align: center; font-size: 36px !important; line-height: 46px !important;}
     .gallery-sub-header .masonry-grid-gallery {display: none;}
-    .footer-dots-img {
-        transform: none !important;
-        margin-top: 30px;
-    }
-    .footer-dots-img img {
-        width: 70%;
-        object-fit: contain;
-        display: block;
-        margin: 0 auto;
-    }
-    .process-step-number {
-        display: block;
-        position: absolute;
-        left: 15px;
-        margin-top: 2px;
-        color: #fff;
-        height: 100%;
-    }
+    .footer-dots-img {transform: none !important; margin-top: 30px;}
+    .footer-dots-img img {width: 70%; object-fit: contain; display: block; margin: 0 auto;}
+    .process-step-number {display: block; position: absolute; left: 15px; margin-top: 2px; color: #fff; height: 100%;}
     .lms-search-services .process-holder {display: none;}
-    .process-card-holder [class*="col-"] {
-        flex: 0 0 100%;
-        max-width: 100%;
-        margin-bottom: 15px;
-    }
-    .process-card {
-        text-align: left !important;
-        padding-left: 80px;
-    }
-    .reward-process .process-card {
-        padding-left: 0;
-    }
-    .process-step-number:before {
-        background-color: #fff;
-        position: absolute;
-        left: 50%;
-        bottom: 0;
-        content: "";
-        height: calc(100% - 40px);
-        width: 6px;
-        margin-left: -3px;
-    }
-    .process-step-number:after {
-        position: absolute;
-        position: absolute;
-        left: 50%;
-        top: 30px;
-        height: 25px;
-        width: 25px;
-        background: #e66f51;
-        border: 2px solid #ffffff;
-        border-radius: 100%;
-        content: "";
-        margin-left: -13px;
-    }
-    .has-no-bg .process-step-number {
-        color: var(--primary);
-    }
+    .process-card-holder [class*="col-"] {flex: 0 0 100%; max-width: 100%; margin-bottom: 15px;}
+    .process-card {text-align: left !important; padding-left: 80px;}
+    .reward-process .process-card {padding-left: 0;}
+    .process-step-number:before {background-color: #fff; position: absolute; left: 50%; bottom: 0; content: ""; height: calc(100% - 40px); width: 6px; margin-left: -3px;}
+    .process-step-number:after {position: absolute; position: absolute; left: 50%; top: 30px; height: 25px; width: 25px; background: #e66f51; border: 2px solid #ffffff; border-radius: 100%; content: ""; margin-left: -13px;}
+    .has-no-bg .process-step-number {color: var(--primary); }
     .has-no-bg .process-step-number:before,
-    .has-no-bg .process-step-number:after {
-        background-image: radial-gradient(circle, #0272b6, #0272b6, #0272b6, #0272b6, #ffffff);
-    }
-    .custom-footer .widget-body {
-        display: none;
-        padding-bottom: 25px;
-    }
+    .has-no-bg .process-step-number:after {background-image: radial-gradient(circle, #0272b6, #0272b6, #0272b6, #0272b6, #ffffff);}
+    .custom-footer .widget-body {display: none; padding-bottom: 25px;}
     .custom-footer .widget-links li, 
-    .custom-footer .widget-location li {
-        margin-bottom: 10px;
-        width: auto;
-        padding: 0 5px;
-    }
+    .custom-footer .widget-location li {margin-bottom: 10px; width: auto; padding: 0 5px;}
     .custom-footer .widget-links a, 
-    .custom-footer .widget-location a {
-        text-decoration: underline;
-        font-size: 16px;
-    }
+    .custom-footer .widget-location a {text-decoration: underline; font-size: 16px;}
     .widget.widget-links, .widget.widget-location,
-    .footer-newsletter {
-        border-bottom: 1px solid var(--primary);
-        margin-bottom: 20px;
-    }
+    .footer-newsletter {border-bottom: 1px solid var(--primary); margin-bottom: 20px;}
     .widget.widget-links h2, .widget.widget-location h2,
-    .footer-newsletter h2 {
-        margin-bottom: 20px;
-    }
+    .footer-newsletter h2 {margin-bottom: 20px; }
     .widget.widget-location .widget-title,
     .widget.widget-links .widget-title,
-    .footer-newsletter .widget-title {
-        position: relative;
-    }
+    .footer-newsletter .widget-title {position: relative;}
     .widget.widget-location .widget-title:after,
     .widget.widget-links .widget-title:after,
-    .footer-newsletter .widget-title:after {
-        content: "";
-        height: 6px;
-        width: 6px;
-        border-width: 0 0 1px 1px;
-        border-style: solid;
-        border-color: #ccc;
-        position: absolute;
-        right: 5px;
-        top: 8px;
-        transform: rotate(-45deg);
-    }
+    .footer-newsletter .widget-title:after {content: ""; height: 6px; width: 6px; border-width: 0 0 1px 1px; border-style: solid; border-color: #ccc; position: absolute; right: 5px; top: 8px; transform: rotate(-45deg); }
     .widget.widget-links .widget-title.active:after,
     .widget.widget-location .widget-title.active:after,
-    .footer-newsletter .widget-title.active:after {
-        border-width: 1px 1px 0 0;
-        margin-top: 5px;
-    }
-    .login-holder .row {
-        align-items: flex-start;
-    }
-    .login-card .login-option div {
-        margin-left: 0;
-    }
-    .process-holder .svg-shapes-bottom {
-        left: 108px;
-    }
-    .widget-title.rurera-hide {
-        display: block;
-    }
+    .footer-newsletter .widget-title.active:after {border-width: 1px 1px 0 0; margin-top: 5px;}
+    .login-holder .row {align-items: flex-start;}
+    .login-card .login-option div {margin-left: 0;}
+    .process-holder .svg-shapes-bottom {left: 108px;}
+    .widget-title.rurera-hide {display: block;}
     .custom-footer .footer-newsletter {margin-top: 0;}
     .lms-accordion-modern.accordion {padding: 0;}
     .lms-accordion-modern.accordion .card {max-width: 100%; margin-left: 0;}
     .section-title h2 {word-wrap: break-word;}
-    .home-banner h1.font-72 {
-        font-size: 3rem !important;
-    }
+    .home-banner h1.font-72 {font-size: 3rem !important;}
     .home-banner h1 br,
     .home-banner p br {display: none;}
     .section-title h2.font-40,
     .section-title h2.font-72,
     .reward-program-section h2.font-72,
     .newsletter-inner h2.font-72,
-    .categories-element-title h2.font-40 {
-        font-size: 1.8rem !important;
-    }
-    .section-title.section-inner-title h2 {
-        font-size: 1.2rem !important;
-    }
-    .blog-grid-card .blog-grid-detail .blog-grid-title {
-        font-size: 1.4rem;
-    }
+    .categories-element-title h2.font-40 {font-size: 1.8rem !important;}
+    .section-title.section-inner-title h2 {font-size: 1.2rem !important;}
+    .blog-grid-card .blog-grid-detail .blog-grid-title {font-size: 1.4rem;}
     .home-banner .choose-sats .sats-box {margin-bottom: 80px;}
     .lms-search-services img {max-width: 100%;}
     .job-singup-sub-header h1 br {display: none;}
@@ -12273,43 +12181,20 @@ Lms Responsive Style Start
     .lms-text-section img { max-width: 100%; object-fit: contain; }
     .find-instructor-section figure img.find-instructor-section-circle { right: 10% !important; }
     .find-instructor-section figure img.find-instructor-section-circle { right: 10% !important; }
-    .lms-jobs-form .card-header:has(.form-field-counter) button {
-        padding-right: 130px;
-    }
-    .lms-newsletter.blog-newsletter {
-        padding: 50px 0;
-        position: relative;
-        overflow: hidden;
-    }
-    .blog-newsletter [class*="col-"] {
-        max-width: 100%;
-        flex: 0 0 100%;
-        position: initial;
-    }
-    .blog-newsletter .svg-holder {
-        position: absolute;
-        top: 6px;
-        height: 100%;
-        width: 60%;
-        right: 0;
-    }
+    .lms-jobs-form .card-header:has(.form-field-counter) button {padding-right: 130px;}
+    .lms-newsletter.blog-newsletter {padding: 50px 0; position: relative; overflow: hidden;}
+    .blog-newsletter [class*="col-"] {max-width: 100%; flex: 0 0 100%; position: initial;}
+    .blog-newsletter .svg-holder {position: absolute; top: 6px; height: 100%; width: 60%; right: 0;}
     .blog-newsletter .section-title {position: relative; z-index: 1;}
-    .blog-newsletter .lms-btn-group {
-        justify-content: center;
-        position: relative;
-        z-index: 1;
-    }
-    .have-question-card .contact-info .contact-btn {
-    padding: 12px 20px;
-    }
-    .have-question-card .contact-info {
-        padding-top: 40px;
-        margin-top: 40px;
-    }
+    .blog-newsletter .lms-btn-group {justify-content: center; position: relative; z-index: 1;}
+    .have-question-card .contact-info .contact-btn {padding: 12px 20px; }
+    .have-question-card .contact-info {padding-top: 40px; margin-top: 40px;}
     .lms-categories-section.has-bg, .lms-our-mission-section.has-bg {background-size: cover !important;}
-    .lms-our-mission-section.has-bg .lms-mission-holder {
-        padding-top: 60px;
-    }
+    .lms-our-mission-section.has-bg .lms-mission-holder {padding-top: 60px;}
+    .modal.spell_words_popup {padding-right: 0 !important; margin-left: 0; width: 100%;}
+    .spell-words-filters [class*="col-"] {flex: 0 0 50%; max-width: 50%; padding-bottom: 15px;}
+    .spell-words-filters .play-again {margin-top: 22px; display: inline-block;}
+    .spell-words-data .word-block {width: 31%;}
 }
 
 @media screen and (min-width: 767px) and (max-width: 1600px) {
@@ -12322,9 +12207,7 @@ Lms Responsive Style Start
 }
 @media screen and (min-width: 767px) and (max-width: 992px) {
     .quiz-topbar .close-btn-holder {position: absolute; top: -40px; right: 15px;}
-    .products-top-header .banner-holder {
-        right: 215px;
-    }
+    .products-top-header .banner-holder {right: 215px;}
 }
 
 @media screen and (max-width: 767px) {
@@ -12699,6 +12582,18 @@ Lms Responsive Style Start
     .profile-view-data {margin: 0;}
     .profile-view-data > li {width: 100%; margin-right: 0; padding: 0;}
     .spell-levels .lms-tooltip {max-width: 200px; min-width: 200px;}
+    .spell-links .rurera-tooltip.dropup .dropdown-menu {
+        left: 0 !important;
+        transform: none !important;
+    }
+    .spell-links .lms-tooltip:before {
+        left: 25px;
+        transform: translateX(0) rotate(45deg);
+    }
+    .spell-links .lms-tooltip:after {
+        left: 25px;
+        transform: translateX(0) rotate(45deg);
+    }
     .spell-levels ul > li:nth-child(1) .lms-tooltip,
     .spell-levels ul > li:nth-child(2) .lms-tooltip {transform: none !important; left: 0 !important;}
     .spell-levels ul > li:nth-child(1) .lms-tooltip:before,
@@ -12978,6 +12873,11 @@ Lms Responsive Style Start
     .timeline-text p strong {margin-bottom: 10px; display: inline-block;}
     .timeline-text img {margin: 0 2px;}
     .db-members .profile-dropdown ul {right: auto; left: -5px;}
+    .spell-words-data .word-block {width: 100%;}
+    .word-char {width: auto; flex-direction: row; margin: 10px 5px 0 0;}
+    .word-char > span {padding: 5px; height: 28px; min-width: 25px;}
+    .word-details p {margin-top: 10px;}
+    .word-details p:last-child {margin-top: 5px;}
 }
 @media screen and (max-width: 480px) {
     .lms-count-field .lms-text-holder {flex-direction: column;}
@@ -13019,5 +12919,4 @@ Lms Responsive Style Start
     .notification-card .text-right {text-align: center !important;}
     .detail-body .profile-inner, .edit-info-list .subscribe-plan {max-width: 100%; min-width: auto;}
     .home-sections:has(.blog-grid-card) .btn {padding-right: 10px; padding-left: 10px;}
-    .spell-words-filters [class*="col-"] {flex: 0 0 50%; max-width: 50%; padding-bottom: 15px;}
 }

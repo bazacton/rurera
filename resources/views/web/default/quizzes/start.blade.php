@@ -3,6 +3,7 @@
 $rand_id = rand(99,9999);
 $learning_journey = (isset( $learning_journey ) && $learning_journey == 'yes')? 'yes' : 'no';
 $test_type = isset( $test_type )? $test_type : '';
+$question_ids = isset( $question_ids )? $question_ids : array();
 @endphp
 @push('styles_top')
 <link rel="stylesheet" href="/assets/default/learning_page/styles.css?var={{$rand_id}}"/>

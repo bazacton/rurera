@@ -337,8 +337,6 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
                     //$(".question-layout-block").html(return_data.question_response_layout);
 					
 					
-					console.log('quiz_typequiz_typequiz_typequiz_typequiz_type'+quiz_type);
-
 
                     if (quiz_type == 'vocabulary') {
                         if (rurera_is_field(return_data.question_correct_answere)) {
@@ -811,7 +809,7 @@ function init_question_functions() {
         });
     });
     $(document).on('click', '.confirm-btn', function (e) {
-        //$('#next-btn')[0].click();
+        $('#next-btn')[0].click();
     });
     $(document).on('click', '.question-next-btn', function (e) {
         //$(".quiz-status-bar").addClass('rurera-hide');
@@ -1511,6 +1509,8 @@ function rurera_validation_process(form_name, error_dispaly_type = '') {
         var visible_id = thisObj.data('visible');
         has_empty[index_no] = false;
         checkbox_fields[index_no] = false;
+		
+		console.log('index_no==='+index_no);
         if (rurera_is_field(visible_id) == true) {
             is_visible = jQuery("#" + visible_id).is(':hidden');
             if (jQuery("#" + visible_id).css('display') !== 'none') {
@@ -1611,8 +1611,6 @@ function rurera_validation_process(form_name, error_dispaly_type = '') {
             });
         }
 
-
-
         if( error_dispaly_type == 'growl') {
             var error_message = jQuery.growl.error({
                 message: error_messages,
@@ -1646,6 +1644,7 @@ function rurera_is_field(field_value) {
  */
 function rurera_insert_error_message(thisObj, alert_messages, error_msg, field_type = '') {
     thisObj.addClass('frontend-field-error');
+	console.log('field_type==='+field_type);
     if (field_type == 'checkbox' || field_type == 'radio') {
 
         var field_name = thisObj.attr('name');

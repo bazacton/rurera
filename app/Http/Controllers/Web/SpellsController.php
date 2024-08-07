@@ -449,7 +449,7 @@ class SpellsController extends Controller
 				$response .= '<div class="word-block">';
 				$response .= '  <label class="collapsed" for="checkbox-'.$question_id.'" data-toggle="collapses" data-target="#word-details-'.$question_id.'" aria-expanded="false">'.$word.'</label>';
 				$response .= '  <input type="checkbox" class="spell_checkbox hide" id="checkbox-'.$question_id.'" name="spell_words[]" value="'.$question_id.'">';
-				$response .= '<div class="word-details collapse" id="word-details-'.$question_id.'" aria-labelledby="word-details-'.$question_id.'" data-parent="#accordion">';
+				$response .= '<div class="word-details collapse" id="word-details-'.$question_id.'" aria-labelledby="word-details-'.$question_id.'" data-parent="#accordion"><button class="close-btn" type="button">&#10005;</button>';
 				$response .= isset( $word_details_array[$question_id] )? $word_details_array[$question_id] : '';
 				$response .= '</div>';
 

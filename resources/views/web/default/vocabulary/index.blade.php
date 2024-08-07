@@ -20,6 +20,13 @@
 		display: none;
 		width:100%;
 	}
+	.spell-words-data {
+		-webkit-user-select: none; /* Safari */
+		-moz-user-select: none;    /* Firefox */
+		-ms-user-select: none;     /* Internet Explorer/Edge */
+		user-select: none;         /* Non-prefixed version, currently supported by Chrome, Opera, and Firefox */
+	}
+
 
 </style>
 @endpush
@@ -530,6 +537,10 @@ $(document).on('click', '.word-block label', function (e) {
 	var target_data = $(target_id).html();
 	$(this).closest('.word-block-inner').find('.word-block-inner-data').html('<div class="word-details">'+target_data+'</div>');
 	$(this).closest('.word-block-inner').find('.word-block-inner-data').slideDown();
+});
+
+$(document).on('click', '.word-details .close-btn', function (e) {
+	$('.word-block-inner-data').slideUp();
 });
 
 </script>
