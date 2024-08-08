@@ -781,9 +781,11 @@ class QuestionsAttemptController extends Controller
             }
         }
 
+		$finish_reponse =  '';
         if ($is_complete == true) {
             $QuizzesResult = QuizzesResult::find($resultLogObj->id);
             $QuizzesResult->update(['status' => 'passed', 'total_time_consumed' => $QuizzesResult->quizz_result_questions_list()->sum('time_consumed')]);
+			$finish_reponse = $this->get_finish_layout($QuizzesResult, $quiz_type, $incorrect_flag, $correct_array, $incorrect_array, $question_correct_answere, $question_user_input);
             $this->after_attempt_complete($QuizzesResult);
         }
 
@@ -793,7 +795,7 @@ class QuestionsAttemptController extends Controller
         $quiz_type = (isset($assignment_type) && $assignment_type != '') ? $assignment_type : $quizAttempt->attempt_type;
 
 
-        $populated_response = 'Test Goes here';
+        $populated_response = $this->get_populated_layout($quiz_type, $incorrect_flag, $correct_array, $incorrect_array, $question_correct_answere, $question_user_input);
 
         $response = array(
             'show_fail_message'        => $show_fail_message,
@@ -820,6 +822,47 @@ class QuestionsAttemptController extends Controller
         echo json_encode($response);
         exit;
     }
+	
+	/*
+	* Get Populated Response for Attempt
+	*/
+	public function get_populated_layout($quiz_type, $incorrect_flag, $correct_array, $incorrect_array, $question_correct_answere, $question_user_input){
+		$populated_layout = '';
+		$data_array = array(
+			'quiz_type'	=> $quiz_type,
+			'incorrect_flag'	=> $incorrect_flag,
+			'correct_array'	=> $correct_array,
+			'incorrect_array'	=> $incorrect_array,
+			'question_correct_answere'	=> $question_correct_answere,
+			'question_user_input'	=> $question_user_input,
+		);
+		if( $quiz_type == 'vocabulary'){
+			$populated_layout = view('web.default.panel.attempt_response.spell_response', $data_array)->render();
+		}
+		
+		return $populated_layout;
+	}
+	
+	/*
+	* Get Finish Response for Attempt
+	*/
+	public function get_finish_layout($QuizzesResult, $quiz_type, $incorrect_flag, $correct_array, $incorrect_array, $question_correct_answere, $question_user_input){
+		$finish_layout = '';
+		$data_array = array(
+			'QuizzesResult' => $QuizzesResult,
+			'quiz_type'	=> $quiz_type,
+			'incorrect_flag'	=> $incorrect_flag,
+			'correct_array'	=> $correct_array,
+			'incorrect_array'	=> $incorrect_array,
+			'question_correct_answere'	=> $question_correct_answere,
+			'question_user_input'	=> $question_user_input,
+		);
+		if( $quiz_type == 'vocabulary'){
+			$finish_layout = view('web.default.panel.finish_response.spell_finish', $data_array)->render();
+		}
+		
+		return $finish_layout;
+	}
 
     /*
      * Get Group Question Validation
@@ -2921,6 +2964,7 @@ class QuestionsAttemptController extends Controller
         ];
 
         $questions_list_ids = $questions_list;
+		//pre($questions_list_ids);
 
 
         $attempted_questions_list = QuizzResultQuestions::whereIn('question_id', $questions_list_ids)->where('parent_type_id', $quiz->id)->where('user_id', $user->id)->where('status', '!=', 'waiting')->pluck('question_id')->toArray();

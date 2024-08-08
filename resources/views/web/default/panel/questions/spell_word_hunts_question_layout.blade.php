@@ -134,6 +134,8 @@ shuffle($characters_list);
                     <div class="question-correct-answere rurera-hide">
                         {{$correct_answer}} - {{$question->id}}
                     </div>
+					
+					<div class="question-populated-response"></div>
 
 
                     <div class="form-btn-field">

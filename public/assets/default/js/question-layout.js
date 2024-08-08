@@ -55,7 +55,7 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
             editor_field_value += $(this).val();
         });
         thisObj.closest('.spells-quiz-from').find('.editor-field').val(editor_field_value);
-        timePaused = true;
+        //timePaused = true;
         if( thisValue == '' && editor_field_value != ''){
             thisObj.closest('.spells-quiz-from').find('.question-submit-btn').click();
         }
@@ -352,7 +352,7 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
                                 $(".question-status-modal .modal-box p").html(defination_text);
                                 $(".question-status-modal .modal-box p").html(defination_text+'<audio autoPlay="" className="player-box-audio" id="audio_file_4492" src="/speech-audio/wrong-answer.mp3"></audio>');
 
-                                $("#question_status_modal").modal('show');
+                                //$("#question_status_modal").modal('show');
                                 $(".confirm-btn").focus();
                             }
                         }

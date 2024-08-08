@@ -416,7 +416,7 @@ $timer_counter = $practice_time;
     var timePaused = false;
 	
 	var focusInterval = null;
-	var focusIntervalCount = 10;
+	var focusIntervalCount = 600;
 	var TimerActive = true;
 	
 	
@@ -444,7 +444,7 @@ $timer_counter = $practice_time;
 						
 						
                         $(".question_inactivity_modal").modal('show');
-                        focusIntervalCount = 10;
+                        focusIntervalCount = 600;
                         clearInterval(focusInterval);
                         focusInterval = null;
                     }
@@ -455,14 +455,14 @@ $timer_counter = $practice_time;
 
 
         window.addEventListener('focus', function () {
-            focusIntervalCount = 10;
+            focusIntervalCount = 600;
             clearInterval(focusInterval);
             focusInterval = null;
         });
 
         $(document).on('click', '.continue-btn', function (e) {
             TimerActive = true;
-            focusIntervalCount = 10;
+            focusIntervalCount = 600;
             focusInterval = null;
         });
 		
@@ -508,7 +508,7 @@ $timer_counter = $practice_time;
                 editor_field_value += $(this).val();
             });
             thisObj.closest('.spells-quiz-from').find('.editor-field').val(editor_field_value);
-            timePaused = true;
+            //timePaused = true;
             if( thisValue == '' && editor_field_value != ''){
                 thisObj.closest('.spells-quiz-from').find('.question-submit-btn').click();
             }
@@ -599,6 +599,12 @@ $timer_counter = $practice_time;
 	function afterQuestionValidation(return_data, thisForm, question_id) {
 		var question_status_class = (return_data.incorrect_flag == true) ? 'incorrect' : 'correct';
 		attempted_questions = return_data.attempted_questions;
+		var populated_response = return_data.populated_response;
+		thisForm.find('.question-submit-btn').addClass('rurera-hide');
+		thisForm.find('.question-next-btn').removeClass('rurera-hide');
+		if( populated_response != ''){
+			$(".question-populated-response").html(populated_response);
+		}
 		var total_points = $(".lms-quiz-section").attr('data-total_points');
 		if( question_status_class == 'correct' ){
 			total_points = parseInt(total_points)+1;

@@ -5190,11 +5190,7 @@ body {font-family: var(--font-family-base) !important; overflow: visible;}
 }
 .btn-border-white {background-color: #fff; border-radius: 6px; border: 1px solid #f1f1f1; color: #818894; transition: all .3s;}
 .btn-border-white:hover {background-color: #ececec; border: 1px solid #ececec; color: #818894; transition: all .3s;}
-.resume-test a {
-    background-color: var(--primary);
-    color: #fff;
-    border-color: var(--primary);
-}
+.resume-test a {background-color: var(--primary); color: #fff; border-color: var(--primary); }
 .btn-gray200 {color: #818894;}
 .btn-light {color: #222;}
 .on-off-switch .custom-control-label:before {background-color: #fff !important;}
@@ -10244,7 +10240,7 @@ body .lms-quiz-section .flipbook-quiz {width: 800px;}
 .spells-quiz-sound strong,
 .spells-quiz-from strong{color: #747474; font-size: 20px; font-weight: 400;}
 .spells-quiz-sound .play-btn {position: relative; display: inline-block; vertical-align: middle;}
-.spells-quiz-sound .play-btn img {margin-top: -12px; margin-left: -12px; left: 50%; width: 24px; height: 24px; transform: none;}
+.spells-quiz-sound .play-btn img {margin-top: -10px; margin-left: -10px; left: 50%; width: 20px; height: 20px; transform: none;}
 .spells-quiz-from strong {margin-right: 5px;}
 .spells-quiz-from {text-align: center;}
 .spells-quiz-from .form-field {margin: 0 0 40px;}
@@ -10259,15 +10255,15 @@ body .lms-quiz-section .flipbook-quiz {width: 800px;}
 .spell-words-filters .form-group {margin-bottom: 0; display: inline-block; vertical-align: middle; margin-left: 10px;}
 .spell-words-filters .form-group select {border: 1px solid #ddd; padding: 7px 25px 7px 10px; border-radius: 6px; appearance: none;}
 .spell-words-filters .form-group:has(select):before,
-.spell-words-data .word-block label:after {content: ""; position: absolute; right: 10px; top: 50%; height: 6px; width: 6px; border: 1px solid #666; border-left: transparent; border-top: transparent; transform: rotate(45deg); margin-top: -5px; pointer-events: none;}
+.spell-words-data .word-block label .down-arrow {position: absolute; right: 10px; top: 50%; height: 6px; width: 6px; border: 1px solid #666; border-left: transparent; border-top: transparent; transform: rotate(45deg); margin-top: -5px; pointer-events: none;}
 .spell_words_popup .spell-words-filters input.search-word {height: 36px; padding: 5px 10px; }
 .spell-words-data {padding-top: 30px; display: flex; flex-wrap: wrap; gap: 0 15px; align-items: flex-start; position: relative;}
 .spell-words-data .word-block {display: inline-block; width: 32.3%; }
 .spell-words-data .word-block:has(label.collapsed){border-bottom: 1px solid #ececec;}
-.spell-words-data .word-block label {margin-bottom: 0; cursor: pointer; font-weight: 400; position: relative; background-color: #e8f0fd; padding: 15px 0; width: 100%;}
+.spell-words-data .word-block label {margin-bottom: 0; font-weight: 400; position: relative; background-color: #e8f0fd; padding: 15px 0; width: 100%;}
 .spell-words-data .word-block label.collapsed {background-color: inherit;}
-.spell-words-data .word-block label:after {border: 1px solid #666; border-bottom: transparent; border-right: transparent;}
-.spell-words-data .word-block label.collapsed:after {transform: rotate(45deg); border: 1px solid #666; border-top: transparent; border-left: transparent;}
+.spell-words-data .word-block label .down-arrow {border: 1px solid #666; border-bottom: transparent; border-right: transparent; pointer-events: visible; cursor: pointer;}
+.spell-words-data .word-block label.collapsed .down-arrow {transform: rotate(45deg); border: 1px solid #666; border-top: transparent; border-left: transparent;}
 .spell-words-data .word-block input[type="checkbox"] {position: absolute; opacity: 0; width: 0; height: 0;}
 .spell-words-data .word-details {color: #999; font-weight: 400; position: relative; background-color: #fff; width: 100%; border-top: 1px solid #ececec; border-bottom: 1px solid #ececec; padding: 20px 0; z-index: 1;}
 .word-details .close-btn {position: absolute; right: 0; border: 0; background-color: inherit; font-weight: 600;}
@@ -10287,7 +10283,7 @@ body .lms-quiz-section .flipbook-quiz {width: 800px;}
 .spells-quiz-from button:hover {background-color: #46484a; color: #fff;}
 .spells-quiz-from .form-btn-field {padding-top: 30px; margin-top: auto;}
 .spells-quiz-sound strong .sound-icon,
-.question-status-modal .modal-title h3 .sound-icon {background-color: #fff; display: inline-block; vertical-align: middle; color: #9c0e28; font-size: 22px; height: 30px; width: 30px; box-shadow: 0 0 4px rgba(0,0,0,0.4); line-height: 30px; border-radius: 100%; cursor: pointer;}
+.question-status-modal .modal-title h3 .sound-icon {background-color: #fff; display: inline-block; vertical-align: middle; color: #9c0e28; font-size: 22px; height: 26px; width: 26px; box-shadow: 0 0 4px rgba(0,0,0,0.4); line-height: 26px; border-radius: 100%; cursor: pointer;}
 .spells-quiz-from button svg {vertical-align: middle; height: 18px !important; width: 18px !important; margin-left: 5px;}
 .spells-quiz-from button svg g {fill: #929198;}
 .spells-quiz-from button:hover svg g {fill: #fff;}
@@ -10907,7 +10903,6 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .quiz-questions-bar-holder .value-lable:hover:before,
 .quiz-questions-bar-holder .value-lable:hover:after {opacity: 1; visibility: visible;}
 .quiz-questions-bar-holder .bar-fill:after {position: absolute; content: attr(title); right: -10px; width: 30px; height: 30px; background-color: #51cd00; color: white; border-radius: 100%; top: 50%; margin-top: -15px; text-align: center; font-size: 12px; line-height: 30px; font-weight: 500; box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);}
-
 .quiz-corrects-incorrects {width: 95px; display: inline-block; vertical-align: middle; margin-right: -4px; position: relative; }
 .quiz-status-bar .coin-numbers {background-color: #e5e5e5; border-radius: 20px; margin-left: -8px; padding: 4px 5px; width: 60px; display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 500; position: relative;}
 .quiz-status-bar .coin-numbers img {max-width: 20px; }
@@ -11431,7 +11426,6 @@ address .info-list-label {color: #64748b;}
 .profile-controls a {color: var(--primary);}
 .profile-controls .icon-box {height: 15px; width: 15px;}
 .profile-controls .icon-box img {max-width: 100%; filter: invert(58%) sepia(88%) saturate(5319%) hue-rotate(220deg) brightness(97%) contrast(105%);}
-
 /* User Detail Style End */
 
 /* Wizard-Steps Style Start */
@@ -11534,7 +11528,6 @@ address .info-list-label {color: #64748b;}
 .custom-switch-input:focus ~ .custom-switch-indicator {border-color: var(--primary);}
 .custom-switch-description {margin-left: .5rem; color: #6e7687; transition: .3s color;}
 .custom-switch-input:checked ~ .custom-switch-description {color: #495057;}
-
 .custom-switch.custom-label .custom-switch-indicator {height: 35px; width: 80px; vertical-align: middle; overflow: hidden;}
 .switch-circle {display: block; position: absolute; height: 100%; width: 100%; border-radius: 50px;}
 .custom-switch.custom-label .switch-circle:before {content: ''; position: absolute; height: calc(1.5rem - 4px); width: calc(1.5rem - 4px); top: 50%; left: 5px; background: #fff; border-radius: 50%; transition: .5s left, .5s right; transform: translateY(-50%);}
@@ -11640,10 +11633,11 @@ address .info-list-label {color: #64748b;}
 .reviews-holder .reviews-score em,
 .reviews-holder .reviews-number em {font-style: normal; margin-left: 5px;}
 .reviews-holder .reviews-number em {margin: 0 5px 0 0;}
-
 .footer-newsletter button {background-color: #fff; border: 0; padding: 10px 35px; border-radius: 5px;}
 .learning-page {position: relative;}
 .learning-page .close {position: absolute; right: 10px; top: 15px; z-index: 1;}
+.spells-quiz-from .word-cloud-box {max-height: 130px; min-height: 130px; width: 130px; list-style: none;}
+.learning-page.type-vocabulary:has(.spells-quiz-sound) .word-cloud-box {margin: -65px auto 35px;}
 
 /*************************************
 Lms Responsive Style Start
@@ -12273,7 +12267,6 @@ Lms Responsive Style Start
     .filters-list .analytics-type,
     .filters-list .tests-list,
     .tests-list, .listing-search .inline-filters:not(.wizard-steps .listing-search .inline-filters) {position: absolute; width: 95%; flex-direction: column; left: 0; top: 100%; text-align: left; background-color: #fff; z-index: 1; padding: 10px 15px; box-shadow: 0 0 5px rgba(0,0,0,0.1); visibility: hidden; opacity: 0; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -ms-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out; transition: all 0.3s ease-out; margin-top: 10px; align-items: flex-start;}
- 
     .tests-list, .listing-search .inline-filters:not(.wizard-steps .listing-search .inline-filters) {width: 100%; padding-top: 15px; padding-bottom: 15px;}
     .filters-list .analytics-type.open,
     .filters-list .tests-list.open,
@@ -12385,7 +12378,6 @@ Lms Responsive Style Start
     .spell-levels ul > li:last-child .lms-tooltip:after,
     .spell-levels ul > li:nth-last-child(2) .lms-tooltip:before, 
     .spell-levels ul > li:nth-last-child(2) .lms-tooltip:after {left: auto; right: 5px;}
-
     .spell-levels ul.ul-rtl > li:nth-child(1) .lms-tooltip,
     .spell-levels ul.ul-rtl > li:nth-child(2) .lms-tooltip {transform: none !important; left: auto !important; right: 0;}
     .spell-levels ul.ul-rtl > li:nth-child(1) .lms-tooltip:before,
@@ -12428,7 +12420,7 @@ Lms Responsive Style Start
     .spell-words-data .word-details {font-size: 14px;}
     .spell-words-filters .form-group {margin: 10px 0 0; width: 100%;}
     .spell-words-filters .form-group select {width: 100%;}
-    
+
 }
 
 @media screen and (max-width: 640px) {
@@ -12522,7 +12514,6 @@ Lms Responsive Style Start
     .rurera-stars span {height: 18px; width: 18px; margin-right: -2px;}
     .rurera-stars .second-star {margin-top: -10px; height: 20px; width: 20px; margin-right: 2px;}
     .rurera-stars span img {height: 100% !important;}
-    
     .panel-content .sats-listing-card.medium {height: auto; overflow-y: hidden;}
     body ul.lms-performace-table.leaderboard {width: auto; white-space: nowrap; overflow: hidden; overflow-x: auto; margin-top: 20px;}
     body .panel-content .lms-performace-table>li {display: table-row;}
@@ -12647,11 +12638,17 @@ Lms Responsive Style Start
     .learning-page.type-vocabulary:has(.spells-quiz-from) {padding-top: 30px !important;}
     .spell-question-area .left-content {height: calc(100vh - 160px) !important;}
     .spell-question-area .question-layout-block form.question-fields {height: calc(100vh - 120px); margin-bottom: 0; padding-top: 0;}
-    .spells-quiz-sound {margin-top: 0;}
+    .spell-question-area .question-layout-block form.question-fields:has(#rf-searchgamecontainer) {height: auto; margin-bottom: 30px;}
+    .left-content:has(#rurera-words-search) {height: auto !important;}
+    .spells-quiz-sound {margin-top: 0; margin-bottom: 35px;}
+    .learning-page.type-vocabulary:has(.spells-quiz-sound) .word-cloud-box {margin-top: 0;}
     .spells-quiz-from .form-btn-field {display: flex;padding-left: 10px;padding-right: 10px;justify-content: center;gap: 10px;flex-wrap: wrap;padding-top: 0;}
     .timeline-text p strong {margin-bottom: 10px; display: inline-block;}
     .timeline-text img {margin: 0 2px;}
     .db-members .profile-dropdown ul {right: auto; left: -5px;}
+    body #rurera-words-search #rf-searchgamecontainer {padding: 8px;}
+    body #rurera-words-search #rf-searchgamecontainer .rf-tgrid {padding: 5px 4px;}
+    body #rurera-words-search {margin-top: 35px;}
 }
 @media screen and (max-width: 480px) {
     .lms-count-field .lms-text-holder {flex-direction: column;}

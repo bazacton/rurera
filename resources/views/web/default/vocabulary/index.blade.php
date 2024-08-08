@@ -123,7 +123,7 @@
 												
 												<div class="lms-tooltip dropdown-menu">
 													<div class="tooltip-box">	
-														<button class="tooltip-btn practice font-16 d-block mb-15 text-center spell-popup-btn"  data-play_link="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/word-hunts/exercise" data-spell_type="word-hunts" data-spell_id="{{$dataObj->id}}">Play Again</button>
+														<button data-heading="Word Hunts" class="tooltip-btn practice font-16 d-block mb-15 text-center spell-popup-btn"  data-play_link="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/word-hunts/exercise" data-spell_type="word-hunts" data-spell_id="{{$dataObj->id}}">Play Again</button>
 														@if($word_hunts_count > 0)
 															<button class="tooltip-btn legendary d-block font-16 text-center" onclick='window.location.href = "/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/word-hunts/exercise"'>Continue</button>
 														@endif
@@ -135,7 +135,7 @@
 												<a href="javascript:;" class="spell-popup-btn1 rurera-tooltip dropup"><span class="dropdown-toggle h-100 w-100 d-flex align-items-center justify-content-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Word Search</span>
 												<div class="lms-tooltip dropdown-menu">
 													<div class="tooltip-box">	
-														<button class="tooltip-btn practice font-16 d-block mb-15 text-center spell-popup-btn"  data-play_link="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/word-search/exercise" data-spell_type="word-search" data-spell_id="{{$dataObj->id}}">Play Again</button>
+														<button data-heading="Word Search" class="tooltip-btn practice font-16 d-block mb-15 text-center spell-popup-btn"  data-play_link="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/word-search/exercise" data-spell_type="word-search" data-spell_id="{{$dataObj->id}}">Play Again</button>
 														@if($word_search_count > 0)
 															<button class="tooltip-btn legendary d-block font-16 text-center" onclick='window.location.href = "/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/word-search/exercise"'>Continue</button>
 														@endif
@@ -147,7 +147,7 @@
 												<a href="javascript:;" class="spell-popup-btn1 rurera-tooltip dropup"><span class="dropdown-toggle h-100 w-100 d-flex align-items-center justify-content-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Word Cloud</span>
 												<div class="lms-tooltip dropdown-menu">
 													<div class="tooltip-box">	
-														<button class="tooltip-btn practice font-16 d-block mb-15 text-center spell-popup-btn"  data-play_link="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/word-cloud/exercise" data-spell_type="word-cloud" data-spell_id="{{$dataObj->id}}">Play Again</button>
+														<button data-heading="Discover Words Hidden in the Alphabet Cloud" class="tooltip-btn practice font-16 d-block mb-15 text-center spell-popup-btn"  data-play_link="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/word-cloud/exercise" data-spell_type="word-cloud" data-spell_id="{{$dataObj->id}}">Play Again</button>
 														@if($word_cloud_count > 0)
 															<button class="tooltip-btn legendary d-block font-16 text-center" onclick='window.location.href = "/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/word-cloud/exercise"'>Continue</button>
 														@endif
@@ -158,7 +158,7 @@
 												<a href="javascript:;" class="spell-popup-btn1 rurera-tooltip dropup"><span class="dropdown-toggle h-100 w-100 d-flex align-items-center justify-content-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Complete the Sentence</span>
 												<div class="lms-tooltip dropdown-menu">
 													<div class="tooltip-box">	
-														<button class="tooltip-btn practice font-16 d-block mb-15 text-center spell-popup-btn"  data-play_link="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/word-missing/exercise" data-spell_type="word-missing" data-spell_id="{{$dataObj->id}}">Play Again</button>
+														<button data-heading="Fill in the Blank(s) to Complete the Hidden Word." class="tooltip-btn practice font-16 d-block mb-15 text-center spell-popup-btn"  data-play_link="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/word-missing/exercise" data-spell_type="word-missing" data-spell_id="{{$dataObj->id}}">Play Again</button>
 														@if($word_missing_count > 0)
 															<button class="tooltip-btn legendary d-block font-16 text-center" onclick='window.location.href = "/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/word-missing/exercise"'>Continue</button>
 														@endif
@@ -249,7 +249,7 @@
 			</div>
 		</div>
 		<div class="col-2 col-lg-2 col-md-12">
-			<a href="javascript:;" data-href="javascript:;" class="play-again" data-dismiss="modal" aria-label="Continue">Play Again</a>
+			<a href="javascript:;" data-href="javascript:;" class="play-again">Play (<span class="selected_questions">All</span>)</a>
 		</div>
 		</div>
 		<form class="spell-quiz-form" action="#" method="POST">
@@ -357,12 +357,14 @@
 	$(document).on('click', '.spell-popup-btn', function (e) {
 		var thisObj = $(this);
 		var spell_id = $(this).attr('data-spell_id');
+		var spell_heading = $(this).attr('data-heading');
+		$(".spell_words_popup_body .container-nosidebar h2").html(spell_heading);
 		var spell_type = $(this).attr('data-spell_type');
 		var play_link = $(this).attr('data-play_link');
 		$(".play-again").attr('data-href', play_link);
 			
-		//rurera_loader(thisObj.closest(".spell-levels "), 'div');
-		rurera_loader(thisObj, 'div');
+		rurera_loader(thisObj.closest(".spell-levels "), 'div');
+		//rurera_loader(thisObj, 'div');
 		$(".spell-words-filters").attr('data-spell_id', spell_id);
 		$(".spell-words-filters").attr('data-spell_type', spell_type);
 		$(".spell-words-filters").attr('data-play_link', play_link);
@@ -372,8 +374,8 @@
 				if (spellPopupRequest != null) {
 					rurera_remove_loader($(".spell-levels "), 'div');
 					spellPopupRequest.abort();
-					rurera_loader(thisObj, 'div');
-					//rurera_loader(thisObj.closest(".spell-levels "), 'div');
+					//rurera_loader(thisObj, 'div');
+					rurera_loader(thisObj.closest(".spell-levels "), 'div');
 				}
 			},
 			url: '/spells/words-data',
@@ -392,9 +394,18 @@
     });
 	
 	$(document).on('click', '.play-again', function (e) {
-		var play_link = $(".spell-words-filters").attr('data-play_link');
-		$(".spell-quiz-form").attr('action',play_link);
-		$(".spell-quiz-form").submit();
+		var selected_words = $('.word-block.active').length;
+		selected_words = (selected_words > 0)? selected_words : 'All';
+		if( selected_words != 'All' && selected_words < 15){
+			var error_message = jQuery.growl.error({
+                message: 'Select atleast 15 words to continue!',
+                duration: 10000,
+            });
+		}else{
+			var play_link = $(".spell-words-filters").attr('data-play_link');
+			$(".spell-quiz-form").attr('action',play_link);
+			$(".spell-quiz-form").submit();
+		}
     });
 	
 	
@@ -450,6 +461,9 @@ $(document).on('change', '.spell_checkbox', function (e) {
     } else {
         $(this).closest('.word-block').removeClass('active');
     }
+	var selected_words = $('.word-block.active').length;
+	selected_words = (selected_words > 0)? selected_words : 'All';
+	$(".play-again .selected_questions").html(selected_words);
 });
 
 
@@ -535,9 +549,10 @@ $(document).on('click', '.phonics-btn', function (e) {
 	
 
 
-$(document).on('click', '.word-block label', function (e) {
+$(document).on('click', '.word-block label .down-arrow', function (e) {
+	var thisObj = $(this).closest('label');
 	$('.word-block-inner-data').slideUp();
-	var target_id = $(this).attr('data-target');
+	var target_id = thisObj.attr('data-target');
 	var target_data = $(target_id).html();
 	$(this).closest('.word-block-inner').find('.word-block-inner-data').html('<div class="word-details">'+target_data+'</div>');
 	$(this).closest('.word-block-inner').find('.word-block-inner-data').slideDown();

@@ -52,6 +52,7 @@ class WebinarController extends Controller
         $categoryObj = Category::where('slug', $category_slug)->first();
 
 
+
         $course = Webinar::where('slug', $slug)->whereJsonContains('category_id', (string) $categoryObj->id)
             ->with([
                 'quizzes'                 => function ($query) use ($sub_chapter_id) {
@@ -973,6 +974,7 @@ class WebinarController extends Controller
 
         $SubChapters = SubChapters::where('sub_chapter_slug', $sub_chapter_slug)
                     ->first();
+					
 
 
         $chapterItem = WebinarChapterItem::where('type', 'quiz')
