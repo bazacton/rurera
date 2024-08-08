@@ -973,8 +973,8 @@ class QuizController extends Controller
 					$attempt_mode = $QuizzesResult->attempt_mode;
 					$test_type_file = get_test_type_file($attempt_mode);
 					$vocabulary_file_path = 'question_layout';
-					if( $test_type_file != ''){
-						//$vocabulary_file_path = 'spell_'.$test_type_file.'_question_result_layout';
+					if( $test_type_file != '' && $attempt_mode == 'word-hunts'){
+						$vocabulary_file_path = 'spell_'.$test_type_file.'_question_result_layout';
 					}
 
                     $question_result_layout = view('web.default.panel.questions.'. $vocabulary_file_path, [
@@ -989,7 +989,7 @@ class QuizController extends Controller
                         'disable_finish'         => 'true',
                         'disable_prev'           => 'true',
                         'disable_next'           => 'true',
-                        //'class'                  => 'disable-div',
+                        'class'                  => 'disable-div',
                         'layout_type'            => 'results',
                         'group_questions_layout' => $group_questions_layout,
                         'correct_answer'            => $correct_answer,

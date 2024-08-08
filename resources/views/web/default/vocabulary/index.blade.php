@@ -26,6 +26,10 @@
 		-ms-user-select: none;     /* Internet Explorer/Edge */
 		user-select: none;         /* Non-prefixed version, currently supported by Chrome, Opera, and Firefox */
 	}
+	
+	.rurera-error {
+		color: #ff0909;
+	}
 
 
 </style>
@@ -222,6 +226,7 @@
 		<h2>Filter Words</h2>
 		<p>From sources across the web</p>
 		<div class="spell-words-filters" data-spell_id="0" data-spell_type="">
+		<div class="rurera-error mb-30 rurera-hide">Select atleast 15 words to continue!</div>
 		<div class="row">
 		<div class="col-3 col-lg-3 col-md-12">
 			Sort By
@@ -396,11 +401,13 @@
 	$(document).on('click', '.play-again', function (e) {
 		var selected_words = $('.word-block.active').length;
 		selected_words = (selected_words > 0)? selected_words : 'All';
+		$(".rurera-error").addClass('rurera-hide');
 		if( selected_words != 'All' && selected_words < 15){
-			var error_message = jQuery.growl.error({
+			$(".rurera-error").removeClass('rurera-hide');
+			/*var error_message = jQuery.growl.error({
                 message: 'Select atleast 15 words to continue!',
                 duration: 10000,
-            });
+            });*/
 		}else{
 			var play_link = $(".spell-words-filters").attr('data-play_link');
 			$(".spell-quiz-form").attr('action',play_link);

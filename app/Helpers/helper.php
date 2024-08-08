@@ -8855,7 +8855,7 @@ function gameTime($type = ''){
         'iseb' => 10,
         'cat4' => 10,
         'challenge' => 10,
-        'vocabulary' => 10,
+        'vocabulary' => 25,
         'timestables' => 10,
     );
     $response = (isset( $gameTime[$type] ) && $gameTime[$type] != '')? $gameTime[$type] : 0;

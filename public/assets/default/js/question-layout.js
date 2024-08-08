@@ -260,7 +260,7 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
             var quiz_type = return_data.quiz_type;
             
             if( return_data.is_complete == true) {
-                $(".question-area-block").html('Thank you for attempting!');
+                //$(".question-area-block").html('Thank you for attempting!');
 
 
                 thisObj.closest('.questions-data-block').find('.right-content').addClass('hide');
@@ -276,7 +276,7 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
                     window.location.href = '/panel/quizzes/' + quiz_result_id + '/check_answers';
                 }
                 if (quiz_type == 'vocabulary') {
-                    $("#spell_test_complete_modal").modal('show');
+                    //$("#spell_test_complete_modal").modal('show');
                 }
 
 
@@ -461,7 +461,7 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
                         }
                     }
 
-                    if (quiz_type == 'practice' || quiz_type == 'vocabulary') {
+                    if (quiz_type == 'practice') {
                         thisForm.find('.show-notifications').html('<span class="question-status-correct">Well done! Thats exactly right.</span>');
                         if (rurera_is_field(return_data.question_solution)) {
                             thisForm.find('.show-notifications').append(return_data.question_solution);
@@ -471,10 +471,10 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
                         $(".quiz-status-bar").removeClass('rurera-hide');
                     }
                     else {
-                        const interval = setInterval(() => {
+                        /*const interval = setInterval(() => {
                             $('#next-btn')[0].click();
                             clearInterval(interval);
-                        }, 3000);
+                        }, 3000);*/
                     }
 
 
@@ -892,10 +892,15 @@ function init_question_functions() {
         var quizQuestionID = $(".question-area-block").find('.question-fields').attr('data-question_id');
 
         var total_points = $(".lms-quiz-section").attr('data-total_points');
-		console.log('total_points==========================================='+total_points);
         if( rurera_is_field(total_points) == true && total_points != ''){
             $(".spells-quiz-info .total-points span").html(total_points+' ');
 			$(".lms-quiz-section").attr('data-total_points', total_points);
+        }
+		
+		var play_time = $(".lms-quiz-section").attr('data-play_time');
+        if( rurera_is_field(play_time) == true && play_time != ''){
+            $(".spells-quiz-info .play-time span").html(getTime(play_time)+' ');
+			$(".lms-quiz-section").attr('data-play_time', play_time);
         }
 
         $("p.given").html(chunkWords($("p.given").text()));

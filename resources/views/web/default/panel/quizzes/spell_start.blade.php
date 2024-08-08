@@ -33,7 +33,7 @@ $timer_counter = $practice_time;
 @endphp
 <div class="content-section">
 
-    <section class="lms-quiz-section" data-total_points="{{isset( $total_points )? $total_points : 0}}">
+    <section class="lms-quiz-section" data-total_points="{{isset( $total_points )? $total_points : 0}}" data-play_time="{{isset( $total_points )? $total_points : 0}}">
 
         @if( $quiz->quiz_pdf != '')
         <script type="text/javascript">
@@ -596,21 +596,42 @@ $timer_counter = $practice_time;
         return return_string;
     }
 	
+	var spell_play_time = "{{gameTime('vocabulary')}}";
 	function afterQuestionValidation(return_data, thisForm, question_id) {
 		var question_status_class = (return_data.incorrect_flag == true) ? 'incorrect' : 'correct';
 		attempted_questions = return_data.attempted_questions;
 		var populated_response = return_data.populated_response;
-		thisForm.find('.question-submit-btn').addClass('rurera-hide');
-		thisForm.find('.question-next-btn').removeClass('rurera-hide');
+		var finish_reponse = return_data.finish_reponse;
+		if( finish_reponse != ''){
+			TimerActive = false;
+			$(".question-area-block").html(finish_reponse);
+		}
+		
 		if( populated_response != ''){
 			$(".question-populated-response").html(populated_response);
 		}
 		var total_points = $(".lms-quiz-section").attr('data-total_points');
+		var total_points = $(".lms-quiz-section").attr('data-total_points');
 		if( question_status_class == 'correct' ){
 			total_points = parseInt(total_points)+1;
+			var total_play_time = parseInt(total_points) * parseInt(spell_play_time);
+			$(".play-time").attr('data-play_time', total_play_time);
 			$(".total-points").attr('data-total-points', total_points);
 			$(".lms-quiz-section").attr('data-total_points', total_points);
+			$(".lms-quiz-section").attr('data-play_time', total_play_time);
 			$(".total-points span").html(total_points);
+			$(".play-time span").html(getTime(total_play_time));
+			
+			
+			 const interval = setInterval(() => {
+				console.log('interval-test');
+				$('#next-btn')[0].click();
+				clearInterval(interval);
+			}, 3000);
+			
+		}else{
+			thisForm.find('.question-submit-btn').addClass('rurera-hide');
+			thisForm.find('.question-next-btn').removeClass('rurera-hide');
 		}
     }
 	

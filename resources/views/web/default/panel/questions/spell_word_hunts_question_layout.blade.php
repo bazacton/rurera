@@ -80,6 +80,9 @@ shuffle($characters_list);
                         <li class="total-points" data-total_points="{{isset( $total_points )? $total_points : 0}}">
                             <span>{{isset( $total_points )? $total_points : 0}}</span> Coins
                         </li>
+                        <li class="play-time" data-play_time="{{isset( $total_points )? $total_points : 0}}">
+                            <span>{{isset( $total_points )? $total_points : 0}}</span> Play Time
+                        </li>
                     </ul>
                 </div>
                 <div class="left-content has-bg">
@@ -98,9 +101,7 @@ shuffle($characters_list);
                 </div>
                 <div class="spells-quiz-from question-layout">
                     <div class="form-field">
-					
-						
-					
+						<div class="question-label"><span>Fill in the Blank(s) to Complete the Hidden Word.</span></div>
 					
 						@php $words_counter = 0; @endphp
                         @while($words_counter < $no_of_words)

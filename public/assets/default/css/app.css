@@ -6964,6 +6964,8 @@ span.question-status-correct {margin-top: 10px; border: 1px solid #44b13d; paddi
 span.question-status-correct:before {filter: invert(54%) sepia(75%) saturate(386%) hue-rotate(68deg) brightness(92%) contrast(100%); position: absolute; left: 15px; top: 50%; margin-top: -15px; width: 30px; height: 30px; background: url(/assets/default/svgs/thumb-star.svg) no-repeat; background-size: 100%; content: "";}
 span.question-status-wrong,
 .lms-quiz-section .question-status-wrong {margin-top: 10px; border: 2px solid #ef9797; padding: 10px 15px; color: #f08c8c;}
+.question-populated-response {padding: 0 15px;}
+.question-populated-response span.question-status-wrong {border-radius: 5px; display: block; max-width: fit-content; margin: 0 auto 15px;}
 .show-notifications .question-solution {background-color: #f6faf6; border-radius: 5px; padding: 15px; margin-top: 15px;}
 .show-notifications .question-solution:empty {display: none;}
 /* User Question Holder Style End */
@@ -12420,6 +12422,7 @@ Lms Responsive Style Start
     .spell-words-data .word-details {font-size: 14px;}
     .spell-words-filters .form-group {margin: 10px 0 0; width: 100%;}
     .spell-words-filters .form-group select {width: 100%;}
+    .question-populated-response {padding-bottom: 15px;}
 
 }
 
@@ -12637,6 +12640,9 @@ Lms Responsive Style Start
     .lms-testimonial-slider .testimonial-card {min-height: 745px;}
     .learning-page.type-vocabulary:has(.spells-quiz-from) {padding-top: 30px !important;}
     .spell-question-area .left-content {height: calc(100vh - 160px) !important;}
+    .spell-question-area form.question-fields .left-content:has(.question-populated-response),
+    .spell-question-area form.question-fields:has(.question-populated-response){height: auto !important;}
+    body .spells-quiz-from .question-label span {font-size: 16px;}
     .spell-question-area .question-layout-block form.question-fields {height: calc(100vh - 120px); margin-bottom: 0; padding-top: 0;}
     .spell-question-area .question-layout-block form.question-fields:has(#rf-searchgamecontainer) {height: auto; margin-bottom: 30px;}
     .left-content:has(#rurera-words-search) {height: auto !important;}

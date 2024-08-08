@@ -41,6 +41,12 @@ $rand_id = rand(99,9999);
     }
     .question-area{min-height:300px !important;}
 
+	.spell-question-area .left-content {
+		height: auto !important;
+	}
+	.spells-quiz-from .form-field {
+		margin: 40px 0 40px;
+	}
 </style>
 @endpush
 @section('content')

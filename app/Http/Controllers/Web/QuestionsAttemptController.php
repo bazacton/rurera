@@ -460,6 +460,7 @@ class QuestionsAttemptController extends Controller
         $single_question_layout = $updated_questions_layout = '';
 
 
+        $next_question_id = 0;
         if (!empty($group_questions_list)) {
             foreach ($group_questions_list as $group_question_id) {
                 $incorrect_array = $correct_array = $user_input_array = array();
@@ -571,6 +572,59 @@ class QuestionsAttemptController extends Controller
                                  * @Ends
                                  */
                             }
+							
+							
+							
+							if (in_array($quizAttempt->attempt_type, array('vocabulary'))) {	
+                                /*
+                                * Practice Quiz Incorrect attempt add another Question
+                                * @Start
+                                */
+                                $other_data = isset($quizResultObj->other_data) ? json_decode($quizResultObj->other_data) : array();
+								($qresult_id);
+                                $return_search_data = find_array_index_by_value($other_data, $qresult_id);
+                                $main_index = isset($return_search_data['main_index']) ? $return_search_data['main_index'] : '';
+                                $parent_index = isset($return_search_data['parent_index']) ? $return_search_data['parent_index'] : '';
+                                $value_index = isset($return_search_data['value_index']) ? $return_search_data['value_index'] : 0;
+                               
+								
+								$questions_list = json_decode($quizResultObj->questions_list);
+								
+								
+								$incorrectQuestionObj = QuizzResultQuestions::find($group_question_id);
+                                $incorrectQuestionObjNew = $incorrectQuestionObj->replicate();
+                                $incorrectQuestionObjNew->user_answer = '';
+                                $incorrectQuestionObjNew->status = 'waiting';
+                                $incorrectQuestionObjNew->created_at = time();
+                                $incorrectQuestionObjNew->push();
+								$new_question_id = $incorrectQuestionObjNew->id;
+								
+								
+								$current_index = array_search($group_question_id, $questions_list);
+
+								if ($current_index !== false) {
+									array_splice($questions_list, $current_index + 1, 0, $new_question_id);
+								}
+								
+								
+								$quizResultObj->update([
+									'questions_list' => json_encode($questions_list),
+								]);
+								$quizAttempt->update([
+									'questions_list' => json_encode($questions_list),
+								]);
+								
+								$questions_layout_response = $this->spell_questions_layout_update($questions_list, $quizAttempt, $quizResultObj, $new_question_id, array());
+								$questions_layout = isset($questions_layout_response['questions_layout']) ? $questions_layout_response['questions_layout'] : '';
+								$next_question_id = isset($questions_layout_response['next_question_id']) ? $questions_layout_response['next_question_id'] : 0;
+								$updated_questions_layout = json_encode($questions_layout);
+								
+                                /*
+                                 * Practice Quiz Incorrect attempt add another Question
+                                 * @Ends
+                                 */
+                            }
+							
 
 
                             if ($sub_index != '') {
@@ -626,12 +680,15 @@ class QuestionsAttemptController extends Controller
 
 
         $QuestionsAttemptController = new QuestionsAttemptController();
+		
+		if (!in_array($quizAttempt->attempt_type, array('vocabulary'))) {	
 
-        $resultLogObj = $QuestionsAttemptController->createResultLog([
-            'parent_type_id'   => $quizAttempt->parent_type_id,
-            'quiz_result_type' => $quizAttempt->attempt_type,
-            'questions_list'   => $questions_list,
-        ]);
+			$resultLogObj = $QuestionsAttemptController->createResultLog([
+				'parent_type_id'   => $quizAttempt->parent_type_id,
+				'quiz_result_type' => $quizAttempt->attempt_type,
+				'questions_list'   => $questions_list,
+			]);
+		}
 
 
         $question_correct_answere = '';
@@ -714,7 +771,6 @@ class QuestionsAttemptController extends Controller
         }
 
         $test = $newQuestionsArray = array();
-        $next_question_id = 0;
 
         if (in_array($quizAttempt->attempt_type, array('practice','learning_journey'))) {
             if ($is_complete == true) {
@@ -781,8 +837,10 @@ class QuestionsAttemptController extends Controller
             }
         }
 
+        $quiz_type = (isset($assignment_type) && $assignment_type != '') ? $assignment_type : $quizAttempt->attempt_type;
 		$finish_reponse =  '';
         if ($is_complete == true) {
+			$resultLogObj = isset( $resultLogObj->id)? $resultLogObj : $quizResultObj;
             $QuizzesResult = QuizzesResult::find($resultLogObj->id);
             $QuizzesResult->update(['status' => 'passed', 'total_time_consumed' => $QuizzesResult->quizz_result_questions_list()->sum('time_consumed')]);
 			$finish_reponse = $this->get_finish_layout($QuizzesResult, $quiz_type, $incorrect_flag, $correct_array, $incorrect_array, $question_correct_answere, $question_user_input);
@@ -792,7 +850,6 @@ class QuestionsAttemptController extends Controller
 
         //pre($questionObj, false);
         //pre($question_response_layout);
-        $quiz_type = (isset($assignment_type) && $assignment_type != '') ? $assignment_type : $quizAttempt->attempt_type;
 
 
         $populated_response = $this->get_populated_layout($quiz_type, $incorrect_flag, $correct_array, $incorrect_array, $question_correct_answere, $question_user_input);
@@ -815,6 +872,7 @@ class QuestionsAttemptController extends Controller
             'populated_response'       => $populated_response,
             'single_question_layout'   => $single_question_layout,
             'updated_questions_layout' => $updated_questions_layout,
+            'finish_reponse' 			=> $finish_reponse,
             'question_solution'        => isset($questionObj->question_solve) ? '<div class="question-solution">' . $questionObj->question_solve . '</div>' : '',
             'test'                     => $test,
             'next_question_id'         => $next_question_id,
@@ -963,6 +1021,196 @@ class QuestionsAttemptController extends Controller
         return array(
             'questions_layout' => $questions_layout,
             'next_question_id' => $next_question_id,
+        );
+
+    }
+	
+	public function spell_questions_layout_update($questions_list, $attemptLogObj, $resultLogObj, $new_question_id, $newQuestionsArray)
+    {
+		$user = getUser();
+        $exclude_array = $questions_layout = $results_questions_array = array();
+        $QuestionsAttemptController = new QuestionsAttemptController();
+		
+		$quiz_level = 'easy';
+        if (!empty($questions_list)) {
+            $questions_counter = 0;
+            foreach ($questions_list as $question_no_index => $result_question_id) {
+                $question_no = $question_no_index;
+                $resultQuestionObj = QuizzResultQuestions::find($result_question_id);
+                $question_id = isset($resultQuestionObj->question_id) ? $resultQuestionObj->question_id : 0;
+                $prev_question = isset($questions_list[$question_no_index - 2]) ? $questions_list[$question_no_index - 2] : 0;
+                $next_question = isset($questions_list[$question_no_index + 1]) ? $questions_list[$question_no_index + 1] : 0;
+
+                if (in_array($result_question_id, $newQuestionsArray)) {
+                    $nextQuestionArray = $QuestionsAttemptController->nextQuestion($attemptLogObj, $exclude_array, 0, true, $questions_list, $resultLogObj, $question_id, $question_no_index);
+                } else {
+                    $nextQuestionArray['questionObj'] = QuizzesQuestion::find($question_id);
+                    $nextQuestionArray['newQuestionResult'] = $resultQuestionObj;
+                }
+
+                $questionObj = isset($nextQuestionArray['questionObj']) ? $nextQuestionArray['questionObj'] : array();
+
+                $newQuestionResult = isset($nextQuestionArray['newQuestionResult']) ? $nextQuestionArray['newQuestionResult'] : array();
+                if (isset($newQuestionResult->is_active) && $newQuestionResult->is_active == 1) {
+                    $active_question_id = $newQuestionResult->question_id;
+                }
+
+
+                if (isset($questionObj->id)) {
+                    $questions_array[] = $newQuestionResult;
+                    $exclude_array[] = $newQuestionResult->id;
+
+                    $question_no = $question_no_index + 1;
+					
+					
+					$layout_elements = isset($questionObj->layout_elements) ? json_decode($questionObj->layout_elements) : array();
+
+					$correct_answer = $audio_file = $word_audio = $audio_text = $audio_sentense = $field_id = $words_options = '';
+					$exam_sentenses = array();
+					if (!empty($layout_elements)) {
+						foreach ($layout_elements as $elementData) {
+							$element_type = isset($elementData->type) ? $elementData->type : '';
+							$content = isset($elementData->content) ? $elementData->content : '';
+							$correct_answer = isset($elementData->correct_answer) ? $elementData->correct_answer : $correct_answer;
+							$audio_text = isset($elementData->audio_text) ? $elementData->audio_text : $audio_text;
+							$audio_sentense = isset($elementData->audio_sentense) ? $elementData->audio_sentense : $audio_sentense;
+							
+							$audio_defination = isset($elementData->audio_defination) ? $elementData->audio_defination : $audio_defination;
+							$words_options = isset($elementData->words_options) ? $elementData->words_options : $words_options;
+							if ($element_type == 'audio_file') {
+								$audio_file = $content;
+								$word_audio = isset($elementData->word_audio) ? $elementData->word_audio : $word_audio;
+								$options = isset($elementData->options) ? $elementData->options : array();
+								$audio_text = $audio_text;
+								$audio_sentense = $audio_sentense;
+								if( !empty( $options ) ){
+									foreach( $options as $optionData){
+										$exam_sentenses[] = $optionData->label;
+									}
+								}
+							}
+							if ($element_type == 'textfield_quiz') {
+								$correct_answer = $correct_answer;
+								$field_id = isset($elementData->field_id) ? $elementData->field_id : '';
+							}
+							$elementsData[] = $elementData;
+						}
+					}
+
+					$audio_file = ($quiz_level == 'hard')? $word_audio : $audio_file;
+					$words_options = explode(',', $words_options);
+					$words_options = is_array( $words_options )? $words_options : array();
+					$words_options[] = $correct_answer;
+					shuffle($words_options);
+					$word_data = array(
+						'audio_text'       => $audio_text,
+						'audio_sentense'   => $audio_sentense,
+						'audio_defination' => $audio_defination,
+						'audio_file'       => $audio_file,
+						'field_id'         => $field_id,
+						'word_audio'       => $word_audio,
+						'exam_sentenses'     => $exam_sentenses,
+						'words_options' => $words_options,
+					);
+
+					$total_questions_count = is_array(json_decode($attemptLogObj->questions_list)) ? json_decode($attemptLogObj->questions_list) : array();
+					$total_questions_count = count($total_questions_count);
+					$RewardAccountingObj = RewardAccounting::where('user_id', $user->id)->where('type', 'coins')->where('result_id', $resultLogObj->id)->first();
+
+					$results_questions_array[$newQuestionResult->id] = [
+						'question'              => $questionObj,
+						'prev_question'         => $prev_question,
+						'next_question'         => $next_question,
+						'quizAttempt'           => $attemptLogObj,
+						'questionsData'         => rurera_encode($questionObj),
+						'newQuestionResult'     => $newQuestionResult,
+						'question_no'           => $question_no,
+						'quizResultObj'         => $resultLogObj,
+						'word_data'             => $word_data,
+						'total_questions_count' => $total_questions_count,
+						'field_id'              => $field_id,
+						'correct_answer'        => $correct_answer,
+						'disable_next'          => 'true',
+						'disable_prev'          => 'true',
+						'total_points'          => isset($RewardAccountingObj->score) ? $RewardAccountingObj->score : 0,
+					];
+					
+					$actual_question_ids[$newQuestionResult->id] = $questionObj->id;
+
+                }
+                $questions_counter++;
+
+            }
+
+            if (!empty($results_questions_array)) {
+                $array_keys = array_keys($results_questions_array);
+                $resultLogObj->update([
+                    'questions_list' => json_encode($array_keys),
+                ]);
+                $attemptLogObj->update([
+                    'questions_list' => json_encode($array_keys),
+                ]);
+                foreach ($results_questions_array as $resultQuestionID => $resultsQuestionsData) {
+					
+					
+
+                    $resultsQuestionsData['prev_question'] = 0;
+                    $resultsQuestionsData['next_question'] = 0;
+                    $currentIndex = array_search($resultQuestionID, $array_keys);
+
+
+                    if ($currentIndex !== false) {
+                        // Get the previous index
+                        $previousIndex = ($currentIndex > 0) ? $array_keys[$currentIndex - 1] : 0;
+                        // Get the next index
+                        $nextIndex = ($currentIndex < count($array_keys) - 1) ? $array_keys[$currentIndex + 1] : 0;
+                        $resultsQuestionsData['prev_question'] = $previousIndex;
+                        $resultsQuestionsData['next_question'] = $nextIndex;
+
+
+                    }
+					
+					//$quiz_level = 'medium';
+					//$quiz_level = 'hard';
+					$time_interval = 25;
+					$duration_type = 'per_question';
+					$correct_answer = isset( $resultsQuestionsData['correct_answer'] )? $resultsQuestionsData['correct_answer'] : '';
+					$word_characters = strlen($correct_answer);
+					if( $quiz_level == 'hard') {
+						$time_interval = 10;
+						if ($word_characters >= 7) {
+							$time_interval = 15;
+						}
+					}
+					if( $quiz_level == 'easy'){
+						$duration_type = 'no_time_limit';
+					}
+					$resultsQuestionsData['quiz_level'] = $quiz_level;
+					$resultsQuestionsData['time_limit'] = $time_interval;
+					$resultsQuestionsData['time_interval'] = $time_interval;
+					$resultsQuestionsData['duration_type'] = $duration_type;
+					$resultsQuestionsData['exam_sentenses'] = $resultsQuestionsData['word_data']['exam_sentenses'];
+					$resultsQuestionsData['words_options'] = $resultsQuestionsData['word_data']['words_options'];
+					
+					//print
+					//pre($resultsQuestionsData['word_data']['exam_sentenses']);
+					
+					$newQuestionResult = isset( $resultsQuestionsData['newQuestionResult'] )? $resultsQuestionsData['newQuestionResult'] : array();
+
+					$test_type_file = get_test_type_file($resultLogObj->attempt_mode);
+					
+					if( $test_type_file == ''){
+						$question_response_layout = view('web.default.panel.questions.spell_question_layout', $resultsQuestionsData)->render();
+					}else{
+						$question_response_layout = view('web.default.panel.questions.spell_'.$test_type_file.'_question_layout', $resultsQuestionsData)->render();
+					}
+                    $questions_layout[$resultQuestionID] = rurera_encode(stripslashes($question_response_layout));
+                }
+            }
+        }
+        return array(
+            'questions_layout' => $questions_layout,
+            'next_question_id' => $new_question_id,
         );
 
     }
