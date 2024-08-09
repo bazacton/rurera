@@ -8,7 +8,6 @@ $question_layout = html_entity_decode(json_decode(base64_decode(trim(stripslashe
 $random_id = rand(999,999999);
 @endphp
 <div class="result-question-layout-{{$random_id}} {{isset( $class )? $class : ''}}">
-	{{$user_answer}}
 {!! $question_layout !!}
 </div>
 <script>

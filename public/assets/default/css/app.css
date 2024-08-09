@@ -12556,6 +12556,7 @@ Lms Responsive Style Start
     .sats-listing-card tbody tr td:last-child {padding: 0; border: 0;}
     .sats-listing-card tbody tr td .rurera-list-btn {position: absolute; right: 15px; top: 26px;}
     body .learning-page .close {right: 30px;}
+    .spells-table-inner .table {min-width: 900px;}
 }
 @media screen and (max-width: 575px) {
     .spell-question-area .spells-quiz-info {margin: 0 0 30px;}
@@ -12647,7 +12648,7 @@ Lms Responsive Style Start
     .input-holder .input-label ~ input[type="number"].input-simple {width: 100%;}
     .lms-quiz-section .input-holder.textarea_lines {margin-left: 0;max-width: none;}
     .lms-testimonial-slider .testimonial-card {min-height: 745px;}
-    .learning-page.type-vocabulary:has(.spells-quiz-from) {padding-top: 30px !important;}
+    .learning-page.type-vocabulary:has(.spells-quiz-from) {padding-top: 30px !important; padding-bottom: 30px;}
     .spell-question-area .left-content {height: calc(100vh - 160px) !important;}
     .spell-question-area form.question-fields .left-content:has(.question-populated-response),
     .spell-question-area form.question-fields:has(.question-populated-response){height: auto !important;}
@@ -12669,6 +12670,7 @@ Lms Responsive Style Start
     .spells-quiz-info ul li,
     .spell-question-area .question-count span {font-size: 16px;}
     .spells-quiz-info ul li {display: inline-flex; align-items: center; justify-content: center; flex-wrap: wrap;}
+    .question-result-layout .question-area {padding-top: 15px;}
 }
 @media screen and (max-width: 480px) {
     .lms-count-field .lms-text-holder {flex-direction: column;}

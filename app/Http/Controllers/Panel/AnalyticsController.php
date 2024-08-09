@@ -155,7 +155,7 @@ class AnalyticsController extends Controller
 
 
 
-        $QuizzesAttempts = QuizzAttempts::whereIn('user_id', $user_id)->whereIn('attempt_type', $types_array)->with([
+        /*$QuizzesAttempts = QuizzAttempts::whereIn('user_id', $user_id)->whereIn('attempt_type', $types_array)->with([
             'timeConsumed',
             'endSession' => function ($query) {
                 $query->orderBy('id', 'desc');
@@ -169,6 +169,34 @@ class AnalyticsController extends Controller
         $QuizzesAttempts = $QuizzesAttempts->groupBy(function ($QuizzesAttemptsQuery) {
             return date('d_m_Y', $QuizzesAttemptsQuery->created_at);
         });
+		*/
+		
+		$QuizzesAttempts = QuizzAttempts::whereIn('user_id', $user_id)
+			->whereIn('attempt_type', $types_array)
+			->with([
+				'timeConsumed',
+				'endSession' => function ($query) {
+					$query->orderBy('id', 'desc');
+				},
+			])
+			->whereHas('quizzes_results', function ($query) {
+				$query->where(function ($subQuery) {
+					$subQuery->where('quiz_result_type', 'vocabulary')
+							 ->orWhere('status', '!=', 'waiting');
+				});
+			})
+			->orderBy('created_at', 'desc')
+			->get()
+			->filter(function ($attempt) {
+				return $attempt->timeConsumed->sum('time_consumed') > 0;
+			});
+
+		$QuizzesAttempts = $QuizzesAttempts->groupBy(function ($QuizzesAttemptsQuery) {
+			return date('d_m_Y', $QuizzesAttemptsQuery->created_at);
+		});
+
+		
+		//pre($QuizzesAttempts);
 
 
 
@@ -209,7 +237,7 @@ class AnalyticsController extends Controller
                     if( $type != 'books') {
                         foreach ($dateObj as $QuizzesAttemptObj) {
                             if ($QuizzesAttemptObj->quizzes_results->status == 'waiting') {
-                                continue;
+                                //continue;
                             }
                             $topic_title = getTopicTitle($QuizzesAttemptObj->parent_type_id, $QuizzesAttemptObj->attempt_type);
 							$topic_title .= ($QuizzesAttemptObj->quizzes_results->quiz_result_type == '11plus') ? ' ('.$QuizzesAttemptObj->quizzes_results->sameParent->where('created_at','<', $QuizzesAttemptObj->quizzes_results->created_at)->count().')' : '';
