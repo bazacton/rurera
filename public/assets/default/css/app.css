@@ -10238,11 +10238,13 @@ body .lms-quiz-section .flipbook-quiz {width: 800px;}
 .timebar {display: inline-block; position: relative; height: 3px; width: 100%; }
 .timebar .bar-inner {height: 100%; background-color: green; transition: all .4s ease;}
 .spell-question-area .timebar {position: absolute; top: 56px; left: 0;}
-.spells-quiz-sound {text-align: center; margin: 100px 0;}
+.spells-quiz-sound {text-align: center; margin: 30px 0 60px;}
 .spells-quiz-sound strong,
 .spells-quiz-from strong{color: #747474; font-size: 20px; font-weight: 400;}
 .spells-quiz-sound .play-btn {position: relative; display: inline-block; vertical-align: middle;}
 .spells-quiz-sound .play-btn img {margin-top: -10px; margin-left: -10px; left: 50%; width: 20px; height: 20px; transform: none;}
+.spell-question-area .question-count {text-align: center;}
+.spell-question-area .question-count span {font-weight: 500; color: #000; font-size: 18px;}
 .spells-quiz-from strong {margin-right: 5px;}
 .spells-quiz-from {text-align: center;}
 .spells-quiz-from .form-field {margin: 0 0 40px;}
@@ -10279,7 +10281,7 @@ body .lms-quiz-section .flipbook-quiz {width: 800px;}
 .word-char .pronounce-letter {background-color: #f6f6f6; font-weight: bold;}
 .word-char .pronounce-word {background-color: #ddd;}
 .spell-links .rurera-tooltip.dropup .dropdown-menu[x-placement^=bottom] {margin-top: 15px;}
-.droppable-characters {display: flex; align-items: center; justify-content: center; margin-bottom: 25px; gap: 5px; padding-top: 40px;}
+.droppable-characters {display: flex; align-items: center; justify-content: center; margin-bottom: 25px; gap: 5px; padding-top: 40px; flex-wrap: wrap;}
 .droppable-characters li {background-color: var(--primary); color: #fff; text-transform: uppercase; font-weight: 600; padding: 20px; min-width: 35px; border-radius: 5px;}
 .spells-quiz-from button {min-width: 150px; background-color: inherit; padding: 12px 15px; text-transform: uppercase; border-radius: 5px; color: #000; border: 1px solid #e7e7e7;}
 .spells-quiz-from button:hover {background-color: #46484a; color: #fff;}
@@ -10296,6 +10298,8 @@ body .lms-quiz-section .flipbook-quiz {width: 800px;}
 .lms-quiz-section .questions-data-block {border: 0;}
 .spells-quiz-from .form-field:has(.frontend-field-error) {width: auto; display: inline-block; position: relative; border: 0;}
 .spells-quiz-from .form-field:has(.frontend-field-error):before {content: ""; position: absolute; bottom: 0px; left: 0; width: 96%; height: 3px; border-bottom: 3px solid #dd4343;}
+.spell-question-area .question-label {text-align: center; padding: 60px 0 30px;}
+body .spell-question-area .question-label span {text-align: center;}
 .master-list {background-color: #fff; border: 1px solid #eee; padding: 0; border-radius: 8px;}
 .master-card {border-right: 1px solid #eee; display: flex; flex-wrap: wrap; flex-direction: column; align-items: center; gap: 10px; padding: 20px 0; line-height: normal;}
 .master-list [class*="col-"]:last-child .master-card {border-right: 0;}
@@ -11680,6 +11684,7 @@ Lms Responsive Style Start
     .question-number-holder {z-index: 1 !important;}
     .close-btn-holder {margin-left: auto;}
     .footer-dots-img {transform: none !important;}
+    body .learning-page.type-sats .left-content {height: auto; overflow: visible;}
 }
 @media screen and (min-width: 992px) and (max-width: 1300px) {
     .stats-list ul li {border-left: 0;width: 100%;padding: 0 0 15px;margin: 0 0 15px;text-align: left;border-bottom: 1px solid rgba(0, 0, 0, 0.1);}
@@ -12002,6 +12007,7 @@ Lms Responsive Style Start
     .word-char > span {padding: 5px; height: 28px; min-width: 25px;}
     .word-details p {margin-top: 10px;}
     .word-details p:last-child {margin-top: 5px;}
+    .learning-page .learning-content {padding: 0 30px;}
 }
 
 @media screen and (min-width: 767px) and (max-width: 1600px) {
@@ -12115,7 +12121,6 @@ Lms Responsive Style Start
     /*.spells-quiz-info {position: relative; margin-bottom: 30px;}
     .spells-quiz-info ul li {border-left: 0; border-bottom: 1px solid #bac3ca; width: 100%; } */
     .spells-quiz-from button {margin-top: 0; min-width: auto; padding: 10 20px;}
-    .learning-page .learning-content {padding: 0 15px;}
     .spells .dataTable td a,
     .spells .dataTable thead tr th {font-size: 14px;}
     .spells-topbar .view-btn {min-width: 150px; text-align: center;}
@@ -12422,7 +12427,10 @@ Lms Responsive Style Start
     .spell-words-data .word-details {font-size: 14px;}
     .spell-words-filters .form-group {margin: 10px 0 0; width: 100%;}
     .spell-words-filters .form-group select {width: 100%;}
-    .question-populated-response {padding-bottom: 15px;}
+    .question-populated-response {margin-bottom: 25px; padding: 10px 10px 0;}
+    .question-populated-response span {font-size: 14px; display: inline-block;}
+    span.question-status-correct:before {left: 12px; margin-top: -13px;width: 25px;height: 25px;}
+    span.question-status-correct {padding: 15px 10px 15px 45px;}
 
 }
 
@@ -12550,7 +12558,8 @@ Lms Responsive Style Start
     body .learning-page .close {right: 30px;}
 }
 @media screen and (max-width: 575px) {
-    .spell-question-area .spells-quiz-info {margin: 0 0 30px;} 
+    .spell-question-area .spells-quiz-info {margin: 0 0 30px;}
+    .spell-question-area .question-label {padding: 15px 15px 25px;} 
     .lms-service-section {margin-top: 80px !important;}
     .lms-text-section .lms-text-holder h2 {font-size: 1.5rem !important; margin-bottom: 10px !important; line-height: 32px;}
     .lms-btn-group {flex-direction: column; margin-top: 25px;}
@@ -12642,11 +12651,12 @@ Lms Responsive Style Start
     .spell-question-area .left-content {height: calc(100vh - 160px) !important;}
     .spell-question-area form.question-fields .left-content:has(.question-populated-response),
     .spell-question-area form.question-fields:has(.question-populated-response){height: auto !important;}
-    body .spells-quiz-from .question-label span {font-size: 16px;}
+    body .spell-question-area .question-label span {font-size: 18px; line-height: 24px;}
     .spell-question-area .question-layout-block form.question-fields {height: calc(100vh - 120px); margin-bottom: 0; padding-top: 0;}
     .spell-question-area .question-layout-block form.question-fields:has(#rf-searchgamecontainer) {height: auto; margin-bottom: 30px;}
     .left-content:has(#rurera-words-search) {height: auto !important;}
     .spells-quiz-sound {margin-top: 0; margin-bottom: 35px;}
+    .question-count ~ .spells-quiz-sound {margin-top: 30px;}
     .learning-page.type-vocabulary:has(.spells-quiz-sound) .word-cloud-box {margin-top: 0;}
     .spells-quiz-from .form-btn-field {display: flex;padding-left: 10px;padding-right: 10px;justify-content: center;gap: 10px;flex-wrap: wrap;padding-top: 0;}
     .timeline-text p strong {margin-bottom: 10px; display: inline-block;}
@@ -12655,6 +12665,10 @@ Lms Responsive Style Start
     body #rurera-words-search #rf-searchgamecontainer {padding: 8px;}
     body #rurera-words-search #rf-searchgamecontainer .rf-tgrid {padding: 5px 4px;}
     body #rurera-words-search {margin-top: 35px;}
+    .spells-quiz-info ul li span,
+    .spells-quiz-info ul li,
+    .spell-question-area .question-count span {font-size: 16px;}
+    .spells-quiz-info ul li {display: inline-flex; align-items: center; justify-content: center; flex-wrap: wrap;}
 }
 @media screen and (max-width: 480px) {
     .lms-count-field .lms-text-holder {flex-direction: column;}

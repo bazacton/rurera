@@ -581,14 +581,16 @@ class QuestionsAttemptController extends Controller
                                 * @Start
                                 */
                                 $other_data = isset($quizResultObj->other_data) ? json_decode($quizResultObj->other_data) : array();
-								($qresult_id);
-                                $return_search_data = find_array_index_by_value($other_data, $qresult_id);
-                                $main_index = isset($return_search_data['main_index']) ? $return_search_data['main_index'] : '';
-                                $parent_index = isset($return_search_data['parent_index']) ? $return_search_data['parent_index'] : '';
-                                $value_index = isset($return_search_data['value_index']) ? $return_search_data['value_index'] : 0;
                                
 								
+								
 								$questions_list = json_decode($quizResultObj->questions_list);
+								
+								if( $other_data == ''){
+									$quizResultObj->update([
+										'other_data' => json_encode($questions_list),
+									]);
+								}
 								
 								
 								$incorrectQuestionObj = QuizzResultQuestions::find($group_question_id);
@@ -673,7 +675,9 @@ class QuestionsAttemptController extends Controller
 
         createAttemptLog($quizAttempt->id, 'Answered question: #' . $QuizzResultQuestions->id, 'attempt', $QuizzResultQuestions->id);
 
-        $questions_list = json_decode($quizAttempt->questions_list);
+		if( empty( $questions_list )) {
+			$questions_list = json_decode($quizAttempt->questions_list);
+		}
 
         $currentIndex = array_search($qresult_id, $questions_list);
         $is_complete = ($currentIndex < count($questions_list) - 1) ? false : true;
@@ -1030,14 +1034,18 @@ class QuestionsAttemptController extends Controller
 		$user = getUser();
         $exclude_array = $questions_layout = $results_questions_array = array();
         $QuestionsAttemptController = new QuestionsAttemptController();
-		
 		$quiz_level = 'easy';
+		$already_added_question = [];
         if (!empty($questions_list)) {
             $questions_counter = 0;
             foreach ($questions_list as $question_no_index => $result_question_id) {
-                $question_no = $question_no_index;
+				$layout_data = '';
+                if( !isset( $question_no )){
+					$question_no = $question_no_index;
+				}
                 $resultQuestionObj = QuizzResultQuestions::find($result_question_id);
                 $question_id = isset($resultQuestionObj->question_id) ? $resultQuestionObj->question_id : 0;
+				
                 $prev_question = isset($questions_list[$question_no_index - 2]) ? $questions_list[$question_no_index - 2] : 0;
                 $next_question = isset($questions_list[$question_no_index + 1]) ? $questions_list[$question_no_index + 1] : 0;
 
@@ -1060,7 +1068,18 @@ class QuestionsAttemptController extends Controller
                     $questions_array[] = $newQuestionResult;
                     $exclude_array[] = $newQuestionResult->id;
 
-                    $question_no = $question_no_index + 1;
+					if( !in_array($question_id, $already_added_question)){
+						$question_no = $question_no + 1;
+					}
+					$already_added_question[] = $question_id;
+					$count_values = array_count_values($already_added_question);
+					$occurrences = isset($count_values[$question_id]) ? $count_values[$question_id] : 0;
+					//pre($already_added_question, false);
+					//pre($occurrences, false);
+					//pre($question_no, false);
+					if( $occurrences > 1){
+						$layout_data  = '<div class="question-count"><span>Attempt '.$occurrences.'</span></div>';
+					}
 					
 					
 					$layout_elements = isset($questionObj->layout_elements) ? json_decode($questionObj->layout_elements) : array();
@@ -1115,6 +1134,8 @@ class QuestionsAttemptController extends Controller
 
 					$total_questions_count = is_array(json_decode($attemptLogObj->questions_list)) ? json_decode($attemptLogObj->questions_list) : array();
 					$total_questions_count = count($total_questions_count);
+					$total_questions_count = count(json_decode($resultLogObj->other_data));
+					
 					$RewardAccountingObj = RewardAccounting::where('user_id', $user->id)->where('type', 'coins')->where('result_id', $resultLogObj->id)->first();
 
 					$results_questions_array[$newQuestionResult->id] = [
@@ -1130,6 +1151,7 @@ class QuestionsAttemptController extends Controller
 						'total_questions_count' => $total_questions_count,
 						'field_id'              => $field_id,
 						'correct_answer'        => $correct_answer,
+						'layout_data'        => $layout_data,
 						'disable_next'          => 'true',
 						'disable_prev'          => 'true',
 						'total_points'          => isset($RewardAccountingObj->score) ? $RewardAccountingObj->score : 0,
@@ -1172,16 +1194,10 @@ class QuestionsAttemptController extends Controller
 					
 					//$quiz_level = 'medium';
 					//$quiz_level = 'hard';
-					$time_interval = 25;
+					$time_interval = 0;
 					$duration_type = 'per_question';
 					$correct_answer = isset( $resultsQuestionsData['correct_answer'] )? $resultsQuestionsData['correct_answer'] : '';
 					$word_characters = strlen($correct_answer);
-					if( $quiz_level == 'hard') {
-						$time_interval = 10;
-						if ($word_characters >= 7) {
-							$time_interval = 15;
-						}
-					}
 					if( $quiz_level == 'easy'){
 						$duration_type = 'no_time_limit';
 					}
@@ -1199,10 +1215,17 @@ class QuestionsAttemptController extends Controller
 
 					$test_type_file = get_test_type_file($resultLogObj->attempt_mode);
 					
+					
+					
+					$resultsQuestionsData['no_of_questions_fixed'] = isset( $resultLogObj->other_data )? $resultLogObj->other_data : array();
+					
 					if( $test_type_file == ''){
 						$question_response_layout = view('web.default.panel.questions.spell_question_layout', $resultsQuestionsData)->render();
 					}else{
 						$question_response_layout = view('web.default.panel.questions.spell_'.$test_type_file.'_question_layout', $resultsQuestionsData)->render();
+					}
+					if( isset( $newQuestionResult->id)){
+						$newQuestionResult->update(['quiz_layout' => htmlentities(base64_encode(json_encode($question_response_layout)))]);
 					}
                     $questions_layout[$resultQuestionID] = rurera_encode(stripslashes($question_response_layout));
                 }

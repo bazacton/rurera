@@ -402,7 +402,7 @@
 		var selected_words = $('.word-block.active').length;
 		selected_words = (selected_words > 0)? selected_words : 'All';
 		$(".rurera-error").addClass('rurera-hide');
-		if( selected_words != 'All' && selected_words < 15){
+		if( selected_words != 'All' && selected_words < 3){
 			$(".rurera-error").removeClass('rurera-hide');
 			/*var error_message = jQuery.growl.error({
                 message: 'Select atleast 15 words to continue!',

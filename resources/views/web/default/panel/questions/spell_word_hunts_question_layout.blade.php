@@ -75,7 +75,7 @@ shuffle($characters_list);
                             <span>{{$question_no}}</span> Of {{$total_questions_count}}
                         </li>
                         <li>
-                            <span class="nub-of-sec question-time-remaining-{{ $question->id }}" data-remaining="{{($question->question_average_time*60)}}">{{$total_time}}</span>
+                            <span class="nub-of-sec question-time-remaining-{{ $question->id }}" data-remaining="{{($question->question_average_time*60)}}"></span>
                         </li>
                         <li class="total-points" data-total_points="{{isset( $total_points )? $total_points : 0}}">
                             <span>{{isset( $total_points )? $total_points : 0}}</span> Coins
@@ -86,6 +86,9 @@ shuffle($characters_list);
                     </ul>
                 </div>
                 <div class="left-content has-bg">
+				<div class="question-label"><span>Fill in the Blank(s) to Complete the Hidden Word.</span></div>
+				{!! isset( $layout_data )? $layout_data : ''!!}
+				
                 <div class="spells-quiz-sound">
                     <strong>Word <a href="javascript:;"  id="sound-icon-{{ $question->id }}-word" data-id="audio_file_{{ $question->id }}-word" class="play-btn sound-icon">
                       <img class="play-icon" src="/assets/default/svgs/play-circle.svg" alt="" height="20" width="20">
@@ -101,7 +104,7 @@ shuffle($characters_list);
                 </div>
                 <div class="spells-quiz-from question-layout">
                     <div class="form-field">
-						<div class="question-label"><span>Fill in the Blank(s) to Complete the Hidden Word.</span></div>
+						
 					
 						@php $words_counter = 0; @endphp
                         @while($words_counter < $no_of_words)
@@ -195,7 +198,7 @@ shuffle($characters_list);
                             </svg>
                         </a>
                         @endif
-                        @php $next_class = (isset( $next_question ) && $next_question > 0)? '' : 'disable-btn'; @endphp
+                        @php $next_class = (isset( $next_question ) && $next_question > 0)? '' : 'disable-btn1'; @endphp
                         @if( !isset( $disable_next ) || $disable_next == 'false')
                         <a href="javascript:;" id="next-btn" class="{{$next_class}} next-btn" data-question_id="{{$next_question}}">
                             Next

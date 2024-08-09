@@ -888,13 +888,20 @@ class QuizController extends Controller
         }
         $QuestionsAttemptController = new QuestionsAttemptController();
         //$correct_answer = $QuestionsAttemptController->get_question_correct_answers(QuizzesQuestion::find(9136));
+		
+		
+		
         $QuizzesResult = QuizzesResult::find($result_id);
         $quiz = Quiz::find($QuizzesResult->parent_type_id);
+		
+		$attempt_questions_list = isset($QuizzesResult->questions_list) ? json_decode($QuizzesResult->questions_list) : array();
+		
+		$questions_list_string = implode(',', $attempt_questions_list);
 
-        $QuizzResultQuestions = QuizzResultQuestions::where('quiz_result_id', $result_id)->where('status', '!=', 'waiting')->where('parent_question_id', 0)->get();
+        $QuizzResultQuestions = QuizzResultQuestions::where('quiz_result_id', $result_id)->where('status', '!=', 'waiting')->where('parent_question_id', 0)->orderByRaw(DB::raw("FIELD(id, $questions_list_string)"))->get();
         $quizAttempt = QuizzAttempts::where('quiz_result_id', $result_id)->first();
 
-        $attempt_questions_list = isset($QuizzesResult->questions_list) ? json_decode($QuizzesResult->questions_list) : array();
+        
 		
 		$attempt_questions_list = $QuizzesResult->quizz_result_questions_list->whereIn('status', array('correct','incorrect'));
 		$not_attempted_count = $QuizzesResult->quizz_result_questions_list->whereIn('status', array('not_attempted'))->count();

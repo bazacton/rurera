@@ -890,6 +890,8 @@ function init_question_functions() {
 
         $(".question-area-block").html(question_layout);
         var quizQuestionID = $(".question-area-block").find('.question-fields').attr('data-question_id');
+		
+		
 
         var total_points = $(".lms-quiz-section").attr('data-total_points');
         if( rurera_is_field(total_points) == true && total_points != ''){
@@ -941,28 +943,28 @@ function init_question_functions() {
 
 
         if( rurera_is_field(duration_type) && duration_type == 'per_question') {
-                clearInterval(Quizintervals);
-                $('.quiz-timer-counter').html(time_interval);
-                $('.quiz-timer-counter').attr('data-time_counter', time_interval);
-                Quizintervals = setInterval(function () {
-                    var quiz_timer_counter = $('.quiz-timer-counter').attr('data-time_counter');
-                    quiz_timer_counter = parseInt(quiz_timer_counter) - parseInt(1);
-                    $('.quiz-timer-counter').html(getTime(quiz_timer_counter));
-                    if($('.nub-of-sec').length > 0){
-                        $('.nub-of-sec').html(getTime(quiz_timer_counter));
-                    }
-                    $('.quiz-timer-counter').attr('data-time_counter', quiz_timer_counter);
+			clearInterval(Quizintervals);
+			$('.quiz-timer-counter').html(time_interval);
+			$('.quiz-timer-counter').attr('data-time_counter', time_interval);
+			Quizintervals = setInterval(function () {
+				var quiz_timer_counter = $('.quiz-timer-counter').attr('data-time_counter');
+				quiz_timer_counter = parseInt(quiz_timer_counter) - parseInt(1);
+				$('.quiz-timer-counter').html(getTime(quiz_timer_counter));
+				if($('.nub-of-sec').length > 0){
+					$('.nub-of-sec').html(getTime(quiz_timer_counter));
+				}
+				$('.quiz-timer-counter').attr('data-time_counter', quiz_timer_counter);
 
-                    if (duration_type == 'per_question') {
-                        if (parseInt(quiz_timer_counter) == 0) {
-                            clearInterval(Quizintervals);
-                            $('.question-submit-btn').attr('data-bypass_validation', 'yes');
-                            $('#question-submit-btn')[0].click();
-                        }
-                    }
+				if (duration_type == 'per_question') {
+					if (parseInt(quiz_timer_counter) == 0) {
+						clearInterval(Quizintervals);
+						$('.question-submit-btn').attr('data-bypass_validation', 'yes');
+						$('#question-submit-btn')[0].click();
+					}
+				}
 
-                }, 1000);
-            }
+			}, 1000);
+		}
 
         //question_layout_functions();
 
