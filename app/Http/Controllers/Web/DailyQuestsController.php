@@ -158,7 +158,7 @@ class DailyQuestsController extends Controller
             $QuestUserData = $this->getQuestUserData($questObj);
             $is_completed = isset( $QuestUserData['is_completed'] )? $QuestUserData['is_completed'] : false;
 
-            if( $is_completed != true){
+            if( $is_completed == true){
                 continue;
             }
 
@@ -227,7 +227,7 @@ class DailyQuestsController extends Controller
             $QuestUserData = $this->getQuestUserData($questObj);
             $is_completed = isset( $QuestUserData['is_completed'] )? $QuestUserData['is_completed'] : false;
 
-            if( $is_completed != true){
+            if( $is_completed == true){
                 continue;
             }
 			
