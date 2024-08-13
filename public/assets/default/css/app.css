@@ -10238,7 +10238,8 @@ body .lms-quiz-section .flipbook-quiz {width: 800px;}
 .timebar {display: inline-block; position: relative; height: 3px; width: 100%; }
 .timebar .bar-inner {height: 100%; background-color: green; transition: all .4s ease;}
 .spell-question-area .timebar {position: absolute; top: 56px; left: 0;}
-.spells-quiz-sound {text-align: center; margin: 30px 0 60px;}
+.spells-quiz-sound {text-align: center; margin: 60px 0;}
+.question-label ~ .spells-quiz-sound {margin: 30px 0 60px;}
 .spells-quiz-sound strong,
 .spells-quiz-from strong{color: #747474; font-size: 20px; font-weight: 400;}
 .spells-quiz-sound .play-btn {position: relative; display: inline-block; vertical-align: middle;}
@@ -10259,7 +10260,7 @@ body .lms-quiz-section .flipbook-quiz {width: 800px;}
 .spell-words-filters .form-group {margin-bottom: 0; display: inline-block; vertical-align: middle; margin-left: 10px;}
 .spell-words-filters .form-group select {border: 1px solid #ddd; padding: 7px 25px 7px 10px; border-radius: 6px; appearance: none;}
 .spell-words-filters .form-group:has(select):before,
-.spell-words-data .word-block label .down-arrow {position: absolute; right: 10px; top: 50%; height: 6px; width: 6px; border: 1px solid #666; border-left: transparent; border-top: transparent; transform: rotate(45deg); margin-top: -5px; pointer-events: none;}
+.spell-words-data .word-block label .down-arrow {content: ""; position: absolute; right: 10px; top: 50%; height: 6px; width: 6px; border: 1px solid #666; border-left: transparent; border-top: transparent; transform: rotate(45deg); margin-top: -5px; pointer-events: none;}
 .spell_words_popup .spell-words-filters input.search-word {height: 36px; padding: 5px 10px; }
 .spell-words-data {padding-top: 30px; display: flex; flex-wrap: wrap; gap: 0 15px; align-items: flex-start; position: relative;}
 .spell-words-data .word-block {display: inline-block; width: 32.3%; }
@@ -10993,13 +10994,14 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 /* Rewards Style End */
 
 /* Question Inactivity Modal Style Start */
+.modal.question_inactivity_modal {padding-left: 0 !important;}
 .question_inactivity_modal .modal-dialog,
 .quiz-activity-pause .modal-dialog {margin-left: auto; margin-right: auto; max-width: 450px;}
 .question_inactivity_modal .modal-content {border-radius: 0;}
 .question_inactivity_modal .modal-content .continue-btn,
 .question_inactivity_modal .modal-content .leavenow-btn,
 .inactivity-controls .continue-btn,
-.inactivity-controls .rurera-delete-btn {background-color: var(--primary); color: #fff; padding: 8px 30px; display: inline-block; border-radius: 3px; min-width: 200px; text-align: center;}
+.inactivity-controls .rurera-delete-btn {background-color: var(--primary); color: #fff; padding: 8px 15px; display: inline-block; border-radius: 3px; min-width: 200px; text-align: center;}
 .rurera-confirm-delete .inactivity-controls .continue-btn {min-width: 100px; margin-right: 10px;}
 .question_inactivity_modal .modal-content .leavenow-btn {margin-bottom: 10px;}
 .inactivity-controls .rurera-delete-btn {background-color: #fb5757; min-width: 100px;}
@@ -11009,6 +11011,8 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .question_inactivity_modal .modal-title {margin-bottom: 15px;}
 .question_inactivity_modal .modal-body,
 .quiz-activity-pause .modal-body {padding: 30px 30px 25px;}
+.question_inactivity_modal .modal-body .modal-box,
+.quiz-activity-pause .modal-body .modal-box {position: relative; z-index: 1;}
 .question_inactivity_modal .modal-body:after,
 .quiz-activity-pause .modal-body:after {position: absolute; right: 0; top: 15px; content: ""; height: 75px; width: 105px; background: url(/assets/default/img/bg-modal-clock.png); background-repeat: no-repeat; pointer-events: none;}
 .inactivity-controls .review-btn {min-height: auto;}
@@ -11643,7 +11647,7 @@ address .info-list-label {color: #64748b;}
 .learning-page {position: relative;}
 .learning-page .close {position: absolute; right: 10px; top: 15px; z-index: 1;}
 .spells-quiz-from .word-cloud-box {max-height: 130px; min-height: 130px; width: 130px; list-style: none;}
-.learning-page.type-vocabulary:has(.spells-quiz-sound) .word-cloud-box {margin: -65px auto 35px;}
+.learning-page.type-vocabulary:has(.spells-quiz-sound) .word-cloud-box {margin: -25px auto 35px;}
 
 /*************************************
 Lms Responsive Style Start
@@ -12656,7 +12660,8 @@ Lms Responsive Style Start
     .spell-question-area .question-layout-block form.question-fields {height: calc(100vh - 120px); margin-bottom: 0; padding-top: 0;}
     .spell-question-area .question-layout-block form.question-fields:has(#rf-searchgamecontainer) {height: auto; margin-bottom: 30px;}
     .left-content:has(#rurera-words-search) {height: auto !important;}
-    .spells-quiz-sound {margin-top: 0; margin-bottom: 35px;}
+    .spells-quiz-sound,
+    .question-label ~ .spells-quiz-sound {margin-top: 0; margin-bottom: 35px;}
     .question-count ~ .spells-quiz-sound {margin-top: 30px;}
     .learning-page.type-vocabulary:has(.spells-quiz-sound) .word-cloud-box {margin-top: 0;}
     .spells-quiz-from .form-btn-field {display: flex;padding-left: 10px;padding-right: 10px;justify-content: center;gap: 10px;flex-wrap: wrap;padding-top: 0;}
@@ -12664,12 +12669,12 @@ Lms Responsive Style Start
     .timeline-text img {margin: 0 2px;}
     .db-members .profile-dropdown ul {right: auto; left: -5px;}
     body #rurera-words-search #rf-searchgamecontainer {padding: 8px;}
-    body #rurera-words-search #rf-searchgamecontainer .rf-tgrid {padding: 5px 4px;}
+    body #rurera-words-search #rf-searchgamecontainer .rf-tgrid {padding: 4px 3px;}
     body #rurera-words-search {margin-top: 35px;}
     .spells-quiz-info ul li span,
     .spells-quiz-info ul li,
     .spell-question-area .question-count span {font-size: 16px;}
-    .spells-quiz-info ul li {display: inline-flex; align-items: center; justify-content: center; flex-wrap: wrap;}
+    .spells-quiz-info ul li {display: inline-flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 3px;}
     .question-result-layout .question-area {padding-top: 15px;}
 }
 @media screen and (max-width: 480px) {
@@ -12683,6 +12688,7 @@ Lms Responsive Style Start
     .gallery-sub-header .book-btn {font-size: 14px; min-width: 150px; padding: 15px 8px;}
     body .image-top.rurera-in-row .lms-radio-select .field-holder {max-width: 100%; flex: 0 0 100%;}
     .rurera-in-row {flex-direction: column;}
+    .spells-quiz-from .lms-radio-select.rurera-in-row {flex-direction: row;}
     body .rurera-in-row .field-holder, body .rurera-in-row .form-field {width: 100%;}
     nav.top-navbar .login-btn, nav .register-btn {padding: 4px 10px !important; font-size: 12px; white-space: nowrap;}
     .counter-holder .svg-shapes-top {right: 90px;}
