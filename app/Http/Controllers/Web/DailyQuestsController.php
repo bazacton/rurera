@@ -155,10 +155,10 @@ class DailyQuestsController extends Controller
             $quest_method = $questObj->quest_method;
             $recurring_type = $questObj->recurring_type;
 
-            $QuestUserData = $this->getQuestUserData($questObj);
+            $QuestUserData = $this->getQuestUserData($questObj, true);
             $is_completed = isset( $QuestUserData['is_completed'] )? $QuestUserData['is_completed'] : false;
 
-            if( $is_completed == true){
+            if( $is_completed != true){
                 continue;
             }
 
@@ -224,10 +224,10 @@ class DailyQuestsController extends Controller
             $quest_method = $questObj->quest_method;
             $recurring_type = $questObj->recurring_type;
 
-            $QuestUserData = $this->getQuestUserData($questObj);
+            $QuestUserData = $this->getQuestUserData($questObj, true);
             $is_completed = isset( $QuestUserData['is_completed'] )? $QuestUserData['is_completed'] : false;
 
-            if( $is_completed == true){
+            if( $is_completed != true){
                 continue;
             }
 			
@@ -269,7 +269,7 @@ class DailyQuestsController extends Controller
     /*
     * Get User Quest Data
     */
-    public function getQuestUserData($questObj)
+    public function getQuestUserData($questObj, $check_for_reward = false)
     {
         $user = auth()->user();
         $quest_method = $questObj->quest_method;
@@ -307,7 +307,19 @@ class DailyQuestsController extends Controller
 			$QuizzesResults->whereIn('id' , $results_ids);
 		}
         $QuizzesResults = $QuizzesResults->get();
-		
+		if( $check_for_reward == true){
+			if( !empty( $QuizzesResults) ) {
+				foreach( $QuizzesResults as $QuizzesResutsObj){
+					$alotted_rewards = $QuizzesResutsObj->quest_rewards->where('parent_type', 'quest')->count();
+					if( $alotted_rewards > 0){
+						$response = array(
+							'is_completed' => false,
+						);
+						return $response;
+					}
+				}
+			}
+		}
 		
 		$resultsRecords = array();
 		

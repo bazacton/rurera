@@ -52,8 +52,9 @@ if( isset( $duration_type ) ){
 
 $quiz_level = isset( $quiz_level )? $quiz_level : 'easy';
 $hidden_indexes = getRandomIndexes($correct_answer);
+$hidden_indexes = range(1, strlen($correct_answer));
 $characters_list = [];
-foreach( $hidden_indexes as $index_no){
+foreach( $hidden_indexes as $index_no => $index_value){
 	$characters_list[] = substr($correct_answer, $index_no,1);
 }
 $random_characters = getRandomCharacters($characters_list);
@@ -118,9 +119,9 @@ shuffle($correct_characters_list);
 							$word_character = substr($correct_answer, $words_counter, 1);
 							$word_character = in_array($words_counter, $hidden_indexes)? '' : $word_character;
 							$field_attr = in_array($words_counter, $hidden_indexes)? 'readonly' : 'readonly';
-							$field_class = in_array($words_counter, $hidden_indexes)? 'empty-field' : '';
+							$field_class = in_array($words_counter, $hidden_indexes)? 'empty-field' : 'empty-field';
                             @endphp
-                            <input type="text" value="{{$word_character}}" maxlength="1" data-counter_id="{{$words_counter}}" class="rurera-req-field editor-field-inputs drop-target{{ $question->id }} {{$field_class}}" style="width: {{$field_width}}ch;
+                            <input type="text" value="" maxlength="1" data-counter_id="{{$words_counter}}" class="rurera-req-field editor-field-inputs drop-target{{ $question->id }} {{$field_class}}" style="width: {{$field_width}}ch;
                                                     background: repeating-linear-gradient(90deg, #747474 0, #747474 1ch, transparent 0, transparent 1.5ch) 0 100%/ 1ch 2px no-repeat;
                                                     font: 1.2rem 'Ubuntu Mono', monospace;
                                                     letter-spacing: 0.5ch;" {{$field_attr}}>

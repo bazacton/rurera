@@ -46,7 +46,7 @@ class AnalyticsController extends Controller
         $user_id = ( $user_id == 'all')? $childs_ids : $user_id;
 
         $user_id = is_array($user_id )? $user_id : array($user_id);
-
+		
 
         //pre($user_id);
 

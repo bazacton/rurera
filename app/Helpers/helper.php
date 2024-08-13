@@ -8164,7 +8164,7 @@ class svgAvatarsSvgCodeSanitizer {
 	}
 }
 
-function getTimeWithText($secondsString, $show_empty = true, $include_zero = false) {
+function getTimeWithText($secondsString, $show_empty = true, $include_zero = false, $show_seoncds = true) {
     $h = floor($secondsString / 3600); // Get whole hours
     $secondsString -= $h * 3600;
     $m = floor($secondsString / 60); // Get remaining minutes
@@ -8180,10 +8180,12 @@ function getTimeWithText($secondsString, $show_empty = true, $include_zero = fal
     //$secondsString  = round($secondsString, 2);
     $secondsString  = round($secondsString);
 
-    if( $secondsString > 0 || $show_empty == true) {
-        $return_string .= ($secondsString < 10 ? '0' . $secondsString : $secondsString);
-        $return_string .= 's';
-    }
+	if( $show_seoncds == true){
+		if( $secondsString > 0 || $show_empty == true) {
+			$return_string .= ($secondsString < 10 ? '0' . $secondsString : $secondsString);
+			$return_string .= 's';
+		}
+	}
     return $return_string;
 }
 

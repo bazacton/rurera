@@ -50,7 +50,7 @@
                 <strong>
                     <img src="/assets/default/img/sidebar/games.svg" alt="">
 					@if( $authUser->game_time > 0)
-						{{getTimeWithText($authUser->game_time, false)}}
+						{{getTimeWithText($authUser->game_time, false, false, false)}}
 					@else
 						0 m
 					@endif

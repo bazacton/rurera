@@ -92,6 +92,13 @@ class QuizzesResult extends Model
     {
         return $this->hasMany('App\Models\QuizzResultQuestions', 'quiz_result_id', 'id');
     }
+	
+	public function quest_rewards()
+    {
+        return $this->hasMany('App\Models\RewardAccounting', 'result_id', 'id');
+    }
+	
+	
 
 
     public function getQuestions()

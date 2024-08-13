@@ -2181,7 +2181,7 @@ class QuestionsAttemptController extends Controller
         if ($QuizzesResult->quiz_result_type == 'timestables' && $QuizzesResult->attempt_mode == 'freedom_mode') {
             $results = json_decode($QuizzesResult->results);
 			$return_layout .= '<div class="finish-steps '.$hide_class.'">';
-				$return_layout .= view('web.default.timestables.finish_timestables', ['QuizzesResult' => $QuizzesResult, 'results' => $results])->render();
+			$return_layout .= view('web.default.timestables.finish_freedom_mode', ['QuizzesResult' => $QuizzesResult, 'results' => $results])->render();
 			$return_layout .= '</div>';
         }
         if ($QuizzesResult->quiz_result_type == 'timestables_assignment') {

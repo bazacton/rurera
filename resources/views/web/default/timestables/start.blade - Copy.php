@@ -258,23 +258,23 @@ if( $duration_type == 'total_practice'){
                 var seconds_count = $('.questions-block[data-id="0"]').attr('data-tconsumed');
                 seconds_count = parseInt(seconds_count) + parseInt(1);
                 $('.questions-block[data-id="0"]').attr('data-tconsumed', seconds_count);
-                $('.questions-block[data-id="0"]').find(".time-count-seconds").html(seconds_count);
+                $('.questions-block[data-id="0"]').find(".time-count-seconds").html(parseInt(seconds_count) / 10);
             } else {
                 clearInterval(Questionintervals);
             }
-        }, 1000);
+        }, 100);
 
         Quizintervals = setInterval(function () {
-            var quiz_timer_counter = parseInt($('.quiz-timer-counter').attr('data-time_counter'));
+            var quiz_timer_counter = parseFloat($('.quiz-timer-counter').attr('data-time_counter'));
 
 			if (duration_type == 'no_time_limit') {
-				quiz_timer_counter = parseInt(quiz_timer_counter + 1);
+				quiz_timer_counter = parseFloat((quiz_timer_counter + 0.1).toFixed(1));
 			} else {
-				quiz_timer_counter = parseInt(quiz_timer_counter - 1);
+				quiz_timer_counter = parseFloat((quiz_timer_counter - 0.1).toFixed(1));
 			}
 
 			$('.quiz-timer-counter').html(getTime(quiz_timer_counter));
-			$('.quiz-timer-counter').attr('data-time_counter', quiz_timer_counter);
+			$('.quiz-timer-counter').attr('data-time_counter', quiz_timer_counter.toFixed(1));
 
 			if (duration_type == 'per_question' || duration_type == 'total_practice') {
 				if (parseFloat(quiz_timer_counter) <= 0) {
@@ -284,32 +284,29 @@ if( $duration_type == 'total_practice'){
 				}
 			}
 
-        }, 1000);
+        }, 100);
 
     });
 
     function getTime(secondsString) {
-        var h = Math.floor(secondsString / 3600); //Get whole hours
-        secondsString -= h * 3600;
-        var m = Math.floor(secondsString / 60); //Get remaining minutes
-        secondsString -= m * 60;
+        var h = Math.floor(secondsString / 3600); // Get whole hours
+		secondsString -= h * 3600;
+		var m = Math.floor(secondsString / 60); // Get remaining minutes
+		secondsString -= m * 60;
 
-        var return_string = '';
-        if( h > 0) {
-            var return_string = return_string + h + ":";
-        }
-        if( m > 0) {
-            var return_string = return_string + (m < 10 ? '0' + m : m) + ":";
-        }
-        var return_string = return_string + (secondsString < 10 ? '0' + roundToTwoDecimals(secondsString) : roundToTwoDecimals(secondsString));
+		var s = secondsString.toFixed(1); // Get seconds with one decimal place
 
-        return return_string;
+		var return_string = '';
+		if (h > 0) {
+			return_string += h + ":";
+		}
+		if (m > 0 || h > 0) {
+			return_string += (m < 10 ? '0' + m : m) + ":";
+		}
+		return_string += (s < 10 ? '0' + s : s);
+
+		return return_string;
     }
-	
-	function roundToTwoDecimals(number) {
-		//return Math.round(number * 100) / 100;
-		return Math.round(number);
-	}
 
     $(document).on('click', '.questions-block-numbers ul li', function (e) {
         var current_value = $(this).attr('data-value');
