@@ -61,8 +61,14 @@
   border:1px solid rgba(0,0,255,.15);
   background:rgba(0,0,255,.05);
 }
-
-
+.spell-words-data .word-block {
+    position: relative;
+}
+.spell-words-data .word-block input[type="checkbox"] {
+    width: 100%;
+    height: 100%;
+    left: 0;
+}
 </style>
 
 @endpush
@@ -151,9 +157,9 @@
                                     <div class="spell-levels {{$spell_quiz_completed}}">
                                         <div class="spell-levels-top">
                                             <div class="spell-top-left">
-                                                <h3 class="font-18 font-weight-bold">{{$dataObj->getTitleAttribute()}}</h3>
+                                                <h3 class="font-18 font-weight-bold">{{$dataObj->getTitleAttribute()}} <span class="progress-star danger"><img src="/assets/default/img/tick-white.png"></span></h3>
 												<div class="spell-links">
-												<a href="javascript:;" class="spell-popup-btn" data-heading="Practice Words" data-play_link="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/" data-spell_type="word-hunts" data-spell_id="{{$dataObj->id}}">
+												<a href="javascript:;" class="spell-popup-btn" data-heading="{{$dataObj->getTitleAttribute()}}" data-play_link="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/" data-spell_type="word-hunts" data-spell_id="{{$dataObj->id}}">
 													Practice Words
 												</a>
 												
@@ -209,17 +215,23 @@
 	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
     <div class="modal-body spell_words_popup_body">
       <div class="container container-nosidebar">
-	  
-		<h2>Filter Words</h2>
-		<p>From sources across the web</p>
-		
-		<div class="tests-list-holder spell-type-check mb-25 mt-30">
+		<div class="row">
+			<div class="col-10 col-lg-10 col-md-12">
+				<h2 class="page-title">Filter Words</h2>
+				<p>From sources across the web</p>
+			</div>
+			<div class="col-2 col-lg-2 col-md-12 spell-words-filters pt-5">
+			<a href="javascript:;" data-href="javascript:;" class="play-again">Play (<span class="selected_questions">All</span>)</a>
+			</div>
+		</div>
+		<h3 class="mt-30">Choose Practice Type</h3>
+		<div class="tests-list-holder spell-type-check mb-25 mt-20">
 			<a href="#." class="filter-mobile-btn">Filters Dropdown</a>
 			<ul class="tests-list mb-30">
 				<li data-type="word-hunts" class="active">Word Hunts</li>
 				<li data-type="word-search">Word Search</li>
 				<li data-type="word-cloud">Word Cloud</li>
-				<li data-type="word-missing">Complete the Sentence</li>
+				<li data-type="word-missing">Practice Test</li>
 			</ul>
 			<input type="text" name="spell_type" class="spell_type_check rurera-hide" value="word-hunts">
 		</div>
@@ -229,6 +241,9 @@
 		<div class="row">
 		
 		
+		<div class="col-9 col-lg-9 col-md-12">
+			<h3>Choosen Words (<span class="choosen-words">Default All Selected</span>)</h3>
+		</div>
 		<div class="col-3 col-lg-3 col-md-12">
 			Sort By
 			<div class="form-group">
@@ -238,25 +253,8 @@
 				</select>
 			</div>
 		</div>
-		<div class="col-3 col-lg-3 col-md-12">
-			Difficulty Level
-			<div class="form-group">
-				<select>
-					<option>All</option>
-				</select>
-			</div>
-		</div>
-		<div class="col-4 col-lg-4 col-md-12">
-			Word
-			<div class="form-group">
-				<div class="input-field">
-					<input type="text" class="search-word" placeholder="Search....">
-				</div>
-			</div>
-		</div>
-		<div class="col-2 col-lg-2 col-md-12">
-			<a href="javascript:;" data-href="javascript:;" class="play-again">Play (<span class="selected_questions">All</span>)</a>
-		</div>
+		
+		
 		</div>
 		<form class="spell-quiz-form" action="#" method="POST">
 		<input type="hidden" name="is_new" value="yes">
@@ -364,7 +362,7 @@
 		var thisObj = $(this);
 		var spell_id = $(this).attr('data-spell_id');
 		var spell_heading = $(this).attr('data-heading');
-		$(".spell_words_popup_body .container-nosidebar h2").html(spell_heading);
+		$(".spell_words_popup_body .container-nosidebar .page-title").html(spell_heading);
 		var spell_type = $(this).attr('data-spell_type');
 		var play_link = $(this).attr('data-play_link');
 		$(".play-again").attr('data-href', play_link);
@@ -425,16 +423,12 @@
 		filter_words();
     });
 	
-	$(document).on('keyup change', '.search-word', function (e) {
-		filter_words();
-    });
-	
 	function filter_words(){
 		var sort_by = $('.sort_by_filter').val();
 		var spell_id = $(".spell-words-filters").attr('data-spell_id');
 		var spell_type = $(".spell-words-filters").attr('data-spell_type');
 		
-		var search_word = $('.search-word').val();
+		var search_word = '';
 		
 
 		var thisObj = $('.spell-words-data');
@@ -472,8 +466,10 @@ $(document).on('change', '.spell_checkbox', function (e) {
         $(this).closest('.word-block').removeClass('active');
     }
 	var selected_words = $('.word-block.active').length;
+	var choosen_words = (selected_words > 0)? selected_words+' Choosen' : 'Default All Selected';
 	selected_words = (selected_words > 0)? selected_words : 'All';
 	$(".play-again .selected_questions").html(selected_words);
+	$(".choosen-words").html(choosen_words);
 });
 
 
@@ -561,6 +557,9 @@ document.oncontextmenu = function() {
 }
 
 $(document).on("mousemove", function(event){
+	if ($(event.target).closest('.spell_words_popup').length < 1) {
+		return ;
+	}
   if(drag){  
     var flipX = "";
     var flipY = "";   
@@ -582,36 +581,102 @@ $(document).on("mousemove", function(event){
     }
     
     $(".dragArea").attr("style", "display:block; top:"+ top + "px;  left:" + left + "px; width:"+ width + "px; height: " + height + "px; transform:" + flipX + " " + flipY + ";");
+	console.log('moving');
+	console.log(event.which);
+	
+	ex = event.pageX;
+	ey = event.pageY;
+	  
+	if(ex < sx){
+		ta = ex;
+		ex = sx;
+		sx = ta;
+	  }
+		
+	  if(ey < sy){
+		ta = ey;
+		ey = sy;
+		sy = ta;
+	  }
+	  switch (event.which) {
+        case 1:
+            //Left Mouse button pressed. Check                   
+            selectItems(true);
+            break;
+        case 3:
+            //Right Mouse button pressed. Uncheck       
+            selectItems(false);
+            break;
+        default:
+            //do nothing 
+    }
+	
+	/*if ($(event.target).closest('.spell_words_popup').length < 1) {
+		return ;
+	}
+	
+	  drag = true;
+	  sx = event.pageX;
+	  sy = event.pageY;
+	  switch (event.which) {
+			case 1:
+				//Left Mouse button pressed.           
+				$(".dragArea").addClass("add");
+				$(".dragArea").removeClass("remove");
+				break;
+			case 3:
+				//Right Mouse button pressed.
+				$(".dragArea").addClass("remove");
+				$(".dragArea").removeClass("add");
+				break;
+			default:
+				//do nothing
+		}*/
+	
   }
   });
 
 $( document ).on( "mousedown", function( event ) {
+	if ($(event.target).closest('.tests-list').length > 0) {
+		return ;
+	}
+	if ($(event.target).closest('.spell-words-filters').length > 0) {
+		return ;
+	}
+	if ($(event.target).closest('.close').length > 0) {
+		return ;
+	}
+	
+	
 	if ($(event.target).closest('.spell_words_popup').length < 1) {
 		return ;
 	}
-  drag = true;
-  sx = event.pageX;
-  sy = event.pageY;
-  switch (event.which) {
-        case 1:
-            //Left Mouse button pressed.           
-            $(".dragArea").addClass("add");
-            $(".dragArea").removeClass("remove");
-            break;
-        case 3:
-            //Right Mouse button pressed.
-            $(".dragArea").addClass("remove");
-            $(".dragArea").removeClass("add");
-            break;
-        default:
-            //do nothing
-    }
-  $(".dragArea").attr("style", "display:block; top:"+ event.pageY + "px; left:" + event.pageX + "px; width:0; height:0;");
+	  drag = true;
+	  sx = event.pageX;
+	  sy = event.pageY;
+	  switch (event.which) {
+			case 1:
+				//Left Mouse button pressed.           
+				$(".dragArea").addClass("add");
+				$(".dragArea").removeClass("remove");
+				break;
+			case 3:
+				//Right Mouse button pressed.
+				$(".dragArea").addClass("remove");
+				$(".dragArea").removeClass("add");
+				break;
+			default:
+				//do nothing
+		}
+	  $(".dragArea").attr("style", "display:block; top:"+ event.pageY + "px; left:" + event.pageX + "px; width:0; height:0;");
   
   
 });
 
 $( document ).on( "mouseup", function( event ) {  
+if ($(event.target).closest('.spell_words_popup').length < 1) {
+	return ;
+}
   drag = false;
   $(".dragArea").attr("style", "display:none;");
   
@@ -653,23 +718,33 @@ function selectItems(checked){
     var cyHi = pos.top + $(this).height();
     if(cxLow <= sx && sx <= cxHi && cxLow <= ex && ex <= cxHi ){
       if(cyLow <= sy && sy <= cyHi && cyLow <= ey && ey <= cyHi){
+		  $(this).closest('.word-block').removeClass('active');
         $(this).prop("checked", !$(this).prop("checked"));
         
       }
-    }        
-    else if(sx <= cxHi && ex >= cxLow ){
+    }  
+	else if(sx <= cxHi && ex >= cxLow ){
       if(sy <= cyHi && ey >= cyLow){
-        if ($(this).prop("checked")) {
-			$(this).prop("checked", false);
-		} else {
-			$(this).prop("checked", true);
-		}
-		$(".spell_checkbox").change();
+        console.log(checked);
+			$(this).prop("checked", checked);
+			if( checked == true){
+				$(this).closest('.word-block').addClass('active');
+			}else{
+				$(this).closest('.word-block').removeClass('active');
+			}
+		//$(".spell_checkbox").change();
       }
     }
     
     //alert("X: " + position.left + " | " + "Y: " + position.top)
   });
+  var selected_words = $('.word-block.active').length;
+  selected_words = (selected_words > 0)? selected_words : 'All';
+  var choosen_words = (selected_words > 0)? selected_words+' Choosen' : 'Default All Selected';
+  $(".play-again .selected_questions").html(selected_words);
+  $(".choosen-words").html(choosen_words);
+  
+  //$(".spell_checkbox").change();
 }
     </script>
 

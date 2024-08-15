@@ -9,6 +9,7 @@ use App\Models\Page;
 use App\Models\Quiz;
 use App\Models\UserAssignedTopics;
 use App\Models\UserVocabulary;
+use App\Models\QuizzesResult;
 use App\User;
 use Illuminate\Http\Request;
 use App\Models\Testimonial;
@@ -27,6 +28,17 @@ class SpellsController extends Controller
         }
         $user = getUser();
         $QuestionsAttemptController = new QuestionsAttemptController();
+		
+		
+		/*$QuizzesResult = QuizzesResult::find(2);	
+		$results = json_decode($QuizzesResult->results);
+		$data_array = array(
+			'QuizzesResult' => $QuizzesResult,
+			'results'	=> $results,
+		);
+		return view('web.default.panel.finish_response.spell_finish', $data_array)->render();;
+		abort(404);*/
+		
 
         //$QuestionsAttemptController->after_attempt_complete(6);
         $page = Page::where('link', '/spells')->where('status', 'publish')->first();
@@ -75,7 +87,9 @@ class SpellsController extends Controller
         $categories = Category::where('parent_id', null)
             ->with('subCategories')->orderBy('order', 'asc')
             ->get();
-
+			
+			
+		
 
         if (!empty($spellsData)) {
             $data = [

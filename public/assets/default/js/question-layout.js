@@ -985,6 +985,13 @@ function init_question_functions() {
             $('#sound-icon-'+quizQuestionID).removeClass('pause');
             $('#sound-icon-'+quizQuestionID).click();
         }
+		
+		if (typeof onQuestionLoad === "function") {
+			onQuestionLoad();
+		}
+		
+		
+		
 
         var total_questions = $(".question-area").attr('data-total_questions');
         if($(".quiz-questions-bar").length > 0){
@@ -1064,9 +1071,12 @@ function init_question_functions() {
     $(document).on('click', '.questions-nav-controls .review-btn, .topbar-right .review-btn', function (e) {
         var qattempt_id = $(".question-area .question-step").attr('data-qattempt');
         var total_questions = $(".question-area").attr('data-total_questions');
+		var total_questions = $(".question-area").attr('data-total_questions');
+		var finish_title = $(".questions-nav-controls").attr('data-finish_title');
+		finish_title = ( rurera_is_valid_field(finish_title) == true)? finish_title : 'are you sure you want to submit your test? you will not able to access this test again.';
 
         $(".review_submit .modal-body p").html('You have attempted ' + attempted_questions + ' questions. Are you sure you want to submit?');
-		$(".review_submit1 .modal-body p").html('You have attempted ' + attempted_questions + ' questions. are you sure you want to submit your test? you will not able to access this test again.');
+		$(".review_submit1 .modal-body p").html('You have attempted ' + attempted_questions + ' questions. '+finish_title);
 
 
         /*var thisObj = $(this);

@@ -98,7 +98,7 @@ shuffle($characters_list);
                       <img class="pause-icon" src="/assets/default/svgs/pause-circle.svg" alt="" height="20" width="20">
                     </a> </strong>
                 </div>
-                <div class="player-box">
+                <div class="player-box hide">
 				   <audio  class="player-box-audio" id="audio_file_{{ $question->id }}-word" src="{{isset($word_data['word_audio'])? $word_data['word_audio'] : ''}}"> </audio>
 				   <audio  class="player-box-audio" id="audio_file_{{ $question->id }}" src="{{isset($word_data['audio_file'])? $word_data['audio_file'] : ''}}"> </audio>
                 </div>
@@ -169,7 +169,7 @@ shuffle($characters_list);
                     </div>
                 </div>
 
-                    <div class="prev-next-controls text-center mb-50 questions-nav-controls  rurera-hide">
+                    <div class="prev-next-controls text-center mb-50 questions-nav-controls  rurera-hide" data-finish_title="are you sure you want to submit your Practice?">
                         @if( !isset( $disable_finish ) || $disable_finish == 'false')
                         <a href="javascript:;" id="review-btn_{{ $question->id }}" data-toggle="modal" class="review-btn" data-target="#review_submit">
                             Finish

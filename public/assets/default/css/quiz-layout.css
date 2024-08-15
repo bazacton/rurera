@@ -373,7 +373,8 @@ Lms Question List Style
 .learning-page.type-practice .left-content {height: auto; min-height: auto; }
 /* .learning-page.type-practice .left-content .leform-elements {height: 400px; overflow: hidden; overflow-y: auto; padding-right: 5px;}
 .learning-page.type-practice .left-content .leform-elements::-webkit-scrollbar {width: 5px; background-color: #F5F5F5;} */
-.learning-page.type-vocabulary .left-content {overflow: hidden; padding-right: 0;}
+.learning-page.type-vocabulary .left-content {overflow: hidden; padding-right: 0; padding-bottom: 60px;}
+.learning-page.type-vocabulary:has(.virtual-keyboard) .left-content {height: auto;}
 .question-fields .left-content::-webkit-scrollbar-track,
 .lms-sorting-fields::-webkit-scrollbar-trackt,
 .learning-page.type-practice .leform-elements::-webkit-scrollbar-trackt {-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);}

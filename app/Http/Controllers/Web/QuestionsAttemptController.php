@@ -575,7 +575,7 @@ class QuestionsAttemptController extends Controller
 							
 							
 							
-							if (in_array($quizAttempt->attempt_type, array('vocabulary'))) {	
+							if (in_array($quizAttempt->attempt_type, array('vocabulary')) && $quizResultObj->attempt_mode != '') {	
                                 /*
                                 * Practice Quiz Incorrect attempt add another Question
                                 * @Start
@@ -861,6 +861,7 @@ class QuestionsAttemptController extends Controller
         $response = array(
             'show_fail_message'        => $show_fail_message,
             'is_complete'              => $is_complete,
+			'attempt_mode'              => $quizResultObj->attempt_mode,
             //($question_response_layout == '') ? true : $is_complete,
             'incorrect_array'          => $incorrect_array,
             'correct_array'            => $correct_array,
@@ -910,8 +911,10 @@ class QuestionsAttemptController extends Controller
 	*/
 	public function get_finish_layout($QuizzesResult, $quiz_type, $incorrect_flag, $correct_array, $incorrect_array, $question_correct_answere, $question_user_input){
 		$finish_layout = '';
+		$results = json_decode($QuizzesResult->results);
 		$data_array = array(
 			'QuizzesResult' => $QuizzesResult,
+			'results'	=> $results,
 			'quiz_type'	=> $quiz_type,
 			'incorrect_flag'	=> $incorrect_flag,
 			'correct_array'	=> $correct_array,

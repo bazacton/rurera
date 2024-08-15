@@ -325,11 +325,13 @@
     </div>
   </section>
   <div class="lms-faqs">
-    <h2 class="font-36 font-weight-bold mb-30" style="text-align: center; color: #27325e;">Common Questions</h2>
+    <div class="section-title text-center mb-30">
+				<h2 class="mt-0 mb-10 font-40">Frequently asked questions</h2>
+		</div>
     <div id="accordion">
       <div class="card">
         <div class="card-header" id="heading">
-          <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">What are Rurera Collection Edition books?</button>
+          <button class="btn font-18 font-weight-bold btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">What are Rurera Collection Edition books?</button>
         </div>
         <div id="collapseOne" class="collapse show" aria-labelledby="heading" data-parent="#accordion">
           <div class="card-body">
@@ -339,7 +341,7 @@
       </div>
       <div class="card">
         <div class="card-header" id="headingTwo">
-          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">How do you make sure the books are good?</button>
+          <button class="btn font-18 font-weight-bold btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">How do you make sure the books are good?</button>
         </div>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
           <div class="card-body"> At Rurera, we maintain the quality of our books through expert curation, collaborating with renowned publishers, and considering reader feedback. Our team evaluates each book for engaging storytelling, educational value, captivating illustrations, and positive themes to ensure a high standard of excellence in our Collection Editions. </div>
@@ -347,7 +349,7 @@
       </div>
       <div class="card">
         <div class="card-header" id="headingThree">
-          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Why not just buy books at the store or on Amazon?</button>
+          <button class="btn font-18 font-weight-bold btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Why not just buy books at the store or on Amazon?</button>
         </div>
         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
           <div class="card-body"> Rurera Book Club offers exclusive curated Collection Editions not available in traditional stores or Amazon. Subscribing to Rurera provides a personalized and convenient reading experience, with carefully selected books delivered to your doorstep. It fosters a sense of community among book lovers. </div>
@@ -355,7 +357,7 @@
       </div>
       <div class="card">
         <div class="card-header" id="headingfour">
-          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapsefour" aria-expanded="false" aria-controls="collapsefour">Can l order today but have my subscription start later?</button>
+          <button class="btn font-18 font-weight-bold btn-link collapsed" data-toggle="collapse" data-target="#collapsefour" aria-expanded="false" aria-controls="collapsefour">Can l order today but have my subscription start later?</button>
         </div>
         <div id="collapsefour" class="collapse" aria-labelledby="headingfour" data-parent="#accordion">
           <div class="card-body"> Yes, you can place an order with Rurera today and choose a future start date for your subscription. Simply specify your preferred start date during the ordering process, and we will ensure that your subscription begins accordingly. This allows you to secure your subscription in advance while having it activate at a later date of your choosing. </div>
@@ -363,7 +365,7 @@
       </div>
       <div class="card">
         <div class="card-header" id="headingfive">
-          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapsefive" aria-expanded="false" aria-controls="collapsefive">Are there any initiation, cancellation, or hidden fees?</button>
+          <button class="btn font-18 font-weight-bold btn-link collapsed" data-toggle="collapse" data-target="#collapsefive" aria-expanded="false" aria-controls="collapsefive">Are there any initiation, cancellation, or hidden fees?</button>
         </div>
         <div id="collapsefive" class="collapse" aria-labelledby="headingfive" data-parent="#accordion">
           <div class="card-body"> No, there are no extra fees to join or cancel your Rurera Book Club subscription. You only pay the advertised price, and you can cancel anytime without any additional charges. We believe in simplicity and transparency for a hassle-free experience. </div>
@@ -371,7 +373,7 @@
       </div>
       <div class="card">
         <div class="card-header" id="headingsix">
-          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapsesix" aria-expanded="false" aria-controls="collapsesix">What if I have too many books?</button>
+          <button class="btn font-18 font-weight-bold btn-link collapsed" data-toggle="collapse" data-target="#collapsesix" aria-expanded="false" aria-controls="collapsesix">What if I have too many books?</button>
         </div>
         <div id="collapsesix" class="collapse" aria-labelledby="headingsix" data-parent="#accordion">
           <div class="card-body"> If you have too many books from Rurera Book Club, you can contact customer support to make changes. They can help you receive books less often or pause your subscription until you're ready for more. We want to make sure you have a collection that works for you. </div>
@@ -379,7 +381,7 @@
       </div>
       <div class="card">
         <div class="card-header" id="heading7">
-          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse7" aria-expanded="false" aria-controls="collapse7">What if I have kids in multiple age ranges?</button>
+          <button class="btn font-18 font-weight-bold btn-link collapsed" data-toggle="collapse" data-target="#collapse7" aria-expanded="false" aria-controls="collapse7">What if I have kids in multiple age ranges?</button>
         </div>
         <div id="collapse7" class="collapse" aria-labelledby="heading7" data-parent="#accordion">
           <div class="card-body"> If you have children of different ages, Rurera Book Club can adjust to meet their reading needs. Just tell us the ages of your kids, and we will send books suitable for each child. This way, each child can enjoy books that are just right for them. </div>

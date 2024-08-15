@@ -9256,3 +9256,65 @@ function get_test_type_file($test_type){
 	}
 	return $test_type_file;
 }
+
+
+
+
+function createEmptyGrid($size) {
+    $grid = [];
+    for ($i = 0; $i < $size; $i++) {
+        $grid[$i] = array_fill(0, $size, '');
+    }
+    return $grid;
+}
+
+function placeWordInGrid(&$grid, $word) {
+    $size = count($grid);
+    // Directions: [row_increment, col_increment]
+    $directions = [
+        [0, 1],  
+        [1, 0],  
+    ];
+
+    $placed = false;
+
+    while (!$placed) {
+        $direction = $directions[array_rand($directions)];
+        $row = rand(0, $size - 1);
+        $col = rand(0, $size - 1);
+
+        $endRow = $row + $direction[0] * (strlen($word) - 1);
+        $endCol = $col + $direction[1] * (strlen($word) - 1);
+
+        if ($endRow >= 0 && $endRow < $size && $endCol >= 0 && $endCol < $size) {
+            $canPlace = true;
+            for ($i = 0; $i < strlen($word); $i++) {
+                $currentRow = $row + $i * $direction[0];
+                $currentCol = $col + $i * $direction[1];
+                if ($grid[$currentRow][$currentCol] !== '' && $grid[$currentRow][$currentCol] !== $word[$i]) {
+                    $canPlace = false;
+                    break;
+                }
+            }
+            if ($canPlace) {
+                for ($i = 0; $i < strlen($word); $i++) {
+                    $currentRow = $row + $i * $direction[0];
+                    $currentCol = $col + $i * $direction[1];
+                    $grid[$currentRow][$currentCol] = $word[$i];
+                }
+                $placed = true;
+            }
+        }
+    }
+}
+
+function fillGridWithRandomLetters(&$grid) {
+    $alphabet = range('A', 'Z');
+    foreach ($grid as &$row) {
+        foreach ($row as &$cell) {
+            if ($cell === '') {
+                $cell = $alphabet[array_rand($alphabet)];
+            }
+        }
+    }
+}
