@@ -215,9 +215,24 @@ $timer_counter = $practice_time;
             </section>
 
 
-            <div class="justify-content-center">
+            <div class="justify-content-center spell-quiz-page">
                 <div class="container">
                     <div class="row">
+					<div class="col-lg-10 col-md-12 col-sm-12 mx-auto">
+						<div class="quiz-status-bar">
+							<div class="quiz-questions-bar-holder">
+								
+								<div class="quiz-questions-bar">
+										<span class="value-lable" title="Target" style="left:90%">90%</span>
+									<span class="bar-fill" title="20%" style="width: 20%;"></span>
+								</div>
+							</div>
+							<div class="quiz-corrects-incorrects">
+								<span class="quiz-corrects">0</span>
+								<span class="quiz-incorrects">0</span>
+							</div>
+						</div>
+                    </div>
                 <div class="col-lg-8 col-md-12 col-sm-12 mx-auto">
                     <div class="question-step quiz-complete" style="display:none">
                         <div class="question-layout-block">
@@ -236,19 +251,7 @@ $timer_counter = $practice_time;
                         </div>
                     </div>
 					
-					<div class="quiz-status-bar">
-                        <div class="quiz-questions-bar-holder">
-                            
-                            <div class="quiz-questions-bar">
-									<span class="value-lable" title="Target" style="left:90%">90%</span>
-                                <span class="bar-fill" title="20%" style="width: 20%;"></span>
-                            </div>
-                        </div>
-                        <div class="quiz-corrects-incorrects">
-                            <span class="quiz-corrects">0</span>
-                            <span class="quiz-incorrects">0</span>
-                        </div>
-                    </div>
+					
 
                     <div class="question-area-block" data-quiz_result_id="{{isset( $newQuizStart->id )? $newQuizStart->id : 0}}" data-duration_type="{{isset( $duration_type )? $duration_type : 'no_time_limit'}}" data-time_interval="{{isset( $time_interval )? $time_interval : 0}}" data-practice_time="{{isset( $practice_time )? $practice_time : 0}}"
                                                                      data-active_question_id="{{$active_question_id}}" data-questions_layout="{{json_encode($questions_layout)}}">
@@ -635,9 +638,11 @@ $timer_counter = $practice_time;
 			$(".total-points").attr('data-total-points', total_points);
 			$(".lms-quiz-section").attr('data-total_points', total_points);
 			$(".lms-quiz-section").attr('data-play_time', total_play_time);
-			$(".total-points span").html(total_points);
-			total_play_time = (total_play_time > 0)? total_play_time : '-';
-			$(".play-time span").html(getTime(total_play_time));
+			var total_points_text = (total_points > 0)? total_points : '-';
+			$(".total-points span").html(total_points_text);
+			var play_time_data = getTime(total_play_time);
+			play_time_data = (play_time_data != '0')? play_time_data : '-';
+			$(".play-time span").html(play_time_data);
 			
 			
 			 const interval = setInterval(() => {

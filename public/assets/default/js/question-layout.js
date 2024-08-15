@@ -901,7 +901,8 @@ function init_question_functions() {
 		
 		var play_time = $(".lms-quiz-section").attr('data-play_time');
         if( rurera_is_field(play_time) == true && play_time != ''){
-            $(".spells-quiz-info .play-time span").html(getTime(play_time)+' ');
+			play_time_data = (play_time != '0')? play_time : '-';
+            $(".spells-quiz-info .play-time span").html(getTime(play_time_data)+' ');
 			$(".lms-quiz-section").attr('data-play_time', play_time);
         }
 
@@ -1820,3 +1821,7 @@ $(document).on('click', '.confirm-delete', function (e) {
 	}
 	$(".rurera-confirm-delete").modal('show');	
 });
+
+function isMobileDevice() {
+    return /Mobi|Android|iPhone|iPad|iPod/.test(navigator.userAgent);
+}

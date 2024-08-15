@@ -2,6 +2,9 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <style>
     .rurera-hide{display:none;}
+	.backend-field-error {
+		border: 3px solid #db1919 !important;
+	}
 </style>
 
 
@@ -78,7 +81,7 @@ shuffle($characters_list);
                             <span>{{(isset( $total_points ) && $total_points > 0)? $total_points : '-'}}</span> <img src="/assets/default/img/panel-sidebar/coins.svg" alt="" width="25">
                         </li>
                         <li class="play-time" data-play_time="{{isset( $total_points )? $total_points : 0}}">
-                            <span>{{isset( $total_points )? $total_points : '-'}}</span> <img src="/assets/default/img/sidebar/games.svg" alt="" width="25">
+                            <span>{{(isset( $total_points ) && $total_points > 0)? $total_points : '-'}}</span> <img src="/assets/default/img/sidebar/games.svg" alt="" width="25">
                         </li>
                     </ul>
                 </div>

@@ -10247,6 +10247,12 @@ body .lms-quiz-section .flipbook-quiz {width: 800px;}
 .spell-levels .progress-star.improvement {
     background-color: #ffcc21;
 }
+.spell-quiz-page .quiz-questions-bar-holder {
+    margin-left: 0;
+}
+.spell-quiz-page .quiz-questions-bar-holder .quiz-questions-bar {
+    width: 100%;
+}
 /* .spell-question-area .left-content:before {content: "🕪"; position: absolute; top: 50%; left: 50%; font-size: 940px; opacity: 0.005; transform: translate(-50%, -50%) scale(-1); pointer-events: none; margin-top: 50px;} */
 /* .spells-quiz-info {position: absolute; top: 0; left: 0; width: 100%;} */
 .question-area-block.quiz-first-question {margin: 40px 0;}
@@ -10257,7 +10263,7 @@ body .lms-quiz-section .flipbook-quiz {width: 800px;}
 .spells-quiz-info ul li .nub-of-sec {color: #7caf40; }
 .spells-quiz-info ul li img {max-width: 100%; width: 20px; height: 20px; display: inline-block; vertical-align: middle; object-fit: contain;}
 .question-layout-block form.question-fields,
-.spell-question-area .question-layout-block form.question-fields {border: 1px solid #bac3ca; margin: 0 0 50px; border-radius: 5px; background-color: rgba(248,248,248,0.6); padding: 30px 30px 0; overflow: hidden;}
+.spell-question-area .question-layout-block form.question-fields {border: 1px solid #bac3ca; margin: 0 0 50px; border-radius: 5px; background-color: #fff; padding: 30px 30px 0; overflow: hidden;}
 .quiz-first-question .spells-quiz-info ul {gap: 0; border: 1px solid #f1f0f5; border-radius: 0;position: relative;z-index: 1;}
 .quiz-first-question .spells-quiz-info ul li {width: 33%; border-left-color: #f1f0f5; word-wrap: break-word;}
 .quiz-first-question .spells-quiz-info ul li .quiz-timer-counter {width: 100%;}
@@ -10975,6 +10981,7 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 /* Quiz Status Bar Style */
 .quiz-status-bar {margin: 0 0 50px;}
 .container-fluid.read-quiz-content .quiz-status-bar {margin-top: 18px;}
+.read-quiz-content .spell-quiz-page .quiz-status-bar {margin-top: 38px;}
 .correct-in-row {color: #51cd00; font-weight: 500; text-transform: uppercase; }
 .quiz-questions-bar {background-color: #e5e5e5; height: 10px; border-radius: 20px; width: calc(100% - 60px); position: relative;}
 .quiz-questions-bar .bar-fill {background-color: #51cd00; border-radius: 20px; display: block; height: 100%; position: relative; }
