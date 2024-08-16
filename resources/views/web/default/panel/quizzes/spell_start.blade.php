@@ -30,10 +30,25 @@ $timer_counter = $time_interval;
 if( $duration_type == 'total_practice'){
 $timer_counter = $practice_time;
 }
+
+$total_questions = count(json_decode($newQuizStart->questions_list));
+$total_corrects = $newQuizStart->quizz_result_questions_list->where('status','correct')->count();
+$total_incorrects = $newQuizStart->quizz_result_questions_list->where('status','incorrect')->count();
+$total_play_time = ($total_corrects * gameTime('vocabulary'));
+$attempt_percentage = 0;
+if( $total_corrects > 0){
+	$attempt_percentage = ($total_corrects * 100 ) / $total_questions;
+	$attempt_percentage = round($attempt_percentage);
+}
+$target_score = 90;
 @endphp
 <div class="content-section">
+	<form class="spell-test-quiz-form rurera-hide" action="/{{isset( $quiz->quizYear->slug )? $quiz->quizYear->slug : ''}}/{{$quiz->quiz_slug}}/spelling/exercise" method="POST">
+	<input type="hidden" name="is_new" value="yes">
+	{{ csrf_field() }}
+	</form>
 
-    <section class="lms-quiz-section" data-total_points="{{isset( $total_points )? $total_points : 0}}" data-play_time="{{isset( $total_points )? $total_points : 0}}">
+    <section class="lms-quiz-section" data-total_points="{{isset( $total_points )? $total_points : 0}}" data-play_time="{{isset( $total_play_time )? $total_play_time : 0}}">
 
         @if( $quiz->quiz_pdf != '')
         <script type="text/javascript">
@@ -101,7 +116,7 @@ $timer_counter = $practice_time;
                         <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12">
                             <div class="topbar-right">
                                 <div class="quiz-timer">
-                                    <span class="timer-number"><div class="quiz-timer-counter" data-total_time_counter="{{$total_time_consumed}}" data-time_counter="{{$timer_counter}}">0s</div></span>
+                                    <span class="timer-number"><div class="quiz-timer-counter" data-total_time_counter="{{isset( $total_time_consumed )? $total_time_consumed : 0}}" data-time_counter="{{isset( $total_time_consumed )? $total_time_consumed : 0}}">0S</div></span>
                                 </div>
                                 <div class="instruction-controls">
                                     <div class="font-setting">
@@ -223,13 +238,13 @@ $timer_counter = $practice_time;
 							<div class="quiz-questions-bar-holder">
 								
 								<div class="quiz-questions-bar">
-										<span class="value-lable" title="Target" style="left:90%">90%</span>
-									<span class="bar-fill" title="20%" style="width: 20%;"></span>
+										<span class="value-lable" data-title="90%" style="left:90%"><span>Target</span></span>
+									<span class="bar-fill" title="{{$attempt_percentage}}%" style="width: {{$attempt_percentage}}%;"></span>
 								</div>
 							</div>
 							<div class="quiz-corrects-incorrects">
-								<span class="quiz-corrects">0</span>
-								<span class="quiz-incorrects">0</span>
+								<span class="quiz-corrects">{{$total_corrects}}</span>
+								<span class="quiz-incorrects">{{$total_incorrects}}</span>
 							</div>
 						</div>
                     </div>
@@ -433,7 +448,7 @@ $timer_counter = $practice_time;
     var timePaused = false;
 	
 	var focusInterval = null;
-	var focusIntervalCount = 600;
+	var focusIntervalCount = 10;
 	var TimerActive = true;
 	
 	
@@ -453,6 +468,7 @@ $timer_counter = $practice_time;
                     focusIntervalCount = focus_count;
                     if (focus_count <= 0 && TimerActive == true) {
                         TimerActive = false;
+						timePaused = true;
 						var total_questions = $('.quiz-pagination li').length;
 						$(".question_inactivity_modal .modal-body .total-questions").html(total_questions);
 						$(".question_inactivity_modal .modal-body .correct-questions").html(correct_questions);
@@ -461,7 +477,7 @@ $timer_counter = $practice_time;
 						
 						
                         $(".question_inactivity_modal").modal('show');
-                        focusIntervalCount = 600;
+                        focusIntervalCount = 10;
                         clearInterval(focusInterval);
                         focusInterval = null;
                     }
@@ -472,14 +488,15 @@ $timer_counter = $practice_time;
 
 
         window.addEventListener('focus', function () {
-            focusIntervalCount = 600;
+            focusIntervalCount = 10;
             clearInterval(focusInterval);
             focusInterval = null;
         });
 
         $(document).on('click', '.continue-btn', function (e) {
             TimerActive = true;
-            focusIntervalCount = 600;
+			timePaused = false;
+            focusIntervalCount = 10;
             focusInterval = null;
         });
 		
@@ -617,6 +634,8 @@ $timer_counter = $practice_time;
 	var spell_play_time = "{{gameTime('vocabulary')}}";
 	function afterQuestionValidation(return_data, thisForm, question_id) {
 		var question_status_class = (return_data.incorrect_flag == true) ? 'incorrect' : 'correct';
+		$(".quiz-pagination ul li[data-actual_question_id='" + question_id + "']").removeClass('waiting');
+		$(".quiz-pagination ul li[data-actual_question_id='" + question_id + "']").addClass(question_status_class);
 		attempted_questions = return_data.attempted_questions;
 		var populated_response = return_data.populated_response;
 		var finish_reponse = return_data.finish_reponse;
@@ -641,7 +660,7 @@ $timer_counter = $practice_time;
 			var total_points_text = (total_points > 0)? total_points : '-';
 			$(".total-points span").html(total_points_text);
 			var play_time_data = getTime(total_play_time);
-			play_time_data = (play_time_data != '0')? play_time_data : '-';
+			play_time_data = (play_time_data != '0')? play_time_data : '--';
 			$(".play-time span").html(play_time_data);
 			
 			
@@ -657,7 +676,23 @@ $timer_counter = $practice_time;
 			}
 			thisForm.find('.question-submit-btn').addClass('rurera-hide');
 			thisForm.find('.question-next-btn').removeClass('rurera-hide');
+			thisForm.find('.question-next-btn').addClass('tt');
+			thisForm.find('.question-next-btn').focus();
 		}
+		
+		var total_questions = '{{$total_questions}}';
+		var correct_questions = $('.quiz-pagination li.correct').length;
+		var incorrect_questions = $('.quiz-pagination li.incorrect').length;
+		var total_percentage_questions = parseInt(total_questions) * 100 / '{{$target_score}}';
+		var correct_percentage = parseInt(correct_questions) * 100 / parseInt(total_questions);
+		var correct_percentage = ( correct_percentage > 0)? correct_percentage : 0;
+		console.log('correct_questions==correct_questions======='+correct_questions);
+		console.log('incorrect_questions==incorrect_questions======='+incorrect_questions);
+		console.log('correct_percentage==correct_percentage======='+Math.round(correct_percentage));
+		$(".quiz-corrects").html(correct_questions);
+		$(".quiz-incorrects").html(incorrect_questions);
+		$(".quiz-questions-bar .bar-fill").css('width', Math.round(correct_percentage)+'%');
+		$(".quiz-questions-bar .bar-fill").attr('title',Math.round(correct_percentage)+'%');
     }
 	
 	

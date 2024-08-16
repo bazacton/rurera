@@ -147,14 +147,6 @@ fillGridWithRandomLetters($grid);
 						@endforeach
 					</table>
 						
-						
-						<ul class="spell-characters-list droppable-characters rurera-selectable-options mt-20">
-						@if( !empty( $characters_list ) )
-							@foreach( $characters_list as $character_index => $character_char)
-								<li class="draggable" id="item-1{{ $character_index }}" draggable="true">{{$character_char}}</li>
-							@endforeach
-						@endif	
-						</ul>
 					
                         <input type="text" data-min="{{$no_of_words}}" class="editor-field rurera-min-char hide" data-field_id="{{$field_id}}" data-id="{{$field_id}}" id="field-{{$field_id}}">
                     </div>

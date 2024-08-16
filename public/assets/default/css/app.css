@@ -6991,9 +6991,7 @@ span.question-status-wrong,
     .blog-grid-card .blog-grid-image img {width: 100%;}
     .blog-grid-card .blog-grid-image {width: 100%; overflow: hidden;}
 }
-.home-sections:has(.blog-grid-card) .d-flex {
-    align-items: center;
-}
+.home-sections:has(.blog-grid-card) .d-flex {align-items: center;}
 .user-question-holder .user-timer strong {display: block;}
 .user-question-holder .user-question-panel {display: inline-block; width: 100%;}
 .lms-side-menu-left .sidebar-logo {display: block; padding: 32px 10px; height: 50px;}
@@ -10220,39 +10218,16 @@ body .lms-quiz-section .flipbook-quiz {width: 800px;}
 .spells-data-list .table thead tr th {padding-left: 15px; text-align: left;}
 .elevenplus-block .table thead th:nth-child(2) {padding-left: 0;}
 .spell-question-area .left-content {position: relative; overflow: hidden;}
-.spell-levels .progress-star {
-    height: 20px;
-    width: 20px;
-    border-radius: 100%;
-    text-align: center;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    padding: 0;
-    margin: 4px 0 0 8px;
-}
-.progress-star img {
-    max-width: 100%;
-    width: 10px;
-    height: 10px;
-    object-fit: contain;
-}
-.spell-levels .progress-star.success {
-    background-color: #7aaf77;
-}
-.spell-levels .progress-star.danger {
-    background-color: #eb4343;
-}
-.spell-levels .progress-star.improvement {
-    background-color: #ffcc21;
-}
-.spell-quiz-page .quiz-questions-bar-holder {
-    margin-left: 0;
-}
-.spell-quiz-page .quiz-questions-bar-holder .quiz-questions-bar {
-    width: 100%;
-}
+.spell-levels .progress-star {height: 20px; width: 20px; border-radius: 100%; text-align: center; display: inline-flex; align-items: center; justify-content: center; position: absolute; padding: 0; margin: 4px 0 0 8px;}
+.progress-star img {max-width: 100%; width: 10px; height: 10px; object-fit: contain;}
+.spell-levels .progress-star.success {background-color: #7aaf77;}
+.spell-levels .progress-star.danger {background-color: #eb4343;}
+.spell-levels .progress-star.improvement {background-color: #ffcc21;}
+.spell-quiz-page .quiz-questions-bar-holder {margin-left: 0;}
+.spell-quiz-page .quiz-questions-bar-holder .quiz-questions-bar {width: 100%;}
+.spell-quiz-page .quiz-questions-bar-holder .bar-fill:after {right: -12px;}
+.spell-quiz-page .quiz-questions-bar-holder .value-lable span {position: absolute; top: 100%; left: 50%; background-color: #ebf7ff; line-height: normal; color: #333; padding: 3px 5px; border-radius: 20px; transform: translateX(-50%); margin-top: 5px; font-size: 13px; letter-spacing: 0;}
+.spell-quiz-page .quiz-questions-bar-holder .value-lable {background-color: #333; width: 8px; top: 50%; border-radius: 2px;}
 /* .spell-question-area .left-content:before {content: "🕪"; position: absolute; top: 50%; left: 50%; font-size: 940px; opacity: 0.005; transform: translate(-50%, -50%) scale(-1); pointer-events: none; margin-top: 50px;} */
 /* .spells-quiz-info {position: absolute; top: 0; left: 0; width: 100%;} */
 .question-area-block.quiz-first-question {margin: 40px 0;}
@@ -10341,6 +10316,9 @@ body .lms-quiz-section .flipbook-quiz {width: 800px;}
 .keyboard-btn .icon-box {margin-left: 10px;}
 .keyboard-btn img {max-width: 100%; display: inline-block; width: 25px; height: 25px;}
 body .spell-question-area .question-label span {text-align: center;}
+.learning-page.type-vocabulary .spell-quiz-page .left-content:has(table[id*='word-search-']) {height: auto;}
+.spell-quiz-page table[id*='word-search-'] {margin: 0 auto;}
+.spell-quiz-page table[id*='word-search-'] td {border-color: #d9d9d9;}
 .master-list {background-color: #fff; border: 1px solid #eee; padding: 0; border-radius: 8px;}
 .master-card {border-right: 1px solid #eee; display: flex; flex-wrap: wrap; flex-direction: column; align-items: center; gap: 10px; padding: 20px 0; line-height: normal;}
 .master-list [class*="col-"]:last-child .master-card {border-right: 0;}
@@ -10355,73 +10333,19 @@ body .spell-question-area .question-label span {text-align: center;}
 /*Alphabet List Style End*/
 
 /* Vertical Keyboard Style Start */
-.rurera-virtual-keyboard {
-    margin: 60px 0 30px;
-}
-.virtual-keyboard .row {
-    text-align: center;
-    margin: 0 0 1%;
-    gap: 3px 0;
-  }
-  .virtual-keyboard .row.spacebar input {
-    min-width: 340px;
-    min-height: 40px;
-    text-align: center;
-  }
-  .virtual-keyboard input[type=button],
-  .virtual-keyboard button[type=button] {
-    border-radius: 5px;
-    border: 1px solid #d9d9d9;
-    background: #f5f5f5;
-    color: #000;
-    text-transform: uppercase;
-    margin: 0 0.5%;
-    max-width: 50px;
-    text-align: center;
-    min-width: 50px;
-    min-height: 35px;
-    max-height: 35px;
-    padding: 0;
-    font-weight: 700;
-  }
-  .virtual-keyboard input[type=button].shift-activated {
-    background: red;
-  }
-  .virtual-keyboard input[type=button].delete, .virtual-keyboard input[type=button].shift,
-  .virtual-keyboard button[type=button].delete {
-    text-transform: uppercase;
-    background-color: #363636;
-    color: #fff;
-    border-color: transparent;
-    font-weight: 400;
-  }
-  .delete img {
-    max-width: 100%;
-    height: 20px;
-    width: 20px;
-    object-fit: contain;
-}
-.output {
-    margin: 15px;
-}   
-.output input {
-    color: white;
-    background: black;
-    border: 0px;
-    line-height: 2.2em;
-    text-align: center;
-    font-size: 2em;
-    width: 100%;
-}
-.output input:focus {
-    outline: none;
-    border: 0px;
-}
-.output ::-webkit-input-placeholder {
-    color: white;
-    text-align: center;
-    font-size: 1em;
-}
+.rurera-virtual-keyboard {margin: 60px 0 30px;}
+.virtual-keyboard .row {text-align: center; margin: 0 0 1%; gap: 3px 0;}
+.virtual-keyboard .row.spacebar input {min-width: 340px; min-height: 40px; text-align: center;}
+.virtual-keyboard input[type=button],
+.virtual-keyboard button[type=button] {border-radius: 5px; border: 1px solid #d9d9d9; background: #f5f5f5; color: #000; text-transform: uppercase; margin: 0 0.5%; max-width: 50px; text-align: center; min-width: 50px; min-height: 35px; max-height: 35px; padding: 0; font-weight: 700;}
+.virtual-keyboard input[type=button].shift-activated {background: red;}
+.virtual-keyboard input[type=button].delete, .virtual-keyboard input[type=button].shift,
+.virtual-keyboard button[type=button].delete {text-transform: uppercase; background-color: #363636; color: #fff; border-color: transparent; font-weight: 400;}
+.delete img {max-width: 100%; height: 20px; width: 20px; object-fit: contain;}
+.output {margin: 15px;}   
+.output input {color: white; background: black; border: 0px; line-height: 2.2em; text-align: center; font-size: 2em; width: 100%;}
+.output input:focus {outline: none; border: 0px;}
+.output ::-webkit-input-placeholder {color: white; text-align: center; font-size: 1em;}
 /* Vertical Keyboard Style End */
 body .learning-page .learning-content .learning-content-box {position: relative; z-index: 1;}
 body .learning-page.type-sats .learning-content .learning-content-box {border-color: transparent;}
@@ -10894,12 +10818,8 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .quests-item .item-text .levels-progress.horizontal {margin-top: 0; margin-right: -6px; display: inline-block; width: calc(100% - 58px); vertical-align: middle; position: relative;}
 .quests-item .item-text .levels-progress.horizontal .progress-box {min-width: auto; max-width: none; border-radius: 50px 0 0 50px;}
 .progress-icon {background-color: #e5e5e5; border-radius: 14px; display: inline-flex; align-items: center; gap: 2px; font-size: 12px; font-weight: 500; margin-right: -4px; vertical-align: middle; padding: 6px 5px; width: 58px;}
-.quests-list .progress-icon {
-    width: 70px;
-}
-.panel-right-sidebar .quests-list .progress-icon {
-    width: 50px;
-}
+.quests-list .progress-icon {width: 70px;}
+.panel-right-sidebar .quests-list .progress-icon {width: 50px;}
 .progress-icon img {height: 20px; width: 20px; object-fit: contain;}
 .quests-item .icon-box img {max-width: 100%;}
 .quests-item .progress-numbers {position: absolute; top: 0; left: 50%; transform: translateX(-50%); font-size: 14px; }
@@ -10987,7 +10907,7 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .quiz-questions-bar .bar-fill {background-color: #51cd00; border-radius: 20px; display: block; height: 100%; position: relative; }
 .quiz-questions-bar-holder {width: calc(100% - 95px); display: inline-flex; vertical-align: middle; margin-right: -4px; align-items: center; position: relative; padding-left: 20px; }
 .quiz-questions-bar-holder .value-lable {position: absolute; left: 0; background-color: var(--primary); color: #fff; height: 30px; width: 30px; margin-top: -15px; top: 50%; border-radius: 100%; font-size: 12px; line-height: 30px; text-align: center; font-weight: 500; letter-spacing: -1px; z-index: 1; margin-left: -30px;}
-.quiz-questions-bar-holder .value-lable:before {content: attr(title); background: #333; position: absolute; top: -35px; padding: 5px 13px; line-height: normal; left: 50%; transform: translateX(-50%); border-radius: 5px; letter-spacing: 0px; opacity: 0; visibility: hidden;}
+.quiz-questions-bar-holder .value-lable:before {content: attr(data-title); background: #333; position: absolute; top: -35px; padding: 5px 13px; line-height: normal; left: 50%; transform: translateX(-50%); border-radius: 5px; letter-spacing: 0px; opacity: 0; visibility: hidden;}
 .quiz-questions-bar-holder .value-lable:after {position: absolute; left: 50%; top: -14px; height: 8px; width: 8px; background-color: #333; content: ""; transform: rotate(45deg); margin-left: -4px; opacity: 0; visibility: hidden;}
 .quiz-questions-bar-holder .value-lable:hover:before,
 .quiz-questions-bar-holder .value-lable:hover:after {opacity: 1; visibility: visible;}
@@ -11991,6 +11911,7 @@ Lms Responsive Style Start
     .member-card-header {/*padding-top: 50px;*/ padding-bottom: 20px !important;}
     body #progbar {margin-top: 0;}
     .container-fluid.read-quiz-content .quiz-status-bar {padding-top: 30px;}
+    .read-quiz-content .spell-quiz-page .quiz-status-bar {margin-top: 10px;}
     .db-members .rurera-tabs-frontend {padding-bottom: 30px !important;}
     body .learning-page.type-sats .left-content {height: auto; overflow: visible;}
     body .populated-data .questions-select-number li {flex-basis: 31%;}
@@ -12524,7 +12445,8 @@ Lms Responsive Style Start
     .spell_words_popup_body .tests-list {opacity: 1; visibility: visible; position: relative; flex-direction: row; padding: 0; box-shadow: none; gap: 12px 10px;}
     .spell_words_popup_body .tests-list li {flex-basis: auto; width: auto; text-decoration: underline; min-width: auto;}
     .spell_words_popup_body .filter-mobile-btn {display: none;}
-    .virtual-keyboard input[type=button], .virtual-keyboard button[type=button] {min-width: 40px;}
+    .virtual-keyboard input[type=button], .virtual-keyboard button[type=button] {min-width: 20px;font-size: 11px;min-height: 20px;}
+    .delete img {height: 15px; width: 15px;}
 
 }
 
@@ -12770,6 +12692,7 @@ Lms Responsive Style Start
     .question-result-layout .question-area {padding-top: 15px;}
     .virtual-keyboard .row {gap: 5px 2px;}
     .virtual-keyboard .row.spacebar input {min-width: 230px; margin-top: 5px;}
+    .spell-quiz-page table[id*='word-search-'] td {font-size: 12px;height: 20px;}
 }
 @media screen and (max-width: 480px) {
     .lms-count-field .lms-text-holder {flex-direction: column;}

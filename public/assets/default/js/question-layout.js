@@ -815,6 +815,12 @@ function init_question_functions() {
         //$(".quiz-status-bar").addClass('rurera-hide');
         $('#next-btn')[0].click();
     });
+	
+	
+	
+    $(document).on('click', '.reset-quiz-button', function (e) {
+        $(".spell-test-quiz-form").submit();
+    });
 
     $(document).on('keyup', 'body', function (evt) {
         if( $(".question-area").hasClass('spell-question-area')){
@@ -895,14 +901,15 @@ function init_question_functions() {
 
         var total_points = $(".lms-quiz-section").attr('data-total_points');
         if( rurera_is_field(total_points) == true && total_points != ''){
-            $(".spells-quiz-info .total-points span").html(total_points+' ');
+			total_points_data = (total_points != '0')? total_points : '--';
+            $(".spells-quiz-info .total-points span").html(total_points_data+' ');
 			$(".lms-quiz-section").attr('data-total_points', total_points);
         }
 		
 		var play_time = $(".lms-quiz-section").attr('data-play_time');
         if( rurera_is_field(play_time) == true && play_time != ''){
-			play_time_data = (play_time != '0')? play_time : '-';
-            $(".spells-quiz-info .play-time span").html(getTime(play_time_data)+' ');
+			play_time_data = (play_time != '0')? getTime(play_time) : '--';
+            $(".spells-quiz-info .play-time span").html(play_time_data+' ');
 			$(".lms-quiz-section").attr('data-play_time', play_time);
         }
 
@@ -1074,6 +1081,7 @@ function init_question_functions() {
         var total_questions = $(".question-area").attr('data-total_questions');
 		var total_questions = $(".question-area").attr('data-total_questions');
 		var finish_title = $(".questions-nav-controls").attr('data-finish_title');
+		var attempted_questions = $('.quiz-pagination li.correct, .quiz-pagination li.incorrect').length;
 		finish_title = ( rurera_is_valid_field(finish_title) == true)? finish_title : 'are you sure you want to submit your test? you will not able to access this test again.';
 
         $(".review_submit .modal-body p").html('You have attempted ' + attempted_questions + ' questions. Are you sure you want to submit?');

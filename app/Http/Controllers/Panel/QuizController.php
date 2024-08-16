@@ -384,6 +384,7 @@ class QuizController extends Controller
         $learning_journey = $request->get('learning_journey', 'no');
         $journey_item_id = $request->get('journey_item_id', 'no');
 		$test_type = $request->get('test_type', '');
+		$test_type = ( $test_type == 'spelling' )? '' : $test_type;
 		$question_ids = $request->get('question_ids', []);
 		$is_new = $request->get('is_new', 'no');
 		$question_ids = is_array( $question_ids )? $question_ids : json_decode($question_ids);
@@ -597,6 +598,7 @@ class QuizController extends Controller
                             $total_questions_count = count($total_questions_count);
                             $RewardAccountingObj = RewardAccounting::where('user_id', $user->id)->where('type', 'coins')->where('result_id', $resultLogObj->id)->first();
 
+							$total_points = isset($RewardAccountingObj->score) ? $RewardAccountingObj->score : 0;
                             $results_questions_array[$newQuestionResult->id] = [
                                 'question'              => $questionObj,
                                 'prev_question'         => $prev_question,
@@ -709,6 +711,7 @@ class QuizController extends Controller
 						
 						$newQuestionResult = isset( $resultsQuestionsData['newQuestionResult'] )? $resultsQuestionsData['newQuestionResult'] : array();
 						
+						//pre($resultsQuestionsData);
 						
 
 						$question_response_layout = '';
@@ -817,6 +820,12 @@ class QuizController extends Controller
 
             $questions_status_array = $QuestionsAttemptController->questions_status_array($resultLogObj, $questions_list);
 			
+			
+			if ($quiz->quiz_type == 'vocabulary') {
+				$questions_list_array = json_decode($resultLogObj->questions_list);
+				QuizzResultQuestions::whereNotIn('id', $questions_list_array)->where('quiz_result_id', $resultLogObj->id)->where('status','waiting')->delete();
+			}
+			
 			//pre($questions_status_array, false);
 			//pre($actual_question_ids, false);
 			//pre($questions_list);
@@ -841,6 +850,7 @@ class QuizController extends Controller
                 'questions_status_array' => $questions_status_array,
                 'active_question_id'     => $resultLogObj->active_question_id,
                 'actual_question_ids'   => $actual_question_ids,
+				'total_points' 			=> isset( $total_points )? $total_points : 0,
 				'total_time_consumed' => isset( $resultLogObj->total_time_consumed )? $resultLogObj->total_time_consumed : 0,
             ];
 			

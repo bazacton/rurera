@@ -127,7 +127,8 @@
                                     @php
 									
 									$total_questions = isset( $dataObj->quizQuestionsList )? count($dataObj->quizQuestionsList) : 0;
-									$word_hunts_count = $dataObj->parentResults->where('quiz_result_type', 'vocabulary')->where('attempt_mode', 'word-hunts')->where('status', 'waiting')->count();
+									$spell_test_count = $dataObj->parentResults->where('quiz_result_type', 'vocabulary')->where('attempt_mode', '')->where('status', 'waiting')->count();
+									$spell_test_completed = $dataObj->parentResults->where('quiz_result_type', 'vocabulary')->where('attempt_mode', '')->where('status', '!=', 'waiting')->count();
 									$word_search_count = $dataObj->parentResults->where('quiz_result_type', 'vocabulary')->where('attempt_mode', 'word-search')->where('status', 'waiting')->count();
 									$word_cloud_count = $dataObj->parentResults->where('quiz_result_type', 'vocabulary')->where('attempt_mode', 'word-cloud')->where('status', 'waiting')->count();
 									$word_missing_count = $dataObj->parentResults->where('quiz_result_type', 'vocabulary')->where('attempt_mode', 'word-missing')->where('status', 'waiting')->count();
@@ -164,7 +165,23 @@
 												</a>
 												
 												
-												<a href="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/spelling/exercise">Take a test</a>
+												<a href="javascript:;" class="spell-popup-btn1 rurera-tooltip dropup">
+												
+												<span class="dropdown-toggle h-100 w-100 d-flex align-items-center justify-content-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Take a test</span>
+												
+												<div class="lms-tooltip dropdown-menu">
+													<div class="tooltip-box">	
+														<button data-heading="Take a test" class="tooltip-btn practice font-16 d-block mb-15 text-center spell-test-btn"  data-play_link="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/spelling/exercise" data-spell_type="test">Take Test</button>
+														@if($spell_test_count > 0)
+															<button class="tooltip-btn legendary d-block font-16 text-center" onclick='window.location.href = "/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/spelling/exercise"'>Continue</button>
+														@endif
+														@if($spell_test_completed > 0)
+															<button class="tooltip-btn practice font-16 d-block mt-15 text-center" onclick='window.location.href = "/panel/analytics/vocabulary/{{$dataObj->id}}"'>Track</button>
+														@endif
+													</div>
+												  </div>
+												</a>
+												
 												</div>
                                                 @if($overall_percentage > 0 && $overall_percentage != 100)
                                                 <div class="levels-progress horizontal">
@@ -270,7 +287,10 @@
 </div>
 </div>
 </div>
-
+<form class="spell-test-quiz-form" action="#" method="POST">
+<input type="hidden" name="is_new" value="yes">
+{{ csrf_field() }}
+</form>
 @endsection
 
 @push('scripts_bottom')
@@ -357,6 +377,13 @@
     });
 	
 	var spellPopupRequest = null;
+	
+	$(document).on('click', '.spell-test-btn', function (e) {
+		var play_link = $(this).attr('data-play_link');
+		$(".spell-test-quiz-form").attr('action',play_link);
+		$(".spell-test-quiz-form").submit();
+	});
+	
 	
 	$(document).on('click', '.spell-popup-btn', function (e) {
 		var thisObj = $(this);

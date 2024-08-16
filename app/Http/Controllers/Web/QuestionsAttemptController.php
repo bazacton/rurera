@@ -412,6 +412,7 @@ class QuestionsAttemptController extends Controller
         $quizAttempt = QuizzAttempts::find($qattempt_id);
         $quizResultObj = QuizzesResult::find($quizAttempt->quiz_result_id);
 
+		$quizResultObj->update(['last_updated' => time()]);
 
         $questionObj = QuizzesQuestion::find($question_id);
 
@@ -1835,9 +1836,7 @@ class QuestionsAttemptController extends Controller
     {
         $quiz_result_id = $request->get('quiz_result_id');
         $time_consumed = $request->get('time_consumed');
-        $QuizzesResult = QuizzesResult::where('id', $quiz_result_id)->update(array('total_time_consumed' => $time_consumed));
-
-        
+        $QuizzesResult = QuizzesResult::where('id', $quiz_result_id)->update(array('total_time_consumed' => $time_consumed, 'last_updated' => time()));
     }
 
     /*
@@ -3398,6 +3397,7 @@ class QuestionsAttemptController extends Controller
 		$parent_type_id = ($assignment_id > 0)? $assignment_id : $quiz->id;
 		$newQuizStart = QuizzesResult::where('parent_type_id', $parent_type_id)->where('quiz_level', $quiz_level)->where('user_id', $user->id)->where('status', 'waiting')->first();
 		if( $is_new == 'yes'){
+			QuizzesResult::where('parent_type_id', $parent_type_id)->where('quiz_level', $quiz_level)->where('user_id', $user->id)->where('status', 'waiting')->update(['status' => 'abandoned']);
 			$newQuizStart = (object) array();
 		}
 		if( isset( $newQuizStart->id)){
@@ -3411,11 +3411,9 @@ class QuestionsAttemptController extends Controller
 			$corrected_list = QuizzResultQuestions::whereIN('question_id', $questions_list)->where('parent_type_id', $quiz->id)->where('quiz_level', $quiz_level)->where('status', 'correct')->pluck('question_id')->toArray();
 			$incorrect_list = QuizzResultQuestions::whereIN('question_id', $questions_list)->whereNotIn('question_id', $corrected_list)->where('quiz_level', $quiz_level)->where('parent_type_id', $quiz->id)->where('status', 'incorrect')->pluck('question_id')->toArray();
 			$excludedValues = array_merge($corrected_list, $incorrect_list);
-
 			$not_attempted_list = array_diff($questions_list, $excludedValues);
 			$corrected_list = array_diff($corrected_list, $incorrect_list);
 			$incorrect_list = array_diff($incorrect_list, $corrected_list);
-
 			$questions_list = array_merge($not_attempted_list, $incorrect_list, $corrected_list);
 
 		}

@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 
 class AnalyticsController extends Controller
 {
-    public function index(Request $request, $type = 'all')
+    public function index(Request $request, $type = 'all', $type_id = 0)
     {
         if (!auth()->check()) {
             return redirect('/login');
@@ -155,7 +155,11 @@ class AnalyticsController extends Controller
 
 
 
-        /*$QuizzesAttempts = QuizzAttempts::whereIn('user_id', $user_id)->whereIn('attempt_type', $types_array)->with([
+        $QuizzesAttempts = QuizzAttempts::whereIn('user_id', $user_id)->whereIn('attempt_type', $types_array);
+		if( $type_id > 0){
+			$QuizzesAttempts = 	$QuizzesAttempts->where('parent_type_id', $type_id);
+		}
+		$QuizzesAttempts = 	$QuizzesAttempts->with([
             'timeConsumed',
             'endSession' => function ($query) {
                 $query->orderBy('id', 'desc');
@@ -169,11 +173,14 @@ class AnalyticsController extends Controller
         $QuizzesAttempts = $QuizzesAttempts->groupBy(function ($QuizzesAttemptsQuery) {
             return date('d_m_Y', $QuizzesAttemptsQuery->created_at);
         });
-		*/
 		
-		$QuizzesAttempts = QuizzAttempts::whereIn('user_id', $user_id)
-			->whereIn('attempt_type', $types_array)
-			->with([
+		
+		/*$QuizzesAttempts = QuizzAttempts::whereIn('user_id', $user_id)
+			->whereIn('attempt_type', $types_array);
+		if( $type_id > 0){
+			$QuizzesAttempts = 	$QuizzesAttempts->where('parent_type_id', $type_id);
+		}
+		$QuizzesAttempts = 	$QuizzesAttempts->with([
 				'timeConsumed',
 				'endSession' => function ($query) {
 					$query->orderBy('id', 'desc');
@@ -193,7 +200,7 @@ class AnalyticsController extends Controller
 
 		$QuizzesAttempts = $QuizzesAttempts->groupBy(function ($QuizzesAttemptsQuery) {
 			return date('d_m_Y', $QuizzesAttemptsQuery->created_at);
-		});
+		});*/
 
 		
 		//pre($QuizzesAttempts);
