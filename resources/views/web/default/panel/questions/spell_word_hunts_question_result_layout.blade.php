@@ -24,7 +24,6 @@ var emptyFields = parentElement.querySelectorAll('.editor-field-inputs');
 // Loop through empty fields and set the value
 emptyFields.forEach((field, index) => {
 	if (index < answerArray.length) {
-		console.log(answerArray[index]);
 		field.value = answerArray[index];
 	}
 });

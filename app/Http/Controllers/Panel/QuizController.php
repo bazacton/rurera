@@ -974,6 +974,7 @@ class QuizController extends Controller
                 }
 
                 if ($QuizzesResult->quiz_result_type == 'vocabulary') {
+					
                     $group_questions_layout = $QuestionsAttemptController->get_question_result_layout($QuizzResultQuestionObj->id);
 
 					$correct_answer = $user_answer = '';
@@ -989,30 +990,31 @@ class QuizController extends Controller
 					}
 					$attempt_mode = $QuizzesResult->attempt_mode;
 					$test_type_file = get_test_type_file($attempt_mode);
-					$vocabulary_file_path = 'question_layout';
+					$vocabulary_file_path = 'spell_question_result_layout';
 					if( $test_type_file != '' && $attempt_mode == 'word-hunts'){
-						$vocabulary_file_path = 'spell_'.$test_type_file.'_question_result_layout';
+						//$vocabulary_file_path = 'spell_'.$test_type_file.'_question_result_layout';
 					}
 
-                    $question_result_layout = view('web.default.panel.questions.'. $vocabulary_file_path, [
-                        'question'               => $questionObj,
-                        'prev_question'          => 0,
-                        'next_question'          => 0,
-                        'quizAttempt'            => $quizAttempt,
-                        'newQuestionResult'      => $QuizzResultQuestionObj,
-                        'question_no'            => $count,
-                        'quizResultObj'          => $QuizzesResult,
-                        'disable_submit'         => 'true',
-                        'disable_finish'         => 'true',
-                        'disable_prev'           => 'true',
-                        'disable_next'           => 'true',
-                        'class'                  => 'disable-div',
-                        'layout_type'            => 'results',
-                        'group_questions_layout' => $group_questions_layout,
-                        'correct_answer'            => $correct_answer,
-                        'user_answer'            => $user_answer,
+					
+					$question_result_layout = view('web.default.panel.questions.'. $vocabulary_file_path, [
+						'question'               => $questionObj,
+						'prev_question'          => 0,
+						'next_question'          => 0,
+						'quizAttempt'            => $quizAttempt,
+						'newQuestionResult'      => $QuizzResultQuestionObj,
+						'question_no'            => $count,
+						'quizResultObj'          => $QuizzesResult,
+						'disable_submit'         => 'true',
+						'disable_finish'         => 'true',
+						'disable_prev'           => 'true',
+						'disable_next'           => 'true',
+						'class'                  => 'disable-div',
+						'layout_type'            => 'results',
+						'group_questions_layout' => $group_questions_layout,
+						'correct_answer'            => $correct_answer,
+						'user_answer'            => $user_answer,
 						
-                    ])->render();
+					])->render();
 					
 					
 					$classesToRemove = ['spells-quiz-info', 'form-btn-field', 'spells-quiz-sound'];
@@ -1041,18 +1043,24 @@ class QuizController extends Controller
 					// Save the updated HTML back to a string
 					$question_result_layout = $doc->saveHTML();
 					
-					$question_response_layout .= $question_result_layout;
+					if( $QuizzResultQuestionObj->status != 'not_attempted'){
+						$question_response_layout .= $question_result_layout;
+					}
                 }
 
 
                 //pre($QuizzResultQuestionObj);
                 if (!isset( $child_questions ) || $child_questions->count() == 0) {
-                    $question_response_layout .= $QuestionsAttemptController->get_question_result_layout($QuizzResultQuestionObj->id);
+					if( $QuizzResultQuestionObj->status != 'not_attempted'){
+						$question_response_layout .= $QuestionsAttemptController->get_question_result_layout($QuizzResultQuestionObj->id);
+					}
                 }
 
                 $question_response_layout .= '</div>';
                 //$questions_layout[$QuizzResultQuestionObj->question_id] = rurera_encode(stripslashes($question_response_layout));
-                $questions_layout[$QuizzResultQuestionObj->id] = $question_response_layout;
+				if( $QuizzResultQuestionObj->status != 'not_attempted'){
+					$questions_layout[$QuizzResultQuestionObj->id] = $question_response_layout;
+				}
                 $questions_list[] = $QuizzResultQuestionObj->id;
                 $count++;
             }

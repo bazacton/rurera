@@ -1848,6 +1848,7 @@ class QuestionsAttemptController extends Controller
         $QuestionsAttemptController = new QuestionsAttemptController();
 
         $qattempt_id = $request->get('qattempt_id');
+        $status_type = $request->get('status_type', 'passed');
         $quizAttempt = QuizzAttempts::find($qattempt_id);
 
         createAttemptLog($qattempt_id, 'Session End', 'end');
@@ -1857,7 +1858,7 @@ class QuestionsAttemptController extends Controller
 			echo json_encode(array('status' => 'no_questions_attempted'));
 			exit;
 		}
-        $QuizzesResult->update(['status' => 'passed',]);
+        $QuizzesResult->update(['status' => $status_type,]);
 		$QuizzesResult->quizz_result_questions->where('status', 'waiting' )->update(['status' => 'not_attempted']);
 
         $resultData = $QuestionsAttemptController->get_result_data($QuizzesResult->parent_type_id, $QuizzesResult->id);
@@ -3417,6 +3418,7 @@ class QuestionsAttemptController extends Controller
 			$questions_list = array_merge($not_attempted_list, $incorrect_list, $corrected_list);
 
 		}
+		//shuffle($questions_list);
 
         return array(
             'questions_list' => $questions_list,

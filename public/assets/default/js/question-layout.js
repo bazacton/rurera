@@ -47,6 +47,9 @@ var totalInCorrectCount = 0;
 $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn", function (e) {
 //$(document).on('click', '.question-submit-btn', function (e) {
     e.preventDefault();
+	if( $(this).hasClass('rurera-processing')){
+		return false;
+	}
     if($('.spells-quiz-from').length > 0){
         var editor_field_value = '';
         var thisObj = $(this);
@@ -189,7 +192,6 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
         },
         success: function (return_data) {
             attempted_questions = parseInt(attempted_questions)+1;
-            question_submit_process = false;
 			var question_status_class = (return_data.incorrect_flag == true) ? 'incorrect' : 'correct';
 			if( question_status_class == 'incorrect'){
 				incorrect_questions = parseInt(incorrect_questions)+1;
@@ -373,7 +375,7 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
 
                         }else {
                             const interval = setInterval(() => {
-                                console.log('interval-test');
+                                
                                 $('#next-btn')[0].click();
                                 clearInterval(interval);
                             }, 3000);
@@ -510,7 +512,7 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
                             },
                             data: {"attempt_id": qattempt_id, "quiz_user_data": quiz_user_data},
                             success: function (return_data) {
-                                console.log(return_data);
+                                
                                 $(".quiz-complete").css({display: "block"}).show(10).animate({opacity: 1});
                                 $(".quiz-complete").find(".question-layout").html(return_data);
                                 $(".quiz-complete").children().unbind('click');
@@ -521,6 +523,7 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
 
             }
         }
+		question_submit_process = false;
         }
     });
 
@@ -745,7 +748,7 @@ function init_question_functions() {
     makeDropText($("p.given span.w"));
 
     if( $(".droppable_area").length > 0) {
-    console.log('droppable-area-test');
+    
     $(".droppable_area").droppable({
         drop: function (event, ui) {
             // Clone the dropped element
@@ -818,9 +821,7 @@ function init_question_functions() {
 	
 	
 	
-    $(document).on('click', '.reset-quiz-button', function (e) {
-        $(".spell-test-quiz-form").submit();
-    });
+    
 
     $(document).on('keyup', 'body', function (evt) {
         if( $(".question-area").hasClass('spell-question-area')){
@@ -837,11 +838,11 @@ function init_question_functions() {
         }
         if (evt.key === 'Enter') {
             if(rurera_is_field(Questionintervals)) {
-                console.log('inner enter');
-                console.log(Questionintervals);
                 clearInterval(Questionintervals);
             }
-            $('#question-submit-btn')[0].click();
+			if(!('#question-submit-btn')[0].hasClass('rurera-processing')){
+				$('#question-submit-btn')[0].click();
+			}
         }
     });
 
@@ -902,6 +903,7 @@ function init_question_functions() {
         var total_points = $(".lms-quiz-section").attr('data-total_points');
         if( rurera_is_field(total_points) == true && total_points != ''){
 			total_points_data = (total_points != '0')? total_points : '--';
+			total_points_data = (total_points != 0)? total_points : '--';
             $(".spells-quiz-info .total-points span").html(total_points_data+' ');
 			$(".lms-quiz-section").attr('data-total_points', total_points);
         }
@@ -983,7 +985,7 @@ function init_question_functions() {
 			TimerActive = rurera_is_valid_field(TimerActive)? TimerActive : true;
 			if( TimerActive == true){
 				var seconds_count = $(".question-step-"+quizQuestionID).attr('data-elapsed');
-				console.log('seconds_count----'+seconds_count);
+				
 				seconds_count = parseInt(seconds_count) + parseInt(1);
 				$(".question-step-"+quizQuestionID).attr('data-elapsed', seconds_count);
 			}
@@ -1009,7 +1011,7 @@ function init_question_functions() {
             $(".quiz-questions-bar .bar-fill1").css('width', total_percentage+'%');
         }
 
-        console.log('totalquestion------'+total_questions);
+        
 
         var actual_question_id = $(".question-fields").attr('data-question_id');
         //Temporary Commented
@@ -1019,7 +1021,7 @@ function init_question_functions() {
             url: '/question_attempt/mark_as_active',
             async: true,
             beforeSend: function () {
-                console.log(currentRequest);
+                
                 if (currentRequest != null) {
                     currentRequest.abort();
                 }
@@ -1059,9 +1061,9 @@ function init_question_functions() {
         });
     });
     var active_question_id = $(".question-area-block").attr('data-active_question_id');
-    console.log('active_question_id-'+active_question_id);
+    
     if( rurera_is_field(active_question_id)) {
-        console.log('is_field-active_question_id-'+active_question_id);
+        
         $('.active-question-btn[data-question_id="' + active_question_id + '"]').click();
     }
 
@@ -1141,6 +1143,29 @@ function init_question_functions() {
             }
         });
     });
+	
+	$(document).on('click', '.exit_quiz_final', function (e) {
+        var qattempt_id = $(".question-area .question-step").attr('data-qattempt');
+        var quiz_result_id = $(".question-area .question-step").attr('data-quiz_result_id');
+        rurera_loader($(this), 'div');
+        var thisObj = $(this);
+        jQuery.ajax({
+            type: "POST",
+            url: '/question_attempt/jump_review',
+            dataType: 'json',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: {"qattempt_id": qattempt_id, "status_type" : 'abandoned'},
+            success: function (return_data) {
+				if( return_data.status == 'no_questions_attempted'){
+					window.location.href = '/tests';
+				}else{
+					window.location.href = '/panel/quizzes/' + quiz_result_id + '/check_answers';
+				}
+            }
+        });
+    });
 
 
 
@@ -1163,7 +1188,7 @@ function init_question_functions() {
 
         timerInterval = setInterval(function () {
             timeLimit--;
-            console.log(timeLimit);
+            
             timeLeftElement.text(timeLimit);
             if (timeLimit <= 0) {
                 clearInterval(timerInterval);
@@ -1179,7 +1204,7 @@ function init_question_functions() {
 
     function stopRecording() {
         mediaRecorder.stop();
-        console.log(timerInterval);
+        
         clearInterval(timerInterval);
         startRecordButton.prop('disabled', false);
         stopRecordButton.prop('disabled', true);
@@ -1256,11 +1281,11 @@ function makeDropText(obj) {
 function chunkWords(p) {
     var into_type = $(".insert-into-sentense-holder").attr('data-into_type');
     var words = p.split("");
-    console.log(p);
+    
     if (into_type == 'words') {
         var words = p.split(" ");
     }
-    console.log(words);
+    
     words[0] = textWrapper(words[0], [0, 1]);
     var i;
     for (i = 1; i < words.length; i++) {
@@ -1536,7 +1561,7 @@ function rurera_validation_process(form_name, error_dispaly_type = '') {
         has_empty[index_no] = false;
         checkbox_fields[index_no] = false;
 		
-		console.log('index_no==='+index_no);
+		
         if (rurera_is_field(visible_id) == true) {
             is_visible = jQuery("#" + visible_id).is(':hidden');
             if (jQuery("#" + visible_id).css('display') !== 'none') {
@@ -1670,7 +1695,7 @@ function rurera_is_field(field_value) {
  */
 function rurera_insert_error_message(thisObj, alert_messages, error_msg, field_type = '') {
     thisObj.addClass('frontend-field-error');
-	console.log('field_type==='+field_type);
+	
     if (field_type == 'checkbox' || field_type == 'radio') {
 
         var field_name = thisObj.attr('name');
@@ -1823,7 +1848,7 @@ $(document).on('click', '.confirm-delete', function (e) {
 	e.preventDefault();
 	var confirm_type = $(this).attr('data-confirm-type');
 	var confirm_action = $(this).attr('data-confirm-action');
-	console.log('tsting');
+	
 	if( confirm_type == 'link'){
 		$(".rurera-delete-btn").attr('href', confirm_action);
 	}

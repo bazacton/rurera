@@ -10815,11 +10815,10 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .quests-item .icon-box {margin-right: 10px; text-align: center; width: 52px; }
 .quests-item .item-text {width: calc(100% - 70px); text-align: left;}
 .quests-list h3 {display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; margin: 0 0 25px; }
-.quests-item .item-text .levels-progress.horizontal {margin-top: 0; margin-right: -6px; display: inline-block; width: calc(100% - 58px); vertical-align: middle; position: relative;}
+.quests-item .item-text .levels-progress.horizontal {margin-top: 0; margin-right: -6px; display: inline-block; width: calc(100% - 68px); vertical-align: middle; position: relative;}
 .quests-item .item-text .levels-progress.horizontal .progress-box {min-width: auto; max-width: none; border-radius: 50px 0 0 50px;}
-.progress-icon {background-color: #e5e5e5; border-radius: 14px; display: inline-flex; align-items: center; gap: 2px; font-size: 12px; font-weight: 500; margin-right: -4px; vertical-align: middle; padding: 6px 5px; width: 58px;}
+.progress-icon {background-color: #e5e5e5; border-radius: 14px; display: inline-flex; align-items: center; justify-content: center; gap: 2px; font-size: 12px; font-weight: 500; margin-right: -4px; vertical-align: middle; padding: 6px 5px; width: 58px;}
 .quests-list .progress-icon {width: 70px;}
-.panel-right-sidebar .quests-list .progress-icon {width: 50px;}
 .progress-icon img {height: 20px; width: 20px; object-fit: contain;}
 .quests-item .icon-box img {max-width: 100%;}
 .quests-item .progress-numbers {position: absolute; top: 0; left: 50%; transform: translateX(-50%); font-size: 14px; }
@@ -12736,3 +12735,12 @@ Lms Responsive Style Start
     .detail-body .profile-inner, .edit-info-list .subscribe-plan {max-width: 100%; min-width: auto;}
     .home-sections:has(.blog-grid-card) .btn {padding-right: 10px; padding-left: 10px;}
 }
+
+.lazyload-img {filter: blur(10px);}
+.lazyload-img.loaded {filter: blur(0);}
+
+.lazyload-img .img-sm {display: block;}
+.lazyload-img .img-lg {display: none;}
+
+.lazyload-img.loaded .img-lg {display: block;}
+.lazyload-img.loaded .img-sm {display: none;}

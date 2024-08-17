@@ -75,13 +75,13 @@ shuffle($characters_list);
                             <span>{{$question_no}}</span> Of {{$total_questions_count}}
                         </li>
                         <li>
-                            <span class="nub-of-sec question-time-remaining-{{ $question->id }}" data-remaining="{{($question->question_average_time*60)}}"></span>
+                            <span class="nub-of-sec question-time-remaining-{{ $question->id }}" data-remaining="{{($question->question_average_time*60)}}">{{isset( $total_time_consumed )? $total_time_consumed : '-'}}</span>
                         </li>
                         <li class="total-points" data-total_points="{{isset( $total_points )? $total_points : 0}}">
-                            <span>{{isset( $total_points )? $total_points : 0}}</span> Coins
+                            <span>{{(isset( $total_points ) && $total_points > 0)? $total_points : '--'}}</span> <img src="/assets/default/img/panel-sidebar/coins.svg" alt="" width="25">
                         </li>
-                        <li class="play-time" data-play_time="{{isset( $total_points )? $total_points : 0}}">
-                            <span>{{isset( $total_points )? $total_points : 0}}</span> Play Time
+                        <li class="play-time" data-play_time="{{isset( $total_play_time )? $total_play_time : 0}}">
+                            <span>{{(isset( $total_play_time ) && $total_play_time > 0)? $total_play_time : '--'}}</span> <img src="/assets/default/img/sidebar/games.svg" alt="" width="25">
                         </li>
                     </ul>
                 </div>

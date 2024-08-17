@@ -78,7 +78,7 @@ shuffle($characters_list);
                             <span class="nub-of-sec question-time-remaining-{{ $question->id }}" data-remaining="{{($question->question_average_time*60)}}">{{isset( $total_time_consumed )? $total_time_consumed : '-'}}</span>
                         </li>
                         <li class="total-points" data-total_points="{{isset( $total_points )? $total_points : 0}}">
-                            <span>{{(isset( $total_points ) && $total_points > 0)? $total_points : $total_points}}</span> <img src="/assets/default/img/panel-sidebar/coins.svg" alt="" width="25">
+                            <span>{{(isset( $total_points ) && $total_points > 0)? $total_points : '--'}}</span> <img src="/assets/default/img/panel-sidebar/coins.svg" alt="" width="25">
                         </li>
                         <li class="play-time" data-play_time="{{isset( $total_play_time )? $total_play_time : 0}}">
                             <span>{{(isset( $total_play_time ) && $total_play_time > 0)? $total_play_time : '--'}}</span> <img src="/assets/default/img/sidebar/games.svg" alt="" width="25">
@@ -199,7 +199,7 @@ shuffle($characters_list);
 
 
                     <div class="form-btn-field">
-                        <button type="button" class="reset-quiz-button" data-id="{{ $question->id }}">Reset <svg style="width: 22px;height: 22px;" xmlns="http://www.w3.org/2000/svg" version="1.0"
+                        <button type="button" class="reset-quiz-button" data-id="{{ $question->id }}">Reset Test <svg style="width: 22px;height: 22px;" xmlns="http://www.w3.org/2000/svg" version="1.0"
                                  width="512.000000pt" height="512.000000pt"
                                  viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#000000"
@@ -228,7 +228,7 @@ shuffle($characters_list);
                     <div class="prev-next-controls text-center mb-50 questions-nav-controls  rurera-hide">
                         @if( !isset( $disable_finish ) || $disable_finish == 'false')
                         <a href="javascript:;" id="review-btn_{{ $question->id }}" data-toggle="modal" class="review-btn" data-target="#review_submit">
-                            Reset
+                            Reset Test
                             <svg style="width: 22px;height: 22px;" xmlns="http://www.w3.org/2000/svg" version="1.0"
                                  width="512.000000pt" height="512.000000pt"
                                  viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">

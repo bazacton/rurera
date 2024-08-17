@@ -132,6 +132,16 @@
 									$word_search_count = $dataObj->parentResults->where('quiz_result_type', 'vocabulary')->where('attempt_mode', 'word-search')->where('status', 'waiting')->count();
 									$word_cloud_count = $dataObj->parentResults->where('quiz_result_type', 'vocabulary')->where('attempt_mode', 'word-cloud')->where('status', 'waiting')->count();
 									$word_missing_count = $dataObj->parentResults->where('quiz_result_type', 'vocabulary')->where('attempt_mode', 'word-missing')->where('status', 'waiting')->count();
+									
+									
+									$quizResultObj = $dataObj->parentResults->where('user_id', $user->id)->where('quiz_result_type', 'vocabulary')->where('attempt_mode', '')->where('status', 'passed')->last();
+									$percentage_class = '';
+									if( isset( $quizResultObj->id)){
+										$percentage_correct_answer = $QuestionsAttemptController->get_percetange_corrct_answer($quizResultObj);
+										$percentage_class = 'danger';
+										$percentage_class = ($percentage_correct_answer >= 70 )? 'improvement' : $percentage_class;
+										$percentage_class = ($percentage_correct_answer > 90 )? 'success' : $percentage_class;
+									}
 
 
                                     $overall_percentage = 0;
@@ -158,9 +168,9 @@
                                     <div class="spell-levels {{$spell_quiz_completed}}">
                                         <div class="spell-levels-top">
                                             <div class="spell-top-left">
-                                                <h3 class="font-18 font-weight-bold">{{$dataObj->getTitleAttribute()}} <span class="progress-star danger"><img src="/assets/default/img/tick-white.png"></span></h3>
+                                                <h3 class="font-18 font-weight-bold">{{$dataObj->getTitleAttribute()}} <span class="progress-star {{$percentage_class}}"><img src="/assets/default/img/tick-white.png"></span></h3>
 												<div class="spell-links">
-												<a href="javascript:;" class="spell-popup-btn" data-heading="{{$dataObj->getTitleAttribute()}}" data-play_link="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/" data-spell_type="word-hunts" data-spell_id="{{$dataObj->id}}">
+												<a href="javascript:;" class="spell-popup-btn" data-heading="{{$dataObj->getTitleAttribute()}}" data-play_link="/spelling/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/" data-spell_type="word-hunts" data-spell_id="{{$dataObj->id}}">
 													Practice Words
 												</a>
 												
@@ -171,9 +181,9 @@
 												
 												<div class="lms-tooltip dropdown-menu">
 													<div class="tooltip-box">	
-														<button data-heading="Take a test" class="tooltip-btn practice font-16 d-block mb-15 text-center spell-test-btn"  data-play_link="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/spelling/exercise" data-spell_type="test">Take Test</button>
+														<button data-heading="Take a test" class="tooltip-btn practice font-16 d-block mb-15 text-center spell-test-btn"  data-play_link="/spelling/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/test" data-spell_type="test">Take Test</button>
 														@if($spell_test_count > 0)
-															<button class="tooltip-btn legendary d-block font-16 text-center" onclick='window.location.href = "/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/spelling/exercise"'>Continue</button>
+															<button class="tooltip-btn legendary d-block font-16 text-center" onclick='window.location.href = "/spelling/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/test"'>Continue</button>
 														@endif
 														@if($spell_test_completed > 0)
 															<button class="tooltip-btn practice font-16 d-block mt-15 text-center" onclick='window.location.href = "/panel/analytics/vocabulary/{{$dataObj->id}}"'>Track</button>
@@ -437,7 +447,7 @@
 		}else{
 			var play_link = $(".spell-words-filters").attr('data-play_link');
 			var spell_type = $(".spell_type_check").val();
-			play_link += spell_type+'/exercise';
+			play_link += spell_type;
 			$(".spell-quiz-form").attr('action',play_link);
 			$(".spell-quiz-form").submit();
 		}
@@ -479,6 +489,9 @@
 			success: function (return_data) {
 				rurera_remove_loader(thisObj, 'div');
 				$(".spell-words-data").html(return_data);
+				document.oncontextmenu = function() {
+				  return false;
+				}
 			}
 		});
 	}
@@ -579,9 +592,7 @@ $(document).ready(function(){
   
 });
 
-document.oncontextmenu = function() {
-  return false;
-}
+
 
 $(document).on("mousemove", function(event){
 	if ($(event.target).closest('.spell_words_popup').length < 1) {

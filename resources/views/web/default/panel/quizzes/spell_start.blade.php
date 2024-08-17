@@ -409,10 +409,41 @@ $target_score = 90;
 			<li><span class="icon-box"></span> Correct: <strong class="correct-questions">1</strong></li>
 			<li>Incorrect: <strong class="incorrect-questions">2</strong></li>
 			<li>Unanswered: <strong class="unanswered-questions">7</strong></li>
+			<li>Play Time: <strong class="game-play-time">0</strong></li>
 		</ul>
         <div class="inactivity-controls">
             <a href="javascript:;" class="continue-btn" data-dismiss="modal" aria-label="Continue">Continue Test</a>
             <a href="javascript:;" class="review-btn submit_quiz_final">Finish Test</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="modal fad quiz_reset_modal" id="quiz_reset_modal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content">
+    <div class="modal-body">
+      <div class="modal-box">
+        <span class="icon-box d-block mb-15">
+            <img src="../assets/default/img/clock-modal-img.png" alt="">
+        </span>
+        <h3 class="font-24 font-weight-normal mb-10">Are you sure?</h3>
+        <p class="mb-15 font-16">
+            Your current progress will be loose and will not be shared with the teacher, do you want to continue
+        </p>
+		<ul class="activity-info">
+			<li>Total Questions: <strong class="total-questions">10</strong></li>
+			<li><span class="icon-box"></span> Correct: <strong class="correct-questions">1</strong></li>
+			<li>Incorrect: <strong class="incorrect-questions">2</strong></li>
+			<li>Unanswered: <strong class="unanswered-questions">7</strong></li>
+			<li>Play Time: <strong class="game-play-time">0</strong></li>
+		</ul>
+        <div class="inactivity-controls">
+            <a href="javascript:;" class="continue-btn" data-dismiss="modal" aria-label="Continue">Continue Test</a>
+            <a href="javascript:;" class="review-btn reset-test-btn">Reset Test</a>
+            <a href="javascript:;" class="review-btn exit_quiz_final">Exit Test</a>
         </div>
       </div>
     </div>
@@ -464,7 +495,7 @@ $target_score = 90;
 
                 focusInterval = setInterval(function () {
                     var focus_count = focusIntervalCount-1;
-                    console.log('focusout--'+focus_count);
+                    
                     focusIntervalCount = focus_count;
                     if (focus_count <= 0 && TimerActive == true) {
                         TimerActive = false;
@@ -474,6 +505,10 @@ $target_score = 90;
 						$(".question_inactivity_modal .modal-body .correct-questions").html(correct_questions);
 						$(".question_inactivity_modal .modal-body .incorrect-questions").html(incorrect_questions);
 						$(".question_inactivity_modal .modal-body .unanswered-questions").html(parseInt(total_questions) - parseInt(attempted_questions));
+						var play_time = $(".lms-quiz-section").attr('data-play_time');
+						play_time_data = (play_time != '0')? getTime(play_time) : '--';
+						$(".question_inactivity_modal .modal-body .game-play-time").html(play_time_data);
+						
 						
 						
                         $(".question_inactivity_modal").modal('show');
@@ -657,7 +692,7 @@ $target_score = 90;
 			$(".total-points").attr('data-total-points', total_points);
 			$(".lms-quiz-section").attr('data-total_points', total_points);
 			$(".lms-quiz-section").attr('data-play_time', total_play_time);
-			var total_points_text = (total_points > 0)? total_points : '-';
+			var total_points_text = (total_points > 0)? total_points : '--';
 			$(".total-points span").html(total_points_text);
 			var play_time_data = getTime(total_play_time);
 			play_time_data = (play_time_data != '0')? play_time_data : '--';
@@ -665,7 +700,7 @@ $target_score = 90;
 			
 			
 			 const interval = setInterval(() => {
-				console.log('interval-test');
+				
 				$('#next-btn')[0].click();
 				clearInterval(interval);
 			}, 3000);
@@ -686,9 +721,7 @@ $target_score = 90;
 		var total_percentage_questions = parseInt(total_questions) * 100 / '{{$target_score}}';
 		var correct_percentage = parseInt(correct_questions) * 100 / parseInt(total_questions);
 		var correct_percentage = ( correct_percentage > 0)? correct_percentage : 0;
-		console.log('correct_questions==correct_questions======='+correct_questions);
-		console.log('incorrect_questions==incorrect_questions======='+incorrect_questions);
-		console.log('correct_percentage==correct_percentage======='+Math.round(correct_percentage));
+		
 		$(".quiz-corrects").html(correct_questions);
 		$(".quiz-incorrects").html(incorrect_questions);
 		$(".quiz-questions-bar .bar-fill").css('width', Math.round(correct_percentage)+'%');
@@ -696,7 +729,25 @@ $target_score = 90;
     }
 	
 	
+
+	$(document).on('click', '.reset-quiz-button', function (e) {
+		var total_questions = '{{$total_questions}}';
+		$(".quiz_reset_modal .modal-body .total-questions").html(total_questions);
+		$(".quiz_reset_modal .modal-body .correct-questions").html(correct_questions);
+		$(".quiz_reset_modal .modal-body .incorrect-questions").html(incorrect_questions);
+		$(".quiz_reset_modal .modal-body .unanswered-questions").html(parseInt(total_questions) - parseInt(attempted_questions));
+		var play_time = $(".lms-quiz-section").attr('data-play_time');
+		play_time_data = (play_time != '0')? getTime(play_time) : '--';
+		$(".quiz_reset_modal .modal-body .game-play-time").html(play_time_data);
+		$(".quiz_reset_modal").modal('show');
+		
+        //$(".spell-test-quiz-form").submit();
+    });	
+	$(document).on('click', '.reset-test-btn', function (e) {
+        $(".spell-test-quiz-form").submit();
+    });	
 	
 
 
 </script>
+	

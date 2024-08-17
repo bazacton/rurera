@@ -104,6 +104,12 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
 
     $years = ['year-1', 'year-2', 'year-3', 'year-4', 'year-5', 'year-6', 'year-7'];
 
+	//https://rurera.com/spelling/year-6/words-with-a-first-letters/test
+	
+	//http://192.168.1.4:9000/year-6/words-with-a-first-letters/spelling/exercise
+	
+	
+	
 
     if( !empty( $years)){
         foreach( $years as $year_slug){
@@ -176,6 +182,14 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
                 });
         }
     }
+	
+	
+	Route::group(['prefix' => 'spelling'], function (){
+		Route::get('/{year_slug}/{quiz_slug}/{test_type}', 'SpellsController@start');
+		Route::post('/{year_slug}/{quiz_slug}/{test_type}', 'SpellsController@start');
+		Route::get('/{year_slug}/{quiz_slug}/test', 'SpellsController@start');
+		Route::post('/{year_slug}/{quiz_slug}/test', 'SpellsController@start');
+	});
 
 
     Route::group(['prefix' => 'course'] , function () {

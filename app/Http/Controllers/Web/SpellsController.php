@@ -51,8 +51,6 @@ class SpellsController extends Controller
         $non_mastered_words = isset($UserVocabulary->non_mastered_words) ? (array)json_decode($UserVocabulary->non_mastered_words) : array();
 
 
-        $start_date = strtotime('2023-09-20');
-        $end_date = strtotime('2023-09-26');
 
         $year_group = $request->get('year_group', null);
         $subject = $request->get('subject', null);
@@ -74,14 +72,13 @@ class SpellsController extends Controller
 
         if (!empty($subject) and $subject !== 'All') {
             $query->where('subject', $subject);
-        }
+        }	
 
         if (!empty($examp_board) and $examp_board !== 'All') {
             $query->where('examp_board', $examp_board);
         }
 
         $spellsData = $query->paginate(200);
-		
 
 
         $categories = Category::where('parent_id', null)
@@ -103,6 +100,7 @@ class SpellsController extends Controller
                 'user_non_mastered_words'    => $non_mastered_words,
                 'categories'                 => $categories,
                 'quiz_category' => $quiz_category,
+				'user' => $user,
             ];
             return view('web.default.vocabulary.index', $data);
         }
@@ -318,7 +316,7 @@ class SpellsController extends Controller
     /*
      * Start SAT Quiz
      */
-    public function start(Request $request, $quiz_slug, $test_type = '')
+    public function start(Request $request, $category_slug, $quiz_slug, $test_type = '')
     {
         if (!auth()->check()) {
             //return redirect('/login');
@@ -333,7 +331,6 @@ class SpellsController extends Controller
             return view('web.default.quizzes.not_subscribed');
         }*/
 		
-        $category_slug = substr(collect(Route::getCurrentRoute()->action['prefix'])->last(), 1);
         $categoryObj = Category::where('slug', $category_slug)->first();
 		$quiz = Quiz::where('quiz_slug', $quiz_slug)->where('year_id', $categoryObj->id)->with([
             'quizQuestionsList' => function ($query) {
