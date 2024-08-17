@@ -233,6 +233,7 @@ $target_score = 90;
             <div class="justify-content-center spell-quiz-page">
                 <div class="container">
                     <div class="row">
+					@if( isset( $test_type ) &&  $test_type == '')
 					<div class="col-lg-10 col-md-12 col-sm-12 mx-auto">
 						<div class="quiz-status-bar">
 							<div class="quiz-questions-bar-holder">
@@ -248,6 +249,7 @@ $target_score = 90;
 							</div>
 						</div>
                     </div>
+					@endif
                 <div class="col-lg-8 col-md-12 col-sm-12 mx-auto">
                     <div class="question-step quiz-complete" style="display:none">
                         <div class="question-layout-block">

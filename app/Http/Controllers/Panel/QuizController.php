@@ -851,6 +851,7 @@ class QuizController extends Controller
                 'active_question_id'     => $resultLogObj->active_question_id,
                 'actual_question_ids'   => $actual_question_ids,
 				'total_points' 			=> isset( $total_points )? $total_points : 0,
+                'test_type'   => $test_type,
 				'total_time_consumed' => isset( $resultLogObj->total_time_consumed )? $resultLogObj->total_time_consumed : 0,
             ];
 			
