@@ -8979,6 +8979,10 @@ body{overflow-x: hidden;}
 .lms-contact-form-tabs .nav-tabs {border: 0;margin: 0 0 30px;}
 .lms-contact-form-tabs .nav-tabs .nav-link {position: relative;background-color: inherit;border: 0;border-radius: 0;padding: 0;margin-right: 30px;font-size: 22px;font-weight: 500;}
 .listing-search.lms-jobs-form {box-shadow: 0 0 5px rgba(0,0,0,0.2); border: 0; border-radius: 0;max-width: 100%;}
+.panel-content .listing-search .inline-filters {position: relative; margin-bottom: 35px; }
+.panel-content .listing-search .inline-filters a {min-height: auto; min-width: auto; border: 0; padding: 0 0 20px; border-radius: 0;}
+.panel-content .listing-search .inline-filters:before {height: 6px; width: 100%; position: absolute; left: 0; bottom: -6px; content: ""; background: linear-gradient(to bottom,  rgba(0,0,0,0.05) 0%,rgba(0,0,0,0) 100%);}
+.panel-content .listing-search .inline-filters .active a {box-shadow: 0 -3px 0 0 #1b85fd inset;}
 /************************************
  Lms Jobs Form Style End
 *************************************/

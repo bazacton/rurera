@@ -1838,6 +1838,19 @@ class QuestionsAttemptController extends Controller
         $time_consumed = $request->get('time_consumed');
         $QuizzesResult = QuizzesResult::where('id', $quiz_result_id)->update(array('total_time_consumed' => $time_consumed, 'last_updated' => time()));
     }
+	
+	 /*
+     * Update time for Result
+     */
+    public function check_new_activity(Request $request)
+    {
+        $quiz_result_id = $request->get('quiz_result_id');
+        $attempt_id = $request->get('attempt_id');
+		$QuizzAttemptsCount = QuizzAttempts::where('quiz_result_id', $quiz_result_id)->where('id', '>', $attempt_id)->count();
+		$is_new_activity = ($QuizzAttemptsCount > 0)? 'yes' : 'no';
+		echo json_encode(array('is_new_activity' => $is_new_activity));
+		exit;
+    }
 
     /*
      * Jump To Review
@@ -3069,8 +3082,11 @@ class QuestionsAttemptController extends Controller
     {
         $user = getUser();
         $total_questions = $resultLogObj->quizz_result_questions_list->count();
-        $total_correct_answers = $resultLogObj->quizz_result_questions_list->where('status', 'correct')->count();
-        $correct_percentage = round(($total_correct_answers * 100) / $total_questions);
+		$correct_percentage = 0;
+		if( $total_questions > 0){
+			$total_correct_answers = $resultLogObj->quizz_result_questions_list->where('status', 'correct')->count();
+			$correct_percentage = round(($total_correct_answers * 100) / $total_questions);
+		}
         return $correct_percentage;
     }
 

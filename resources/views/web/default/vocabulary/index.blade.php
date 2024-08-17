@@ -93,19 +93,11 @@
                         <a href="#." class="filter-mobile-btn">Filters Dropdown</a>
                         <ul class="inline-filters">
                             @php $active = ($quiz_category == '')? 'active' :'' @endphp
-                            <li class="{{$active}}"><a href="/spells"><span class="icon-box">
-                                                                    <img src="/assets/default/svgs/filter-all.svg">
-                                                                </span>All Word Lists</a></li>
+                            <li class="{{$active}}"><a href="/spells">All Word Lists</a></li>
                             @php $active = ($quiz_category == 'Word Lists')? 'active' :'' @endphp
-                            <li class="{{$active}}"><a href="/spells?quiz_category=Word+Lists"><span class="icon-box">
-                                                                                                <img src="/assets/default/svgs/filter-letters.svg">
-                                                                                            </span>Word Lists
-                                </a></li>
+                            <li class="{{$active}}"><a href="/spells?quiz_category=Word+Lists">Word Lists</a></li>
                             @php $active = ($quiz_category == 'Spelling Bee')? 'active' :'' @endphp
-                            <li class="{{$active}}"><a href="/spells?quiz_category=Spelling+Bee"><span class="icon-box">
-                                                                    <img src="/assets/default/svgs/filter-words.svg">
-                                                                </span>Spelling Bee
-                                </a></li>
+                            <li class="{{$active}}"><a href="/spells?quiz_category=Spelling+Bee">Spelling Bee</a></li>
                         </ul>
                     </div>
                 </div>
@@ -772,7 +764,7 @@ function selectItems(checked){
 			}
 		//$(".spell_checkbox").change();
       }
-    }
+    }	
     
     //alert("X: " + position.left + " | " + "Y: " + position.top)
   });

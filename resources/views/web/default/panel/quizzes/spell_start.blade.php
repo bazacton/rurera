@@ -268,10 +268,11 @@ $target_score = 90;
                         </div>
                     </div>
 					
-					
+					 <div class="question-attempt-block rurera-hide"><h2>Another session is active in a different location. Please continue from there.</h2></div>
 
                     <div class="question-area-block" data-quiz_result_id="{{isset( $newQuizStart->id )? $newQuizStart->id : 0}}" data-duration_type="{{isset( $duration_type )? $duration_type : 'no_time_limit'}}" data-time_interval="{{isset( $time_interval )? $time_interval : 0}}" data-practice_time="{{isset( $practice_time )? $practice_time : 0}}"
                                                                      data-active_question_id="{{$active_question_id}}" data-questions_layout="{{json_encode($questions_layout)}}">
+																	 
                         @if( is_array( $question ))
                         @php $question_no = 1; @endphp
 
@@ -484,6 +485,37 @@ $target_score = 90;
 	var focusIntervalCount = 10;
 	var TimerActive = true;
 	
+	
+	var newActivityCheck = null;
+	
+	var activityCheckRequest = null;
+	var attempt_id = $(".question-area .question-step").attr('data-qattempt');
+	var quiz_result_id = $(".question-area-block").attr('data-quiz_result_id');
+	newActivityCheck = setInterval(function () {
+		if( $(".quiz_reset_modal").hasClass("show") || $(".question_inactivity_modal").hasClass("show") ){
+			if (activityCheckRequest == null) {
+				activityCheckRequest = jQuery.ajax({
+					type: "POST",
+					dataType: 'json',
+					url: '/question_attempt/check_new_activity',
+					async: true,
+					headers: {
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+					},
+					data: {"quiz_result_id":quiz_result_id, "attempt_id":attempt_id},
+					success: function (return_data) {
+						if( return_data.is_new_activity == 'yes'){
+							$(".quiz_reset_modal").modal('hide');
+							$(".question_inactivity_modal").modal('hide');
+							$(".question-area-block").remove();
+							$(".question-attempt-block").removeClass('rurera-hide');
+						}
+						activityCheckRequest = null;
+					}
+				});
+			}
+		}
+	}, 5000);
 	
 
     function quiz_default_functions() {
@@ -742,6 +774,7 @@ $target_score = 90;
 		play_time_data = (play_time != '0')? getTime(play_time) : '--';
 		$(".quiz_reset_modal .modal-body .game-play-time").html(play_time_data);
 		$(".quiz_reset_modal").modal('show');
+		
 		
         //$(".spell-test-quiz-form").submit();
     });	
