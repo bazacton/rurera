@@ -1570,4 +1570,17 @@ class UserController extends Controller
 		$userObj->update(['saved_templates' => json_encode($saved_templates)]);
 	}
 	
+	public function removeTemplates(Request $request)
+    {
+        $userObj = auth()->user();
+		$template_name = $request->input('template_name');
+		$saved_templates = $userObj->saved_templates;
+		$saved_templates = json_decode( $saved_templates );
+		$saved_templates = (array) $saved_templates;
+		if( isset( $saved_templates[$template_name] )){
+			unset( $saved_templates[$template_name] );
+		}
+		$userObj->update(['saved_templates' => json_encode($saved_templates)]);
+	}
+	
 }

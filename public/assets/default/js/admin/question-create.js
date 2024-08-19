@@ -511,6 +511,8 @@ function _leform_properties_prepare(_object) {
     if (typeof type == undefined || type == "")
         return false;
 
+	
+	console.log(properties);
     if (type == "settings") {
         properties = leform_form_options;
         jQuery("#leform-element-properties").find(".leform-admin-popup-title h3").html("<i class='fas fa-cogs'></i> " + leform_esc_html__("Form Settings"));
@@ -530,6 +532,7 @@ function _leform_properties_prepare(_object) {
         properties = leform_form_elements[i];
         //jQuery("#leform-element-properties").find(".leform-admin-popup-title h3").html("<i class='fas fa-cog'></i> " + leform_esc_html__("Element Properties") + "<span><i class='" + leform_toolbar_tools[properties["type"]]["icon"] + "'></i> " + leform_escape_html(properties["name"]) + "</span>");
     }
+	console.log('properties===='+properties);
 
     input_fields = leform_input_sort();
 
@@ -1135,6 +1138,7 @@ function _leform_properties_prepare(_object) {
                    break;
 
                 case 'html':
+				console.log(properties);
                     html += "<div class='leform-properties-item' data-id='" + key + "'>\n\
                     \n\
                     <div class='leform-properties-tooltip'></div>\n\
@@ -7074,6 +7078,8 @@ function leform_form_ready() {
         });
 
         var type = jQuery(this).parent().attr("data-type");
+		
+		console.log('daata-type-----'+type);
 
         if (typeof type == undefined || type == "")
             return false;
@@ -7098,10 +7104,21 @@ function leform_form_ready() {
             }
             if (type == "question_templates") {
                 template_name = jQuery(this).parent().attr("data-option");
-                jQuery('.leform-toolbar-tool-other[data-type="'+template_name+'"] a').click();
+                template_names = jQuery(this).parent().attr("data-elements");
+				var template_names = template_names.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
+				template_names.forEach(function(templateName) {
+					console.log(templateName);
+					if( jQuery('.leform-toolbar-tool-other[data-type="'+templateName+'"] a').length > 0){
+						jQuery('.leform-toolbar-tool-other[data-type="'+templateName+'"] a').click();
+					}else if( jQuery('.leform-toolbar-tool-input[data-type="'+templateName+'"] a').length > 0){
+						jQuery('.leform-toolbar-tool-input[data-type="'+templateName+'"] a').click();
+					}
+				});
+                //jQuery('.leform-toolbar-tool-other[data-type="'+template_name+'"] a').click();
+				
+				//$(".leform-elements").append('<div id="leform-element-0" class="leform-element-0 leform-element quiz-group leform-element-html" data-type="question_label"><div class="question-label"><span>Question Label</span></div></div>');
+				
                 return false;
-
-                element['template_no'] = template_no;
             }
             for (var key in leform_meta[type]) {
                 if (leform_meta[type].hasOwnProperty(key)) {

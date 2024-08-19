@@ -328,7 +328,10 @@ $rand_id = rand(999,99999);
                                                                         <ul class="leform-toolbar-list">
                                                                             @php
                                                                             foreach ($toolbar_tools as $key => $value) {
+																				
                                                                             if (array_key_exists('options', $value)) {
+																				$options_elements = isset( $value['options_elements'] )? $value['options_elements'] : array();
+																				
                                                                             echo '
                                                                             <li class="leform-toolbar-tool-' . esc_html($value['type']) . '"
                                                                                 class="leform-toolbar-list-options"
@@ -341,11 +344,13 @@ $rand_id = rand(999,99999);
                                                                                     foreach ($value['options'] as
                                                                                     $option_key =>
                                                                                     $option_value) {
-
+																						
+																					$data_options_elements = isset( $options_elements[$option_key] )? $options_elements[$option_key] : '';
 
                                                                                     echo '
                                                                                     <li data-type="' . esc_html($key) . '"
-                                                                                        data-option="' . esc_html($option_key) . '"
+                                                                                        data-option="' . esc_html($option_key) . '" 
+                                                                                        data-elements="' . esc_html($data_options_elements) . '"
                                                                                         title=""><a href="#"
                                                                                                     title="' . esc_html($value['title']) . '">'
                                                                                             . esc_html($option_value) .
@@ -358,12 +363,18 @@ $rand_id = rand(999,99999);
                                                                             ';
                                                                             } else {
                                                                             $classes = isset( $value['classes'] )? $value['classes'] : '';
+																			
+																			$icon = '<i class="' . esc_html($value['icon']) . '"></i>';
+																			if( isset( $value['icon_type'] ) && $value['icon_type'] == 'svg'){
+																				$icon = '<img src="/assets/admin/img/tools-elements/' . esc_html($value['icon']) . '" width="15">';
+																			}
+																			
+																			
                                                                             echo '
                                                                             <li class="leform-toolbar-tool-' . esc_html($value['type']) . ' '.$classes.'"
                                                                                 title="' . esc_html($value['title']) . '" data-type="' . esc_html($key) . '"><a
                                                                                         href="#"
-                                                                                        title="' . esc_html($value['title']) . '"><i
-                                                                                            class="' . esc_html($value['icon']) . '"></i></a>
+                                                                                        title="' . esc_html($value['title']) . '">'.$icon.'</a>
                                                                             </li>
                                                                             ';
                                                                             }
@@ -1201,6 +1212,14 @@ $rand_id = rand(999,99999);
 				@php $saved_templates = $user->saved_templates;
 					$saved_templates = json_decode( $saved_templates );
 				@endphp
+				<ul class="apply-template-field">
+					@if( !empty( $saved_templates ) )
+						@foreach( $saved_templates  as $template_name => $template_data)
+							<li data-template_data="{{$template_data}}"> <span>{{$template_name}}</span> <a href="javascript:;" data-template_name="{{$template_name}}" class="remove-template"><i class="fas fa-times"></i></a></li>
+						@endforeach
+					@endif
+					
+				</ul>
 				<select class="apply-template-field form-control">
 				
 				@if( !empty( $saved_templates ) )
@@ -1221,7 +1240,7 @@ $rand_id = rand(999,99999);
     </div>
 </div>
 
-<div id="template_save_modal" class="template_save_modal modal fade" role="dialog" data-backdrop="static">>
+<div id="template_save_modal" class="template_save_modal modal fade" role="dialog" data-backdrop="static">
     <div class="modal-dialog">
         <div class="modal-content edit-quest-modal-div">
             <div class="modal-body">
@@ -1278,6 +1297,7 @@ $rand_id = rand(999,99999);
     $("body").on("click", ".add-glossary-modal", function (t) {
         $("#add-glosary-modal-box").modal({backdrop: "static"});
     });
+		
 	
 	
 	var is_template_active = false;
@@ -1387,12 +1407,30 @@ $rand_id = rand(999,99999);
 		$(".form_data_encoded").val(jsonFormData);
 	});
 	
+	$(document).on('click', '.remove-template', function () {
+		// Select all form fields inside the div with id "question_properties"
+		var template_name = $(this).attr('data-template_name');
+		$(this).closest('li').remove();
+		$(".template_display_modal").modal('hide');
+        $.ajax({
+            type: "POST",
+            url: '/admin/users/remove_template',
+            data: {'template_name': template_name},
+            success: function (return_data) {
+                console.log(return_data);
+            }
+        });
+	});
+	
+	
+	
 	$(document).on('click', '.activate-template', function () {
 		$(".template_display_modal").modal('show');
 	});
 	
-	$(document).on('change', '.apply-template-field', function () {
-		var formDatajson = $(this).val();//'{"category_id[]":["615"],"course_id":"2065","chapter_id":"406","sub_chapter_id":"1107","search_tags":"test","question_title":"Question Reference","question_score":"10","question_average_time":"10","example_question":null,"question_type":"dropdown","difficulty_level":"Emerging","reference_type":"Both"}';
+	$(document).on('click', '.apply-template-field li span', function () {
+		
+		var formDatajson = $(this).closest('li').attr('data-template_data');//'{"category_id[]":["615"],"course_id":"2065","chapter_id":"406","sub_chapter_id":"1107","search_tags":"test","question_title":"Question Reference","question_score":"10","question_average_time":"10","example_question":null,"question_type":"dropdown","difficulty_level":"Emerging","reference_type":"Both"}';
 		var formDataObj = JSON.parse(formDatajson);
 		$(".template_display_modal").modal('hide');
 		

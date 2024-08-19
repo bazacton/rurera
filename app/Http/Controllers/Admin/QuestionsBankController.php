@@ -2361,6 +2361,7 @@ class QuestionsBankController extends Controller
         $this->authorize('admin_questions_bank_create');
 
         $query = Webinar::query();
+		
 
         $chapters_list = get_chapters_list();
 
@@ -2441,9 +2442,9 @@ class QuestionsBankController extends Controller
 		$sub_chapter_quiz_id = isset( $subChapterObj->quizData->item_id )? $subChapterObj->quizData->item_id : 0;
 		$difficulty_level = isset($questionData['difficulty_level']) ? $questionData['difficulty_level'] : '';
 		$category_id = isset( $questionData['category_id'] )? $questionData['category_id'] : array();
+		$category_id = is_array( $category_id )? $category_id : array( $category_id );
 		$question_levels = get_question_levels($category_id, $difficulty_level);
 		$category_id = json_encode($category_id);
-		
 		
         $quizQuestion = QuizzesQuestion::create([
             'quiz_id'                   => $quiz_id ,
@@ -2474,7 +2475,7 @@ class QuestionsBankController extends Controller
             'question_type'            	=> isset($_POST['question_type']) ? $_POST['question_type'] : '' ,
             'example_question'          => isset($_POST['example_question']) && !empty($_POST['example_question']) ? $_POST['example_question'] : 0,
             'reference_type'            => isset($_POST['reference_type']) && !empty($_POST['reference_type']) ? $_POST['reference_type'] : 'Course',
-			'question_levels' 			=> $question_levels,
+			'question_levels' 			=> json_encode($question_levels),
         ]);
 		
 		if( $sub_chapter_quiz_id > 0){

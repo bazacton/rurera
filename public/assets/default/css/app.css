@@ -10947,6 +10947,7 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .tooltip-box h5 .topic-title {font-weight: 700; font-size: 18px; display: block; margin: 0 0 5px;}
 .tooltip-btn {border-radius: 6px; font-weight: 500; min-height: 44px; line-height: 44px; text-transform: uppercase; border: 0; width: 100%; }
 .tooltip-btn.practice {background-color: #fff; box-shadow: 0 4px 0 #ccf2b7; color: #58c700; }
+.tooltip-btn.spell-test-btn {background-color: #58c700; box-shadow: 0 4px 0 #7adb44; color: #fff;}
 .tooltip-btn.legendary {background-color: #ffd800; box-shadow: 0 4px 0 #e7a506; color: #a96804;}
 .tooltip-hover {position: relative;}
 .referral-price-card {border: 1px dashed #dbdadf; border-radius: 5px; padding: 22px 12px; }

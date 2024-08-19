@@ -1986,9 +1986,6 @@ body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-men
 }
 
 /*Responsive Style End*/
-.lms-quiz-create .search-fields-block {
-    margin-bottom: 15px;
-}
 
 .date-tags a {border: 1px solid #ddd; padding: 5px 10px; border-radius: 3px; position: relative; text-decoration: none; outline: none; color: #b8b0b0;}
 .date-tags {display: flex; flex-wrap: wrap; gap: 8px; }
@@ -2003,3 +2000,29 @@ body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-men
 #question_properties .select2-container--default .select2-selection--single .select2-selection__rendered {line-height: 38px !important;}
 #question_properties .select2-container--default .select2-selection--single .select2-selection__placeholder {color: #495057;}
 .note-editor li {list-style: auto;}
+
+.lms-quiz-create .search-fields-block {margin-bottom: 15px;}
+body:has(.template_display_modal) .modal-backdrop {z-index: 1213;}
+.template_display_modal.modal,
+.template_save_modal.modal,
+.question_glossary_modal.modal {z-index: 1214;}
+#question_properties .templates-buttons {display: flex; align-items: center; flex-wrap: wrap; gap: 10px; justify-content: flex-end;}
+#question_preview .left-content {min-height: 150px;}
+body .question-step:has(.prev-next-controls) {padding-bottom: 0; }
+body .question-layout-block form.question-fields .questions-nav-controls {bottom: 30px;}
+
+#question_properties .bootstrap-tagsinput:has(.tag.label) input::-webkit-input-placeholder {
+    color: transparent;
+}
+#question_properties .bootstrap-tagsinput:has(.tag.label) input:-moz-placeholder {
+    color: transparent;
+}
+#question_properties .bootstrap-tagsinput:has(.tag.label) input::-moz-placeholder {
+
+    color: transparent;
+}
+#question_properties .bootstrap-tagsinput:has(.tag.label) input:-ms-input-placeholder {
+    color: transparent;
+}
+
+  

@@ -2338,20 +2338,37 @@ function toolbar_tools()
             'options' => array(
                 'multichoice_template' => esc_html__('<img src="/store/1/tool-images/d1.png" alt=""> Multiple Choice', 'leform'),
                 'multiresponse_template' => esc_html__('<img src="/store/1/tool-images/d2.png" alt=""> Multiple Response', 'leform'),
-                '3' => esc_html__('<img src="/store/1/tool-images/d3.png" alt=""> True/False', 'leform'),
-                '4' => esc_html__('<img src="/store/1/tool-images/d4.png" alt=""> Short Answer', 'leform'),
-                '5' => esc_html__('<img src="/store/1/tool-images/d5.png" alt=""> Numeric', 'leform'),
-                '6' => esc_html__('<img src="/store/1/tool-images/d6.png" alt=""> Sequence', 'leform'),
-                '7' => esc_html__('<img src="/store/1/tool-images/d7.png" alt=""> Matching', 'leform'),
-                '8' => esc_html__('<img src="/store/1/tool-images/d8.png" alt=""> Fill in the Blanks', 'leform'),
-                '9' => esc_html__('<img src="/store/1/tool-images/d9.png" alt=""> Select from Lists', 'leform'),
-                '10' => esc_html__('<img src="/store/1/tool-images/d10.png" alt=""> Drag the Words', 'leform'),
-                '11' => esc_html__('<img src="/store/1/tool-images/d11.png" alt=""> Hotspot', 'leform'),
-                '12' => esc_html__('<img src="/store/1/tool-images/d12.png" alt=""> Drag and Drop', 'leform'),
-                '13' => esc_html__('<img src="/store/1/tool-images/d13.png" alt=""> Likert Scale', 'leform'),
-                '14' => esc_html__('<img src="/store/1/tool-images/d14.png" alt=""> Essay', 'leform'),
+                'true_false_template' => esc_html__('<img src="/store/1/tool-images/d3.png" alt=""> True/False', 'leform'),
+                'short_answer_template' => esc_html__('<img src="/store/1/tool-images/d4.png" alt=""> Short Answer', 'leform'),
+                'numeric_template' => esc_html__('<img src="/store/1/tool-images/d5.png" alt=""> Numeric', 'leform'),
+                'sequence_template' => esc_html__('<img src="/store/1/tool-images/d6.png" alt=""> Sequence', 'leform'),
+                'matching_template' => esc_html__('<img src="/store/1/tool-images/d7.png" alt=""> Matching', 'leform'),
+                'fill_blanks_template' => esc_html__('<img src="/store/1/tool-images/d8.png" alt=""> Fill in the Blanks', 'leform'),
+                'select_template' => esc_html__('<img src="/store/1/tool-images/d9.png" alt=""> Select from Lists', 'leform'),
+                'drag_word_template' => esc_html__('<img src="/store/1/tool-images/d10.png" alt=""> Drag the Words', 'leform'),
+                'hotspot_template' => esc_html__('<img src="/store/1/tool-images/d11.png" alt=""> Hotspot', 'leform'),
+                'drag_drop_template' => esc_html__('<img src="/store/1/tool-images/d12.png" alt=""> Drag and Drop', 'leform'),
+                'likert_template' => esc_html__('<img src="/store/1/tool-images/d13.png" alt=""> Likert Scale', 'leform'),
+                'essay_template' => esc_html__('<img src="/store/1/tool-images/d14.png" alt=""> Essay', 'leform'),
             ),
-            'type'    => 'other'
+            'type'    => 'other',
+            'options_elements'    => array(
+				'multichoice_template' => 'question_label,radio',
+				'multiresponse_template' => 'question_label,checkbox',
+				'true_false_template' => 'question_label,truefalse_quiz',
+				'short_answer_template' => 'question_label',
+				'numeric_template' => 'question_label',
+				'sequence_template' => 'question_label',
+				'matching_template' => 'question_label,match_quiz',
+				'fill_blanks_template' => 'question_label',
+				'select_template' => 'question_label',
+				'drag_word_template' => 'question_label',
+				'hotspot_template' => 'question_label',
+				'drag_drop_template' => 'question_label,draggable_quiz',
+				'likert_template' => 'question_label',
+				'essay_template' => 'question_label',
+			),
+
         ),
         'html'               => array(
             'title' => esc_html__('HTML', 'leform'),
@@ -2402,7 +2419,8 @@ function toolbar_tools()
         ),
         'textareafield_quiz'     => array(
             'title' => esc_html__('Textarea Field', 'leform'),
-            'icon'  => 'fas fa-edit',
+            'icon'  => 'textareafield_quiz.svg',
+            'icon_type'  => 'svg',
             'type'  => 'other'
         ),
         'textfield_quiz'     => array(
@@ -2412,7 +2430,8 @@ function toolbar_tools()
         ),
         'truefalse_quiz'     => array(
             'title' => esc_html__('True/False Field', 'leform'),
-            'icon'  => 'fas fa-i-cursor',
+            'icon'  => 'truefalse_quiz.svg',
+            'icon_type'  => 'svg',
             'type'  => 'other'
         ),
         'attachment_quiz'     => array(
@@ -2437,7 +2456,8 @@ function toolbar_tools()
         ),
         'question_label'     => array(
             'title' => esc_html__('Question label', 'leform'),
-            'icon'  => 'fas fa-marker',
+            'icon'  => 'question_label.svg',
+			'icon_type' => 'svg',
             'type'  => 'other'
         ),
         'example_question'     => array(
@@ -2468,7 +2488,8 @@ function toolbar_tools()
         ),
         'draggable_quiz' => array(
             'title' => esc_html__('Draggable Quiz', 'leform'),
-            'icon'  => 'fas fa-microphone',
+            'icon'  => 'draggable_quiz.svg',
+            'icon_type'  => 'svg',
             'type'  => 'input'
         ),
 
@@ -2486,7 +2507,8 @@ function toolbar_tools()
 
         'match_quiz' => array(
             'title' => esc_html__('Match Quiz', 'leform'),
-            'icon'  => 'fas fa-arrows-alt-h',
+            'icon'  => 'match_quiz.svg',
+            'icon_type'  => 'svg',
             'type'  => 'input'
         ),
         'audio_file'     => array(
