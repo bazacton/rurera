@@ -59,6 +59,7 @@ $rand_id = rand(999,99999);
 
 <section class="section form-class" data-question_save_type="store_question">
 
+
     <div class="section-body lms-quiz-create">
         
         <div class="row col-12 col-md-12 col-lg-12">
@@ -106,7 +107,8 @@ $rand_id = rand(999,99999);
                         <div class="tab-content" id="myTabContent2">
 
                             <div class="patterns-modal">
-                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Button</button>
+							 
+                              <button type="button" class="btn btn-primary rurera-hide" data-toggle="modal" data-target=".bd-example-modal-lg">Button</button>
                               <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg" role="document">
                                   <div class="modal-content">
@@ -693,9 +695,16 @@ $rand_id = rand(999,99999);
 
                                             <div class="col-12 col-md-12">
                                                 <div class="row">
+												
 
 
                                                     <div class="col-12">
+													
+												<div class="templates-buttons mb-20">
+													<button class="btn btn-primary save-template"><i class="fas fa-save"></i> Save Template</button>
+													<button class="btn btn-primary activate-template"><i class="fas fa-calendar-week"></i> Activate Template</button>
+												</div>
+														
                                                         <div class="search-fields-block"
                                                              style="background: #efefef;padding: 10px;"><div class="row">
                                                             <div class="col-lg-6 col-md-6 col-12">
@@ -1182,6 +1191,57 @@ $rand_id = rand(999,99999);
     </div>
 </div>
 
+
+<div id="template_display_modal" class="template_display_modal modal fade" role="dialog" data-backdrop="static">>
+    <div class="modal-dialog">
+        <div class="modal-content edit-quest-modal-div">
+            <div class="modal-body">
+			  <div class="modal-box">
+				<h3 class="font-24 font-weight-normal mb-10">Activate Template</h3>
+				@php $saved_templates = $user->saved_templates;
+					$saved_templates = json_decode( $saved_templates );
+				@endphp
+				<select class="apply-template-field form-control">
+				
+				@if( !empty( $saved_templates ) )
+						<option value="">Select Template</option>
+					@foreach( $saved_templates  as $template_name => $template_data)
+						<option value="{{$template_data}}"> {{$template_name}} </option>
+					@endforeach
+				@endif
+					
+				</select>
+				
+				<div class="inactivity-controls mt-10">
+					<a href="javascript:;" class="close" data-dismiss="modal" aria-label="Continue">Close</a>
+				</div>
+			  </div>
+			</div>
+        </div>
+    </div>
+</div>
+
+<div id="template_save_modal" class="template_save_modal modal fade" role="dialog" data-backdrop="static">>
+    <div class="modal-dialog">
+        <div class="modal-content edit-quest-modal-div">
+            <div class="modal-body">
+			  <div class="modal-box">
+				<h3 class="font-24 font-weight-normal mb-10">Save the Template</h3>
+				<p class="mb-15 font-16">
+					<input type="text" name="template_name" class="template_name form-control">
+				</p>
+				<input type="hidden" name="form_data_encoded" class="form_data_encoded">
+				
+				<div class="inactivity-controls">
+					<a href="javascript:;" class="continue-btn save-template-btn">Save Template</a>
+					<a href="javascript:;" class="close" data-dismiss="modal" aria-label="Continue">Close</a>
+				</div>
+			  </div>
+			</div>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 @push('scripts_bottom')
@@ -1218,6 +1278,12 @@ $rand_id = rand(999,99999);
     $("body").on("click", ".add-glossary-modal", function (t) {
         $("#add-glosary-modal-box").modal({backdrop: "static"});
     });
+	
+	
+	var is_template_active = false;
+	var course_id_template = '';
+	var chapter_id_template = '';
+	var sub_chapter_id_template = '';
 
     $(document).on('change', '.ajax-category-courses', function () {
         var category_id = $(this).val();
@@ -1228,6 +1294,9 @@ $rand_id = rand(999,99999);
             success: function (return_data) {
                 $(".ajax-courses-dropdown").html(return_data);
                 $(".ajax-chapter-dropdown").html('<option value="">Please select year, subject</option>');
+				if( is_template_active == true){
+					$('select[name="course_id"]').val(course_id_template).change();
+				}
             }
         });
     });
@@ -1240,6 +1309,9 @@ $rand_id = rand(999,99999);
             data: {'course_id': course_id},
             success: function (return_data) {
                 $(".ajax-chapter-dropdown").html(return_data);
+				if( is_template_active == true){
+					$('select[name="chapter_id"]').val(chapter_id_template).change();
+				}
             }
         });
     });
@@ -1252,6 +1324,9 @@ $rand_id = rand(999,99999);
             data: {'chapter_id': chapter_id},
             success: function (return_data) {
                 $(".ajax-subchapter-dropdown").html(return_data);
+				if( is_template_active == true){
+					$('select[name="sub_chapter_id"]').val(sub_chapter_id_template).change();
+				}
             }
         });
     });
@@ -1259,7 +1334,6 @@ $rand_id = rand(999,99999);
 
 
     $(document).on('click', '#question_preview-tab', function () {
-
         var question_layout = $(".leform-form");
         question_layout.find('.editor-field').each(function () {
             $.each($(this).data(), function (i) {
@@ -1274,9 +1348,88 @@ $rand_id = rand(999,99999);
         var question_score = $("[name=question_score]").val();
         $(".question-layout .marks").html(question_score+' marks');
         var question_layout = leform_encode64(JSON.stringify(question_layout.html()));
-        console.log(question_layout);
 
     });
+	
+	
+	$(document).on('click', '.save-template-btn', function () {
+		$(".template_save_modal").modal('hide');
+		var template_name = $('.template_name').val();
+		var form_data_encoded  = $('.form_data_encoded').val();
+        var course_id = $(this).val();
+        $.ajax({
+            type: "POST",
+            url: '/admin/users/save_templates',
+            data: {'template_name': template_name, 'form_data_encoded': form_data_encoded},
+            success: function (return_data) {
+                console.log(return_data);
+            }
+        });
+    });
+	
+	$(document).on('click', '.save-template', function () {
+		// Select all form fields inside the div with id "question_properties"
+		$(".template_save_modal").modal('show');
+		var formFields = $('#question_properties').find('input, select, textarea');
+		// Create an object to store the name-value pairs
+		var formData = {};
+		// Iterate over each form field
+		formFields.each(function() {
+			var name = $(this).attr('name');
+			var value = $(this).val();
+
+			if (name) {
+				formData[name] = value;	
+			}
+		});
+		
+		var jsonFormData = JSON.stringify(formData);
+		$(".form_data_encoded").val(jsonFormData);
+	});
+	
+	$(document).on('click', '.activate-template', function () {
+		$(".template_display_modal").modal('show');
+	});
+	
+	$(document).on('change', '.apply-template-field', function () {
+		var formDatajson = $(this).val();//'{"category_id[]":["615"],"course_id":"2065","chapter_id":"406","sub_chapter_id":"1107","search_tags":"test","question_title":"Question Reference","question_score":"10","question_average_time":"10","example_question":null,"question_type":"dropdown","difficulty_level":"Emerging","reference_type":"Both"}';
+		var formDataObj = JSON.parse(formDatajson);
+		$(".template_display_modal").modal('hide');
+		
+		course_id_template = formDataObj['course_id'];
+		chapter_id_template = formDataObj['chapter_id'];
+		sub_chapter_id_template = formDataObj['sub_chapter_id'];
+		
+		is_template_active = true;
+		// Select all form fields inside the div with id "question_properties"
+		var formFields = $('#question_properties').find('input, select, textarea');
+
+		// Create an object to store the name-value pairs
+		var formData = {};
+
+		// Iterate over each form field
+		formFields.each(function() {
+			var name = $(this).attr('name');
+			
+			var value = $(this).val(formDataObj[name]);
+			
+			if ($(this).is('select')) {
+				$('select[name="'+name+'"]').change();
+			}
+			if( name == 'search_tags'){
+				if (formDataObj[name].trim()) {
+					var tags = formDataObj[name].split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
+					tags.forEach(function(tag) {
+						$('input[name="'+name+'"]').tagsinput('add', tag);
+					});
+				}
+			}
+		});
+	});
+	
+	
+	
+	
 
 
 </script>

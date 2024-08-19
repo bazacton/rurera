@@ -1557,4 +1557,17 @@ class UserController extends Controller
 
         return view('admin.users.teachers', $data);
     }
+	
+	public function saveTemplates(Request $request)
+    {
+        $userObj = auth()->user();
+		$template_name = $request->input('template_name');
+		$form_data_encoded = $request->input('form_data_encoded');
+		$saved_templates = $userObj->saved_templates;
+		$saved_templates = json_decode( $saved_templates );
+		$saved_templates = (array) $saved_templates;
+		$saved_templates[$template_name] = $form_data_encoded;
+		$userObj->update(['saved_templates' => json_encode($saved_templates)]);
+	}
+	
 }

@@ -402,7 +402,7 @@ class QuizController extends Controller
 
         $QuestionsAttemptController = new QuestionsAttemptController();
 
-        $questions_list_data_array = $QuestionsAttemptController->getQuizQuestionsList($quiz, $quiz_level, $learning_journey, 0, $question_ids, $is_new);
+        $questions_list_data_array = $QuestionsAttemptController->getQuizQuestionsList($quiz, $quiz_level, $learning_journey, 0, $question_ids, $is_new, $test_type);
 		
         $questions_list = isset($questions_list_data_array['questions_list']) ? $questions_list_data_array['questions_list'] : array();
         $other_data = isset($questions_list_data_array['other_data']) ? $questions_list_data_array['other_data'] : '';

@@ -1337,7 +1337,7 @@ class QuestionsAttemptController extends Controller
             }
         }
 
-        $RewardAccountingObj = RewardAccounting::where('user_id', $user->id)->where('type', 'coins')->where('parent_id', $parent_id)->where('parent_type', $parent_type)->first();
+        $RewardAccountingObj = RewardAccounting::where('user_id', $user->id)->where('type', 'coins')->where('parent_id', $parent_id)->where('parent_type', $parent_type)->where('result_id', $QuizzResultQuestions->quiz_result_id)->first();
         $score = isset($RewardAccountingObj->score) ? json_decode($RewardAccountingObj->score) : 0;
         $score += $question_score;
         $full_data = isset($RewardAccountingObj->full_data) ? (array)json_decode($RewardAccountingObj->full_data) : array();
@@ -3100,7 +3100,7 @@ class QuestionsAttemptController extends Controller
      *
      * @return questions_list Array
      */
-    public function getQuizQuestionsList($quiz, $quiz_level = '', $learning_journey = 'no', $assignment_id = 0, $include_question_ids = array(), $is_new = 'no')
+    public function getQuizQuestionsList($quiz, $quiz_level = '', $learning_journey = 'no', $assignment_id = 0, $include_question_ids = array(), $is_new = 'no', $test_type = '')
     {
 
         $entrance_exams = array(
@@ -3145,7 +3145,7 @@ class QuestionsAttemptController extends Controller
         }
 		
 		if ($quiz->quiz_type == 'vocabulary') {
-            $questions_list_data_array = $this->get_vocabulary_questions_list($quiz, $questions_list, $quiz_level, $assignment_id, $is_new);
+            $questions_list_data_array = $this->get_vocabulary_questions_list($quiz, $questions_list, $quiz_level, $assignment_id, $is_new, $test_type);
 			$QuizzesResultID = isset($questions_list_data_array['QuizzesResultID']) ? $questions_list_data_array['QuizzesResultID'] : 0;
             $questions_list = isset($questions_list_data_array['questions_list']) ? $questions_list_data_array['questions_list'] : array();
             $other_data = isset($questions_list_data_array['other_data']) ? $questions_list_data_array['other_data'] : '';
@@ -3408,7 +3408,7 @@ class QuestionsAttemptController extends Controller
      *
      * @return questions_list Array
      */
-    public function get_vocabulary_questions_list($quiz, $questions_list, $quiz_level, $assignment_id = 0, $is_new = 'no')
+    public function get_vocabulary_questions_list($quiz, $questions_list, $quiz_level, $assignment_id = 0, $is_new = 'no', $test_type = '')
     {
 		$user = getUser();
 		$parent_type_id = ($assignment_id > 0)? $assignment_id : $quiz->id;
@@ -3425,8 +3425,8 @@ class QuestionsAttemptController extends Controller
 				->toArray();
 		}else{
 			shuffle($questions_list);
-			$corrected_list = QuizzResultQuestions::whereIN('question_id', $questions_list)->where('parent_type_id', $quiz->id)->where('quiz_level', $quiz_level)->where('status', 'correct')->pluck('question_id')->toArray();
-			$incorrect_list = QuizzResultQuestions::whereIN('question_id', $questions_list)->whereNotIn('question_id', $corrected_list)->where('quiz_level', $quiz_level)->where('parent_type_id', $quiz->id)->where('status', 'incorrect')->pluck('question_id')->toArray();
+			$corrected_list = QuizzResultQuestions::whereIN('question_id', $questions_list)->where('parent_type_id', $quiz->id)->where('quiz_level', $quiz_level)->where('status', 'correct')->distinct()->pluck('question_id')->toArray();
+			$incorrect_list = QuizzResultQuestions::whereIN('question_id', $questions_list)->whereNotIn('question_id', $corrected_list)->where('quiz_level', $quiz_level)->where('parent_type_id', $quiz->id)->where('status', 'incorrect')->distinct()->pluck('question_id')->toArray();
 			$excludedValues = array_merge($corrected_list, $incorrect_list);
 			$not_attempted_list = array_diff($questions_list, $excludedValues);
 			$corrected_list = array_diff($corrected_list, $incorrect_list);

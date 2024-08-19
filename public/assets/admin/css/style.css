@@ -1932,6 +1932,7 @@ body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-men
 /* .main-sidebar ~ .main-content {max-width: 1400px; margin: 0 auto 0 400px; margin: 0 auto 0 330px; padding-left: 0;} */
 #glossary_solution .select2-container {z-index: auto !important;}
 .lms-quiz-create ol li {list-style: auto;}
+.lms-quiz-create .add-glossary-modal {margin-top: 10px; display: inline-block;}
 /* .years-group.populated-data {display: flex; flex-wrap: wrap;flex-direction: column;} */
 .years-group.populated-data {-webkit-user-select: none; -khtml-user-select: none; -moz-user-select: -moz-none; -o-user-select: none; user-select: none;}
 .years-group.populated-data .form-group img {max-width: 70%; margin-bottom: 15px; object-fit: contain;}
@@ -1978,8 +1979,16 @@ body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-men
 }
 @media(max-width:1024px) {
     .main-sidebar ~ .main-content {padding-left: 30px; margin-left: 0; padding-right: 30px; max-width: 100%; width: 100%;}
+    #question_design .col-7 {flex: 0 0 100%; max-width: 100%;}
 }
+@media(max-width:767px) {
+    .admin-rurera-tabs .nav-link, .admin-rurera-tabs.nav-pills .nav-link {margin-bottom: 10px;}
+}
+
 /*Responsive Style End*/
+.lms-quiz-create .search-fields-block {
+    margin-bottom: 15px;
+}
 
 .date-tags a {border: 1px solid #ddd; padding: 5px 10px; border-radius: 3px; position: relative; text-decoration: none; outline: none; color: #b8b0b0;}
 .date-tags {display: flex; flex-wrap: wrap; gap: 8px; }

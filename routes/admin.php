@@ -86,6 +86,7 @@ Route::group([
 
         Route::group(['prefix' => 'users'], function () {
             Route::get('/create', 'UserController@create');
+            Route::post('/save_templates', 'UserController@saveTemplates');
             Route::post('/store', 'UserController@store');
             Route::post('/search', 'UserController@search');
             Route::get('/{id}/edit', 'UserController@edit');

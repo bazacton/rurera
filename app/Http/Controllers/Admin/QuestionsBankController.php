@@ -186,6 +186,7 @@ class QuestionsBankController extends Controller
         $data['glossary'] = $glossary;
         $data['user'] = $user;
         $data['categories'] = $categories;
+		
 
         return view('admin.questions_bank.create_question' , $data);
     }

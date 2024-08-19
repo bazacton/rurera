@@ -23,11 +23,12 @@
 @php
 $group_questions_layout  = isset( $group_questions_layout )? $group_questions_layout : '';
 $question_layout = html_entity_decode(json_decode(base64_decode(trim(stripslashes($question->question_layout)))));
+$question_layout = html_entity_decode(json_decode(base64_decode(trim(stripslashes($newQuestionResult->quiz_layout)))));
 $question_layout = str_replace('<div class="group_questions_data">Questions Group</div>', $group_questions_layout, $question_layout);
-
+$question_unique_id = $question->id.$rand_id;
 @endphp
 
-<div class="question-area dis-arrows1 question-data-{{$question->id}}">
+<div class="question-area dis-arrows1 question-data-{{$question_unique_id}}">
     <div class="correct-appriciate" style="display:none"></div>
     <div class="question-step question-step-{{ $question->id }}" data-elapsed="0"
          data-qattempt="{{isset( $quizAttempt->id )? $quizAttempt->id : 0}}"
@@ -65,7 +66,20 @@ $question_layout = str_replace('<div class="group_questions_data">Questions Grou
 
 </div>
 <script>
-var questionLabel = document.querySelector(".question-data-" + {{$question->id}} + " .question-layout .question-label").innerHTML;
-document.querySelector(".question-data-" + {{$question->id}} + " .question-layout-data").innerHTML = '<div class="question-label">' + questionLabel + '</div>';
-document.querySelector(".question-data-" + {{$question->id}} + " .question-layout").remove();
+var questionLabel = document.querySelector(".question-data-" + {{$question_unique_id}} + " .question-layout-block .question-label").innerHTML;
+var questionAttemptElement = document.querySelector(".question-data-" + {{$question_unique_id}} + " .question-layout-block .question-count");
+var questionAttempt = '';
+
+if (questionAttemptElement) {
+    questionAttempt = questionAttemptElement.innerHTML;
+}
+
+var embedded_html = '<div class="question-label">'+questionLabel+'</div>';
+
+document.querySelector(".question-data-" + {{$question_unique_id}} + " .question-layout-data").innerHTML = embedded_html;
+if (questionAttempt != '') {
+	questionAttempt_html = '<div class="question-count">' + questionAttempt + '</div>';
+    document.querySelector(".question-data-" + {{$question_unique_id}} + " .question-layout-data").innerHTML += questionAttempt_html;
+}
+document.querySelector(".question-data-" + {{$question_unique_id}} + " .question-layout").remove();
 </script>
