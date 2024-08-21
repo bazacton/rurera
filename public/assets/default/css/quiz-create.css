@@ -22,9 +22,9 @@
 .lms-quiz-create .leform-dialog-title h3 {font-weight: normal; font-size: 20px; font-family: arial;	color: #202020; letter-spacing: 0;	text-transform: none; margin: 0 !important;	padding: 0 !important; line-height: inherit;}
 .lms-quiz-create .leform-dialog-title h3 i {margin-right: 0.5em;line-height: 52px;vertical-align: top;}
 .lms-quiz-create .leform-dialog-title h3 label {cursor: default;cursor: default;line-height: 52px;display: inline-block;vertical-align: top;}
-.lms-quiz-create .leform-dialog-title a {display: block;float: right;font-size: 20px;width: 52px;height: 52px;color: #202020;text-align: center;text-shadow: none !important;box-shadow: none !important;outline: none !important;border: none !important;	margin: 0 0 0 20px !important;padding: 0 !important;transition-property: all;transition-timing-function: ease-in-out;transition-duration: 300ms;}
+.lms-quiz-create .leform-dialog-title a {float: right; font-size: 20px; width: 52px; height: 52px; color: #202020; text-align: center; text-shadow: none !important; box-shadow: none !important; outline: none !important; border: none !important; margin: 0 0 0 20px !important; padding: 0 !important; transition-property: all; transition-timing-function: ease-in-out; transition-duration: 300ms; display: inline-flex; align-items: center; justify-content: center;}
 .lms-quiz-create .leform-dialog-title a:hover {color: #26B99A;}
-.lms-quiz-create .leform-dialog-content {height: 496px;	overflow-x: hidden;	overflow-y: scroll;	background: #ffffff;position: relative;font-size: 15px;line-height: 1.475;}
+.lms-quiz-create .leform-dialog-content {height: 496px;	overflow-x: hidden;	overflow-y: auto;	background: #ffffff;position: relative;font-size: 15px;line-height: 1.475;}
 .lms-quiz-create .leform-dialog-content::-webkit-scrollbar {width: 5px;}
 .lms-quiz-create .leform-dialog-content::-webkit-scrollbar-track {box-shadow: inset 0 0 6px rgba(0,0,0,0.1);}
 .lms-quiz-create .leform-dialog-content::-webkit-scrollbar-thumb {background-color: #26B99A;}
@@ -33,117 +33,21 @@
 .lms-quiz-create .leform-dialog-loading i {position: absolute;z-index: 99983;top: 50%;left: 50%;font-size: 24px;margin-top: -12px;margin-left: -12px;}
 .lms-quiz-create .leform-dialog-content-html {padding: 30px 50px;}
 .lms-quiz-create .leform-dialog-message {text-align: center;}
-.lms-quiz-create .leform-dialog-buttons {box-sizing: border-box;position: absolute;	left: 0;right: 0;bottom: 0;	height: 52px;line-height: 48px;	padding-right: 8px;	text-align: center;	border-top: 1px solid #f0f0f0;}
-.lms-quiz-create .leform-dialog-button {
-	display: inline-block;
-	line-height: 40px;
-	height: 40px;
-	min-width: 140px;
-	margin: 0 5px 0px 5px;
-	font-size: 15px;
-	font-weight: 400;
-	text-align: center;
-	white-space: nowrap;
-	vertical-align: middle;
-	-ms-touch-action: manipulation;
-	touch-action: manipulation;
-	cursor: pointer;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	background-image: none;
-	border: 1px solid transparent;
-	border-radius: 3px;
-	transition-duration: .3s;
-	-webkit-transition-duration: .3s;
-	color: #fff;
-	background: #26B99A;
-	border: 1px solid #169F85;
-	text-decoration: none;
-	outline: none;
-	box-shadow: none;
-	box-sizing: border-box;
-	padding: 0 1em;
-}
-.lms-quiz-create .leform-dialog-button-cancel {
-	color: #222;
-	background: #d0d0d0;
-	border: 1px solid #c0c0c0;
-}
-.lms-quiz-create .leform-dialog-button-disabled {
-	opacity: 0.3;
-	cursor: default !important;
-}
-.lms-quiz-create .leform-dialog-button:active {
-	background-image: none;
-	outline: 0;
-	-webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
-	box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
-	text-decoration: none;
-	color: #fff;
-	background: #169F85;
-	background-image: none;
-	outline: none;
-	box-shadow: none;
-	transform:translateY(2px);
-	-webkit-transform:translateY(2px);
-}
-.lms-quiz-create .leform-dialog-button:hover, .leform-dialog-button:focus {
-	text-decoration: none;
-	color: #fff;
-	background: #169F85;
-	background-image: none;
-	outline: none;
-	box-shadow: none;
-}
-.lms-quiz-create .leform-dialog-button-cancel:active, .leform-dialog-button-cancel:hover, .leform-dialog-button-cancel:focus {
-	color: #222;
-	background: #c0c0c0;
-}
-.lms-quiz-create .leform-dialog-button label {
-	line-height: 38px;
-	display: inline-block;
-	margin-left: 8px;
-	vertical-align: top;
-	margin-bottom: 0;
-	font-weight: 400;
-}
-.lms-quiz-create .leform-dialog-button i {
-	line-height: 38px;
-	vertical-align: top;
-}
+.lms-quiz-create .leform-dialog-buttons {box-sizing: border-box; position: absolute; left: 0; right: 0; bottom: 0; height: auto; line-height: 48px; text-align: center; border-top: 1px solid #f0f0f0; padding: 12px 0;}
+.lms-quiz-create .leform-dialog-button {display: inline-block; line-height: 40px; height: 40px; min-width: 140px; margin: 0 5px 0px 5px; font-size: 15px; font-weight: 400; text-align: center;	white-space: nowrap; vertical-align: middle; -ms-touch-action: manipulation; touch-action: manipulation; cursor: pointer; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;	user-select: none; background-image: none; border: 1px solid transparent; border-radius: 3px; transition-duration: .3s; -webkit-transition-duration: .3s; color: #fff; background: #26B99A; border: 1px solid #169F85; text-decoration: none; outline: none;	box-shadow: none; box-sizing: border-box; padding: 0 1em;}
+.lms-quiz-create .leform-dialog-button-cancel {color: #222; background: #d0d0d0; border: 1px solid #c0c0c0;}
+.lms-quiz-create .leform-dialog-button-disabled {opacity: 0.3; cursor: default !important;}
+.lms-quiz-create .leform-dialog-button:active {background-image: none; outline: 0; -webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,.125); box-shadow: inset 0 3px 5px rgba(0,0,0,.125); text-decoration: none; color: #fff; background: #169F85; background-image: none; outline: none; box-shadow: none; transform:translateY(2px);	-webkit-transform:translateY(2px);}
+.lms-quiz-create .leform-dialog-button:hover, .leform-dialog-button:focus {text-decoration: none; color: #fff;	background: #169F85; background-image: none; outline: none; box-shadow: none;}
+.lms-quiz-create .leform-dialog-button-cancel:active, .leform-dialog-button-cancel:hover, .leform-dialog-button-cancel:focus {color: #222;	background: #c0c0c0;}
+.lms-quiz-create .leform-dialog-button label {line-height: 38px; display: inline-block;	margin-left: 8px; vertical-align: top; margin-bottom: 0; font-weight: 400;}
+.lms-quiz-create .leform-dialog-button i {line-height: 38px; vertical-align: top;}
 /* Dialog Popup - end */
 
 /* Properies Popup begin */
-.lms-quiz-create .leform-admin-popup-overlay {
-	position: fixed !important;
-	z-index: 99980;
-	top: 0px;
-	left: 0px;
-	height: 100%;
-	width: 100%;
-	background-position: center center;
-	background: rgba(0,0,0,0.8);
-	display: none;
-}
-.lms-quiz-create #leform-stylemanager-overlay {
-	z-index: 99982;
-}
-.lms-quiz-create .leform-admin-create-overlay {
-	position: fixed !important;
-	z-index: 1001;
-	top: 0px;
-	left: 0px;
-	bottom: 0px;
-	right: 0px;
-	height: 100%;
-	width: 100%;
-	background-position: center center;
-	background: rgba(241,241,241,0.8);
-	display: none;
-	display: block;
-}
+.lms-quiz-create .leform-admin-popup-overlay {position: fixed !important; z-index: 99980; top: 0px;	left: 0px; height: 100%; width: 100%; background-position: center center; background: rgba(0,0,0,0.8);	display: none;}
+.lms-quiz-create #leform-stylemanager-overlay {z-index: 99982;}
+.lms-quiz-create .leform-admin-create-overlay {position: fixed !important; z-index: 1001; top: 0px; left: 0px; bottom: 0px;	right: 0px;	height: 100%; width: 100%; background-position: center center; background: rgba(241,241,241,0.8); display: none; display: block;}
 .lms-quiz-create .leform-admin-create {
 	position: fixed !important;
 	box-sizing: border-box;
@@ -206,8 +110,9 @@
 }
 .lms-quiz-create .leform-admin-popup-inner {
 	height: auto;
-	position: relative;
-	box-sizing: border-box;
+    position: relative;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
 }
 .lms-quiz-create .leform-admin-popup-title {
 	box-sizing: border-box;
@@ -288,10 +193,11 @@
 }
 .lms-quiz-create .leform-admin-popup-content {
 	height: auto;
-	overflow-x: hidden;
-	overflow-y: hidden;
-	background: #ffffff;
-	position: relative;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background: #ffffff;
+    position: relative;
+    padding: 15px 20px 0;
 }
 .lms-quiz-create .leform-admin-popup-content::-webkit-scrollbar {
 	width: 5px;
@@ -327,16 +233,25 @@
 }
 .lms-quiz-create .leform-admin-popup-buttons {
 	box-sizing: border-box;
-	position: relative;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	height: auto;
-	line-height: 48px;
-	padding-right: 8px;
-	text-align: right;
-	border-top: 1px solid #f0f0f0;
-	padding-top: 15px;
+    position: relative;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: auto;
+    line-height: 48px;
+    padding-right: 8px;
+    text-align: center;
+    border-top: 1px solid #ccc;
+    padding-top: 15px;
+    background-color: #f7f7f7;
+    padding-bottom: 15px;
+}
+.lms-quiz-create .leform-admin-popup-buttons .leform-admin-button label {
+	margin-left: 0;
+}
+.lms-quiz-create .leform-admin-popup-content .leform-tabs {
+    margin-left: -20px;
+    margin-right: -20px;
 }
 .lms-quiz-create .leform-properties-item {
 	display: block;
@@ -481,8 +396,9 @@
 	width: 100%;
 }
 .lms-quiz-create .leform-properties-content select {
-	height: 30px !important;
-	font-size: 15px !important;
+	height: auto !important;
+    font-size: 15px !important;
+    padding: 0.5em 0.8em;
 }
 .lms-quiz-create .leform-properties-content .leform-properties-options-item select {
     height: 40px !important;
@@ -919,7 +835,7 @@
 }
 .lms-quiz-create .leform-properties-options-table-header {
 	padding: 0 50px 5px 10px;
-	margin: 0 20px;
+	margin: 0;
 }
 .lms-quiz-create .leform-properties-options-table-footer {
 	text-align: right;
@@ -2071,8 +1987,27 @@
 .leform-toolbar {background: #fff;	border-bottom: 1px solid #d4d4d4;border-left: 1px solid #d4d4d4;border-right: 1px solid #d4d4d4;}
 .leform-toolbar-list {white-space: nowrap;/*overflow: hidden;*/	height: auto;margin: 0;	padding: 0;	list-style-type: none;}
 .leform-toolbar-list::after {display: table;content: ' ';clear: both;}
-.leform-toolbar-list>li {position: relative;height: 38px;width: 34px;line-height: 38px;	margin: 0;padding: 0;float: left;}
-.leform-toolbar-list>li>a {text-align: center; height: 38px; width: 34px;line-height: 38px;cursor: pointer;	font-size: 15px;letter-spacing: normal;background-color: transparent;color: #2f353b;margin: 0;padding: 0;text-decoration: none;box-shadow: none;outline: none;border: none;transition-duration: .3s;-webkit-transition-duration: .3s;display: inline-flex;	justify-content: center;align-items: center;}
+.leform-toolbar-list>li {position: relative; height: 38px; width: 31px; line-height: 38px; margin: 0; padding: 0; float: left;}
+.leform-toolbar-list>li>a {text-align: center;
+    height: 38px;
+    width: 31px;
+    line-height: 38px;
+    cursor: pointer;
+    font-size: 15px;
+    letter-spacing: normal;
+    background-color: transparent;
+    color: #2f353b;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    box-shadow: none;
+    outline: none;
+    border: none;
+    transition-duration: .3s;
+    -webkit-transition-duration: .3s;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;}
 .leform-toolbar-list a:not(.btn-social-icon):not(.btn-social):not(.page-link) .ion, .leform-toolbar-list a:not(.btn-social-icon):not(.btn-social):not(.page-link) .fas, 
 .leform-toolbar-list a:not(.btn-social-icon):not(.btn-social):not(.page-link) .far, .leform-toolbar-list a:not(.btn-social-icon):not(.btn-social):not(.page-link) .fal, 
 .leform-toolbar-list a:not(.btn-social-icon):not(.btn-social):not(.page-link) .fab {margin-left: 0;}
@@ -2121,6 +2056,8 @@
 div.leform-element-checkbox-container div.leform-element-cover {display: none !important;}
 .leform-element-placeholder {background: transparent;border-radius: 3px;border: 1px dashed #26B99A;background-color: #26B99A;	opacity: 0.2;height: 40px;}
 .leform-element-helper {height: 40px !important;width: 160px !important;overflow: hidden !important;}
+.leform-element-helper.ui-sortable-helper {width: 100% !important; height: auto !important; outline: 1px dashed #f3f1f1 !important;}
+.ui-sortable .leform-element-placeholder {background-color: transparent; border-color: transparent;}
 .leform-element-helper .leform-element-cover {display: block;background: white;}
 .leform-col {padding: 10px 10px !important;float: left;	outline: 1px dashed #ccc;}
 .leform-col .leform-element:first-of-type {	margin-top: 0;}
@@ -2976,7 +2913,7 @@ select.leform-block-form-value {vertical-align: top;line-height: 36px !important
 .leform-email-validator-options {display: none;}
 .leform-toolbars {position: absolute;left: 0;right: 0;width: 100% !important;} 
 .leform-form-editor {position: relative;}
-html.leform-toolbars-fixed .leform-toolbars {position: fixed;z-index: 1000;top: 0;left: unset !important;right: unset !important;width: 757.5px !important;}
+html.leform-toolbars-fixed .leform-toolbars {position: fixed;z-index: 1000;top: 0;left: unset !important;right: unset !important;width: 886px !important;}
 html.wp-toolbar.leform-toolbars-fixed .leform-toolbars {top: 32px;}
 html.wp-toolbar .leform-toolbar-tooltipster {margin-top: -32px;}
 html.wp-toolbar.leform-toolbars-fixed .leform-toolbar-tooltipster {margin-top: 0;}
@@ -2994,6 +2931,49 @@ html.wp-toolbar.leform-toolbars-fixed .leform-toolbar-tooltipster {margin-top: 0
 .lms-quiz-create .leform-properties-item .field-options {padding: 0;}
 .lms-quiz-create .leform-properties-item .field-options .text-field-options {padding: 10px;}
 .lms-quiz-create .leform-properties-item .quiz-form-control {margin-bottom: 10px;}
+.lms-quiz-create .leform-properties-item .quiz-form-control input[type=radio] {
+    margin: 0 0 10px;
+}
+.lms-quiz-create .repeater-fields .tools-div {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    display: inline-flex;
+    align-items: center;
+    transform:translateY(-50%);
+    gap: 5px;
+}
+.lms-quiz-create .repeater-fields .tools-div span {
+    margin-left: 0;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.lms-quiz-create .repeater-fields .tools-div span:has(.fa-check) {
+    margin-top: 2px;
+}
+.lms-quiz-create .repeater-fields .tools-div .remove-repeater-field {
+    position: initial;
+    margin: 0;
+    color: #f04444;
+}
+.lms-quiz-create .leform-properties-item .quiz-form-control label {
+    width: 100%;
+}
+.lms-quiz-create .repeater-fields .tools-div label {
+    margin: 0;
+    height: 100%;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.lms-quiz-create .leform-properties-item .quiz-form-control input[type=radio]:checked + label input[type="text"] {
+    border-color: green;
+}
 .leform-properties-content.leform-wysiwyg {display: block; clear:both;}
 .editor-add-field {cursor: pointer;}
 .quiz-form-control {width: 100%; float: left; position: relative;}
@@ -3032,6 +3012,7 @@ STYLE
 .lms-hide{display:none !important}
 .leform-form-editor input[type=checkbox] {margin-right: 5px;}
 .leform-form-editor input[type="text"] {margin-bottom: 5px;	outline: none;}
+.leform-admin-editor .input-holder input.editor-field {height: 32px; margin-bottom: 0;}
 .leform-form-editor p {margin-bottom: 0;}
 .leform-builder .leform-element-html h2 {font-weight: 700; font-size: 2rem; margin: 0;}
 .patterns-modal .modal {padding-right: 0 !important;}
@@ -3054,3 +3035,4 @@ STYLE
 .patterns-modal .media-holder h4 a {font-weight: 600;color: #333;}
 .patterns-modal .media-holder figure {margin: 0;padding: 0;position: relative;}
 .patterns-modal .media-holder figure img {max-width: 100%;object-fit: contain;}
+.question-textarea.quiz-group {padding-top: 10px;}

@@ -3125,7 +3125,8 @@ class QuestionsAttemptController extends Controller
                 
             }
         }
-
+		
+		
         if (in_array($quiz->quiz_type, $entrance_exams) && $quiz->mock_type == 'mock_practice') {
             $questions_list_data_array = $this->get_mock_practice_questions_list($quiz, $questions_list);
             $questions_list = isset($questions_list_data_array['questions_list']) ? $questions_list_data_array['questions_list'] : array();
@@ -3135,7 +3136,10 @@ class QuestionsAttemptController extends Controller
         if ($quiz->quiz_type == 'practice') {
 			if( $learning_journey == 'yes'){
 				$questions_list_data_array = $this->get_learning_jounrney_questions_list($quiz, $questions_list);
-			}else{
+			}else if( $assignment_id > 0){
+				$questions_list_data_array = $this->get_assignment_questions_list($quiz, $questions_list);
+			}
+			else{
 				$questions_list_data_array = $this->get_course_practice_questions_list($quiz, $questions_list);
 			}
             $QuizzesResultID = isset($questions_list_data_array['QuizzesResultID']) ? $questions_list_data_array['QuizzesResultID'] : 0;
@@ -3399,6 +3403,34 @@ class QuestionsAttemptController extends Controller
             'quiz_breakdown' => $quiz_breakdown,
         );
     }
+	
+	/*
+     * Returns the Assignments questions List (Quiz Type is Practice and it is assigned in course)
+     *
+     * @params Array
+     * item @ quiz Obj
+     *
+     * @return questions_list Array
+     */
+    public function get_assignment_questions_list($quiz, $questions_list)
+    {
+
+        $user = getUser();
+        $newQuizStart = QuizzesResult::where('parent_type_id', $quiz->id)->where('quiz_result_type', 'assignment')->where('user_id', $user->id)->where('status', 'waiting')->first();
+        if( isset( $newQuizStart->id)){
+            $other_data = json_decode($newQuizStart->other_data);
+            $questions_list = QuizzResultQuestions::whereIn('id', json_decode($newQuizStart->questions_list))->pluck('question_id')->toArray();
+			return array(
+                'questions_list' => $questions_list,
+                'other_data'     => $newQuizStart->other_data,
+                'QuizzesResultID' => $newQuizStart->id,
+            );
+        }
+        return array(
+            'questions_list' => $questions_list,
+        );
+    }
+	
 
     /*
      * Returns the Vocabulary questions List (Quiz Type is Vocabulary)

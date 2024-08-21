@@ -117,18 +117,37 @@
         </div>
         <i class="fas fa-plus repeater-class" data-field_id="field_dynamic_id"
            data-field_type="select"></i>
-        <label>Options</label>
-        <div class="repeater-fields">
-            <div class='quiz-form-control'>
-                <input type='radio' class="select-correct-element-field"
-                       id="correct-field_dynamic_id-option_dynamic_id" name="correct-field_dynamic_id"
-                       data-field_type="option_correct" placeholder="Correct Answere"
-                       data-field_id="field_dynamic_id">
-                <input type='text' class="element-field" data-field_type="select_option"
-                       placeholder="Select Option" data-field_id="field_dynamic_id"
-                       data-field_option_id="correct-field_dynamic_id-option_dynamic_id"><i
-                        class="fas fa-trash-alt remove-repeater-field"></i></div>
-        </div>
+				<div class="leform-properties-options-table-header">
+					<div>Label</div>
+				</div>
+				<div class="leform-properties-options-box ui-resizable">
+					<div class="leform-properties-options-container ui-sortable" data-multi="off">
+						<div class="leform-properties-options-item leform-properties-options-item">
+							<div class="leform-properties-options-table">
+								<div class="repeater-fields">
+									<div class='quiz-form-control'>
+										<div class="field-div">
+										<input type='radio' class="select-correct-element-field option-field-selected rurera-hide"
+											   id="correct-field_dynamic_id-option_dynamic_id" name="correct-field_dynamic_id"
+											   data-field_type="option_correct" placeholder="Correct Answere"
+											   data-field_id="field_dynamic_id">
+										<input type='text' class="element-field" data-field_type="select_option"
+											   placeholder="Select Option" data-field_id="field_dynamic_id"
+											   data-field_option_id="correct-field_dynamic_id-option_dynamic_id">
+									   </div>
+										<div class="tools-div">
+											<span title="Set the option as correct value">
+												<label for="correct-field_dynamic_id-option_dynamic_id"><i title="Set this as Correct Option" class="fas fa-check"></i></label>
+											</span>
+											<span title="Delete the option"><i title="Delete the option" class="remove-repeater-field fas fa-trash-alt"></i></span>
+										</div>
+								   </div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+        
     </div>
 
 

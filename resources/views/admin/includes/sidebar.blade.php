@@ -203,13 +203,14 @@
                    </a>
                </li>
            @endcan()
-            
+            @can('admin_certificate')
             <li class="nav-item {{ (request()->is('admin/custom_quiz')) ? 'active' : '' }}">
                 <a href="{{ getAdminPanelUrl('/custom_quiz') }}" class="nav-link">
                     <i class="fas fa-tasks"></i>
                     <span>Custom Quiz</span>
                 </a>
             </li>
+			@endcan()
 
             <li class="menu-header">PLANNER</li>
 

@@ -2353,15 +2353,15 @@ function toolbar_tools()
             ),
             'type'    => 'other',
             'options_elements'    => array(
-				'multichoice_template' => 'question_label,radio',
-				'multiresponse_template' => 'question_label,checkbox',
-				'true_false_template' => 'question_label,truefalse_quiz',
+				'multichoice_template' => 'question_label_multichoice_template,paragraph_multichoice_template,radio',
+				'multiresponse_template' => 'question_label_multichoice_template,paragraph_multichoice_template,checkbox',
+				'true_false_template' => 'question_label_true_false,question_label_paragraph,truefalse_quiz',
 				'short_answer_template' => 'question_label',
 				'numeric_template' => 'question_label',
-				'sequence_template' => 'question_label',
-				'matching_template' => 'question_label,match_quiz',
+				'sequence_template' => 'question_label_sequence_template,question_label_paragraph,sortable_quiz',
+				'matching_template' => 'question_label_matching_template,match_quiz',
 				'fill_blanks_template' => 'question_label',
-				'select_template' => 'question_label',
+				'select_template' => 'question_label_select_template, html_select_template',
 				'drag_word_template' => 'question_label',
 				'hotspot_template' => 'question_label',
 				'drag_drop_template' => 'question_label,draggable_quiz',
@@ -2370,6 +2370,91 @@ function toolbar_tools()
 			),
 
         ),
+		
+		/* Templates Start */
+		
+		
+		/* ----------- true_false_template Start */
+        'question_label_true_false'  => array(
+            'title' => esc_html__('question_label_true_false', 'leform'),
+            'icon'  => 'fa fa-plus',
+            'classes' => 'rurera-hide',
+            'type'  => 'other'
+        ),
+		
+		'question_label_paragraph'  => array(
+            'title' => esc_html__('question_label_paragraph', 'leform'),
+            'icon'  => 'fa fa-plus',
+            'classes' => 'rurera-hide',
+            'type'  => 'other'
+        ),
+		
+		/* true_false_template Ends ----------- */
+		
+		
+		
+		/* ----------- multichoice_template Start */
+        'question_label_multichoice_template'  => array(
+            'title' => esc_html__('question_label_multichoice_template', 'leform'),
+            'icon'  => 'fa fa-plus',
+            'classes' => 'rurera-hide',
+            'type'  => 'other'
+        ),
+		
+		'paragraph_multichoice_template'  => array(
+            'title' => esc_html__('paragraph_multichoice_template', 'leform'),
+            'icon'  => 'fa fa-plus',
+            'classes' => 'rurera-hide',
+            'type'  => 'other'
+        ),
+		
+		
+		/* multichoice_template Ends ----------- */
+		
+		
+		/* ----------- sequence_template Start */
+        'question_label_sequence_template'  => array(
+            'title' => esc_html__('question_label_sequence_template', 'leform'),
+            'icon'  => 'fa fa-plus',
+            'classes' => 'rurera-hide',
+            'type'  => 'other'
+        ),
+		
+		/* sequence_template Ends ----------- */
+		
+		
+		/* ----------- select_template Start */
+        'question_label_select_template'  => array(
+            'title' => esc_html__('question_label_select_template', 'leform'),
+            'icon'  => 'fa fa-plus',
+            'classes' => 'rurera-hide',
+            'type'  => 'other'
+        ),
+		'html_select_template'  => array(
+            'title' => esc_html__('html_select_template', 'leform'),
+            'icon'  => 'fa fa-plus',
+            'classes' => 'rurera-hide',
+            'type'  => 'other'
+        ),
+		
+		/* select_template Ends ----------- */
+		
+		/* ----------- matching_template Start */
+        'question_label_matching_template'  => array(
+            'title' => esc_html__('question_label_matching_template', 'leform'),
+            'icon'  => 'fa fa-plus',
+            'classes' => 'rurera-hide',
+            'type'  => 'other'
+        ),
+		
+		/* matching_template Ends ----------- */
+		
+		
+		
+		/* Templates Ends */
+		
+		
+		
         'html'               => array(
             'title' => esc_html__('HTML', 'leform'),
             'icon'  => 'fas fa-code',
@@ -5459,7 +5544,7 @@ function element_properties_meta($chapters)
             )
         ),
 
-        'checkbox' => array(
+        'checkbox' => array( //checkbox quiz
             'basic'   => array(
                 'type'  => 'tab',
                 'value' => 'basic',
@@ -5476,7 +5561,7 @@ function element_properties_meta($chapters)
                 'type'  => 'hidden'
             ),
             'label'   => array(
-                'value'   => esc_html__('Mark one answer', 'leform'),
+                'value'   => esc_html__('Mark two answers', 'leform'),
                 'label'   => esc_html__('Label', 'leform'),
                 'tooltip' => esc_html__('This is the label of the field.', 'leform'),
                 'type'    => 'text'
@@ -5497,6 +5582,16 @@ function element_properties_meta($chapters)
                     array(
                         'value' => 'Option 3',
                         'label' => 'Option 3',
+                        'image' => ''
+                    ),
+                    array(
+                        'value' => 'Option 4',
+                        'label' => 'Option 4',
+                        'image' => ''
+                    ),
+                    array(
+                        'value' => 'Option 5',
+                        'label' => 'Option 5',
                         'image' => ''
                     )
                 ),
@@ -5529,7 +5624,7 @@ function element_properties_meta($chapters)
                     )
             ),
             'template_style'     => array(
-                'value'   => 'rurera-in-row',
+                'value'   => 'rurera-in-cols',
                 'label'   => esc_html__('Template Style', 'leform'),
                 '',
                 'type'    => 'select',
@@ -5687,7 +5782,7 @@ function element_properties_meta($chapters)
                 'type'  => 'hidden'
             ),
             'label'   => array(
-                'value'   => esc_html__('Arrange', 'leform'),
+                'value'   => esc_html__('Arrange the following', 'leform'),
                 'label'   => esc_html__('Label', 'leform'),
                 'tooltip' => esc_html__('This is the label of the field.', 'leform'),
                 'type'    => 'text'
@@ -7100,6 +7195,221 @@ function element_properties_meta($chapters)
 
 
         ),
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		/* Templates Start */
+		
+		
+		/* ----------- true_false_template Start */
+        'question_label_true_false' => array(
+            'basic'         => array(
+                'type'  => 'tab',
+                'value' => 'basic',
+                'label' => esc_html__('Basic', 'leform')
+            ),
+            'content'       => array(
+                'value' => esc_html__('Mark the following true and false :', 'leform'),
+                'label' => esc_html__('Name', 'leform'),
+                'type'  => 'html'
+            ),
+            'elements_data' => array(
+                'value'   => '',
+                'label'   => '',
+                'tooltip' => '',
+                'type'    => 'elements_data'
+            ),
+        ),
+		
+		'question_label_paragraph' => array(
+            'basic'         => array(
+                'type'  => 'tab',
+                'value' => 'basic',
+                'label' => esc_html__('Basic', 'leform')
+            ),
+            'content'       => array(
+                'value'   => "<p>When we round 6,600,000 to the nearest million it is 7,000,000</p>",
+                'label'   => esc_html__('Content', 'leform'),
+                'tooltip' => '',
+                'type'    => 'html'
+            ),
+            'elements_data' => array(
+                'value'   => '',
+                'label'   => '',
+                'tooltip' => '',
+                'type'    => 'elements_data'
+            ),
+
+        ),
+		
+		/* true_false_template Ends ----------- */
+		
+		/* ----------- multichoice_template Start */
+        
+		'question_label_multichoice_template' => array(
+            'basic'         => array(
+                'type'  => 'tab',
+                'value' => 'basic',
+                'label' => esc_html__('Basic', 'leform')
+            ),
+            'content'       => array(
+                'value' => esc_html__('Choose the correct Option', 'leform'),
+                'label' => esc_html__('Name', 'leform'),
+                'type'  => 'html'
+            ),
+            'elements_data' => array(
+                'value'   => '',
+                'label'   => '',
+                'tooltip' => '',
+                'type'    => 'elements_data'
+            ),
+        ),
+		
+		'paragraph_multichoice_template' => array(
+            'basic'         => array(
+                'type'  => 'tab',
+                'value' => 'basic',
+                'label' => esc_html__('Basic', 'leform')
+            ),
+            'content'       => array(
+                'value'   => "<p><b>When we round 9,780,000 to the nearest million we get</b></p>",
+                'label'   => esc_html__('Content', 'leform'),
+                'tooltip' => '',
+                'type'    => 'html'
+            ),
+            'elements_data' => array(
+                'value'   => '',
+                'label'   => '',
+                'tooltip' => '',
+                'type'    => 'elements_data'
+            ),
+
+        ),
+		
+		
+		/* multichoice_template Ends ----------- */
+		
+		/* ----------- sequence_template Start */
+		
+		'question_label_sequence_template' => array(
+            'basic'         => array(
+                'type'  => 'tab',
+                'value' => 'basic',
+                'label' => esc_html__('Basic', 'leform')
+            ),
+            'content'       => array(
+                'value' => esc_html__('Arrange options in correct sequence ', 'leform'),
+                'label' => esc_html__('Name', 'leform'),
+                'type'  => 'html'
+            ),
+            'elements_data' => array(
+                'value'   => '',
+                'label'   => '',
+                'tooltip' => '',
+                'type'    => 'elements_data'
+            ),
+        ),
+		
+		/* sequence_template Ends ----------- */
+		
+		
+		/* ----------- select_template Start */
+		
+		'question_label_select_template' => array(
+            'basic'         => array(
+                'type'  => 'tab',
+                'value' => 'basic',
+                'label' => esc_html__('Basic', 'leform')
+            ),
+            'content'       => array(
+                'value' => esc_html__('Read this abstract and choose one correct answer in each drop-down list ', 'leform'),
+                'label' => esc_html__('Name', 'leform'),
+                'type'  => 'html'
+            ),
+            'elements_data' => array(
+                'value'   => '',
+                'label'   => '',
+                'tooltip' => '',
+                'type'    => 'elements_data'
+            ),
+        ),
+		
+		'html_select_template'           => array(
+            'basic'         => array(
+                'type'  => 'tab',
+                'value' => 'basic',
+                'label' => esc_html__('Basic', 'leform')
+            ),
+            'content'       => array(
+                'value'   => '<div style="text-align: left;">The most&nbsp; <span class="select-box quiz-input-group">
+        <select class="editor-field small" data-id="68784" data-options="WyJPcHRpb24gMSIsIk9wdGlvbiAyIiwiT3B0aW9uIDMiXQ==" data-field_type="select" id="field-68784" data-correct="WyJPcHRpb24gMSJd" data-score="" score="" data-field_size="small" data-select_option="Option 1"><option value="Option 1">Option 1</option><option value="Option 2">Option 2</option><option value="Option 3">Option 3</option></select>
+</span>&nbsp;area of the mountain is often considered to be the Khumbu<span class="select-box quiz-input-group">
+        <select class="editor-field" data-id="14049" data-options="WyJPcHRpb24gMSIsIk9wdGlvbiAyIiwiT3B0aW9uIDMiXQ==" data-field_type="select" id="field-14049" data-correct="WyJPcHRpb24gMSJd" data-select_option="Option 3"><option value="Option 1">Option 1</option><option value="Option 2">Option 2</option><option value="Option 3">Option 3</option></select>
+</span>. Which is particularly dangerous due to the <span class="select-box quiz-input-group">
+        <select class="editor-field" data-id="95730" data-options="WyIgT3B0aW9uIDEgT3B0aW9uIDEgT3B0aW9uIDEgT3B0aW9uIDEgT3B0aW9uIDEgT3B0aW9uIDEiLCJPcHRpb24gMiIsIk9wdGlvbiAzIl0=" data-field_type="select" id="field-95730" data-correct="WyJPcHRpb24gMSJd" data-select_option=" Option 1 Option 1 Option 1 Option 1 Option 1 Option 1"><option value=" Option 1 Option 1 Option 1 Option 1 Option 1 Option 1"> Option 1 Option 1 Option 1 Option 1 Option 1 Option 1</option><option value="Option 2">Option 2</option><option value="Option 3">Option 3</option></select>
+</span> movement of&nbsp;the&nbsp;Ice&nbsp;Fall.</div>',
+                'label'   => esc_html__('Content', 'leform'),
+                'tooltip' => '',
+                'type'    => 'html_toolbar'
+            ),
+            'elements_data' => array(
+                'value'   => '',
+                'label'   => '',
+                'tooltip' => '',
+                'type'    => 'elements_data'
+            ),
+
+        ),
+		
+		/* select_template Ends ----------- */
+		
+		/* ----------- matching_template Start */
+		
+		'question_label_matching_template' => array(
+            'basic'         => array(
+                'type'  => 'tab',
+                'value' => 'basic',
+                'label' => esc_html__('Basic', 'leform')
+            ),
+            'content'       => array(
+                'value' => esc_html__('Match each type of option on the left with a corresponding function on the right. ', 'leform'),
+                'label' => esc_html__('Name', 'leform'),
+                'type'  => 'html'
+            ),
+            'elements_data' => array(
+                'value'   => '',
+                'label'   => '',
+                'tooltip' => '',
+                'type'    => 'elements_data'
+            ),
+        ),
+		
+		/* matching_template Ends ----------- */
+		
+		
+		
+		
+		
+		/* Templates Ends */
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+        
         'question_label' => array(
             'basic'         => array(
                 'type'  => 'tab',

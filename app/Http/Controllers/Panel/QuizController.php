@@ -385,12 +385,12 @@ class QuizController extends Controller
         $journey_item_id = $request->get('journey_item_id', 'no');
 		$test_type = $request->get('test_type', '');
 		$test_type = ( $test_type == 'spelling' )? '' : $test_type;
+		$test_type = ( $test_type == 'test' )? '' : $test_type;
 		$question_ids = $request->get('question_ids', []);
 		$is_new = $request->get('is_new', 'no');
 		$question_ids = is_array( $question_ids )? $question_ids : json_decode($question_ids);
 		$test_type_file = get_test_type_file($test_type);
 		
-
         $no_of_questions = 0;
 
 

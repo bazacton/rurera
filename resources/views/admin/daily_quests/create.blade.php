@@ -670,7 +670,7 @@
                         <div class="card-body">
 
                             <form action="/admin/daily_quests/{{ !empty($assignment) ? $assignment->id.'/update' : 'store' }}"
-                                  method="Post" class="rurera-form-validation">
+                                  method="Post" class="rurera-form-validation1">
                                 {{ csrf_field() }}
 
                                 <div class="row col-lg-12 col-md-12 col-sm-4 col-12">

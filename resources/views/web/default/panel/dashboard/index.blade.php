@@ -160,14 +160,14 @@
 
 
 <div class="quests-list quests-learning mt-30">
-	<div class="section-title text-left mb-30">
-		<h2 class="font-22">Weekly Learning Journeys</h2>
-	</div>
 	@if( $quests->count() > 0)
+		<div class="section-title text-left mb-30">
+			<h2 class="font-22">Weekly Learning Journeys</h2>
+		</div>
 	<ul>
 		@foreach( $quests as $questObj)
 		
-			@php $questUserData = $DailyQuestsController->getQuestUserData($questObj);
+			@php
 
 			$questUserData = $DailyQuestsController->getQuestUserData($questObj);
 			$resultsRecords = isset( $questUserData['resultsRecords'] )? $questUserData['resultsRecords'] : array();

@@ -53,7 +53,7 @@ $total_questions = count(json_decode($quizAttempt->questions_list));
                         @endif
                     </div>
                     @endif
-                    <span class="questions-total-holder d-block mb-30"><span class="question-dev-details">({{ $question->id }})@if($layout_type != 'results') ({{ $question->id }}) @endif  ({{ $question->question_difficulty_level }}) ({{ $question->question_type }}) ({{ isset( $question->subChapter->id)? $question->subChapter->sub_chapter_title : '' }})</span></span>
+                    <span class="questions-total-holder d-block mb-30"><span class="question-dev-details">({{ $question->id }}) ({{ $question->question_difficulty_level }}) ({{ $question->question_type }})</span></span>
 
                         @if($layout_type != 'results')
                         <span class="question-number-holder" style="z-index: 999999999;"> <span class="question-number">{{$question_no}}</span>
@@ -81,7 +81,7 @@ $total_questions = count(json_decode($quizAttempt->questions_list));
 
                     <div class="prev-next-controls text-center mb-50 questions-nav-controls">
                         @if( !isset( $disable_finish ) || $disable_finish == 'false')
-                        <a href="javascript:;" data-toggle="modal" class="review-btn rurera-hide" data-target="#review_submit">
+                        <a href="javascript:;" data-toggle="modal" class="review-btn rurera-hide1" data-target="#review_submit">
                             Finish
                             <svg style="width: 22px;height: 22px;" xmlns="http://www.w3.org/2000/svg" version="1.0"
                                  width="512.000000pt" height="512.000000pt"

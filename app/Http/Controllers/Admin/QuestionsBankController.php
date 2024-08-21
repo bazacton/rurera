@@ -86,7 +86,7 @@ class QuestionsBankController extends Controller
         removeContentLocale();
 
         $query = QuizzesQuestion::query();
-        if(auth()->user()->isTeacher()){
+        if(!auth()->user()->isAdminRole()){
             //$query = $query->where('creator_id', auth()->user()->id);
         }
 
@@ -141,7 +141,7 @@ class QuestionsBankController extends Controller
         $chapters_list = get_chapters_list();
 
         $data = [
-            'pageTitle'           => trans('admin/pages/quiz.admin_quizzes_list') ,
+            'pageTitle'           => 'Questions List' ,
             'questions'           => $questions ,
             'totalQuestions'      => $totalQuestions ,
             'totalInReview'       => $totalInReview ,
@@ -2688,6 +2688,26 @@ class QuestionsBankController extends Controller
                 'action_at'   => time()
             ]);
         }
+		
+		$subChapterObj = SubChapters::find($quistionObj->sub_chapter_id);
+		$sub_chapter_quiz_id = isset( $subChapterObj->quizData->item_id )? $subChapterObj->quizData->item_id : 0;
+		
+		if( $sub_chapter_quiz_id > 0){
+			
+			$list_counts = QuizzesQuestionsList::where('question_id', $new_question->id)->where('quiz_id',$sub_chapter_quiz_id)->count();
+			if( $list_counts == 0){
+				QuizzesQuestionsList::create([
+					'quiz_id'     => $sub_chapter_quiz_id,
+					'question_id' => $new_question->id,
+					'status'      => 'active',
+					'sort_order'  => 0,
+					'created_by'  => $user->id,
+					'created_at'  => time()
+				]);
+			}
+		}
+		
+		
         $redirectUrl = '/admin/questions_bank/' . $question_id . '/edit';
         //$redirectUrl = '/admin/questions_bank/';
         return response()->json([
@@ -2805,7 +2825,7 @@ class QuestionsBankController extends Controller
         $time_passed = TimeDifference($created_at , time() , 'minutes');
 
 
-        if (($question->question_status != 'Draft' && $question->question_status != 'Improvement required') && auth()->user()->isAuthor()) {
+        /*if (($question->question_status != 'Draft' && $question->question_status != 'Improvement required') && auth()->user()->isAuthor()) {
             if ($user->id != $question->creator_id || $time_passed > 20 || in_array($question->question_status , array('Submit for review' , 'Improvement required')) == false) {
                 $toastData = [
                     'title'  => 'Request not completed' ,
@@ -2814,7 +2834,7 @@ class QuestionsBankController extends Controller
                 ];
                 return redirect()->back()->with(['toast' => $toastData]);
             }
-        }
+        }*/
 
         $query = Webinar::query();
 
@@ -3155,6 +3175,7 @@ class QuestionsBankController extends Controller
 
     public function duplicate(Request $request , $id)
     {
+		$user = auth()->user();
         $question = QuizzesQuestion::findOrFail($id);
         $question_title_new = $question->question_title . ' - Duplicate';
         $question->load('listQuestions');
@@ -3181,6 +3202,22 @@ class QuestionsBankController extends Controller
                 'correct' => '' ,
             ]);
         }
+		
+		$subChapterObj = SubChapters::find($new_question->sub_chapter_id);
+		$sub_chapter_quiz_id = isset( $subChapterObj->quizData->item_id )? $subChapterObj->quizData->item_id : 0;
+		
+		if( $sub_chapter_quiz_id > 0){
+			QuizzesQuestionsList::create([
+				'quiz_id'     => $sub_chapter_quiz_id,
+				'question_id' => $new_question->id,
+				'status'      => 'active',
+				'sort_order'  => 0,
+				'created_by'  => $user->id,
+				'created_at'  => time()
+			]);
+		}
+		
+		
         //pre($new_question);
         return redirect()->back();
     }

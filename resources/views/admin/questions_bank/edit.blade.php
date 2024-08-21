@@ -151,16 +151,22 @@ $rand_id = rand(999,99999);
                                                                             </li>
                                                                             ';
                                                                             } else {
-                                                                                $classes = isset( $value['classes'] )? $value['classes'] : '';
-                                                                                echo '
-                                                                                    <li class="leform-toolbar-tool-' . esc_html($value['type']) . ' '.$classes.'"
-                                                                                        title="' . esc_html($value['title']) . '" data-type="' . esc_html($key) . '"><a
-                                                                                                href="#"
-                                                                                                title="' . esc_html($value['title']) . '"><is
-                                                                                                    class="' . esc_html($value['icon']) . '"></is></a>
-                                                                                    </li>
-                                                                                ';
-                                                                                }
+                                                                            $classes = isset( $value['classes'] )? $value['classes'] : '';
+																			
+																			$icon = '<i class="' . esc_html($value['icon']) . '"></i>';
+																			if( isset( $value['icon_type'] ) && $value['icon_type'] == 'svg'){
+																				$icon = '<img src="/assets/admin/img/tools-elements/' . esc_html($value['icon']) . '" width="15">';
+																			}
+																			
+																			
+                                                                            echo '
+                                                                            <li class="leform-toolbar-tool-' . esc_html($value['type']) . ' '.$classes.'"
+                                                                                title="' . esc_html($value['title']) . '" data-type="' . esc_html($key) . '"><a
+                                                                                        href="#"
+                                                                                        title="' . esc_html($value['title']) . '">'.$icon.'</a>
+                                                                            </li>
+                                                                            ';
+                                                                            }
                                                                                 }
                                                                                 @endphp
 
@@ -711,7 +717,7 @@ $rand_id = rand(999,99999);
                                     </div>
                                 </div>
 
-                                @if(auth()->user()->isAuthor())
+                                
                                 <div class="col-12 col-md-12">
                                     <div class="form-group">
                                         <label class="input-label">Comments for Reviewer</label><br>
@@ -720,7 +726,6 @@ $rand_id = rand(999,99999);
                                                   name="comments_for_reviewer" aria-multiline="true"></textarea>
                                     </div>
                                 </div>
-                                @endif
                             </div>
 
                             <div class="tab-pane mt-3 fade" id="glossary_solution" role="tabpanel"
@@ -773,6 +778,7 @@ $rand_id = rand(999,99999);
 
 
 
+
                                     <div class="question-area">
                                         <div class="question-step question-step-0" data-elapsed="0"
                                              data-qattempt="0"
@@ -783,10 +789,27 @@ $rand_id = rand(999,99999);
                                                 <form class="question-fields" action="javascript:;" data-question_id="0">
                                                     <div class="left-content has-bg">
 
+														<div class="quiz-status-bar">
+															<div class="quiz-questions-bar-holder">
+																
+																<div class="quiz-questions-bar">
+																	<span class="value-lable" data-title="Target" style="left:90%"><span>90%</span></span>
+																	<span class="bar-fill" title="0%" style="width: 0%;"></span>
+																</div>
+																<span class="coin-numbers">
+																	<img src="/assets/default/img/quests-coin.png" alt="">
+																	<span class="total-earned-coins">0</span>
+																</span>
+															</div>
+															<div class="quiz-corrects-incorrects">
+																<span class="quiz-corrects">0</span>
+																<span class="quiz-incorrects">0</span>
+															</div>
+														</div>
+													
                                                         <span class="question-number-holder" style="z-index: 999999999;"> <span class="question-number">1</span>
-                                                            <span class="question-icon flag-question notflaged" data-qresult_id="1891" data-question_id="837">
-                                                                <svg style="width: 42px;height: 42px;" xmlns="http://www.w3.org/2000/svg" version="1.0" width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet"> <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none"> <path d="M1620 4674 c-46 -20 -77 -50 -103 -99 l-22 -40 -3 -1842 -2 -1843 -134 0 c-120 0 -137 -2 -177 -23 -24 -13 -57 -43 -74 -66 -27 -39 -30 -50 -30 -120 0 -66 4 -83 25 -114 14 -21 43 -50 64 -65 l39 -27 503 0 502 0 44 30 c138 97 118 306 -34 370 -27 11 -73 15 -168 15 l-130 0 0 750 0 750 1318 2 1319 3 40 28 c83 57 118 184 75 267 -10 19 -140 198 -290 398 -170 225 -270 367 -265 375 4 7 128 174 276 372 149 197 276 374 283 392 19 45 17 120 -5 168 -23 51 -79 101 -128 114 -26 7 -459 11 -1330 11 l-1293 0 0 20 c0 58 -56 137 -122 171 -45 23 -128 25 -178 3z"></path> </g> </svg> </span>
                                                         </span>
+
 
                                                         @php $classes = isset( $class )? $class : ''; @endphp
                                                         <div id="leform-form-1"
@@ -794,7 +817,6 @@ $rand_id = rand(999,99999);
                                                              _data-parent="1"
                                                              _data-parent-col="0" style="display: block;">
                                                             <div class="question-layout">
-                                                                <span class="marks" data-marks="5">5 marks</span>
                                                                 <div class="question-layout-data"></div>
                                                             </div>
 
@@ -804,7 +826,7 @@ $rand_id = rand(999,99999);
                                                         <div class="prev-next-controls text-center questions-nav-controls">
 
                                                             @if( !isset( $disable_finish ) || $disable_finish == 'false')
-                                                            <a href="javascript:;" data-toggle="modal" class="review-btn {{isset($rev_btn_class)? $rev_btn_class : ''}}" data-target="#review_submit">
+                                                            <a href="javascript:;" data-toggle="modal" class=" review-btn {{isset($rev_btn_class)? $rev_btn_class : ''}}" data-target="#review_submit">
                                                                 Finish
                                                                 <svg style="width: 22px;height: 22px;" xmlns="http://www.w3.org/2000/svg" version="1.0"
                                                                      width="512.000000pt" height="512.000000pt"
@@ -820,7 +842,7 @@ $rand_id = rand(999,99999);
 
                                                             @php $prev_class = (isset( $prev_question ) && $prev_question > 0)? '' : ''; @endphp
                                                             @if( !isset( $disable_prev ) || $disable_prev == 'false')
-                                                            <a href="javascript:;" id="prev-btn" class="{{$prev_class}} prev-btn {{isset( $prev_btn_class)? $prev_btn_class : ''}}"
+                                                            <a href="javascript:;" id="prev-btn" class="rurera-hide {{$prev_class}} prev-btn {{isset( $prev_btn_class)? $prev_btn_class : ''}}"
                                                                data-question_id="0">
                                                                 <svg style="width: 22px;height: 22px;" xmlns="http://www.w3.org/2000/svg" version="1.0"
                                                                      width="512.000000pt" height="512.000000pt"
@@ -835,7 +857,7 @@ $rand_id = rand(999,99999);
                                                             @endif
                                                             @php $next_class = (isset( $next_question ) && $next_question > 0)? '' : ''; @endphp
                                                             @if( !isset( $disable_next ) || $disable_next == 'false')
-                                                            <a href="javascript:;" id="next-btn" class="{{$next_class}} next-btn {{isset( $next_btn_class)? $next_btn_class : ''}}"
+                                                            <a href="javascript:;" id="next-btn" class="rurera-hide {{$next_class}} next-btn {{isset( $next_btn_class)? $next_btn_class : ''}}"
                                                                data-question_id="0">
                                                                 Next
                                                                 <svg style="width: 22px;height: 22px;" xmlns="http://www.w3.org/2000/svg" version="1.0"

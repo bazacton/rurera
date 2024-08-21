@@ -204,7 +204,7 @@ class Webinar extends Model implements TranslatableContract
 
     public function lerningJourney()
     {
-        return $this->hasOne('App\Models\LearningJourneys', 'subject_id', 'id');
+        return $this->hasMany('App\Models\LearningJourneys', 'subject_id', 'id');
     }
 
     public function noticeboards()

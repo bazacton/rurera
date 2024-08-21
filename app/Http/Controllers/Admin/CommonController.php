@@ -298,6 +298,7 @@ class CommonController extends Controller
         $year_id = $request->get('year_id', null);
         $quiz_type = $request->get('quiz_type', null);
 
+		
         if ($quiz_type == 'practice') {
 
             $response = $this->get_subjects_by_year($year_id);
@@ -464,7 +465,7 @@ class CommonController extends Controller
 
     public function get_subjects_by_year($year_id)
     {
-        $courses = Webinar::where('category_id', $year_id)->with('chapters.subChapters')->get();
+        $courses = Webinar::whereJsonContains('category_id', $year_id)->with('chapters.subChapters')->get();
 
         $subjects_response = '';
         if (!empty($courses)) {

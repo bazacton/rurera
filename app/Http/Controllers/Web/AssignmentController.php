@@ -256,6 +256,7 @@ class AssignmentController extends Controller
 		
 		$questions_list = isset($questions_list_data_array['questions_list']) ? $questions_list_data_array['questions_list'] : array();
 		
+		
         $timer_hide = false;
 
         /*$total_attempted = QuizzesResult::where('parent_type_id', $quiz->id)->where('user_id', $user->id)->where('status', '!=', 'waiting')->count();
@@ -269,6 +270,7 @@ class AssignmentController extends Controller
         }*/
 
         $newQuizStart = QuizzesResult::where('parent_type_id', $UserAssignedTopicsObj->id)->where('user_id', $user->id)->where('status', 'waiting')->first();
+
 
 
         $selectedQuestionsList = array_values($selectedQuestionsList);

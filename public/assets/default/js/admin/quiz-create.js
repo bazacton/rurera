@@ -7649,7 +7649,7 @@ $(document).on('click','.editor-add-field',function(){
     }
     if( field_type == 'select'){
         field_data = '<span class="quiz-input-group">\n\
-        <select class="editor-field" data-id="'+random_id+'" data-field_type="select" id="field-'+random_id+'"></select>\n\</span>';
+        <select class="editor-field small" data-id="'+random_id+'" data-field_type="select" id="field-'+random_id+'"></select>\n\</span>';
     }
     
     if( field_type == 'fraction'){

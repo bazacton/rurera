@@ -208,9 +208,6 @@ class LearningJourneyController extends Controller
             
         } else {
 			
-			
-			
-			
 			$LearningJourney = LearningJourneys::create([
                 'year_id'         => $category_id,
                 'subject_id'      => $subject_id,

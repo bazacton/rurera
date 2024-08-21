@@ -64,7 +64,7 @@ class LearningJourneyController extends Controller
 		$category_slug = $categoryObj->slug;
 		//orderBy('sort_order', 'ASC')
 		$course = Webinar::where('slug', $subject_slug)->whereJsonContains('category_id', (string) $categoryObj->id)->first();
-		$lerningJourney = $course->lerningJourney;
+		$lerningJourney = $course->lerningJourney->where('year_id', $user->year_id)->first();
 		$student_learning_journey = $this->student_learning_journey($user->id, $lerningJourney->learningJourneyLevels);
 		
 		$items_data = isset( $student_learning_journey['items_data'] )? $student_learning_journey['items_data'] : array();
@@ -177,7 +177,7 @@ class LearningJourneyController extends Controller
 	/*
      * Start Learning Journey
      */
-    public function start(Request $request, $subject_slug, $sub_chapter_slug, $journey_item_id)
+    public function start(Request $request, $year_slug, $subject_slug, $sub_chapter_slug)
     {
         if (!auth()->subscription('courses')) {
             return view('web.default.quizzes.not_subscribed');
@@ -194,15 +194,16 @@ class LearningJourneyController extends Controller
                     ->first();
 					
 
-
         $chapterItem = WebinarChapterItem::where('type', 'quiz')
             ->where('parent_id', $SubChapters->id)
             ->first();
+		pre($SubChapters);
 			
 
         $id = isset($chapterItem->item_id) ? $chapterItem->item_id : 0;
 
         $quiz = Quiz::find($id);
+		
 
         $QuestionsAttemptController = new QuestionsAttemptController();
         //$started_already = $QuestionsAttemptController->started_already($id);

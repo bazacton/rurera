@@ -90,7 +90,7 @@ $practice_time = 0;
 
         <div class="container questions-data-block read-quiz-content"
              data-total_questions="{{$quizQuestions->count()}}">
-            @php $top_bar_class = 'rurera-hide'; @endphp
+            @php $top_bar_class = ''; @endphp
 
             <section class="quiz-topbar {{$top_bar_class}}">
                 <div class="container-fluid">
@@ -104,7 +104,7 @@ $practice_time = 0;
                         </div>
                         <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12">
                             <div class="topbar-right">
-                                   <div class="quiz-pagination ">
+                                   <div class="quiz-pagination rurera-hide">
                                        <div class="swiper-container">
                                        <ul class="swiper-wrapper disabled-div">
                                            @if( !empty( $questions_list ) )
@@ -144,7 +144,7 @@ $practice_time = 0;
 
 
             <div class="justify-content-center">
-                <div class="col-lg-9 col-md-12 col-sm-12 mt-50 mx-auto">
+                <div class="col-lg-9 col-md-12 col-sm-12 mt-100 mx-auto">
                     <div class="question-step quiz-complete" style="display:none">
                         <div class="question-layout-block">
                             <div class="left-content has-bg">
@@ -167,7 +167,7 @@ $practice_time = 0;
                             
                             <div class="quiz-questions-bar">
 								@if( $target_score > 0)
-									<span class="value-lable" title="Target" style="left:{{$target_score}}%">{{$target_score}}%</span>
+									<span class="value-lable" data-title="Target" style="left:{{$target_score}}%"><span>{{$target_score}}%</span></span>
 								@endif
                                 <span class="bar-fill" title="" style="width: 0%;"></span>
                             </div>

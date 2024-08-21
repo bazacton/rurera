@@ -30,7 +30,7 @@ $stage_link = '/'.$category_slug.'/'.$subject_slug.'/'.$itemObj->topic->sub_chap
 @if($itemObj->item_type == 'treasure')
 	<li class="treasure {{$li_type_class}} {{$is_last_class}}">
 		<a href="javascript:;">
-			<span class="thumb-box rurera-tooltip"><img src="/assets/default/img/{{$treasure_icon}}" alt=""></span>
+			<span class="thumb-box rurera-tooltip dropup"><img src="/assets/default/img/{{$treasure_icon}}" alt=""></span>
 		</a>
 	</li>
 @else
@@ -47,7 +47,7 @@ $stage_link = '/'.$category_slug.'/'.$subject_slug.'/'.$itemObj->topic->sub_chap
 		</div>
 		@endif
 
-		<a href="javascript:;" class="locked_nugget rurera-tooltip" data-id="nugget_1_1_1" title="{{$item_counter}}{{$itemObj->topic->sub_chapter_title}}"><img src="/assets/default/img/{{$stage_icon}}" alt="">
+		<a href="javascript:;" class="locked_nugget rurera-tooltip dropup" data-id="nugget_1_1_1" title="{{$item_counter}}{{$itemObj->topic->sub_chapter_title}}"><img src="/assets/default/img/{{$stage_icon}}" alt="">
 		<div class="lms-tooltip">
 			<div class="tooltip-box">
 			
