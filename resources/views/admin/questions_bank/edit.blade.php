@@ -5,7 +5,6 @@ $element_properties_meta    = element_properties_meta($chapters);
 $tabs_options    = tabs_options();
 $rand_id = rand(999,99999);
 
-
 @endphp
 
 
@@ -20,63 +19,81 @@ $rand_id = rand(999,99999);
 <script src="/assets/default/js/admin/question-create.js?ver={{$rand_id}}"></script>
 <link rel="stylesheet" href="/assets/default/vendors/bootstrap-tagsinput/bootstrap-tagsinput.min.css">
 <style>
+    .droppable_area {
+        width: 150px;
+        height: 50px;
+        border: 1px solid #efefef;
+        display: inline-block;
+    }
     .image-field, .image-field-box {
         width: fit-content;
     }
-
     .image-field img, .containment-wrapper {
         position: relative !important;
     }
-
     .image-field-box {
         position: absolute !important;
     }
+    /*.draggable3 {
+        width: 150px;
+    }*/
+    .spreadsheet-area {
+        border: 1px solid #efefef;
+        padding: 10px;
+        background: #fff;
+        height: 200px;
+    }
     .question-layout-data .leform-element{
-            outline: none !important;
-        }
+        outline: none !important;
+    }
     .navbar-bg {
-            display: none;
-        }
-        nav.navbar.navbar-expand-lg.main-navbar {
-            display: none;
-        }
+        display: none;
+    }
+    nav.navbar.navbar-expand-lg.main-navbar {
+        display: none;
+    }
 </style>
 @endpush
 
 @section('content')
 
-<section class="section form-class" data-question_save_type="update_question">
-    
+<section class="section form-class" data-question_save_type="store_question">
+
+
     <div class="section-body lms-quiz-create">
+        
+        <div class="row">
+		<div class="col-12 col-md-12 col-lg-12">
+        
+                        <ul class="col-10 col-md-10 col-lg-10 admin-rurera-tabs nav nav-pills" id="assignment_tabs" role="tablist">
+                            <li class="nav-item">
+                               <a class="nav-link active" id="question_properties-tab" data-toggle="tab" href="#question_properties" role="tab"
+                                  aria-controls="question_properties" aria-selected="false"><span class="tab-title">Question Properties</span></a>
+                           </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="question_design-tab" data-toggle="tab" href="#question_design" role="tab"
+                                   aria-controls="question_design" aria-selected="true"><span class="tab-title">Question Design</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="glossary_solution-tab" data-toggle="tab"
+                                   href="#glossary_solution" role="tab"
+                                   aria-controls="glossary_solution" aria-selected="true"><span class="tab-title">Glossary & Solution</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="review_required_tab-tab" data-toggle="tab"
+                                   href="#review_required_tab" role="tab"
+                                   aria-controls="review_required_tab" aria-selected="true"><span class="tab-title">Comments for Reviewer</span></a>
+                            </li>
 
-
-        <div class="row col-12 col-md-12 col-lg-12">
-
-                <ul class="col-10 col-md-10 col-lg-10 admin-rurera-tabs nav nav-pills" id="assignment_tabs" role="tablist">
-                    <li class="nav-item">
-                       <a class="nav-link active" id="question_properties-tab" data-toggle="tab" href="#question_properties" role="tab"
-                          aria-controls="question_properties" aria-selected="false"><span class="tab-title">Question Properties</span></a>
-                   </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="question_design-tab" data-toggle="tab" href="#question_design" role="tab"
-                           aria-controls="question_design" aria-selected="true"><span class="tab-title">Question Design</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="glossary_solution-tab" data-toggle="tab"
-                           href="#glossary_solution" role="tab"
-                           aria-controls="glossary_solution" aria-selected="true"><span class="tab-title">Glossary & Solution</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="question_preview-tab" data-toggle="tab"
-                           href="#question_preview" role="tab"
-                           aria-controls="question_design" aria-selected="true"><span class="tab-title">Question Preview</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="activities-tab" data-toggle="tab" href="#activities" role="tab"
-                           aria-controls="activities" aria-selected="false"><span class="tab-title">Activities</span></a>
-                    </li>
-                </ul>
-            </div>
+                            <li class="nav-item">
+                                <a class="nav-link" id="question_preview-tab" data-toggle="tab"
+                                   href="#question_preview" role="tab"
+                                   aria-controls="question_design" aria-selected="true"><span class="tab-title">Question Preview</span></a>
+                            </li>
+                           
+                        </ul>
+			</div>
+			</div>
 
 
         <div class="row">
@@ -88,10 +105,199 @@ $rand_id = rand(999,99999);
                 <div class="card">
                     <div class="card-body">
 
+
                         <div class="tab-content" id="myTabContent2">
+
+                            <div class="patterns-modal">
+							 
+                              <button type="button" class="btn btn-primary rurera-hide" data-toggle="modal" data-target=".bd-example-modal-lg">Button</button>
+                              <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h3>
+                                        All Question Types
+                                        <span>We have a great range of question types to choose from.</span>
+                                      </h3>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body">
+                                      <div class="row">
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                          <div class="media-holder">
+                                            <a href="#">
+                                              <figure>
+                                                <img src="/assets/default/img/multiple-choice.png" alt="feature image" height="275" width="530">
+                                              </figure>
+                                            </a>
+                                            <div class="media-title">
+                                              <h4><a href="#">Multiple Choice</a></h4>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                          <div class="media-holder">
+                                            <figure>
+                                              <img src="/assets/default/img/multiple-answers.png" alt="feature image" height="275" width="530">
+                                            </figure>
+                                            <div class="media-title">
+                                              <h4><a href="#">Multiple Answers</a></h4>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                          <div class="media-holder">
+                                            <figure>
+                                              <img src="/assets/default/img/true-or-false.png" alt="feature image" height="275" width="530">
+                                            </figure>
+                                            <div class="media-title">
+                                              <h4><a href="#">True or False</a></h4>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="media-holder">
+                                              <figure>
+                                                <img src="/assets/default/img/fill-in-the-blank.png" alt="feature image" height="275" width="530">
+                                              </figure>
+                                              <div class="media-title">
+                                                <h4><a href="#">Fill in the blanks</a></h4>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="media-holder">
+                                              <figure>
+                                                <img src="/assets/default/img/easy-type.png" alt="feature image" height="275" width="530">
+                                              </figure>
+                                              <div class="media-title">
+                                                <h4><a href="#">Essay Type</a></h4>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="media-holder">
+                                              <figure>
+                                                <img src="/assets/default/img/matching.png" alt="feature image" height="275" width="530">
+                                              </figure>
+                                              <div class="media-title">
+                                                <h4><a href="#">Matching</a></h4>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="media-holder">
+                                              <figure>
+                                                <img src="/assets/default/img/hotspot.png" alt="feature image" height="275" width="530">
+                                              </figure>
+                                              <div class="media-title">
+                                                <h4><a href="#">Hotspot</a></h4>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="media-holder">
+                                              <figure>
+                                                <img src="/assets/default/img/drop-down.png" alt="feature image" height="275" width="530">
+                                              </figure>
+                                              <div class="media-title">
+                                                <h4><a href="#">Drop-down</a></h4>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="media-holder">
+                                              <figure>
+                                                <img src="/assets/default/img/type-in.png" alt="feature image" height="275" width="530">
+                                              </figure>
+                                              <div class="media-title">
+                                                <h4><a href="#">Type-In</a></h4>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="media-holder">
+                                              <figure>
+                                                <img src="/assets/default/img/order-list.png" alt="feature image" height="275" width="530">
+                                              </figure>
+                                              <div class="media-title">
+                                                <h4><a href="#">Order List</a></h4>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="media-holder">
+                                              <figure>
+                                                <img src="/assets/default/img/note.png" alt="feature image" height="275" width="530">
+                                              </figure>
+                                              <div class="media-title">
+                                                <h4><a href="#">Note</a></h4>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="media-holder">
+                                              <figure>
+                                                <img src="/assets/default/img/document.png" alt="feature image" height="275" width="530">
+                                              </figure>
+                                              <div class="media-title">
+                                                <h4><a href="#">Document</a></h4>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="media-holder">
+                                              <figure>
+                                                <img src="/assets/default/img/audio-response.png" alt="feature image" height="275" width="530">
+                                              </figure>
+                                              <div class="media-title">
+                                                <h4><a href="#">Upload Audio/Video</a></h4>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="media-holder">
+                                              <figure>
+                                                <img src="/assets/default/img/video-response.png" alt="feature image" height="275" width="530">
+                                              </figure>
+                                              <div class="media-title">
+                                                <h4><a href="#">Record Audio/Video</a></h4>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="media-holder">
+                                              <figure>
+                                                <img src="/assets/default/img/upload.png" alt="feature image" height="275" width="530">
+                                              </figure>
+                                              <div class="media-title">
+                                                <h4><a href="#">Upload</a></h4>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="media-holder">
+                                              <figure>
+                                                <img src="/assets/default/img/comprehension.png" alt="feature image" height="275" width="530">
+                                              </figure>
+                                              <div class="media-title">
+                                                <h4><a href="#">Comprehension</a></h4>
+                                              </div>
+                                            </div>
+                                          </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
                             <div class="tab-pane mt-3 fade" id="question_design" role="tabpanel"
                                  aria-labelledby="question_design-tab">
                                 <div class="row">
+
                                     <div class="col-7 col-md-7">
                                         <div class="hap-container">
                                             <div class="hap-content">
@@ -124,24 +330,31 @@ $rand_id = rand(999,99999);
                                                                         <ul class="leform-toolbar-list">
                                                                             @php
                                                                             foreach ($toolbar_tools as $key => $value) {
+																				
                                                                             if (array_key_exists('options', $value)) {
+																				$options_elements = isset( $value['options_elements'] )? $value['options_elements'] : array();
+																				
                                                                             echo '
                                                                             <li class="leform-toolbar-tool-' . esc_html($value['type']) . '"
                                                                                 class="leform-toolbar-list-options"
                                                                                 data-type="' . esc_html($key) . '"
                                                                                 data-option="2"><a
                                                                                         href="#"
-                                                                                        title="' . esc_html($value['title']) . '"><i
+                                                                                        data-title="' . esc_html($value['title']) . '"><i
                                                                                             class="' . esc_html($value['icon']) . '"></i></a>
                                                                                 <ul class="' . esc_html($key) . '">';
                                                                                     foreach ($value['options'] as
                                                                                     $option_key =>
                                                                                     $option_value) {
+																						
+																					$data_options_elements = isset( $options_elements[$option_key] )? $options_elements[$option_key] : '';
+
                                                                                     echo '
                                                                                     <li data-type="' . esc_html($key) . '"
-                                                                                        data-option="' . esc_html($option_key) . '"
+                                                                                        data-option="' . esc_html($option_key) . '" 
+                                                                                        data-elements="' . esc_html($data_options_elements) . '"
                                                                                         ><a href="#"
-                                                                                                    title="' . esc_html($value['title']) . '">'
+                                                                                                    data-title="' . esc_html($value['title']) . '">'
                                                                                             . esc_html($option_value) .
                                                                                             '</a></li>
                                                                                     ';
@@ -161,14 +374,14 @@ $rand_id = rand(999,99999);
 																			
                                                                             echo '
                                                                             <li class="leform-toolbar-tool-' . esc_html($value['type']) . ' '.$classes.'"
-                                                                                title="' . esc_html($value['title']) . '" data-type="' . esc_html($key) . '"><a
+                                                                                data-title="' . esc_html($value['title']) . '" data-type="' . esc_html($key) . '"><a
                                                                                         href="#"
                                                                                         title="' . esc_html($value['title']) . '">'.$icon.'</a>
                                                                             </li>
                                                                             ';
                                                                             }
-                                                                                }
-                                                                                @endphp
+                                                                            }
+                                                                            @endphp
 
                                                                         </ul>
                                                                     </div>
@@ -205,9 +418,9 @@ $rand_id = rand(999,99999);
                                                                         <input type="text" placeholder="Search...">
                                                                     </div>
                                                                     <div class="leform-fa-selector-content">
-                                                                                                        <span title="No icon"
-                                                                                                              onclick="leform_fa_selector_set(this);"><i
-                                                                                                                    class=""></i></span><span
+                                                                                                                        <span title="No icon"
+                                                                                                                              onclick="leform_fa_selector_set(this);"><i
+                                                                                                                                    class=""></i></span><span
                                                                                 title="Star"
                                                                                 onclick="leform_fa_selector_set(this);"><i
                                                                                     class="leform-fa leform-fa-star"></i></span><span
@@ -358,6 +571,7 @@ $rand_id = rand(999,99999);
                                                                 }];
                                                                 //var leform_form_elements_raw = []; //Default Value for Questions
                                                                 @php
+																$layout_elements = isset( $layout_elements )? $layout_elements : array();
                                                                 echo
                                                                 'var leform_form_elements_raw = '.json_encode($layout_elements);
                                                                 @endphp;
@@ -459,7 +673,7 @@ $rand_id = rand(999,99999);
                                                         <a href="#" title="Close"
                                                            onclick="return leform_properties_close();"><i
                                                                     class="fas fa-times"></i></a>
-                                                        <h3><i class="fas fa-cog"></i> Element Properties</h3>
+                                                        <h3><i class="fas fa-cog element-properties-label"></i> Element Properties</h3>
                                                     </div>
                                                     <div class="leform-admin-popup-content">
                                                         <div class="leform-admin-popup-content-form">
@@ -482,254 +696,246 @@ $rand_id = rand(999,99999);
                                     </div>
                                 </div>
 
+
                             </div>
 
                             <div class="tab-pane mt-3 fade active show" id="question_properties" role="tabpanel"
-                                 aria-labelledby="question_properties-tab">
+                                                             aria-labelledby="question_properties-tab">
 
 
-                                <div class="col-12 col-md-12">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="search-fields-block"
-                                                 style="background: #efefef;padding: 10px;">
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label class="input-label">Year / Grade *</label>
-                                                        <select name="category_id[]"
-                                                                data-course_id="{{$questionObj->course_id}}"
+                                    <div class="col-12 col-md-12">
+                                        <div class="row">
+
+
+                                            <div class="col-12 col-md-12">
+                                                <div class="row">
+												
+
+
+                                                    <div class="col-12">
+													
+												<div class="templates-buttons mb-20">
+													<button class="btn btn-primary save-template"><i class="fas fa-save"></i> Save Template</button>
+													<button class="btn btn-primary activate-template"><i class="fas fa-calendar-week"></i> Activate Template</button>
+												</div>
+														
+                                                        <div class="search-fields-block"
+                                                             style="background: #efefef;padding: 10px;"><div class="row">
+															 
+															 <div class="col-lg-6 col-md-6 col-12">
+																	<div class="form-group">
+																		<label class="input-label">Question Reference</label>
+																		<input type="text" value="{{ isset( $question_title )? $question_title : old('title') }}"
+																			   name="question_title"
+																			   class="form-control @error('title')  is-invalid @enderror"
+																			   placeholder=""/>
+																		@error('title')
+																		<div class="invalid-feedback">
+																			{{ $message }}
+																		</div>
+																		@enderror
+																	</div>
+																</div>
+																@php $categories_ids = isset( $questionObj->category_id )? json_decode($questionObj->category_id) : array(); @endphp
+															 
+                                                            <div class="col-lg-6 col-md-6 col-12">
+                                                                <div class="form-group">
+                                                                    <label class="input-label">Year / Grade *</label>
+                                                                    <select name="category_id[]"
+                                                                data-course_id="{{isset( $questionObj->course_id )? $questionObj->course_id : 0}}"
                                                                 data-plugin-selectTwo
                                                                 class="form-control populate ajax-category-courses select2" multiple>
-                                                            <option value="">All</option>
-                                                            @foreach($categories as $category)
-                                                            @if(!empty($category->subCategories) and
-                                                            count($category->subCategories))
-                                                            <optgroup label="{{  $category->title }}">
-                                                                @foreach($category->subCategories as $subCategory)
-                                                                <option value="{{ $subCategory->id }}"
-                                                                        @if(in_array($subCategory->id, json_decode($questionObj->category_id))) selected="selected" @endif>{{
-                                                                    $subCategory->title
-                                                                    }}
-                                                                </option>
-                                                                @endforeach
-                                                            </optgroup>
-                                                            @else
-                                                            <option value="{{ $category->id }}" @if(request()->
-                                                                get('category_id') ==
-                                                                $category->id)
-                                                                selected="selected" @endif>{{ $category->title }}
-                                                            </option>
-                                                            @endif
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label class="input-label">Subject *</label>
-                                                        <select data-chapter_id="{{$questionObj->chapter_id}}"
-                                                                name="course_id"
-                                                                data-plugin-selectTwo
-                                                                class="form-control populate ajax-courses-dropdown">
-                                                            <option value="">Please select year</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
+                                                                        <option value="">All</option>
+																		@foreach($categories as $category)
+																		@if(!empty($category->subCategories) and
+																		count($category->subCategories))
+																		<optgroup label="{{  $category->title }}">
+																			@foreach($category->subCategories as $subCategory)
+																			<option value="{{ $subCategory->id }}"
+																					@if(in_array($subCategory->id, $categories_ids)) selected="selected" @endif>{{
+																				$subCategory->title
+																				}}
+																			</option>
+																			@endforeach
+																		</optgroup>
+																		@else
+																		<option value="{{ $category->id }}" @if(request()->
+																			get('category_id') ==
+																			$category->id)
+																			selected="selected" @endif>{{ $category->title }}
+																		</option>
+                                                                        @endif
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6 col-md-6 col-12">
+                                                                <div class="form-group">
+                                                                    <label class="input-label">Subject *</label>
+                                                                    <select data-chapter_id="{{isset( $questionObj->chapter_id )? $questionObj->chapter_id : 0}}"
+																			name="course_id"
+																			data-plugin-selectTwo
+																			class="form-control populate ajax-courses-dropdown">
+																		<option value="">Please select year</option>
+																	</select>
+                                                                </div>
+                                                            </div>
 
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label class="input-label">Topic</label>
-                                                        <select data-sub_chapter_id="{{$questionObj->sub_chapter_id}}" id="chapter_id"
-                                                                class="form-control populate ajax-chapter-dropdown"
-                                                                name="chapter_id">
-                                                            <option value="">Please select year, subject</option>
-                                                        </select>
+                                                            <div class="col-lg-6 col-md-6 col-12">
+                                                                <div class="form-group">
+                                                                    <label class="input-label">Topic</label>
+                                                                    <select data-sub_chapter_id="{{isset( $questionObj->sub_chapter_id ) ? $questionObj->sub_chapter_id : 0}}" id="chapter_id"
+																			class="form-control populate ajax-chapter-dropdown"
+																			name="chapter_id">
+																		<option value="">Please select year, subject</option>
+																	</select>
 
-                                                    </div>
-                                                </div>
+                                                                </div>
+                                                            </div>
 
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label class="input-label">Sub Topic</label>
-                                                        <select id="chapter_id"
-                                                                class="form-control populate ajax-subchapter-dropdown"
-                                                                name="sub_chapter_id">
-                                                            <option value="">Please select year, subject, Topic</option>
-                                                        </select>
+                                                            <div class="col-lg-6 col-md-6 col-12">
+                                                                <div class="form-group">
+                                                                    <label class="input-label">Sub Topic</label>
+                                                                    <select id="chapter_id"
+																		class="form-control populate ajax-subchapter-dropdown"
+																		name="sub_chapter_id">
+																	<option value="">Please select year, subject, Topic</option>
+																</select>
 
-                                                    </div>
-                                                </div>
+                                                                </div>
+                                                            </div>
+															@php $question_type = isset( $question_type )? $question_type : '';
+															$question_difficulty_level = isset( $question_difficulty_level )? $question_difficulty_level : '';
+															$reference_type = isset( $reference_type )? $reference_type : '';
+															
+															@endphp
+															<div class="col-lg-6 col-md-6 col-12">
+																<div class="form-group">
+																	<label class="input-label">Question Type</label>
+																	<select name="question_type" class="custom-select ">
+																		<option value="" {{ ($question_type=='') ? 'selected' : '' }}>Select Type</option>
+																		<option value="dropdown" {{ ($question_type=='dropdown') ? 'selected' : '' }}>Dropdown</option>
+																		<option value="true_false" {{ ($question_type=='true_false') ? 'selected' : '' }}>True False</option>
+																		<option value="matching" {{ ($question_type=='matching') ? 'selected' : '' }}>Matching</option>
+																		<option value="sorting" {{ ($question_type=='sorting') ? 'selected' : '' }}>Sorting</option>
+																		<option value="single_select" {{ ($question_type=='single_select') ? 'selected' : '' }}>Single Select</option>
+																		<option value="text_field" {{ ($question_type=='text_field') ? 'selected' : '' }}>Text Field</option>
+																		<option value="multi_select" {{ ($question_type=='multi_select') ? 'selected' : '' }}>Multi Select</option>
+																		<option value="short_answer" {{ ($question_type=='short_answer') ? 'selected' : '' }}>Short Answer</option>
+																	</select>
+																</div>
+															</div>
 
+															<div class="col-lg-12 col-md-12 col-12">
+																<div class="form-group">
+																	<label class="input-label">Difficulty Level</label>
+																	<select name="difficulty_level" class="custom-select ">
+																		<option value="Emerging" {{ ($question_difficulty_level==
+																		'Emerging') ? 'selected' : '' }}>Emerging</option>
+																		<option value="Expected" {{ ($question_difficulty_level==
+																		'Expected') ? 'selected' : '' }}>Expected</option>
+																		<option value="Exceeding" {{ ($question_difficulty_level==
+																		'Exceeding') ? 'selected' : '' }}>Exceeding</option>
+																	</select>
+																</div>
+															</div>
 
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label class="input-label">Search Keywords / Tags (Enter Search terms which will be use when looking for your questions)</label>
-                                                        @php
-                                                        $search_tags = explode(' | ', $questionObj->search_tags);
-                                                        $search_tags = implode(',', $search_tags);
-                                                        @endphp
-                                                        <input type="text" value="{{ $search_tags }}"
-                                                               data-role="tagsinput"
-                                                               name="search_tags"
-                                                               class="form-control @error('search_tags')  is-invalid @enderror"
-                                                               placeholder="List of comma-Separated Search keywords (i.e. Subject-title, topic)"/>
-                                                        @error('search_tags')
-                                                        <div class="invalid-feedback">
-                                                            {{ $message }}
+                                                            
                                                         </div>
-                                                        @enderror
-                                                        <span>5 tags maximum, user letters  and numbers only</span>
                                                     </div>
+                                                    </div>
+
+													
+													<div class="col-lg-6 col-md-6 col-12">
+                                                        <div class="form-group">
+                                                            <label class="input-label">Reference Type</label>
+                                                            <select name="reference_type" class="custom-select ">
+																<option value="Course" {{ ($reference_type==
+																'Course') ? 'selected' : '' }}>Course</option>
+																<option value="Mock Exams" {{ ($reference_type==
+																'Mock Exams') ? 'selected' : '' }}>Mock Exams</option>
+																<option value="Both" {{ ($reference_type==
+																'Both') ? 'selected' : '' }}>Both</option>
+															</select>
+                                                        </div>
+                                                    </div>
+													
+                                                    <div class="col-lg-6 col-md-6 col-12">
+                                                        <div class="form-group">
+                                                            <label class="input-label">Example Question</label>
+                                                            <select name="example_question" id="example_question" data-search-option="questions_ids"
+                                                                  class="form-control search-question-select2" data-placeholder="Search Question"></select>
+                                                        </div>
+                                                    </div>
+
+                                                    
+
+                                                    <div class="col-lg-6 col-md-6 col-12">
+                                                        <div class="form-group">
+                                                            <label class="input-label">Correct Answer Score</label>
+                                                            <input type="text" value="{{ isset( $question_score)? $question_score : old('title') }}"
+                                                                   name="question_score"
+                                                                   class="form-control @error('title')  is-invalid @enderror"
+                                                                   placeholder=""/>
+                                                            @error('title')
+                                                            <div class="invalid-feedback">
+                                                                {{ $message }}
+                                                            </div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-6 col-md-6 col-12">
+                                                        <div class="form-group">
+                                                            <label class="input-label">Average Time</label>
+                                                            <input type="text" value="{{ isset( $question_average_time)? $question_score : old('question_average_time') }}"
+                                                                   name="question_average_time"
+                                                                   class="form-control @error('title')  is-invalid @enderror"
+                                                                   placeholder=""/>
+                                                            @error('title')
+                                                            <div class="invalid-feedback">
+                                                                {{ $message }}
+                                                            </div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+
+                                                    
+													
+													<div class="col-12">
+														<div class="form-group">
+															<label class="input-label">Search Keywords / Tags (Enter Search terms which will be use when looking for your questions)</label>
+															@php
+															$search_tags = isset( $questionObj->search_tags )? $questionObj->search_tags : '';
+															$search_tags = explode(' | ', $questionObj->search_tags);
+															$search_tags = implode(',', $search_tags);
+															@endphp
+															<input type="text" data-role="tagsinput" value="{{ $search_tags }}"
+																   name="search_tags"
+																   class="form-control @error('search_tags')  is-invalid @enderror"
+																   placeholder="List of comma-Separated Search keywords (i.e. Subject-title, topic)"/>
+															@error('search_tags')
+															<div class="invalid-feedback">
+																{{ $message }}
+															</div>
+															@enderror
+															<span>5 tags maximum, user letters  and numbers only</span>
+														</div>
+													</div>
+
+
+
                                                 </div>
                                             </div>
                                         </div>
-
-
-                                        <div class="col-12">
-                                            <div class="form-group">
-                                                <label class="input-label">Question Reference</label>
-                                                <input type="text" value="{{ $question_title }}"
-                                                       name="question_title"
-                                                       class="form-control @error('title')  is-invalid @enderror"
-                                                       placeholder=""/>
-                                                @error('title')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                                @enderror
-                                            </div>
-                                        </div>
-
-
-                                        <div class="col-12">
-                                            <div class="form-group">
-                                                <label class="input-label">Score</label>
-                                                <input type="text" value="{{ $question_score }}"
-                                                       name="question_score"
-                                                       class="form-control @error('title')  is-invalid @enderror"
-                                                       placeholder=""/>
-                                                @error('title')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                                @enderror
-                                            </div>
-                                        </div>
-
-                                        <div class="col-12">
-                                            <div class="form-group">
-                                                <label class="input-label">Average Time</label>
-                                                <input type="text" value="{{ $question_average_time }}"
-                                                       name="question_average_time"
-                                                       class="form-control @error('title')  is-invalid @enderror"
-                                                       placeholder=""/>
-                                                @error('title')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                                @enderror
-                                            </div>
-                                        </div>
-
-                                        <div class="col-12">
-                                            <div class="form-group">
-                                                <label class="input-label">Example Question</label>
-                                                <select name="example_question" id="example_question" data-search-option="questions_ids"
-                                                      class="form-control search-question-select2" data-placeholder="Search Question"></select>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-12">
-                                        <div class="form-group">
-                                            <label class="input-label">Question Type</label>
-                                            <select name="question_type" class="custom-select ">
-                                                <option value="" {{ ($question_type=='') ? 'selected' : '' }}>Select Type</option>
-                                                <option value="dropdown" {{ ($question_type=='dropdown') ? 'selected' : '' }}>Dropdown</option>
-                                                <option value="true_false" {{ ($question_type=='true_false') ? 'selected' : '' }}>True False</option>
-                                                <option value="matching" {{ ($question_type=='matching') ? 'selected' : '' }}>Matching</option>
-                                                <option value="sorting" {{ ($question_type=='sorting') ? 'selected' : '' }}>Sorting</option>
-                                                <option value="single_select" {{ ($question_type=='single_select') ? 'selected' : '' }}>Single Select</option>
-                                                <option value="text_field" {{ ($question_type=='text_field') ? 'selected' : '' }}>Text Field</option>
-                                                <option value="multi_select" {{ ($question_type=='multi_select') ? 'selected' : '' }}>Multi Select</option>
-                                                <option value="short_answer" {{ ($question_type=='short_answer') ? 'selected' : '' }}>Short Answer</option>
-                                            </select>
-                                        </div>
-                                        </div>
-
-                                        <div class="col-12">
-                                            <div class="form-group">
-                                                <label class="input-label">Difficulty Level</label>
-                                                <select name="difficulty_level" class="custom-select ">
-                                                    <option value="Emerging" {{ ($question_difficulty_level==
-                                                    'Emerging') ? 'selected' : '' }}>Emerging</option>
-                                                    <option value="Expected" {{ ($question_difficulty_level==
-                                                    'Expected') ? 'selected' : '' }}>Expected</option>
-                                                    <option value="Exceeding" {{ ($question_difficulty_level==
-                                                    'Exceeding') ? 'selected' : '' }}>Exceeding</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-12">
-                                            <div class="form-group">
-                                                <label class="input-label">Reference Type</label>
-                                                <select name="reference_type" class="custom-select ">
-                                                    <option value="Course" {{ ($reference_type==
-                                                    'Course') ? 'selected' : '' }}>Course</option>
-                                                    <option value="Mock Exams" {{ ($reference_type==
-                                                    'Mock Exams') ? 'selected' : '' }}>Mock Exams</option>
-                                                    <option value="Both" {{ ($reference_type==
-                                                    'Both') ? 'selected' : '' }}>Both</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-12">
-                                            <div class="form-group custom-switches-stacked">
-                                                <label class="custom-switch pl-0">
-                                                    <input type="checkbox"
-                                                           name="review_required"
-                                                           id="review_required" value="1" {{
-                                                           (!empty($questionObj) and $questionObj->review_required
-                                                    == '1') ?
-                                                    'checked="checked"' : ''
-                                                    }} class="custom-switch-input"/>
-                                                    <span class="custom-switch-indicator"></span>
-                                                    <label class="custom-switch-description mb-0 cursor-pointer"
-                                                           for="review_required">Review Required</label>
-                                                </label>
-                                            </div>
-                                        </div>
-
-
-                                        @if(auth()->user()->isReviewer())
-                                        @if($questionObj->question_status == 'Submit for review' ||
-                                        $questionObj->question_status ==
-                                        'On hold')
-                                        <div class="col-12">
-                                            <button type="button" data-question_id="{{$questionObj->id}}"
-                                                    class="question-action-btn btn btn-warning">Action
-                                            </button>
-                                        </div>
-                                        @endif
-                                        @endif
-
                                     </div>
                                 </div>
-
-                                
-                                <div class="col-12 col-md-12">
-                                    <div class="form-group">
-                                        <label class="input-label">Comments for Reviewer</label><br>
-                                        <textarea class="note-codable form-group" cols="100" rows="5"
-                                                  id="comments_for_reviewer"
-                                                  name="comments_for_reviewer" aria-multiline="true"></textarea>
-                                    </div>
-                                </div>
-                            </div>
 
                             <div class="tab-pane mt-3 fade" id="glossary_solution" role="tabpanel"
-                                                                                     aria-labelledby="glossary_solution-tab">
+                                                         aria-labelledby="glossary_solution-tab">
+
+								@php $glossary  = isset( $glossary )? $glossary : array() @endphp
+
                                 <div class="col-12 col-md-12">
                                 <div class="row">
                                     <div class="col-12 col-md-12">
@@ -758,7 +964,7 @@ $rand_id = rand(999,99999);
                                                 <label class="input-label">Question Example</label>
                                                 <textarea class="note-codable summernote" id="question_example"
                                                           name="question_example"
-                                                          aria-multiline="true">{{$question_example}}</textarea>
+                                                          aria-multiline="true">{{isset( $question_example )? $question_example : ''}}</textarea>
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-12">
@@ -766,12 +972,67 @@ $rand_id = rand(999,99999);
                                                 <label class="input-label">Solution</label>
                                                 <textarea class="note-codable summernote" id="question_solve"
                                                           name="question_solve"
-                                                          aria-multiline="true">{{$question_solve}}</textarea>
+                                                          aria-multiline="true">{{isset( $question_solve )? $question_solve : ''}}</textarea>
                                             </div>
                                         </div>
                                 </div>
                                 </div>
                             </div>
+                            <div class="tab-pane mt-3 fade" id="review_required_tab" role="tabpanel"
+                                                     aria-labelledby="review_required_tab-tab">
+
+
+                            <div class="col-12 col-md-12">
+                                <div class="row">
+
+                                    <div class="col-12">
+                                        <div class="form-group custom-switches-stacked">
+                                            <label class="custom-switch pl-0">
+                                                <input type="hidden" name="review_required" value="disable">
+                                                <input type="checkbox"
+                                                           name="review_required"
+                                                           id="review_required" value="1" {{ (isset( $questionObj->review_required ) && $questionObj->review_required
+                                                    == '1') ?
+                                                    'checked="checked"' : ''
+                                                    }} class="custom-switch-input"/>
+                                                    <span class="custom-switch-indicator"></span>
+                                                    <label class="custom-switch-description mb-0 cursor-pointer"
+                                                           for="review_required">Review Required</label>
+                                            </label>
+                                        </div>
+                                    </div>
+									@php $question_status = isset( $questionObj->question_status )? $questionObj->question_status : ''; @endphp
+									@if(auth()->user()->isReviewer())
+									@if($question_status == 'Submit for review' ||
+									$question_status ==
+									'On hold')
+									<div class="col-12">
+										<button type="button" data-question_id="{{$questionObj->id}}"
+												class="question-action-btn btn btn-warning">Action
+										</button>
+									</div>
+									@endif
+									@endif
+									<div class="col-12">
+										<button type="button" data-question_id="{{$questionObj->id}}"
+												class="question-action-btn btn btn-warning">Action
+										</button>
+									</div>
+
+
+                                    @if(auth()->user()->isTeacher() || auth()->user()->isAuthor())
+                                    <div class="col-12 col-md-12">
+                                        <div class="form-group">
+                                            <label class="input-label">Comments for Reviewer</label>
+                                            <textarea class="note-codable summernote" id="comments_for_reviewer"
+                                                      name="comments_for_reviewer" aria-multiline="true"></textarea>
+                                        </div>
+                                    </div>
+                                    @endif
+
+                                </div>
+                            </div>
+                        </div>
 
                             <div class="tab-pane mt-3 fade" id="question_preview" role="tabpanel"
                                                              aria-labelledby="question_preview-tab">
@@ -904,132 +1165,38 @@ $rand_id = rand(999,99999);
                             </div>
 
 
-                            <div class="tab-pane mt-3 fade" id="activities" role="tabpanel"
-                                 aria-labelledby="activities-tab">
 
 
-                                <div class="col-12 col-md-12">
-                                    <div class="row">
-
-                                        <div class="col-12">
-
-
-                                            <div class="lms-dashboard-card">
-                                                <div class="lms-card-body">
-                                                    <div class="lms-card-title">
-                                                        <h4 style="text-transform: capitalize;">Activity</h4>
-                                                    </div>
-                                                    <ul class="lms-card-timeline">
-
-                                                        @if( !empty( $questionLogs ))
-                                                        @foreach($questionLogs as $logObj)
-
-
-                                                        <li class="lms-card-list">
-                                                            <div class="lms-card-icons"><i
-                                                                        data-feather="arrow-right-circle"
-                                                                        width="20"
-                                                                        height="20"
-                                                                        class=""></i></div>
-                                                            <div class="lms-card-info">
-                                                                <h5>{{$logObj->user->get_full_name()}} @ <b>{{
-                                                                        dateTimeFormat
-                                                                        ($logObj->action_at, 'j M y | H:i')
-                                                                        }} </b><span><i data-feather="arrow-right"
-                                                                                        width="20"
-                                                                                        height="20"
-                                                                                        class=""></i></span>
-                                                                </h5>
-                                                                <p>{{$logObj->action_type}}</p>
-                                                                <p>{!! $logObj->log_data !!}</p>
-                                                                @if($logObj->action_type == 'Status Updated -
-                                                                Published' &&
-                                                                $logObj->action_role ==
-                                                                'reviewer')
-                                                                @php
-                                                                $log_storred_data =
-                                                                json_decode($logObj->log_storred_data);
-                                                                $log_storred_data = (array) $log_storred_data;
-                                                                if(!empty($log_storred_data)){
-                                                                $log_storred_data['Solution'] =
-                                                                $log_storred_data['Solution'].'
-                                                                ('.$log_storred_data['Solution Label'].')';
-                                                                $log_storred_data['Difficulty Level'] =
-                                                                $log_storred_data['Difficulty
-                                                                Level'].'
-                                                                ('.$log_storred_data['Difficulty Level Label'].')';
-                                                                unset($log_storred_data['Solution Label']);
-                                                                unset($log_storred_data['Difficulty Level Label']);
-                                                                unset($log_storred_data['status_details']);
-                                                                $log_storred_data['Accepted'] = 20;
-                                                                }
-
-                                                                @endphp
-                                                                @if( !empty( $log_storred_data ))
-                                                                @foreach( $log_storred_data as $storred_dataObj_key
-                                                                =>
-                                                                $storred_dataObj_value)
-                                                                <span>{{$storred_dataObj_key}}: {{$storred_dataObj_value}}</span><br>
-                                                                @endforeach
-                                                                @endif
-
-                                                                @endif
-                                                            </div>
-                                                        </li>
-
-                                                        @endforeach
-                                                        @endif
-                                                    </ul>
-                                                    <div class="text-center mt-4"><a class="lms-card-btn" href="#">View
-                                                            More <i
-                                                                    data-feather="arrow-right"
-                                                                    width="20" height="20" class=""></i></a></div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-
-                                </div>
-
-
-                            </div>
-
-                        </div>
-
-
-                        @include('admin.questions_bank.question_editor_fields_controls')
-
-
-                        <div class="mt-5 mb-5 create-question-fields-block">
-                            @if(auth()->user()->isAuthor() || auth()->user()->isAdmin())
-                            <button type="button" data-status="Draft" class="quiz-stage-generate btn btn-warning">
-                                Draft
-                            </button>
-                            <button type="button" data-status="Submit for review"
-                                    class="quiz-stage-generate btn btn-primary">
-                                Submit for review
-                            </button>
-                            @endif
-
-                            @if(auth()->user()->isReviewer())
-                            <button type="button" data-status="{{$questionObj->question_status}}"
-                                    class="quiz-stage-generate btn btn-warning">Update
-                            </button>
-                            @endif
-
-                            <button type="submit" class="submit-btn-quiz-create btn btn-primary hide">{{ !empty($quiz) ?
-                                trans('admin/main.save_change') : trans('admin/main.create') }}
-                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
 
+
+    <div class="row">
+        <div class="col-12 col-md-12">
+
+
+            @include('admin.questions_bank.question_editor_fields_controls')
+
+
+            <div class="mt-5 mb-5 create-question-fields-block">
+                <button type="button" data-status="Draft" class="quiz-stage-generate btn btn-warning">Draft</button>
+                <button type="button" data-status="Submit for review" class="quiz-stage-generate btn btn-primary">
+                    Submit for review
+                </button>
+                <button type="submit" class="submit-btn-quiz-create btn btn-primary hide">{{ !empty($quiz) ?
+                    trans('admin/main.save_change') : trans('admin/main.create') }}
+                </button>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+</section>
 
 <div id="add-glosary-modal-box" class="question_glossary_modal modal fade question_status_action_modal" role="dialog">
     <div class="modal-dialog">
@@ -1061,19 +1228,19 @@ $rand_id = rand(999,99999);
                     </div>
 
                     <div class="form-group">
-                        <label>Subjects</label>
-                        <select data-return_type="option"
-                                data-default_id="0"
-                                class="subject_ajax_select year_subjects form-control select2 @error('subject_id') is-invalid @enderror"
-                                id="subject_id" name="ajax[subject_id]">
-                            <option disabled selected>Subject</option>
-                        </select>
-                        @error('subject_id')
-                        <div class="invalid-feedback">
-                            {{ $message }}
+                            <label>Subjects</label>
+                            <select data-return_type="option"
+                                    data-default_id="0"
+                                    class="subject_ajax_select year_subjects form-control select2 @error('subject_id') is-invalid @enderror"
+                                    id="subject_id" name="ajax[subject_id]">
+                                <option disabled selected>Subject</option>
+                            </select>
+                            @error('subject_id')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
-                        @enderror
-                    </div>
 
 
                     <div class="form-group">
@@ -1100,6 +1267,65 @@ $rand_id = rand(999,99999);
                 </div>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="template_display_modal" class="template_display_modal modal fade" role="dialog" data-backdrop="static">>
+    <div class="modal-dialog">
+        <div class="modal-content edit-quest-modal-div">
+            <div class="modal-body">
+			  <div class="modal-box">
+				<h3 class="font-24 font-weight-normal mb-10">Activate Template</h3>
+				@php $saved_templates = $user->saved_templates;
+					$saved_templates = json_decode( $saved_templates );
+				@endphp
+				<ul class="apply-template-field">
+					@if( !empty( $saved_templates ) )
+						@foreach( $saved_templates  as $template_name => $template_data)
+							<li data-template_data="{{$template_data}}"> <span>{{$template_name}}</span> <a href="javascript:;" data-template_name="{{$template_name}}" class="remove-template"><i class="fas fa-times"></i></a></li>
+						@endforeach
+					@endif
+					
+				</ul>
+				<select class="apply-template-field form-control">
+				
+				@if( !empty( $saved_templates ) )
+						<option value="">Select Template</option>
+					@foreach( $saved_templates  as $template_name => $template_data)
+						<option value="{{$template_data}}"> {{$template_name}} </option>
+					@endforeach
+				@endif
+					
+				</select>
+				
+				<div class="inactivity-controls mt-10">
+					<a href="javascript:;" class="close" data-dismiss="modal" aria-label="Continue">Close</a>
+				</div>
+			  </div>
+			</div>
+        </div>
+    </div>
+</div>
+
+<div id="template_save_modal" class="template_save_modal modal fade" role="dialog" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content edit-quest-modal-div">
+            <div class="modal-body">
+			  <div class="modal-box">
+				<h3 class="font-24 font-weight-normal mb-10">Save the Template</h3>
+				<p class="mb-15 font-16">
+					<input type="text" name="template_name" class="template_name form-control">
+				</p>
+				<input type="hidden" name="form_data_encoded" class="form_data_encoded">
+				
+				<div class="inactivity-controls">
+					<a href="javascript:;" class="continue-btn save-template-btn">Save Template</a>
+					<a href="javascript:;" class="close" data-dismiss="modal" aria-label="Continue">Close</a>
+				</div>
+			  </div>
+			</div>
         </div>
     </div>
 </div>
@@ -1251,46 +1477,49 @@ $rand_id = rand(999,99999);
 <script src="/assets/vendors/summernote/summernote-bs4.min.js"></script>
 <script src="/assets/vendors/summernote/summernote-table-headers.js"></script>
 <script src="/assets/default/vendors/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
-<script>
+
+<script type="text/javascript">
+
     $(document).ready(function () {
 
-        $('.ajax-category-courses').change();
-
         $('.glossary-items').select2();
+        $(".question-no-field").draggable({
+            containment: ".leform-builder",
+        });
+
     });
-    var saveSuccessLang = '';</script>
+
+    var saveSuccessLang = '{{ trans("webinars.success_store") }}';
+</script>
 
 
 <script src="/assets/default/js/admin/quiz.min.js"></script>
+
 <script type="text/javascript">
     $(document).ready(function () {
         handleMultiSelect2('search-question-select2', '/admin/questions_bank/search', ['class', 'course', 'subject', 'title']);
     });
+	$(document).ready(function () {
+        $('.ajax-category-courses').change();
+        $('.glossary-items').select2();
+    });
 </script>
+
 <script type="text/javascript">
     $("body").on("click", ".add-glossary-modal", function (t) {
         $("#add-glosary-modal-box").modal({backdrop: "static"});
     });
-
-    $("body").on("click", ".question-action-btn", function (t) {
+	
+	$("body").on("click", ".question-action-btn", function (t) {
         $("#question_status_action_modal").modal({backdrop: "static"});
     });
-
-
-    $("body").on("change", ".question_status_update", function (t) {
-        var question_status = $(this).val();
-        $('.question-status-fields').addClass('hide');
-        $('.question-status-fields[data-status_label="' + question_status + '"]').removeClass('hide');
-    });
-
-
-    $("body").on("change", "#new_glossary", function (t) {
-        if ($(this).is(':checked')) {
-            $(".glossary_illustration_field").removeClass('hide');
-        } else {
-            $(".glossary_illustration_field").addClass('hide');
-        }
-    });
+		
+	
+	
+	var is_template_active = false;
+	var course_id_template = '';
+	var chapter_id_template = '';
+	var sub_chapter_id_template = '';
 
     $(document).on('change', '.ajax-category-courses', function () {
         var category_id = $(this).val();
@@ -1306,8 +1535,6 @@ $rand_id = rand(999,99999);
             }
         });
     });
-
-
 
     $(document).on('change', '.ajax-courses-dropdown', function () {
         var course_id = $(this).val();
@@ -1337,8 +1564,9 @@ $rand_id = rand(999,99999);
         });
     });
 
-    $(document).on('click', '#question_preview-tab', function () {
 
+
+    $(document).on('click', '#question_preview-tab', function () {
         var question_layout = $(".leform-form");
         question_layout.find('.editor-field').each(function () {
             $.each($(this).data(), function (i) {
@@ -1353,9 +1581,106 @@ $rand_id = rand(999,99999);
         var question_score = $("[name=question_score]").val();
         $(".question-layout .marks").html(question_score+' marks');
         var question_layout = leform_encode64(JSON.stringify(question_layout.html()));
-        console.log(question_layout);
 
     });
+	
+	
+	$(document).on('click', '.save-template-btn', function () {
+		$(".template_save_modal").modal('hide');
+		var template_name = $('.template_name').val();
+		var form_data_encoded  = $('.form_data_encoded').val();
+        var course_id = $(this).val();
+        $.ajax({
+            type: "POST",
+            url: '/admin/users/save_templates',
+            data: {'template_name': template_name, 'form_data_encoded': form_data_encoded},
+            success: function (return_data) {
+                console.log(return_data);
+            }
+        });
+    });
+	
+	$(document).on('click', '.save-template', function () {
+		// Select all form fields inside the div with id "question_properties"
+		$(".template_save_modal").modal('show');
+		var formFields = $('#question_properties').find('input, select, textarea');
+		// Create an object to store the name-value pairs
+		var formData = {};
+		// Iterate over each form field
+		formFields.each(function() {
+			var name = $(this).attr('name');
+			var value = $(this).val();
+
+			if (name) {
+				formData[name] = value;	
+			}
+		});
+		
+		var jsonFormData = JSON.stringify(formData);
+		$(".form_data_encoded").val(jsonFormData);
+	});
+	
+	$(document).on('click', '.remove-template', function () {
+		// Select all form fields inside the div with id "question_properties"
+		var template_name = $(this).attr('data-template_name');
+		$(this).closest('li').remove();
+		$(".template_display_modal").modal('hide');
+        $.ajax({
+            type: "POST",
+            url: '/admin/users/remove_template',
+            data: {'template_name': template_name},
+            success: function (return_data) {
+                console.log(return_data);
+            }
+        });
+	});
+	
+	
+	
+	$(document).on('click', '.activate-template', function () {
+		$(".template_display_modal").modal('show');
+	});
+	
+	$(document).on('click', '.apply-template-field li span', function () {
+		
+		var formDatajson = $(this).closest('li').attr('data-template_data');//'{"category_id[]":["615"],"course_id":"2065","chapter_id":"406","sub_chapter_id":"1107","search_tags":"test","question_title":"Question Reference","question_score":"10","question_average_time":"10","example_question":null,"question_type":"dropdown","difficulty_level":"Emerging","reference_type":"Both"}';
+		var formDataObj = JSON.parse(formDatajson);
+		$(".template_display_modal").modal('hide');
+		
+		course_id_template = formDataObj['course_id'];
+		chapter_id_template = formDataObj['chapter_id'];
+		sub_chapter_id_template = formDataObj['sub_chapter_id'];
+		
+		is_template_active = true;
+		// Select all form fields inside the div with id "question_properties"
+		var formFields = $('#question_properties').find('input, select, textarea');
+
+		// Create an object to store the name-value pairs
+		var formData = {};
+
+		// Iterate over each form field
+		formFields.each(function() {
+			var name = $(this).attr('name');
+			
+			var value = $(this).val(formDataObj[name]);
+			
+			if ($(this).is('select')) {
+				$('select[name="'+name+'"]').change();
+			}
+			if( name == 'search_tags'){
+				if (formDataObj[name].trim()) {
+					var tags = formDataObj[name].split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
+					tags.forEach(function(tag) {
+						$('input[name="'+name+'"]').tagsinput('add', tag);
+					});
+				}
+			}
+		});
+	});
+	
+	
+	
+	
 
 
 </script>

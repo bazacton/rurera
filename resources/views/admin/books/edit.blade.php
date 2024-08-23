@@ -469,6 +469,8 @@
                                              data-page_id="{{$bookPage->id}}">
                                             <img src="/{{$bookPage->page_path}}" style="visibility: hidden;" />
 
+											
+											
 
                                             @if(!empty($bookPage->PageInfoLinks))
                                             @foreach( $bookPage->PageInfoLinks as $pageInfoLink)

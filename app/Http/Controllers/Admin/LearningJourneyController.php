@@ -13,6 +13,8 @@ use App\Models\WeeklyPlannerTopics;
 use App\Models\LearningJourneys;
 use App\Models\LearningJourneyLevels;
 use App\Models\LearningJourneyItems;
+use App\Models\LearningJourneyObjects;
+
 
 use App\Models\Webinar;
 use App\User;
@@ -65,6 +67,7 @@ class LearningJourneyController extends Controller
             'pageTitle'  => 'Learning Journey',
             'categories' => $categories,
         ];
+		
 
         return view('admin.learning_journey.create', $data);
     }
@@ -199,6 +202,16 @@ class LearningJourneyController extends Controller
 		$sort_order_item = 0;
 		
 		$learning_journey_level = $request->get('learning_journey_level');
+		$posted_data = $request->get('posted_data');
+		$posted_data = json_decode($posted_data);
+		$levels_objects = array();
+		if( !empty( $posted_data ) ){
+			foreach( $posted_data as $postedObj){
+				$level_id = isset( $postedObj->level_id)? $postedObj->level_id : 0;
+				$levels_objects[$level_id][] = $postedObj;
+			}
+		}
+		
 
         //$id = 1;
         if ($id != '' && $id > 0) {
@@ -226,21 +239,17 @@ class LearningJourneyController extends Controller
 					'created_by'		=> $user->id,
 					'created_at'		=> time(),
 				]);
-				$level_topics = isset( $learning_journey_topic[$level_key] )? $learning_journey_topic[$level_key] : array();
-				$level_topics = isset( $level_topics['items'] )? $level_topics['items'] : array();
-				if( !empty( $level_topics )){
-					foreach( $level_topics as $item_value){
-						$sort_order_item++;
-						$item_type = 'topic';
-						if( is_array( $item_value )){
-							$item_type = 'treasure';
-							$item_value = isset( $item_value['treasure'] )? $item_value['treasure'] : 0;
-						}
-						$LearningJourneyItems = LearningJourneyItems::create([
+				
+				$objectData = isset( $levels_objects[$level_key] )? $levels_objects[$level_key] : array();
+				if( !empty( $objectData )){
+					foreach( $objectData as $objectData){
+						$LearningJourneyObjects = LearningJourneyObjects::create([
 							'learning_journey_id'	=> $LearningJourney->id,
 							'learning_journey_level_id'	=> $LearningJourneyLevels->id,
-							'item_type' 		=> $item_type,
-							'item_value' 		=> $item_value,
+							'item_type' 		=> $objectData->field_type,
+							'item_path' 		=> $objectData->item_path,
+							'field_style' 		=> $objectData->field_style,
+							'data_values' 		=> isset( $objectData->data_values )? json_encode($objectData->data_values) : '',
 							'status'			=> 'active',
 							'sort_order' 		=> $sort_order_item,
 							'created_by'		=> $user->id,
@@ -253,8 +262,8 @@ class LearningJourneyController extends Controller
 			
         }
         if ($id != '' && $id > 0) {
-            WeeklyPlannerItems::where('weekly_planner_id', $id)->whereNotIn('id', $saved_items_ids)->delete();
-            WeeklyPlannerTopics::where('weekly_planner_id', $id)->whereNotIn('id', $saved_topics_ids)->delete();
+            //WeeklyPlannerItems::where('weekly_planner_id', $id)->whereNotIn('id', $saved_items_ids)->delete();
+            //WeeklyPlannerTopics::where('weekly_planner_id', $id)->whereNotIn('id', $saved_topics_ids)->delete();
         }
 
         return redirect()->route('adminEditLearningJourney', ['id' => $LearningJourney->id]);
@@ -383,6 +392,34 @@ class LearningJourneyController extends Controller
                             <div class="accordion-content-wrapper mt-15"
                                  id="chapterContentAccordion<?php echo $data_id; ?>" role="tablist"
                                  aria-multiselectable="true">
+								 
+								 
+								 
+								 
+								 <div class="editor-zone" style="position:relative;width: fit-content;">
+									
+									<div class="book-dropzone active" style="background:url('/assets/admin/editor/landing.jpg');" data-level_id="<?php echo $data_id; ?>">
+										<img src="/assets/admin/editor/landing.jpg" style="visibility: hidden;">
+									</div>
+									
+									
+									
+									<?php echo view('admin.learning_journey.includes.editor_controls', ['data_id' => $data_id])->render() ?>
+									
+									
+									<div class="generate">Save Data</div>
+								 
+								 </div>
+								 
+								 
+								 
+								 
+								 
+								 
+								 
+								 
+								 
+								 
                                 <ul class="curriculum-item-data-ul draggable-content-lists draggable-lists-chapter-<?php echo $data_id; ?> ui-sortable"
                                     data-drag-class="draggable-lists-chapter-<?php echo $data_id; ?>"
                                     data-order-table="webinar_chapter_items">

@@ -75,7 +75,7 @@
 
 @section('content')
 
-<section class="content-section">
+<section class="content-section spells-page">
     <section>
         <div class="container">
             <div class="row">

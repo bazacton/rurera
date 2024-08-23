@@ -48,1033 +48,232 @@
 .lms-quiz-create .leform-admin-popup-overlay {position: fixed !important; z-index: 99980; top: 0px;	left: 0px; height: 100%; width: 100%; background-position: center center; background: rgba(0,0,0,0.8);	display: none;}
 .lms-quiz-create #leform-stylemanager-overlay {z-index: 99982;}
 .lms-quiz-create .leform-admin-create-overlay {position: fixed !important; z-index: 1001; top: 0px; left: 0px; bottom: 0px;	right: 0px;	height: 100%; width: 100%; background-position: center center; background: rgba(241,241,241,0.8); display: none; display: block;}
-.lms-quiz-create .leform-admin-create {
-	position: fixed !important;
-	box-sizing: border-box;
-	z-index: 99981;
-	top: 50%;
-	left: 50%;
-	width: 480px;
-	height: 190px;
-	background: #ffffff;
-	transform:translate(-50%, -50%);
-	-webkit-transform:translate(-50%, -50%);
-	box-shadow: 3px 3px 20px -5px #000000;
-	overflow: hidden;
-	transition-property: transform;
-	transition-timing-function: ease-in-out;
-	transition-duration: 300ms;
-}
-.lms-quiz-create .leform-admin-create-content {
-	height: 200px;
-	padding: 32px 32px;
-	overflow-x: hidden;
-	overflow-y: hidden;
-	background: #ffffff;
-	position: relative;
-}
-.lms-quiz-create .leform-admin-create-content input, .leform-admin-create-content input:focus, .leform-admin-create-content input:active {
-	font-size: 16px;
-	font-weight: normal;
-	border-radius: 3px;
-	padding: 0 1.6em;
-	line-height: 52px;
-	border: 1px solid #CCC;
-	border-spacing: 0;
-	font-family: arial, verdana;
-	box-sizing: border-box;
-	box-shadow: none;
-	margin: 0;
-	background: #FFF;
-	height: 52px;
-	min-width: 0px;
-	max-width: 100%;
-	outline: none;
-	width: 100%;
-	text-align: center;
-}
-.lms-quiz-create .leform-admin-popup {
-	box-sizing: border-box;
-	z-index: 99981;
-	width: 100%;
-	height: auto;
-	background: #ffffff;
-	display: none;
-	overflow: hidden;
-}
-.lms-quiz-create #leform-stylemanager {
-	z-index: 99983;
-}
-.lms-quiz-create .leform-admin-popup * {
-	box-sizing: border-box;
-}
-.lms-quiz-create .leform-admin-popup-inner {
-	height: auto;
-    position: relative;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-}
-.lms-quiz-create .leform-admin-popup-title {
-	box-sizing: border-box;
-	height: 52px;
-	line-height: 52px;
-	padding: 0 0 0 20px;
-	text-align: left;
-	border-bottom: 1px solid #f0f0f0;
-	background: #f8f8f8;
-}
-.lms-quiz-create .leform-admin-popup-title>span {
-	float: right;
-	display: block;
-	width: 52px;
-	height: 52px;
-	line-height: 52px;
-	text-align: center;
-	font-size: 20px;
-	color: #555;
-	transition-property: color;
-	transition-timing-function: ease-in-out;
-	transition-duration: 300ms;
-	cursor: pointer;
-}
-.lms-quiz-create .leform-admin-popup-title>span.leform-preview-size-mobile {
-	font-size: 20px;
-	width: 40px;
-}
+.lms-quiz-create .leform-admin-create {position: fixed !important; box-sizing: border-box; z-index: 99981; top: 50%; left: 50%;	width: 480px; height: 190px; background: #ffffff; transform:translate(-50%, -50%);	-webkit-transform:translate(-50%, -50%); box-shadow: 3px 3px 20px -5px #000000; overflow: hidden; transition-property: transform; transition-timing-function: ease-in-out;	transition-duration: 300ms;}
+.lms-quiz-create .leform-admin-create-content {height: 200px; padding: 32px 32px; overflow-x: hidden; overflow-y: hidden; background: #ffffff;	position: relative;}
+.lms-quiz-create .leform-admin-create-content input, .leform-admin-create-content input:focus, 
+.leform-admin-create-content input:active {font-size: 16px;	font-weight: normal; border-radius: 3px; padding: 0 1.6em; line-height: 52px; border: 1px solid #CCC; border-spacing: 0; font-family: arial, verdana; box-sizing: border-box; box-shadow: none; margin: 0;	background: #FFF; height: 52px; min-width: 0px; max-width: 100%; outline: none; width: 100%; text-align: center;}
+.lms-quiz-create .leform-admin-popup {box-sizing: border-box; z-index: 99981; width: 100%; height: auto; background: #ffffff; display: none; overflow: hidden;}
+.lms-quiz-create #leform-stylemanager {z-index: 99983;}
+.lms-quiz-create .leform-admin-popup * {box-sizing: border-box;}
+.lms-quiz-create .leform-admin-popup-inner {height: auto; position: relative; box-sizing: border-box; border: 1px solid #ccc;}
+.lms-quiz-create .leform-admin-popup-title {box-sizing: border-box;	height: 52px; line-height: 52px; padding: 0 0 0 20px; text-align: left;	border-bottom: 1px solid #f0f0f0; background: #f8f8f8;}
+.lms-quiz-create .leform-admin-popup-title>span {float: right; display: block; width: 52px;	height: 52px; line-height: 52px; text-align: center; font-size: 20px; color: #555;	transition-property: color;	transition-timing-function: ease-in-out; transition-duration: 300ms; cursor: pointer;}
+.lms-quiz-create .leform-admin-popup-title>span.leform-preview-size-mobile {font-size: 20px; width: 40px;}
 .lms-quiz-create .leform-admin-popup-title>span:hover,
-.lms-quiz-create .leform-admin-popup-title>span.leform-preview-size-active {
-	color: #26B99A;
-}
-.lms-quiz-create .leform-admin-popup-title h3 {
-	font-weight: normal;
-	font-size: 20px;
-	font-family: arial;
-	color: #202020;
-	letter-spacing: 0;
-	text-transform: none;
-	margin: 0 !important;
-	padding: 0 !important;
-	line-height: inherit;
-}
-.lms-quiz-create .leform-admin-popup-title h3 span {
-	font-size: 16px;
-	color: #a0a0a0;
-	display: inline-block;
-	margin-left: 20px;
-	padding-left: 20px;
-	border-left: 1px dashed #e0e0e0;
-	line-height: 25px;
-	height: 25px;
-	vertical-align: middle;
-}
-.lms-quiz-create .leform-admin-popup-title a {
-	display: block;
-	float: right;
-	font-size: 20px;
-	width: 52px;
-	height: 52px;
-	color: #202020;
-	text-align: center;
-	text-shadow: none !important;
-	box-shadow: none !important;
-	outline: none !important;
-	border: none !important;
-	margin: 0 0 0 20px !important;
-	padding: 0 !important;
-	transition-property: all;
-	transition-timing-function: ease-in-out;
-	transition-duration: 300ms;
-}
-.lms-quiz-create .leform-admin-popup-title a i {
-    line-height: 50px;
-}
-.lms-quiz-create .leform-admin-popup-title a:hover {
-	color: #26B99A;
-}
-.lms-quiz-create .leform-admin-popup-content {
-	height: auto;
-    overflow-x: hidden;
-    overflow-y: hidden;
-    background: #ffffff;
-    position: relative;
-    padding: 15px 20px 0;
-}
-.lms-quiz-create .leform-admin-popup-content::-webkit-scrollbar {
-	width: 5px;
-	height: 5px;
-}
-.lms-quiz-create .leform-admin-popup-content::-webkit-scrollbar-track {
-	box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
-}
-.lms-quiz-create .leform-admin-popup-content::-webkit-scrollbar-thumb {
-	background-color: #26B99A;
-}
-.lms-quiz-create .leform-admin-popup-content hr {
-	margin: 0 30px;
-}
-.lms-quiz-create .leform-admin-popup-loading {
-	position: absolute;
-	background: #fff;
-	top: 52px;
-	left: 0;
-	z-index: 99982;
-	width: 100%;
-	bottom: 0;
-	right: 0;
-}
-.lms-quiz-create .leform-admin-popup-loading i {
-	position: absolute;
-	z-index: 99983;
-	top: 50%;
-	left: 50%;
-	font-size: 24px;
-	margin-top: -12px;
-	margin-left: -12px;
-}
-.lms-quiz-create .leform-admin-popup-buttons {
-	box-sizing: border-box;
-    position: relative;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: auto;
-    line-height: 48px;
-    padding-right: 8px;
-    text-align: center;
-    border-top: 1px solid #ccc;
-    padding-top: 15px;
-    background-color: #f7f7f7;
-    padding-bottom: 15px;
-}
-.lms-quiz-create .leform-admin-popup-buttons .leform-admin-button label {
-	margin-left: 0;
-}
-.lms-quiz-create .leform-admin-popup-content .leform-tabs {
-    margin-left: -20px;
-    margin-right: -20px;
-}
-.lms-quiz-create .leform-properties-item {
-	display: block;
-	margin: 20px 0;
-	width: 100%;
-}
-.lms-quiz-create .leform-properties-noitem {
-	display: table;
-	margin: 20px 0;
-	width: 100%;
-}
-.lms-quiz-create .leform-properties-label {
-	display: inline-block;
-    font-size: 15px;
-    /* vertical-align: top; */
-    padding: 0 8px 8px 0;
-    min-width: auto;
-}
-.lms-quiz-create #leform-tab-style .leform-properties-label {
-    min-width: auto;
-}
-.lms-quiz-create .leform-properties-label label {
-	font-weight: 400;
-	margin-bottom: 0;
-}
-.lms-quiz-create .leform-properties-tooltip {
-	display: inline-block;
-	font-size: 18px;
-	width: 2em;
-	min-width: 2em;
-	text-align: left;
-	vertical-align: middle;
-}
-.lms-quiz-create .leform-tooltip {
-	font-size: 14px !important;
-	line-height: 1.3 !important;
-	z-index: 99999 !important;
-}
-.lms-quiz-create .leform-tooltip pre {
-	margin-bottom: 0 !important;
-}
-.lms-quiz-create div.leform-properties-line {
-	display: table;
-	vertical-align: top;
-	position: relative;
-	margin-bottom: 10px;
-	padding-left: 0px !important;
-}
-.lms-quiz-create .leform-properties-content>div.leform-properties-line:last-of-type {
-	margin-bottom: 0;
-}
+.lms-quiz-create .leform-admin-popup-title>span.leform-preview-size-active {color: #26B99A;}
+.lms-quiz-create .leform-admin-popup-title h3 {font-weight: normal; font-size: 20px; font-family: arial; color: #202020; letter-spacing: 0; text-transform: none; margin: 0 !important; padding: 0 !important;	line-height: inherit;}
+.lms-quiz-create .leform-admin-popup-title h3 span {font-size: 16px; color: #a0a0a0; display: inline-block; margin-left: 20px;	padding-left: 20px;	border-left: 1px dashed #e0e0e0; line-height: 25px; height: 25px; vertical-align: middle;}
+.lms-quiz-create .leform-admin-popup-title a {display: block; float: right;	font-size: 20px; width: 52px; height: 52px;	color: #202020; text-align: center; text-shadow: none !important; box-shadow: none !important; outline: none !important; border: none !important; margin: 0 0 0 20px !important; padding: 0 !important; transition-property: all; transition-timing-function: ease-in-out;	transition-duration: 300ms;}
+.lms-quiz-create .leform-admin-popup-title a i {line-height: 50px;}
+.lms-quiz-create .leform-admin-popup-title a:hover {color: #26B99A;}
+.lms-quiz-create .leform-admin-popup-content {height: auto; overflow-x: hidden; overflow-y: hidden; background: #ffffff; position: relative; padding: 15px 20px 0;}
+.lms-quiz-create .leform-admin-popup-content::-webkit-scrollbar {width: 5px; height: 5px;}
+.lms-quiz-create .leform-admin-popup-content::-webkit-scrollbar-track {box-shadow: inset 0 0 6px rgba(0,0,0,0.1);}
+.lms-quiz-create .leform-admin-popup-content::-webkit-scrollbar-thumb {background-color: #26B99A;}
+.lms-quiz-create .leform-admin-popup-content hr {margin: 0 30px;}
+.lms-quiz-create .leform-admin-popup-loading {position: absolute; background: #fff; top: 52px;	left: 0; z-index: 99982; width: 100%; bottom: 0; right: 0;}
+.lms-quiz-create .leform-admin-popup-loading i {position: absolute;	z-index: 99983;	top: 50%; left: 50%; font-size: 24px; margin-top: -12px; margin-left: -12px;}
+.lms-quiz-create .leform-admin-popup-buttons {box-sizing: border-box; position: relative; left: 0; right: 0; bottom: 0; height: auto; line-height: 48px; padding-right: 8px; text-align: center; border-top: 1px solid #ccc; padding-top: 15px; background-color: #f7f7f7; padding-bottom: 15px;}
+.lms-quiz-create .leform-admin-popup-buttons .leform-admin-button label {margin-left: 0;}
+.lms-quiz-create .leform-admin-popup-content .leform-tabs {margin-left: -20px; margin-right: -20px;}
+.lms-quiz-create .leform-properties-item {display: block; margin: 20px 0; width: 100%;}
+.lms-quiz-create .leform-properties-noitem {display: table;	margin: 20px 0;	width: 100%;}
+.lms-quiz-create .leform-properties-label {display: inline-block; font-size: 15px; /* vertical-align: top; */ padding: 0 8px 8px 0; min-width: auto;}
+.lms-quiz-create #leform-tab-style .leform-properties-label {min-width: auto;}
+.lms-quiz-create .leform-properties-label label {font-weight: 400; margin-bottom: 0;}
+.lms-quiz-create .leform-properties-tooltip {display: inline-block;	font-size: 18px;width: 2em;	min-width: 2em;	text-align: left; vertical-align: middle;}
+.lms-quiz-create .leform-tooltip {font-size: 14px !important; line-height: 1.3 !important; z-index: 99999 !important;}
+.lms-quiz-create .leform-tooltip pre {margin-bottom: 0 !important;}
+.lms-quiz-create div.leform-properties-line {display: table; vertical-align: top; position: relative; margin-bottom: 10px; padding-left: 0px !important;}
+.lms-quiz-create .leform-properties-content>div.leform-properties-line:last-of-type {margin-bottom: 0;}
 .lms-quiz-create .leform-properties-content,
-.lms-quiz-create .leform-properties-group {
-	width: 100%;
-	vertical-align: top;
-	font-size: 14px;
-}
-.lms-quiz-create .leform-properties-content {
-	padding-right: 0;
-	display: inline-block;
-	position: relative;
-}
-.lms-quiz-create .leform-properties-group {
-	display: table;
-}
+.lms-quiz-create .leform-properties-group {width: 100%; vertical-align: top; font-size: 14px;}
+.lms-quiz-create .leform-properties-content {padding-right: 0; display: inline-block; position: relative;}
+.lms-quiz-create .leform-properties-group {display: table;}
 .lms-quiz-create .leform-properties-content>div,
 .lms-quiz-create .leform-properties-group>div,
-.lms-quiz-create .leform-properties-line>div {
-	padding-left: 10px;
-	vertical-align: top;
-	position: relative;
-}
+.lms-quiz-create .leform-properties-line>div {padding-left: 10px; vertical-align: top; position: relative;}
 .lms-quiz-create .leform-properties-content>div:first-of-type,
 .lms-quiz-create .leform-properties-group>div:first-of-type,
-.lms-quiz-create .leform-properties-line>div:first-of-type {
-	padding-left: 0;
-}
-.lms-quiz-create .leform-properties-content-two-third {
-	display: table-cell;
-	width: 67%;
-}
-.lms-quiz-create .leform-properties-content-half {
-	display: table-cell;
-	width: 50%;
-}
-.lms-quiz-create .leform-properties-content-quarter {
-	display: table-cell;
-	width: 25%;
-}
-.lms-quiz-create .leform-properties-content-third {
-	display: table-cell;
-	width: 33%;
-}
-.lms-quiz-create .leform-properties-content-dime {
-	display: table-cell;
-	width: 10%;
-}
-.lms-quiz-create .leform-properties-content-9dimes {
-	display: table-cell;
-	width: 90%;
-}
+.lms-quiz-create .leform-properties-line>div:first-of-type {padding-left: 0;}
+.lms-quiz-create .leform-properties-content-two-third {display: table-cell;	width: 67%;}
+.lms-quiz-create .leform-properties-content-half {display: table-cell;width: 50%;}
+.lms-quiz-create .leform-properties-content-quarter {display: table-cell;width: 25%;}
+.lms-quiz-create .leform-properties-content-third {display: table-cell;	width: 33%;}
+.lms-quiz-create .leform-properties-content-dime {display: table-cell;width: 10%;}
+.lms-quiz-create .leform-properties-content-9dimes {display: table-cell;width: 90%;}
 .lms-quiz-create .leform-properties-content-third>label,
 .lms-quiz-create .leform-properties-content-two-third>label,
 .lms-quiz-create .leform-properties-content-half>label,
 .lms-quiz-create .leform-properties-content-quarter>label,
 .lms-quiz-create .leform-properties-content-dime>label,
-.lms-quiz-create .leform-properties-content-9dimes>label {
-	color: #ccc;
-	font-size: 14px;
-	font-style: italic;
-	cursor: default;
-	display: block;
-}
-
-.lms-quiz-create .leform-style-save-row {
-	margin-bottom: 1em;
-}
-.lms-quiz-create .leform-style-save-row label {
-	display: block;
-	cursor: default;
-}
+.lms-quiz-create .leform-properties-content-9dimes>label {color: #ccc; font-size: 14px; font-style: italic; cursor: default; display: block;}
+.lms-quiz-create .leform-style-save-row {margin-bottom: 1em;}
+.lms-quiz-create .leform-style-save-row label {display: block; cursor: default;}
 .lms-quiz-create .leform-style-save-row input[type="text"], .leform-style-save-row input[type="number"], .leform-style-save-row select,
 .lms-quiz-create .leform-properties-content input[type="text"],.leform-properties-content input[type="number"], 
 .leform-properties-content select, .leform-properties-content input[type="email"], .leform-properties-content input[type="password"], 
-.leform-properties-content textarea, .leform-bulk-editor textarea {
-	font-size: 15px;
-	font-weight: normal;
-	border-radius: 3px;
-	padding: 0 0.8em;
-	line-height: 40px;
-	border: 1px solid #CCC;
-	border-spacing: 0;
-	font-family: arial, verdana;
-	box-sizing: border-box;
-	box-shadow: none;
-	margin: 0;
-	/* background: #FFF; */
-	height: 40px;
-	min-width: 0px;
-	max-width: 100%;
-	outline: none;
-	width: 100%;
-}
-.lms-quiz-create .leform-properties-content select {
-	height: auto !important;
-    font-size: 15px !important;
-    padding: 0.5em 0.8em;
-}
-.lms-quiz-create .leform-properties-content .leform-properties-options-item select {
-    height: 40px !important;
-    line-height: normal;
-}
-.lms-quiz-create .leform-properties-content textarea {
-	height: 10em !important;
-	line-height: 1.4;
-	padding: 0.4em 0.8em;
-}
-.lms-quiz-create .leform-properties-content textarea.leform-tinymce {
-	height: 16em !important;
-}
+.leform-properties-content textarea, .leform-bulk-editor textarea {font-size: 14px; font-weight: normal; border-radius: 3px; padding: 0 0.8em; line-height: 40px; border: 1px solid #CCC; border-spacing: 0; font-family: arial, verdana; box-sizing: border-box; box-shadow: none; margin: 0;	/* background: #FFF; */ height: 40px; min-width: 0px; max-width: 100%; outline: none; width: 100%;}
+.lms-quiz-create .leform-properties-content select {height: auto !important; padding: 0.5em 0.8em;}
+.lms-quiz-create .leform-properties-content .leform-properties-options-item select {height: 40px !important; line-height: normal;}
+.lms-quiz-create .leform-properties-content textarea {height: 10em !important; line-height: 1.4; padding: 0.4em 0.8em;}
+.lms-quiz-create .leform-properties-content textarea.leform-tinymce {height: 16em !important;}
 .lms-quiz-create .leform-properties-content input[type="text"]:focus, .leform-properties-content select:focus, 
-.leform-properties-content textarea:focus, .leform-bulk-editor textarea:focus {
-	border-color: #169F85;
-	box-shadow: 0 0 16px -10px #169F85;
-}
-.lms-quiz-create .leform-properties-content input::-webkit-input-placeholder, .leform-properties-content textare::-webkit-input-placeholder {
-   color: inherit !important;
-   opacity: 0.3;
-}
-.lms-quiz-create .leform-properties-content input::-moz-placeholder, .leform-properties-content textare::-moz-placeholder {
-   color: inherit !important;
-   opacity: 0.3;
-}
-.lms-quiz-create .leform-properties-content input:-moz-placeholder, .leform-properties-content textare:-mox-placeholder {
-   color: inherit !important;
-   opacity: 0.3;
-}
-.lms-quiz-create .leform-properties-content input:-ms-input-placeholder, .leform-properties-content textare::-ms-input-placeholder {
-   opacity: 0.3;
-   color: inherit !important;
-}
+.leform-properties-content textarea:focus, .leform-bulk-editor textarea:focus {border-color: #169F85; box-shadow: 0 0 16px -10px #169F85;}
+.lms-quiz-create .leform-properties-content input::-webkit-input-placeholder, .leform-properties-content textare::-webkit-input-placeholder {color: inherit !important;opacity: 0.3;}
+.lms-quiz-create .leform-properties-content input::-moz-placeholder, .leform-properties-content textare::-moz-placeholder {color: inherit !important; opacity: 0.3;}
+.lms-quiz-create .leform-properties-content input:-moz-placeholder, .leform-properties-content textare:-mox-placeholder {color: inherit !important; opacity: 0.3;}
+.lms-quiz-create .leform-properties-content input:-ms-input-placeholder, .leform-properties-content textare::-ms-input-placeholder {opacity: 0.3;color: inherit !important;}
 .leform-properties-content .input-group-prepend button,
-.leform-properties-content .input-group-append button{
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 1;
-    height: 100%;
-    background-color:#fff;
-    border-radius: 0;
-    border-color: #ddd;
-    z-index: 4;
-}
-.leform-properties-content .input-group-append button {
-    right: 0;
-    left: auto;
-}
-.leform-properties-content .input-group-prepend ~ input[type="text"] {
-    height: 42px;
-    background-color: #fff;
-    outline: none;
-    padding: 0 50px;
-}
-.leform-properties-content .input-group-prepend ~ input[type="text"]:focus {
-    border-color: #ddd;
-}
-.lms-quiz-create .leform-properties-content .leform-input-units {
-	position: relative;
-	min-width: 100px;
-}
-.lms-quiz-create .leform-properties-content .leform-100px {
-	min-width: 100px;
-	width: 100px;
-	max-width: 100px;
-}
-.lms-quiz-create .leform-properties-content .leform-input-units::after {
-	position: absolute;
-	color: #ccc;
-	font-size: 13px;
-	line-height: 40px;
-	top: 0;
-	right: 5px;
-}
-.lms-quiz-create .leform-properties-content .leform-input-px::after {
-	content: 'px';
-}
-.lms-quiz-create .leform-properties-content .leform-input-mb::after {
-	content: 'Mb';
-}
-.lms-quiz-create .leform-properties-content .leform-input-chars::after {
-	content: 'chars';
-}
-.lms-quiz-create .leform-properties-content .leform-input-px input {
-	padding-right: 24px;
-}
-.lms-quiz-create .leform-properties-content .leform-input-mb input {
-	padding-right: 28px;
-}
-.lms-quiz-create .leform-properties-content .leform-input-chars input {
-	padding-right: 40px;
-}
-.lms-quiz-create .leform-properties-content .leform-media-id {
-	position: relative;
-}
+.leform-properties-content .input-group-append button{position: absolute; left: 0; top: 0; z-index: 1; height: 100%; background-color:#fff; border-radius: 0; border-color: #ddd; z-index: 4;}
+.leform-properties-content .input-group-append button {right: 0; left: auto;}
+.leform-properties-content .input-group-prepend ~ input[type="text"] {height: 42px; background-color: #fff; outline: none; padding: 0 50px;}
+.leform-properties-content .input-group-prepend ~ input[type="text"]:focus {border-color: #ddd;}
+.lms-quiz-create .leform-properties-content .leform-input-units {position: relative; min-width: 100px;}
+.lms-quiz-create .leform-properties-content .leform-100px {min-width: 100px; width: 100px; max-width: 100px;}
+.lms-quiz-create .leform-properties-content .leform-input-units::after {position: absolute;	color: #ccc; font-size: 13px; line-height: 40px; top: 0; right: 5px;}
+.lms-quiz-create .leform-properties-content .leform-input-px::after {content: 'px';}
+.lms-quiz-create .leform-properties-content .leform-input-mb::after {content: 'Mb';}
+.lms-quiz-create .leform-properties-content .leform-input-chars::after {content: 'chars';}
+.lms-quiz-create .leform-properties-content .leform-input-px input {padding-right: 24px;}
+.lms-quiz-create .leform-properties-content .leform-input-mb input {padding-right: 28px;}
+.lms-quiz-create .leform-properties-content .leform-input-chars input {padding-right: 40px;}
+.lms-quiz-create .leform-properties-content .leform-media-id {position: relative;}
 .lms-quiz-create .leform-properties-content .leform-media-id input,
 .lms-quiz-create .leform-properties-content .leform-image-url input,
 .lms-quiz-create .leform-properties-content .leform-date>input,
-.lms-quiz-create .leform-properties-content .leform-time>input {
-	padding-right: 40px;
-}
-.lms-quiz-create #uap-body .leform-properties-content .leform-image-url input {
-	padding-right: 0.8em !important;
-}
+.lms-quiz-create .leform-properties-content .leform-time>input {padding-right: 40px;}
+.lms-quiz-create #uap-body .leform-properties-content .leform-image-url input {padding-right: 0.8em !important;}
 .lms-quiz-create .leform-properties-content .leform-media-id span,
 .lms-quiz-create .leform-properties-content .leform-image-url span,
 .lms-quiz-create .leform-properties-content .leform-date>span,
 .lms-quiz-create .leform-properties-content .leform-time>span,
-.lms-quiz-create .leform-properties-content .leform-input-shortcode-selector span {
-	position: absolute;
-	right: 0;
-	top: 0;
-	width: 40px;
-	height: 40px;
-	line-height: 40px;
-	text-align: center;
-	color: #888;
-	cursor: pointer !important;
-	transition-duration: .3s;
-	-webkit-transition-duration: .3s;
-}
-.lms-quiz-create .leform-properties-content .leform-image-url span {
-	display: none !important;
-}
+.lms-quiz-create .leform-properties-content .leform-input-shortcode-selector span {position: absolute; right: 0; top: 0; width: 40px; height: 40px; line-height: 40px; text-align: center; color: #888; cursor: pointer !important; transition-duration: .3s; -webkit-transition-duration: .3s;}
+.lms-quiz-create .leform-properties-content .leform-image-url span {display: none !important;}
 .lms-quiz-create .leform-properties-content .leform-media-id span i,
 .lms-quiz-create .leform-properties-content .leform-image-url span i,
 .lms-quiz-create .leform-properties-content .leform-date>span i,
 .lms-quiz-create .leform-properties-content .leform-time>span i,
-.lms-quiz-create .leform-properties-content .leform-input-shortcode-selector span i {
-	font-size: 20px;
-	line-height: 40px;
-}
-.lms-quiz-create .leform-properties-content .leform-input-shortcode-selector span i.fa-code {
-	font-size: 16px;
-}
+.lms-quiz-create .leform-properties-content .leform-input-shortcode-selector span i {font-size: 20px; line-height: 40px;}
+.lms-quiz-create .leform-properties-content .leform-input-shortcode-selector span i.fa-code {font-size: 16px;}
 .lms-quiz-create .leform-properties-content .leform-media-id span:hover,
 .lms-quiz-create .leform-properties-content .leform-image-url span:hover,
 .lms-quiz-create .leform-properties-content .leform-date>span:hover,
 .lms-quiz-create .leform-properties-content .leform-time>span:hover,
-.lms-quiz-create .leform-properties-content .leform-input-shortcode-selector span:hover {
-	color: #169F85;
-}
-.lms-quiz-create .leform-properties-content .wp-picker-container {
-	position: relative;
-	white-space: nowrap;
-}
-.lms-quiz-create .leform-properties-content .wp-picker-container .wp-color-result.button {
-	height: 40px;
-	width: 40px;
-	padding: 0;
-	margin: 0 6px 0 0;
-	font-size: 15px;
-	border-color: #ccc;
-	box-shadow: none;
-	display: inline-block;
-}
-.lms-quiz-create .leform-properties-content .wp-picker-container .wp-color-result.button span {
-	display: none;
-	line-height: 38px;
-}
+.lms-quiz-create .leform-properties-content .leform-input-shortcode-selector span:hover {color: #169F85;}
+.lms-quiz-create .leform-properties-content .wp-picker-container {position: relative;white-space: nowrap;}
+.lms-quiz-create .leform-properties-content .wp-picker-container .wp-color-result.button {height: 40px; width: 40px; padding: 0; margin: 0 6px 0 0;	font-size: 15px; border-color: #ccc; box-shadow: none;	display: inline-block;}
+.lms-quiz-create .leform-properties-content .wp-picker-container .wp-color-result.button span {display: none; line-height: 38px;}
 .lms-quiz-create .leform-properties-content .wp-picker-container .wp-color-result.button:active,
-.leform-properties-content .wp-picker-container .wp-color-result.button:focus {
-	box-shadow: none;
-	border-color: #ccc;
-}
-.lms-quiz-create .leform-properties-content .wp-picker-container input[type=text].wp-color-picker {
-	font-size: 15px;
-	width: 150px !important;
-	font-family: arial;
-}
-.lms-quiz-create .leform-properties-content .wp-picker-container .wp-picker-input-wrap input[type=button] {
-	display: none;
-}
-.lms-quiz-create .leform-properties-content .wp-picker-container .wp-picker-holder {
-	position: absolute;
-	z-index: 999999;
-	right: 0;
-}
-.lms-quiz-create .leform-properties-content .wp-picker-container .wp-picker-holder .iris-picker {
-	border-radius: 3px;
-}
-.lms-quiz-create .leform-properties-content-color .wp-picker-container .wp-picker-holder {
-	right: auto;
-	left: 0;
-}
-.lms-quiz-create .leform-fa-selector-button {
-	display: inline-block;
-	font-family: arial;
-	font-weight: 400;
-	text-align: center;
-	white-space: nowrap;
-	vertical-align: middle;
-	cursor: pointer;
-	-webkit-user-select: none;
-	user-select: none;
-	background-image: none;
-	border-radius: 3px;
-	transition-duration: .3s;
-	-webkit-transition-duration: .3s;
-	color: #444444;
-	border: 1px solid #ccc;
-	text-decoration: none;
-	outline: none;
-	box-shadow: none;
-	width: 80px;
-	height: 40px;
-}
-.lms-quiz-create .leform-fa-selector-button i {
-	display: block;
-	font-size: 18px;
-	line-height: 40px;
-}
-.lms-quiz-create .leform-fa-selector-button:active {
-	background-image: none;
-	outline: 0;
-	text-decoration: none;
-	border-color: #169F85;
-	color: #169F85;
-	background-image: none;
-	outline: none;
-	box-shadow: none;
-	transform:translateY(2px);
-	-webkit-transform:translateY(2px);
-}
-.lms-quiz-create .leform-fa-selector-button:hover, .leform-fa-selector-button:focus {
-	text-decoration: none;
-	color: #169F85;
-	border-color: #169F85;
-	background-image: none;
-	outline: none;
-	box-shadow: none;
-}
-.lms-quiz-create input[type="checkbox"].leform-checkbox-toggle {
-	display: none !important;
-}
-.lms-quiz-create input[type="checkbox"].leform-checkbox-toggle+label {
-	appearance: none;
-	width: 64px;
-	height: 32px;
-	border: 1px solid #ccc;
-	border-radius: 32px;
-	background: #ffffff;
-	position: relative;
-	display: inline-block;
-	overflow: hidden;
-	vertical-align: middle;
-	transition: background 0.3s;
-	box-sizing: border-box;
-	outline: none;
-	box-shadow: none;
-	cursor: pointer;
-	margin: 0;
-	padding: 0;
-}
-.lms-quiz-create input[type="checkbox"].leform-checkbox-toggle+label:before {
-	content: '';
-}
-.lms-quiz-create input[type="checkbox"].leform-checkbox-toggle+label:after {
-	content: '';
-	position: absolute;
-	top: 2px;
-	left: 2px;
-	width: 26px;
-	height: 26px;
-	background: #ccc;
-	border: none;
-	border-radius: 26px;
-	transition: left 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
-}
-.lms-quiz-create input[type="checkbox"].leform-checkbox-toggle:checked+label {
-	background: #169F85;
-	border-color: #169F85;
-}
-.lms-quiz-create input[type="checkbox"].leform-checkbox-toggle:checked+label:after {
-	left: 34px;
-	background: #fff;
-}
-.lms-quiz-create input[type="checkbox"].leform-checkbox-toggle:disabled+label {
-	opacity: 0.5;
-}
-.lms-quiz-create .leform-properties-sub-item {
-	padding: 0px;
-	margin-bottom: 10px;
-	background: #f8f8f8;
-	border-radius: 3px;
-	border: 1px solid #ccc;
-}
-.lms-quiz-create .leform-properties-sub-item-new {
-	display: none;
-}
-.lms-quiz-create .leform-properties-sub-item-exist .leform-properties-sub-item-body {
-	display: none;
-}
-.lms-quiz-create .leform-properties-sub-item-body hr {
-	margin: 0 20px;
-}
-.lms-quiz-create .leform-properties-sub-item-body-loading {
-	padding: 1em 0 2em 0;
-	text-align: center;
-}
-.lms-quiz-create .leform-properties-sub-item-body-loading i {
-	font-size: 24px;
-}
-.lms-quiz-create .leform-properties-sub-item .leform-properties-label {
-	min-width: 160px;
-	padding: 0 1em 0 1em;
-}
-.lms-quiz-create .leform-properties-sub-item-header {
-	padding: 1em;
-	font-size: 15px;
-	line-height: 24px;
-}
-.lms-quiz-create .leform-properties-sub-item-header div.leform-properties-sub-item-header-tools {
-	float: right;
-	line-height: 24px;
-}
-.lms-quiz-create .leform-properties-sub-item-header div.leform-properties-sub-item-header-tools span {
-	margin-left: 10px;
-	cursor: pointer;
-	font-size: 18px;
-	color: #888;
-	vertical-align: middle;
-}
-.lms-quiz-create .leform-properties-sub-item-header div.leform-properties-sub-item-header-tools span i {
-	vertical-align: top;
-	line-height: 24px;
-	transition-duration: .3s;
-	-webkit-transition-duration: .3s;
-}
-.lms-quiz-create .leform-properties-sub-item-header div.leform-properties-sub-item-header-tools span i.fa-cog {
-	color: #444;
-}
+.leform-properties-content .wp-picker-container .wp-color-result.button:focus {box-shadow: none; border-color: #ccc;}
+.lms-quiz-create .leform-properties-content .wp-picker-container input[type=text].wp-color-picker {font-size: 15px; width: 150px !important; font-family: arial;}
+.lms-quiz-create .leform-properties-content .wp-picker-container .wp-picker-input-wrap input[type=button] {display: none;}
+.lms-quiz-create .leform-properties-content .wp-picker-container .wp-picker-holder {position: absolute;	z-index: 999999; right: 0;}
+.lms-quiz-create .leform-properties-content .wp-picker-container .wp-picker-holder .iris-picker {border-radius: 3px;}
+.lms-quiz-create .leform-properties-content-color .wp-picker-container .wp-picker-holder {right: auto; left: 0;}
+.lms-quiz-create .leform-fa-selector-button {display: inline-block;	font-family: arial; font-weight: 400; text-align: center; white-space: nowrap; vertical-align: middle; cursor: pointer;	-webkit-user-select: none; user-select: none; background-image: none; border-radius: 3px; transition-duration: .3s;	-webkit-transition-duration: .3s; color: #444444; border: 1px solid #ccc;	text-decoration: none; outline: none; box-shadow: none;	width: 80px; height: 40px;}
+.lms-quiz-create .leform-fa-selector-button i {display: block;font-size: 18px;line-height: 40px;}
+.lms-quiz-create .leform-fa-selector-button:active {background-image: none;	outline: 0;	text-decoration: none; border-color: #169F85; color: #169F85;	background-image: none;	outline: none; box-shadow: none; transform:translateY(2px);	-webkit-transform:translateY(2px);}
+.lms-quiz-create .leform-fa-selector-button:hover, .leform-fa-selector-button:focus {text-decoration: none;	color: #169F85; border-color: #169F85; background-image: none; outline: none;	box-shadow: none;}
+.lms-quiz-create input[type="checkbox"].leform-checkbox-toggle {display: none !important;}
+.lms-quiz-create input[type="checkbox"].leform-checkbox-toggle+label {appearance: none;	width: 64px; height: 32px; border: 1px solid #ccc; border-radius: 32px; background: #ffffff; position: relative; display: inline-block; overflow: hidden; vertical-align: middle;	transition: background 0.3s; box-sizing: border-box; outline: none; box-shadow: none; cursor: pointer; margin: 0; padding: 0;}
+.lms-quiz-create input[type="checkbox"].leform-checkbox-toggle+label:before {content: '';}
+.lms-quiz-create input[type="checkbox"].leform-checkbox-toggle+label:after {content: ''; position: absolute; top: 2px; left: 2px; width: 26px; height: 26px; background: #ccc; border: none; border-radius: 26px; transition: left 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);}
+.lms-quiz-create input[type="checkbox"].leform-checkbox-toggle:checked+label {background: #169F85;	border-color: #169F85;}
+.lms-quiz-create input[type="checkbox"].leform-checkbox-toggle:checked+label:after {left: 34px;	background: #fff;}
+.lms-quiz-create input[type="checkbox"].leform-checkbox-toggle:disabled+label {opacity: 0.5;}
+.lms-quiz-create .leform-properties-sub-item {padding: 0px;	margin-bottom: 10px;background: #f8f8f8;border-radius: 3px;border: 1px solid #ccc;}
+.lms-quiz-create .leform-properties-sub-item-new,
+.lms-quiz-create .leform-properties-sub-item-exist .leform-properties-sub-item-body {display: none;}
+.lms-quiz-create .leform-properties-sub-item-body hr {margin: 0 20px;}
+.lms-quiz-create .leform-properties-sub-item-body-loading {padding: 1em 0 2em 0;text-align: center;}
+.lms-quiz-create .leform-properties-sub-item-body-loading i {font-size: 24px;}
+.lms-quiz-create .leform-properties-sub-item .leform-properties-label {min-width: 160px; padding: 0 1em 0 1em;}
+.lms-quiz-create .leform-properties-sub-item-header {padding: 1em; font-size: 15px; line-height: 24px;}
+.lms-quiz-create .leform-properties-sub-item-header div.leform-properties-sub-item-header-tools {float: right; line-height: 24px;}
+.lms-quiz-create .leform-properties-sub-item-header div.leform-properties-sub-item-header-tools span {margin-left: 10px; cursor: pointer; font-size: 18px; color: #888; vertical-align: middle;}
+.lms-quiz-create .leform-properties-sub-item-header div.leform-properties-sub-item-header-tools span i {vertical-align: top; line-height: 24px; transition-duration: .3s; -webkit-transition-duration: .3s;}
+.lms-quiz-create .leform-properties-sub-item-header div.leform-properties-sub-item-header-tools span i.fa-cog {color: #444;}
 .lms-quiz-create .leform-properties-sub-item-header div.leform-properties-sub-item-header-tools span:hover i,
-.lms-quiz-create .leform-properties-sub-item-header div.leform-properties-sub-item-header-tools span:hover i.fa-cog {
-	color: #169F85;
-}
-.lms-quiz-create .leform-properties-sub-item-header label {
-	font-weight: bold;
-	font-style: italic;
-	vertical-align: top;
-	display: inline-block;
-	height: 24px;
-}
+.lms-quiz-create .leform-properties-sub-item-header div.leform-properties-sub-item-header-tools span:hover i.fa-cog {color: #169F85;}
+.lms-quiz-create .leform-properties-sub-item-header label {font-weight: bold; font-style: italic; vertical-align: top; display: inline-block; height: 24px;}
 .lms-quiz-create .leform-properties-content-validators-allowed a,
-.lms-quiz-create .leform-properties-content-filters-allowed a {
-	margin-bottom: 0.3em;
-}
-.lms-quiz-create .leform-properties-css-toolbar {
-	margin-top: 5px;
-}
-.lms-quiz-create .leform-properties-css-toolbar span {
-	color: #fff;
-	background-color: #444;
-	vertical-align: top;
-	margin: 0;
-	text-align: center;
-	line-height: 28px;
-	height: 28px;
-	width: 28px;
-	font-size: 14px;
-	cursor: pointer;
-	display: inline-block;
-	transition-duration: .3s;
-	-webkit-transition-duration: .3s;
-}
-.lms-quiz-create .leform-properties-css-toolbar span:first-of-type {
-	border-radius: 3px 0 0 3px;
-}
-.lms-quiz-create .leform-properties-css-toolbar span:last-of-type {
-	border-radius: 0 3px 3px 0;
-}
-.lms-quiz-create .leform-properties-css-toolbar span:hover {
-	color: #fff;
-	background-color: #169F85;
-}
-.lms-quiz-create .leform-properties-options-box {
-	border-top: 1px solid #ccc;
-	/* border-bottom: 3px solid #169F85; */
-	/* min-height: 180px;
-	height: 240px; */
-}
-.ui-resizable .ui-resizable-handle {
-    visibility: hidden;
-    opacity: 0;
-}
-.lms-quiz-create .leform-properties-options-container {
-	/* overflow-x: hidden;
-	overflow-y: auto; */
-	height: auto;
-}
-.lms-quiz-create .leform-properties-content .leform-properties-options-box {
-    padding-left: 0;
-}
-.lms-quiz-create .leform-properties-options-container::-webkit-scrollbar {
-	width: 5px;
-}
-.lms-quiz-create .leform-properties-options-container::-webkit-scrollbar-track {
-	box-shadow: inset 0 0 6px rgba(255,255,255,0.1);
-}
-.lms-quiz-create .leform-properties-options-container::-webkit-scrollbar-thumb {
-	background-color: #26B99A;
-}
-.lms-quiz-create .leform-properties-options-item {
-	padding: 10px;
-	margin-top: 10px;
-	margin-right: 0;
-	background: #f8f8f8;
-	border-radius: 3px;
-	border: 1px solid #ccc;
-}
-.lms-quiz-create .leform-properties-options-item:last-of-type {
-	margin-bottom: 10px;
-}
-.lms-quiz-create .leform-properties-options-item-placeholder {
-	padding: 10px;
-	margin-top: 10px;
-	margin-right: 10px;
-	background: transparent;
-	border-radius: 3px;
-	border: 1px dashed #ccc;
-}
-.lms-quiz-create .leform-properties-options-item i.fa-check {
-	color: #ccc !important;
-}
-.lms-quiz-create .leform-properties-options-item-default i.fa-check {
-	color: #169F85 !important;
-}
+.lms-quiz-create .leform-properties-content-filters-allowed a {margin-bottom: 0.3em;}
+.lms-quiz-create .leform-properties-css-toolbar {margin-top: 5px;}
+.lms-quiz-create .leform-properties-css-toolbar span {color: #fff;	background-color: #444; vertical-align: top; margin: 0; text-align: center; line-height: 28px;	height: 28px; width: 28px; font-size: 14px; cursor: pointer; display: inline-block;	transition-duration: .3s; -webkit-transition-duration: .3s;}
+.lms-quiz-create .leform-properties-css-toolbar span:first-of-type {border-radius: 3px 0 0 3px;}
+.lms-quiz-create .leform-properties-css-toolbar span:last-of-type {border-radius: 0 3px 3px 0;}
+.lms-quiz-create .leform-properties-css-toolbar span:hover {color: #fff; background-color: #169F85;}
+.lms-quiz-create .leform-properties-options-box {border-top: 1px solid #ccc; /* border-bottom: 3px solid #169F85; */ /* min-height: 180px; height: 240px; */}
+.ui-resizable .ui-resizable-handle {visibility: hidden; opacity: 0;}
+.lms-quiz-create .leform-properties-options-container {/* overflow-x: hidden; overflow-y: auto; */ height: auto;}
+.lms-quiz-create .leform-properties-content .leform-properties-options-box {padding-left: 0;}
+.lms-quiz-create .leform-properties-options-container::-webkit-scrollbar {width: 5px;}
+.lms-quiz-create .leform-properties-options-container::-webkit-scrollbar-track {box-shadow: inset 0 0 6px rgba(255,255,255,0.1);}
+.lms-quiz-create .leform-properties-options-container::-webkit-scrollbar-thumb {background-color: #26B99A;}
+.lms-quiz-create .leform-properties-options-item {padding: 10px; margin-top: 10px; margin-right: 0; background: #f8f8f8; border-radius: 3px; border: 1px solid #ccc;}
+.lms-quiz-create .leform-properties-options-item:last-of-type {margin-bottom: 10px;}
+.lms-quiz-create .leform-properties-options-item-placeholder {padding: 10px; margin-top: 10px; margin-right: 10px; background: transparent;	border-radius: 3px;	border: 1px dashed #ccc;}
+.lms-quiz-create .leform-properties-options-item i.fa-check {color: #ccc !important;}
+.lms-quiz-create .leform-properties-options-item-default i.fa-check {color: #169F85 !important;}
 .lms-quiz-create .leform-properties-options-table,
-.lms-quiz-create .leform-properties-options-table-header {
-	display: table;
-	width: 100%;
-}
-.lms-quiz-create .leform-properties-options-table-header {
-	padding: 0 50px 5px 10px;
-	margin: 0;
-}
-.lms-quiz-create .leform-properties-options-table-footer {
-	text-align: right;
-	margin-top: 5px;
-}
-.lms-quiz-create .leform-properties-options-table-footer a {
-	margin-left: 5px;
-}
-.lms-quiz-create .leform-properties-options-table-footer-left {
-	display: table-cell;
-	text-align: left;
-	vertical-align: middle;
-	font-size: 15px;
-	font-style: italic;
-}
-.lms-quiz-create .leform-properties-options-table-footer-right {
-	display: table-cell;
-	text-align: right;
-	vertical-align: middle;
-}
-.lms-quiz-create .leform-properties-options-table>div {
-	display: table-cell;
-	width: 33.3333%;
-	padding-right: 10px;
-	text-align: right;
-	vertical-align: middle;
-	font-size: 16px;
-	position: relative;
-}
-.lms-quiz-create .leform-properties-options-table>div.leform-image-url span {
-	margin-right: 10px;
-}
-.lms-quiz-create .leform-properties-image-options-table .leform-properties-options-table>div {
-	width: 25%;
-}
-.lms-quiz-create .leform-properties-options-table-header>div {
-	display: table-cell;
-	width: 33.3333%;
-	text-align: left;
-	vertical-align: middle;
-	font-size: 16px;
-	font-style: italic;
-}
-.lms-quiz-create .leform-properties-image-options-table .leform-properties-options-table-header>div {
-	width: 25%;
-}
-.lms-quiz-create .leform-properties-options-table>div:last-of-type {
-	padding-right: 0;
-}
-.lms-quiz-create .leform-properties-options-table>div span {
-	margin-left: 10px;
-	color: #888;
-	cursor: pointer;
-	transition-duration: .3s;
-	-webkit-transition-duration: .3s;
-}
-.lms-quiz-create .leform-properties-options-table>div span:hover {
-	color: #169F85;
-}
-.lms-quiz-create .leform-properties-options-table>div span:last-of-type {
-	cursor: move;
-	cursor: -webkit-grab;
-	cursor: grab;
-}
-.lms-quiz-create .leform-properties-options-table>div input[type='text'] {
-	font-size: 14px;
-	padding: 0.6em 0.6em;
-}
-.lms-quiz-create .leform-properties-options-table>div.leform-image-url input[type='text'] {
-	padding-right: 35px;
-}
+.lms-quiz-create .leform-properties-options-table-header {display: table; width: 100%;}
+.lms-quiz-create .leform-properties-options-table-header {padding: 0 50px 5px 0;margin: 0;}
+.lms-quiz-create .leform-properties-options-table-footer {text-align: right; margin-top: 5px;}
+.lms-quiz-create .leform-properties-options-table-footer a {margin-left: 5px;}
+.lms-quiz-create .leform-properties-options-table-footer-left {display: table-cell;	text-align: left; vertical-align: middle; font-size: 15px; font-style: italic;}
+.lms-quiz-create .leform-properties-options-table-footer-right {display: table-cell; text-align: right;	vertical-align: middle;}
+.lms-quiz-create .leform-properties-options-table>div {display: table-cell;	width: 33.3333%; padding-right: 10px; text-align: right; vertical-align: middle; font-size: 16px; position: relative;}
+.lms-quiz-create .leform-properties-options-table>div.leform-image-url span {margin-right: 10px;}
+.lms-quiz-create .leform-properties-image-options-table .leform-properties-options-table>div {width: 25%;}
+.lms-quiz-create .leform-properties-options-table-header>div {display: table-cell; width: 33.3333%; text-align: left; vertical-align: middle; font-size: 16px; font-style: italic;}
+.lms-quiz-create .leform-properties-image-options-table .leform-properties-options-table-header>div {width: 25%;}
+.lms-quiz-create .leform-properties-options-table>div:last-of-type {padding-right: 0;}
+.lms-quiz-create .leform-properties-options-table>div span {margin-left: 10px; color: #888; cursor: pointer; transition-duration: .3s; -webkit-transition-duration: .3s;}
+.lms-quiz-create .leform-properties-options-table>div span:hover {color: #169F85;}
+.lms-quiz-create .leform-properties-options-table>div span:last-of-type {cursor: -webkit-grab; cursor: grab;}
+.lms-quiz-create .leform-admin-popup .leform-properties-options-table>div span:last-of-type {cursor: pointer;}
+.lms-quiz-create .leform-properties-options-table>div input[type='text'] {font-size: 14px; padding: 0.6em 0.6em;}
+.lms-quiz-create .leform-properties-options-table>div.leform-image-url input[type='text'] {padding-right: 35px;}
 .lms-element-properties .leform-properties-options-box .admin-file-manager,
-.leform-properties-content .leform-image-url .admin-file-manager {
-    position: absolute;
-    right: 10px;
-	left: auto;
-    top: 0;
-    height: 100%;
-    border: 0;
-    background-color: inherit;
-    padding: 0 10px;
-}
-.lms-quiz-create .leform-properties-preview-option {
-	position: relative;
-	padding: 0 !important;
-	width: 100px;
-	height: 100px;
-	line-height: 100px;
-	border: 1px solid #ccc;
-	border-radius: 3px;
-	display: inline-block;
-	margin-right: 10px;
-	margin-bottom: 10px;
-	text-align: center;
-	transition-duration: .3s;
-	-webkit-transition-duration: .3s;
-	vertical-align: top;
-}
-.lms-quiz-create input[type="radio"].leform-radio-image {
-	display: none !important;
-}
-.lms-quiz-create input[type="radio"].leform-radio-image+label {
-	appearance: none;
-	display: inline-block;
-	border: 1px solid #c0c0c0;
-	border-radius: 5px;
-	box-sizing: border-box;
-	margin: 0 10px 10px 0;
-	-moz-filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
-	-o-filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
-	-webkit-filter: grayscale(100%);
-	filter: gray;
-	filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
-	background-position: center center;
-	background-repeat: no-repeat;
-	transition-property: border, filter;
-	-webkit-transition-property: border, filter;
-	transition-duration: .3s;
-	-webkit-transition-duration: .3s;
-}
-.lms-quiz-create input[type="radio"].leform-radio-image:checked+label {
-	border: 2px solid #169F85;
-	-moz-filter: none;
-	-o-filter: none;
-	-webkit-filter: none;
-	filter: none;
-	filter: none;
-}
-.lms-quiz-create .leform-properties-preview-option>input[type="radio"] {
-	display: none !important;
-}
-.lms-quiz-create .leform-properties-preview-option>input[type="radio"]+label {
-	appearance: none;
-	font-size: 24px;
-	line-height: 24px;
-	width: 24px;
-	position: absolute;
-	top: 5px;
-	left: 5px;
-	color: #ccc;
-	cursor: pointer;
-	text-align: left;
-	z-index: 999;
-}
-.lms-quiz-create .leform-properties-preview-option>input[type="radio"]+label:before {
-	content: '';
-}
-.lms-quiz-create .leform-properties-preview-option>input[type="radio"]+label:after {
-	content: "\f0c8";
-}
-.lms-quiz-create .leform-properties-preview-option>input[type="radio"]:checked+label:after {
-	content: "\f14a" !important;
-	color: #169F85;
-}
-.lms-quiz-create .leform-properties-preview-option:hover {
-	border: 1px solid #169F85;
-}
-.lms-quiz-create .leform-properties-preview-option:hover>input[type="radio"]+label:after {
-	color: #169F85;
-}
-.lms-quiz-create .leform-properties-preview-option>div {
-	position: relative;
-}
-
-.lms-quiz-create input[type="checkbox"].leform-properties-tile {
-	display: none !important;
-}
-.lms-quiz-create input[type="checkbox"].leform-properties-tile+label {
-	display: inline-block;
-	white-space: nowrap;
-	border: 1px solid #CCC;
-	border-radius: 5px;
-	cursor: pointer;
-	box-sizing: border-box;
-	margin: 2px;
-	padding: 0.6em 1.2em;
-	transition-duration: .3s;
-	transition-property: border;
-}
+.leform-properties-content .leform-image-url .admin-file-manager {position: absolute; right: 10px; left: auto; top: 0; height: 100%; border: 0; background-color: inherit; padding: 0 10px;}
+.lms-quiz-create .leform-properties-preview-option {position: relative; padding: 0 !important; width: 100px; height: 100px; line-height: 100px;	border: 1px solid #ccc;border-radius: 3px; display: inline-block; margin-right: 10px; margin-bottom: 10px;	text-align: center;	transition-duration: .3s; -webkit-transition-duration: .3s;	vertical-align: top;}
+.lms-quiz-create input[type="radio"].leform-radio-image {display: none !important;}
+.lms-quiz-create input[type="radio"].leform-radio-image+label {appearance: none; display: inline-block;	border: 1px solid #c0c0c0;	border-radius: 5px;	box-sizing: border-box;	margin: 0 10px 10px 0; -moz-filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); -o-filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); -webkit-filter: grayscale(100%); filter: gray; filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); background-position: center center; background-repeat: no-repeat;	transition-property: border, filter; -webkit-transition-property: border, filter; transition-duration: .3s;	-webkit-transition-duration: .3s;}
+.lms-quiz-create input[type="radio"].leform-radio-image:checked+label {border: 2px solid #169F85; -moz-filter: none; -o-filter: none; -webkit-filter: none; filter: none; filter: none;}
+.lms-quiz-create .leform-properties-preview-option>input[type="radio"] {display: none !important;}
+.lms-quiz-create .leform-properties-preview-option>input[type="radio"]+label {appearance: none;	font-size: 24px; line-height: 24px;	width: 24px; position: absolute; top: 5px; left: 5px; color: #ccc;	cursor: pointer; text-align: left; z-index: 999;}
+.lms-quiz-create .leform-properties-preview-option>input[type="radio"]+label:before {content: '';}
+.lms-quiz-create .leform-properties-preview-option>input[type="radio"]+label:after {content: "\f0c8";}
+.lms-quiz-create .leform-properties-preview-option>input[type="radio"]:checked+label:after {content: "\f14a" !important; color: #169F85;}
+.lms-quiz-create .leform-properties-preview-option:hover {border: 1px solid #169F85;}
+.lms-quiz-create .leform-properties-preview-option:hover>input[type="radio"]+label:after {color: #169F85;}
+.lms-quiz-create .leform-properties-preview-option>div {position: relative;}
+.lms-quiz-create input[type="checkbox"].leform-properties-tile {display: none !important;}
+.lms-quiz-create input[type="checkbox"].leform-properties-tile+label {display: inline-block; white-space: nowrap; border: 1px solid #CCC; border-radius: 5px; cursor: pointer; box-sizing: border-box;	margin: 2px; padding: 0.6em 1.2em; transition-duration: .3s; transition-property: border;}
 .lms-quiz-create input[type="checkbox"].leform-properties-tile:checked+label,
-.lms-quiz-create input[type="checkbox"].leform-properties-tile+label:hover {
-	border-color: #169F85;
-}
-.lms-quiz-create input[type="checkbox"].leform-properties-tile:checked+label {
-	background-color: #169F85;
-	color: #ffffff;
-}
-
+.lms-quiz-create input[type="checkbox"].leform-properties-tile+label:hover {border-color: #169F85;}
+.lms-quiz-create input[type="checkbox"].leform-properties-tile:checked+label {background-color: #169F85; color: #ffffff;}
 .lms-quiz-create .leform-bar-options,
-.lms-quiz-create .leform-bar-selector {
-	color: #444;
-	white-space: nowrap;
-	display: inline-block;
-}
+.lms-quiz-create .leform-bar-selector {color: #444; white-space: nowrap; display: inline-block;}
 .lms-quiz-create .leform-bar-selector input[type="radio"],
-.lms-quiz-create .leform-bar-selector input[type="checkbox"] {
-	display: none !important;
-}
+.lms-quiz-create .leform-bar-selector input[type="checkbox"] {display: none !important;}
 .lms-quiz-create .leform-bar-selector input[type="radio"]+label:before,
 .lms-quiz-create .leform-bar-selector input[type="radio"]+label:after,
 .lms-quiz-create .leform-bar-selector input[type="checkbox"]+label:before,
-.lms-quiz-create .leform-bar-selector input[type="checkbox"]+label:after {
-	content: '';
-}
+.lms-quiz-create .leform-bar-selector input[type="checkbox"]+label:after {content: '';}
 .lms-quiz-create .leform-bar-options span,
 .lms-quiz-create .leform-bar-selector input[type="radio"]+label,
-.lms-quiz-create .leform-bar-selector input[type="checkbox"]+label {
-	appearance: none;
-	line-height: 40px;
-	display: inline-block;
-	min-width: 40px;
-	height: 40px;
-	text-align: center;
-	padding: 0 5px;
-	cursor: pointer;
-	border: 1px solid #ccc;
-	border-left: none;
-	border-right: none;
-	transition-duration: .3s;
-	-webkit-transition-duration: .3s;
-}
+.lms-quiz-create .leform-bar-selector input[type="checkbox"]+label {appearance: none; line-height: 40px; display: inline-block;	min-width: 40px; height: 40px; text-align: center; padding: 0 5px; cursor: pointer; border: 1px solid #ccc; border-left: none; border-right: none; transition-duration: .3s; -webkit-transition-duration: .3s; }
 .lms-quiz-create .leform-bar-options span i,
 .lms-quiz-create .leform-bar-selector input[type="radio"]+label i,
-.lms-quiz-create .leform-bar-selector input[type="checkbox"]+label i {
-	line-height: 40px;
-	vertical-align: middle;
-}
+.lms-quiz-create .leform-bar-selector input[type="checkbox"]+label i {line-height: 40px; vertical-align: middle;}
 .lms-quiz-create .leform-bar-options span:first-of-type,
 .lms-quiz-create .leform-bar-selector input[type="radio"]+label:first-of-type,
-.lms-quiz-create .leform-bar-selector input[type="checkbox"]+label:first-of-type {
-	border-radius: 3px 0 0 3px;
-	border-left: 1px solid #ccc;
-}
+.lms-quiz-create .leform-bar-selector input[type="checkbox"]+label:first-of-type {border-radius: 3px 0 0 3px; border-left: 1px solid #ccc;}
 .lms-quiz-create .leform-bar-options span:last-of-type,
 .lms-quiz-create .leform-bar-selector input[type="radio"]+label:last-of-type,
-.lms-quiz-create .leform-bar-selector input[type="checkbox"]+label:last-of-type {
-	border-radius: 0 3px 3px 0;
-	border-right: 1px solid #ccc;
-}
+.lms-quiz-create .leform-bar-selector input[type="checkbox"]+label:last-of-type {border-radius: 0 3px 3px 0; border-right: 1px solid #ccc;}
 .lms-quiz-create .leform-bar-options span.leform-bar-option-selected,
 .lms-quiz-create .leform-bar-selector input[type="radio"]:checked+label,
 .lms-quiz-create .leform-bar-selector input[type="checkbox"]:checked+label,
@@ -1082,292 +281,68 @@
 .lms-quiz-create .leform-bar-selector input[type="radio"]+label:hover,
 .lms-quiz-create .leform-bar-selector input[type="radio"]:checked+label,
 .lms-quiz-create .leform-bar-selector input[type="checkbox"]+label:hover,
-.lms-quiz-create .leform-bar-selector input[type="checkbox"]:checked+label {
-	border-color: #169F85;
-	background: #169F85;
-	color: #fff;
-	opacity: 0.9;
-}
+.lms-quiz-create .leform-bar-selector input[type="checkbox"]:checked+label {border-color: #169F85;	background: #169F85; color: #fff;	opacity: 0.9;}
 .lms-quiz-create .leform-bar-options span:hover,
 .lms-quiz-create .leform-bar-selector input[type="radio"]+label:hover,
-.lms-quiz-create .leform-bar-selector input[type="checkbox"]+label:hover {
-	opacity: 0.7;
-}
+.lms-quiz-create .leform-bar-selector input[type="checkbox"]+label:hover {opacity: 0.7;}
 .lms-quiz-create .leform-bar-options span.leform-bar-option-selected:hover,
 .lms-quiz-create .leform-bar-selector input[type="radio"]:checked+label:hover,
-.lms-quiz-create .leform-bar-selector input[type="checkbox"]:checked+label:hover {
-	opacity: 1;
-}
-.leform-properties-content-slider {
-	padding-left: 20px !important;
-	padding-right: 10px !important;
-}
-.leform-slider-container {
-	min-width: 200px;
-	height: 40px;
-	padding-top: 15px;
-}
-.leform-slider.ui-slider {
-	border: 1px solid #ccc !important;
-}
-.leform-slider .ui-slider-handle {
-	width: 3em !important;
-	height: 24px !important;
-	top: 50% !important;
-	margin-top: -12px !important;
-	text-align: center !important;
-	margin-left: -1.5em !important;
-	background: #169F85 !important;
-	color: #fff !important;
-	font-size: 12px !important;
-	line-height: 24px !important;
-	border-color: #169F85 !important;
-}
-.leform-col-width {
-	padding-left: 0 !important;
-	display: table;
-	width: 100%;
-}
-.leform-col-width label {
-	display: table-cell;
-	max-width: 40px;
-	min-width: 40px;
-	width: 40px;
-	margin-bottom: 0;
-	font-weight: 400;
-}
-.leform-col-width>div {
-	display: table-cell;
-	width: 100%
-}
-.leform-properties-content .mce-tinymce {
-	box-shadow: none !important;
-}
-.leform-properties-content .mce-tinymce .mce-top-part::before {
-	-webkit-box-shadow: none;
-	box-shadow: none;
-}
-.leform-properties-content .wp-editor-container {
-	box-shadow: none;
-}
-.leform-properties-content .mce-notification-inner {
-	z-index: 9999999;
-}
-.leform-properties-content .wp-editor-container textarea {
-	border: none;
-}
-.leform-properties-content .wp-editor-tabs * {
-	box-sizing: content-box;
-}
+.lms-quiz-create .leform-bar-selector input[type="checkbox"]:checked+label:hover {opacity: 1;}
+.leform-properties-content-slider {padding-left: 20px !important; padding-right: 10px !important;}
+.leform-slider-container {min-width: 200px;height: 40px; padding-top: 15px;}
+.leform-slider.ui-slider {border: 1px solid #ccc !important;}
+.leform-slider .ui-slider-handle {width: 3em !important; height: 24px !important; top: 50% !important; margin-top: -12px !important; text-align: center !important;	margin-left: -1.5em !important;	background: #169F85 !important; color: #fff !important; font-size: 12px !important; line-height: 24px !important;	border-color: #169F85 !important;}
+.leform-col-width {padding-left: 0 !important;display: table;width: 100%;}
+.leform-col-width label {display: table-cell;max-width: 40px;min-width: 40px;width: 40px;margin-bottom: 0;font-weight: 400;}
+.leform-col-width>div {display: table-cell;	width: 100%}
+.leform-properties-content .mce-tinymce {box-shadow: none !important;}
+.leform-properties-content .mce-tinymce .mce-top-part::before {-webkit-box-shadow: none;box-shadow: none;}
+.leform-properties-content .wp-editor-container {box-shadow: none;}
+.leform-properties-content .mce-notification-inner {z-index: 9999999;}
+.leform-properties-content .wp-editor-container textarea {border: none;}
+.leform-properties-content .wp-editor-tabs * {box-sizing: content-box;}
 .leform-properties-content .mce-btn.mce-active button, .leform-properties-content .mce-btn.mce-active:hover button, 
-.leform-properties-content .mce-btn.mce-active i, .leform-properties-content .mce-btn.mce-active:hover i {
-	color: #444;
-}
-.leform-properties-content .wp-core-ui {
-	padding-left: 0 !important;
-}
-.leform-shortcode-selector .leform-shortcode-selector-button {
-	width: 36px;
-	height: 36px;
-	position: absolute;
-	left: -36px;
-	top: 109px;
-	background: #f5f5f5;
-	color: #444;
-	border: 1px solid #ddd;
-	border-right: none;
-	border-radius: 3px 0 0 3px;
-	line-height: 36px;
-	text-align: center;
-	font-size: 16px;
-	cursor: pointer;
-	transition-duration: .3s;
-	-webkit-transition-duration: .3s;
-}
+.leform-properties-content .mce-btn.mce-active i, .leform-properties-content .mce-btn.mce-active:hover i {color: #444;}
+.leform-properties-content .wp-core-ui {padding-left: 0 !important;}
+.leform-shortcode-selector .leform-shortcode-selector-button {width: 36px;height: 36px;	position: absolute;	left: -36px; top: 109px; background: #f5f5f5; color: #444; border: 1px solid #ddd; border-right: none; border-radius: 3px 0 0 3px; line-height: 36px; text-align: center; font-size: 16px; cursor: pointer; transition-duration: .3s; -webkit-transition-duration: .3s;}
 .leform-shortcode-selector .leform-shortcode-selector-button:hover,
-.leform-shortcode-selector:hover .leform-shortcode-selector-button {
-	background: #fff;
-	border-color: #f5f5f5;
-	color: #169F85;
-}
-.leform-properties-content.leform-wysiwyg .leform-shortcode-selector {
-	height: 100%;
-	position: absolute !important;
-	left: 0;
-	top: 0;
-}
-.leform-input-shortcode-selector {
-	position: relative;
-}
-.leform-input-shortcode-selector .leform-shortcode-selector {
-	height: 100%;
-	position: absolute !important;
-	right: 0;
-	top: 0;
-}
-.leform-input-shortcode-selector input, .leform-input-shortcode-selector textarea {
-	padding-right: 40px !important;
-}
-.leform-shortcode-selector ul {
-	width: 200px;
-	position: absolute;
-	background: #fff;
-	color: #444;
-	border: 1px solid #ddd;
-	display: none;
-	padding-left: 0;
-	padding: 0;
-	margin: 0;
-	z-index: 9;
-	box-shadow: 2px 2px 10px -7px rgba(0,0,0,0.9);
-	overflow-x: hidden;
-	overflow-y: scroll;
-}
-.leform-shortcode-selector ul.leform-shortcode-selector-list-wysiwyg {
-	max-height: 100%;
-	left: 0;
-	top: 0;
-}
-.leform-shortcode-selector ul.leform-shortcode-selector-list-input {
-	right: 40px;
-	top: -120px;
-	max-height: 280px;
-}
-.leform-shortcode-selector:hover ul {
-	display: block;
-}
-.leform-shortcode-selector ul::-webkit-scrollbar {
-	width: 5px;
-}
-.leform-shortcode-selector ul::-webkit-scrollbar-track {
-	box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
-}
-.leform-shortcode-selector ul::-webkit-scrollbar-thumb {
-	background-color: #26B99A;
-}
-.leform-shortcode-selector ul li.leform-shortcode-selector-group {
-	margin: 0;
-	padding: 0.7em 0.8em 0.3em 0.8em;
-	color: #444;
-	background: #fff;
-	font-size: 14px;
-	font-weight: bold;
-}
-.leform-shortcode-selector ul li.leform-shortcode-selector-list-item {
-	margin: 0;
-	padding: 0.5em 0.5em 0.5em 1.5em;
-	color: #444;
-	background: #fff;
-	font-size: 14px;
-	cursor: pointer;
-	transition-duration: .3s;
-	-webkit-transition-duration: .3s;
-}
-.leform-shortcode-selector ul li.leform-shortcode-selector-list-item:hover {
-	background: #169F85;
-	color: #fff;
-}
-.leform-shortcode-selector ul li.leform-shortcode-selector-list-item:active {
-	transform: scale(0.95);
-}
-.leform-shortcode-selector-list-item-form-data {
-	display: none;
-}
-.leform-properties-content-notifications .leform-shortcode-selector-list-item-form-data {
-	display: block;
-}
-.leform-shortcode-selector-list-input>li.leform-shortcode-selector-list-item-form-data {
-	display: none !important;
-}
-
-.leform-properties-logic-header {
-	margin-bottom: 10px;
-}
-.leform-properties-logic-buttons {
-	border-top: 3px solid #169F85;
-	padding-top: 5px;
-	text-align: right;
-}
-.leform-properties-logic-rules {
-	padding: 0 !important;
-}
-.leform-properties-logic-rule {
-	padding: 10px;
-	margin-bottom: 10px;
-	background: #f8f8f8;
-	border-radius: 3px;
-	border: 1px solid #ccc;
-}
-.leform-properties-logic-rule-table {
-	display: table;
-	width: 100%;
-}
-.leform-properties-logic-rule-table>div {
-	display: table-cell;
-	width: 33.3333%;
-	padding-right: 10px;
-	text-align: right;
-	vertical-align: middle;
-	font-size: 16px;
-}
-.leform-properties-logic-rule-table>div:last-of-type {
-	padding-right: 0;
-}
-.leform-properties-logic-rule-table>div span {
-	margin-left: 10px;
-	color: #888;
-	cursor: pointer;
-	transition-duration: .3s;
-	-webkit-transition-duration: .3s;
-}
-.leform-properties-logic-rule-table>div span:hover {
-	color: #169F85;
-}
-.leform-properties-inline-error {
-	display: inline-block;
-	line-height: 1.4;
-	border-radius: 4px;
-	padding: 0;
-	box-shadow: 1px 1px 10px -4px #000;
-	font-size: 15px;
-	color: #fff;
-	font-weight: normal;
-	font-style: normal;
-	text-decoration: none;
-	text-align: left;
-	background-color: #d9534f;
-	padding: 1em 1.5em !important;
-}
-.leform-properties-content-confirmations {
-	margin-top: 10px;
-}
-.leform-properties-content-notifications {
-	margin-top: 10px;
-}
-.leform-properties-content-integrations {
-	margin-top: 10px;
-}
-.leform-properties-content-payment-gateways {
-	margin-top: 10px;
-}
-.leform-properties-sub-item-placeholder {
-	margin-top: 10px;
-	margin-bottom: 10px;
-	background: transparent;
-	border-radius: 3px;
-	border: 1px dashed #ccc;
-}
-.leform-properties-attachment-buttons {
-	padding-left: 0 !important;
-}
-.leform-properties-attachments {
-	padding: 0 !important;
-}
-.leform-properties-attachment {
-	padding: 10px;
-	margin-bottom: 10px;
-	background: #f8f8f8;
-	border-radius: 3px;
+.leform-shortcode-selector:hover .leform-shortcode-selector-button {background: #fff; border-color: #f5f5f5; color: #169F85;}
+.leform-properties-content.leform-wysiwyg .leform-shortcode-selector {height: 100%;	position: absolute !important; left: 0;	top: 0;}
+.leform-input-shortcode-selector {position: relative;}
+.leform-input-shortcode-selector .leform-shortcode-selector {height: 100%; position: absolute !important; right: 0;	top: 0;}
+.leform-input-shortcode-selector input, .leform-input-shortcode-selector textarea {padding-right: 40px !important;}
+.leform-shortcode-selector ul {width: 200px; position: absolute; background: #fff; color: #444; border: 1px solid #ddd; display: none; padding-left: 0; padding: 0; margin: 0; z-index: 9; box-shadow: 2px 2px 10px -7px rgba(0,0,0,0.9); overflow-x: hidden; overflow-y: scroll;}
+.leform-shortcode-selector ul.leform-shortcode-selector-list-wysiwyg {max-height: 100%;	left: 0; top: 0;}
+.leform-shortcode-selector ul.leform-shortcode-selector-list-input {right: 40px; top: -120px; max-height: 280px;}
+.leform-shortcode-selector:hover ul {display: block;}
+.leform-shortcode-selector ul::-webkit-scrollbar {width: 5px;}
+.leform-shortcode-selector ul::-webkit-scrollbar-track {box-shadow: inset 0 0 6px rgba(0,0,0,0.1);}
+.leform-shortcode-selector ul::-webkit-scrollbar-thumb {background-color: #26B99A;}
+.leform-shortcode-selector ul li.leform-shortcode-selector-group {margin: 0; padding: 0.7em 0.8em 0.3em 0.8em; color: #444; background: #fff;	font-size: 14px; font-weight: bold;}
+.leform-shortcode-selector ul li.leform-shortcode-selector-list-item {margin: 0; padding: 0.5em 0.5em 0.5em 1.5em; color: #444; background: #fff;	font-size: 14px; cursor: pointer; transition-duration: .3s; -webkit-transition-duration: .3s;}
+.leform-shortcode-selector ul li.leform-shortcode-selector-list-item:hover {background: #169F85; color: #fff;}
+.leform-shortcode-selector ul li.leform-shortcode-selector-list-item:active {transform: scale(0.95);}
+.leform-shortcode-selector-list-item-form-data {display: none;}
+.leform-properties-content-notifications .leform-shortcode-selector-list-item-form-data {display: block;}
+.leform-shortcode-selector-list-input>li.leform-shortcode-selector-list-item-form-data {display: none !important;}
+.leform-properties-logic-header {margin-bottom: 10px;}
+.leform-properties-logic-buttons {border-top: 3px solid #169F85; padding-top: 5px;	text-align: right;}
+.leform-properties-logic-rules {padding: 0 !important;}
+.leform-properties-logic-rule {	padding: 10px;margin-bottom: 10px;background: #f8f8f8;	border-radius: 3px;	border: 1px solid #ccc;}
+.leform-properties-logic-rule-table {display: table;width: 100%;}
+.leform-properties-logic-rule-table>div {display: table-cell;width: 33.3333%;padding-right: 10px;text-align: right;vertical-align: middle;font-size: 16px;}
+.leform-properties-logic-rule-table>div:last-of-type {padding-right: 0;}
+.leform-properties-logic-rule-table>div span {margin-left: 10px;color: #888;cursor: pointer;transition-duration: .3s;-webkit-transition-duration: .3s;}
+.leform-properties-logic-rule-table>div span:hover {color: #169F85;}
+.leform-properties-inline-error {display: inline-block;	line-height: 1.4;border-radius: 4px;padding: 0;box-shadow: 1px 1px 10px -4px #000;font-size: 15px;color: #fff;font-weight: normal;font-style: normal;text-decoration: none;text-align: left;background-color: #d9534f;padding: 1em 1.5em !important;}
+.leform-properties-content-confirmations {margin-top: 10px;}
+.leform-properties-content-notifications {margin-top: 10px;}
+.leform-properties-content-integrations {margin-top: 10px;}
+.leform-properties-content-payment-gateways {margin-top: 10px;}
+.leform-properties-sub-item-placeholder {margin-top: 10px; margin-bottom: 10px;	background: transparent; border-radius: 3px; border: 1px dashed #ccc;}
+.leform-properties-attachment-buttons {padding-left: 0 !important;}
+.leform-properties-attachments {padding: 0 !important;}
+.leform-properties-attachment {padding: 10px; margin-bottom: 10px; background: #f8f8f8;border-radius: 3px;
 	border: 1px solid #ccc;
 }
 .leform-properties-attachment-table {
@@ -2018,10 +993,10 @@
 .leform-toolbar-list>li>ul>li>a {text-align: left;height: 32px;	display: block;	line-height: 32px;letter-spacing: normal;background-color: transparent;font-family: arial;color: #2f353b;font-size: 13px;margin: 0;padding: 0 10px;text-decoration: none !important;box-shadow: none !important;outline: none !important;border: none !important;transition-duration: .3s;-webkit-transition-duration: .3s;}
 .leform-toolbar-list>li>ul>li>a:hover {color: #169F85;	background: #f8f8f8;}
 .leform-toolbar-tooltip {font-size: 14px !important;/*	text-transform: uppercase;*/z-index: 99999 !important;}
-.leform-toolbar-list>li[title]:after {content: attr(title); position: absolute; top: 100%; left: 0; background-color: #000; color: #fff; font-size:12px; line-height: normal; padding: 10px 8px; border-radius: 5px; opacity: 0; visibility: hidden;}
-.leform-toolbar-list>li[title]:before {content: ""; top: 100%; left: 10px; position: absolute; height: 10px; width: 10px; background-color: #000; transform: rotate(45deg); margin-top: -4px; opacity: 0; visibility: hidden;}
-.leform-toolbar-list>li[title]:hover:after,
-.leform-toolbar-list>li[title]:hover:before {opacity: 1; visibility: visible;}
+.leform-toolbar-list>li[data-title]:after {content: attr(data-title); position: absolute; top: 100%; left: 0; background-color: #000; color: #fff; font-size:12px; line-height: normal; padding: 10px 8px; border-radius: 5px; opacity: 0; visibility: hidden;}
+.leform-toolbar-list>li[data-title]:before {content: ""; top: 100%; left: 10px; position: absolute; height: 10px; width: 10px; background-color: #000; transform: rotate(45deg); margin-top: -4px; opacity: 0; visibility: hidden;}
+.leform-toolbar-list>li[data-title]:hover:after,
+.leform-toolbar-list>li[data-title]:hover:before {opacity: 1; visibility: visible;}
 .leform-pages-bar {height: auto; line-height: 48px;	background: #f4f4f4;border-left: 1px solid #d4d4d4;border-right: 1px solid #d4d4d4;border-bottom: 1px solid #d4d4d4;overflow: hidden;}
 .leform-pages-bar-items {height: auto;margin: -1px 0 0 0;padding: 0;list-style-type: none;}
 .leform-pages-bar-items::after {display: table;	content: ' ';clear: both;}
@@ -2911,9 +1886,9 @@ select.leform-block-form-value {vertical-align: top;line-height: 36px !important
 .leform-numspinner-plus:before {font-size: 12px;}
 .leform-tile-icon:before {display: inline-block;content: "tile";font-size: 70%;font-family: verdana;border: 1px solid #444;border-radius: 3px;line-height: 1;padding: 0.1em 0.3em;vertical-align: middle;box-shadow: 0 0 1px 1px rgba(0,0,0,0.05);}
 .leform-email-validator-options {display: none;}
-.leform-toolbars {position: absolute;left: 0;right: 0;width: 100% !important;} 
+.leform-toolbars {position: absolute;top: 0; left: 0;right: 0;width: 100% !important;} 
 .leform-form-editor {position: relative;}
-html.leform-toolbars-fixed .leform-toolbars {position: fixed;z-index: 1000;top: 0;left: unset !important;right: unset !important;width: 886px !important;}
+html.leform-toolbars-fixed .leform-toolbars {position: sticky;z-index: 1000;}
 html.wp-toolbar.leform-toolbars-fixed .leform-toolbars {top: 32px;}
 html.wp-toolbar .leform-toolbar-tooltipster {margin-top: -32px;}
 html.wp-toolbar.leform-toolbars-fixed .leform-toolbar-tooltipster {margin-top: 0;}
@@ -2931,49 +1906,14 @@ html.wp-toolbar.leform-toolbars-fixed .leform-toolbar-tooltipster {margin-top: 0
 .lms-quiz-create .leform-properties-item .field-options {padding: 0;}
 .lms-quiz-create .leform-properties-item .field-options .text-field-options {padding: 10px;}
 .lms-quiz-create .leform-properties-item .quiz-form-control {margin-bottom: 10px;}
-.lms-quiz-create .leform-properties-item .quiz-form-control input[type=radio] {
-    margin: 0 0 10px;
-}
-.lms-quiz-create .repeater-fields .tools-div {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    display: inline-flex;
-    align-items: center;
-    transform:translateY(-50%);
-    gap: 5px;
-}
-.lms-quiz-create .repeater-fields .tools-div span {
-    margin-left: 0;
-    width: 20px;
-    height: 20px;
-    text-align: center;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-.lms-quiz-create .repeater-fields .tools-div span:has(.fa-check) {
-    margin-top: 2px;
-}
-.lms-quiz-create .repeater-fields .tools-div .remove-repeater-field {
-    position: initial;
-    margin: 0;
-    color: #f04444;
-}
-.lms-quiz-create .leform-properties-item .quiz-form-control label {
-    width: 100%;
-}
-.lms-quiz-create .repeater-fields .tools-div label {
-    margin: 0;
-    height: 100%;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-.lms-quiz-create .leform-properties-item .quiz-form-control input[type=radio]:checked + label input[type="text"] {
-    border-color: green;
-}
+.lms-quiz-create .leform-properties-item .quiz-form-control input[type=radio] {margin: 0 0 10px;}
+.lms-quiz-create .repeater-fields .tools-div {position: absolute; right: 10px; top: 50%; display: inline-flex; align-items: center; transform:translateY(-50%); gap: 5px;}
+.lms-quiz-create .repeater-fields .tools-div span {margin-left: 0; width: 20px; height: 20px; text-align: center; display: inline-flex; align-items: center; justify-content: center;}
+.lms-quiz-create .repeater-fields .tools-div span:has(.fa-check) {margin-top: 2px;}
+.lms-quiz-create .repeater-fields .tools-div .remove-repeater-field {position: initial; margin: 0; color: #f04444;}
+.lms-quiz-create .leform-properties-item .quiz-form-control label {width: 100%;}
+.lms-quiz-create .repeater-fields .tools-div label {margin: 0; height: 100%; cursor: pointer; display: inline-flex; align-items: center; justify-content: center;}
+.lms-quiz-create .leform-properties-item .quiz-form-control input[type=radio]:checked + label input[type="text"] {border-color: green;}
 .leform-properties-content.leform-wysiwyg {display: block; clear:both;}
 .editor-add-field {cursor: pointer;}
 .quiz-form-control {width: 100%; float: left; position: relative;}
@@ -2988,10 +1928,7 @@ html.wp-toolbar.leform-toolbars-fixed .leform-toolbar-tooltipster {margin-top: 0
 .content-data *[contenteditable="true"] {background-color: rgba(217, 245, 255,0.5);}
 .content-data *[contenteditable="true"]:empty {content: "c"; padding: 0 5px;}
 .hide{display:none}
-.field_extra_small{width: 22% !important; }
-.field_small{width: 40% !important;}
-.field_medium {width: 75% !important;}
-.field_large {width: 100% !important;}
+
 /****************************
 STYLE
 ****************************/
@@ -3011,8 +1948,8 @@ STYLE
 .divide-numbers .divider {height: 2px; background-color: #000; display: block; line-height: normal; margin: 2px 0;}
 .lms-hide{display:none !important}
 .leform-form-editor input[type=checkbox] {margin-right: 5px;}
-.leform-form-editor input[type="text"] {margin-bottom: 5px;	outline: none;}
-.leform-admin-editor .input-holder input.editor-field {height: 32px; margin-bottom: 0;}
+.leform-form-editor input[type="text"] {margin-bottom: 5px;}
+.leform-admin-editor .input-holder:not(input.input_line) input.editor-field {height: 32px; margin-bottom: 0;}
 .leform-form-editor p {margin-bottom: 0;}
 .leform-builder .leform-element-html h2 {font-weight: 700; font-size: 2rem; margin: 0;}
 .patterns-modal .modal {padding-right: 0 !important;}
@@ -3036,3 +1973,6 @@ STYLE
 .patterns-modal .media-holder figure {margin: 0;padding: 0;position: relative;}
 .patterns-modal .media-holder figure img {max-width: 100%;object-fit: contain;}
 .question-textarea.quiz-group {padding-top: 10px;}
+.leform-properties-content .note-editable .input-holder:has(input[type="text"]:focus) {border: 0; overflow: visible;}
+.leform-properties-content .note-editable input[type="text"],
+.note-editing-area .note-editable input.editor-field {height: 32px; box-shadow: none; border-color: transparent; border-radius: 8px; width: 100%;}

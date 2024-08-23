@@ -280,7 +280,7 @@ class DailyQuestsController extends Controller
         $screen_time = $questObj->screen_time;
 		
 		$results_ids = array();
-		if( $questObj->quest_topic_type == 'learning_journey'){
+		if( $questObj->quest_topic_type == 'learning_journey1'){
 			$learning_journey_id = $questObj->learning_journey_id;
 			$LearningJourneyObj = LearningJourneys::find($learning_journey_id);
 			$learning_journey_items = $LearningJourneyObj->learningJourneyStages->pluck('id')->toArray();
@@ -303,7 +303,7 @@ class DailyQuestsController extends Controller
         $QuizzesResults->where('created_at' ,'>=', strtotime(date('Y-m-d 00:00:00')));
         $QuizzesResults->where('created_at' ,'<=', strtotime(date('Y-m-d 23:59:59')));
 
-		if( $questObj->quest_topic_type == 'learning_journey'){
+		if( $questObj->quest_topic_type == 'learning_journey1'){
 			$QuizzesResults->whereIn('id' , $results_ids);
 		}
         $QuizzesResults = $QuizzesResults->get();

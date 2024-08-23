@@ -12,6 +12,7 @@ use App\Models\Webinar;
 use App\Models\Category;
 use App\Models\LearningJourneys;
 use App\Models\LearningJourneyItems;
+use App\Models\LearningJourneyObjects;
 use App\Models\SubChapters;
 use App\Models\Quiz;
 use App\Models\WebinarChapterItem;
@@ -19,6 +20,7 @@ use Illuminate\Support\Facades\Mail;
 use thiagoalessio\TesseractOCR\TesseractOCR;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
 
 class LearningJourneyController extends Controller
 {
@@ -87,6 +89,8 @@ class LearningJourneyController extends Controller
 		}
 		
 		
+		//pre($student_learning_journey);
+		
         $data = [
 			'pageTitle'                  => 'Learning Journey',
 			'lerningJourney'			 => $lerningJourney,
@@ -99,6 +103,7 @@ class LearningJourneyController extends Controller
 			'course'		 		=> $course,
 			'topicCount'		 		=> $topicCount,
 			'treasureCount'		 		=> $treasureCount,
+			'site_url' => url('/'),
 		];
 		return view('web.default.learning_journey.subject', $data);
 
@@ -115,9 +120,9 @@ class LearningJourneyController extends Controller
 		if( !empty( $learningJourneyLevels ) ){
 			
 			foreach( $learningJourneyLevels  as $levelObj){
-				if($levelObj->learningJourneyItems->count() > 0){
+				if($levelObj->LearningJourneyObjects->count() > 0){
 					$item_counter = 0;
-					foreach( $levelObj->learningJourneyItems->sortBy('sort_order') as $itemObj){
+					foreach( $levelObj->LearningJourneyObjects->sortBy('sort_order') as $itemObj){
 						
 						$itemObj->percentage = 0;
 						if( $itemObj->item_type == 'topic'){
@@ -177,7 +182,7 @@ class LearningJourneyController extends Controller
 	/*
      * Start Learning Journey
      */
-    public function start(Request $request, $year_slug, $subject_slug, $sub_chapter_slug)
+    public function start(Request $request, $year_slug, $subject_slug, $sub_chapter_slug, $journey_item_id)
     {
         if (!auth()->subscription('courses')) {
             return view('web.default.quizzes.not_subscribed');
@@ -197,7 +202,6 @@ class LearningJourneyController extends Controller
         $chapterItem = WebinarChapterItem::where('type', 'quiz')
             ->where('parent_id', $SubChapters->id)
             ->first();
-		pre($SubChapters);
 			
 
         $id = isset($chapterItem->item_id) ? $chapterItem->item_id : 0;

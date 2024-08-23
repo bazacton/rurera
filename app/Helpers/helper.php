@@ -9650,3 +9650,65 @@ function fillGridWithRandomLetters(&$grid) {
         }
     }
 }
+
+function getSvgFiles($directory) {
+    $svgFiles = [];
+
+    // Create a RecursiveDirectoryIterator to iterate through directories and subdirectories
+    $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory));
+
+    // Iterate over each file in the directory
+    foreach ($iterator as $file) {
+        // Check if the file has a .svg extension
+        if ($file->isFile() && strtolower($file->getExtension()) === 'svg') {
+            // Get the full path and make it relative to the editor directory
+            $fullPath = $file->getRealPath();
+            $relativePath = str_replace(realpath($directory) . DIRECTORY_SEPARATOR, '', $fullPath);
+
+            // Extract the filename without the extension
+            $fileName = pathinfo($file->getFilename(), PATHINFO_FILENAME);
+
+            // Format the filename (e.g., 'stage_1' to 'Stage 1')
+            $formattedName = ucwords(str_replace('_', ' ', $fileName));
+
+            // Get the SVG code from the file
+            $svgCode = file_get_contents($fullPath);
+
+            // Add the relative path, formatted name, and SVG code to the array
+            $svgFiles[] = [
+                'path' => $relativePath,
+                'title' => $formattedName,
+				'slug' => $fileName,
+                'svg_code' => $svgCode
+            ];
+        }
+    }
+
+    return $svgFiles;
+}
+
+function updateSvgDimensions($svgCode, $width, $height) {
+    // Remove any existing width and height attributes from the <svg> tag
+    $svgCode = preg_replace('/(<svg[^>]*)\s(width|height)="[^"]*"/i', '$1', $svgCode);
+
+    // Add or replace the width and height attributes in the <svg> tag
+    if (preg_match('/<svg[^>]*>/i', $svgCode)) {
+        $svgCode = preg_replace('/<svg/i', "<svg width=\"$width\" height=\"$height\"", $svgCode);
+    } else {
+        // In case the SVG tag does not match the above regex, append the attributes directly
+        $svgCode = "<svg width=\"$width\" height=\"$height\">" . substr($svgCode, 5);
+    }
+
+    return $svgCode;
+}
+
+
+function getFileContent($filePath) {
+	$filePath = realpath($filePath);
+	$fileContent = '';
+	if( !empty( $filePath ) ){
+		$fileContent = file_get_contents($filePath);
+	}
+	
+	return $fileContent;
+}

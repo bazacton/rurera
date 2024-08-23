@@ -16,5 +16,11 @@ class LearningJourneyLevels extends Model
     {
         return $this->hasMany('App\Models\LearningJourneyItems', 'learning_journey_level_id', 'id');
     }
+	public function LearningJourneyObjects()
+    {
+        return $this->hasMany('App\Models\LearningJourneyObjects', 'learning_journey_level_id', 'id');
+    }
+	
+	
 
 }

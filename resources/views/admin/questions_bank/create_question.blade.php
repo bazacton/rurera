@@ -340,7 +340,7 @@ $rand_id = rand(999,99999);
                                                                                 data-type="' . esc_html($key) . '"
                                                                                 data-option="2"><a
                                                                                         href="#"
-                                                                                        title="' . esc_html($value['title']) . '"><i
+                                                                                        data-title="' . esc_html($value['title']) . '"><i
                                                                                             class="' . esc_html($value['icon']) . '"></i></a>
                                                                                 <ul class="' . esc_html($key) . '">';
                                                                                     foreach ($value['options'] as
@@ -353,8 +353,8 @@ $rand_id = rand(999,99999);
                                                                                     <li data-type="' . esc_html($key) . '"
                                                                                         data-option="' . esc_html($option_key) . '" 
                                                                                         data-elements="' . esc_html($data_options_elements) . '"
-                                                                                        title=""><a href="#"
-                                                                                                    title="' . esc_html($value['title']) . '">'
+                                                                                        ><a href="#"
+                                                                                                    data-title="' . esc_html($value['title']) . '">'
                                                                                             . esc_html($option_value) .
                                                                                             '</a></li>
                                                                                     ';
@@ -374,7 +374,7 @@ $rand_id = rand(999,99999);
 																			
                                                                             echo '
                                                                             <li class="leform-toolbar-tool-' . esc_html($value['type']) . ' '.$classes.'"
-                                                                                title="' . esc_html($value['title']) . '" data-type="' . esc_html($key) . '"><a
+                                                                                data-title="' . esc_html($value['title']) . '" data-type="' . esc_html($key) . '"><a
                                                                                         href="#"
                                                                                         title="' . esc_html($value['title']) . '">'.$icon.'</a>
                                                                             </li>
@@ -571,8 +571,9 @@ $rand_id = rand(999,99999);
                                                                 }];
                                                                 //var leform_form_elements_raw = []; //Default Value for Questions
                                                                 @php
+																$layout_elements = isset( $layout_elements )? $layout_elements : array();
                                                                 echo
-                                                                'var leform_form_elements_raw = ""';
+                                                                'var leform_form_elements_raw = '.json_encode($layout_elements);
                                                                 @endphp;
                                                                 //var leform_form_elements_raw = ["{\"type\":\"image_quiz\",\"resize\":\"both\",\"height\":\"auto\",\"_parent\":\"1\",\"_parent-col\":\"0\",\"_seq\":0,\"id\":2,\"basic\":\"basic\",\"content\":\"    test     \",\"elements_data\":\"W3siMjM3OCI6eyJmaWVsZF90eXBlIjoiaW1hZ2UiLCJpbWFnZSI6Ii9zdG9yZS8xL2Rhc2hib2FyZC5wbmcifSwiNDAwNjEiOnsiZmllbGRfdHlwZSI6ImltYWdlIiwiaW1hZ2UiOiIvc3RvcmUvMS9kYXNoYm9hcmQucG5nIn19XQ==\"}"];
                                                                 //var leform_form_elements_raw = ["{\"basic\":\"basic\",\"content\":\&lt;span class=&quot;block-holder&quot;&gt;&lt;img data-field_type=&quot;image&quot; data-id=&quot;2378&quot; id=&quot;field-2378&quot; class=&quot;editor-field&quot; src=&quot;\/store\/1\/dashboard.png&quot; heigh=&quot;50&quot; width=&quot;50&quot; data-image=&quot;\/store\/1\/dashboard.png&quot;&gt;&lt;\/span&gt;&amp;nbsp; &amp;nbsp; test&amp;nbsp; &amp;nbsp;&amp;nbsp;&lt;span class=&quot;block-holder&quot;&gt;&lt;img data-field_type=&quot;image&quot; data-id=&quot;40061&quot; id=&quot;field-40061&quot; class=&quot;editor-field&quot; src=&quot;\/store\/1\/default_images\/admin_dashboard.jpg&quot; heigh=&quot;50&quot; width=&quot;50&quot; data-image=&quot;\/store\/1\/default_images\/admin_dashboard.jpg&quot;&gt;&lt;\/span&gt;&amp;nbsp;&lt;br&gt;",\"elements_data\":{\"2378\":{\"data-field_type\":\"image\",\"data-id\":\"2378\",\"id\":\"field-2378\",\"class\":\"editor-field\",\"src\":\"\/store\/1\/dashboard.png\",\"heigh\":\"50\",\"width\":\"50\",\"data-image\":\"\/store\/1\/dashboard.png\"},\"40061\":{\"data-field_type\":\"image\",\"data-id\":\"40061\",\"id\":\"field-40061\",\"class\":\"editor-field\",\"src\":\"\/store\/1\/default_images\/admin_dashboard.jpg\",\"heigh\":\"50\",\"width\":\"50\",\"data-image\":\"\/store\/1\/default_images\/admin_dashboard.jpg\"}},\"type\":\"image_quiz\",\"resize\":\"both\",\"height\":\"auto\",\"_parent\":\"1\",\"_parent-col\":\"0\",\"_seq\":0,\"id\":2}"];
@@ -724,7 +725,7 @@ $rand_id = rand(999,99999);
 															 <div class="col-lg-6 col-md-6 col-12">
 																	<div class="form-group">
 																		<label class="input-label">Question Reference</label>
-																		<input type="text" value="{{ old('title') }}"
+																		<input type="text" value="{{ isset( $question_title )? $question_title : old('title') }}"
 																			   name="question_title"
 																			   class="form-control @error('title')  is-invalid @enderror"
 																			   placeholder=""/>
@@ -735,35 +736,34 @@ $rand_id = rand(999,99999);
 																		@enderror
 																	</div>
 																</div>
+																@php $categories_ids = isset( $questionObj->category_id )? json_decode($questionObj->category_id) : array(); @endphp
 															 
                                                             <div class="col-lg-6 col-md-6 col-12">
                                                                 <div class="form-group">
                                                                     <label class="input-label">Year / Grade *</label>
-                                                                    <select name="category_id[]" data-plugin-selectTwo
-                                                                            class="form-control populate ajax-category-courses select2" multiple>
+                                                                    <select name="category_id[]"
+                                                                data-course_id="{{isset( $questionObj->course_id )? $questionObj->course_id : 0}}"
+                                                                data-plugin-selectTwo
+                                                                class="form-control populate ajax-category-courses select2" multiple>
                                                                         <option value="">All</option>
-                                                                        @foreach($categories as $category)
-                                                                        @if(!empty($category->subCategories) and
-                                                                        count($category->subCategories))
-                                                                        <optgroup label="{{  $category->title }}">
-                                                                            @foreach($category->subCategories as
-                                                                            $subCategory)
-                                                                            <option value="{{ $subCategory->id }}"
-                                                                                    @if(request()->get('category_id')
-                                                                                ==
-                                                                                $subCategory->id) selected="selected"
-                                                                                @endif>{{ $subCategory->title
-                                                                                }}
-                                                                            </option>
-                                                                            @endforeach
-                                                                        </optgroup>
-                                                                        @else
-                                                                        <option value="{{ $category->id }}" @if(request()->
-                                                                            get('category_id') ==
-                                                                            $category->id)
-                                                                            selected="selected" @endif>{{ $category->title
-                                                                            }}
-                                                                        </option>
+																		@foreach($categories as $category)
+																		@if(!empty($category->subCategories) and
+																		count($category->subCategories))
+																		<optgroup label="{{  $category->title }}">
+																			@foreach($category->subCategories as $subCategory)
+																			<option value="{{ $subCategory->id }}"
+																					@if(in_array($subCategory->id, $categories_ids)) selected="selected" @endif>{{
+																				$subCategory->title
+																				}}
+																			</option>
+																			@endforeach
+																		</optgroup>
+																		@else
+																		<option value="{{ $category->id }}" @if(request()->
+																			get('category_id') ==
+																			$category->id)
+																			selected="selected" @endif>{{ $category->title }}
+																		</option>
                                                                         @endif
                                                                         @endforeach
                                                                     </select>
@@ -772,22 +772,23 @@ $rand_id = rand(999,99999);
                                                             <div class="col-lg-6 col-md-6 col-12">
                                                                 <div class="form-group">
                                                                     <label class="input-label">Subject *</label>
-                                                                    <select name="course_id"
-                                                                            data-plugin-selectTwo
-                                                                            class="form-control populate ajax-courses-dropdown">
-                                                                        <option value="">Please select year</option>
-                                                                    </select>
+                                                                    <select data-chapter_id="{{isset( $questionObj->chapter_id )? $questionObj->chapter_id : 0}}"
+																			name="course_id"
+																			data-plugin-selectTwo
+																			class="form-control populate ajax-courses-dropdown">
+																		<option value="">Please select year</option>
+																	</select>
                                                                 </div>
                                                             </div>
 
                                                             <div class="col-lg-6 col-md-6 col-12">
                                                                 <div class="form-group">
                                                                     <label class="input-label">Topic</label>
-                                                                    <select id="chapter_id"
-                                                                            class="form-control populate ajax-chapter-dropdown"
-                                                                            name="chapter_id">
-                                                                        <option value="">Please select year, subject</option>
-                                                                    </select>
+                                                                    <select data-sub_chapter_id="{{isset( $questionObj->sub_chapter_id ) ? $questionObj->sub_chapter_id : 0}}" id="chapter_id"
+																			class="form-control populate ajax-chapter-dropdown"
+																			name="chapter_id">
+																		<option value="">Please select year, subject</option>
+																	</select>
 
                                                                 </div>
                                                             </div>
@@ -796,27 +797,31 @@ $rand_id = rand(999,99999);
                                                                 <div class="form-group">
                                                                     <label class="input-label">Sub Topic</label>
                                                                     <select id="chapter_id"
-                                                                            class="form-control populate ajax-subchapter-dropdown"
-                                                                            name="sub_chapter_id">
-                                                                        <option value="">Please select year, subject, Topic</option>
-                                                                    </select>
+																		class="form-control populate ajax-subchapter-dropdown"
+																		name="sub_chapter_id">
+																	<option value="">Please select year, subject, Topic</option>
+																</select>
 
                                                                 </div>
                                                             </div>
+															@php $question_type = isset( $question_type )? $question_type : '';
+															$question_difficulty_level = isset( $question_difficulty_level )? $question_difficulty_level : '';
+															$reference_type = isset( $reference_type )? $reference_type : '';
 															
+															@endphp
 															<div class="col-lg-6 col-md-6 col-12">
 																<div class="form-group">
 																	<label class="input-label">Question Type</label>
 																	<select name="question_type" class="custom-select ">
-																		<option value="">Select Type</option>
-																		<option value="dropdown">Dropdown</option>
-																		<option value="true_false">True False</option>
-																		<option value="matching">Matching</option>
-																		<option value="sorting">Sorting</option>
-																		<option value="single_select">Single Select</option>
-																		<option value="text_field">Text Field</option>
-																		<option value="multi_select">Multi Select</option>
-																		<option value="short_answer">Short Answer</option>
+																		<option value="" {{ ($question_type=='') ? 'selected' : '' }}>Select Type</option>
+																		<option value="dropdown" {{ ($question_type=='dropdown') ? 'selected' : '' }}>Dropdown</option>
+																		<option value="true_false" {{ ($question_type=='true_false') ? 'selected' : '' }}>True False</option>
+																		<option value="matching" {{ ($question_type=='matching') ? 'selected' : '' }}>Matching</option>
+																		<option value="sorting" {{ ($question_type=='sorting') ? 'selected' : '' }}>Sorting</option>
+																		<option value="single_select" {{ ($question_type=='single_select') ? 'selected' : '' }}>Single Select</option>
+																		<option value="text_field" {{ ($question_type=='text_field') ? 'selected' : '' }}>Text Field</option>
+																		<option value="multi_select" {{ ($question_type=='multi_select') ? 'selected' : '' }}>Multi Select</option>
+																		<option value="short_answer" {{ ($question_type=='short_answer') ? 'selected' : '' }}>Short Answer</option>
 																	</select>
 																</div>
 															</div>
@@ -825,9 +830,12 @@ $rand_id = rand(999,99999);
 																<div class="form-group">
 																	<label class="input-label">Difficulty Level</label>
 																	<select name="difficulty_level" class="custom-select ">
-																		<option value="Emerging">Emerging</option>
-																		<option value="Expected">Expected</option>
-																		<option value="Exceeding">Exceeding</option>
+																		<option value="Emerging" {{ ($question_difficulty_level==
+																		'Emerging') ? 'selected' : '' }}>Emerging</option>
+																		<option value="Expected" {{ ($question_difficulty_level==
+																		'Expected') ? 'selected' : '' }}>Expected</option>
+																		<option value="Exceeding" {{ ($question_difficulty_level==
+																		'Exceeding') ? 'selected' : '' }}>Exceeding</option>
 																	</select>
 																</div>
 															</div>
@@ -842,10 +850,13 @@ $rand_id = rand(999,99999);
                                                         <div class="form-group">
                                                             <label class="input-label">Reference Type</label>
                                                             <select name="reference_type" class="custom-select ">
-                                                                <option value="Course">Course</option>
-                                                                <option value="Mock Exams">Mock Exams</option>
-                                                                <option value="Both">Both</option>
-                                                            </select>
+																<option value="Course" {{ ($reference_type==
+																'Course') ? 'selected' : '' }}>Course</option>
+																<option value="Mock Exams" {{ ($reference_type==
+																'Mock Exams') ? 'selected' : '' }}>Mock Exams</option>
+																<option value="Both" {{ ($reference_type==
+																'Both') ? 'selected' : '' }}>Both</option>
+															</select>
                                                         </div>
                                                     </div>
 													
@@ -862,7 +873,7 @@ $rand_id = rand(999,99999);
                                                     <div class="col-lg-6 col-md-6 col-12">
                                                         <div class="form-group">
                                                             <label class="input-label">Correct Answer Score</label>
-                                                            <input type="text" value="{{ old('title') }}"
+                                                            <input type="text" value="{{ isset( $question_score)? $question_score : old('title') }}"
                                                                    name="question_score"
                                                                    class="form-control @error('title')  is-invalid @enderror"
                                                                    placeholder=""/>
@@ -877,7 +888,7 @@ $rand_id = rand(999,99999);
                                                     <div class="col-lg-6 col-md-6 col-12">
                                                         <div class="form-group">
                                                             <label class="input-label">Average Time</label>
-                                                            <input type="text" value="{{ old('title') }}"
+                                                            <input type="text" value="{{ isset( $question_average_time)? $question_score : old('question_average_time') }}"
                                                                    name="question_average_time"
                                                                    class="form-control @error('title')  is-invalid @enderror"
                                                                    placeholder=""/>
@@ -894,7 +905,12 @@ $rand_id = rand(999,99999);
 													<div class="col-12">
 														<div class="form-group">
 															<label class="input-label">Search Keywords / Tags (Enter Search terms which will be use when looking for your questions)</label>
-															<input type="text" data-role="tagsinput"
+															@php
+															$search_tags = isset( $questionObj->search_tags )? $questionObj->search_tags : '';
+															$search_tags = explode(' | ', $search_tags);
+															$search_tags = implode(',', $search_tags);
+															@endphp
+															<input type="text" data-role="tagsinput" value="{{ $search_tags }}"
 																   name="search_tags"
 																   class="form-control @error('search_tags')  is-invalid @enderror"
 																   placeholder="List of comma-Separated Search keywords (i.e. Subject-title, topic)"/>
@@ -918,17 +934,24 @@ $rand_id = rand(999,99999);
                             <div class="tab-pane mt-3 fade" id="glossary_solution" role="tabpanel"
                                                          aria-labelledby="glossary_solution-tab">
 
+								@php $glossary  = isset( $glossary )? $glossary : array(); $glossary_ids = isset( $glossary_ids )? $glossary_ids : array(); @endphp
 
                                 <div class="col-12 col-md-12">
-                                    <div class="row">
-                                        <div class="col-12 col-md-12">
+                                <div class="row">
+                                    <div class="col-12 col-md-12">
                                             <div class="form-group">
                                                 <label class="input-label">Glossary</label>
-                                                <select name="glossary_ids[]" id="glossary_ids" class="glossary-items"
+                                                <select name="glossary_ids[]" id="glossary_ids"
+                                                        class="glossary-items form-control"
                                                         multiple>
                                                     @if(!empty($glossary))
                                                     @foreach($glossary as $glossaryData)
-                                                    <option value="{{ $glossaryData->id }}">{{ $glossaryData->title }}
+                                                    @php $selected = '' @endphp
+                                                    @if(in_array($glossaryData->id, $glossary_ids))
+                                                    @php $selected = 'selected' @endphp
+                                                    @endif
+                                                    <option value="{{ $glossaryData->id }}" {{$selected}}>{{
+                                                        $glossaryData->title }}
                                                     </option>
                                                     @endforeach
                                                     @endif
@@ -941,7 +964,7 @@ $rand_id = rand(999,99999);
                                                 <label class="input-label">Question Example</label>
                                                 <textarea class="note-codable summernote" id="question_example"
                                                           name="question_example"
-                                                          aria-multiline="true"></textarea>
+                                                          aria-multiline="true">{{isset( $question_example )? $question_example : ''}}</textarea>
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-12">
@@ -949,10 +972,10 @@ $rand_id = rand(999,99999);
                                                 <label class="input-label">Solution</label>
                                                 <textarea class="note-codable summernote" id="question_solve"
                                                           name="question_solve"
-                                                          aria-multiline="true"></textarea>
+                                                          aria-multiline="true">{{isset( $question_solve )? $question_solve : ''}}</textarea>
                                             </div>
                                         </div>
-                                    </div>
+                                </div>
                                 </div>
                             </div>
                             <div class="tab-pane mt-3 fade" id="review_required_tab" role="tabpanel"
@@ -967,15 +990,30 @@ $rand_id = rand(999,99999);
                                             <label class="custom-switch pl-0">
                                                 <input type="hidden" name="review_required" value="disable">
                                                 <input type="checkbox"
-                                                       name="review_required"
-                                                       id="review_required" value="1"
-                                                       class="custom-switch-input"/>
-                                                <span class="custom-switch-indicator"></span>
-                                                <label class="custom-switch-description mb-0 cursor-pointer"
-                                                       for="review_required">Review Required</label>
+                                                           name="review_required"
+                                                           id="review_required" value="1" {{ (isset( $questionObj->review_required ) && $questionObj->review_required
+                                                    == '1') ?
+                                                    'checked="checked"' : ''
+                                                    }} class="custom-switch-input"/>
+                                                    <span class="custom-switch-indicator"></span>
+                                                    <label class="custom-switch-description mb-0 cursor-pointer"
+                                                           for="review_required">Review Required</label>
                                             </label>
                                         </div>
                                     </div>
+									@php $question_status = isset( $questionObj->question_status )? $questionObj->question_status : ''; @endphp
+									@if(auth()->user()->isReviewer())
+									@if($question_status == 'Submit for review' ||
+									$question_status ==
+									'On hold')
+									<div class="col-12">
+										<button type="button" data-question_id="{{$questionObj->id}}"
+												class="question-action-btn btn btn-warning">Action
+										</button>
+									</div>
+									@endif
+									@endif
+
 
                                     @if(auth()->user()->isTeacher() || auth()->user()->isAuthor())
                                     <div class="col-12 col-md-12">
@@ -1287,6 +1325,145 @@ $rand_id = rand(999,99999);
     </div>
 </div>
 
+
+<div id="question_status_action_modal" class="modal fade question_status_action_modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Question Actions</h3>
+            </div>
+            <div class="modal-body">
+                <form name="question_status_action_form" id="question_status_action_form">
+                    <div class="row">
+
+                        <div class="col-12 col-md-12">
+                            <div class="form-group">
+                                <select name="question_status" class="question_status_update custom-select">
+                                    <option value="">Action</option>
+                                    <option value="Accepted" selected="selected">Accepted</option>
+                                    <option value="On hold">On hold</option>
+                                    <option value="Improvement required">Improvement required</option>
+                                    <option value="Hard reject">Hard reject</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="question-status-fields" data-status_label="Accepted">
+                            <div class="col-12 col-md-12">
+                                <div class="form-group custom-switches-stacked mt-2">
+                                    <label class="custom-switch pl-0">
+                                        <input type="checkbox" name="image_question" id="image_question" value="1"
+                                               class="custom-switch-input"/>
+                                        <span class="custom-switch-indicator"></span>
+                                        <label class="custom-switch-description mb-0 cursor-pointer"
+                                               for="image_question">Image Question</label>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-12">
+                                <div class="form-group custom-switches-stacked mt-2">
+                                    <label class="custom-switch pl-0">
+                                        <input type="checkbox" name="word_problem" id="word_problem" value="1"
+                                               class="custom-switch-input"/>
+                                        <span class="custom-switch-indicator"></span>
+                                        <label class="custom-switch-description mb-0 cursor-pointer" for="word_problem">Word
+                                            Problem</label>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-12">
+                                <div class="form-group custom-switches-stacked mt-2">
+                                    <label class="custom-switch pl-0">
+                                        <input type="checkbox" name="new_glossary" id="new_glossary" value="1"
+                                               class="custom-switch-input"/>
+                                        <span class="custom-switch-indicator"></span>
+                                        <label class="custom-switch-description mb-0 cursor-pointer" for="new_glossary">New
+                                            Glossary</label>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-12 glossary_illustration_field hide">
+                                <div class="form-group custom-switches-stacked mt-2">
+                                    <label class="custom-switch pl-0">
+                                        <input type="checkbox" name="glossary_with_illustration"
+                                               id="glossary_with_illustration" value="1" class="custom-switch-input"/>
+                                        <span class="custom-switch-indicator"></span>
+                                        <label class="custom-switch-description mb-0 cursor-pointer"
+                                               for="glossary_with_illustration">Glossary with Illustration</label>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-12">
+
+                                <label class="input-label">Solution</label>
+                                <input type="radio" class="btn-check" name="solution" id="Acceptable" value="Acceptable"
+                                       autocomplete="off" checked="checked">
+                                <label class="btn btn-secondary" for="Acceptable">Acceptable</label>
+
+                                <input type="radio" class="btn-check" name="solution" id="Appropriate"
+                                       value="Appropriate" autocomplete="off">
+                                <label class="btn btn-secondary" for="Appropriate">Appropriate</label>
+
+                                <input type="radio" class="btn-check" name="solution" id="Aspirational"
+                                       value="Aspirational" autocomplete="off">
+                                <label class="btn btn-secondary" for="Aspirational">Aspirational</label>
+                            </div>
+
+                            <div class="col-12 col-md-12">
+                                <label class="input-label">Difficulty Level</label>
+                                <input type="radio" class="btn-check" name="difficulty_level" id="Standard"
+                                       value="Standard" autocomplete="off" checked="checked">
+                                <label class="btn btn-secondary" for="Standard">Standard</label>
+
+                                <input type="radio" class="btn-check" name="difficulty_level" id="Medium" value="Medium"
+                                       autocomplete="off">
+                                <label class="btn btn-secondary" for="Medium">Medium</label>
+
+                                <input type="radio" class="btn-check" name="difficulty_level" id="Expert" value="Expert"
+                                       autocomplete="off">
+                                <label class="btn btn-secondary" for="Expert">Expert</label>
+                            </div>
+
+
+                            <div class="col-12 col-md-12">
+                                <div class="form-group custom-switches-stacked mt-2">
+                                    <label class="custom-switch pl-0">
+                                        <input type="checkbox" name="publish_question" id="publish_question" value="1"
+                                               class="custom-switch-input"/>
+                                        <span class="custom-switch-indicator"></span>
+                                        <label class="custom-switch-description mb-0 cursor-pointer"
+                                               for="publish_question">Publish</label>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-12 col-md-12">
+                            <div class="form-group">
+                                <label class="input-label">Details</label>
+                                <textarea class="note-codable summernote" id="status_details" name="status_details"
+                                          aria-multiline="true"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" name="question_id" value="{{isset( $questionObj->id ) ? $questionObj->id : 0}}">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="text-right">
+                    <a href="javascript:;" class="btn btn-primary question_status_submit_btn">Submit</a>
+                </div>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 @push('scripts_bottom')
@@ -1317,11 +1494,19 @@ $rand_id = rand(999,99999);
     $(document).ready(function () {
         handleMultiSelect2('search-question-select2', '/admin/questions_bank/search', ['class', 'course', 'subject', 'title']);
     });
+	$(document).ready(function () {
+        $('.ajax-category-courses').change();
+        $('.glossary-items').select2();
+    });
 </script>
 
 <script type="text/javascript">
     $("body").on("click", ".add-glossary-modal", function (t) {
         $("#add-glosary-modal-box").modal({backdrop: "static"});
+    });
+	
+	$("body").on("click", ".question-action-btn", function (t) {
+        $("#question_status_action_modal").modal({backdrop: "static"});
     });
 		
 	
@@ -1333,46 +1518,43 @@ $rand_id = rand(999,99999);
 
     $(document).on('change', '.ajax-category-courses', function () {
         var category_id = $(this).val();
+        var course_id = $(this).attr('data-course_id');
         $.ajax({
             type: "GET",
             url: '/admin/webinars/courses_by_categories',
-            data: {'category_id': category_id},
+            data: {'category_id': category_id, 'course_id': course_id},
             success: function (return_data) {
                 $(".ajax-courses-dropdown").html(return_data);
                 $(".ajax-chapter-dropdown").html('<option value="">Please select year, subject</option>');
-				if( is_template_active == true){
-					$('select[name="course_id"]').val(course_id_template).change();
-				}
+                $('.ajax-courses-dropdown').change();
             }
         });
     });
 
     $(document).on('change', '.ajax-courses-dropdown', function () {
         var course_id = $(this).val();
+        var chapter_id = $(this).attr('data-chapter_id');
+
         $.ajax({
             type: "GET",
             url: '/admin/webinars/chapters_by_course',
-            data: {'course_id': course_id},
+            data: {'course_id': course_id, 'chapter_id': chapter_id},
             success: function (return_data) {
                 $(".ajax-chapter-dropdown").html(return_data);
-				if( is_template_active == true){
-					$('select[name="chapter_id"]').val(chapter_id_template).change();
-				}
+                $('.ajax-chapter-dropdown').change();
             }
         });
     });
 
     $(document).on('change', '.ajax-chapter-dropdown', function () {
         var chapter_id = $(this).val();
+        var sub_chapter_id = $(this).attr('data-sub_chapter_id');
         $.ajax({
             type: "GET",
             url: '/admin/webinars/sub_chapters_by_chapter',
-            data: {'chapter_id': chapter_id},
+            data: {'chapter_id': chapter_id, 'sub_chapter_id': sub_chapter_id},
             success: function (return_data) {
                 $(".ajax-subchapter-dropdown").html(return_data);
-				if( is_template_active == true){
-					$('select[name="sub_chapter_id"]').val(sub_chapter_id_template).change();
-				}
             }
         });
     });

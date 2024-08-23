@@ -172,10 +172,11 @@
     margin-bottom: 25px;
 }
 .leform-element label.leform-label {
-	/* line-height: 1em; */
+	line-height: 1em;
 	margin: 0;
 	/* font-size: 16px; */
 	display: block;
+	color: #adabab;
 }
 .leform-form .leform-element-label-left .leform-column-label {
 	padding-right: 0.5em;

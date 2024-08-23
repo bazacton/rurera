@@ -2694,11 +2694,11 @@ class QuestionsBankController extends Controller
 		
 		if( $sub_chapter_quiz_id > 0){
 			
-			$list_counts = QuizzesQuestionsList::where('question_id', $new_question->id)->where('quiz_id',$sub_chapter_quiz_id)->count();
+			$list_counts = QuizzesQuestionsList::where('question_id', $quistionObj->id)->where('quiz_id',$sub_chapter_quiz_id)->count();
 			if( $list_counts == 0){
 				QuizzesQuestionsList::create([
 					'quiz_id'     => $sub_chapter_quiz_id,
-					'question_id' => $new_question->id,
+					'question_id' => $quistionObj->id,
 					'status'      => 'active',
 					'sort_order'  => 0,
 					'created_by'  => $user->id,
@@ -2896,7 +2896,7 @@ class QuestionsBankController extends Controller
         ];
         $data['glossary'] = $glossary;
 
-        return view('admin.questions_bank.edit' , $data);
+        return view('admin.questions_bank.create_question' , $data);
     }
 
     public function log(Request $request , $id)

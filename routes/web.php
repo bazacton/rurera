@@ -185,7 +185,7 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
     }
 	
 	Route::group(['prefix' => 'learning-journey'], function (){
-		Route::get('/{year_slug}/{chapter_slug}/{sub_chapter_slug}/' , 'LearningJourneyController@start');
+		Route::get('/{year_slug}/{chapter_slug}/{sub_chapter_slug}/{journey_item_id}' , 'LearningJourneyController@start');
 		Route::post('/{year_slug}/{quiz_slug}/{test_type}', 'SpellsController@start');
 		Route::get('/{year_slug}/{quiz_slug}/test', 'SpellsController@start');
 		Route::post('/{year_slug}/{quiz_slug}/test', 'SpellsController@start');

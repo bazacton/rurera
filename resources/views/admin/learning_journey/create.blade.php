@@ -1,12 +1,86 @@
 @extends('admin.layouts.app')
-
+@php $rand_id = rand(0,9999); @endphp
 @push('styles_top')
 <link href="/assets/default/vendors/sortable/jquery-ui.min.css"/>
 <link rel="stylesheet" href="/assets/vendors/summernote/summernote-bs4.min.css">
+<link rel="stylesheet" href="/assets/admin/css/draw-editor.css?ver={{$rand_id}}">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/smoothness/jquery-ui.css">
+
 <style type="text/css">
     .no-border {
         border: none;
     }
+	
+	.ui-rotatable-handle {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .ui-rotatable-handle::before {
+            content: '\f111'; /* Font Awesome rotate icon */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: white;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .ui-rotatable-handle.ui-rotatable-handle-nw {
+            top: -10px;
+            left: -10px;
+        }
+        .ui-rotatable-handle.ui-rotatable-handle-se {
+            bottom: -10px;
+            right: -10px;
+        }
+	
+	.field-data svg{height:auto;}
+	
+	
+	.editor-controls {
+		position: absolute;
+		top: 0;
+		right: -300px;
+		width: 300px;
+	}
+	ul.editor-objects {
+		float: left;
+	}
+
+	ul.editor-objects li {
+		float: left;
+		margin: 10px;
+		border: 1px solid #efefef;
+	}
+	a.control-tool-item {
+		padding: 12px;
+	}
+	a.control-tool-item.active {
+		background: #bbb5b5;
+	}
+	.editor-objects-block {
+		position: absolute;
+		top: 0;
+		right: -500px;
+		width: 170px;
+	}
+	.editor-objects-list li {
+		padding: 5px;
+		background: #efefef;
+		margin: 0 0 3px 0;
+	}
+	
+	.editor-zone .field-options {
+		right: -1000px;
+	}
 </style>
 @endpush
 
@@ -29,9 +103,10 @@
             <div class="col-12 col-md-12 col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <form action="/admin/learning_journey/{{ !empty($LearningJourneyObj) ? $LearningJourneyObj->id.'/store' : 'store' }}"
+                        <form action="/admin/learning_journey/{{ !empty($LearningJourneyObj) ? $LearningJourneyObj->id.'/store' : 'store' }}" class="learning-journey-form"
                               method="Post">
                             {{ csrf_field() }}
+							<input type="hidden" name="posted_data" class="posted-data">
 
                             <div class="form-group">
                                 <label>{{ trans('/admin/main.category') }}</label>
@@ -243,11 +318,14 @@
 
 @push('scripts_bottom')
 <script src="/assets/default/vendors/sortable/jquery-ui.min.js"></script>
+ <script src="https://www.jqueryscript.net/demo/CSS3-Rotatable-jQuery-UI/jquery.ui.rotatable.js"></script>
 <script src="/assets/default/js/admin/filters.min.js"></script>
 <script src="/assets/vendors/summernote/summernote-bs4.min.js"></script>
+<script src="/assets/admin/js/journey-editor.js?ver={{$rand_id}}"></script>
 <script type="text/javascript">
     $(document).ready(function () {
 
+		$(".editor-objects-list").sortable();
 
         $('body').on('click', '.delete-parent-li', function (e) {
 
@@ -359,6 +437,19 @@
         handleTopicsMultiSelect2('search-topics-select2', '/admin/chapters/search', ['class', 'course', 'subject', 'title']);
 
     });
+	
+	
+	$('body').on('submit', '.learning-journey-form', function (e) {
+		console.log('submitted_form');
+		var posted_data = generate_stage_area();
+		$(".posted-data").val(JSON.stringify(posted_data));
+		console.log(posted_data);
+		//return false;
+		
+	});
+	
+	
+	 
 
 </script>
 

@@ -16,7 +16,7 @@ Lms Sorting Fields Style
 .lms-sub-heading .lms-numbers {display: block; padding-top: 10px; margin-left: 20px; font-weight: 700; letter-spacing: 1px;}
 .option-row-1.option-small .lms-sorting-fields {gap: 10px;}
 .lms-sorting-fields span {line-height: normal; display: block; font-size: 15px;}
-.lms-sorting-fields .field-holder {border: 2px solid #ddd; border-radius: 8px; border-bottom-width: 4px; padding:16px 15px; cursor: all-scroll; position: relative; height: auto; min-width: 130px;}
+.lms-sorting-fields .field-holder {border: 2px solid #ddd; border-radius: 8px; border-bottom-width: 4px; padding:16px 15px; cursor: all-scroll; position: relative; height: auto; min-width: 130px; text-align: left;}
 .lms-sorting-fields.multi-lines {flex-direction: column; align-items: flex-start; margin-left: 0; margin-right: 0;}
 .lms-sorting-fields.multi-lines .field-holder {margin: 0 0 10px; width: 100%; visibility: visible !important;}
 .lms-sorting-fields.multi-lines .field-holder:last-child {margin-bottom: 0;}
@@ -87,9 +87,14 @@ Lms Signs Style
 /* Image Top Style End */
 .lms-radio-select.inline-fields {flex-direction: row;}
 .alphabet-list-style {counter-reset: listStyle;}
-.alphabet-list-style .field-holder {counter-increment: listStyle; position: relative; padding-left: 45px;}
-.alphabet-list-style .field-holder:has(input){padding-left: 0;}
-.alphabet-list-style .field-holder:before {content: counter(listStyle, lower-alpha); position: absolute; top: 50%; left: 10px; font-weight: 700; text-transform: uppercase; border: 1px solid #ddd; width: 24px; height: 24px; text-align: center; line-height: 24px; border-radius: 2px; color: #999; margin-top: -12px; z-index: 2; }
+.alphabet-list-style .field-holder,
+.alphabet-list-style .form-field {counter-increment: listStyle; position: relative; padding-left: 45px;}
+.alphabet-list-style .field-holder:has(input),
+.alphabet-list-style .form-field:has(input){padding-left: 0;}
+.alphabet-list-style .field-holder:before,
+.alphabet-list-style .form-field:before {content: counter(listStyle, lower-alpha); position: absolute; top: 50%; left: 10px; font-weight: 700; text-transform: uppercase; border: 1px solid #ddd; width: 24px; height: 24px; text-align: center; line-height: 24px; border-radius: 2px; color: #999; margin-top: -12px; z-index: 2; }
+.alphabet-list-style .form-field input[type="checkbox"] ~ label {padding-left: 45px;}
+
 .numeric-list-style {counter-reset: listStyle;}
 .numeric-list-style > .field-holder,
 .numeric-list-style > .form-field {counter-increment: listStyle; position: relative;}
@@ -144,7 +149,7 @@ Lms Form Fields Style
 .form-field input[type="checkbox"] {position: absolute; left: 0; top: 0; opacity: 0;}
 .form-field label {background-color: #fff; border: 2px solid #ddd; border-bottom-width: 4px; border-radius: 8px; position: relative; cursor: pointer; padding: 15px; width: 100%; margin-bottom: 0; -webkit-transition: all 0.4s ease-in-out; transition: all 0.4s ease-in-out;}
 .lms-checkbox-img .form-field label {height: 100%;}
-.form-field input[type="checkbox"] ~ label {min-height: 52px;}
+.form-field input[type="checkbox"] ~ label {min-height: 52px; text-align: left;}
 .image-right .form-field input[type="checkbox"] ~ label {padding-right: 60px;}
 
 .field-holder.correct, 
@@ -326,10 +331,12 @@ Lms Question List Style
 .question-textarea p {line-height: 35px;}
 .question-textarea h4 {margin: 0 0 10px; color: #fff; font-size: 22px; line-height: 28px; font-weight: 600;}
 .question-textarea select,
-.question-layout select {-webkit-appearance: none; -moz-appearance: none; -ms-appearance: none; appearance: none; outline: 0; box-shadow: none; border: 0; padding: 3px 4px; background: none; background-image: none; color: #777;}
+.question-layout select {outline: 0; box-shadow: none; border: 0; padding: 3px 4px; background: none; background-image: none; color: #777;}
+.question-layout .select-box select,
+.question-textarea .select-box select {-webkit-appearance: none; -moz-appearance: none; -ms-appearance: none; appearance: none; display: block; width: 100%;}
 .question-layout select option:empty {display: none;}
 .question-textarea .select-box,
-.question-layout .select-box {border-radius: 0; background: #fff; position: relative; line-height: normal; border-bottom: 2px dotted #ddd; padding: 0 15px 0 0; margin: 0 5px; display: -webkit-inline-box;}
+.question-layout .select-box {border-radius: 0; background: #fff; position: relative; line-height: normal; border-bottom: 2px dotted #ddd; padding: 0 15px 0 0; margin: 0 5px; display: -webkit-inline-box; vertical-align: middle;}
 .question-textarea .field-group .select-box {text-align: left;}
 .question-textarea .select-box:after,
 .question-layout .select-box:after {content: ""; width: 0; height: 0; border: 5px solid transparent; border-color: #ccc transparent transparent transparent; position: absolute; top: 50%; right: 0; margin-top: -2px;}
@@ -342,7 +349,8 @@ Lms Question List Style
 .leform-row.leform-element [class*="leform-col-"] {float: none; display: inline-block; margin-right: -4px; vertical-align: middle;}
 .input-holder.input_line,
 .lms-quiz-section .input-holder.input_line {border: 0; vertical-align: middle;}
-.input-holder input.input_line {background-color: transparent; border-radius: 0; height: auto; min-height: auto; padding: 0 !important; text-align: left; border-bottom: 2px dotted #ddd;}
+.input-holder input.input_line,
+.lms-quiz-create .leform-properties-content .note-editable input.input_line {background-color: transparent; border-radius: 0; height: auto; min-height: auto; padding: 0 !important; text-align: left; border-bottom: 2px dotted #ddd; line-height: normal;}
 .question-layout .input-group-prepend ~ input[type="text"] {border-radius: 0; border-color: #eee; border-width: 1px; text-align: left;}
 .question-layout .input-group .admin-file-manager,
 .question-layout .input-group .admin-file-view {background-color: #fff !important; border: 1px solid #eee !important;}
@@ -598,8 +606,9 @@ input[type=number] {-moz-appearance:textfield;}
 .input-holder .wf-input-label {position: absolute; text-align: center; width: 100%; bottom: -35px; line-height: normal; z-index: 1; left: 0; font-size: 18px; font-weight: 700;}
 .leform-admin-editor .input-holder {display: inline-flex !important; align-items: center; padding: 0 15px;}
 .leform-admin-editor .input-holder .input-label {position: initial; transform: none; width: auto; display: inline-block;}
-.leform-admin-editor .input-holder input.editor-field {text-align: left; outline: none;}
+.leform-admin-editor .input-holder input.editor-field {text-align: left; outline: none; width: 100%;}
 .question-textarea .input-simple.full-width {max-width: 100%;}
+.leform-admin-editor .input-holder:has(input) {padding: 0; overflow: hidden;}
 .input-field .wf-input-label,
 .wf-input-label {font-weight: 700; color: #000; text-align: center; display: block; margin: 0; font-size: 16px;}
 .quiz-group .field-group {margin-top: 0;}
@@ -652,14 +661,14 @@ input[type=number] {-moz-appearance:textfield;}
 .drag-box-inner .input-holder {position: absolute; bottom: 30px; left: 30px; background-color: #fff;}
 .drag-box-inner .input-holder.p-right {left: auto; right: 30px; margin: 0;}
 .drag-box-inner .input-holder span {min-height: 50px; line-height: 48px; padding: 0 15px; font-style: italic; font-size: 16px; font-weight: 700;}
-input.extra-small,
+/* input.extra-small,
 .input-holder .input-label ~ input.input_line.extra-small {width: 30%;}
 input.small,
 .input-holder .input-label ~ input.input_line.small {width: 60%;}
 input.medium,
 .input-holder .input-label ~ input.input_line.medium {width: 90%;}
 input.large,
-.input-holder .input-label ~ input.input_line.large {width: 100%;}
+.input-holder .input-label ~ input.input_line.large {width: 100%;} */
 
 .column-2 .input-holder .medium, 
 .column-3 .input-holder .medium,
@@ -872,7 +881,7 @@ Lms Table Style
 *************************************/
 .match-question{width:100%;}
 .match-question .stems li,
-.match-question .options li {list-style: none; padding: 0.8rem 1rem; margin: 0 0 1rem;}
+.match-question .options li {list-style: none; padding: 0.8rem 1rem; margin: 0 0 1rem; text-align: left;}
 .match-question .stems,
 .match-question .options {width: 40%; margin-right: 10%; float: left;}
 .match-question .stems li,
@@ -939,12 +948,12 @@ span.Selectable:hover {text-decoration: underline;}
 .options img {max-width: 100%;}
 .stems img {max-width: 100%;}
 /* Example Question Toggle Element Style Start */
-.example-question {padding-left: 80px; padding-bottom: 30px; box-sizing: border-box; width: 98%;}
+.example-question {box-sizing: border-box; width: 98%; position: relative;}
 .example-question .nav-controls {position: relative; display: inline-block;}
 .example-question #example-question {border: 2px solid #ddd; border-bottom-width: 4px; border-radius: 0 8px 8px 8px; padding: 25px; position: relative; min-height: 100px; transition: none !important;}
+.example-question .content-box {padding-top: 15px;}
 .example-question .toggle-btn {border: 2px solid #ddd; border-bottom: 0; padding: 10px 15px; display: inline-block; border-radius: 8px 8px 0 0; font-weight: 500; color: var(--primary); transition: none; margin-right: -4px;}
 .example-question .close-btn {position: absolute; right: 10px; top: 10px; border: 0; background-color: inherit; font-size: 18px; color: #999; padding: 0;}
-#example-question {position: relative;}
 .example-question .toggle-btn.collapsed {color: #343434; border-radius: 8px; border-bottom: 2px solid #ddd;}
 .example-question .toggle-btn:before {content: ""; width: 100%; height: 2px; background-color: #fff; position:absolute; left:2px; bottom: -2px; z-index: 1;}
 .example-question .toggle-btn.collapsed:before {display: none;}
@@ -984,9 +993,32 @@ span.Selectable:hover {text-decoration: underline;}
 .quiz-questions-bar .bar-fill {background-color: #51cd00; border-radius: 20px; display: block; height: 100%; position: relative; }
 .quiz-questions-bar-holder {width: calc(100% - 95px); display: inline-flex; vertical-align: middle; margin-right: -4px; align-items: center; position: relative; padding-left: 20px; }
 .quiz-questions-bar-holder .value-lable {position: absolute; left: 0; background-color: #333; color: #fff; height: 30px; width: 8px; margin-top: -15px; top: 50%; border-radius: 2px; font-size: 12px; line-height: 30px; text-align: center; font-weight: 500; letter-spacing: -1px; z-index: 1; margin-left: -30px;}
-.quiz-questions-bar-holder .value-lable span {position: absolute; top: 100%; left: 50%; background-color: #ebf7ff; line-height: normal; color: #333; padding: 3px 5px; border-radius: 20px; transform: translateX(-50%); margin-top: 5px; font-size: 13px; letter-spacing: 0;}
-.quiz-questions-bar-holder .value-lable:before {content: attr(data-title); background: #333; position: absolute; top: -35px; padding: 5px 13px; line-height: normal; left: 50%; transform: translateX(-50%); border-radius: 5px; letter-spacing: 0px; opacity: 0; visibility: hidden;}
-.quiz-questions-bar-holder .value-lable:after {position: absolute; left: 50%; top: -14px; height: 8px; width: 8px; background-color: #333; content: ""; transform: rotate(45deg); margin-left: -4px; opacity: 0; visibility: hidden;}
+.quiz-questions-bar-holder .value-lable span {position: absolute; top: -100%; left: 50%; background-color: #ebf7ff; line-height: normal; color: #333; padding: 3px 5px; border-radius: 20px; transform: translateX(-50%); font-size: 13px; letter-spacing: 0;}
+.quiz-questions-bar-holder .value-lable:before {content: attr(data-title);
+  background: #333;
+  position: absolute;
+  top: 100%;
+  padding: 5px 13px;
+  line-height: normal;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 5px;
+  letter-spacing: 0px;
+  opacity: 0;
+  visibility: hidden;
+  margin-top: 10px;}
+.quiz-questions-bar-holder .value-lable:after {position: absolute;
+  left: 50%;
+  top: 100%;
+  height: 8px;
+  width: 8px;
+  background-color: #333;
+  content: "";
+  transform: rotate(45deg);
+  margin-left: -4px;
+  opacity: 0;
+  visibility: hidden;
+  margin-top: 6px;}
 .quiz-questions-bar-holder .value-lable:hover:before,
 .quiz-questions-bar-holder .value-lable:hover:after {opacity: 1; visibility: visible;}
 .quiz-questions-bar-holder .bar-fill:after {position: absolute; content: attr(data-title); right: -10px; width: 30px; height: 30px; background-color: #51cd00; color: white; border-radius: 100%; top: 50%; margin-top: -15px; text-align: center; font-size: 12px; line-height: 30px; font-weight: 500; box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);}
@@ -1001,8 +1033,39 @@ span.Selectable:hover {text-decoration: underline;}
 .image-small img {max-width: 100%; width: 100px; height: 100px; object-fit: contain; background-color: #f9f9f9;}
 .image-medium img {width: 150px; height: 150px; object-fit: contain; background-color: #f9f9f9;}
 .image-large img {width: 200px; height: 200px; object-fit: contain; background-color: #f9f9f9;}
+.note-editable .select-box {display: inline-block;}
 /*Field Sizes Style Start*/
-.select-box:has(.small) {width: 10% !important;}
-.select-box:has(.medium) {width: 15% !important;}
-.select-box:has(.large) {width: 20% !important;}
+.input-holder:has(.field_extra_small),
+.input-holder:has(.extra-small),
+.select-box:has(.extra-small),
+.select-box:has(.field_extra_small) {width: 10% !important; }
+
+.select-box:has(.small),
+.select-box:has(.field_small),
+.input-holder:has(.field_small),
+.input-holder:has(.small) {width: 15% !important;}
+
+.select-box:has(.medium),
+.select-box:has(.field_medium),
+.input-holder:has(.medium),
+.input-holder:has(.field_medium) {width: 20% !important;}
+
+.select-box:has(.large),
+.select-box:has(.field_large),
+.input-holder:has(.large),
+.input-holder:has(.field_large) {width: 30% !important;}
+
+.select-box:has(.extra-large),
+.select-box:has(.field_extra_large),
+.input-holder:has(.field_extra_large),
+.input-holder:has(.extra-large) {width: 40% !important;}
+
+
+
 /*Field Sizes Style End*/
+.image-right {
+  text-align: right !important;
+}
+.image-center {
+  text-align: center !important;
+}
