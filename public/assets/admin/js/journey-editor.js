@@ -183,7 +183,7 @@ $(document).on('click', '.book-dropzone', function (e) {
         //handle: ".field-handle",
     });
 	
-	$('.draggable_field_' + field_random_number).find('svg').resizable();
+	$('.draggable_field_' + field_random_number).resizable();
 	
 	var z_index = $(".editor-objects-list li").length+1;
 	if( item_title != undefined){
