@@ -71,6 +71,9 @@ class LearningJourneyController extends Controller
 		
 		$items_data = isset( $student_learning_journey['items_data'] )? $student_learning_journey['items_data'] : array();
 		
+		$levels_data = isset( $student_learning_journey['levels_data'] )? $student_learning_journey['levels_data'] : array();
+		
+		
 		$new_added_stages = isset( $student_learning_journey['new_added_stages'] )? $student_learning_journey['new_added_stages'] : array();
 		
 		//pre($learningJourneyLevels);
@@ -97,6 +100,7 @@ class LearningJourneyController extends Controller
 			'learningJourneyLevels'		 => $lerningJourney->learningJourneyLevels,
 			'student_learning_journey'	 => $student_learning_journey,
 			'items_data'		 		=> $items_data,
+			'levels_data'		 		=> $levels_data,
 			'new_added_stages'		 	=> $new_added_stages,
 			'category_slug'		 	=> $category_slug,
 			'subject_slug'		 	=> $subject_slug,
@@ -115,14 +119,15 @@ class LearningJourneyController extends Controller
 		$studentJourneyItems = $userObj->studentJourneyItems->where('status','completed')->pluck('result_id', 'learning_journey_item_id')->toArray();
 		
 		
-		$items_data = $new_added_stages = array();
+		$items_data = $levels_data = $new_added_stages = array();
 		
 		if( !empty( $learningJourneyLevels ) ){
 			
 			foreach( $learningJourneyLevels  as $levelObj){
-				if($levelObj->LearningJourneyObjects->count() > 0){
+				$levels_data[$levelObj->id] = $levelObj;
+				if($levelObj->LearningJourneyObjects->where('status', 'active')->count() > 0){
 					$item_counter = 0;
-					foreach( $levelObj->LearningJourneyObjects->sortBy('sort_order') as $itemObj){
+					foreach( $levelObj->LearningJourneyObjects->where('status', 'active')->sortBy('sort_order') as $itemObj){
 						
 						$itemObj->percentage = 0;
 						if( $itemObj->item_type == 'topic'){
@@ -168,10 +173,12 @@ class LearningJourneyController extends Controller
 				}
 			}
 			
+		
 		}
 		
 		return array(
 			'items_data' => $items_data,
+			'levels_data' => $levels_data,
 			'new_added_stages' => $new_added_stages,
 		);
 		

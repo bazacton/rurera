@@ -5188,8 +5188,11 @@ body {font-family: var(--font-family-base) !important; overflow: visible;}
 @media (max-width:991px) {
     .btn-sm-block {width: 100%; max-width: 100%;}
 }
-.btn-border-white {background-color: #fff; border-radius: 6px; border: 1px solid #f1f1f1; color: #818894; transition: all .3s;}
+.btn-border-white {border: 1px solid #f1f1f1;}
+.blog-post-btn {background-color: #fff; border-radius: 6px; color: #333; padding-left: 15px; padding-right: 15px; max-width: 138px; margin: 0 auto; display: block; text-align: center; line-height: 32px;}
+.blog-post-btn img {margin-left: 2px; display: inline-block; vertical-align: middle;}
 .btn-border-white:hover {background-color: #ececec; border: 1px solid #ececec; color: #818894; transition: all .3s;}
+.blog-post-btn:hover img {filter: invert(59%) sepia(14%) saturate(256%) hue-rotate(179deg) brightness(87%) contrast(93%);}
 .resume-test a {background-color: var(--primary); color: #fff; border-color: var(--primary); }
 .btn-gray200 {color: #818894;}
 .btn-light {color: #222;}
@@ -6016,6 +6019,9 @@ p {line-height: 1.5;}
 .trending-card h3 {font-size: 16px; font-weight: 500; line-height: 1.19; color: #171347;}
 .trending-card:hover {transform: translateY(-25px); transition: all .5s ease;}
 .trending-card:hover .item-count {background-color: var(--secondary); color: #fff; transition: all .5s ease;}
+.testimonials-card p {
+    min-height: 120px;
+}
 @media (max-width:767px) {
     .trending-card .trending-image {padding: 25px;}
     .trending-card .trending-image .icon {width: 60px; height: 60px;}
@@ -7255,8 +7261,12 @@ Lms Blog Grid Card Style Start
 .blog-grid-card .badge {padding-left: 0; font-size: .85rem;}
 .blog-grid-card .blog-grid-detail,
 .list-card .text-holder {padding: 0 20px 0 0; width: 100%;}
-.blog-grid-card .blog-grid-detail .blog-grid-title {font-size: 1.8rem; font-weight: 700; line-height: 1.5; color:var(--dark-charcoal);}
-.blog-grid-card .blog-grid-detail .blog-grid-desc {font-weight: 400; line-height: 1.7; color: #6c6c6c; overflow: hidden; pointer-events: none;}
+.blog-grid-card .blog-grid-detail .blog-grid-title {font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.5;
+    color: var(--dark-charcoal);
+    min-height: 108px;}
+.blog-grid-card .blog-grid-detail .blog-grid-desc {font-weight: 400; line-height: 1.7; color: #6c6c6c; overflow: hidden;}
 .blog-grid-card .blog-grid-detail .blog-grid-footer {font-size: 16px; font-weight: 500; line-height: 1.19; color: #6c6c6c; pointer-events: none;}
 .blog-grid-card .blog-tags {padding: 0; margin: 15px 0 0 0; display: flex; flex-wrap: wrap; }
 .blog-grid-card .blog-tags li,
@@ -7290,6 +7300,7 @@ Lms Blog Grid Card Style Start
 .blog-grid-card.rurera-grid .blog-grid-image {max-height: 250px;}
 .blog-grid-card.rurera-grid .blog-grid-detail {padding: 20px 0 0 0;}
 .blog-grid-card.rurera-grid .blog-tags {margin-top: 8px;}
+.blog-grid-detail .read-btn {color: var(--primary); text-decoration: underline; font-weight: 500; display: inline-block; vertical-align: middle; margin-left: 2px;}
 /*********************************************
 Lms Search Top Banner Style Start
 **********************************************/
@@ -8321,7 +8332,19 @@ Lms SignUp Page Style Start
 .gallery-sub-header .simple .masonry-grid  figure {margin-bottom: 10px;}
 .gallery-sub-header .simple .masonry-grid .row {margin: 0 -5px;column-count: 5;}
 .gallery-sub-header .simple .masonry-grid [class*="col-"] {padding: 0 5px;}
-.job-singup-sub-header li img {max-width: 25px;margin: 0 15px 0 0;}
+.job-singup-sub-header li {font-weight: 500; position: relative; padding-left: 30px;}
+.job-singup-sub-header li:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    height: 20px;
+    width: 20px;
+    margin-top: -10px;
+    background: url(/assets/default/svgs/arrow-right.svg) no-repeat left center;
+    background-size: 100%;
+}
+.job-singup-sub-header li img {max-width: 25px;margin: 0 15px 0 0; display: none;}
 .job-singup-sub-header li .img-sm {max-width: 18px;margin: 0 5px 0 0;}
 .container .masonry-grid-gallery.simple {width: 100%; position: initial;}
 
@@ -8632,7 +8655,9 @@ Header Navbar Dropdown Style Start
 .navbar-nav .educator-menu {position: absolute; right: 0; border-right: 1px solid #eaeaea;}
 .top-navbar .navbar-toggle-content {margin-right: 20px !important;}
 .top-navbar .login-btn {border: 1px solid var(--primary); padding: 7px 15px !important; border-radius: 3px; font-weight: 500;color: var(--primary);}
-.top-navbar .register-btn {padding: 9px 15px !important;}
+.top-navbar .login-btn:hover {background-color: var(--primary ); color: #fff;}
+.top-navbar .register-btn {border: 1px solid var(--primary); padding: 7px 15px !important;}
+.top-navbar .register-btn:hover {background-color: #fff; color: var(--primary );}
 .top-navbar .navbar-order .ml-md-50 {margin-left: 0 !important;}
 .navbar-nav .educator-menu .nav-link {padding: 2px 20px;}
 .navbar-nav .nav-item:has(.sidenav-dropdown) > a {position: relative;}
@@ -11103,7 +11128,7 @@ span.review-label {line-height: normal;}
 .footer-logo-wrapper {position: relative; margin-left: 80px;}
 .footer-logo-box {background-color: #000; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
 .footer-logo-box a {display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px 20px;}
-.footer-logo-box a span {background-color: #010ed0; border-radius: 3px; color: #fff; padding: 12px 30px; display: block; font-size: 15px; line-height: normal; margin-top: 20px;}
+.footer-logo-box a span {background-color: #010ed0; border-radius: 3px; color: #fff; padding: 12px 14px; display: block; font-size: 15px; line-height: normal; margin-top: 20px;}
 .custom-footer h2 {color: #fff; margin: 0 0 20px;}
 .custom-footer .widget {margin: 0 0 30px;}
 .custom-footer .widget-links a,
@@ -11115,7 +11140,6 @@ span.review-label {line-height: normal;}
 .custom-footer .form-check-field {display: flex; align-items: flex-start; gap: 5px; margin: 0 0 20px;}
 .custom-footer .form-check-field input[type=checkbox] {margin: 5px 0 0; }
 .custom-footer .form-check-field label {margin: 0; font-size: 14px; color: #5f6567;}
-.custom-footer .footer-newsletter {margin-top: 20px;}
 /* Partnerships Page Style End */
 
 /* Custom Mega Menu Style Start */
@@ -11637,6 +11661,10 @@ address .info-list-label {color: #64748b;}
 /*************************************
 Lms Responsive Style Start
 *************************************/
+@media screen and (min-width: 992px) and (max-width: 1650px) {
+
+}
+
 @media(max-width:1200px) {
     .process-card.process-card.process-one:after,.field_extra_small
     .svg-shapes-bottom,
@@ -11657,12 +11685,46 @@ Lms Responsive Style Start
     .noticeboard-item > div {flex-wrap: wrap; gap: 10px;}
     /* .dashboard-cards-holder >.row > [class*="col-"] {flex: 0 0 50%; max-width: 50%;} */
     body .panel-sidebar,
-    .panel-page-section .panel-sidebar {width: 100px;}
+    .panel-page-section .panel-sidebar {width: 100px; z-index: 1;}
     .panel-content {padding-left: 110px;}
     .panel-sidebar .sidebar-menu .sidenav-item .sidenav-item-icon {margin-right: 0 !important;}
-    .panel-sidebar .sidebar-menu .sidenav-item a span:not(.sidenav-item-icon),
-    .panel-sidebar .sidebar-menu .sidenav-item a{display: none;}
-    .panel-sidebar .sidebar-menu .sidenav-item a:has(.sidenav-item-icon) {display: flex;}
+    .panel-sidebar .sidebar-menu .sidenav-item .nav-sub-title {
+        position: absolute;
+        left: 100%;
+        background-color: #000;
+        color: #fff;
+        text-transform: capitalize;
+        white-space: nowrap;
+        padding: 2px 6px;
+        border-radius: 5px;
+        -webkit-transition: all 0.3s ease-out;
+        -moz-transition: all 0.3s ease-out;
+        -ms-transition: all 0.3s ease-out;
+        -o-transition: all 0.3s ease-out;
+        transition: all 0.3s ease-out;
+        margin-left: 10px;
+        visibility: hidden;
+        opacity: 0;
+    }
+    .panel-sidebar .sidebar-menu .sidenav-item:hover .nav-sub-title{
+        visibility: visible;
+        opacity: 1;
+        margin-left: 0;
+    }
+    body .panel-sidebar .sidebar-menu {
+        overflow: visible;
+    }
+    .panel-sidebar .sidebar-menu .sidenav-item .nav-sub-title:before {
+        position: absolute;
+        left: -5px;
+        top: 50%;
+        height: 10px;
+        width: 10px;
+        content: "";
+        background-color: #000;
+        margin: -5px 0 0 0;
+        transform: rotate(45deg);
+    }
     .panel-content > .container > .row > [class*="col-"]:first-child {padding-right: 15px;}
     .panel-content > .container > .row > [class*="col-"]:last-child {padding-left: 15px;}
     .panel-content .panel-content-holder {max-width: calc(100% - 370px);}
@@ -11674,6 +11736,11 @@ Lms Responsive Style Start
     .close-btn-holder {margin-left: auto;}
     .footer-dots-img {transform: none !important;}
     body .learning-page.type-sats .left-content {height: auto; overflow: visible;}
+    .masonry-grid {margin-left: 0;}
+    .masonry-grid-gallery.has-bg:before {left: -90px;}
+    .job-singup-sub-header h1 {font-size: 3rem !important;}
+    .job-singup-sub-header h2 {font-size: 1.5rem !important;}
+    .gallery-sub-header .container [class*="col-"] {padding-right: 70px;}
 }
 @media screen and (min-width: 992px) and (max-width: 1300px) {
     .stats-list ul li {border-left: 0;width: 100%;padding: 0 0 15px;margin: 0 0 15px;text-align: left;border-bottom: 1px solid rgba(0, 0, 0, 0.1);}
@@ -11957,7 +12024,6 @@ Lms Responsive Style Start
     .login-card .login-option div {margin-left: 0;}
     .process-holder .svg-shapes-bottom {left: 108px;}
     .widget-title.rurera-hide {display: block;}
-    .custom-footer .footer-newsletter {margin-top: 0;}
     .lms-accordion-modern.accordion {padding: 0;}
     .lms-accordion-modern.accordion .card {max-width: 100%; margin-left: 0;}
     .section-title h2 {word-wrap: break-word;}

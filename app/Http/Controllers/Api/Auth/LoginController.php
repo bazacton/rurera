@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Auth;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -18,17 +19,51 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
+	
+	public function loginForm(Request $request){
+		
+		$navArray = getNavbarLinks();
+		
+		$form_fields = [];
+		
+		
+		$form_fields = array(
+			array(
+				'field_name' => 'login_pin',
+				'field_type' => 'text',
+				'data_type' => 'numeric',
+				'order' => 0,
+				'required' => true,
+				'min_limit' => 6,
+				'label' => 'Login Pin',
+				'icon' => url('/').'/store/1/default_images/password_field.svg',
+				'data' => '',
+			),
+			
+			array(
+				'field_name' => 'submit',
+				'field_type' => 'button',
+				'data_type' => 'submit',
+				'order' => 1,
+				'required' => false,
+				'label' => 'Submit',
+				'icon' => '',
+				'data' => '',
+				'target_api' => "login",
+			),
+		);
+		
+        
+        return apiResponse2(1, 'retrieved', trans('api.public.retrieved'), ['form' => $form_fields]);
+    }
 
     public function login(Request $request)
     {
         $rules = [
-            'username' => 'required|string|numeric',
-            'password' => 'required|string|min:6',
+            'login_pin' => 'required|string|numeric',
         ];
+		
 
-        if ($this->username() == 'email') {
-            $rules['username'] = 'required|string|email';
-        }
         validateParam($request->all(), $rules);
 
         return $this->attemptLogin($request);
@@ -51,13 +86,13 @@ class LoginController extends Controller
     protected function attemptLogin(Request $request)
     {
         $credentials = [
-            $this->username() => $request->get('username'),
-            'password' => $request->get('password')
+            'login_pin' => $request->get('login_pin')
         ];
 
 
-        if (!$token = auth('api')->attempt($credentials)) {
-            return apiResponse2(0, 'incorrect', trans('auth.incorrect'));
+		if (!$token = auth('api')->attempt($credentials)) {
+        //if (!$token = Auth::loginUsingPin($credentials)) {
+            return apiResponse2(0, 'incorrect', 'Incorrect Pin code!');
         }
         return $this->afterLogged($request, $token);
     }
@@ -65,54 +100,14 @@ class LoginController extends Controller
     public function afterLogged(Request $request, $token, $verify = false)
     {
         $user = auth('api')->user();
-
-        if ($user->ban) {
-            $time = time();
-            $endBan = $user->ban_end_at;
-            if (!empty($endBan) and $endBan > $time) {
-                auth('api')->logout();
-                return apiResponse2(0, 'banned_account', trans('auth.banned_account'));
-            } elseif (!empty($endBan) and $endBan < $time) {
-                $user->update([
-                    'ban' => false,
-                    'ban_start_at' => null,
-                    'ban_end_at' => null,
-                ]);
-            }
-
-        }
-
-        if ($user->status != User::$active and !$verify) {
-            // auth('api')->logout();
-            auth('api')->logout();
-            //  dd(apiAuth());
-            $verificationController = new VerificationController();
-            $checkConfirmed = $verificationController->checkConfirmed($user, $this->username(), $request->input('username'));
-
-            if ($checkConfirmed['status'] == 'send') {
-
-                return apiResponse2(0, 'not_verified', trans('api.auth.not_verified'));
-
-            } elseif ($checkConfirmed['status'] == 'verified') {
-                $user->update([
-                    'status' => User::$active,
-                ]);
-            }
-        } elseif ($verify) {
-            $user->update([
-                'status' => User::$active,
-            ]);
-
-        }
-
-        if ($user->status != User::$active) {
-            \auth('api')->logout();
-            return apiResponse2(0, 'inactive_account', trans('auth.inactive_account'));
-        }
-
+		
         $profile_completion = [];
-        $data  ['token'] = $token;
+        $data['token'] = $token;
         $data['user_id'] = $user->id;
+        $data['life_lines'] = $user->user_life_lines;
+        $data['user_avatar'] = url('/').$user->avatar;
+		$data['game_time'] = $user->game_time;
+		
         if (!$user->get_full_name()) {
             $profile_completion[] = 'full_name';
             $data['profile_completion'] = $profile_completion;

@@ -71,14 +71,16 @@ $rand_id = rand(99,9999);
 												
 											<div id="leform-form-1" class=" leform-form leform-elements leform-form-input-medium leform-form-icon-inside leform-form-description-bottom ui-sortable" _data-parent="1" _data-parent-col="0" style="display: block;">
 												<div class="question-layout">
-													@php
-														$question_layout = html_entity_decode(json_decode(base64_decode(trim(stripslashes($question->question_layout)))));
-														$hide_style = '';
-														if( $j != 1){
-															$hide_style = 'style=display:none;';
-														}
-														@endphp
-														{!! $question_layout !!}
+												@php
+													$question_layout = '';
+													$elements_data = isset( $question->elements_data)? json_decode($question->elements_data) : array();
+												@endphp
+												@if( !empty( $elements_data ))
+													@foreach( $elements_data as $element_id => $elementObj)
+														@php $question_layout .= $QuestionsAttemptController->get_question_layout($element_id, $elementObj); @endphp
+													@endforeach
+												@endif
+													{!! $question_layout !!}111
 												</div>
 											</div>
 											<div class="show-notifications" data-show_message="yes"></div>

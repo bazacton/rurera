@@ -27,5 +27,10 @@ class LearningJourneys extends Model
     {
         return $this->belongsTo('App\Models\Webinar', 'subject_id', 'id');
     }
+	
+	public function year()
+    {
+        return $this->belongsTo('App\Models\Category', 'year_id', 'id');
+    }
 
 }

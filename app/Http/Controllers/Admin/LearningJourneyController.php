@@ -34,15 +34,15 @@ class LearningJourneyController extends Controller
             ->with('subCategories')
             ->get();
 
-        $weeklyPlanner = WeeklyPlanner::with('WeeklyPlannerKeyStage', 'WeeklyPlannerKeySubject');
+        $LearningJourneys = LearningJourneys::where('status', 'active');
 
-        $weeklyPlanner = $this->filters($weeklyPlanner, $request);
+        $LearningJourneys = $this->filters($LearningJourneys, $request);
 
-        $weeklyPlanner = $weeklyPlanner->paginate(50);
+        $LearningJourneys = $LearningJourneys->paginate(50);
         $data = [
             'pageTitle'          => 'Learning Journey',
             'categories'         => $categories,
-            'weeklyPlanners' => $weeklyPlanner,
+            'LearningJourneys' => $LearningJourneys,
         ];
 
         //pre(DB::getQueryLog());
@@ -145,15 +145,6 @@ class LearningJourneyController extends Controller
 
 			pre('Done');
 		}
-		
-		
-		
-		
-		
-		
-		
-
-
         $categories = Category::where('parent_id', null)
             ->with('subCategories')
             ->get();
@@ -170,12 +161,12 @@ class LearningJourneyController extends Controller
 
     private function filters($query, $request)
     {
-        $key_stage = $request->get('key_stage', null);
+        $year_id = $request->get('key_stage', null);
         $subject_id = $request->get('subject_id', null);
 
 
-        if (!empty($key_stage) && $key_stage > 0) {
-            $query->where('key_stage', $key_stage);
+        if (!empty($year_id) && $year_id > 0) {
+            $query->where('year_id', $year_id);
         }
 
         if (!empty($subject_id) && $subject_id > 0) {
@@ -204,19 +195,84 @@ class LearningJourneyController extends Controller
 		$learning_journey_level = $request->get('learning_journey_level');
 		$posted_data = $request->get('posted_data');
 		$posted_data = json_decode($posted_data);
+		$level_data_values = $posted_data->levels;
+		$level_data_values = (array) $level_data_values;
+		unset( $posted_data->levels);
 		$levels_objects = array();
 		if( !empty( $posted_data ) ){
 			foreach( $posted_data as $postedObj){
 				$level_id = isset( $postedObj->level_id)? $postedObj->level_id : 0;
 				$levels_objects[$level_id][] = $postedObj;
 			}
-		}
+		};
 		
 
         //$id = 1;
         if ($id != '' && $id > 0) {
-            $LearningJourneyObj = LearningJourneys::findOrFail($id);
-			pre($learning_journey_topic);
+            $LearningJourney = LearningJourneys::findOrFail($id);
+			
+			if( !empty( $learning_journey_level ) ){
+				foreach( $learning_journey_level as $level_key => $levelData){
+					$sort_order_level++;
+					$LearningJourneyLevels = LearningJourneyLevels::findOrFail($level_key);
+					if( !isset( $LearningJourneyLevels->id)){
+						$LearningJourneyLevels = LearningJourneyLevels::create([
+							'learning_journey_id'	=> $LearningJourney->id,
+							'status'			=> 'active',
+							'sort_order' 		=> $sort_order_level,
+							'created_by'		=> $user->id,
+							'created_at'		=> time(),
+							'data_values'		=> isset( $level_data_values[$level_key] )? json_encode($level_data_values[$level_key]) : '',
+						]);
+					}else{
+						$LearningJourneyLevels->update([
+							'data_values'		=> isset( $level_data_values[$level_key] )? json_encode($level_data_values[$level_key]) : '',
+						]);
+					}
+					$objectData = isset( $levels_objects[$level_key] )? $levels_objects[$level_key] : array();
+					$objects_array = [];
+					if( !empty( $objectData )){
+						foreach( $objectData as $objectData){
+							$is_new = $objectData->is_new;
+							if( $is_new == 'yes'){
+								$LearningJourneyObjects = LearningJourneyObjects::create([
+									'learning_journey_id'	=> $LearningJourney->id,
+									'learning_journey_level_id'	=> $LearningJourneyLevels->id,
+									'item_type' 		=> $objectData->field_type,
+									'item_slug' 		=> $objectData->item_type,
+									'item_title' 		=> isset( $objectData->item_title )? $objectData->item_title : '',
+									'item_path' 		=> $objectData->item_path,
+									'field_style' 		=> $objectData->field_style,
+									'data_values' 		=> isset( $objectData->data_values )? json_encode($objectData->data_values) : '',
+									'status'			=> 'active',
+									'sort_order' 		=> $sort_order_item,
+									'created_by'		=> $user->id,
+									'created_at'		=> time(),
+								]);
+								
+								$objects_array[] = $LearningJourneyObjects->id;
+							}else{
+								$objects_array[] = $objectData->unique_id;
+								$LearningJourneyObjects = LearningJourneyObjects::find($objectData->unique_id)->update([
+									'learning_journey_id'	=> $LearningJourney->id,
+									'learning_journey_level_id'	=> $LearningJourneyLevels->id,
+									'item_type' 		=> $objectData->field_type,
+									'item_slug' 		=> $objectData->item_type,
+									'item_title' 		=> isset( $objectData->item_title )? $objectData->item_title : '',
+									'item_path' 		=> $objectData->item_path,
+									'field_style' 		=> $objectData->field_style,
+									'data_values' 		=> isset( $objectData->data_values )? json_encode($objectData->data_values) : '',
+									'status'			=> 'active',
+									'sort_order' 		=> $sort_order_item,
+									'created_by'		=> $user->id,
+									'created_at'		=> time(),
+								]);
+							}
+						}
+					}
+					LearningJourneyObjects::where('learning_journey_id', $LearningJourney->id)->where('learning_journey_level_id', $LearningJourneyLevels->id)->whereNotIn('id', $objects_array)->update(['status' => 'archived']);
+				}
+			}
 			
             
         } else {
@@ -238,6 +294,7 @@ class LearningJourneyController extends Controller
 					'sort_order' 		=> $sort_order_level,
 					'created_by'		=> $user->id,
 					'created_at'		=> time(),
+					'data_values'		=> isset( $level_data_values[$level_key] )? json_encode($level_data_values[$level_key]) : '',
 				]);
 				
 				$objectData = isset( $levels_objects[$level_key] )? $levels_objects[$level_key] : array();
@@ -247,6 +304,8 @@ class LearningJourneyController extends Controller
 							'learning_journey_id'	=> $LearningJourney->id,
 							'learning_journey_level_id'	=> $LearningJourneyLevels->id,
 							'item_type' 		=> $objectData->field_type,
+							'item_slug' 		=> $objectData->item_type,
+							'item_title' 		=> isset( $objectData->item_title )? $objectData->item_title : '',
 							'item_path' 		=> $objectData->item_path,
 							'field_style' 		=> $objectData->field_style,
 							'data_values' 		=> isset( $objectData->data_values )? json_encode($objectData->data_values) : '',
@@ -270,7 +329,7 @@ class LearningJourneyController extends Controller
     }
 
 
-    public function learning_journey_set_layout(Request $request, $data_id = 0)
+    public function learning_journey_set_layout(Request $request, $data_id = 0, $is_exit = true, $is_saved = false, $itemObj = array())
     {
         if ($data_id == 0) {
             $data_id = rand(0, 99999);
@@ -278,6 +337,9 @@ class LearningJourneyController extends Controller
         $item_id = rand(0, 99999);
         $chapter_id = rand(0, 99999);
         $total_weeks = 32;
+		
+		
+		
         ?>
         <div class="accordion-content-wrapper mt-15" id="chapterAccordion" role="tablist"
              aria-multiselectable="true">
@@ -397,18 +459,49 @@ class LearningJourneyController extends Controller
 								 
 								 
 								 <div class="editor-zone" style="position:relative;width: fit-content;">
-									
-									<div class="book-dropzone active" style="background:url('/assets/admin/editor/landing.jpg');" data-level_id="<?php echo $data_id; ?>">
-										<img src="/assets/admin/editor/landing.jpg" style="visibility: hidden;">
+									<div class="field-options"></div>
+									<?php $data_values = json_decode($itemObj->data_values);?>
+									<div class="book-dropzone active page_settings saved-item-class" data-trigger_class="page-settings-fields" data-page_graph="<?php echo isset( $data_values->page_graph )? $data_values->page_graph : '0'; ?>" data-page_background="<?php echo isset( $data_values->background )? $data_values->background : '#ffffff'; ?>" data-page_height="<?php echo isset( $data_values->height )? str_replace('px', '', $data_values->height) : '800'; ?>" style="background:#ffffff" data-level_id="<?php echo $data_id; ?>">
+										<?php
+										
+											if( $is_saved == true){
+												if( !empty( $itemObj->LearningJourneyObjects->where('status', 'active') )){
+													foreach( $itemObj->LearningJourneyObjects->where('status', 'active') as $learningJourneyItemObj){
+														$item_type = isset( $learningJourneyItemObj->item_type ) ?  $learningJourneyItemObj->item_type : '';
+														$item_path_folder = '';
+														$item_path_folder = ($item_type == 'stage' )? 'stages' : $item_path_folder;
+														$item_path_folder = ($item_type == 'stage_objects' )? 'objects' : $item_path_folder;
+														$item_path_folder = ($item_type == 'path' )? 'paths' : $item_path_folder;
+														
+														$data_attributes_array = isset( $learningJourneyItemObj->data_values )? json_decode($learningJourneyItemObj->data_values ) : array();
+														
+														$data_attributes = '';
+														
+														if( !empty( $data_attributes_array ) ){
+															foreach( $data_attributes_array as $data_attribute_key => $data_attribute_value){
+																$data_attributes = 'data-'.$data_attribute_key.'="'.$data_attribute_value.'"';
+															}
+														}
+														
+														
+														$item_path = isset( $learningJourneyItemObj->item_path ) ?  $learningJourneyItemObj->item_path : '';
+														$item_path = 'assets/editor/'.$item_path_folder.'/'.$item_path;
+														$svgCode = getFileContent($item_path);
+														echo '<div style="'.$learningJourneyItemObj->field_style.'" data-is_new="no" data-item_title="'.$learningJourneyItemObj->item_title.'" data-unique_id="'.$learningJourneyItemObj->id.'" class="saved-item-class drop-item form-group draggablecl field_settings draggable_field_rand_'.$learningJourneyItemObj->id.'" data-id="rand_'.$learningJourneyItemObj->id.'" data-item_path="'.$learningJourneyItemObj->item_path.'" data-field_type="'.$learningJourneyItemObj->item_type.'" data-trigger_class="infobox-'.$learningJourneyItemObj->item_slug.'-fields" data-item_type="'.$learningJourneyItemObj->item_slug.'" data-paragraph_value="Test text here..." '.$data_attributes.'><div class="field-data">'.$svgCode.'</div><a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a></div>';
+														
+													}
+												}
+												
+											}
+										?>
+										
 									</div>
 									
 									
 									
-									<?php echo view('admin.learning_journey.includes.editor_controls', ['data_id' => $data_id])->render() ?>
+									<?php echo view('admin.learning_journey.includes.editor_controls', ['data_id' => $data_id, 'itemObj' => $itemObj])->render() ?>
 									
 									
-									<div class="generate">Save Data</div>
-								 
 								 </div>
 								 
 								 
@@ -437,7 +530,9 @@ class LearningJourneyController extends Controller
         </div>
 
         <?php
-        exit;
+		if( $is_exit == true){
+			exit;
+		}
     }
 	
 	public function learning_journey_topic_layout(Request $request, $data_id = 0, $subject_id = 0, $item_value = '')

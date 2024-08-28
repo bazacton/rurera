@@ -20,7 +20,7 @@
 
         <section class="card">
             <div class="card-body">
-                <form action="/admin/weekly_planner" method="get" class="row mb-0">
+                <form action="/admin/learning_journey" method="get" class="row mb-0">
 
                     <div class="col-md-3">
                         <div class="form-group">
@@ -83,30 +83,26 @@
                                     <th>{{ trans('admin/main.actions') }}</th>
                                 </tr>
 
-                                @foreach($weeklyPlanners as $weeklyPlanner)
+                                @foreach($LearningJourneys as $LearningJourneyObj)
                                 <tr>
                                     <td>
-                                        <span>{{ $weeklyPlanner->id }}</span>
+                                        <span>{{ $LearningJourneyObj->id }}</span>
                                     </td>
-                                    <td class="text-left">{{
-                                        $weeklyPlanner->WeeklyPlannerKeyStage->getTitleAttribute() }}
+                                    <td class="text-left">
+                                        {{ $LearningJourneyObj->year->getTitleAttribute() }}
                                     </td>
-                                    <td class="text-left">{{
-                                        $weeklyPlanner->WeeklyPlannerKeySubject->getTitleAttribute() }}
+                                    <td class="text-left">
+                                        {{ $LearningJourneyObj->subject->getTitleAttribute() }}
                                     </td>
-                                    <td class="text-left">{{ dateTimeFormat($weeklyPlanner->created_at, 'j M y
+                                    <td class="text-left">{{ dateTimeFormat($LearningJourneyObj->created_at, 'j M y
                                         | H:i') }}
                                     </td>
                                     <td>
-                                        <a href="/admin/weekly_planner/{{ $weeklyPlanner->id }}/edit"
+                                        <a href="/admin/learning_journey/{{ $LearningJourneyObj->id }}/edit"
                                            class="btn-transparent btn-sm text-primary" data-toggle="tooltip"
                                            data-placement="top" title="{{ trans('admin/main.edit') }}">
                                             <i class="fa fa-edit"></i>
                                         </a>
-
-                                        @include('admin.includes.delete_button',['url' =>
-                                        '/admin/national_curriculum/'.$weeklyPlanner->id.'/delete' , 'btnClass'
-                                        => 'btn-sm'])
                                     </td>
 
                                 </tr>
@@ -117,7 +113,7 @@
                     </div>
 
                     <div class="card-footer text-center">
-                        {{ $weeklyPlanners->links() }}
+                        {{ $LearningJourneys->links() }}
                     </div>
                 </div>
             </div>

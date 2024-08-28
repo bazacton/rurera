@@ -8,7 +8,7 @@
         <h2 class="blog-grid-title mt-10" itemprop="title">
             <a itemprop="url" href="{{ $post->getUrl() }}">{{ $post->title }}</a>
         </h2>
-        <div class="mt-20 blog-grid-desc" itemprop="description">{!! truncate(strip_tags($post->description), 200) !!}</div>
+        <div class="mt-20 mb-10 blog-grid-desc" itemprop="description">{!! truncate(strip_tags($post->description), 200) !!} <a href="{{ $post->getUrl() }}" class="read-btn font-15">Read More</a></div>
         @php
             $meta_description = explode(',', $post->meta_description);
             if( !empty( $meta_description ) ){
@@ -16,7 +16,6 @@
             }
 
         @endphp
-
 
     </div>
     <div class="blog-grid-image">

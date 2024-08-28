@@ -8,6 +8,7 @@ use App\Models\Reward;
 use App\Models\RewardAccounting;
 use App\Models\Role;
 use App\Models\Translation\QuizTranslation;
+use App\Http\Controllers\Web\QuestionsAttemptController;
 use App\Models\WebinarChapter;
 use App\Models\WebinarChapterItem;
 use App\User;
@@ -23,12 +24,17 @@ class QuestionsBankController extends Controller {
 
     public function start(Request $request, $id) {
         $question = QuizzesQuestion::where('id', $id)->first();
+		$QuestionsAttemptController = new QuestionsAttemptController();
+		
+		
+		
         $quiz = Quiz::find($question->quiz_id);
 
         if ($question) {
             $data = [
                 'pageTitle' => trans('quiz.quiz_start'),
                 'question' => $question,
+                'QuestionsAttemptController' => $QuestionsAttemptController,
                 'quiz' => $quiz
             ];
             return view(getTemplate() . '.panel.questions.start', $data);

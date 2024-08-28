@@ -3614,6 +3614,23 @@ class QuestionsAttemptController extends Controller
     }
 	
 	
+	/*
+	* Get Question Layout
+	*/
+	public function get_question_layout($element_id, $elementObj){
+		$question_layout = '';
+		//pre($elementObj);
+		switch($elementObj->type) {
+
+            case "checkbox":
+                $question_layout = view('web.default.question_layouts.checkbox_layout', ['element_id' => $element_id, 'elementObj' => $elementObj])->render();
+			break;
+		}
+		//pre($question_layout);
+		return $question_layout;
+    }
+	
+	
 	
 
 

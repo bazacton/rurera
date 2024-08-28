@@ -55,9 +55,11 @@ $rand_id = rand(999,99999);
 </style>
 @endpush
 
+@php $save_type = isset( $questionObj->id )? 'update_question' : 'store_question'; @endphp
+
 @section('content')
 
-<section class="section form-class" data-question_save_type="store_question">
+<section class="section form-class" data-question_save_type="{{$save_type}}">
 
 
     <div class="section-body lms-quiz-create">
@@ -1147,6 +1149,9 @@ $rand_id = rand(999,99999);
                                                     </div>
 
 
+													@if( isset( $questionObj->id ))
+															<input type="hidden" name="question_id" value="{{$questionObj->id}}">	
+													@endif
                                                 </form>
 
                                             </div>

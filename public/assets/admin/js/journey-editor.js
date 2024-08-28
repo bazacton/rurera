@@ -39,7 +39,8 @@ $(document).on('click', '.book-dropzone', function (e) {
 	
 
     $('.control-tool-item').removeClass('active');
-    var field_random_number = 'rand_' + Math.floor((Math.random() * 99999) + 1);
+	var unique_id = Math.floor((Math.random() * 99999) + 1);
+    var field_random_number = 'rand_' + unique_id;
 	
 
     if (drag_type == "text") {
@@ -72,7 +73,7 @@ $(document).on('click', '.book-dropzone', function (e) {
 		
 		var svg_code = $(".svgs-data ."+drag_object+"_svg").html();
 
-        var $el = $('<div style="left:' + e.offsetX + 'px; top:' + e.offsetY + 'px;" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-item_path="' + item_path + '" data-field_type="' + drag_type + '" data-trigger_class="infobox-'+drag_object+'-fields" data-item_type="'+drag_object+'" data-paragraph_value="Test text here..."><div class="field-data">'+svg_code+'</div>');
+        var $el = $('<div style="left:' + e.offsetX + 'px; top:' + e.offsetY + 'px;" data-item_title="'+item_title+'" data-unique_id="'+unique_id+'" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-item_path="' + item_path + '" data-field_type="' + drag_type + '" data-trigger_class="infobox-'+drag_object+'-fields" data-item_type="'+drag_object+'" data-paragraph_value="Test text here..."><div class="field-data">'+svg_code+'</div>');
         //$el.append('<span class="field-handle fas fa-arrows-alt"></span><a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
         $el.append('<a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
         $el.append('</div>');
@@ -177,17 +178,24 @@ $(document).on('click', '.book-dropzone', function (e) {
     /*
     * Draggable
     */
-    $('.draggable_field_' + field_random_number).rotatable().draggable({
+    $('.draggable_field_' + field_random_number)
+    .rotatable()
+    .draggable({
         preventCollision: true,
-        containment: dropZonObj,
-        //handle: ".field-handle",
-    });
+        containment: dropZonObj
+    })
+    .off('wheel'); // Unbinds all wheel events from this element
+
 	
 	$('.draggable_field_' + field_random_number).resizable();
 	
+	$('.colorpickerinput').colorpicker({
+		format: 'hex',
+	});
+	
 	var z_index = $(".editor-objects-list li").length+1;
 	if( item_title != undefined){
-		$(".editor-objects-list").append('<li data-id="'+field_random_number+'" data-field_postition="'+z_index+'">'+item_title+'</li>');
+		$(".editor-objects-list").append('<li data-id="'+field_random_number+'" data-field_postition="'+z_index+'">'+item_title+' <i class="fa fa-trash"></i><i class="fa fa-lock"></i><i class="fa fa-sort"></i></li>');
 		$(".editor-objects-list").sortable({
 			update: function(event, ui) {
 				sorting_render(); // Call your function here
@@ -196,6 +204,7 @@ $(document).on('click', '.book-dropzone', function (e) {
 	}
 	
 	sorting_render();
+	
 	
 	$(".field_settingss").rotatable({
         angle: 0,
@@ -218,14 +227,52 @@ function sorting_render(){
 	});
 }
 
-$(document).on('click', '.field_settings', function (e) {
+$(document).on('click', '.page_settings', function (e) {
+	if (!$(e.target).is($(this))) {
+		return false;
+	}
+	$('.page_settings').removeClass('active');
+	$(this).addClass('active');
+	console.log('page_settings');
     $(".field-options").html('');
-    $(".field-options").addClass('hide');
     var fieldObj = $(this);
     var field_id = fieldObj.data('id');
     var parent_field_id = field_id;
     var trigger_class = fieldObj.data('trigger_class');
     $(".field-options").html($('.' + trigger_class).html());
+	$('.field_settings').removeClass('active');
+    $(".field-options .trigger_field").attr('data-id', field_id);
+	
+	$('.field-options .trigger_field').each(function () {
+        var field_id = $(this).data('field_id');
+        var field_type = $(this).data('field_type');
+        var field_value = fieldObj.attr('data-' + field_id);
+        if (field_type != 'image') {
+            $(this).val(field_value);
+        }
+
+    });
+	
+	$('.field-options .trigger_field').change();
+	$('.colorpickerinput').colorpicker({
+		format: 'hex',
+	});
+});
+
+$(document).on('click', '.field_settings', function (e) {
+    $(".field-options").html('');
+	console.log('field_settings');
+    var fieldObj = $(this);
+    var field_id = fieldObj.data('id');
+	console.log(field_id);
+    var parent_field_id = field_id;
+    var trigger_class = fieldObj.data('trigger_class');
+    $(".field-options").html($('.' + trigger_class).html());
+	
+	$('.field_settings').removeClass('active');
+	$(this).addClass('active');
+	$('.editor-objects-list li').removeClass('active');
+	$('.editor-objects-list li[data-id="'+field_id+'"]').addClass('active');
 
     $('.field-options .trigger_field').each(function () {
         var field_id = $(this).data('field_id');
@@ -285,14 +332,20 @@ $(document).on('click', '.field_settings', function (e) {
         });
 
     });
+	
+	
 
     if (!EditorIsEmpty($('.' + trigger_class).html())) {
         $(".field-options").removeClass('hide');
     }
     $(".field-options .trigger_field").attr('data-id', field_id);
+	$('.field-options .trigger_field').change();
+	$('.colorpickerinput').colorpicker({
+		format: 'hex',
+	});
 });
 
-$(document).on('keyup, change, keydown, click', '.field-options .trigger_field', function (e) {
+$(document).on('keyup change keydown click', '.field-options .trigger_field', function (e) {
     trigger_field_change($(this));
 });
 
@@ -322,6 +375,25 @@ function trigger_field_change(thisObj) {
         //$(".draggable_field_" + data_id + ' .field-data').html(this_value);
     }
 	
+	if (field_type == 'page_style') {
+		var this_value_number = this_value;	
+		if( field_name == 'height'){
+			this_value = this_value+'px';	
+		}
+		if( field_name == 'graph'){
+			console.log('this_value===='+this_value);
+			if( this_value == 1){
+				$(".page_settings.active").addClass('graph-background');
+			}else{
+				$(".page_settings.active").removeClass('graph-background');
+			}
+		}else{
+			$(".page_settings.active").css(field_name,this_value);
+		}
+        //$(".draggable_field_" + data_id + ' .field-data').html(this_value);
+		$(".page_settings.active").attr('data-'+field_id, this_value_number);
+    }
+	
 	if (field_type == 'svg_style') {
 		if( field_name == 'width'){
 			this_value = this_value+'px';	
@@ -330,6 +402,14 @@ function trigger_field_change(thisObj) {
         //$(".draggable_field_" + data_id + ' .field-data').html(this_value);
 		$(".draggable_field_" + data_id).attr('data-inner_style', $(".draggable_field_" + data_id).find('svg').attr('style'));
     }
+	
+	if (field_type == 'svg_path_style') {
+		
+		$(".draggable_field_" + data_id).find('svg').find('path').css(field_name,this_value);
+		$(".draggable_field_" + data_id).attr('data-inner_style', $(".draggable_field_" + data_id).find('svg').find('path').attr('style'));
+    }
+	
+	
 	
 	if (field_type == 'topic_checkbox') {
 		var field_title = thisObj.attr('data-topic_title');
@@ -345,15 +425,23 @@ jQuery(document).ready(function () {
     $(".editor-zone").on("contextmenu", function () {
         return false;
     });
+	
+	
+		$('.saved-item-class').click();
 
     $('.book-dropzone .field_settings').each(function () {
         var dropZonObj = $(this).closest('.book-dropzone');
         var field_id = $(this).attr('data-id');
-        $('.draggable_field_' + field_id).draggable({
-            preventCollision: true,
-            containment: dropZonObj,
-            //handle: ".field-handle",
-        });
+		
+		$('.draggable_field_' + field_id)
+			.rotatable()
+			.draggable({
+				preventCollision: true,
+				containment: dropZonObj
+			})
+			.off('wheel'); // Unbinds all wheel events from this element
+			$('.draggable_field_' + field_id).resizable();
+		
     });
 
     $(document).on('click', '.book-dropzone .remove', function (e) {
@@ -476,6 +564,14 @@ function EditorIsEmpty(dataValue) {
 }
 
 
+$(document).on('change', '.custom-switch-input', function (e) {
+	var this_value = 0;
+	 if ($(this).is(':checked')) {
+		 this_value = 1;
+	 }
+	$(this).closest('.custom-switch').find('.trigger_field').val(this_value);
+	$(this).closest('.custom-switch').find('.trigger_field').change();
+});
 $(document).on('click', '.generate', function (e) {
 	
 	
@@ -496,8 +592,14 @@ $(document).on('click', '.generate', function (e) {
 
 function generate_stage_area(){
 	var posted_data = {};
+	posted_data['levels'] = {};
 	$(".book-dropzone").each(function (index) {
 		var level_id = $(this).attr('data-level_id');
+		posted_data['levels'][level_id] = {};
+		
+		posted_data['levels'][level_id]['background'] = $(this).attr('data-page_background');
+		posted_data['levels'][level_id]['height'] = $(this).attr('data-page_height');
+		posted_data['levels'][level_id]['page_graph'] = $(this).attr('data-page_graph');
 		$(this).find(".field_settings").each(function (index) {
 			var fieldObj = $(this);
 			var data_values = {};
@@ -518,6 +620,8 @@ function generate_stage_area(){
 			var is_new = fieldObj.attr('data-is_new');
 			var item_type = fieldObj.attr('data-item_type');
 			var item_path = fieldObj.attr('data-item_path');
+			var unique_id = fieldObj.attr('data-unique_id');
+			var item_title = fieldObj.attr('data-item_title');
 			
 			console.log('field_id=='+field_id);
 			console.log('field_type=='+field_type);
@@ -556,8 +660,9 @@ function generate_stage_area(){
 			posted_data[field_id]['item_type'] = item_type;
 			posted_data[field_id]['item_path'] = item_path;
 			posted_data[field_id]['inner_style'] = inner_style;
+			posted_data[field_id]['unique_id'] = unique_id;
+			posted_data[field_id]['item_title'] = item_title;
 			posted_data[field_id]['is_new'] = is_new;
-
 		});
 	});
 	

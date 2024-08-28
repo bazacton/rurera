@@ -4,13 +4,38 @@
 <link href="/assets/default/vendors/sortable/jquery-ui.min.css"/>
 <link rel="stylesheet" href="/assets/vendors/summernote/summernote-bs4.min.css">
 <link rel="stylesheet" href="/assets/admin/css/draw-editor.css?ver={{$rand_id}}">
+<link rel="stylesheet" href="/assets/admin/vendor/bootstrap-colorpicker/bootstrap-colorpicker.min.css">
+
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/smoothness/jquery-ui.css">
 
 <style type="text/css">
+
+:root {
+  --bg-color: #fff;
+  --line-color-1: #366;
+  --line-color-2: #a9a9a9;
+}
+
+*, *::before, *::after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+	.field_settings .ui-rotatable-handle, .field_settings .ui-resizable-handle, .field_settings .remove{
+		display:none !important;
+	}
+	
+	.field_settings.active .ui-rotatable-handle, .field_settings.active .ui-resizable-handle, .field_settings.active .remove{
+		display:block !important;
+	}
+	.editor-objects-list li.active{
+		background: #cbcbcb;
+	}
+
     .no-border {
         border: none;
     }
-	
 	.ui-rotatable-handle {
             width: 20px;
             height: 20px;
@@ -42,45 +67,125 @@
             right: -10px;
         }
 	
-	.field-data svg{height:auto;}
+	.field-data svg{height:auto; width: 100%;}
 	
 	
-	.editor-controls {
+	/* .editor-controls {
 		position: absolute;
 		top: 0;
 		right: -300px;
 		width: 300px;
-	}
-	ul.editor-objects {
-		float: left;
-	}
-
+	} */
+    .editor-objects {
+        background-color: #e9e9e9;
+        padding: 15px;
+    }
 	ul.editor-objects li {
-		float: left;
-		margin: 10px;
-		border: 1px solid #efefef;
+		display: inline-block;
+        vertical-align: top;
+        padding: 5px 5px;
+        width: 32%;
 	}
 	a.control-tool-item {
-		padding: 12px;
+		padding: 10px;
+        border: 1px solid #ccc;
+        display: block;
+        text-align: center;
+        border-radius: 3px;
+        background-color: #f5f5f5;
 	}
 	a.control-tool-item.active {
-		background: #bbb5b5;
+		background: #fff;
 	}
-	.editor-objects-block {
+    .control-tool-item img {
+        height: 35px;
+        object-fit: contain;
+        width: 35px !important;
+    }
+	/* .editor-objects-block {
 		position: absolute;
 		top: 0;
 		right: -500px;
 		width: 170px;
-	}
+	} */
 	.editor-objects-list li {
-		padding: 5px;
+		padding: 5px 10px;
 		background: #efefef;
 		margin: 0 0 3px 0;
 	}
+    .editor-controls-holder {
+        position: absolute;
+        right: 0;
+        top: 0;
+        min-width: 340px;
+        max-width: 340px;
+        height: calc(100% - 30px);
+        background-color: #f2f2f2;
+        padding: 30px 30px;
+        border-radius: 5px;
+    }
+    .editor-parent-nav {
+        margin: 0 0 25px;
+    }
+    .editor-parent-nav .nav-link {
+        padding: 8px 30px;
+        border: 0;
+        background-color: #c3c3c3;
+        font-size: 16px;
+        font-weight: 600;
+        outline: none;
+        border-radius: 3px;
+        color: #666;
+        text-shadow: 0 1px 1px #fff;
+    }
+    .editor-parent-nav .nav-link.active {
+        background-color: var(--primary);
+        color: #fff;
+        text-shadow: none;
+    }
+    .editor-parent-nav ul {
+        gap: 8px 15px;
+    }
+    .editor-controls-holder .fade:not(.show) {
+        visibility: hidden;
+        height: 0;
+    }
+    .editor-controls .nav .nav-item .nav-link {
+        padding: 0 10px;
+        font-weight: 600;
+        color: #afafaf;
+        opacity: 1;
+    }
+    .editor-controls .nav .nav-item .nav-link.active {
+        background-color: inherit;
+        box-shadow: none;
+        color: var(--primary);
+    }
+    .editor-zone:has(.editor-controls-holder) {
+        padding: 0 369px 0 369px;
+        overflow: hidden;
+        width: 100% !important;
+    }
+    /* .editor-zone:has(.field-options.hide) {
+        padding-left: 0;
+    } */
+    .editor-objects-list li i {
+        display: inline-flex;
+        float: right;
+        padding: 6px 10px 6px;
+        color: #000;
+        font-size: 15px;
+        cursor: pointer;
+    }
 	
-	.editor-zone .field-options {
-		right: -1000px;
+	
+	.graph-background {
+		background-color: var(--bg-color);
+		background-image: linear-gradient(var(--line-color-1) 1.5px, transparent 1.5px), linear-gradient(90deg, var(--line-color-1) 1.5px, transparent 1.5px), linear-gradient(var(--line-color-2) 1px, transparent 1px), linear-gradient(90deg, var(--line-color-2) 1px, transparent 1px) !important;
+		background-position: -1.5px -1.5px, -1.5px -1.5px, -1px -1px, -1px -1px !important;
+		background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px !important;
 	}
+
 </style>
 @endpush
 
@@ -155,148 +260,7 @@
 
                                 @if( !empty( $LearningJourneyObj->learningJourneyLevels ))
                                 @foreach( $LearningJourneyObj->learningJourneyLevels as $itemObj)
-							
-							
-							
-							
-								<div class="accordion-content-wrapper mt-15" id="chapterAccordion" role="tablist"
-								 aria-multiselectable="true">
-								<ul class="draggable-content-lists  curriculum-set-ul">
-
-									<li data-id="{{$itemObj->id}}" data-chapter-order=""
-										class="accordion-row bg-white rounded-sm mt-20 py-15 py-lg-30 px-10 px-lg-20">
-										<div class="d-flex align-items-center justify-content-between " role="tab"
-											 id="chapter_{{$itemObj->id}}">
-											<div class="d-flex align-items-center collapsed"
-												 href="#collapseItems{{$itemObj->id}}"
-												 aria-controls="collapseItems{{$itemObj->id}}"
-												 data-parent="#chapterAccordion" role="button"
-												 data-toggle="collapse" aria-expanded="false">
-													<span class="chapter-icon mr-10">
-														<svg xmlns="http://www.w3.org/2000/svg"
-															 width="24" height="24"
-															 viewBox="0 0 24 24"
-															 fill="none" stroke="currentColor"
-															 stroke-width="2"
-															 stroke-linecap="round"
-															 stroke-linejoin="round"
-															 class="feather feather-grid"><rect
-																	x="3"
-																	y="3"
-																	width="7"
-																	height="7"></rect><rect
-																	x="14" y="3" width="7"
-																	height="7"></rect><rect
-																	x="14"
-																	y="14"
-																	width="7"
-																	height="7"></rect><rect
-																	x="3" y="14" width="7"
-																	height="7"></rect></svg>
-													</span>
-												<div class="">
-													<span class="font-weight-bold text-dark-blue d-block cursor-pointer"><input
-																name="learning_journey_level[{{$itemObj->id}}]" type="text" size="50"
-																value="{{$itemObj->level_title}}"
-																class="no-border"></span>
-												</div>
-											</div>
-
-											<div class="d-flex align-items-center">
-
-												<button type="button" data-data_id="{{$itemObj->id}}"
-														class="add-course-content-btn  add-curriculum-item mr-10"
-														aria-expanded="false">
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-														 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-														 stroke-linejoin="round" class="feather feather-plus">
-														<line x1="12" y1="5" x2="12" y2="19"></line>
-														<line x1="5" y1="12" x2="19" y2="12"></line>
-													</svg>
-												</button>
-												
-												<button type="button" data-data_id="{{$itemObj->id}}"
-														class="add-course-content-btn  add-treasure-item mr-10"
-														aria-expanded="false">
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-														 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-														 stroke-linejoin="round" class="feather feather-plus">
-														<line x1="12" y1="5" x2="12" y2="19"></line>
-														<line x1="5" y1="12" x2="19" y2="12"></line>
-													</svg> Box
-												</button>
-
-												<a href="javascript:;"
-												   class="delete-parent-li btn btn-sm btn-transparent text-gray">
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="20"
-														 viewBox="0 0 24 24" fill="none" stroke="currentColor"
-														 stroke-width="2" stroke-linecap="round"
-														 stroke-linejoin="round"
-														 class="feather feather-trash-2 mr-10 cursor-pointer">
-														<polyline points="3 6 5 6 21 6"></polyline>
-														<path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-														<line x1="10" y1="11" x2="10" y2="17"></line>
-														<line x1="14" y1="11" x2="14" y2="17"></line>
-													</svg>
-												</a>
-
-												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="20"
-													 viewBox="0 0 24 24" fill="none" stroke="currentColor"
-													 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-													 class="feather feather-move move-icon mr-10 cursor-pointer text-gray ui-sortable-handle">
-													<polyline points="5 9 2 12 5 15"></polyline>
-													<polyline points="9 5 12 2 15 5"></polyline>
-													<polyline points="15 19 12 22 9 19"></polyline>
-													<polyline points="19 9 22 12 19 15"></polyline>
-													<line x1="2" y1="12" x2="22" y2="12"></line>
-													<line x1="12" y1="2" x2="12" y2="22"></line>
-												</svg>
-
-												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="20"
-													 viewBox="0 0 24 24" fill="none" stroke="currentColor"
-													 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-													 class="feather feather-chevron-down collapse-chevron-icon feather-chevron-up text-gray collapsed"
-													 href="#collapseItems{{$itemObj->id}}"
-													 aria-controls="collapseItems{{$itemObj->id}}"
-													 data-parent="#chapterAccordion" role="button"
-													 data-toggle="collapse" aria-expanded="false">
-													<polyline points="6 9 12 15 18 9"></polyline>
-												</svg>
-											</div>
-										</div>
-										
-										<div id="collapseItems{{$itemObj->id}}" aria-labelledby="chapter_{{$itemObj->id}}"
-											 class="curriculum-item-data collapse " role="tabpanel">
-											<div class="panel-collapse text-gray">
-
-												<div class="accordion-content-wrapper mt-15"
-													 id="chapterContentAccordion{{$itemObj->id}}" role="tablist"
-													 aria-multiselectable="true">
-													<ul class="curriculum-item-data-ul draggable-content-lists draggable-lists-chapter-{{$itemObj->id}} ui-sortable"
-														data-drag-class="draggable-lists-chapter-{{$itemObj->id}}"
-														data-order-table="webinar_chapter_items">
-
-														
-														@if( !empty( $itemObj->learningJourneyItems ))
-															@foreach( $itemObj->learningJourneyItems as $learningJourneyItemObj)
-																@if( $learningJourneyItemObj->item_type == 'topic')
-																	{{$thisObj->learning_journey_topic_layout($request, $learningJourneyItemObj->id, $LearningJourneyObj->subject_id, $learningJourneyItemObj->item_value)}}
-																@endif
-																@if( $learningJourneyItemObj->item_type == 'treasure')
-																	{{$thisObj->learning_journey_treasure_layout($request, $learningJourneyItemObj->id, $learningJourneyItemObj->item_value)}}
-																@endif
-															@endforeach
-														@endif
-
-													</ul>
-												</div>
-
-											</div>
-										</div>
-									</li>
-								</ul>
-							</div>
-
+									{{$thisObj->learning_journey_set_layout($request, $itemObj->id, false, true, $itemObj)}}
                                 @endforeach
                                 @endif
 
@@ -322,11 +286,19 @@
 <script src="/assets/default/js/admin/filters.min.js"></script>
 <script src="/assets/vendors/summernote/summernote-bs4.min.js"></script>
 <script src="/assets/admin/js/journey-editor.js?ver={{$rand_id}}"></script>
+<script src="/assets/admin/vendor/bootstrap-colorpicker/bootstrap-colorpicker.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-
+		
 		$(".editor-objects-list").sortable();
-
+		$('.saved-item-class').click();
+		
+		$(".editor-objects-list").sortable({
+			update: function(event, ui) {
+				sorting_render(); // Call your function here
+			}
+		});
+		
         $('body').on('click', '.delete-parent-li', function (e) {
 
             $(this).closest('li').remove();
@@ -442,11 +414,14 @@
 	$('body').on('submit', '.learning-journey-form', function (e) {
 		console.log('submitted_form');
 		var posted_data = generate_stage_area();
-		$(".posted-data").val(JSON.stringify(posted_data));
 		console.log(posted_data);
+		$(".posted-data").val(JSON.stringify(posted_data));
 		//return false;
 		
 	});
+	
+	
+	
 	
 	
 	 
