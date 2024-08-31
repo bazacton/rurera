@@ -5,24 +5,6 @@ use Illuminate\Support\Facades\Route;
 Route::group([], function () {
 	
 	
-	/*
-	* Newsly Added
-	*/
-	
-	Route::group(['prefix' => 'common'], function () {
-
-        Route::get('/menu', ['uses' => 'CommonController@menu']);
-
-    });
-	
-	Route::group(['prefix' => 'timestables'], function () {
-
-        Route::get('/', ['uses' => 'TimestablesController@index']);
-
-    });
-	
-	
-	
 	
 
     Route::group(['prefix' => 'courses'], function () {

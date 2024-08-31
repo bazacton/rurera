@@ -49,7 +49,7 @@
                             <img src="../assets/default/svgs/book-opend.svg" width="25" height="25" alt="#">Proven Resources: 100% Success Results
                         </li>
                     </ul>
-                    <a href="/register-as" class="py-5 px-15 text-dark-blue font-16 register-btn">Try for free</a>
+                    <a href="/pricing" class="py-15 px-30 text-dark-blue font-16 register-btn">Try Rurera for free</a>
                     <!-- <div class="d-flex align-items-center">
                         <a href="{{url('/')}}/register" class="btn-primary rounded-pill">KS1-year2 SATs</a>
                         <a href="{{url('/')}}/register" class="btn-primary rounded-pill ml-15">KS2-year6 SATs</a>
@@ -566,7 +566,7 @@
                             <p class="font-16 text-white"> Let us help you achieve the score you deserve and unlock <br>doors to your future academic success.</p>
                         </div>
                         <div class="lms-btn-group justify-content-center">
-                            <a href="{{url('/')}}/register-as" class="lms-btn rounded-pill text-white border-white">Try for free</a>
+                            <a href="{{url('/')}}/register-as" class="lms-btn rounded-pill bg-white border-white">Try Rurera for free</a>
                         </div>
                     </div>
                 </div>
@@ -591,7 +591,8 @@
                     <div class="section-title section-inner-title">
                         <h2 class="font-40 text-dark">KS1 & KS2 SATs Practice</h2>
                         <p class="font-16 text-gray mt-10">
-                            Practice online with past KS1 and KS2 SATs papers. Skip the hassle of creating tests and start improving today!
+
+                            Rurera offers comprehensive KS1 and KS2 SATs practice, providing interactive exercises and personalized feedback tailored to each student's needs. This helps young learners build confidence and master essential skills for their assessments.
 
                         </p>
                     </div>
@@ -644,7 +645,7 @@
                     <div class="section-title section-inner-title">
                         <h2 class="font-40 text-dark">Track Individual Progress with Ease</h2>
                         <p class="font-16 text-gray mt-10">
-                            Rurera provides a user-friendly platform for teachers to analyze performance trends, both individually and in groups, ensuring effective SATs exam preparation.
+                        Rurera makes it simple to track individual progress by offering detailed insights into each student's performance. The platform provides comprehensive activity logs that highlight strengths and areas needing improvement.
 
                         </p>
                     </div>
@@ -676,7 +677,7 @@
                 <div>
                     <div class="section-title section-inner-title">
                         <h2 class="font-40 text-dark"> Effortlessly Track Practice</h2>
-                        <p class="font-16 text-gray mt-10">Rurera lets you monitor SATs exam practice time, track activity logs, and analyze performance for each test all in one place.</p>
+                        <p class="font-16 text-gray mt-10">Easily monitor practice with detailed logs and performance insights, helping you keep track of progress and pinpoint areas needing improvement.</p>
                     </div>
                     <!-- <div class="mt-35 d-flex align-items-center btn-holder">
                         <a href="{{url('/')}}/pricing" class="btn btn-primary">Track performance</a>
@@ -693,10 +694,10 @@
                     <div class="section-title section-inner-title">
                         <h2 class="font-40 text-dark">Enhance Learning with SATs Papers</h2>
                         <p class="font-16 text-gray mt-10">
-                            Explore a wide range of SATs papers and resources to master fundamental concepts and boost your problem-solving skills for the SATs exam.
+                        Enhance learning by using SATs papers, which provide targeted practice and familiarize students with exam formats. These papers help reinforce key concepts, improve problem-solving skills, and build confidence by simulating real test conditions.
+
 
                         </p>
-                        <a href="/register-as" class="py-5 px-15 text-dark-blue font-16 register-btn">Try for free</a>
                     </div>
                     <!-- <div class="mt-35 d-flex align-items-center btn-holder">
                         <a href="{{url('/')}}/pricing" class="btn btn-primary">Take a Quiz</a>
@@ -712,6 +713,11 @@
                     <img src="/assets/default/img/home/dot.png" width="70" height="110" class="find-instructor-section-dots" alt="dots" />
                 </div>
             </div>
+            <div class="col-12">
+                <div class="d-flex align-items-center justify-content-center mt-90">
+                    <a href="/pricing" class="btn-primary text-dark-blue font-16 register-btn py-15 px-30">Try Rurera for free</a>
+                </div>
+            </div>
         </div>
     </section>
     <section class="choose-sats choose-sats-section py-80 mt-90">
@@ -719,14 +725,14 @@
             <div class="row align-items-center">
                 <div class="col-12">
                     <div class="section-title text-center mb-50">
-                        <h2 class="mt-0 mb-10 text-white font-40">About SATs Exam</h2>
+                        <h2 class="mt-0 mb-10 text-white font-40"> Ignite Your Path to Success with 100+ SATs practices</h2>
                         <p class="font-19 text-white">
                             With engaging learning experiences, proven SATs resources, and SATs practice, you'll be <br />well-prepared to achieve your best scores
                             on the SATs exam.
                         </p>
                     </div>
                 </div>
-                <div class="col-12 col-lg-6 col-md-6">
+                <div class="col-12 col-lg-12 col-md-12">
                     <div class="row">
                         <div class="col-12 col-lg-3 col-md-6">
                             <div class="sats-box border-white has-bg">
@@ -778,7 +784,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-lg-6 col-md-6">
+                <!-- <div class="col-12 col-lg-6 col-md-6">
                     <div class="section-title">
                         <h2 class="font-36 text-white">
                             Ignite Your Path to Success with 100+ SATs practices
@@ -789,7 +795,7 @@
                             the SATs exam.
                         </p>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>
@@ -829,21 +835,7 @@
                         <h3 class="mb-5 font-20 font-weight-bold" itemprop="title">
                             <span class="text-dark-charcoal">SATs 100s online Assessments</span>
                         </h3>
-                        <p itemprop="description">Unlock 100+ Online Assessments for High Achievers .Students can take SATs quizzes and SATs assessments to test their knowledge.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                    <div class="feature-grid text-center mb-40" itemprop="feature learning course">
-                        <figure class="mb-20">
-
-                            <img src="../assets/default/img/sats-home-feature.jpg" alt="feature image" height="143" width="276">
-
-                        </figure>
-                        <h3 class="mb-5 font-20 font-weight-bold" itemprop="title">
-                            <span class="text-dark-charcoal">Redefining Success with Activity Monitoring</span>
-                        </h3>
-                        <p itemprop="description">Monitor your SATs practice time and analyze performance with detailed activity logs.
-                        </p>
+                        <p itemprop="description">Unlock 100+ Online SATs Quizzes and Assessments for High Achievers.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
@@ -856,7 +848,7 @@
                         <h3 class="mb-5 font-20 font-weight-bold" itemprop="title">
                             <span class="text-dark-charcoal">Past SATs Papers</span>
                         </h3>
-                        <p itemprop="description"> Discover wide range of SATs Papers and SATs resources to improve your learning process and explore the fundamental concepts of SATs exam practice for advanced problem-solving.
+                        <p itemprop="description"> Access SATs papers and resources to boost learning and master key concepts for advanced problem-solving.
                         </p>
                     </div>
                 </div>
@@ -870,21 +862,8 @@
                         <h3 class="mb-5 font-20 font-weight-bold" itemprop="title">
                             <span class="text-dark-charcoal">Learn, Play & Win</span>
                         </h3>
-                        <p itemprop="description">Knowledge leads to winning toys. Improve your skills, and earn rewards through continuous learning and engagement.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                    <div class="feature-grid text-center mb-40" itemprop="feature learning course">
-                        <figure class="mb-20">
+                        <p itemprop="description">Enhance your skills, earn rewards, and win toys through continuous learning.
 
-                            <img src="../assets/default/img/feature-automated-marking.jpg" alt="feature image" height="143" width="276">
-
-                        </figure>
-                        <h3 class="mb-5 font-20 font-weight-bold" itemprop="title">
-                            <span class="text-dark-charcoal">Crafting Insightful Analysis</span>
-                        </h3>
-                        <p itemprop="description"> It significantly allows to identify student’s learning strengths and areas needing improvement.
                         </p>
                     </div>
                 </div>
@@ -896,11 +875,42 @@
 
                         </figure>
                         <h3 class="mb-5 font-20 font-weight-bold" itemprop="title">
-                            <span class="text-dark-charcoal">Ignite Student Engagement</span>
+                            <span class="text-dark-charcoal">Student Engagement</span>
                         </h3>
-                        <p itemprop="description"> Attract students with interactive challenges, online test practices, entrance exam prep, and rewards like trending toys.</p>
+                        <p itemprop="description"> Engage students with challenges, test practices, and rewards like toys and collectibles.
+                        </p>
                     </div>
                 </div>
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                    <div class="feature-grid text-center mb-40" itemprop="feature learning course">
+                        <figure class="mb-20">
+
+                            <img src="../assets/default/img/sats-home-feature.jpg" alt="feature image" height="143" width="276">
+
+                        </figure>
+                        <h3 class="mb-5 font-20 font-weight-bold" itemprop="title">
+                            <span class="text-dark-charcoal">Activity Monitoring</span>
+                        </h3>
+                        <p itemprop="description"> Track SATs practice and analyze logs to identify strengths and improve.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                    <div class="feature-grid text-center mb-40" itemprop="feature learning course">
+                        <figure class="mb-20">
+
+                            <img src="../assets/default/img/feature-automated-marking.jpg" alt="feature image" height="143" width="276">
+
+                        </figure>
+                        <h3 class="mb-5 font-20 font-weight-bold" itemprop="title">
+                            <span class="text-dark-charcoal">Parental Insights</span>
+                        </h3>
+                        <p itemprop="description"> Track progress and support your child's achievements with key learning insights.
+
+                        </p>
+                    </div>
+                </div>
+
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="feature-grid text-center mb-40" itemprop="feature learning course">
                         <figure class="mb-20">
@@ -911,7 +921,10 @@
                         <h3 class="mb-5 font-20 font-weight-bold" itemprop="title">
                             <span class="text-dark-charcoal">Interactive Learning</span>
                         </h3>
-                        <p itemprop="description">Engage with online books, multiplication practices, and more.
+                        <p itemprop="description">
+                            Explore online books, interactive multiplication, and activities that make learning fun and effective.
+
+
                         </p>
                     </div>
                 </div>
@@ -923,9 +936,9 @@
 
                         </figure>
                         <h3 class="mb-5 font-20 font-weight-bold" itemprop="title">
-                            <span class="text-dark-charcoal">Quick & Adaptive Assessments</span>
+                            <span class="text-dark-charcoal">Adaptive Assessments</span>
                         </h3>
-                        <p itemprop="description">Instant feedback and personalized learning paths.
+                        <p itemprop="description">Get instant feedback and personalized learning paths with adaptive tests to ensure efficient progress.
                         </p>
                     </div>
                 </div>
@@ -1072,8 +1085,10 @@
                 </div>
             </div>
         </div>
+        <div class="d-flex align-items-center justify-content-center pt-50">
+            <a href="/pricing" class="btn-primary font-16 text-dark-blue register-btn py-15 px-30">Try Rurera for free</a>
+        </div>
     </section>
-    <a href="/register-as" class="py-5 px-15 text-dark-blue font-16 register-btn">Try for free</a>
     @php $faq_items = isset( $faq_items )? $faq_items : array();@endphp
     <section class="py-70" style="background-color: #fff">
         <div class="container">
@@ -1109,13 +1124,13 @@
                                 <div class="card">
                                     <div class="card-header" id="headingonsix">
                                         <h3 class="mb-0">
-                                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapsesix" aria-expanded="true" aria-controls="collapsesix">What are SATs?</button>
+                                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapsesix" aria-expanded="true" aria-controls="collapsesix">What are SATs in UK?</button>
                                         </h3>
                                     </div>
                                     <div id="collapsesix" class="collapse" aria-labelledby="headingsix"
                                         data-parent="#accordion">
                                         <div class="card-body">
-                                            <p>SATs (Standard Assessment Tests) are national tests taken by primary school students in England to assess their educational progress in core subjects like English and Mathematics. </p>
+                                            <p>SATs (Standard Assessment Tests) are exams administered to primary school children in England to evaluate their academic progress and the quality of education at their schools. These tests are taken at the end of Key Stage 1 (Years 1–2) and Key Stage 2 (Years 3–6). <br>In Key Stage 2, SATs focus on English and mathematics, but do not include science. </p>
                                         </div>
                                     </div>
                                 </div>
@@ -1123,39 +1138,57 @@
                                     <div class="card-header" id="headingTwo">
                                         <h3 class="mb-0"><button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse"
                                                 data-target="#collapseTwo" aria-expanded="false"
-                                                aria-controls="collapseTwo"> When are SATs taken?</button></h3>
+                                                aria-controls="collapseTwo"> When do students take their SATs?</button></h3>
                                     </div>
                                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
                                         data-parent="#accordion">
                                         <div class="card-body">
-                                            <p>Key Stage 1 SATs are taken at the end of Year 2 (ages 6-7). <br>
-                                                Key Stage 2 SATs are taken at the end of Year 6 (ages 10-11).
+                                            <p>
+                                                The Year 6 SATs in 2025 will take place between <strong>12th May-15th May:</strong>
+
                                             </p>
+                                            <ul>
+                                                <li> <strong>Monday:</strong> English paper 1 and English paper 2</li>
+                                                <li><strong>Tuesday: </strong> English paper 3</li>
+                                                <li><strong>Wednesday: </strong> Maths paper 1 and maths paper 2</li>
+                                                <li> <strong>Thursday:</strong> Maths paper 3</li>
+                                            </ul>
+
+
+
+
+
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card">
                                     <div class="card-header" id="headingseven">
                                         <h3 class="mb-0">
-                                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapseseven" aria-expanded="false" aria-controls="collapseseven"> What subjects are covered in SATs?</button>
+                                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapseseven" aria-expanded="false" aria-controls="collapseseven"> Which subjects are assessed during the SATs exams?</button>
                                         </h3>
                                     </div>
                                     <div id="collapseseven" class="collapse" aria-labelledby="headingseven" data-parent="#accordion">
                                         <div class="card-body">
-                                            <p> English (Reading, Writing, and Spelling, Punctuation & Grammar) and Mathematics.
+                                            <p> Year 6 SATs assess the topics taught on the Key Stage 2 national curriculum for English and maths.
+
                                             </p>
+                                            <ul>
+                                                <li><strong>English:</strong> Reading, spelling, vocabulary, grammar and punctuation</li>
+                                                <li><strong>Maths:</strong> Number, data, geometry, algebra, measurement, ratio and proportion</li>
+                                            </ul>
+                                            <p>There are 6 papers in total – 3 for English (grammar and punctuation, spelling, and reading), and 3 for maths (2 reasoning papers and an arithmetic paper)</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card">
                                     <div class="card-header" id="heading8">
                                         <h3 class="mb-0">
-                                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8">Are SATs mandatory?</button>
+                                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8">Is it compulsory for students to take the SATs exams?</button>
                                         </h3>
                                     </div>
                                     <div id="collapse8" class="collapse" aria-labelledby="heading8" data-parent="#accordion">
                                         <div class="card-body">
-                                            <p>Yes, SATs are a statutory requirement for all state school pupils in England.
+                                            <p>SATs play a crucial role in providing teachers and parents with an understanding of children's strengths and areas that need improvement. The results help teachers identify which students may require additional support as they transition from primary to secondary school. <br> Additionally, the government uses these results to assess the quality of education in schools nationwide.
                                             </p>
                                         </div>
                                     </div>
@@ -1163,25 +1196,26 @@
                                 <div class="card">
                                     <div class="card-header" id="heading9">
                                         <h3 class="mb-0">
-                                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse9" aria-expanded="false" aria-controls="collapse9">How are SATs scored?
+                                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse9" aria-expanded="false" aria-controls="collapse9">What is the process for scoring SATs, and how are student results determined?
                                             </button>
                                         </h3>
                                     </div>
                                     <div id="collapse9" class="collapse" aria-labelledby="heading9" data-parent="#accordion">
                                         <div class="card-body">
-                                            <p>SATs are scored using scaled scores: A score of 100 represents the expected standard. Scores above 100 indicate higher performance, and below 100 indicate a need for improvement.<strong>Total score is 120</strong></p>
+                                            <p>SATs are scored using scaled scores: A score of 100 represents the expected standard. Scores above 100 indicate higher performance, and below 100 indicate a need for improvement.</p>
+                                            <p><strong>Total score:120</strong></p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card">
                                     <div class="card-header" id="heading10">
                                         <h3 class="mb-0">
-                                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse10" aria-expanded="false" aria-controls="collapse10">How can Rurera help children prepare for SATs?</button>
+                                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse10" aria-expanded="false" aria-controls="collapse10">Does Rurera align with the national curriculum, and how closely does it follow the prescribed educational standards?</button>
                                         </h3>
                                     </div>
                                     <div id="collapse10" class="collapse" aria-labelledby="heading10" data-parent="#accordion">
                                         <div class="card-body">
-                                            <p>Practice past papers to familiarize children with the format.Encourage regular reading and problem-solving activities.Ensure a balanced routine with time for relaxation.
+                                            <p>Yes. Our content is created by teachers and grounded in the Key Stage 2 national curriculum in England. Rurera covers all the core topics in English, maths and science for Years 3–6 (ages 7–11).
                                             </p>
                                         </div>
                                     </div>
@@ -1189,39 +1223,41 @@
                                 <div class="card">
                                     <div class="card-header" id="heading11">
                                         <h3 class="mb-0">
-                                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse11" aria-expanded="false" aria-controls="collapse11">Do SATs affect secondary school placement?</button>
+                                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse11" aria-expanded="false" aria-controls="collapse11">In what ways does Rurera maintain and enhance my child's motivation throughout their learning journey? </button>
                                         </h3>
                                     </div>
                                     <div id="collapse11" class="collapse" aria-labelledby="heading11" data-parent="#accordion">
                                         <div class="card-body">
-                                            <p>SATs results do not directly affect secondary school placement but provide important data for schools to understand a child’s academic level.
+                                            <p>
+                                                Along with exciting features like coins to collect and worlds to explore, our algorithm is busy working in the background. Rurera constantly adjusts the difficulty level to match your child's learning style and pace, ensuring they stay challenged without losing motivation. <br>There are plenty of interactive resources to help your child deepen their understanding of each topic, such as helpsheets.
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card">
-                                    <div class="card-header" id="heading11">
+                                    <div class="card-header" id="heading12">
                                         <h3 class="mb-0">
-                                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse11" aria-expanded="false" aria-controls="collapse11">What support does Rurera offer?</button>
+                                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse12" aria-expanded="false" aria-controls="collapse12">What types of support and resources does Rurera provide to assist my child's learning and development?</button>
                                         </h3>
                                     </div>
-                                    <div id="collapse11" class="collapse" aria-labelledby="heading11" data-parent="#accordion">
+                                    <div id="collapse12" class="collapse" aria-labelledby="heading12" data-parent="#accordion">
                                         <div class="card-body">
-                                            <p>Rurera offers you support over live chat, phone and email.
+                                            <p>
+                                                No other platform combines adaptive learning, teacher-crafted content, and expert guidance all in one package! We're available to assist you by phone or email whenever you need support.
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card">
-                                    <div class="card-header" id="heading11">
+                                    <div class="card-header" id="heading13">
                                         <h3 class="mb-0">
-                                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse11" aria-expanded="false" aria-controls="collapse11">Do I need to help my child use Rurera?
+                                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse13" aria-expanded="false" aria-controls="collapse13">Will my child require my assistance to navigate and use Rurera effectively, or can they manage it independently?
                                             </button>
                                         </h3>
                                     </div>
-                                    <div id="collapse11" class="collapse" aria-labelledby="heading11" data-parent="#accordion">
+                                    <div id="collapse13" class="collapse" aria-labelledby="heading13" data-parent="#accordion">
                                         <div class="card-body">
-                                            <p>No, We have designed Rurera in a way that it is easy to use for a child on their own and get confident with independent learning.
+                                            <p>Not at all – we've crafted Rurera to be enjoyable and simple for your child to use independently. With helpsheets, they can build new knowledge and gain confidence in learning on their own.
 
                                             </p>
                                         </div>
@@ -1582,7 +1618,7 @@
                 <div class="col-lg-12 col-md-12 col-12 mx-auto">
                     <div class="row">
 
-                        @include('web.default.pricing.packages_list',['subscribes' => array(), 'packages_only' => $packages_only, 'show_details' => $show_details])
+                        @include('web.default.pricing.packages_list',['subscribes' => array(), 'packages_only' => $packages_only, 'show_details' => false])
 
                     </div>
                 </div>

@@ -26,8 +26,16 @@ class LoginController extends Controller
 		
 		$form_fields = [];
 		
+		$data_array = array();
+		$section_id = 0;
+		$data_array[$section_id] = array(
+			'section_id' => $section_id,
+			'section_title' => '',
+			'section_data' => array(),
+		);
 		
-		$form_fields = array(
+		
+		$data_array[$section_id]['section_data'] = array(
 			array(
 				'field_name' => 'login_pin',
 				'field_type' => 'text',
@@ -53,8 +61,12 @@ class LoginController extends Controller
 			),
 		);
 		
+		$response = array(
+			'form' => $data_array,
+		);
+		
         
-        return apiResponse2(1, 'retrieved', trans('api.public.retrieved'), ['form' => $form_fields]);
+        return apiResponse2(1, 'retrieved', trans('api.public.retrieved'), $response);
     }
 
     public function login(Request $request)
@@ -106,6 +118,7 @@ class LoginController extends Controller
         $data['user_id'] = $user->id;
         $data['life_lines'] = $user->user_life_lines;
         $data['user_avatar'] = url('/').$user->avatar;
+        $data['display_name'] = (isset( $user->display_name ) && $user->display_name != '')? $user->display_name : $user->first_name.' '.$user->last_name;
 		$data['game_time'] = $user->game_time;
 		
         if (!$user->get_full_name()) {

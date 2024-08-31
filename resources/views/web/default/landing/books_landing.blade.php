@@ -15,33 +15,21 @@
 @endpush
 
 @section('content')
-<section class="position-relative job-singup-sub-header gallery-sub-header pb-0" style="min-height: 620px;">
+<section class="position-relative job-singup-sub-header gallery-sub-header pb-80" style="min-height: 620px;">
     <div class="container h-100">
       <div class="row h-100">
         <div class="col-12 col-md-12 col-lg-7">
-          <h1 itemprop="title" class="font-72 font-weight-bold"> Empower yourself through <br> reading <span class="text-scribble">books</span>
+          <h1 itemprop="title" class="font-72 font-weight-bold">Unlock Amazing Adventures: Dive into the World of<span class="text-scribble">Books!!</span>
           </h1>
-          <strong class="d-block font-36">Read to lead, read to succeed!</strong>
-          <p itemprop="description" class="lms-subtitle font-19 font-weight-normal pt-20"> Access Rurera bookshelf anytime, anywhere, ensuring seamless <br> reading experiences and chance to get rewards. </p>
+          <strong class="d-block font-36">Discover Rurera Bookshelf: Read Anywhere, Anytime!</strong>
+          <p itemprop="description" class="lms-subtitle font-19 font-weight-normal pt-20">Rurera boosts reading skills with fun books, cool rewards, and personalized challenges. Watch your child's love for reading grow every day!</p>
           <ul class="mt-40 mb-30 p-0 row">
-            <li class="mb-10 font-19 col-lg-6 col-md-6 col-12">
-              <img src="../assets/default/svgs/check-simple.svg" class="img-sm" height="18" width="18" alt="#">Book reading progress analytics
-            </li>
-            <li class="mb-10 font-19 col-lg-6 col-md-6 col-12">
-              <img src="../assets/default/svgs/check-simple.svg" class="img-sm" height="18" width="18" alt="#">Reading time estimation
-            </li>
-            <li class="mb-10 font-19 col-lg-6 col-md-6 col-12">
-              <img src="../assets/default/svgs/check-simple.svg" class="img-sm" height="18" width="18" alt="#">Reading activity &amp; assessments
-            </li>
-            <li class="mb-10 font-19 col-lg-6 col-md-6 col-12">
-              <img src="../assets/default/svgs/check-simple.svg" class="img-sm" height="18" width="18" alt="#">Book Chapter Quizzes &amp; practices
-            </li>
-            <li class="mb-10 font-19 col-lg-6 col-md-6 col-12">
-              <img src="../assets/default/svgs/check-simple.svg" class="img-sm" height="18" width="18" alt="#">Full Book Quiz &amp; assessments
-            </li>
-            <li class="mb-10 font-19 col-lg-6 col-md-6 col-12">
-              <img src="../assets/default/svgs/check-simple.svg" class="img-sm" height="18" width="18" alt="#">Easy Search &amp; navigation
-            </li>
+            <li class="mb-10 font-19 col-lg-6 col-md-6 col-12">Track Your Reading Progress</li>
+            <li class="mb-10 font-19 col-lg-6 col-md-6 col-12">Estimate Your Reading Time</li>
+            <li class="mb-10 font-19 col-lg-6 col-md-6 col-12">Engage in Fun Reading Activities & Quizzes</li>
+            <li class="mb-10 font-19 col-lg-6 col-md-6 col-12">Challenge Yourself with Fun Quizzes for Every Chapter & Book!</li>
+            <li class="mb-10 font-19 col-lg-6 col-md-6 col-12">Find What You Need with Easy Search & Navigation</li>
+            <li class="mb-10 font-19 col-lg-6 col-md-6 col-12">Earn Badges for Your Reading Achievements</li>
           </ul>
           <div class="d-flex align-items-center">
             <a href="#" data-toggle="modal" data-target="#exampleModal" class="book-btn justify-content-center bg-primary text-white">Start Reading</a>
@@ -134,8 +122,8 @@
       <div class="row">
         <div class="col-12">
           <div class="section-title text-center mb-50">
-            <h2 class="mt-0 mb-10 font-40">Rurera tools for book reading validation</h2>
-            <p class="font-19 pt-5 text-dark-charcoal">Reading stimulates critical thinking, analytical skills, and problem-solving abilities.</p>
+            <h2 class="mt-0 mb-10 font-40">Activities for enhancing Reading skills.</h2>
+            <p class="font-19 pt-5 text-dark-charcoal">Curriculum aligned all major literacy strands. <br > Reading helps you think better, understand more, and solve problems more easily.</p>
           </div>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-6">
@@ -266,10 +254,8 @@
       <div class="row">
         <div class="col-12 col-lg-12">
           <div class="section-title mb-50">
-            <h2 itemprop="title" class="text-dark-charcoal text-white font-40">Inspiring every student to Read and show their <span class="text
-  scribble">best.</span>
-            </h2>
-            <p class="font-19 pt-10 text-white"> Discover ebooks, fiction books, board books, kids stories , children books, and more from Rurera book shelf. <br> Truly Loved by millions of readers worldwide! </p>
+            <h2 itemprop="title" class="text-dark-charcoal text-white font-40">Ignite Every Student’s Passion for Reading and <br /> Let Their Brilliance Shine!</h2>
+            <p class="font-19 pt-10 text-white"> Discover ebooks, fiction books, board books, kids stories , children books, and more from Rurera book shelf.</p>
           </div>
         </div>
         <div class="col-12 col-lg-12">
@@ -282,9 +268,9 @@
                       <img src="../assets/default/img/bookchoose-img1.png" width="370" height="250" class="img-cover" loading="eager" alt="#">
                     </div>
                     <h3 itemprop="title" class="blog-grid-title mt-15 text-dark-charcoal px-20">
-                      <a itemprop="url" href="https://rurera.chimpstudio.co.uk/activity">Reading Progress and Statistics</a>
+                      <a itemprop="url" href="https://rurera.chimpstudio.co.uk/activity">Enjoy Every E-Book Adventure:</a>
                     </h3>
-                    <div itemprop="description" class="mt-5 blog-grid-desc px-20 pb-20"> It offers reading progress, like percentage of the book read or estimated time remaining to finish a chapter or the entire book along with reading speed or total reading time. </div>
+                    <div itemprop="description" class="mt-5 blog-grid-desc px-20 pb-20">Rurera lets you access books in various digital. This feature ensures that you can read your ebooks on any device, making reading convenient.</div>
                   </div>
                 </div>
               </div>
@@ -297,9 +283,9 @@
                       <img src="../assets/default/img/bookchoose-img2.png" width="370" height="250" loading="eager" class="img-cover" alt="#">
                     </div>
                     <h3 itemprop="title" class="blog-grid-title mt-15 text-dark-charcoal px-20">
-                      <a itemprop="url" href="https://rurera.chimpstudio.co.uk/register">E-Book Formats</a>
+                      <a itemprop="url" href="https://rurera.chimpstudio.co.uk/register">Uncover Your Progress:</a>
                     </h3>
-                    <div itemprop="description" class="mt-5 blog-grid-desc px-20 pb-20"> Another exciting feature is an out-stream book reading format for web. It provide an enticing, interactive, silent highlight and scroll through content. </div>
+                    <div itemprop="description" class="mt-5 blog-grid-desc px-20 pb-20">Monitors how much you’ve read, offering detailed insights into your reading habits and growth. It helps you understand your progress and set goals for better reading.</div>
                   </div>
                 </div>
               </div>
@@ -312,9 +298,9 @@
                       <img src="../assets/default/img/bookchoose-img3.png" width="370" height="250" loading="eager" class="img-cover" alt="#">
                     </div>
                     <h3 itemprop="title" class="blog-grid-title mt-15 text-dark-charcoal px-20">
-                      <a itemprop="url" href="https://rurera.chimpstudio.co.uk/rewards">Get Rewards</a>
+                      <a itemprop="url" href="https://rurera.chimpstudio.co.uk/rewards">Personalized Learning Pathways:</a>
                     </h3>
-                    <div itemprop="description" class="mt-5 blog-grid-desc px-20 pb-20"> Continue Reading the books and earn Coin Points that can be later exchanged with your favorite toys. The more you read, the more you'll earn Coin Points, giving you even more. </div>
+                    <div itemprop="description" class="mt-5 blog-grid-desc px-20 pb-20">With Rurera, educators can easily tailor literacy development for each student, regardless of age or skill level. Enjoy targeted support and easy differentiation to boost every student’s progress.</div>
                   </div>
                 </div>
               </div>
@@ -331,60 +317,82 @@
     <div id="accordion">
       <div class="card">
         <div class="card-header" id="heading">
-          <button class="btn font-18 font-weight-bold btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">What are Rurera Collection Edition books?</button>
+          <button class="btn font-18 font-weight-bold btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">How does Rurera’s bookshelf work?</button>
         </div>
         <div id="collapseOne" class="collapse show" aria-labelledby="heading" data-parent="#accordion">
           <div class="card-body">
-            <p>Rurera Collection Editions are exclusive versions of children's books carefully selected from leading publishers and artistically redesigned as a stunning, cohesive set exclusively for Rurera Book Club members.</p>
+            <p>Rurera is a digital reading service that makes reading interactive, motivating and engaging for children aged 4-11. With eBooks and comprehension quizzes to suit all, teachers and parents can also monitor and support each child's personal reading and comprehension progress.</p>
           </div>
         </div>
       </div>
       <div class="card">
         <div class="card-header" id="headingTwo">
-          <button class="btn font-18 font-weight-bold btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">How do you make sure the books are good?</button>
+          <button class="btn font-18 font-weight-bold btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Can I read books offline?</button>
         </div>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-          <div class="card-body"> At Rurera, we maintain the quality of our books through expert curation, collaborating with renowned publishers, and considering reader feedback. Our team evaluates each book for engaging storytelling, educational value, captivating illustrations, and positive themes to ensure a high standard of excellence in our Collection Editions. </div>
+          <div class="card-body">
+            <p>Currently, Rurera requires an internet connection to access and read books. However, you can bookmark books for quick access and view them when you’re online.</p>
+          </div>
         </div>
       </div>
       <div class="card">
         <div class="card-header" id="headingThree">
-          <button class="btn font-18 font-weight-bold btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Why not just buy books at the store or on Amazon?</button>
+          <button class="btn font-18 font-weight-bold btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">How can I find books that match my reading level?</button>
         </div>
         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-          <div class="card-body"> Rurera Book Club offers exclusive curated Collection Editions not available in traditional stores or Amazon. Subscribing to Rurera provides a personalized and convenient reading experience, with carefully selected books delivered to your doorstep. It fosters a sense of community among book lovers. </div>
+          <div class="card-body">
+            <p>Rurera provides personalized recommendations based on your reading preferences and level. You can use the search and filter options to find books that match your reading ability and interests.</p>
+          </div>
         </div>
       </div>
       <div class="card">
         <div class="card-header" id="headingfour">
-          <button class="btn font-18 font-weight-bold btn-link collapsed" data-toggle="collapse" data-target="#collapsefour" aria-expanded="false" aria-controls="collapsefour">Can l order today but have my subscription start later?</button>
+          <button class="btn font-18 font-weight-bold btn-link collapsed" data-toggle="collapse" data-target="#collapsefour" aria-expanded="false" aria-controls="collapsefour">How do book chapter quizzes work?</button>
         </div>
         <div id="collapsefour" class="collapse" aria-labelledby="headingfour" data-parent="#accordion">
-          <div class="card-body"> Yes, you can place an order with Rurera today and choose a future start date for your subscription. Simply specify your preferred start date during the ordering process, and we will ensure that your subscription begins accordingly. This allows you to secure your subscription in advance while having it activate at a later date of your choosing. </div>
+          <div class="card-body">
+            <p>Book chapter quizzes test your understanding of each chapter. They are designed to reinforce key concepts and ensure comprehension. You can take these quizzes after reading each chapter to check your knowledge.</p>
+          </div>
         </div>
       </div>
       <div class="card">
         <div class="card-header" id="headingfive">
-          <button class="btn font-18 font-weight-bold btn-link collapsed" data-toggle="collapse" data-target="#collapsefive" aria-expanded="false" aria-controls="collapsefive">Are there any initiation, cancellation, or hidden fees?</button>
+          <button class="btn font-18 font-weight-bold btn-link collapsed" data-toggle="collapse" data-target="#collapsefive" aria-expanded="false" aria-controls="collapsefive">How do I earn Coin Points through reading?</button>
         </div>
         <div id="collapsefive" class="collapse" aria-labelledby="headingfive" data-parent="#accordion">
-          <div class="card-body"> No, there are no extra fees to join or cancel your Rurera Book Club subscription. You only pay the advertised price, and you can cancel anytime without any additional charges. We believe in simplicity and transparency for a hassle-free experience. </div>
+          <div class="card-body">
+            <p>You earn Coin Points by completing reading milestones and participating in activities. The more books you read and engage with, the more Coin Points you accumulate, which can be exchanged for rewards.</p>
+          </div>
         </div>
       </div>
       <div class="card">
         <div class="card-header" id="headingsix">
-          <button class="btn font-18 font-weight-bold btn-link collapsed" data-toggle="collapse" data-target="#collapsesix" aria-expanded="false" aria-controls="collapsesix">What if I have too many books?</button>
+          <button class="btn font-18 font-weight-bold btn-link collapsed" data-toggle="collapse" data-target="#collapsesix" aria-expanded="false" aria-controls="collapsesix">How does reading benefit a child's development?</button>
         </div>
         <div id="collapsesix" class="collapse" aria-labelledby="headingsix" data-parent="#accordion">
-          <div class="card-body"> If you have too many books from Rurera Book Club, you can contact customer support to make changes. They can help you receive books less often or pause your subscription until you're ready for more. We want to make sure you have a collection that works for you. </div>
+          <div class="card-body">
+            <p>Reading enhances a child’s cognitive skills, including vocabulary, comprehension, and critical thinking. It also fosters imagination, creativity, and empathy by exposing them to diverse perspectives and experiences.</p>
+          </div>
         </div>
       </div>
       <div class="card">
         <div class="card-header" id="heading7">
-          <button class="btn font-18 font-weight-bold btn-link collapsed" data-toggle="collapse" data-target="#collapse7" aria-expanded="false" aria-controls="collapse7">What if I have kids in multiple age ranges?</button>
+          <button class="btn font-18 font-weight-bold btn-link collapsed" data-toggle="collapse" data-target="#collapse7" aria-expanded="false" aria-controls="collapse7">Can reading help with academic performance?</button>
         </div>
         <div id="collapse7" class="collapse" aria-labelledby="heading7" data-parent="#accordion">
-          <div class="card-body"> If you have children of different ages, Rurera Book Club can adjust to meet their reading needs. Just tell us the ages of your kids, and we will send books suitable for each child. This way, each child can enjoy books that are just right for them. </div>
+          <div class="card-body">
+            <p>Yes, regular reading improves comprehension and analytical skills, which can boost overall academic performance. Children who read often tend to perform better in subjects like reading, writing, and even math.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="heading8">
+          <button class="btn font-18 font-weight-bold btn-link collapsed" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8">How does reading improve a child's language skills?</button>
+        </div>
+        <div id="collapse8" class="collapse" aria-labelledby="heading8" data-parent="#accordion">
+          <div class="card-body">
+            <p>Reading helps expand a child’s vocabulary and grammar by exposing them to new words and sentence structures. It also improves their understanding of language through context and usage, aiding in better communication skills.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -488,6 +496,57 @@
       </div>
     </div>
   </section>
+  
+  
+  @php
+    $packages_only = isset( $packages )? $packages : array();
+    $show_details = isset( $show_details )? $show_details : true;
+    @endphp
+    <section class="lms-setup-progress-section lms-membership-section mb-0" data-currency_sign="{{getCurrencySign()}}" style="background-color: #fff;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-12 text-center">
+                    <div class="element-title text-center mb-40">
+                        <h2 itemprop="title" class="font-40 text-dark-charcoal mb-0">Choose the right plan for you</h2>
+                        <p class="font-16 pt-10">Save more with annual pricing</p>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-12 text-center">
+                    <div class="plan-switch-holder">
+                        <div class="plan-switch-option">
+                            <span class="switch-label">Pay Monthly</span>
+                            <div class="plan-switch">
+                                <div class="custom-control custom-switch"><input type="checkbox" name="disabled" class="custom-control-input subscribed_for-field" value="12" id="iNotAvailable" /><label class="custom-control-label" for="iNotAvailable"></label></div>
+                            </div>
+                            <span class="switch-label">Pay Yearly</span>
+                        </div>
+                        <div class="save-plan"><span class="font-18 font-weight-500">Save 25%</span></div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-12 mx-auto">
+                    <div class="row">
+
+                        @include('web.default.pricing.packages_list',['subscribes' => array(), 'packages_only' => $packages_only, 'show_details' => false])
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="modal fade lms-choose-membership" id="subscriptionModal" tabindex="-1" aria-labelledby="subscriptionModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <div class="modal-body">
+                    <div class="tab-content subscription-content" id="nav-tabContent">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  
+  
   <section class="lms-text-section w-100 py-70 mt-80" style="background-color: #f27530;">
     <div class="container">
       <div class="row">

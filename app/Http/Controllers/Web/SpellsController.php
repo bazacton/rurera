@@ -17,6 +17,16 @@ use Illuminate\Support\Facades\Route;
 
 class SpellsController extends Controller
 {
+	
+	public function landing(Request $request)
+	{
+		$data = [
+			'pageTitle' => 'Spelling',
+		];
+		return view('web.default.landing.spelling_landing', $data);
+
+		abort(404);
+	}
 
     public function index(Request $request)
     {

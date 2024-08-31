@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Api\Web;
+namespace App\Http\Controllers\Api\Panel;
 
-use App\Http\Controllers\Api\Objects\UserObj;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Api\Controller;
+use App\User;
+use App\Models\Category;
+use App\Models\Webinar;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class CommonController extends Controller
 {
@@ -12,10 +15,16 @@ class CommonController extends Controller
 		
 		$navArray = getNavbarLinks();
 		
-		$menu_array = [];
+		$data_array = array();
+		$section_id = 0;
+		$data_array[$section_id] = array(
+			'section_id' => $section_id,
+			'section_title' => '',
+			'section_data' => array(),
+		);
 		
 		
-		$menu_array = array(
+		$data_array[$section_id]['section_data'] = array(
 			array(
 				'title' => 'Home',
 				'icon' => url('/assets/default/img/sidebar').'/home.svg',
@@ -23,7 +32,7 @@ class CommonController extends Controller
 				'color' => '#FFFFFF',
 				'activeColor' => '#FF0000',
 				'pageTitle' => 'Home',
-				'target_api' => '/home',
+				'target_api' => '/panel/home',
 				'target_layout' => 'list',
 			),
 			array(
@@ -33,7 +42,7 @@ class CommonController extends Controller
 				'color' => '#FFFFFF',
 				'activeColor' => '#FF0000',
 				'pageTitle' => 'Learn',
-				'target_api' => '/home',
+				'target_api' => '/panel/learn',
 				'target_layout' => 'list',
 			),
 			array(
@@ -43,8 +52,8 @@ class CommonController extends Controller
 				'color' => '#FFFFFF',
 				'activeColor' => '#FF0000',
 				'pageTitle' => 'Timestables',
-				'target_api' => '/timestables',
-				'target_layout' => 'list',
+				'target_api' => '/panel/timestables',
+				'target_layout' => 'list2',
 			),
 			array(
 				'title' => 'Word Lists',
@@ -53,7 +62,7 @@ class CommonController extends Controller
 				'color' => '#FFFFFF',
 				'activeColor' => '#FF0000',
 				'pageTitle' => 'Word Lists',
-				'target_api' => '/home',
+				'target_api' => '/panel/spells',
 				'target_layout' => 'list',
 			),
 			array(
@@ -63,7 +72,7 @@ class CommonController extends Controller
 				'color' => '#FFFFFF',
 				'activeColor' => '#FF0000',
 				'pageTitle' => 'Books',
-				'target_api' => '/home',
+				'target_api' => '/panel/books',
 				'target_layout' => 'list',
 			),
 			array(
@@ -73,7 +82,7 @@ class CommonController extends Controller
 				'color' => '#FFFFFF',
 				'activeColor' => '#FF0000',
 				'pageTitle' => 'Test',
-				'target_api' => '/home',
+				'target_api' => '/panel/test',
 				'target_layout' => 'list',
 			),
 			array(
@@ -83,7 +92,7 @@ class CommonController extends Controller
 				'color' => '#FFFFFF',
 				'activeColor' => '#FF0000',
 				'pageTitle' => 'Quests',
-				'target_api' => '/home',
+				'target_api' => '/panel/quests',
 				'target_layout' => 'list',
 			),
 			array(
@@ -93,7 +102,7 @@ class CommonController extends Controller
 				'color' => '#FFFFFF',
 				'activeColor' => '#FF0000',
 				'pageTitle' => 'Games',
-				'target_api' => '/home',
+				'target_api' => '/panel/games',
 				'target_layout' => 'list',
 			),
 			array(
@@ -103,7 +112,7 @@ class CommonController extends Controller
 				'color' => '#FFFFFF',
 				'activeColor' => '#FF0000',
 				'pageTitle' => 'Shop',
-				'target_api' => '/home',
+				'target_api' => '/panel/shop',
 				'target_layout' => 'list',
 			),
 			array(
@@ -113,7 +122,7 @@ class CommonController extends Controller
 				'color' => '#FFFFFF',
 				'activeColor' => '#FF0000',
 				'pageTitle' => 'Analytics',
-				'target_api' => '/home',
+				'target_api' => '/panel/analytics',
 				'target_layout' => 'list',
 			),
 			array(
@@ -123,7 +132,7 @@ class CommonController extends Controller
 				'color' => '#FFFFFF',
 				'activeColor' => '#FF0000',
 				'pageTitle' => 'School Zone',
-				'target_api' => '/home',
+				'target_api' => '/panel/school-zone',
 				'target_layout' => 'list',
 			),
 			array(
@@ -133,7 +142,7 @@ class CommonController extends Controller
 				'color' => '#FFFFFF',
 				'activeColor' => '#FF0000',
 				'pageTitle' => 'Referrals',
-				'target_api' => '/home',
+				'target_api' => '/panel/referrals',
 				'target_layout' => 'list',
 			),
 			array(
@@ -143,7 +152,7 @@ class CommonController extends Controller
 				'color' => '#FFFFFF',
 				'activeColor' => '#FF0000',
 				'pageTitle' => 'Profile',
-				'target_api' => '/home',
+				'target_api' => '/panel/setting',
 				'target_layout' => 'list',
 			),
 			array(
@@ -153,13 +162,18 @@ class CommonController extends Controller
 				'color' => '#FFFFFF',
 				'activeColor' => '#FF0000',
 				'pageTitle' => 'Logout',
-				'target_api' => '/home',
+				'target_api' => '/panel/logout',
 				'target_layout' => 'list',
 			),
 		);
 		
+		$response = array(
+			'listData' => $data_array,
+			'searchFilters' => [],
+		);
+		
         
-        return apiResponse2(1, 'retrieved', trans('api.public.retrieved'), $menu_array);
+        return apiResponse2(1, 'retrieved', trans('api.public.retrieved'), $response);
     }
 
  }

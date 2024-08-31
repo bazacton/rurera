@@ -183,7 +183,7 @@ class SatsController extends Controller
             //'pageDescription' => 'Prepare for your SATs exam with comprehensive SATs practice resources, assessments, tests, and quizzes. Get ready to excel on your SATs  and got  a chance to win rewards.',
             //'pageRobot'       => 'index',
         ];
-        return view('web.default.sats.sats_landing', $data);
+        return view('web.default.landing.sats_landing', $data);
 
         abort(404);
     }

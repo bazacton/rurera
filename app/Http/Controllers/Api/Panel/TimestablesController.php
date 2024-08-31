@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Api\Web;
+namespace App\Http\Controllers\Api\Panel;
 
-use App\Http\Controllers\Api\Objects\UserObj;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Api\Controller;
+use App\User;
+use App\Models\Category;
+use App\Models\Webinar;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class TimestablesController extends Controller
 {
@@ -12,10 +15,16 @@ class TimestablesController extends Controller
 		
 		$navArray = getNavbarLinks();
 		
-		$menu_array = [];
+		$data_array = array();
+		$section_id = 0;
+		$data_array[$section_id] = array(
+			'section_id' => $section_id,
+			'section_title' => '',
+			'section_data' => array(),
+		);
 		
 		
-		$menu_array = array(
+		$data_array[$section_id]['section_data'] = array(
 			array(
 				'title' => 'Freedom Mode',
 				'description' => 'Explore multiplication, division, or both at your own pace.',
@@ -23,7 +32,7 @@ class TimestablesController extends Controller
 				'icon_position' => 'right',
 				'background' => '#FFFFFF',
 				'pageTitle' => 'Freedom Mode',
-				'target_api' => '/timestables/freedom_mode',
+				'target_api' => '/panel/timestables/freedom_mode',
 				'target_layout' => 'list',
 			),
 			array(
@@ -33,7 +42,7 @@ class TimestablesController extends Controller
 				'icon_position' => 'right',
 				'background' => '#FFFFFF',
 				'pageTitle' => 'Power-Up',
-				'target_api' => '/timestables/powerup_mode',
+				'target_api' => '/panel/timestables/powerup_mode',
 				'target_layout' => 'list',
 			),
 			array(
@@ -43,7 +52,7 @@ class TimestablesController extends Controller
 				'icon_position' => 'right',
 				'background' => '#FFFFFF',
 				'pageTitle' => 'Trophy Mode',
-				'target_api' => '/timestables/trophy_mode',
+				'target_api' => '/panel/timestables/trophy_mode',
 				'target_layout' => 'list',
 			),
 			array(
@@ -53,7 +62,7 @@ class TimestablesController extends Controller
 				'icon_position' => 'right',
 				'background' => '#FFFFFF',
 				'pageTitle' => 'Treasure Mission',
-				'target_api' => '/timestables/treasure_mission',
+				'target_api' => '/panel/timestables/treasure_mission',
 				'target_layout' => 'list',
 			),
 			array(
@@ -63,7 +72,7 @@ class TimestablesController extends Controller
 				'icon_position' => 'right',
 				'background' => '#FFFFFF',
 				'pageTitle' => 'Showdown',
-				'target_api' => '/timestables/showdown_mode',
+				'target_api' => '/panel/timestables/showdown_mode',
 				'target_layout' => 'list',
 			),
 			array(
@@ -73,7 +82,7 @@ class TimestablesController extends Controller
 				'icon_position' => 'right',
 				'background' => '#FFFFFF',
 				'pageTitle' => 'Heat Map',
-				'target_api' => '/heat_map',
+				'target_api' => '/panel/heat_map',
 				'target_layout' => 'list',
 			),
 			array(
@@ -83,14 +92,18 @@ class TimestablesController extends Controller
 				'icon_position' => 'right',
 				'background' => '#FFFFFF',
 				'pageTitle' => 'Analytics',
-				'target_api' => '/analytics',
+				'target_api' => '/panel/analytics',
 				'target_layout' => 'list',
 			),
 			
 		);
 		
+		$response = array(
+			'listData' => $data_array,
+			'searchFilters' => [],
+		);
         
-        return apiResponse2(1, 'retrieved', trans('api.public.retrieved'), $menu_array);
+        return apiResponse2(1, 'retrieved', trans('api.public.retrieved'), $response);
     }
 
  }

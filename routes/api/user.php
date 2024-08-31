@@ -7,6 +7,44 @@ Route::group([], function () {
     Route::get('/', function () {
         return 'test panel';
     });
+	
+	
+	/*
+	* New APIs
+	*/
+	
+	Route::group(['prefix' => '/learn'], function () {
+        Route::get('/', ['uses' => 'LearnController@index']);
+		Route::get('/{year_slug}/{subject_slug}', ['uses' => 'LearnController@subject_data']);
+    });
+	
+	Route::group(['prefix' => '/menu'], function () {
+		Route::get('/', ['uses' => 'CommonController@menu']);
+
+    });
+	
+	Route::group(['prefix' => '/timestables'], function () {
+        Route::get('/', ['uses' => 'TimestablesController@index']);
+    });
+	
+	Route::group(['prefix' => '/spells'], function () {
+        Route::get('/', ['uses' => 'SpellsController@index']);
+    });
+	
+	 $years = ['year-1', 'year-2', 'year-3', 'year-4', 'year-5', 'year-6', 'year-7'];
+	 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
     Route::group(['prefix' => '/comments'], function () {
         Route::get('/', ['uses' => 'CommentsController@list']);
         Route::post('/', ['uses' => 'CommentsController@store', 'middleware' => 'api.request.type']);

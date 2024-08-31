@@ -21,15 +21,15 @@
         <div class="container user-select-none">
             <div class="row slider-content align-items-center hero-section2 flex-column-reverse flex-md-row">
                 <div class="col-12 col-md-12 col-lg-10 text-center mx-auto">
-                    <h1 class="font-72 font-weight-bold text-dark-charcoal">Learn, Practice & Win with <br> <span class="text-scribble">Rurera</span></h1>
-                    <p class="font-19 pt-15 text-gray">Rurera is a game changer subscription based education learning platform. It provides 10000+ practices<br> for Key stage 1 courses, Key stage 2 courses, TimeTables, Books, SATs and 11 plus exams.</p>
+                    <h1 class="font-72 font-weight-bold text-dark-charcoal">Master, Excel & Conquer with <span class="text-scribble">Rurera</span></h1>
+                    <p class="font-19 pt-15 text-gray">Rurera is a transformative learning platform featuring a subscription model that delivers over 10,000 practice exercises for Key Stage 1 and Key Stage 2, along with resources for Times Tables, Books, SATs, and 11+ exams, empowering success.</p>
                     <div class="choose-sats mt-90">
                         <div class="row">
                             <div class="col-12 col-lg-4 col-md-6">
                                 <div class="sats-box justify-content: center">
                                     <img src="/store/1/default_images/home_sections_banners/dialogue.png" alt="practice papers">
                                     <span class="mb-10" style="color: #3d358b;">Practice papers</span>
-                                    <p>Available for ks1, ks2, sats, 11 plus and much more.</p>
+                                    <p>Ace every exam with tailored practice papers for KS1, KS2, SATs, 11 Plus, and more.</p>
                                     <a href="{{url('/')}}/register">Learn more</a>
                                 </div>
                             </div>
@@ -37,7 +37,7 @@
                                 <div class="sats-box justify-content: center">
                                     <img src="/store/1/default_images/home_sections_banners/cactus.png" alt="questions">
                                     <span class="mb-10" style="color: #f18700;">Interactive questions</span>
-                                    <p>Over 5000+ questions are there to test and pass exam.</p>
+                                    <p>Conquer exams with 5,000+ interactive questions designed for success.</p>
                                     <a href="{{url('/')}}/register">Learn more</a>
                                 </div>
                             </div>
@@ -45,17 +45,22 @@
                                 <div class="sats-box justify-content: center">
                                     <img src="/store/1/default_images/home_sections_banners/rocket-ship.png" alt="help">
                                     <span class="mb-10" style="color: #7679ee;">Strong Foundation</span>
-                                    <p>Fostering a strong impact in every aspect of your Child's life.</p>
+                                    <p>Build a powerful foundation that shapes every aspect of future success.</p>
                                     <a href="{{url('/')}}/register">Learn more</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="col-12">
+                    <div class="d-flex align-items-center justify-content-center mt-80">
+                        <a href="/pricing" class="btn-primary text-dark-blue font-16 register-btn py-15 px-30">Try Rurera for free</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-    <section class="py-40 home-categories-section">
+    <!-- <section class="py-40 home-categories-section">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -91,15 +96,15 @@
                 </div>
             </div>
         </div>
-    </section>
-    {{do_shortcode('redefining_personalized_learning', array('items' => array(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18)))}}
+    </section> -->
+    {{do_shortcode('redefining_personalized_learning', array('items' => array(2,3,5,6,7,8,9,10,11,15,16,17)))}}
     <section class="choose-sats choose-sats-section pt-80 pb-90 mt-50">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="section-title text-center mb-50">
-                        <h2 class="mt-0 mb-10 text-white font-40">Discover how Rurera Support success</h2>
-                        <p class="text-white font-16">we've combined the best of education, real quiz practices into real results to cater and pass the exams.</p>
+                        <h2 class="mt-0 mb-10 text-white font-40">How Rurera Support Enhances Success</h2>
+                        <p class="text-white font-16">We fuse outstanding educational content with real-world quiz experience to generate effective results and excel in exams.</p>
                     </div>
                 </div>
                 <div class="col-12 col-lg-3 col-md-6">
@@ -151,8 +156,8 @@
                         </div>
                         <div class="col-12 col-lg-6 mt-20 mb-40 mt-lg-0 mb-lg-0">
                             <div class="column-text">
-                                <h2 class="font-40 text-dark">Win Coin Points</h2>
-                                <p class="font-16 text-gray mt-10">Start practicing and Reward Yourself with Exciting Toys. Through learning students can increase their chances of winning playful toys. Start using the system now and collect coins now!</p>
+                                <h2 class="font-40 text-dark">Unlock Coin Bonuses!</h2>
+                                <p class="font-16 text-gray mt-10">Start practicing now and unlock a world of exciting toys! As you learn and progress, earn coin points that boost your chances of winning amazing rewards. Dive into the fun and collect your coins today!</p>
                                 <div class="mt-35 d-flex align-items-center"> 
                                     <a href="{{url('/')}}/rewards" class="btn btn-primary">Rewards</a> 
                                     <a href="{{url('/')}}/products" class="btn btn-outline-primary ml-15">Rewards Store</a> 
@@ -169,8 +174,8 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-title text-center mb-0">
-                        <h2 class="mt-0 mb-10 font-40">Testimonials</h2>
-                        <p class="font-16 text-gray">What our customers say about us</p>
+                        <h2 class="mt-0 mb-10 font-40">Hear from Those Who Believe in Us!</h2>
+                        <!-- <p class="font-16 text-gray">What our customers say about us</p> -->
                     </div>
                 </div>
                 <div class="col-12">
@@ -225,7 +230,7 @@
                <div class="d-flex justify-content-between">
                    <div class="section-title">
                        <h2 class="mt-0 mb-10 font-40">{{ trans('home.blog') }}</h2>
-                       <p class="section-hint">{{ trans('home.blog_hint') }}</p>
+                       <p class="section-hint">Uncover the Latest News and Trends!</p>
                    </div>
                    <a href="/blog" class="btn btn-border-white">{{ trans('home.all_blog') }}</a>
                </div>
@@ -237,6 +242,9 @@
                    @endforeach
 
                </div>
+               <div class="d-flex align-items-center justify-content-center pt-50">
+                    <a href="/pricing" class="btn-primary font-16 text-dark-blue register-btn py-15 px-30">Try Rurera for free</a>
+                </div>
            </section>
        @endif
     @endforeach
@@ -251,7 +259,7 @@
                                 <p itemprop="description" class="mb-0 text-white font-16"> Let us help you achieve the score you deserve and unlock doors to your future academic success. </p>
                             </div>
                             <div class="col-12 col-lg-4 col-md-4">
-                                <div class="form-field position-relative text-right"> <button class="rounded-pill rounded bg-white"> <a href="{{url('/')}}/register" style="color:var(--gray-dark);">Signup</a> </button> </div>
+                                <div class="form-field position-relative text-right"> <button class="rounded-pill rounded bg-white"> <a href="{{url('/')}}/pricing" style="color:var(--gray-dark);">Try Rurera for free</a> </button> </div>
                             </div>
                         </div>
                     </div>

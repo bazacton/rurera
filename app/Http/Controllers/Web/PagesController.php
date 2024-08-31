@@ -124,7 +124,7 @@ class PagesController extends Controller
             ];
 
             if ($page->id == 26) {
-                return view('web.default.pages.job_signup', $data);
+                return view('web.default.landing.job_signup', $data);
             } elseif ($page->id == 36) {
                 return view('web.default.pages.books', $data);
             } elseif ($page->id == 35) {
@@ -179,12 +179,20 @@ class PagesController extends Controller
                     'sats'                       => $sats,
                     'QuestionsAttemptController' => $QuestionsAttemptController
                 ];
-                return view('web.default.pages.11plus', $data);
+                return view('web.default.landing.11plus_landing', $data);
+
+            } elseif ($page->id == 94) {
+
+                $data = [
+                    'pageTitle'                  => $page->title,
+                    'pageDescription'            => $page->seo_description,
+                ];
+                return view('web.default.landing.rewards_landing', $data);
 
             } elseif ($page->id == 11) {
                 $testimonials = Testimonial::where('status', 'active')->orderBy('testimonial_date', 'asc')->get();
                 $data['testimonials'] = $testimonials;
-                return view('web.default.pages.testimonials', $data);
+                return view('web.default.landing.testimonials', $data);
             } else {
                 if ($page->subheader == 0) {
                     return view('web.default.pages.nosubheader', $data);

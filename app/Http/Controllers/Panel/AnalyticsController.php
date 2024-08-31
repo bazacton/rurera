@@ -173,6 +173,7 @@ class AnalyticsController extends Controller
         $QuizzesAttempts = $QuizzesAttempts->groupBy(function ($QuizzesAttemptsQuery) {
             return date('d_m_Y', $QuizzesAttemptsQuery->created_at);
         });
+
 		
 		
 		/*$QuizzesAttempts = QuizzAttempts::whereIn('user_id', $user_id)

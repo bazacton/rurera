@@ -85,7 +85,7 @@ class BooksController extends Controller
                     'pageTitle' => 'Books',
                     'books'     => $books,
                 ];
-                return view('web.default.pages.books_shelf', $data);
+                return view('web.default.landing.books_landing', $data);
             }
 
             abort(404);

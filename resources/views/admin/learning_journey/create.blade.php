@@ -26,6 +26,10 @@
 		display:none !important;
 	}
 	
+	.field_settings.active {
+		opacity: 0.8;
+	}
+	
 	.field_settings.active .ui-rotatable-handle, .field_settings.active .ui-resizable-handle, .field_settings.active .remove{
 		display:block !important;
 	}

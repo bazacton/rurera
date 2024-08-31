@@ -113,10 +113,10 @@ $topics_list = getSvgFiles('assets/admin/editor/topics/');
 		<h5>Layers</h5>
 		<ul class="editor-objects-list">
 		@php
-			if( !empty( $itemObj->LearningJourneyObjects )){
-				foreach( $itemObj->LearningJourneyObjects as $learningJourneyItemObj){
+			if( !empty( $itemObj->LearningJourneyObjects->where('status','active') )){
+				foreach( $itemObj->LearningJourneyObjects->where('status','active') as $learningJourneyItemObj){
 					
-					echo '<li data-id="rand_'.$learningJourneyItemObj->id.'" data-field_postition="2">'.$learningJourneyItemObj->item_slug.' <i class="fa fa-trash"></i><i class="fa fa-lock"></i><i class="fa fa-sort"></i></li>';
+					echo '<li data-id="rand_'.$learningJourneyItemObj->id.'" data-field_postition="2">'.$learningJourneyItemObj->item_slug.' <i class="fa fa-trash"></i><i class="lock-layer fa fa-unlock"></i><i class="fa fa-sort"></i></li>';
 					
 				}
 			}
@@ -129,7 +129,7 @@ $topics_list = getSvgFiles('assets/admin/editor/topics/');
 
 <div class="option-fields-block hide">
 
-
+		
 		<div class="page-settings-fields">
 			<div class="option-field-item">
 				<label>Background Color</label>
@@ -170,6 +170,15 @@ $topics_list = getSvgFiles('assets/admin/editor/topics/');
 			@endphp
 			<div class="infobox-{{$stage_slug}}-fields">
 				<div class="option-field-item">
+					<label>Size (px)</label>
+					<div class="input-group">
+						<input type="number" name="stage_width" class="form-control trigger_field"
+								   value="500" data-field_id="stage_width" data-field_name="width"
+						   data-field_type="style" data-id="">
+							
+						</div>	   
+				</div>
+				<div class="option-field-item">
 					<label>Fill Color</label>
 					<div class="input-group">
 						<input type="text" name="background_color" class="form-control trigger_field colorpickerinput"
@@ -193,6 +202,15 @@ $topics_list = getSvgFiles('assets/admin/editor/topics/');
 			$svg_code = isset( $pathObj['svg_code'] )? $pathObj['svg_code'] : '';
 			@endphp
 			<div class="infobox-{{$obj_slug}}-fields">
+				<div class="option-field-item">
+					<label>Size (px)</label>
+					<div class="input-group">
+						<input type="number" name="path_width" class="form-control trigger_field"
+								   value="300" data-field_id="path_width" data-field_name="width"
+						   data-field_type="style" data-id="">
+							
+						</div>	   
+				</div>
 				<div class="option-field-item">
 					<label>Fill Color</label>
 					<div class="input-group">
@@ -218,6 +236,15 @@ $topics_list = getSvgFiles('assets/admin/editor/topics/');
 			@endphp
 			<div class="infobox-{{$obj_slug}}-fields">
 				<div class="option-field-item">
+					<label>Size (px)</label>
+					<div class="input-group">
+						<input type="number" name="object_width" class="form-control trigger_field"
+								   value="180" data-field_id="object_width" data-field_name="width"
+						   data-field_type="style" data-id="">
+							
+						</div>	   
+				</div>
+				<div class="option-field-item">
 					<label>Fill Color</label>
 					<div class="input-group">
 						<input type="text" name="background_color" class="form-control trigger_field colorpickerinput"
@@ -241,6 +268,15 @@ $topics_list = getSvgFiles('assets/admin/editor/topics/');
 			$svg_code = isset( $topicObj['svg_code'] )? $topicObj['svg_code'] : '';
 			@endphp
 			<div class="infobox-{{$obj_slug}}-fields">
+				<div class="option-field-item">
+					<label>Size (px)</label>
+					<div class="input-group">
+						<input type="number" name="topic_width" class="form-control trigger_field"
+								   value="180" data-field_id="topic_width" data-field_name="width"
+						   data-field_type="style" data-id="">
+							
+						</div>	   
+				</div>
 				<div class="option-field-item">
 					<label>Fill Color</label>
 					<div class="input-group">

@@ -6423,7 +6423,7 @@ p {line-height: 1.5;}
 .charge-account-radio label:hover {border: 3px solid var(--primary); transition: all .3s ease; box-shadow: 0 10px 30px 0 rgba(67, 212, 119, .3); }
 .charge-account-radio input[type=radio] {visibility: hidden; display: none;}
 .charge-account-radio input[type=radio]:checked+label {box-shadow: 0 10px 30px 0 rgba(67, 212, 119, .3); border: 3px solid var(--primary); background-color: #fff; transition: all .3s ease;}
-.subscribe-plan {border: 1px solid #ddd; transition: all .4s ease; top: 0; border-radius: 5px !important;}
+.subscribe-plan {border: 1px solid #ddd; transition: all .4s ease; top: 0; border-radius: 5px !important; min-height: 392px;}
 .subscribe-plan .badge-popular {position: absolute; top: 10px; left: 10px; border-radius: 10px 0 10px 0; background-color:#fdb532; color: #fff;}
 .subscribe-plan p {color: #555;}
 .subscribe-plan:hover {top: -15px;}
@@ -7265,7 +7265,8 @@ Lms Blog Grid Card Style Start
     font-weight: 700;
     line-height: 1.5;
     color: var(--dark-charcoal);
-    min-height: 108px;}
+}
+.blog-grid-card.rurera-grid .blog-grid-title {min-height: 108px;}
 .blog-grid-card .blog-grid-detail .blog-grid-desc {font-weight: 400; line-height: 1.7; color: #6c6c6c; overflow: hidden;}
 .blog-grid-card .blog-grid-detail .blog-grid-footer {font-size: 16px; font-weight: 500; line-height: 1.19; color: #6c6c6c; pointer-events: none;}
 .blog-grid-card .blog-tags {padding: 0; margin: 15px 0 0 0; display: flex; flex-wrap: wrap; }
@@ -8347,12 +8348,12 @@ Lms SignUp Page Style Start
 .job-singup-sub-header li img {max-width: 25px;margin: 0 15px 0 0; display: none;}
 .job-singup-sub-header li .img-sm {max-width: 18px;margin: 0 5px 0 0;}
 .container .masonry-grid-gallery.simple {width: 100%; position: initial;}
-
-@media (min-width: 1200px) and (max-width: 1600px) {
-    .gallery-sub-header .masonry-grid-gallery {width: 600px;}
-}
 .lms-search-services .services-card {text-align: center;margin-bottom: 50px;padding: 0 20px 0;margin-bottom: 30px;border-radius: 8px;transition: -webkit-filter .2s ease-in-out;transition: filter .2s ease-in-out;transition: filter .2s ease-in-out, -webkit-filter .2s ease-in-out;color: #333;z-index: 99;position: relative;}
 .lms-search-services {margin: 0 0 20px;}
+.job-singup-sub-header .register-btn {
+    margin-top: 25px;
+    display: inline-block;
+}
 .lms-job-search .lms-search-services {padding: 15px 0 30px;}
 .services-card .img-holder {position: relative;margin: 0 0 10px;}
 .services-card .img-holder svg {width: 60px;height: 60px;}
@@ -8388,7 +8389,7 @@ Lms SignUp Page Style Start
 .create-btn:hover {color: #fff;}
 .list-card.border-0 {border-bottom: 0;}
 .lms-work-list .btn-holder {padding: 0 15px;}
-.lms-testimonial-slider [class*="swiper-button-"] {height: 50px;width: 50px;justify-content: center;align-items: center;background-color: var(--primary);border-radius: 100%;}
+.lms-testimonial-slider [class*="swiper-button-"] {margin-top: -25px; height: 50px;width: 50px;justify-content: center;align-items: center;background-color: var(--primary);border-radius: 100%;}
 .lms-testimonial-slider [class*="swiper-button-"]:after {font-size: 20px;color: #fff;font-weight: 700;}
 .lms-testimonial-slider .swiper-button-next {right: -10px;}
 .lms-testimonial-slider .swiper-button-prev {left: -10px;}
@@ -8508,7 +8509,7 @@ Lms Books Library Style Start
 .search-books ul {display: flex; align-items: center; margin: 0 -15px; padding: 0;}
 .search-books a {color: #fff; font-size: 18px; text-transform: capitalize; }
 .search-books ul li {padding: 0 15px;}
-.lms-books-listing {padding: 70px 0 35px;}
+.lms-books-listing {padding: 70px 0 35px; display: none;}
 .panel-content .lms-books-listing {background-color: inherit;}
 /* .lms-books-listing h3 a,
 .lms-books-listing h1 a {font-size: 24px; text-transform: capitalize;} */
@@ -8628,7 +8629,7 @@ lms Key Stage Style Start
     .key-stage-section {width: 100%; overflow: hidden;}
 }
 /*Choose Sats Style*/
-.choose-sats .sats-box {border: 2px dashed #000; padding: 25px 20px; text-align: center; line-height: normal; border-radius: 8px; min-height: 165px; display: flex; flex-direction: column; align-items: center;}
+.choose-sats .sats-box {border: 2px dashed #000; padding: 25px 20px; text-align: center; line-height: normal; border-radius: 8px; min-height: 165px; display: flex; flex-direction: column; align-items: center; width: 100%;}
 .choose-sats .sats-box.border-solid {border-style: solid; min-width: 230px;}
 .choose-sats .sats-box.border-transparent {border-color: rgba(0,0,0,0.1);}
 .choose-sats .sats-box img {max-width: 50px; max-height: 50px; display: inline-block; line-height: normal; margin: 0 0 10px;}
@@ -8790,6 +8791,10 @@ Lms Masonry Style End
 .lms-column-section .accordion .btn:focus {box-shadow: none;}
 .lms-column-section .accordion .card-body p {font-size: 18px; color: #151824;}
 .lms-column-section .accordion .btn {justify-content: flex-start; height: auto; border-radius: 0; text-decoration: none; padding: 20px 20px; border-radius: 6px;}
+.lms-column-section .lms-text-holder {gap: 15px;}
+.lms-text-holder:has(.icon-svg) p {
+    padding-left: 50px;
+}
 .lms-accordion-simple>.card .btn.collapsed {background: #f6fafb; box-shadow: none; color: #222222;}
 .lms-accordion-simple>.card .btn {font-size: 18px; font-weight: 500; position: relative;}
 .lms-accordion-simple .card .btn.collapsed::before {content: "\ff0b";}
@@ -8816,7 +8821,10 @@ Lms Masonry Style End
 .timestables-mode-block .simple-table th:last-child {text-align: right; padding-right: 20px;}
 /* Lms Accordion Modern Style Start */
 .lms-accordion-simple-section .element-title h2 {color: #222; font-weight: bold; font-size: 2rem; margin-bottom: 45px;}
-.lms-accordion-modern.accordion .btn {font-size: 18px; font-weight: bold; color: #fff; padding: 0; position: relative; transition: none;}
+.lms-accordion-modern.accordion .card .card-header {
+    padding: 0;
+}
+.lms-accordion-modern.accordion .btn {font-size: 18px; font-weight: bold; color: #fff; padding: 10px 15px; position: relative; transition: none;}
 .lms-accordion-modern.accordion .btn span {font-size: 18px; color: #fff; font-weight: 400; width: 40px; background-color: rgba(0, 0, 0, 0.2); height: 40px; text-align: center; line-height: 40px; border-radius: 100%; margin-right: 15px; display: inline-block; max-width: calc(100% - 85%);}
 .lms-accordion-modern.accordion .card-body p {font-size: 20px; color: #fff;}
 .lms-accordion-modern.accordion .card-body p.font-16{font-size: 16px;}
@@ -9335,7 +9343,7 @@ Lms Newsletter Style Start
 .lms-newsletter strong {display: block; line-height: normal;}
 .lms-newsletter label {font-weight: 500;}
 .lms-newsletter input[type="text"] {border: 0; height: 48px; padding: 0 15px; border-radius: 5px 0 0 5px; vertical-align: middle; width: calc(100% - 160px); display: inline-block; margin-right: -4px;}
-.lms-newsletter button {height: 48px; min-width: 160px; max-width: 160px; border: 0; border-radius: 0 5px 5px 0; display: inline-block; margin-right: -4px; vertical-align: middle; background-color: var(--gray-dark); color: #fff; font-weight: 500; font-size: 18px;}
+.lms-newsletter button {height: 52px; min-width: 160px; padding: 0 25px; border: 0; border-radius: 0 5px 5px 0; display: inline-block; margin-right: -4px; vertical-align: middle; background-color: var(--gray-dark); color: #fff; font-weight: 500; font-size: 18px;}
 /*************************************
 Lms Newsletter Style Style End
 *************************************/
@@ -9522,7 +9530,7 @@ div.dataTables_wrapper div.dataTables_filter input[type="search"] {color: #49505
 Lms Responsive Style End
 *************************************/
 .text-scribble {display: inline-block; padding: 0.125rem; z-index: 1; position: relative; line-height: normal;}
-.text-scribble:before {background-image: url(../../default/svgs/scribble.svg); background-repeat: no-repeat; background-size: contain; bottom: -55%; content: ""; display: block; height: 100%; left: 0; position: absolute; right: 0; width: 100%; z-index: -1;}
+.text-scribble:before {background-image: url(../../default/svgs/scribble.svg); background-repeat: no-repeat; background-size: contain; bottom: -55%; content: ""; display: block; height: 100%; left: 0; position: absolute; right: 0; width: 100%; max-width: 180px; z-index: -1;}
 
 /*************************************
 Time Table Style Start
@@ -11661,8 +11669,9 @@ address .info-list-label {color: #64748b;}
 /*************************************
 Lms Responsive Style Start
 *************************************/
-@media screen and (min-width: 992px) and (max-width: 1650px) {
-
+@media screen and (min-width: 1201px) and (max-width: 1400px) {
+    .lms-accordion-modern.accordion .card {margin-left: 0;}
+    .lms-accordion-modern.accordion .card .lms-img-holder{left: 480px;}
 }
 
 @media(max-width:1200px) {
@@ -11671,14 +11680,26 @@ Lms Responsive Style Start
     .process-card.process-one:before {display: none;}
     .user-profile-dropdown .d-md-none {display: none;}
     body .radio-buttons .card-radio { width: 18.2%;}
+    .lms-accordion-modern.accordion {padding: 0;}
+    .lms-accordion-modern.accordion .card {max-width: 100%; margin-left: 0;}
+    .lms-accordion-modern.accordion .card .lms-img-holder {display: none; padding: 0 20px 20px; position: initial; transform: none;}
+    .lms-accordion-modern.accordion .card-body {padding: 10px 20px 25px 20px;}
+    .lms-accordion-modern.accordion .card.active .lms-img-holder {display: block;}
+    .education-icon-box {margin-left: -60px;}
 }
 
 @media (min-width:993px) {
     .lms-performace-table>li.lms-performace-head div {white-space: nowrap;}
 }
+@media screen and (min-width: 992px) and (max-width: 1800px) {
+
+    .gallery-sub-header .masonry-grid-gallery {width: 50%; padding-right: 25px;}
+    .gallery-sub-header .container > .row > [class*="col-"] {padding-right: 70px;}
+}
+
 @media screen and (min-width: 992px) and (max-width: 1600px) {
     .navbar-nav .educator-menu {position: relative;}
-    nav.top-navbar .login-btn, nav .register-btn {white-space: nowrap; font-size: 12px;}
+    nav.top-navbar .login-btn, nav .register-btn {white-space: nowrap; font-size: 12px !important;}
     .lms-mega-menu {width: 100%;}
     .navbar-nav .has-mega-menu:hover .nav-link:after {bottom: -23px;}
     .about-sub-header .choose-sats .sats-box {width: 24%;}
@@ -11737,10 +11758,11 @@ Lms Responsive Style Start
     .footer-dots-img {transform: none !important;}
     body .learning-page.type-sats .left-content {height: auto; overflow: visible;}
     .masonry-grid {margin-left: 0;}
-    .masonry-grid-gallery.has-bg:before {left: -90px;}
+    .masonry-grid-gallery.has-bg:before {left: -50px;}
     .job-singup-sub-header h1 {font-size: 3rem !important;}
     .job-singup-sub-header h2 {font-size: 1.5rem !important;}
-    .gallery-sub-header .container [class*="col-"] {padding-right: 70px;}
+    .navbar1 {padding-left: 0; padding-right: 0;}
+    .navbar-light .navbar-brand {max-width: 185px; min-width: 150px;}
 }
 @media screen and (min-width: 992px) and (max-width: 1300px) {
     .stats-list ul li {border-left: 0;width: 100%;padding: 0 0 15px;margin: 0 0 15px;text-align: left;border-bottom: 1px solid rgba(0, 0, 0, 0.1);}
@@ -11753,11 +11775,15 @@ Lms Responsive Style Start
     .lms-explanation .lms-radio-btn-group li {width: 48%;}
     .lms-contact-form-section .message-box{right: 0;}
     .lms-mega-menu {width: 100%;}
+    .navbar1 > .container-fluid > .d-flex {flex-wrap: wrap;}
     .navbar1 .nav-item .nav-link, 
-    .navbar .nav-item .nav-link {font-size: 14px; padding: 10px 9px;}
-    .top-navbar .navbar-brand {max-width: 140px;}
+    .navbar .nav-item .nav-link {font-size: 14px;}
+    .top-navbar .navbar-brand {max-width: 140px; margin-left: 0 !important;}
     .top-navbar .navbar-brand .img-cover {object-fit: contain;}
-    .top-navbar #navbarContent {margin-left: 10px !important; margin-right: 10px !important;}
+    .top-navbar #navbarContent {margin-left: 10px !important; margin-right: 10px !important; width: 100%;}
+    .top-navbar .nav-icons-or-start-live {margin-left: 15px; position: absolute; right: 20px; top: 15px;}
+    .navbar-nav .educator-menu {border-right: 0;}
+    .navbar1 .navbar-nav {justify-content: center;}
     .mega-menu-head {padding: 20px 0;}
     .mega-menu-nav {justify-content: center;}
     .mega-menu-nav a {font-size: 18px; padding: 5px 15px;}
@@ -11770,7 +11796,11 @@ Lms Responsive Style Start
     .result-layout-summary .sats-summary [class*="col-"] {border-bottom: 1px solid #e1e1e1;flex: 0 0 50%;max-width: 50%;}
     .listing-card .read-btn .btn-icon {margin-right: 8px;}
     .listing-card .read-btn, .book-btn {font-size: 12px; padding: 12px 15px; min-width: 150px;}
+    .lms-counter-card.counter-purple-bg:before {z-index: -1; top: -65px; width: 240px;}
+    .lms-counter-card.counter-yellow-bg:after {bottom: -122px;}
+    .counter-holder .svg-shapes-top {position: absolute; right: -110px;top: -25px;}
 }
+
 @media screen and (max-width: 992px) {
     .navbar-expand-lg .navbar-toggler,
     .navbar1 .navbar-toggler {display: block;}
@@ -11795,10 +11825,6 @@ Lms Responsive Style Start
     .performance-status-holder {margin-bottom: 10px;}
     .lms-performace-section .lms-performace-table {overflow-x: scroll; width: 992px;}
     .lms-performace-section {width: 100%; overflow: auto;}
-    .lms-accordion-modern.accordion .card .lms-img-holder {display: none; padding: 0 20px 20px; position: initial; transform: none;}
-    .lms-accordion-modern.accordion .card-body {padding: 10px 20px 25px 20px;}
-    .lms-accordion-modern.accordion .card.active .lms-img-holder {display: block;}
-    .lms-accordion-simple .card .lms-img-holder {position: initial; padding-top: 15px;}
     .lms-jobs-form .form-group{flex-wrap: wrap;}
     .lms-contact-form .input-label,
     .lms-contact-form .input-field {width: 100%;}
@@ -11981,7 +12007,8 @@ Lms Responsive Style Start
     .top-navbar .nav-icons-or-start-live,
     .page-sub-header h1 br {display: none;}
     .section-title {text-align: center !important;}
-    .panel-content .section-title.text-left {text-align: left !important;}
+    .panel-content .section-title.text-left,
+    .newsletter-inner .section-title,
     .home-sections:has(.blog-grid-card) .section-title {text-align: left !important;}
     .marquee-sec .section-title {padding: 0 15px;}
     .instructor-img-first .row {flex-direction: column-reverse;}
@@ -11989,6 +12016,8 @@ Lms Responsive Style Start
     .find-instructor-section .btn-holder {justify-content: center;}
     .job-singup-sub-header h1,
     .page-sub-header h1 {text-align: center; font-size: 36px !important; line-height: 46px !important;}
+    .job-singup-sub-header strong,
+    .job-singup-sub-header p{text-align: center;}
     .gallery-sub-header .masonry-grid-gallery {display: none;}
     .footer-dots-img {transform: none !important; margin-top: 30px;}
     .footer-dots-img img {width: 70%; object-fit: contain; display: block; margin: 0 auto;}
@@ -12024,8 +12053,7 @@ Lms Responsive Style Start
     .login-card .login-option div {margin-left: 0;}
     .process-holder .svg-shapes-bottom {left: 108px;}
     .widget-title.rurera-hide {display: block;}
-    .lms-accordion-modern.accordion {padding: 0;}
-    .lms-accordion-modern.accordion .card {max-width: 100%; margin-left: 0;}
+    .lms-accordion-simple .card .lms-img-holder {position: initial; padding-top: 15px;}
     .section-title h2 {word-wrap: break-word;}
     .home-banner h1.font-72 {font-size: 3rem !important;}
     .home-banner h1 br,
@@ -12036,14 +12064,14 @@ Lms Responsive Style Start
     .newsletter-inner h2.font-72,
     .categories-element-title h2.font-40 {font-size: 1.8rem !important;}
     .section-title.section-inner-title h2 {font-size: 1.2rem !important;}
-    .blog-grid-card .blog-grid-detail .blog-grid-title {font-size: 1.4rem;}
+    .blog-grid-card .blog-grid-detail .blog-grid-title {font-size: 1.4rem; min-height: auto;}
     .home-banner .choose-sats .sats-box {margin-bottom: 80px;}
     .lms-search-services img {max-width: 100%;}
     .job-singup-sub-header h1 br {display: none;}
     .find-instructor-section figure img,
     .lms-text-section img { max-width: 100%; object-fit: contain; }
-    .find-instructor-section figure img.find-instructor-section-circle { right: 10% !important; }
-    .find-instructor-section figure img.find-instructor-section-circle { right: 10% !important; }
+    .find-instructor-section figure img.find-instructor-section-circle { right: 200px !important; }
+    .find-instructor-section .sub-thumb {right: 200px;}
     .lms-jobs-form .card-header:has(.form-field-counter) button {padding-right: 130px;}
     .lms-newsletter.blog-newsletter {padding: 50px 0; position: relative; overflow: hidden;}
     .blog-newsletter [class*="col-"] {max-width: 100%; flex: 0 0 100%; position: initial;}
@@ -12064,6 +12092,15 @@ Lms Responsive Style Start
     .word-details p {margin-top: 10px;}
     .word-details p:last-child {margin-top: 5px;}
     .learning-page .learning-content {padding: 0 30px;}
+    .lms-counter-card.counter-yellow-bg:after,
+    .lms-counter-card.counter-purple-bg:before,
+    .counter-holder .svg-shapes-bottom,
+    .counter-holder .svg-shapes-top {display: none;}
+    .gallery-sub-header .container > .row > [class*="col-"] {width: 100%; flex: 0 0 100%; max-width: 100%;}
+    .exame-listing .exame-holder .exame-list:after {right: 15px;}
+    .exame-listing .exame-holder .exame-list {padding-right: 30px;}
+    .page-sub-header.find-instructor-section ul {margin-bottom: 30px;}
+    .blog-grid-card.rurera-grid {margin-bottom: 30px;}
 }
 
 @media screen and (min-width: 767px) and (max-width: 1600px) {
@@ -12123,7 +12160,6 @@ Lms Responsive Style Start
     .lms-our-mission-section.has-bg .lms-mission-holder {padding-top: 50px;}
     .lms-our-mission-section.has-bg {background-size: cover;}
     .lms-counter-section {text-align: center;}
-    .lms-counter-section,
     .read-quiz-content {padding-top: 0 !important;}
     .read-quiz-content {max-width: 100%;}
     body .quiz-topbar {position: relative; z-index: 3;}
@@ -12159,6 +12195,7 @@ Lms Responsive Style Start
     .find-instructor-section [class*="col-"] > .pl-50,
     .find-instructor-section [class*="col-"] > .ml-50{ padding-left: 0 !important; margin-left: 0 !important; }
     .find-instructor-section .sub-thumb { right: 30px; bottom: -50px; max-width: 50%; }
+    .find-instructor-section figure img.find-instructor-section-circle {right: 30px !important;}
     .lms-newsletter.blog-newsletter {padding-top: 80px; padding-bottom: 80px;}
     .blog-newsletter .svg-holder {display: none;}
     .products-top-header .banner-holder .education-icon-box,
@@ -12215,8 +12252,8 @@ Lms Responsive Style Start
     .db-form-tabs .nav-tabs .nav-link.active {border: 0;}
     .navbar-nav .has-mega-menu:hover .nav-link:after {bottom: -6px;}
     .lms-nav-tabs.nav-tabs .nav-link {font-size: 14px; padding-left: 1rem; padding-right: 1rem;}
-    .lms-testimonial-slider .swiper-button-next, 
-    .lms-testimonial-slider .swiper-button-prev {top: 25%;}
+    /*.lms-testimonial-slider .swiper-button-next, 
+    .lms-testimonial-slider .swiper-button-prev {top: 25%;}*/
     .exame-listing .exame-holder .exame-list:after {right: 12px;}
     .questions-block {padding-top: 0;}
     .questions-block-numbers a {padding: 20px 8px;}
@@ -12497,7 +12534,13 @@ Lms Responsive Style Start
     .virtual-keyboard input[type=button], .virtual-keyboard button[type=button] {min-width: 20px;font-size: 11px;min-height: 20px;}
     .delete img {height: 15px; width: 15px;}
     .learning-page .learning-content {padding-left: 15px; padding-right: 15px;}
-
+    .newsletter-inner .section-title {text-align: center!important;}
+    .lms-books-listing .listing-card {text-align: center;}
+    .lms-books-listing .listing-card .text-holder {padding-top: 15px;}
+    .gallery-sub-header ul {padding-left: 15px !important;}
+    .lms-column-section .lms-text-holder .row.align-items-center {flex-direction: column; gap: 25px; text-align: center;}
+    .lms-column-section .lms-text-holder .row.align-items-center .lms-btn {margin-left: 0 !important;}
+    .lms-column-section .lms-text-holder .lms-btn-group {justify-content: center;}
 }
 
 @media screen and (max-width: 640px) {
@@ -12647,7 +12690,6 @@ Lms Responsive Style Start
     .footer.footer-home .footer-logo {margin: 15px auto;}
     .rurera-home-categories>.row>[class*="col-"] {flex: 0 0 50%; max-width: 50%;}
     .rurera-home-categories .row {padding-left: 30px;}
-    .blog-grid-card.rurera-grid {margin-bottom: 25px;}
     .blog-sub-header.lms-call-to-action input[type="text"], 
     .sub-header.lms-call-to-action input[type="text"] {width: 100%;}
     .cell-card form.w-75 {width: 100% !important;}

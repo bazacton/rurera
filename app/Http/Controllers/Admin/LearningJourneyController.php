@@ -460,7 +460,7 @@ class LearningJourneyController extends Controller
 								 
 								 <div class="editor-zone" style="position:relative;width: fit-content;">
 									<div class="field-options"></div>
-									<?php $data_values = json_decode($itemObj->data_values);?>
+									<?php $data_values = isset( $itemObj->data_values )? json_decode($itemObj->data_values) : array();?>
 									<div class="book-dropzone active page_settings saved-item-class" data-trigger_class="page-settings-fields" data-page_graph="<?php echo isset( $data_values->page_graph )? $data_values->page_graph : '0'; ?>" data-page_background="<?php echo isset( $data_values->background )? $data_values->background : '#ffffff'; ?>" data-page_height="<?php echo isset( $data_values->height )? str_replace('px', '', $data_values->height) : '800'; ?>" style="background:#ffffff" data-level_id="<?php echo $data_id; ?>">
 										<?php
 										
@@ -479,9 +479,10 @@ class LearningJourneyController extends Controller
 														
 														if( !empty( $data_attributes_array ) ){
 															foreach( $data_attributes_array as $data_attribute_key => $data_attribute_value){
-																$data_attributes = 'data-'.$data_attribute_key.'="'.$data_attribute_value.'"';
+																$data_attributes .= 'data-'.$data_attribute_key.'="'.$data_attribute_value.'" ';
 															}
 														}
+
 														
 														
 														$item_path = isset( $learningJourneyItemObj->item_path ) ?  $learningJourneyItemObj->item_path : '';

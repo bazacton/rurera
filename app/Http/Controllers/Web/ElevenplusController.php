@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Panel\QuizController;
 use App\Models\Quiz;
+use App\Models\Page;
 use App\Models\UserAssignedTopics;
 use App\User;
 use Illuminate\Http\Request;
@@ -13,6 +14,23 @@ use App\Models\Testimonial;
 class ElevenplusController extends Controller
 {
 
+	public function landing(Request $request)
+    {
+		$page = Page::where('link', '/11-plus')->where('status', 'publish')->first();
+        $query = Quiz::where('status', Quiz::ACTIVE)->where('quiz_type', 'sats');
+		$sats = $query->paginate(30);
+		$QuestionsAttemptController = new QuestionsAttemptController();
+		$data = [
+			'pageTitle'                  => $page->title,
+			'pageDescription'            => $page->seo_description,
+			'sats'                       => $sats,
+			'QuestionsAttemptController' => $QuestionsAttemptController
+		];
+		return view('web.default.landing.11plus_landing', $data);
+
+        abort(404);
+    }
+	
     public function index(Request $request)
     {
         if (!auth()->check()) {

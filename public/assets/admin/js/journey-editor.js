@@ -3,7 +3,6 @@ $(document).on('click', '.control-tool-item', function () {
     $('.control-tool-item').removeClass('active');
     $(this).addClass('active');
     //$('body').css('cursor', "pointer");
-    //console.log('tet');
 });
 
 $(document).on('click', '.next-page', function () {
@@ -187,7 +186,12 @@ $(document).on('click', '.book-dropzone', function (e) {
     .off('wheel'); // Unbinds all wheel events from this element
 
 	
-	$('.draggable_field_' + field_random_number).resizable();
+	$('.draggable_field_' + field_random_number).resizable({
+        resize: function(event, ui) {
+			$(".field-options").find('.trigger_field[data-field_name="width"]').val(ui.size.width);
+			$(".field-options").find('.trigger_field[data-field_name="width"]').change();
+        }
+    });
 	
 	$('.colorpickerinput').colorpicker({
 		format: 'hex',
@@ -209,7 +213,6 @@ $(document).on('click', '.book-dropzone', function (e) {
 	$(".field_settingss").rotatable({
         angle: 0,
         rotation: function(event, ui) {
-            console.log('Rotation angle:', ui.angle.current);
         }
     });
 	
@@ -221,7 +224,6 @@ function sorting_render(){
 		index_id++;
 		$(thisObj).attr('data-field_postition', index_id);
 		var data_id = $(thisObj).attr('data-id');
-		console.log(data_id);
 		$(".draggable_field_" + data_id).css('z-index', index_id);
 		$(".draggable_field_" + data_id).attr('data-field_postition', index_id);
 	});
@@ -233,13 +235,12 @@ $(document).on('click', '.page_settings', function (e) {
 	}
 	$('.page_settings').removeClass('active');
 	$(this).addClass('active');
-	console.log('page_settings');
     $(".field-options").html('');
     var fieldObj = $(this);
     var field_id = fieldObj.data('id');
     var parent_field_id = field_id;
     var trigger_class = fieldObj.data('trigger_class');
-    $(".field-options").html($('.' + trigger_class).html());
+    $(".field-options").html('<h4 class="properties-title">Page Properties</h4> '+$('.' + trigger_class).html());
 	$('.field_settings').removeClass('active');
     $(".field-options .trigger_field").attr('data-id', field_id);
 	
@@ -261,13 +262,12 @@ $(document).on('click', '.page_settings', function (e) {
 
 $(document).on('click', '.field_settings', function (e) {
     $(".field-options").html('');
-	console.log('field_settings');
     var fieldObj = $(this);
     var field_id = fieldObj.data('id');
-	console.log(field_id);
-    var parent_field_id = field_id;
+	var item_title = fieldObj.attr('data-item_title');
+	var parent_field_id = field_id;
     var trigger_class = fieldObj.data('trigger_class');
-    $(".field-options").html($('.' + trigger_class).html());
+    $(".field-options").html('<h4 class="properties-title">'+item_title+' Properties</h4> '+$('.' + trigger_class).html());
 	
 	$('.field_settings').removeClass('active');
 	$(this).addClass('active');
@@ -349,6 +349,39 @@ $(document).on('keyup change keydown click', '.field-options .trigger_field', fu
     trigger_field_change($(this));
 });
 
+$(document).on('click', '.editor-objects-list li .fa-trash', function (e) {
+	if( $(this).closest('li').hasClass('locked-object')){
+		return false;
+	}
+    var data_id  = $(this).closest('li').attr('data-id');
+	$('.field_settings[data-id="'+data_id+'"]').remove();
+	$(this).closest('li').remove();
+	sorting_render();
+});
+
+$(document).on('click', '.editor-objects-list li .fa-unlock', function (e) {
+	$(this).removeClass('fa-unlock');
+	$(this).addClass('fa-lock');
+	$(this).closest('li').addClass('locked-object');
+    var data_id  = $(this).closest('li').attr('data-id');
+	$('.field_settings[data-id="'+data_id+'"]').addClass('locked-object');
+	$('.draggable_field_' + data_id).resizable("disable");
+	$('.draggable_field_' + data_id).draggable("disable");
+	$('.draggable_field_' + data_id).rotatable("disable");
+});
+
+$(document).on('click', '.editor-objects-list li .fa-lock', function (e) {
+	$(this).removeClass('fa-lock');
+	$(this).addClass('fa-unlock');
+	$(this).closest('li').removeClass('locked-object');
+    var data_id  = $(this).closest('li').attr('data-id');
+	$('.field_settings[data-id="'+data_id+'"]').removeClass('locked-object');
+	$('.draggable_field_' + data_id).resizable("enable");
+	$('.draggable_field_' + data_id).draggable("enable");
+	$('.draggable_field_' + data_id).rotatable("enable");
+	
+});
+
 
 function trigger_field_change(thisObj) {
     var data_id = thisObj.attr('data-id');
@@ -381,7 +414,6 @@ function trigger_field_change(thisObj) {
 			this_value = this_value+'px';	
 		}
 		if( field_name == 'graph'){
-			console.log('this_value===='+this_value);
 			if( this_value == 1){
 				$(".page_settings.active").addClass('graph-background');
 			}else{
@@ -428,10 +460,52 @@ jQuery(document).ready(function () {
 	
 	
 		$('.saved-item-class').click();
+		
+		
+		
+	
+		
+		
 
     $('.book-dropzone .field_settings').each(function () {
         var dropZonObj = $(this).closest('.book-dropzone');
         var field_id = $(this).attr('data-id');
+		
+		
+		$(document).on('keydown', function(event) {
+			const $activeElement = $('.draggable_field_' + field_id + '.active');
+			
+			if( $activeElement.hasClass('locked-object')){
+				return false;
+			}
+			
+			if ($activeElement.length) {
+				if ($(event.target).attr('class') == '') {
+					event.preventDefault(); // Prevent the default scroll action
+				}
+
+				let leftPos = parseInt($activeElement.css('left'));
+				let topPos = parseInt($activeElement.css('top'));
+				
+				switch(event.which) {
+					case 37: // Left arrow key
+						$activeElement.css('left', leftPos - 1 + 'px');
+						break;
+						
+					case 39: // Right arrow key
+						$activeElement.css('left', leftPos + 1 + 'px');
+						break;
+						
+					case 38: // Up arrow key
+						$activeElement.css('top', topPos - 1 + 'px');
+						break;
+						
+					case 40: // Down arrow key
+						$activeElement.css('top', topPos + 1 + 'px');	
+						break;
+				}
+			}
+		});
 		
 		$('.draggable_field_' + field_id)
 			.rotatable()
@@ -440,11 +514,20 @@ jQuery(document).ready(function () {
 				containment: dropZonObj
 			})
 			.off('wheel'); // Unbinds all wheel events from this element
-			$('.draggable_field_' + field_id).resizable();
+			$('.draggable_field_' + field_id).resizable({
+				resize: function(event, ui) {
+					$(".field-options").find('.trigger_field[data-field_name="width"]').val(ui.size.width);
+					$(".field-options").find('.trigger_field[data-field_name="width"]').change();
+				}
+
+			});
 		
     });
 
     $(document).on('click', '.book-dropzone .remove', function (e) {
+		if( $(this).closest('.field_settings').hasClass('locked-object')){
+			return false;
+		}
 		var data_id = $(this).closest('.field_settings').attr('data-id');
 		$('.editor-objects-list li[data-id="'+data_id+'"]').remove();
 		sorting_render();
@@ -453,7 +536,6 @@ jQuery(document).ready(function () {
     });
 
     $(document).on('stylechanged', '.resizeable', function (e) {
-        console.log('height-changed');
     });
 
 
@@ -576,7 +658,6 @@ $(document).on('click', '.generate', function (e) {
 	
 	
 	var posted_data = generate_stage_area();
-	console.log(posted_data);
 
     /*$.ajax({
         type: "POST",
@@ -623,10 +704,6 @@ function generate_stage_area(){
 			var unique_id = fieldObj.attr('data-unique_id');
 			var item_title = fieldObj.attr('data-item_title');
 			
-			console.log('field_id=='+field_id);
-			console.log('field_type=='+field_type);
-			console.log('trigger_class=='+trigger_class);
-			console.log('==============================');
 
 
 			posted_data[field_id] = {};

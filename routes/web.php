@@ -601,6 +601,10 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
         Route::get('/' , 'SatsController@sats_landing');
     });
 
+    Route::group(['prefix' => 'spelling'] , function () {
+        Route::get('/' , 'SpellsController@landing');
+    });
+
     Route::group(['prefix' => 'assignment'] , function () {
         Route::get('/{assignment_id}' , 'AssignmentController@assignment');
         Route::get('/{assignment_id}/start' , 'AssignmentController@start');
@@ -625,6 +629,11 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
         //Route::get('/{quiz_id}/start' , 'ElevenplusController@start');
 
     });
+	Route::group(['prefix' => '11-plus'] , function () {
+        Route::get('/' , 'ElevenplusController@landing');
+
+    });
+	
     Route::group(['prefix' => 'iseb'] , function () {
         Route::get('/' , 'IsebController@index');
         Route::get('/{quiz_slug}' , 'IsebController@start');
