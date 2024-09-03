@@ -112,7 +112,7 @@
                        @foreach( $results_data as $resultsRow)
                            <tr>
                                <td>{{dateTimeFormat($resultsRow->created_at,'j M Y')}}</td>
-                               <td>{{$resultsRow->quizz_result_questions_list->where('status', '=', 'correct')->count()}}</td>
+                               <td>{{$resultsRow->total_correct}}</td>
                            </tr>
                        @endforeach
                    @else

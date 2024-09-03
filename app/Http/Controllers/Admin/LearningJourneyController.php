@@ -148,6 +148,7 @@ class LearningJourneyController extends Controller
         $categories = Category::where('parent_id', null)
             ->with('subCategories')
             ->get();
+		
         $data = [
             'pageTitle'     => 'Edit Learning Journey',
             'categories'    => $categories,
@@ -158,6 +159,18 @@ class LearningJourneyController extends Controller
 
         return view('admin.learning_journey.create', $data);
     }
+	
+	public function get_topics(Request $request){
+		$year_id = $request->get('year_id');
+        $subject_id = $request->get('subject_id');
+		
+		$courseObj = Webinar::find($subject_id);
+		$sub_chapters_list = isset( $courseObj->webinar_sub_chapters )? $courseObj->webinar_sub_chapters->mapWithKeys(function($sub_chapter) {
+    return [$sub_chapter->sub_chapter_title => $sub_chapter->id];
+})->toArray() : array();
+		echo json_encode($sub_chapters_list);
+		exit;
+	}
 
     private function filters($query, $request)
     {
@@ -472,6 +485,7 @@ class LearningJourneyController extends Controller
 														$item_path_folder = ($item_type == 'stage' )? 'stages' : $item_path_folder;
 														$item_path_folder = ($item_type == 'stage_objects' )? 'objects' : $item_path_folder;
 														$item_path_folder = ($item_type == 'path' )? 'paths' : $item_path_folder;
+														$item_path_folder = ($item_type == 'topic' )? 'topics' : $item_path_folder;
 														
 														$data_attributes_array = isset( $learningJourneyItemObj->data_values )? json_decode($learningJourneyItemObj->data_values ) : array();
 														
@@ -486,7 +500,7 @@ class LearningJourneyController extends Controller
 														
 														
 														$item_path = isset( $learningJourneyItemObj->item_path ) ?  $learningJourneyItemObj->item_path : '';
-														$item_path = 'assets/editor/'.$item_path_folder.'/'.$item_path;
+														$item_path = 'assets/admin/editor/'.$item_path_folder.'/'.$item_path;
 														$svgCode = getFileContent($item_path);
 														echo '<div style="'.$learningJourneyItemObj->field_style.'" data-is_new="no" data-item_title="'.$learningJourneyItemObj->item_title.'" data-unique_id="'.$learningJourneyItemObj->id.'" class="saved-item-class drop-item form-group draggablecl field_settings draggable_field_rand_'.$learningJourneyItemObj->id.'" data-id="rand_'.$learningJourneyItemObj->id.'" data-item_path="'.$learningJourneyItemObj->item_path.'" data-field_type="'.$learningJourneyItemObj->item_type.'" data-trigger_class="infobox-'.$learningJourneyItemObj->item_slug.'-fields" data-item_type="'.$learningJourneyItemObj->item_slug.'" data-paragraph_value="Test text here..." '.$data_attributes.'><div class="field-data">'.$svgCode.'</div><a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a></div>';
 														

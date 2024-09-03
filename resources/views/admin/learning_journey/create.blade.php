@@ -295,7 +295,7 @@
     $(document).ready(function () {
 		
 		$(".editor-objects-list").sortable();
-		$('.saved-item-class').click();
+		//$('.saved-item-class').click();
 		
 		$(".editor-objects-list").sortable({
 			update: function(event, ui) {
@@ -307,6 +307,7 @@
 
             $(this).closest('li').remove();
         });
+		
 
         $('body').on('change', '.category-id-field', function (e) {
             var category_id = $(this).val();
@@ -321,6 +322,9 @@
                 data: {'category_id': category_id, 'subject_id': subject_id, 'learning_journey': 'yes', 'learning_journey_id': learning_journey_id},
                 success: function (response) {
                     $(".category_subjects_list").html(response);
+					$(".category_subjects_list select").change();
+					
+					
                 }
             });
 
@@ -338,7 +342,7 @@
                 data: {},
                 success: function (response) {
                     $(".learning_journey_sets").append(response);
-                    $(".curriculum-set-ul").sortable();
+                    //$(".curriculum-set-ul").sortable();
                     $(".curriculum-item-data-ul").sortable();
                     $(".curriculum-chapter-data-ul").sortable();
                     $(".curriculum-topics-ul").sortable();
@@ -405,10 +409,10 @@
             });
         });
 
-        $(".learning_journey_sets").sortable();
-        $(".curriculum-item-data-ul").sortable();
-        $(".curriculum-chapter-data-ul").sortable();
-        $(".curriculum-topics-ul").sortable();
+        //$(".learning_journey_sets").sortable();
+        //$(".curriculum-item-data-ul").sortable();
+        //$(".curriculum-chapter-data-ul").sortable();
+        //$(".curriculum-topics-ul").sortable();
         $(".category-id-field").change();
         handleTopicsMultiSelect2('search-topics-select2', '/admin/chapters/search', ['class', 'course', 'subject', 'title']);
 

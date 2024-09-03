@@ -5372,7 +5372,23 @@ p {line-height: 1.5;}
 .status-badge-warning {border: 1px solid #ffab00;color: #ffab00;background-color: unset;}
 .tab-content .webinar-card:hover {transform: unset !important;}
 .panel-content .alert-warning {margin-top: 10px !important;font-weight: 500 !important;color: #343434;background-color: rgba(255, 171, 0, .44) !important;border-color: #ffab00 !important;}
-.panel-content .alert {position: relative;padding: 1rem !important;margin-bottom: 0;border: 1px solid transparent;border-radius: 10px;}
+.panel-content .alert {position: relative;
+    padding: 1rem !important;
+    margin-bottom: 0;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    margin-top: 10px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.alert-btn-close {
+    background: none;
+    border: 0;
+    font-weight: 600;
+}
+.panel-content .section-title ~ .alert {margin-top: 10px;}
 .px-12 {padding: 0 12px !important;}
 #topFilters label,
 .filters-container label {font-size: .875rem;}
@@ -7286,6 +7302,7 @@ Lms Blog Grid Card Style Start
 .lms-blog-author-img img {width: 100px; height: 100px; border-radius: 100%; margin-right: 20px;}
 .lms-blog-grid .blog-grid-card .blog-grid-detail .blog-grid-desc {font-size: 16px;line-height: 22px;color:#586165;}
 .lms-blog-grid .blog-grid-card {border: 0; align-items: flex-start;}
+.books-blog .blog-grid-card {min-height: 472px;}
 .blog-newsletter .svg-holder path {fill: rgba(0,0,0,0.1);stroke: rgba(255,255,255,0.1);}
 .blog-newsletter .svg-holder polygon {fill: #2571f9; stroke: cornflowerblue;}
 .blog-newsletter .svg-holder line {stroke: rgba(255,255,255,0.1);}
@@ -8509,7 +8526,7 @@ Lms Books Library Style Start
 .search-books ul {display: flex; align-items: center; margin: 0 -15px; padding: 0;}
 .search-books a {color: #fff; font-size: 18px; text-transform: capitalize; }
 .search-books ul li {padding: 0 15px;}
-.lms-books-listing {padding: 70px 0 35px; display: none;}
+.lms-books-listing {padding: 70px 0 35px;}
 .panel-content .lms-books-listing {background-color: inherit;}
 /* .lms-books-listing h3 a,
 .lms-books-listing h1 a {font-size: 24px; text-transform: capitalize;} */
@@ -8527,23 +8544,25 @@ Lms Books Library Style Start
 .lms-books-listing .listing-card .text-holder li span {color: #444; margin-right: 5px;}
 .listing-card .btn-holder,
 .book-percentage {position: absolute; right: 15px; top: 50%; transform: translateY(-50%);}
-.listing-card .read-btn, .book-btn {color: var(--primary); font-weight: 600; font-size: 16px; border: 1px solid var(--primary); padding: 15px 25px; border-radius: 8px; border-bottom-width: 5px; background-color: #fff; display: inline-flex; align-items: center; min-width: 206px; vertical-align: middle; position: relative; transform: translate3d(0px, 0%, 0px); overflow: hidden; transition: background 0.4s linear;}
+.listing-card .read-btn, .book-btn, .try-rurera-btn {color: var(--primary); font-weight: 600; font-size: 16px; border: 1px solid var(--primary); padding: 15px 25px; border-radius: 8px; border-bottom-width: 5px; background-color: #fff; display: inline-flex; align-items: center; min-width: 206px; vertical-align: middle; position: relative; transform: translate3d(0px, 0%, 0px); overflow: hidden; transition: background 0.4s linear; text-align: center;}
 .listing-card .read-btn.bg-light-green{border-bottom-color: var(--light-green);}
 .listing-card .read-btn.bg-light-green::before{content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 50% 50% 0 0; transform: translateY(100%) scaleY(0.5); transition: all 0.6s ease; z-index: -1; background-color: #fff !important; color: var(--light-green);}
 .listing-card .read-btn.bg-light-green:hover::before,
 .listing-card .read-btn.bg-light-green:hover{color: var(--light-green);}
 .listing-card .read-btn:before,
-.book-btn:before {content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--primary); border-radius: 50% 50% 0 0; transform: translateY(100%) scaleY(0.5); transition: all 0.6s ease; z-index:-1;}
+.book-btn:before,
+.try-rurera-btn:before {content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--primary); border-radius: 50% 50% 0 0; transform: translateY(100%) scaleY(0.5); transition: all 0.6s ease; z-index:-1;}
 .listing-card .read-btn:hover{color:#fff;background-color: var(--primary);border-color: rgba(0,0,0,0.4);}
 .book-btn:hover{color:#fff;}
 .listing-card .read-btn:hover:before,
-.book-btn:hover:before {border-radius: 0; transform: translateY(0) scaleY(1);}
+.book-btn:hover:before,
+.try-rurera-btn:hover:before {border-radius: 0; transform: translateY(0) scaleY(1);}
 .listing-card .read-btn:hover .btn-icon svg g {fill:#fff;}
 .listing-card .read-btn .btn-icon {display: inline-block; width: 22px; height: 18px; line-height: normal; margin-right: 12px; margin-top: 0;}
 .listing-card .read-btn .btn-icon svg {max-width: 100%;}
 .listing-card .read-btn .btn-icon svg g {fill: var(--primary);}
 .listing-card .read-btn.continue,
-.book-btn.bg-primary {color: #fff; border-color: rgba(0,0,0,0.4); background-color: var(--primary);}
+.book-btn.bg-primary, .try-rurera-btn {color: #fff; border-color: rgba(0,0,0,0.4); background-color: var(--primary);}
 .listing-card .read-btn.continue:hover::before, .listing-card .read-btn.continue:hover{color: var(--primary);}
 .listing-card .read-btn.continue:hover .btn-icon svg g{fill:#fff;}
 .listing-card .read-btn.continue::before{background-color: #fff;}
@@ -8570,6 +8589,14 @@ Lms Books Library Style Start
 .gallery-slider-holder {position: relative;}
 .gallery-slider-holder:before {background-color: rgba(0,0,0,0.9); content:""; position: absolute; left: 0; top: 0; height: 100%; width: 100%; z-index:2; pointer-events:none; }
 .lms-library-slider .swiper-container {max-width: 1000px; margin: 0 auto;}
+.db-categories .row{gap: 25px 0;}
+.db-categories img {
+    max-width: 100%;
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    margin-bottom: 20px;
+}
 @media screen and (max-width: 767px) {
     .progress-card {max-width: 100%;padding: 15px;flex-direction: column;}
     .progress-card .text-holder {padding: 15px 0 0;width: 100%;}
@@ -9760,6 +9787,7 @@ Main Home style End
 .rurera-processing { pointer-events: none; position:relative;}
 .rurera-processing:has(.rurera-button-loader) {position: relative;}
 .rurera-processing .rurera-button-loader {border-radius: 0;}
+.product-card .favorite-btn:has(.rurera-button-loader) {position: absolute;}
 /* .rurera-processing .rurera-button-loader {height: 100vh;} */
 .edit-user-modal .user-profile-block.rurera-processing {height: 100vh;}
 .rurera-button-loader .double-bounce2 { -webkit-animation-delay: -1.0s; -moz-animation-delay: -1.0s; animation-delay: -1.0s;}
@@ -10155,8 +10183,20 @@ Product Tabs Slider Style Start
 .template-grid .row .row {margin-left: -5px; margin-right: -5px;}
 .type-list-data {width: 100%;}
 .panel-content .grid-card {background-color: #fff; border: 2px solid #e4e4e4;border-bottom-width: 4px;border-radius: 10px;margin-bottom: 15px;display: flex;flex-wrap: wrap;align-items: flex-start;width: 100%;padding: 20px 95px 20px 15px;gap: 5px;transition: all .5s ease;position: relative;overflow: hidden;min-height: 100px;flex-direction: column;}
-.panel-content .grid-card .img-holder {margin-left: auto; position: absolute; right: -15px; bottom: -10px; transform: rotate(-20deg);height: 90px; width: 90px;}
+.panel-content .grid-card .img-holder {margin-left: auto;
+    position: absolute;
+    right: -22px;
+    bottom: -15px;
+    transform: rotate(-20deg);
+    height: 90px;
+    width: 90px;
+}
 .panel-content .grid-card .img-holder img {border-radius: 0; object-fit: contain;}
+.panel-content .grid-card .img-holder img[src*="shuttlecock.svg"] {
+    transform: scale(-1) rotate(110deg);
+    position: relative;
+    bottom: -5px;
+}
 .panel-content .template-grid .text-holder {background-color: inherit; border: 0; padding: 0; min-height: auto; line-height: normal; flex-direction: row; align-items: center; gap: 12px;}
 .panel-content .template-grid .coin-counts img {max-width: 20px; max-height: 20px; margin-top: 0;}
 .panel-content .template-grid .text-holder a {word-wrap: break-word;}
@@ -10664,6 +10704,7 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .timestables-retry-stage:before {background: url(/assets/default/svgs/retry.svg) left center no-repeat; position: absolute; left: 15px; top: 50%; content: ""; height: 12px; width: 12px; background-size: 100%; margin-top: -6px;}
 .timestables-retry-stage:hover {background-color: var(--primary); color: #fff; }
 .timestables-retry-stage:hover:before {filter: invert(100%) sepia(3%) saturate(13%) hue-rotate(81deg) brightness(106%) contrast(106%);}
+.rurera-list-controls {gap: 10px;}
 .rurera-list-btn {border: 2px solid #ddd; border-bottom-width: 4px; border-radius: 8px; display: inline-block; line-height: normal; padding: 10px 25px;white-space: nowrap;}
 .rurera-list-btn:hover {background-color: #f5f5f5;}
 .resume-test .rurera-list-btn:hover {color: var(--primary);}
@@ -10967,8 +11008,8 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .referral-price-lists .row [class*="col-"] {padding-left: 10px; padding-right: 10px;}
 .referral-price-card span {line-height: normal;}
 .referral-text p {margin-bottom: 10px;}
-.referral-text a {background-color: #efefef; padding: 8px 10px; border-radius: 3px; color: #2f2e36; display: inline-block; line-height: normal;}
-.referral-link input.link-address {border: 0; background-color: #efefef; height: 36px; width: calc(100% - 100px); padding: 0 12px; border-radius: 3px; color: #6c7292; margin-right: 5px;}
+.referral-text a {background-color: var(--primary); padding: 8px 10px; border-radius: 3px; color: #fff; display: inline-block; line-height: normal;}
+.referral-link input.link-address {border: 0; background-color: #efefef; height: 36px; width: calc(100% - 100px); padding: 0 12px; border-radius: 3px; color: #6c7292;}
 .withdraw-card {background-color: #e9f3ff; border: 1px dashed #3472bb; border-radius: 5px; gap: 20px;}
 .withdraw-card .icon-box {flex: 0 0 32px;}
 .withdraw-btn-holder {flex: 0 0 155px; margin-left: auto;}
@@ -11016,6 +11057,13 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .question_inactivity_modal .modal-dialog,
 .quiz-activity-pause .modal-dialog {margin-left: auto; margin-right: auto; max-width: 450px;}
 .question_inactivity_modal .modal-content {border-radius: 0;}
+.question_inactivity_modal .close {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    z-index: 1;
+    opacity: 1;
+}
 .question_inactivity_modal .modal-content .continue-btn,
 .question_inactivity_modal .modal-content .leavenow-btn,
 .inactivity-controls .continue-btn,
@@ -11279,7 +11327,7 @@ li.disable-timetable label {background: #efefef; cursor: unset; user-select: non
 .lms-choose-membership .flexible-progress-bar li.complete img, 
 .lms-choose-membership .flexible-progress-bar li.active img {filter: invert(32%) sepia(96%) saturate(583%) hue-rotate(201deg) brightness(114%) contrast(110%);}
 body .flipbook-data {height: 68%; transform: scale(1.5); margin-top: 280px;}
-.book-info-link img {object-fit: contain;}
+.book-info-link img {object-fit: contain; width: 70px !important; height: 70px !important;}
 .books-listing-holder .search-block {margin-bottom: 30px; }
 .search-block .search-input .form-group {border: 1px solid #ddd; padding: 10px 20px 10px 15px; border-radius: 10px;}
 .search-block .search-input .form-group .btn {height: 42px; padding: 0 40px; box-shadow: none; }
@@ -11713,6 +11761,7 @@ Lms Responsive Style Start
         position: absolute;
         left: 100%;
         background-color: #000;
+        font-size: 14px !important;
         color: #fff;
         text-transform: capitalize;
         white-space: nowrap;

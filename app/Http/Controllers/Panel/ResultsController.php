@@ -18,6 +18,7 @@ class ResultsController extends Controller
         $data = [
             'pageTitle' => 'Answers',
             'results' => $results,
+            'QuizzesResult' => $QuizzesResult,
         ];
         return view(getTemplate() . '.panel.results.'.$result_type, $data);
     }

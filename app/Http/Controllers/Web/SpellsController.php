@@ -28,7 +28,7 @@ class SpellsController extends Controller
 		abort(404);
 	}
 
-    public function index(Request $request)
+    public function index(Request $request, $quiz_category = '')
     {
         if (!auth()->check()) {
             return redirect('/login');
@@ -38,6 +38,8 @@ class SpellsController extends Controller
         }
         $user = getUser();
         $QuestionsAttemptController = new QuestionsAttemptController();
+		$quiz_category  = ( $quiz_category == 'spellings-bee')? 'Spellings Bee' : $quiz_category;
+		$quiz_category  = ( $quiz_category == 'word-lists')? 'Word Lists' : $quiz_category;
 		
 		
 		/*$QuizzesResult = QuizzesResult::find(2);	
@@ -66,7 +68,6 @@ class SpellsController extends Controller
         $subject = $request->get('subject', null);
         $examp_board = $request->get('examp_board', null);
         $year_id = $request->get('year', '');
-        $quiz_category = $request->get('quiz_category', '');
         $query = Quiz::where('status', Quiz::ACTIVE)->where('quiz_type', 'vocabulary');
         $year_id = $user->year_id;
         if ($year_id != '') {

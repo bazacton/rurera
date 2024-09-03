@@ -19,7 +19,7 @@
                                 <h2 itemprop="title" class="font-22 mb-0">Time Tables</h2>
                             </div>
                         </div>
-                        <div class="col-12 col-lg-12 col-md-12">
+                        <div class="col-12 col-lg-12 col-md-12 rurera-hide">
                             <ul class="tests-list type-list mb-30">
                                 <li data-type="single-player" class="active"><img src="/assets/default/img/single.png" alt=""> Single Player</li>
                                 <li data-type="multi-player"><img src="/assets/default/img/multi.png" alt=""> Multi Player</li>

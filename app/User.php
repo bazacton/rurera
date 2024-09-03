@@ -22,6 +22,7 @@ use App\Models\ReserveMeeting;
 use App\Models\RewardAccounting;
 use App\Models\UserAssignedTopics;
 use App\Models\UserSubscriptions;
+use App\Models\SchoolSubscriptions;
 use App\Models\Role;
 use App\Models\Follow;
 use App\Models\Sale;
@@ -3828,8 +3829,13 @@ class User extends Authenticatable
         }
         $is_subscribed = UserSubscriptions::where('user_id', $this->id)->where('status', 'active')->where($subscription_package, 1)->count();
 
+        $is_subscribed = ($is_subscribed > 0) ? true : false;
+		if( $is_subscribed == false){
+			$is_subscribed = SchoolSubscriptions::where('school_id', $this->school_id)->where('status', 'active')->where($subscription_package, 1)->count();
+		}
 		//$is_subscribed = 1;
         $is_subscribed = ($is_subscribed > 0) ? true : false;
+		
         return $is_subscribed;
     }
 

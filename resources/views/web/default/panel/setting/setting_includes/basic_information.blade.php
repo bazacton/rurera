@@ -234,25 +234,22 @@ if( !empty( $emojisArray ) ){
                     <div class="col-lg-12 col-md-12 col-12">
                         <div class="edit-profile-content-holder tab-content" id="myTabContent">
                             <div class="edit-profile-content panel-border bg-white rounded-sm p-25 tab-pane fade show active" id="edit-profile" role="tabpanel" aria-labelledby="edit-profile-tab">
-                                <div class="edit-profile-top d-flex align-items-center flex-wrap justify-content-between mb-50">
+                                <!-- <div class="edit-profile-top d-flex align-items-center flex-wrap justify-content-between mb-50">
                                     <div class="top-heading">
                                         <h5 class="font-16 font-weight-500">
                                             GENERAL INFO
                                             <span class="d-block pt-5 font-12">Edit your account's general information</span>
                                         </h5>
                                     </div>
-                                    <div class="edit-profile-controls">
-                                        <button type="button" id="saveData" class="save-btn text-center ">Save</button>
-                                    </div>
+                                </div> -->
+                                <div class="edit-element-title mb-15">
+                                    <h6 class="font-weight-500">
+                                        Profile picture
+                                        <!-- <span class="d-block pt-5 font-12">This is how others will recognize you</span> -->
+                                    </h6>
                                 </div>
                                 <div class="edit-profile-body">
                                     <div class="edit-profile-image">
-                                        <div class="edit-element-title mb-20">
-                                            <h6 class="font-weight-500">
-                                                Profile picture
-                                                <span class="d-block pt-5 font-12">This is how others will recognize you</span>
-                                            </h6>
-                                        </div>
                                         <div class="profile-image text-center">
                                             <figure class="d-inline-flex position-relative">
                                                 <img src="{{ (!empty($user)) ? $user->getAvatar(150) : '' }}" height="96" width="96" alt="">
@@ -263,10 +260,10 @@ if( !empty( $emojisArray ) ){
                                     <div class="mb-0">
                                         <div class="row">
                                             <div class="col-12">
-                                                <div class="edit-element-title mb-20">
+                                                <div class="edit-element-title mb-10">
                                                     <h6 class="font-weight-500">
                                                         Profile Info
-                                                        <span class="d-block pt-5 font-12">Others diserve to know you more</span>
+                                                        <!-- <span class="d-block pt-5 font-12">Others diserve to know you more</span> -->
                                                     </h6>
                                                 </div>
                                             </div>
@@ -279,10 +276,10 @@ if( !empty( $emojisArray ) ){
 											
 											
 											<div class="col-12">
-                                                <div class="edit-element-title mb-20">
+                                                <div class="edit-element-title mb-10">
                                                     <h6 class="font-weight-500">
                                                         Login Details
-                                                        <span class="d-block pt-5 font-12">This can help you to set login details</span>
+                                                        <!-- <span class="d-block pt-5 font-12">This can help you to set login details</span> -->
                                                     </h6>
                                                 </div>
                                             </div>
@@ -320,6 +317,9 @@ if( !empty( $emojisArray ) ){
 											
                                         </div>
                                     </div>
+                                </div>
+                                <div class="edit-profile-controls d-flex justify-content-end align-items-center">
+                                    <button type="button" id="saveData" class="save-btn text-center ">Save</button>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="edit-experience" role="tabpanel" aria-labelledby="edit-experience-tab">Experience</div>

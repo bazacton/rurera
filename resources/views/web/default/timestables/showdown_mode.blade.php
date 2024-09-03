@@ -51,8 +51,10 @@
                 <h4 class="text-center mb-20">{{ dateTimeFormat($lastMonday,'j F Y') }} to  {{ dateTimeFormat($nextSunday,'j F Y') }}</h4>
             </div>
             <div class="col-12 col-lg-12 mx-auto">
-                <a href="javascript:;" class="rurera-list-btn week-selection-btn" data-week_no="{{$currentWeek}}">Current Week</a>
-                <a href="javascript:;" class="rurera-list-btn week-selection-btn" data-week_no="{{$previousWeek}}">Last Week {{$previousWeek}}</a>
+                <div class="rurera-list-controls d-flex justify-content-center align-items-center">
+                    <a href="javascript:;" class="rurera-list-btn week-selection-btn" data-week_no="{{$currentWeek}}">Current Week</a>
+                    <a href="javascript:;" class="rurera-list-btn week-selection-btn" data-week_no="{{$previousWeek}}">Last Week {{$previousWeek}}</a>
+                </div>
                 <ul class="lms-performace-table leaderboard mt-30">
                     <li class="lms-performace-head leaderboard-title" style="background-color: #fff;">
                         <div><h2 class="text-center font-18">Rank#</h2></div>

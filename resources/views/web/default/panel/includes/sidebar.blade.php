@@ -74,7 +74,7 @@
                         <span class="sidenav-item-icon mr-20">
                             <img src="/assets/default/img/sidebar/home.svg">
                         </span>
-                        <span class="nav-sub-title font-14">Home</span>
+                        <span class="nav-sub-title font-16 font-weight-bold">Home</span>
                     </a>
                 </li>
             @if(auth()->user()->isParent() || auth()->user()->isTutor())
@@ -84,7 +84,7 @@
                             <img src="/assets/default/img/sidebar/set-work.svg">
                         </span>
                     </a>
-                    <a href="/{{panelRoute()}}/set-work/create" class="font-14 nav-sub-title">Set Work</a>
+                    <a href="/{{panelRoute()}}/set-work/create" class="font-16 nav-sub-title">Set Work</a>
                 </li>
 
             @endif
@@ -95,7 +95,7 @@
                                 <img src="/assets/default/img/sidebar/learn.svg">
                             </span>
                         </a>
-                            <a href="/learn" class="font-14 nav-sub-title">Learn @if(!auth()->subscription('courses'))<img src="/assets/default/svgs/crown.svg" class="crown-icon">@endif</a>
+                            <a href="/learn" class="font-16 nav-sub-title">Learn @if(!auth()->subscription('courses'))<img src="/assets/default/svgs/crown.svg" class="crown-icon">@endif</a>
                     </li>
 					@if(auth()->user()->show_timestables == 1)
 						<li class="sidenav-item {{ (request()->is('timestables-practice') or request()->is('timestables-practice/*')) ? 'sidenav-item-active' : '' }}">
@@ -104,7 +104,7 @@
 									<img src="/assets/default/img/sidebar/timestable.svg">
 								</span>
 							</a>
-							<a href="/timestables-practice" class="font-14 nav-sub-title">TimesTable</a>
+							<a href="/timestables-practice" class="font-16 nav-sub-title">TimesTable</a>
 						</li>
 					@endif
 					@if(auth()->user()->show_spellings == 1)
@@ -114,7 +114,7 @@
                                 <img src="/assets/default/img/sidebar/spell.svg">
                             </span>
                         </a>
-                        <a href="/spells" class="font-14 nav-sub-title">Word Lists</a>
+                        <a href="/spells" class="font-16 nav-sub-title">Word Lists</a>
                     </li>
 					@endif
 					@if(auth()->user()->show_books == 1)
@@ -124,7 +124,7 @@
                                 <img src="/assets/default/img/sidebar/books.svg">
                             </span>
                         </a>
-                            <a href="/books" class="font-14 nav-sub-title">Books @if(!auth()->subscription('bookshelf'))<img src="/assets/default/svgs/crown.svg" class="crown-icon">@endif</a>
+                            <a href="/books" class="font-16 nav-sub-title">Books @if(!auth()->subscription('bookshelf'))<img src="/assets/default/svgs/crown.svg" class="crown-icon">@endif</a>
                     </li>
 					@endif
                 
@@ -136,7 +136,7 @@
                         </span>
                     </a>
 
-                    <a href="/tests" class="font-14 nav-sub-title">Test @if(!auth()->subscription('sats'))<img src="/assets/default/svgs/crown.svg" class="crown-icon">@endif</a>
+                    <a href="/tests" class="font-16 nav-sub-title">Test @if(!auth()->subscription('sats'))<img src="/assets/default/svgs/crown.svg" class="crown-icon">@endif</a>
 
                 </li>
 				@endif
@@ -147,7 +147,7 @@
                         <img src="/assets/default/img/sidebar/quests.svg">
                     </span>
                 </a>
-                <a href="/quests" class="font-14 nav-sub-title">Quests</a>
+                <a href="/quests" class="font-16 nav-sub-title">Quests</a>
             </li>
             @endif
 
@@ -160,7 +160,7 @@
                             <img src="/assets/default/img/sidebar/games.svg">
                         </span>
                     </a>
-                    <a href="/games" class="font-14 nav-sub-title">Games</a>
+                    <a href="/games" class="font-16 nav-sub-title">Games</a>
                 </li>
 				@endif
                 <li class="sidenav-item {{ (request()->is('shop') or request()->is('shop/*')) ? 'sidenav-item-active' : '' }}">
@@ -169,7 +169,7 @@
                             <img src="/assets/default/img/sidebar/shop.svg">
                         </span>
                     </a>
-                    <a href="/shop" class="font-14 nav-sub-title">Shop</a>
+                    <a href="/shop" class="font-16 nav-sub-title">Shop</a>
                 </li>
                 @endif
                 <li class="sidenav-item {{ (request()->is('panel/analytics') or request()->is('panel/analytics/*')) ? 'sidenav-item-active' : '' }}">
@@ -178,7 +178,7 @@
                             <img src="/assets/default/img/sidebar/grarph.svg">
                         </span>
                     </a>
-                    <a href="/{{panelRoute()}}/analytics" class="font-14 nav-sub-title">Analytics</a>
+                    <a href="/{{panelRoute()}}/analytics" class="font-16 nav-sub-title">Analytics</a>
                 </li>
 
             @if(auth()->user()->isUser())
@@ -188,7 +188,7 @@
                             <img src="/assets/default/svgs/school-zone.svg">
                         </span>
                     </a>
-                    <a href="/school-zone" class="font-14 nav-sub-title">School Zone</a>
+                    <a href="/school-zone" class="font-16 nav-sub-title">School Zone</a>
                 </li>
             @endif
             <li class="sidenav-item {{ (request()->is('panel/marketing/affiliates') or request()->is('panel/marketing/affiliates/*')) ? 'sidenav-item-active' : '' }}">
@@ -197,7 +197,7 @@
                         <img src="/assets/default/img/sidebar/referrals.png">
                     </span>
                 </a>
-                <a href="/{{panelRoute()}}/marketing/affiliates" class="font-14 nav-sub-title">Referrals</a>
+                <a href="/{{panelRoute()}}/marketing/affiliates" class="font-16 nav-sub-title">Referrals</a>
             </li>
 
 
@@ -208,7 +208,7 @@
                             <img src="/assets/default/img/sidebar/members.png">
                         </span>
                     </a>
-                    <a href="/{{panelRoute()}}/students" class="font-14 nav-sub-title">Students</a>
+                    <a href="/{{panelRoute()}}/students" class="font-16 nav-sub-title">Students</a>
                 </li>
                 
 
@@ -220,7 +220,7 @@
                         <img src="{{ $authUser->getAvatar() }}" alt="{{ $authUser->get_full_name() }}" class="img-circle">
                     </span>
                 </a>
-                <a href="/{{panelRoute()}}/setting" class="font-14 nav-sub-title">Profile</a>
+                <a href="/{{panelRoute()}}/setting" class="font-16 nav-sub-title">Profile</a>
             </li>
 
             <li class="sidenav-item {{ (request()->is('logout') or request()->is('logout/*')) ? 'sidenav-item-active' : '' }}">
@@ -229,7 +229,7 @@
                         <img src="/assets/default/img/sidebar/logout.svg">
                     </span>
                 </a>
-                <a href="/logout" class="font-14 nav-sub-title">Logout</a>
+                <a href="/logout" class="font-16 nav-sub-title">Logout</a>
             </li>
 
 

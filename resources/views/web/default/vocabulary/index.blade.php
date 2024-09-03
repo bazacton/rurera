@@ -95,9 +95,9 @@
                             @php $active = ($quiz_category == '')? 'active' :'' @endphp
                             <li class="{{$active}}"><a href="/spells">All Word Lists</a></li>
                             @php $active = ($quiz_category == 'Word Lists')? 'active' :'' @endphp
-                            <li class="{{$active}}"><a href="/spells?quiz_category=Word+Lists">Word Lists</a></li>
+                            <li class="{{$active}}"><a href="/spells/word-lists">Word Lists</a></li>
                             @php $active = ($quiz_category == 'Spelling Bee')? 'active' :'' @endphp
-                            <li class="{{$active}}"><a href="/spells?quiz_category=Spelling+Bee">Spelling Bee</a></li>
+                            <li class="{{$active}}"><a href="/spells/spelling-bee">Spelling Bee</a></li>
                         </ul>
                     </div>
                 </div>

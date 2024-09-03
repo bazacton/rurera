@@ -93,7 +93,7 @@ class LearnController extends Controller
 							'background' => '',
 							'pageTitle' => $subChapterObj->sub_chapter_title,
 							'target_api' => '/panel/learn/'.$category_slug.'/'.$slug.'/'.$subChapterObj->sub_chapter_slug,
-							'target_layout' => 'list',
+							'target_layout' => 'learn_practice',
 						);
 					}
 				}

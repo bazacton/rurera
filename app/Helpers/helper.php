@@ -9712,3 +9712,32 @@ function getFileContent($filePath) {
 	
 	return $fileContent;
 }
+
+function get_powerup_tables($tables_numbers, $practice_level = 0){
+	switch ($practice_level) {
+        case 1:
+            $tables_numbers = array(2,3);
+            break;
+			
+		case 2:
+            $tables_numbers = array(2,3,4,5,6);
+            break;
+			
+		case 3:
+            $tables_numbers = array(2,3,4,5,6,7,8,9);
+            break;
+			
+		case 4:
+            $tables_numbers = array(2,3,4,5,6,7,8,9,10,11,12);
+            break;
+			
+		case 5:
+            $tables_numbers = array(2,3,4,5,6,7,8,9,10,11,12,13,14,15);
+            break;
+			
+		case 6:
+            $tables_numbers = array(2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18);
+            break;
+    }
+	return $tables_numbers;
+}

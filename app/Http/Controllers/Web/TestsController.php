@@ -27,7 +27,7 @@ class TestsController extends Controller
             return redirect('/'.panelRoute());
         }
         $user = getUser();
-
+		
         $switchUserObj = (object) array();
         if( $user->selected_user > 0) {
             $switchUserObj = User::find($user->selected_user);
@@ -36,7 +36,6 @@ class TestsController extends Controller
         $QuestionsAttemptController = new QuestionsAttemptController();
 
         $summary_type = 'sats';
-        $QuizzResultQuestionsObj = $QuestionsAttemptController->prepare_graph_data($summary_type);
 
         $graphs_array = array();
 
@@ -48,13 +47,6 @@ class TestsController extends Controller
             'end'   => $end_date,
         );
 
-        $graphs_array['Custom'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'custom', $start_date, $end_date);
-
-        $graphs_array['Year'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'yearly');
-        $graphs_array['Month'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'monthly');
-        $graphs_array['Week'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'weekly');
-        $graphs_array['Day'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'daily');
-        $graphs_array['Hour'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'hourly');
 
         $query = Quiz::where('status', Quiz::ACTIVE)->whereIn('quiz_type', ['sats', '11plus', 'cat4', 'iseb', 'independence_exams'])->with('quizQuestionsList');
 		if (auth()->check() && auth()->user()->isUser()) {
@@ -63,6 +55,7 @@ class TestsController extends Controller
 			});
 		}
 		$sats = $query->paginate(100);
+		
 		
 		
 		$response_layout_array = array();
@@ -85,6 +78,7 @@ class TestsController extends Controller
             }
         }
 		
+		
 		usort($response_layout_array, function($a, $b) {
 			if ($a['is_resumed'] == $b['is_resumed']) {
 				return 0;
@@ -100,7 +94,6 @@ class TestsController extends Controller
 				$response_layout	.= isset( $response_layout_data['response_layout'] )? $response_layout_data['response_layout'] : '';
 			}
 		}
-
         $parent_assignedArray = UserAssignedTopics::where('assigned_by_id', $user->id)->where('status', 'active')->select('id', 'assigned_by_id', 'topic_id', 'assigned_to_id', 'deadline_date')->get()->toArray();
         $parent_assigned_list = array();
         if (!empty($parent_assignedArray)) {
@@ -142,7 +135,6 @@ class TestsController extends Controller
 				'response_layout' 		     => $response_layout,
                 'switchUserObj'              => $switchUserObj,
                 'parent_assigned_list'       => $parent_assigned_list,
-                'graphs_array'               => $graphs_array,
                 'summary_type'               => $summary_type,
                 'custom_dates'               => $custom_dates,
             ];

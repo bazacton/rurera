@@ -1,3 +1,4 @@
+var stage_created = false;
 $(document).on('click', '.control-tool-item', function () {
     $(".field-options").addClass('hide');
     $('.control-tool-item').removeClass('active');
@@ -149,7 +150,7 @@ $(document).on('click', '.book-dropzone', function (e) {
         dropZonObj.append($el);
     }
 
-    if (drag_type == "topic") {
+    if (drag_type == "topicsss") {
 
         var $el = $('<div style="left:' + e.offsetX + 'px; top:' + e.offsetY + 'px;" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-field_type="' + drag_type + '" data-topic_title="" data-trigger_class="infobox-topic-fields"><div class="field-data"><img src="/assets/default/img/book-icons/quiz.png"></div>');
         //$el.append('<span class="field-handle fas fa-arrows-alt"></span><a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
@@ -199,7 +200,7 @@ $(document).on('click', '.book-dropzone', function (e) {
 	
 	var z_index = $(".editor-objects-list li").length+1;
 	if( item_title != undefined){
-		$(".editor-objects-list").append('<li data-id="'+field_random_number+'" data-field_postition="'+z_index+'">'+item_title+' <i class="fa fa-trash"></i><i class="fa fa-lock"></i><i class="fa fa-sort"></i></li>');
+		$(".editor-objects-list").append('<li data-id="'+field_random_number+'" data-field_postition="'+z_index+'">'+item_title+' <i class="fa fa-trash"></i><i class="fa fa-lock"></i><i class="fa fa-sort"></i><i class="fa fa-copy"></i></li>');
 		$(".editor-objects-list").sortable({
 			update: function(event, ui) {
 				sorting_render(); // Call your function here
@@ -249,7 +250,13 @@ $(document).on('click', '.page_settings', function (e) {
         var field_type = $(this).data('field_type');
         var field_value = fieldObj.attr('data-' + field_id);
         if (field_type != 'image') {
-            $(this).val(field_value);
+			
+			if( field_id == 'page_graph'){
+				if( field_value == 1){
+					$(this).closest('.custom-switch').find(".custom-switch-input").prop('checked', true);
+				}
+			}
+			$(this).val(field_value);
         }
 
     });
@@ -259,7 +266,7 @@ $(document).on('click', '.page_settings', function (e) {
 		format: 'hex',
 	});
 });
-
+var subject_topics_list = [];
 $(document).on('click', '.field_settings', function (e) {
     $(".field-options").html('');
     var fieldObj = $(this);
@@ -275,6 +282,7 @@ $(document).on('click', '.field_settings', function (e) {
 	$('.editor-objects-list li[data-id="'+field_id+'"]').addClass('active');
 
     $('.field-options .trigger_field').each(function () {
+		var currentFieldObj = $(this);
         var field_id = $(this).data('field_id');
         var field_type = $(this).data('field_type');
         var field_value = fieldObj.attr('data-' + field_id);
@@ -287,7 +295,22 @@ $(document).on('click', '.field_settings', function (e) {
             }
             $(this).addClass('summernote-editor_' + parent_field_id);
         }
+		
+		
+		
 
+		if (field_type == 'select_topic') {
+			
+			
+			$.each(subject_topics_list, function(title, id) {
+				currentFieldObj.append($('<option>', {
+					value: id,
+					text: title,
+					selected: id == field_value
+				}));
+			});
+			
+		}
         if (field_type == 'select_info') {
             var book_page_id = $(".book-dropzone.active").attr('data-page_id');
             $(this).addClass('search-infobox-select2_' + parent_field_id);
@@ -395,6 +418,13 @@ function trigger_field_change(thisObj) {
 
         this_value = this_value.join(",");
     }
+	
+	if (field_type == 'select_topic') {
+		
+		if( this_value === null){
+			this_value = '';
+		}
+    }
 
     this_value = this_value.replace(/\n/g, '<br />');
 
@@ -438,7 +468,9 @@ function trigger_field_change(thisObj) {
 	if (field_type == 'svg_path_style') {
 		
 		$(".draggable_field_" + data_id).find('svg').find('path').css(field_name,this_value);
+		$(".draggable_field_" + data_id).find('svg').find('rect').css(field_name,this_value);
 		$(".draggable_field_" + data_id).attr('data-inner_style', $(".draggable_field_" + data_id).find('svg').find('path').attr('style'));
+		$(".draggable_field_" + data_id).attr('data-inner_style', $(".draggable_field_" + data_id).find('svg').find('rect').attr('style'));
     }
 	
 	
@@ -459,7 +491,7 @@ jQuery(document).ready(function () {
     });
 	
 	
-		$('.saved-item-class').click();
+		//$('.saved-item-class').click();
 		
 		
 		
@@ -667,6 +699,28 @@ $(document).on('click', '.generate', function (e) {
             Swal.fire({icon: "success", html: '<h3 class="font-20 text-center text-dark-blue">Page Successfully Updated</h3>', showConfirmButton: !1});
         }
     });*/
+
+});
+
+
+$(document).on('change', 'select[name="subject_id"]', function (e) {
+	
+	var year_id = $(".category-id-field").val();
+	var subject_id = $(this).val();
+
+    $.ajax({
+		type: "GET",
+		url: '/admin/learning_journey/get_topics',
+		data: {'year_id': year_id, 'subject_id': subject_id},
+		success: function (return_data) {
+			subject_topics_list = JSON.parse(return_data);
+			if( stage_created == false){
+				$('.saved-item-class').click();
+				stage_created = true;
+			}
+			
+		}
+	});
 
 });
 

@@ -113,10 +113,10 @@ $topics_list = getSvgFiles('assets/admin/editor/topics/');
 		<h5>Layers</h5>
 		<ul class="editor-objects-list">
 		@php
-			if( !empty( $itemObj->LearningJourneyObjects->where('status','active') )){
+			if( isset( $itemObj->id ) && !empty( $itemObj->LearningJourneyObjects->where('status','active') )){
 				foreach( $itemObj->LearningJourneyObjects->where('status','active') as $learningJourneyItemObj){
 					
-					echo '<li data-id="rand_'.$learningJourneyItemObj->id.'" data-field_postition="2">'.$learningJourneyItemObj->item_slug.' <i class="fa fa-trash"></i><i class="lock-layer fa fa-unlock"></i><i class="fa fa-sort"></i></li>';
+					echo '<li data-id="rand_'.$learningJourneyItemObj->id.'" data-field_postition="2">'.$learningJourneyItemObj->item_slug.' <i class="fa fa-trash"></i><i class="lock-layer fa fa-unlock"></i><i class="fa fa-sort"></i><i class="fa fa-copy"></i></li>';
 					
 				}
 			}
@@ -290,6 +290,15 @@ $topics_list = getSvgFiles('assets/admin/editor/topics/');
 							</div>
 						</div>	   
 				</div>
+				
+				<div class="option-field-item">
+					<label class="input-label">Topic</label>
+					<select data-field_id="topic"
+							data-search-option="topic"
+							class="trigger_field form-control search_topic" data-field_name="select_topic" data-field_type="select_topic"
+							data-placeholder="Search Topic" data-id="">
+					</select>
+				</div>
 			</div>
 		@endforeach
 	@endif
@@ -346,7 +355,7 @@ $topics_list = getSvgFiles('assets/admin/editor/topics/');
 		@foreach( $topics_list as $topicObj)
 			@php 
 			$obj_slug = isset( $topicObj['slug'] )? $topicObj['slug'] : '';
-			$svg_code = isset( $objectObj['svg_code'] )? $objectObj['svg_code'] : '';
+			$svg_code = isset( $topicObj['svg_code'] )? $topicObj['svg_code'] : '';
 			$svg_code = updateSvgDimensions($svg_code, '100%', '100%');
 			@endphp
 			<div class="{{$obj_slug}}_svg">

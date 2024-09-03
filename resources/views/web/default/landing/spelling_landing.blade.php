@@ -49,7 +49,7 @@
                             <img src="../assets/default/svgs/book-opend.svg" width="25" height="25" alt="#">Proven Resources: 100% Success Results
                         </li>
                     </ul>
-                    <a href="/register-as" class="py-5 px-15 text-dark-blue font-16 register-btn">Try for free</a>
+                    <a href="/pricing" class="try-rurera-btn justify-content-center bg-primary text-white register-btn">Try Rurera for free</a>
                     <!-- <div class="d-flex align-items-center">
                         <a href="{{url('/')}}/register" class="btn-primary rounded-pill">KS1-year2 SATs</a>
                         <a href="{{url('/')}}/register" class="btn-primary rounded-pill ml-15">KS2-year6 SATs</a>
@@ -696,7 +696,6 @@
                             Explore a wide range of SATs papers and resources to master fundamental concepts and boost your problem-solving skills for the SATs exam.
 
                         </p>
-                        <a href="/register-as" class="py-5 px-15 text-dark-blue font-16 register-btn">Try for free</a>
                     </div>
                     <!-- <div class="mt-35 d-flex align-items-center btn-holder">
                         <a href="{{url('/')}}/pricing" class="btn btn-primary">Take a Quiz</a>
@@ -710,6 +709,11 @@
                     <img src="/store/1/default_images/home_sections_banners/lesson-topics.jpg" width="400" height="460" class="find-instructor-section-hero" alt="Have a Question? Ask it in forum and get answer" />
                     <img src="/assets/default/img/home/circle-4.png" width="170" height="170" class="find-instructor-section-circle" alt="circle" />
                     <img src="/assets/default/img/home/dot.png" width="70" height="110" class="find-instructor-section-dots" alt="dots" />
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="d-flex align-items-center justify-content-center mt-90">
+                    <a href="/pricing" class="try-rurera-btn justify-content-center bg-primary text-white register-btn">Try Rurera for free</a>
                 </div>
             </div>
         </div>
@@ -1076,8 +1080,11 @@
                 </div>
             </div>
         </div>
+        <div class="d-flex align-items-center justify-content-center pt-50">
+            <a href="/pricing" class="try-rurera-btn justify-content-center bg-primary text-white register-btn">Try Rurera for free</a>
+        </div>
     </section>
-    <a href="/register-as" class="py-5 px-15 text-dark-blue font-16 register-btn">Try for free</a>
+    
     @php $faq_items = isset( $faq_items )? $faq_items : array();@endphp
     <section class="py-70" style="background-color: #fff">
         <div class="container">

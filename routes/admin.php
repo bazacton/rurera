@@ -612,6 +612,7 @@ Route::group([
             Route::get('/learning_journey_treasure_layout', 'LearningJourneyController@learning_journey_treasure_layout');
 
             Route::get('/learning_journey_set_layout', 'LearningJourneyController@learning_journey_set_layout');
+			Route::get('/get_topics', 'LearningJourneyController@get_topics');
         });
 
 

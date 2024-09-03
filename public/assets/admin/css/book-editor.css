@@ -1,0 +1,176 @@
+.drag-controls {
+    position: absolute;
+    right: -40px;
+    top: 30px;
+    height: calc(100% - 120px);
+    border: 1px solid #cccccc;
+    border-radius: 0 8px 8px 0 / 0 50px 50px 0;
+    padding-top: 15px;
+    background-color: #fff;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+
+
+.open .drag-controls {
+    right: 1px;
+    opacity: 1;
+    visibility: visible;
+}
+
+.controls-box {
+    height: 100%;
+    width: 100%;
+}
+
+.controls-dropdown {
+    padding: 5px;
+    margin: 0;
+    height: 100%;
+    display: inline-block;
+}
+
+.controls-dropdown li {
+    margin: 0;
+}
+
+.drag-controls li a {
+    font-size: 12px;
+    color: #ccc;
+    font-weight: 500;
+    text-align: center;
+    border-radius: 5px;
+    padding: 8px 3px;
+    display: block;
+    text-transform: lowercase;
+}
+
+.drag-controls li a span {
+    display: block;
+    font-weight: 400;
+}
+
+/*.drag-controls svg g {
+    fill: #ccc;
+}*/
+
+.drag-controls svg {
+    width: 20px;
+    height: 20px;
+    margin: 0 auto 5px;
+    display: block;
+}
+
+.drag-controls li a:hover, .drag-controls li a.active {
+    background-color: #4d9eb3;
+    color: #fff;
+}
+
+.drag-controls li a:hover svg g, .drag-controls li a.active svg g {
+    fill: #fff;
+}
+
+.drag-controls .sub-dropdown {
+    position: absolute;
+    right: 50%;
+    top: 0;
+    background-color: #fff;
+    width: 90px;
+    height: calc(100% + 2px);
+    border-radius: 8px 0 0 8px / 50px 0 0 50px;
+    margin: -1px 0 0 -28px;
+    border: 1px solid #ccc;
+    text-align: center;
+    padding: 20px 0;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    z-index: -1;
+}
+
+.controls-dropdown > li:hover .sub-dropdown {
+    right: 100%;
+    width: 90px;
+    opacity: 1;
+    visibility: visible;
+    z-index: 0;
+}
+
+.drag-controls li .sub-dropdown a {
+    display: inline-block;
+    padding: 8px 4px;
+}
+
+.drag-controls li .sub-dropdown a svg {
+    margin: 0;
+}
+
+.open-controls-btn {
+    position: absolute;
+    right: 4px;
+    top: -32px;
+    height: 25px;
+    width: 25px;
+    background-color: #ccc;
+    border-radius: 100%;
+}
+
+
+.book-dropzone {
+    background-size: cover !important;
+    position: relative;
+}
+
+.book-dropzone .stage-shapes{
+    height:30px;
+    width:140px;
+}
+
+.book-dropzone .resizeable{
+    resize: both;
+    overflow: hidden;
+}
+
+.hide {
+    display: none;
+}
+
+
+.book-dropzone .drop-item {
+    position: absolute;
+    width: fit-content;
+}
+
+.drop-item span.field-handle {
+    position: absolute;
+    right: 5px;
+    top: -15px;
+    cursor: move;
+}
+
+.book-dropzone .text-highlighter {
+    background: yellow;
+    opacity: 0.7;
+    width: inherit;
+    height: inherit;
+}
+
+.drop-item a.remove {
+    color: #ff0000;
+}
+
+.editor-zone .field-options {
+    position: absolute;
+    top: 0;
+    right: -430px;
+    padding: 10px;
+    background: #f1f1f1;
+    border: 1px solid #efefef;
+    height: 100%;
+    width: 408px;
+}

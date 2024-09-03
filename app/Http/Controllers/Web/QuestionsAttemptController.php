@@ -1379,6 +1379,8 @@ class QuestionsAttemptController extends Controller
             
             $this->afterQuestionCorrect($parent_type);
         }
+		
+		return $question_score;
 
     }
 
@@ -1572,7 +1574,7 @@ class QuestionsAttemptController extends Controller
         $column_name = ($parent_type == 'id') ? 'parent_type_id' : '';
         $column_name = ($parent_type == 'type') ? 'quiz_result_type' : $column_name;
 
-        $userQuizDone = QuizzesResult::where($column_name, $parent_id)->with([
+        $userQuizDone = QuizzesResult::SELECT('id','status')->where($column_name, $parent_id)->with([
             'attempts' => function ($query) {
                 $query->with('quizz_result_questions');
             }
@@ -1972,7 +1974,8 @@ class QuestionsAttemptController extends Controller
         $attempt_log_id = createAttemptLog($QuizzAttempts->id, 'Session Ends', 'end');
 
         $total_time_consumed = 0;
-        $incorrect_array = $correct_array = array();
+        $total_questions_array = $incorrect_array = $not_attempted_array = $correct_array = array();
+		$total_coins_earned = 0;
         if (!empty($timestables_data)) {
 			
             foreach ($timestables_data as $tableData) {
@@ -2011,10 +2014,14 @@ class QuestionsAttemptController extends Controller
                     'attempt_mode'     => $QuizzesResult->attempt_mode,
                     'child_type_id'   => $to,
                 ]);
+				$total_questions_array[] = $newQuestionResult->id;
                 if($is_correct != 'true' && $question_status != 'not_attempted'){
                     $incorrect_array[] = $newQuestionResult->id;
                 }
-                if($is_correct == 'true'){
+                if($question_status == 'not_attempted'){
+                    $not_attempted_array[] = $newQuestionResult->id;
+                }
+				if($is_correct == 'true'){
                     $correct_array[] = $newQuestionResult->id;
                 }
 				
@@ -2022,19 +2029,36 @@ class QuestionsAttemptController extends Controller
 				if( $QuizzesResult->attempt_mode == 'treasure_mode') {
 					$percentage_correct_answer = $this->get_percetange_corrct_answer($QuizzesResult);
 					if( $percentage_correct_answer >= 95){
-						$this->update_reward_points($newQuestionResult, ($is_correct == 'true') ? true : false, $QuizzesResult->parent_type_id);
+						$earn_coins = $this->update_reward_points($newQuestionResult, ($is_correct == 'true') ? true : false, $QuizzesResult->parent_type_id);
+						$total_coins_earned =+ ($earn_coins > 0)? $earn_coins : 0;
 					}
 				}else{
-					$this->update_reward_points($newQuestionResult, ($is_correct == 'true') ? true : false, $QuizzesResult->parent_type_id);
+					$earn_coins = $this->update_reward_points($newQuestionResult, ($is_correct == 'true') ? true : false, $QuizzesResult->parent_type_id);
+					$total_coins_earned =+ ($earn_coins > 0)? $earn_coins : 0;
 				}
 
             }
         }
 
         $QuizzesResult->update([
+            'total_questions' => count($total_questions_array),
+            'total_attempted' => count($total_questions_array) - count($not_attempted_array),
             'total_correct' => count($correct_array),
+            'total_incorrect' => count($incorrect_array),
+            'total_not_attempted' => count($not_attempted_array),
+            'total_coins_earned' => $total_coins_earned,
             'total_time_consumed'     => ($total_time_consumed > 0)? ($total_time_consumed / 10) : 0,
         ]);
+		
+		$QuizzAttempts->update([
+			'total_questions' => count($total_questions_array),
+            'total_attempted' => count($total_questions_array) - count($not_attempted_array),
+            'total_correct' => count($correct_array),
+            'total_incorrect' => count($incorrect_array),
+            'total_not_attempted' => count($not_attempted_array),
+            'total_coins_earned' => $total_coins_earned,
+            'total_time_consumed'     => ($total_time_consumed > 0)? ($total_time_consumed / 10) : 0,
+		]);
 
         if( $QuizzesResult->attempt_mode == 'showdown_mode') {
             $user->update([
@@ -2696,9 +2720,7 @@ class QuestionsAttemptController extends Controller
             $user_id = $user->id;
         }
         $user_id = is_array( $user_id )? $user_id : array($user_id);
-        $QuizzResultQuestions = QuizzResultQuestions::where('quiz_result_type', $result_type)->where('status', '!=', 'waiting');
-        $QuizzResultQuestions   = $QuizzResultQuestions->whereIn('user_id', $user_id);
-        $QuizzResultQuestions = $QuizzResultQuestions->get();
+        $QuizzResultQuestions = QuizzResultQuestions::SELECT('id')->where('quiz_result_type', $result_type)->where('status', '!=', 'waiting')->whereIn('user_id', $user_id)->get();
         return $QuizzResultQuestions;
     }
 

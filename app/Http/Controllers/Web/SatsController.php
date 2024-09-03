@@ -207,7 +207,6 @@ class SatsController extends Controller
 
         $summary_type = 'sats';
         $QuizzResultQuestionsObj = $QuestionsAttemptController->prepare_graph_data($summary_type);
-
         $graphs_array = array();
 
         $start_date = strtotime('2023-09-20');

@@ -57,14 +57,16 @@ class AnalyticsController extends Controller
 
 
         $graphs_array = array();
-
-        $start_date = strtotime('2023-12-18');
+		
+		$start_date = strtotime('2023-12-18');
         $end_date = strtotime('2023-12-24');
         $custom_dates = array(
             'start' => $start_date,
             'end'   => $end_date,
         );
 
+		/*
+        
         $graphs_array['Custom'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'custom', $start_date, $end_date);
 
         $graphs_array['Year'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'yearly');
@@ -73,6 +75,7 @@ class AnalyticsController extends Controller
         $graphs_array['Day'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'daily');
         $graphs_array['Hour'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'hourly');
 
+		*/
         $completedQuests = RewardAccounting::where('user_id', $user->id)->where('status', RewardAccounting::ADDICTION)->where('parent_type', 'quest')->get();
 
         $userQuests = array();
@@ -159,20 +162,16 @@ class AnalyticsController extends Controller
 		if( $type_id > 0){
 			$QuizzesAttempts = 	$QuizzesAttempts->where('parent_type_id', $type_id);
 		}
-		$QuizzesAttempts = 	$QuizzesAttempts->with([
-            'timeConsumed',
-            'endSession' => function ($query) {
-                $query->orderBy('id', 'desc');
-            },
-        ])->whereHas('quizzes_results', function ($query) {
+		$QuizzesAttempts = 	$QuizzesAttempts->whereHas('quizzes_results', function ($query) {
             $query->where('status', '!=', 'waiting');
         })->orderBy('created_at', 'desc')->get()->filter(function ($attempt) {
-            return $attempt->timeConsumed->sum('time_consumed') > 0;
+            return $attempt->total_time_consumed > 0;
         });
 
         $QuizzesAttempts = $QuizzesAttempts->groupBy(function ($QuizzesAttemptsQuery) {
             return date('d_m_Y', $QuizzesAttemptsQuery->created_at);
         });
+		
 
 		
 		
@@ -342,7 +341,7 @@ class AnalyticsController extends Controller
         $data['analytics_data'] = $analytics_data;
         //$data['user_graph_data'] = $user_graph_data;
         //$data['QuizzResultQuestionsObj']   => $QuizzResultQuestionsObj;
-        $data['graphs_array'] = $graphs_array;
+        //$data['graphs_array'] = $graphs_array;
         $data['custom_dates'] = $custom_dates;
         $data['summary_type'] = $summary_type;
         $data['childs'] = $childs;

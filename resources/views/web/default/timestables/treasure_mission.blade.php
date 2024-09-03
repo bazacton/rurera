@@ -125,8 +125,8 @@
 														<div class="tooltip-box">
 															<h5 class="font-18 font-weight-bold text-white mb-5">															
 															Active practice: {{isset( $timestableResultObj->total_time_consumed )? getTimeWithText($timestableResultObj->total_time_consumed) : 0}}<br> 
-															Questions answered: {{$timestableResultObj->quizz_result_questions_list->whereNotIn('status', array('waiting','not_attempted'))->count()}} <br>
-															<img src="/assets/default/img/panel-sidebar/coins.svg" alt="" width="30">Coins earned:{{$timestableResultObj->quizz_result_questions_list->where('status', 'correct')->sum('quiz_grade')}}
+															Questions answered: {{$timestableResultObj->total_attempted}} <br>
+															<img src="/assets/default/img/panel-sidebar/coins.svg" alt="" width="30">Coins earned:{{$timestableResultObj->total_coins_earned}}
 															</h5>
 															<button class="tooltip-button" onclick="window.location.href='/panel/results/{{$timestableResultObj->id}}/timetables';">Result</button>
 														</div>

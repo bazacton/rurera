@@ -102,7 +102,7 @@ $rand_id = rand(99,9999);
                                                         </div>
                                                         <div class="summary-text">
                                                             <label>Questions Answered</label>
-                                                            <div class="score">{{countSubItemsOnlySpecific((array) $results, 'time_consumed')}}</div>
+                                                            <div class="score">{{$QuizzesResult->total_attempted}}</div>
                                                         </div>
                                                     </div>
                                                     <div class="col-12 col-md-4 col-lg-3">
@@ -111,7 +111,7 @@ $rand_id = rand(99,9999);
                                                         </div>
                                                         <div class="summary-text">
                                                             <label>Questions Incorrect</label>
-                                                            <div class="score incorrect-questions">0</div>
+                                                            <div class="score incorrect-questions">{{$QuizzesResult->total_incorrect}}</div>
                                                         </div>
                                                     </div>
 
@@ -123,7 +123,7 @@ $rand_id = rand(99,9999);
                                                         </div>
                                                         <div class="summary-text">
                                                             <label>Time Spent</label>
-                                                            <div class="score summary-time-spend">0m / 0m</div>
+                                                            <div class="score summary-time-spend">{{getTimeWithText($QuizzesResult->total_time_consumed)}}</div>
                                                         </div>
                                                     </div>
                                                     <div class="col-12 col-md-4 col-lg-3">
@@ -164,7 +164,7 @@ $rand_id = rand(99,9999);
                                                         </div>
                                                         <div class="summary-text">
                                                             <label>Coin earned</label>
-                                                            <div class="score summary-coins-earned">0</div>
+                                                            <div class="score summary-coins-earned">{{$QuizzesResult->total_coins_earned}}</div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -278,9 +278,9 @@ $rand_id = rand(99,9999);
 <script type="text/javascript">
     $(document).ready(function () {
 
-        $(".incorrect-questions").html('{{$incorrect_questions}}');
-        $(".summary-time-spend").html('{{getTimeWithText($summary_time_spend)}}');
-        $(".summary-coins-earned").html('{{$summary_coins_earned}}');
+        //$(".incorrect-questions").html('{{$incorrect_questions}}');
+        //$(".summary-time-spend").html('{{getTimeWithText($summary_time_spend)}}');
+        //$(".summary-coins-earned").html('{{$summary_coins_earned}}');
 
     });
 </script>

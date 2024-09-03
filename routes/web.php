@@ -243,6 +243,11 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
         });
         Route::get('/{quiz_id}/start' , 'WebinarController@start');
     });
+	
+	
+	Route::group(['prefix' => 'links-data'] , function () {
+        Route::get('/' , 'LinksDataController@index');
+    });
 
     Route::group(['prefix' => 'certificate_validation'] , function () {
         Route::get('/' , 'CertificateValidationController@index');
@@ -613,6 +618,7 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
 
     Route::group(['prefix' => 'spells'] , function () {
        Route::get('/' , 'SpellsController@index');
+	   Route::get('/{spell_category}' , 'SpellsController@index');
        Route::get('/{quiz_year}/{quiz_slug}/words-list' , 'SpellsController@words_list');
        Route::get('/words_list' , 'SpellsController@words_list');
        Route::get('/{quiz_year}/{quiz_slug}' , 'SpellsController@start');

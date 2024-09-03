@@ -78,8 +78,8 @@
                 '<div class="people-reading"> <span> <img src="/assets/vendors/flipbook/images/reading-peo-img1.png" alt=""> 30k people are currently reading </span> </div>' .
                 '</div></div>' .
                 '<div class="card-footer"> <div class="btn-options"> ' .
-                '<a href="#" class="listing-btn"><i class="fa-book fa"></i>Read the eBook</a> ' .
-                '<a href="#" class="listing-btn"><i class="fa-question-circle fa"></i>Take the quiz</a> ' .
+                '<a href="#" class="listing-btn try-rurera-btn"><i class="fa-book fa"></i>Read the eBook</a> ' .
+                '<a href="#" class="listing-btn try-rurera-btn"><i class="fa-question-circle fa"></i>Take the quiz</a> ' .
                 '</div></div></div></div>' .
                 '<div class="author-book-types"> <h5>What kind of book is The '.$book_title.'</h5> ' .
                 '<ul> ';
@@ -186,13 +186,13 @@
                         $("body").removeClass("quiz-open");
                     }
                 },
-                {
-                    icon:'fa-cog',
-                    title:'setting',
-                    onclick:function(){
-                        $("body").toggleClass("active-hide-buttons");
-                    }
-                }
+                // {
+                //     icon:'fa-cog',
+                //     title:'setting',
+                //     onclick:function(){
+                //         $("body").toggleClass("active-hide-buttons");
+                //     }
+                // }
 
             ],
         });
@@ -429,15 +429,18 @@
 <div class="modal-dialog modal-dialog-centered" role="document">
   <div class="modal-content">
     <div class="modal-body">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
       <div class="modal-box">
         <div class="modal-title rurera-hide">
             <span class="inactivity-timer">30</span>
         </div>
-        <h3>Session End</h3>
+        <h3 class="font-24">Session End</h3>
         <p>
-            Looks like you're inactive. Your session has been closed.
+            Looks like you're inactive. <br> Your session has been closed.
         </p>
-       <a href="javascript:;" class="continue-btn" data-dismiss="modal" aria-label="Close">Continue Reading</a>
+       <a href="javascript:;" class="continue-btn mt-15" data-dismiss="modal" aria-label="Close">Continue Reading</a>
       </div>
     </div>
   </div>

@@ -36,7 +36,7 @@
     <section class="container mt-10 mt-md-40 lms-blog">
         <div class="row">
             <div class="col-12 col-lg-12">
-                <div class="post-show mt-30">
+                <div class="post-show pb-70">
 
                     {!! nl2br($post->content) !!}
                 </div>

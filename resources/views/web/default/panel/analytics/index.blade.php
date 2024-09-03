@@ -34,11 +34,6 @@
 </section>
 
 
-<section class="page-section analytics-graph-data hide">
-    @include('web.default.panel.analytics.graph_data',['show_types'=> true, 'graphs_array' => $graphs_array,
-    'summary_type' => $summary_type,
-    'QuestionsAttemptController'=> $QuestionsAttemptController])
-</section>
 <section>
 
 

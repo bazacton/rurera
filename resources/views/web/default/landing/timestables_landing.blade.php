@@ -89,6 +89,9 @@
                     <p class="font-16 text-gray">
                         Personalized approach allows students to focus on specific times tables they find challenging and spend more time practicing those particular facts until they are confidently memorized.
                     </p>
+                    <div class="d-flex align-items-center justify-content-center pt-30">
+                        <a href="/pricing" class="try-rurera-btn justify-content-center bg-primary text-white register-btn">Try Rurera for free</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -179,9 +182,9 @@
         </div>
     </section>
 
-
-
-
+    <div class="d-flex align-items-center justify-content-center pt-80">
+        <a href="/pricing" class="try-rurera-btn justify-content-center bg-primary text-white register-btn">Try Rurera for free</a>
+    </div>
     <section class="pt-80">
         <div class="container">
             <div class="row">
@@ -453,6 +456,9 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="d-flex align-items-center justify-content-center pt-50">
+            <a href="/pricing" class="try-rurera-btn justify-content-center bg-primary text-white register-btn">Try Rurera for free</a>
         </div>
     </section>
 

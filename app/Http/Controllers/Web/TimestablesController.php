@@ -141,7 +141,7 @@ class TimestablesController extends Controller
         $questions_list = $already_exists = array();
 
 
-        $max_questions = 10;
+        $max_questions = 12;
         $current_question_max = 2;
         $questions_no_array = [];
         while ($current_question_max <= $max_questions) {
@@ -172,7 +172,7 @@ class TimestablesController extends Controller
 
                 $last_value = ($questions_no_dynamic) * $table_no;
                 $from_value = ($type == '÷') ? $last_value : $table_no;
-                $limit = 10;
+                $limit = 12;
                 $min = 2;
                 $min = ($type == '÷') ? 1 : $min;
                 $limit = ($type == '÷') ? ($table_no * $limit) : $limit;
@@ -824,6 +824,7 @@ class TimestablesController extends Controller
         /*if (!auth()->subscription('timestables')) {
             return view('web.default.quizzes.not_subscribed');
         }*/
+        $practice_level = $request->post('practice_level');
         $user = getUser();
 
         $times_tables_data = $this->user_times_tables_data_single_user(array($user->id), 'x');
@@ -850,6 +851,7 @@ class TimestablesController extends Controller
             12
         );
 
+		$tables_numbers = get_powerup_tables($tables_numbers, $practice_level);
         $tables_numbers = empty($user_timestables_no)? $tables_numbers : $user_timestables_no;
 
         $question_type = 'multiplication';
@@ -1573,9 +1575,9 @@ class TimestablesController extends Controller
         if (!empty($results_data)) {
             foreach ($results_data as $resultObj) {
                 $created_at = dateTimeFormat($resultObj->created_at, 'j M y');
-                $attempts_array[$created_at] = $resultObj->quizz_result_questions_list->where('status', '=', 'correct')->count();
+                $attempts_array[$created_at] = $resultObj->total_correct;
                 $attempts_labels[] = $created_at;
-                $attempts_values[] = $resultObj->quizz_result_questions_list->where('status', '=', 'correct')->count();
+                $attempts_values[] = $resultObj->total_correct;
             }
         }
         $attempts_array = array_reverse($attempts_array);
@@ -1693,6 +1695,7 @@ class TimestablesController extends Controller
 			$QuizzesResult = QuizzesResult::where('status', 'passed')
 				->where('nugget_id', $level)
 				->where('attempt_mode', 'treasure_mode')
+				->where('user_id', $user->id)
 				->orderBy('id', 'desc')
 				->first();
 
@@ -1703,6 +1706,7 @@ class TimestablesController extends Controller
 
 		
         $treasure_mission_data = get_treasure_mission_data();
+		
 
         $rendered_view = view('web.default.timestables.treasure_mission', ['treasure_mission_data' => $treasure_mission_data, 'user_timetables_levels' => $user_timetables_levels, 'timestables_results' => $timestables_results])->render();
         return $rendered_view;
