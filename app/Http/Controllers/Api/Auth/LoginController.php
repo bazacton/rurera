@@ -81,6 +81,19 @@ class LoginController extends Controller
         return $this->attemptLogin($request);
 
     }
+	
+	public function social_login(Request $request)
+    {
+        $rules = [
+            'email' => 'required|email',
+        ];
+		
+
+        validateParam($request->all(), $rules);
+
+        return $this->attemptSocialLogin($request);
+
+    }
 
     public function username()
     {
@@ -105,6 +118,19 @@ class LoginController extends Controller
 		if (!$token = auth('api')->attempt($credentials)) {
         //if (!$token = Auth::loginUsingPin($credentials)) {
             return apiResponse2(0, 'incorrect', 'Incorrect Pin code!');
+        }
+        return $this->afterLogged($request, $token);
+    }
+	
+    protected function attemptSocialLogin(Request $request)
+    {
+		$credentials = [
+            'email' => $request->get('email')
+        ];
+
+		if (!$token = auth('api')->attempt($credentials)) {
+        //if (!$token = Auth::loginUsingPin($credentials)) {
+            return apiResponse2(0, 'incorrect', 'Incorrect Email Address!');
         }
         return $this->afterLogged($request, $token);
     }

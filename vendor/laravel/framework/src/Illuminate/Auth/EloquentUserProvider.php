@@ -140,6 +140,7 @@ class EloquentUserProvider implements UserProvider
             if (Str::contains($key, 'password')) {
                 continue;
             }
+			
 
             if (is_array($value) || $value instanceof Arrayable) {
                 $query->whereIn($key, $value);

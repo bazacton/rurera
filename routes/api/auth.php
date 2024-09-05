@@ -8,6 +8,7 @@ Route::group(['namespace' => 'Auth'], function () {
     Route::post('/register/step/{step}', ['as' => 'register', 'uses' => 'RegisterController@stepRegister']);
 	Route::get('/login_form', ['uses' => 'LoginController@loginForm']);
     Route::post('/login', ['as' => 'login', 'uses' => 'LoginController@login']);
+    Route::post('/social_login', ['as' => 'login', 'uses' => 'LoginController@social_login']);
 	
 
 

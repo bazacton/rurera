@@ -13,6 +13,8 @@ class CommonController extends Controller
 {
     public function menu(Request $request){
 		
+		$user = apiAuth();
+		
 		$navArray = getNavbarLinks();
 		
 		$data_array = array();
@@ -23,8 +25,7 @@ class CommonController extends Controller
 			'section_data' => array(),
 		);
 		
-		
-		$data_array[$section_id]['section_data'] = array(
+		$menu_array = array(
 			array(
 				'title' => 'Home',
 				'icon' => url('/assets/default/img/sidebar').'/home.svg',
@@ -166,6 +167,85 @@ class CommonController extends Controller
 				'target_layout' => 'list',
 			),
 		);
+		
+		if( $user->role_id == 9){
+			$menu_array = array(
+				array(
+					'title' => 'Home',
+					'icon' => url('/assets/default/img/sidebar').'/home.svg',
+					'icon_position' => 'left',
+					'color' => '#FFFFFF',
+					'activeColor' => '#FF0000',
+					'pageTitle' => 'Home',
+					'target_api' => '/panel/home',
+					'target_layout' => 'list',
+				),
+				array(
+					'title' => 'Set Work',
+					'icon' => url('/assets/default/img/sidebar').'/learn.svg',
+					'icon_position' => 'left',
+					'color' => '#FFFFFF',
+					'activeColor' => '#FF0000',
+					'pageTitle' => 'Set Work',
+					'target_api' => '/panel/set-work',
+					'target_layout' => 'list',
+				),
+				array(
+					'title' => 'Analytics',
+					'icon' => url('/assets/default/img/sidebar').'/grarph.svg',
+					'icon_position' => 'left',
+					'color' => '#FFFFFF',
+					'activeColor' => '#FF0000',
+					'pageTitle' => 'Analytics',
+					'target_api' => '/panel/analytics',
+					'target_layout' => 'list',
+				),
+				
+				array(
+					'title' => 'Referrals',
+					'icon' => url('/assets/default/img/sidebar').'/referrals.png',
+					'icon_position' => 'left',
+					'color' => '#FFFFFF',
+					'activeColor' => '#FF0000',
+					'pageTitle' => 'Referrals',
+					'target_api' => '/panel/referrals',
+					'target_layout' => 'list',
+				),
+				array(
+					'title' => 'Students',
+					'icon' => url('/assets/default/img/sidebar').'/members.png',
+					'icon_position' => 'left',
+					'color' => '#FFFFFF',
+					'activeColor' => '#FF0000',
+					'pageTitle' => 'Students',
+					'target_api' => '/panel/students',
+					'target_layout' => 'list',
+				),
+				array(
+					'title' => 'Profile',
+					'icon' => url('/assets/default/img/sidebar').'/referrals.png',
+					'icon_position' => 'left',
+					'color' => '#FFFFFF',
+					'activeColor' => '#FF0000',
+					'pageTitle' => 'Profile',
+					'target_api' => '/panel/setting',
+					'target_layout' => 'list',
+				),
+				array(
+					'title' => 'Logout',
+					'icon' => url('/assets/default/img/sidebar').'/logout.svg',
+					'icon_position' => 'left',
+					'color' => '#FFFFFF',
+					'activeColor' => '#FF0000',
+					'pageTitle' => 'Logout',
+					'target_api' => '/panel/logout',
+					'target_layout' => 'list',
+				),
+			);
+		}
+		
+		
+		$data_array[$section_id]['section_data'] = $menu_array;
 		
 		$response = array(
 			'listData' => $data_array,
