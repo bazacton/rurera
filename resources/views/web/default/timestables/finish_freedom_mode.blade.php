@@ -34,7 +34,7 @@
                                     </div>
                                     <div class="summary-text">
                                         <label>Questions Answered</label>
-                                        <div class="score">{{countSubItemsOnly((array) $results)}}</div>
+                                        <div class="score">{{$QuizzesResult->total_attempted}}</div>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4 col-lg-3">
@@ -43,7 +43,7 @@
                                     </div>
                                     <div class="summary-text">
                                         <label>Questions Incorrect</label>
-                                        <div class="score incorrect-questions">{{(countSubItemsOnly((array) $results) -$QuizzesResult->total_correct)}}</div>
+                                        <div class="score incorrect-questions">{{$QuizzesResult->total_incorrect}}</div>
                                     </div>
                                 </div>
 
@@ -100,13 +100,13 @@
                                     </div>
                                     <div class="summary-text">
                                         <label>Coin earned</label>
-                                        <div class="score summary-coins-earned">{{$QuizzesResult->total_correct}}</div>
+                                        <div class="score summary-coins-earned">{{$QuizzesResult->total_coins_earned}}</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="summary-btns">
-                            <a href="/panel/results/{{$QuizzesResult->id}}/timetables" class="summary-btn">Summary of Attempt</a>
+                            <a href="/panel/analytics/timestables/result/{{$QuizzesResult->id}}" class="summary-btn">Summary of Attempt</a>
                             <a href="javascript:;" class="re-attempt-btn" data-attempt_type="{{$QuizzesResult->attempt_mode}}">Re-attempt</a>
                             <a href="/panel" class="back-btn">Back</a>
                         </div>

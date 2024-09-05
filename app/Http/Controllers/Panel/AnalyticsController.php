@@ -244,16 +244,16 @@ class AnalyticsController extends Controller
                     if( $type != 'books') {
                         foreach ($dateObj as $QuizzesAttemptObj) {
                             if ($QuizzesAttemptObj->quizzes_results->status == 'waiting') {
-                                //continue;
+                                continue;
                             }
                             $topic_title = getTopicTitle($QuizzesAttemptObj->parent_type_id, $QuizzesAttemptObj->attempt_type);
 							$topic_title .= ($QuizzesAttemptObj->quizzes_results->quiz_result_type == '11plus') ? ' ('.$QuizzesAttemptObj->quizzes_results->sameParent->where('created_at','<', $QuizzesAttemptObj->quizzes_results->created_at)->count().')' : '';
                             $questions_list = isset($QuizzesAttemptObj->questions_list) ? json_decode($QuizzesAttemptObj->questions_list) : array();
-                            $practice_time = $QuizzesAttemptObj->timeConsumed->sum('time_consumed');	
-                            $question_answered = $QuizzesAttemptObj->timeConsumed->whereNotIn('status', array('waiting', 'not_attempted'))->count();
-                            $question_correct = $QuizzesAttemptObj->timeConsumed->where('status', 'correct')->count();
-                            $question_incorrect = $QuizzesAttemptObj->timeConsumed->where('status', 'incorrect')->count();
-                            $coins_earned = $QuizzesAttemptObj->timeConsumed->where('status', 'correct')->sum('quiz_grade');
+                            $practice_time = $QuizzesAttemptObj->total_time_consumed;	
+                            $question_answered = $QuizzesAttemptObj->total_attempted;
+                            $question_correct = $QuizzesAttemptObj->total_correct;
+                            $question_incorrect = $QuizzesAttemptObj->total_incorrect;
+                            $coins_earned = $QuizzesAttemptObj->total_coins_earned;
                             //$last_attempted = $QuizzesAttemptObj->timeConsumed->whereNotIn('status', array('waiting'))->orderBy('name', 'desc')->count();
                             $practice_time = ($QuizzesAttemptObj->attempt_type == 'timestables' || $QuizzesAttemptObj->attempt_type == 'timestables_assignment') ? round(($practice_time / 10), 2) : $practice_time;
                             $practice_time = ($practice_time > 0) ? round($practice_time, 2) : 0;
@@ -296,7 +296,7 @@ class AnalyticsController extends Controller
                             $analytics_data[$date_str]['data'][$QuizzesAttemptObj->id]['score_level'] = $score_level;
                             $analytics_data[$date_str]['data'][$QuizzesAttemptObj->id]['result_id'] = $QuizzesAttemptObj->quiz_result_id;
                             $analytics_data[$date_str]['data'][$QuizzesAttemptObj->id]['start_time'] = $QuizzesAttemptObj->created_at;
-                            $analytics_data[$date_str]['data'][$QuizzesAttemptObj->id]['end_time'] = isset($QuizzesAttemptObj->endSession->created_at) ? $QuizzesAttemptObj->endSession->created_at : '';
+                            $analytics_data[$date_str]['data'][$QuizzesAttemptObj->id]['end_time'] = '';//isset($QuizzesAttemptObj->endSession->created_at) ? $QuizzesAttemptObj->endSession->created_at : '';
 
                             if ($QuizzesAttemptObj->attempt_type == 'timestables') {
                                 $end_date_str = $QuizzesAttemptObj->created_at + ($practice_time * 60);

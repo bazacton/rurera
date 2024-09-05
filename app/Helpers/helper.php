@@ -9190,7 +9190,7 @@ function gameTime($type = ''){
         'cat4' => 10,
         'challenge' => 10,
         'vocabulary' => 25,
-        'timestables' => 10,
+        'timestables' => 25,
     );
     $response = (isset( $gameTime[$type] ) && $gameTime[$type] != '')? $gameTime[$type] : 0;
     return $response;

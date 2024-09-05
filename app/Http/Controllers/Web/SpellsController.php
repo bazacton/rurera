@@ -38,7 +38,7 @@ class SpellsController extends Controller
         }
         $user = getUser();
         $QuestionsAttemptController = new QuestionsAttemptController();
-		$quiz_category  = ( $quiz_category == 'spellings-bee')? 'Spellings Bee' : $quiz_category;
+		$quiz_category  = ( $quiz_category == 'spelling-bee')? 'Spelling Bee' : $quiz_category;
 		$quiz_category  = ( $quiz_category == 'word-lists')? 'Word Lists' : $quiz_category;
 		
 		

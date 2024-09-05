@@ -353,6 +353,15 @@ if( $duration_type == 'total_practice'){
     var practice_time = $(".question-area-block").attr('data-practice_time');
     var life_lines = '{{$life_lines}}';
 
+	
+	$('.editor-fields').on('keypress', function(event) {
+        var charCode = event.which ? event.which : event.keyCode;
+        console.log('charCode==='+charCode);
+        if (charCode != 8 && charCode != 13 && (charCode < 48 || charCode > 57)) {
+            // Prevent input if not a number
+            event.preventDefault();
+        }
+    });
 
     $(document).on('click', '.timestables-question-confirm-btn', function (e) {
         if( duration_type == 'total_practice'){

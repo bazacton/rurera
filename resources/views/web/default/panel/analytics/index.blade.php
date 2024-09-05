@@ -222,7 +222,7 @@
                             $detail_link = '/panel/quizzes/'.$result_id.'/check_answers';
                         }
                         if( $parent_type == 'timestables' || $parent_type == 'timestables_assignment'){
-                            $detail_link = '/panel/results/'.$result_id.'/timetables';
+                            $detail_link = '/panel/analytics/timestables/result/'.$result_id;
                         }
 
                         if( $parent_type == 'book_read'){

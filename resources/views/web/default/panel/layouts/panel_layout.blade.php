@@ -205,6 +205,88 @@
                             @endif
 
                             @if(request()->is('panel/marketing/affiliates') || auth()->user()->isParent() || auth()->user()->isTutor())
+							
+
+
+
+
+						
+							@if( !empty( $profile_navs ) )
+							<div class="col-12 col-lg-12">
+							<div class="sidebar-students-list db-members">
+							<div class="card">
+							<h3 class="font-19 font-weight-bold d-flex justify-content-between align-items-center flex-wrap">
+                                Switch Accounts
+								<a href="/panel/students" class="view-all font-weight-bold font-16">View All</a>
+							</h3>
+							
+							@foreach( $profile_navs as $profile_nav)
+								@php $childObj = $profile_nav->user; @endphp
+								@php $full_name = (isset( $navData['is_parent'] ) && $navData['is_parent'] == true)? 'Parent' : $childObj->get_full_name(); @endphp
+							<div class="row align-items-center students-list-item">
+								<a href="javascript:;" class="col-auto">
+									<img src="{{ $childObj->getAvatar() }}" alt="{{$full_name}}" class="avatar rounded-circle" width="40">
+								</a>
+
+								<a href="javascript:;" class="col-auto  ms-2">
+									<h6 class="font-14 font-weight-500">{{$full_name}}</h6>
+								</a>
+								<a href="javascript:;" class="col-auto  ms-2">
+									<a href="/panel/switch_user/{{$childObj->id}}" class="switch-user-btn"><span class="icon-box"><img src="/assets/default/svgs/switch-btn.svg" alt="" width="40"></span></a>
+								</a>
+							</div>
+							@endforeach
+							</div>
+							</div>
+                            </div>
+                            @endif
+				
+                            <div class="col-12 col-lg-12 mt-30">
+                                <div class="spell-widget">
+                                    <div id="accordion">
+                                        <div class="panel-shadow panel-border rounded-sm pb-10 pt-15" style="background-color: #ddd;">
+                                            <div class="spell-item mb-10">
+                                                <div class="spell-heading">
+                                                    <button class="btn btn-link font-16 font-weight-bold" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                                                        <span class="day-date">Word of the Day</span>
+                                                    </button>
+                                                </div>
+                                                <div id="collapse1" class="collapse show" aria-labelledby="heading1" data-parent="#accordion">
+                                                    <div class="spell-top">
+                                                        <strong class="spell-word">assimilate <span class="icon-box"><img src="/assets/default/svgs/sound-filled.svg" alt=""></span></strong>
+                                                    </div>
+                                                    <div class="spell-text">
+                                                        <span class="spell-lable mb-5">Definition</span>
+                                                        <p class="mb-20 font-15">Piece together several different bites of information to learn something new with a depeer understanding</p>
+                                                        <span class="spell-lable">Example Usage</span>
+                                                        <p class="font-15">the detective assimilated the evidence to work out what happend</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    
+                                            <div class="spell-item">
+                                                <div class="spell-heading">
+                                                    <button class="btn btn-link font-16 font-weight-bold" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                                                        Pungent
+                                                        <span class="prev-date font-15 font-weight-500">Yesterday</span>
+                                                        <p class="font-15 font-weight-normal">a particularly strong taste or scent</p>
+                                                    </button>
+                                                </div>
+                                                <div id="collapse2" class="collapse" aria-labelledby="heading2" data-parent="#accordion">
+                                                    <div class="spell-text mt-15">
+                                                        <span class="spell-lable">Definition</span>
+                                                        <p class="mb-20 font-15">Piece together several different bites of information to learn something new with a depeer understanding</p>
+                                                        <span class="spell-lable">Example Usage</span>
+                                                        <p class="font-15">the detective assimilated the evidence to work out what happend</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+							
+							
                             <div class="col-12 col-lg-12 mb-30 mt-25">
                                 <div class="referrals panel-border panel-shadow rounded-sm">
                                     <div class="referral-card">
@@ -318,7 +400,7 @@
 					    	@if( $authUser->getUserQuests(array(), array('learning_journey'), array('daily'))->count() > 0 )
                                 <div class="col-12 col-lg-12 mb-30">
                                     <div class="quests-list panel-border bg-white rounded-sm p-20">
-                                        <h3 class="font-19 font-weight-bold">
+                                        <h3 class="font-19 font-weight-bold d-flex justify-content-between align-items-center flex-wrap">
                                             Daily Quests
                                             <a href="/quests" class="view-all font-weight-bold font-16">View All</a>
                                         </h3>
@@ -1075,6 +1157,24 @@
                 options: {}
             });*/
         </script>
+</script>
+
+<script>
+    jQuery(document).ready(function(){
+
+        var $test = $('.sidebar-students-list .card');
+        if ($test.find('div').length > 2) {
+            $('.sidebar-students-list .card').append('<div class="item-control"><a href="javascript:;" class="showMore"></a></div>');
+        }
+
+        $('.students-list-item').slice(0,5).addClass('shown');
+        $('.students-list-item').not('.shown').hide();
+        $('.card .showMore').on('click',function(){
+            $('.students-list-item').not('.shown').slideToggle(300);
+            $(this).toggleClass('showLess');
+        });
+
+    });
 </script>
 </body>
 </html>

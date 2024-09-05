@@ -42,7 +42,7 @@
             </div>
 
             <div class="col-12 col-lg-12 mx-auto">
-                <form action="/timestables-practice/trophy-mode/play" method="post">
+                <form action="/timestables/generate_trophymode" method="post">
                     {{ csrf_field() }}
                     <h3>It will be one minute, try to answer the maximum questions.</h3>
 

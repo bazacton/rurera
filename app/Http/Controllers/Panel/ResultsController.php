@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class ResultsController extends Controller
 {
 
-    public function results(Request $request, $result_id, $result_type)
+    public function results(Request $request, $result_type, $result_id)
     {
         $QuizzesResult = QuizzesResult::find($result_id);
         $results = json_decode($QuizzesResult->results);

@@ -22,8 +22,6 @@ $rand_id = rand(99,9999);
         color: #fff;
     }
     .active-level{background:red;}
-	
-	.rurera-error-msg{position: absolute;right: 80px;}
 
 </style>
 @endpush
@@ -91,66 +89,7 @@ if( $duration_type == 'total_practice'){
 
                     </div>
 
-                    <div class="question-area-block quiz-first-question" data-duration_type="{{$duration_type}}" data-time_interval="{{$time_interval}}" data-practice_time="{{$practice_time}}" style="display:none" data-quiz_result_id="{{$QuizzAttempts->quiz_result_id}}" data-attempt_id="{{$QuizzAttempts->id}}" data-total_questions="{{count($questions_list)}}" data-corrected_questions="0">
-
-
-					
-                    <div class="spell-levels border-0 rurera-hide">
-                        @php $ul_custom_class = isset( $stageObj['custom_class'] )? $stageObj['custom_class'] : ''; $li_count = $counter = $last_stage_completed = 0;  @endphp
-                        @if( isset( $stageObj['nuggets'] ) && !empty( $stageObj['nuggets'] ) )
-                            <div class="treasure-stage">
-                                <ul class="justify-content-start horizontal-list p-0 {{$ul_custom_class}}" style="display: block;">
-                                    @foreach( $stageObj['nuggets'] as $nuggetObj)
-                                        @php $counter++; $li_count++ @endphp
-                                        @php $is_acheived = in_array( $nuggetObj['id'], $user_timetables_levels)? true : false;
-                                            $is_active = (empty($user_timetables_levels) && $counter == 1)? true : false;
-                                            $li_custom_class = ($li_count == 6) ? 'vertical-li' : '';
-                                            $li_count = ($li_count >= 6)? 0 : $li_count;
-                                            $last_stage = (isset( $nuggetObj['is_last_stage'] ) && $nuggetObj['is_last_stage'] == true)? 'last-stage' : '';
-                                            $treasure_mission_class = ($is_active == 1 || ($last_stage_completed == 1 && $is_acheived != 1))? 'generate_treasure_mission' : 'locked_nugget';
-                                        @endphp
-                                        <li class="intermediate {{$li_custom_class}} {{($is_acheived == 1 || $is_active == 1 || $last_stage_completed == 1)? 'completed' : ''}} {{$last_stage}}" data-id="{{$nuggetObj['id']}}" data-quiz_level="medium">
-                                            <a href="javascript:;" class="{{$treasure_mission_class}}" data-id="{{$nuggetObj['id']}}">
-                                                @if($is_acheived == 1 )
-                                                    <img src="/assets/default/img/tick-white.png" alt="">
-                                                @elseif($is_active == 1 )
-                                                    <img src="/assets/default/img/stepon.png" alt="">
-                                                @else
-                                                    @if($last_stage_completed == 1)
-                                                        <img src="/assets/default/img/stepon.png" alt="">
-                                                    @else
-                                                        @if( isset( $nuggetObj['is_last_stage'] ) && $nuggetObj['is_last_stage'] == true)
-                                                            <img src="/assets/default/img/flag-grey.png" alt="">
-                                                        @else
-                                                            <img src="/assets/default/img/panel-lock.png" alt="">
-                                                        @endif
-                                                    @endif
-                                                @endif
-                                            </a>
-                                        </li>
-                                        @if( isset( $nuggetObj['treasure_box'] ))
-                                            @php $li_count++;
-                                                $li_custom_class = ($li_count == 6) ? 'vertical-li' : '';
-                                                $li_count = ($li_count >= 6)? 0 : $li_count;
-                                            @endphp
-                                            <li class="treasure {{$li_custom_class}}">
-                                                <a href="#">
-                                                    <span class="thumb-box">
-                                                        @if($is_acheived == 1)
-                                                            <img src="/assets/default/img/treasure.png" alt="">
-                                                        @else
-                                                            <img src="/assets/default/img/treasure2.png" alt="">
-                                                        @endif
-                                                    </span>
-                                                </a>
-                                            </li>
-                                        @endif
-                                        @php $last_stage_completed = $is_acheived; @endphp
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-                    </div>
+                    <div class="question-area-block quiz-first-question" data-duration_type="{{$duration_type}}" data-time_interval="{{$time_interval}}" data-practice_time="{{$practice_time}}" style="display:none" data-quiz_result_id="{{$QuizzAttempts->quiz_result_id}}" data-attempt_id="{{$QuizzAttempts->id}}" data-total_questions="{{count($questions_list)}}">
 
 
 
@@ -161,10 +100,10 @@ if( $duration_type == 'total_practice'){
                                         <span class="tt_question_no">1</span>
                                     </li>
                                     <li>
-                                        <span class="quiz-timer-counter" data-time_counter="{{($timer_counter*10)}}">{{$timer_counter}}</span>
+                                        <span class="quiz-timer-counter" data-time_counter="{{($timer_counter*10)}}">{{getTime($timer_counter)}}</span>
                                     </li>
                                     <li class="total-points">
-                                        <span class="tt_points">0</span> Coins
+                                        <span class="tt_points">0</span> Points
                                     </li>
                                 </ul>
                             </div> <br><br>
@@ -186,8 +125,8 @@ if( $duration_type == 'total_practice'){
                             		<span>{{$questionObj->from}} <span>{{$questionObj->type}}</span> {{$questionObj->to}} <span>&equals;</span></span>
                                    <input type="text" data-from="{{$questionObj->from}}"
                                                                            data-type="{{$questionObj->type}}"data-table_no="{{$questionObj->table_no}}" data-to="{{$questionObj->to}}"
-                                                                           class="editor-fields" error-placeholder="Input Answer" id="editor-fields-{{$questionIndex}}" autocomplete="off" >
-                                   <div class="questions-controls">
+                                                                           class="editor-fields" id="editor-fields-{{$questionIndex}}" autocomplete="off" >
+                                    <div class="questions-controls">
                                        <span class="time-count-seconds" style="display:none;">0</span>
                                        <a href="javascript:;">
                                            <img src="/assets/default/svgs/unmute.svg" class="unmute_sound mute_unmute_sound" data-action="mute_sound" alt="mute svg">
@@ -229,24 +168,17 @@ if( $duration_type == 'total_practice'){
     </section>
 
 </div>
-<div class="question-status-modal2222222">
-  <div class="modal fade timestables_question_status_modal" id="timestables_question_status_modal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="false">
+<div class="question-status-modal">
+  <div class="modal fade timestables_question_status_modal" id="timestables_question_status_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-body">
-		
-		<div class="modal-box">
-			<span class="icon-box d-block mb-15">
-				<img src="../assets/default/img/clock-modal-img.png" alt="">
-			</span>
-			<h3 class="font-24 font-weight-normal mb-10">Are you still there?</h3>
-			<p class="mb-15 font-16">
-				You've been inactive for a while, and your session was paused. You can continue learning by using the following link
-			</p>
-			<div class="inactivity-controls">
-				<a href="javascript:;" class="continue-btn timestables-question-confirm-btn" data-dismiss="modal" aria-label="Continue">Continue Test</a>
-			</div>
-		  </div>
+          <div class="modal-box">
+            <div class="modal-title">
+              <h3>Time Over!</h3>
+            </div>
+            <a href="javascript:;" class="confirm-btn timestables-question-confirm-btn" data-dismiss="modal" aria-label="Close">Continue</a>
+          </div>
         </div>
       </div>
     </div>
@@ -266,20 +198,6 @@ if( $duration_type == 'total_practice'){
       </div>
     </div>
   </div>
-
-<div class="modal fade timestables_lifelines_modal" id="timestables_lifelines_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-body">
-          <div class="modal-box">
-            <div class="modal-title">
-              <h3>Game Over!</h3>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 
 @endsection
@@ -290,10 +208,14 @@ if( $duration_type == 'total_practice'){
 <script>
     //init_question_functions();
 
+    var user_data = [];
+    var Quizintervals = null;
+	
+	var timerStart = true;
 
     var start_counter = 6;
-
     var is_sound_enabled = true;
+	Questionintervals = null;
     $(document).on('click', '.mute_unmute_sound', function (e) {
         $('.mute_unmute_sound').addClass('hide');
         this_action = $(this).attr('data-action');
@@ -305,13 +227,6 @@ if( $duration_type == 'total_practice'){
         }
         $(".editor-fields").focus();
     });
-	
-	 $(".editor-fields").on('blur', function() {
-		setTimeout(function() {
-			 $(".editor-fields").focus();
-		}, 0);
-	});
-
 
     var Startintervals = setInterval(function () {
         if (parseInt(start_counter) > 1) {
@@ -322,26 +237,11 @@ if( $duration_type == 'total_practice'){
             clearInterval(Startintervals);
             $(".start-timestables-quiz").click();
         }
-    }, 1000);
-
-    var user_data = [];
-    var Quizintervals = null;
-    var is_gameover = false;
+    }, 100);
 
     var duration_type = $(".question-area-block").attr('data-duration_type');
     var time_interval = $(".question-area-block").attr('data-time_interval');
     var practice_time = $(".question-area-block").attr('data-practice_time');
-    var life_lines = 5000;
-
-	
-	$('.editor-fields').on('keypress', function(event) {
-        var charCode = event.which ? event.which : event.keyCode;
-        console.log('charCode==='+charCode);
-        if (charCode != 8 && charCode != 13 && (charCode < 48 || charCode > 57)) {
-            // Prevent input if not a number
-            event.preventDefault();
-        }
-    });
 
     $(document).on('click', '.timestables-question-confirm-btn', function (e) {
         if( duration_type == 'total_practice'){
@@ -349,6 +249,7 @@ if( $duration_type == 'total_practice'){
             $(".question-area-block").attr('data-total_questions', $('.questions-block').length);
         }
         $(".questions-block.active .question-form").submit();
+
     });
 
     $(document).on('click', '.start-timestables-quiz', function (e) {
@@ -358,29 +259,20 @@ if( $duration_type == 'total_practice'){
             $(".editor-fields").attr('readonly', 'readonly');
         }
         $(".editor-fields").focus();
-        var Questionintervals = setInterval(function () {
-            if ($('.questions-block[data-id="0"]').hasClass('active')) {
-                var seconds_count = $('.questions-block[data-id="0"]').attr('data-tconsumed');
-                seconds_count = parseInt(seconds_count) + parseInt(1);
-                $('.questions-block[data-id="0"]').attr('data-tconsumed', seconds_count);
-                $('.questions-block[data-id="0"]').find(".time-count-seconds").html(parseInt(seconds_count) / 10);
-            } else {
-                clearInterval(Questionintervals);
-            }
-        }, 100);
 
         Quizintervals = setInterval(function () {
-            var quiz_timer_counter = $('.quiz-timer-counter').attr('data-time_counter');
+			if( timerStart == true){
+				var quiz_timer_counter = $('.quiz-timer-counter').attr('data-time_counter');
 
-            if( duration_type == 'no_time_limit'){
-                quiz_timer_counter = parseInt(quiz_timer_counter) + parseInt(1);
-            }else {
-                quiz_timer_counter = parseInt(quiz_timer_counter) - parseInt(1);
-            }
+				if( duration_type == 'no_time_limit'){
+					quiz_timer_counter = parseInt(quiz_timer_counter) + parseInt(1);
+				}else {
+					quiz_timer_counter = parseInt(quiz_timer_counter) - parseInt(1);
+				}
 
-            $('.quiz-timer-counter').html(roundToTwoDecimals(quiz_timer_counter/10));
-            $('.quiz-timer-counter').attr('data-time_counter', quiz_timer_counter);
-            if( duration_type == 'per_question'){
+				$('.quiz-timer-counter').html(roundToTwoDecimals(quiz_timer_counter/10));
+				$('.quiz-timer-counter').attr('data-time_counter', quiz_timer_counter);
+				if( duration_type == 'per_question'){
 					if( parseInt(quiz_timer_counter) == 0){
 						clearInterval(Quizintervals);
 						clearInterval(Questionintervals);
@@ -389,17 +281,29 @@ if( $duration_type == 'total_practice'){
 						$(".questions-block.active .question-form").submit();
 					}
 				}
-			if( duration_type == 'total_practice'){
-				if( parseInt(quiz_timer_counter) == 0){
-					clearInterval(Quizintervals);
-					clearInterval(Questionintervals);
-					$(".questions-block.active .question-form").attr('data-bypass_validation', 'yes');
-					$(".questions-block.active").nextAll('.questions-block').remove();
-					$(".question-area-block").attr('data-total_questions', $('.questions-block').length);
-					$(".questions-block.active .question-form").submit();
+				if( duration_type == 'total_practice'){
+					if( parseInt(quiz_timer_counter) == 0){
+						clearInterval(Quizintervals);
+						clearInterval(Questionintervals);
+						$(".questions-block.active .question-form").attr('data-bypass_validation', 'yes');
+						$(".questions-block.active").nextAll('.questions-block').remove();
+						$(".question-area-block").attr('data-total_questions', $('.questions-block').length);
+						$(".questions-block.active .question-form").submit();
+					}
 				}
 			}
 
+        }, 100);
+		
+        Questionintervals = setInterval(function () {
+            if ($('.questions-block[data-id="0"]').hasClass('active')) {
+                var seconds_count = $('.questions-block[data-id="0"]').attr('data-tconsumed');
+                seconds_count = parseInt(seconds_count) + parseInt(1);
+                $('.questions-block[data-id="0"]').attr('data-tconsumed', seconds_count);
+                //$('.questions-block[data-id="0"]').find(".time-count-seconds").html(parseInt(seconds_count) / 10);
+            } else {
+                clearInterval(Questionintervals);
+            }
         }, 100);
 
     });
@@ -447,40 +351,35 @@ if( $duration_type == 'total_practice'){
 
 
 
+	var total_time_consumed = 0;
+	var is_submitted = false;
     $(document).on('submit', '.question-form', function (e) {
 
+		if(is_submitted == true){
+			return false;
+		}
+		
         var bypass_validation = $(this).closest('form').attr('data-bypass_validation');
         var total_questions = $(".question-area-block").attr('data-total_questions');
         var attempt_id = $(".question-area-block").attr('data-attempt_id');
         var quiz_result_id = $(".question-area-block").attr('data-quiz_result_id');
         var attempted_questions = parseInt($(".tt_question_no").html());
-        var correct_questions = parseInt($(".question-area-block").attr('data-corrected_questions'));
-
-        $(".powerup-levels ul li").removeClass('active-level');
-
-        $('.powerup-levels ul li').each(function() {
-            var minq = parseInt($(this).attr('data-minq'));
-            var maxq = parseInt($(this).attr('data-maxq'));
-
-            if (correct_questions >= minq && correct_questions <= maxq) {
-              $(this).addClass('active-level'); // You can replace 'active' with your desired class
-            }
-        });
-
-
-        returnType = rurera_validation_process($(this).closest('form'), 'under_field');
-
+        returnType = rurera_validation_process($(this).closest('form'));
         if( rurera_is_field(bypass_validation) && bypass_validation == 'yes' ){
             returnType = true;
         }
         if (returnType == false) {
             return false;
         }
-
-
         clearInterval(Questionintervals);
+		timerStart = false;
         var data_id = $(this).attr('data-id');
-        var time_consumed = $(this).closest('.questions-block').attr('data-tconsumed');
+        var time_consumed = $(this).closest('.questions-block').attr('data-tconsumed'); 25
+		total_time_consumed = parseInt(total_time_consumed)+parseInt(time_consumed);582 == 557
+		
+		
+		
+		
         var next_question = parseInt(data_id) + 1;
         user_data[data_id] = [];
 
@@ -490,11 +389,9 @@ if( $duration_type == 'total_practice'){
         var table_no = $("#editor-fields-" + data_id).attr('data-table_no');
         var answer = $("#editor-fields-" + data_id).val();
 
-
-
         var correct_answer = rurera_correct_value(from, to, type);
         var is_correct = (answer == correct_answer)? true : false;
-        user_data[data_id] = {'from': from, 'to': to, 'type': type, 'answer': answer, 'time_consumed': time_consumed, 'table_no':table_no, 'is_correct':is_correct, 'correct_answer':correct_answer};
+        
 
         var status_class = (answer == correct_answer)? 'successful' : 'wrong';
 
@@ -504,37 +401,19 @@ if( $duration_type == 'total_practice'){
             var tt_points = $(".tt_points").html();
             tt_points = parseInt(tt_points) + 1;
             $(".tt_points").html(tt_points);
-            var correct_questions_count = parseInt($(".question-area-block").attr('data-corrected_questions'));
-            $(".question-area-block").attr('data-corrected_questions', parseInt(correct_questions_count)+1);
             if( is_sound_enabled == true) {
                 $(this).append('<audio autoPlay="" className="player-box-audio" id="audio_file_4492" src="/audios/times-tables-correct.mp3"></audio>');
             }
         }else{
-			if( time_consumed > 0){
-				life_lines = parseInt(life_lines) - 1;
-				$(".life-lines").html(life_lines);
-				var li_counter = parseInt(life_lines) - 1;
-				$('.life-lines-block .input.active img').attr('src', '/assets/default/img/panel-sidebar/broken-heart.png');
-				$('.life-lines-block .input').removeClass('active');
-				$('.life-lines-block .input:eq('+li_counter+')').addClass('active');
-				if( life_lines < 1){
-				   clearInterval(Quizintervals);
-					$(".questions-block.active").nextAll('.questions-block').remove();
-					$(".question-area-block").attr('data-total_questions', $('.questions-block').length);
-					$(".questions-block .question-form").attr('data-bypass_validation', 'yes');
-					var total_questions = $(".question-area-block").attr('data-total_questions');
-					is_gameover = true;
-
-				}
-				if( is_sound_enabled == true) {
-					$(this).append('<audio autoPlay="" className="player-box-audio" id="audio_file_4492" src="/speech-audio/wrong-answer.mp3"></audio>');
-				}
-			}
+            if( is_sound_enabled == true) {
+                $(this).append('<audio autoPlay="" className="player-box-audio" id="audio_file_4492" src="/speech-audio/wrong-answer.mp3"></audio>');
+            }
         }
 
 
 
         if (parseInt(next_question) < parseInt(total_questions)) {
+			user_data[data_id] = {'from': from, 'to': to, 'type': type, 'answer': answer, 'time_consumed': time_consumed, 'table_no':table_no, 'is_correct':is_correct, 'correct_answer':correct_answer};
             $('.questions-block').addClass('hide');
             $('.questions-block').removeClass('active');
 
@@ -542,52 +421,39 @@ if( $duration_type == 'total_practice'){
             $('.questions-block[data-id="' + next_question + '"]').addClass('active');
             var tt_question_no = $(".tt_question_no").html();
             tt_question_no = parseInt(tt_question_no) + 1;
-			tt_question_no = (tt_question_no < total_questions)? tt_question_no : total_questions;
             $(".tt_question_no").html(tt_question_no);
             if (isMobileOrTablet()) {
                 $(".editor-fields").attr('readonly', 'readonly');
             }
-            $("#editor-fields-" + next_question).focus();
+            $("#editor-fields-" + next_question).focus(); 
+			
 
-            var Questionintervals = setInterval(function () {
+			
+            Questionintervals = setInterval(function () {
                 var seconds_count = $('.questions-block[data-id="' + next_question + '"].active').attr('data-tconsumed');
+				timerStart = true;
                 seconds_count = parseInt(seconds_count) + parseInt(1);
                 $('.questions-block[data-id="' + next_question + '"].active').attr('data-tconsumed', seconds_count);
-                $('.questions-block[data-id="' + next_question + '"].active').find(".time-count-seconds").html(parseInt(seconds_count) / 10);
+                //$('.questions-block[data-id="' + next_question + '"].active').find(".time-count-seconds").html(parseInt(seconds_count) / 10);
             }, 100);
 
-            if( duration_type == 'per_question') {
-                console.log('clear interval');
-                clearInterval(Quizintervals);
-                $('.quiz-timer-counter').html(roundToTwoDecimals(time_interval));
-                $('.quiz-timer-counter').attr('data-time_counter', time_interval*10);
-                Quizintervals = setInterval(function () {
-                    var quiz_timer_counter = $('.quiz-timer-counter').attr('data-time_counter');
-                    quiz_timer_counter = parseInt(quiz_timer_counter) - parseInt(1);
-                    $('.quiz-timer-counter').html(roundToTwoDecimals(quiz_timer_counter/10));
-                    $('.quiz-timer-counter').attr('data-time_counter', quiz_timer_counter);
-
-                    if (duration_type == 'per_question') {
-                        if (parseInt(quiz_timer_counter) == 0) {
-                            clearInterval(Quizintervals);
-                            //$("#timestables_question_status_modal").modal('show');
-							$(".questions-block.active form").addClass('rurera-hide');
-							$(".questions-block.active").append('<div class="col-12 col-lg-12 mx-auto">'+$(".timestables_question_status_modal .modal-box").html()+'</div>');
-                            $(".questions-block.active .question-form").attr('data-bypass_validation', 'yes');
-                            //$(".questions-block.active .question-form").submit();
-                        }
-                    }
-
-                }, 100);
-            }
-
         } else {
-            clearInterval(Quizintervals);
+			var total_timer_count = '{{($timer_counter*10)}}';
+			if( parseInt(total_time_consumed) > parseInt(total_timer_count) || parseInt(total_time_consumed) < parseInt(total_timer_count)){
+				total_time_consumed = parseInt(total_time_consumed) - parseInt(time_consumed);
+				var required_time = parseInt(total_timer_count) - parseInt(total_time_consumed);
+				time_consumed = required_time;
+				total_time_consumed = parseInt(total_time_consumed)+parseInt(time_consumed);
+			}
+			user_data[data_id] = {'from': from, 'to': to, 'type': type, 'answer': answer, 'time_consumed': time_consumed, 'table_no':table_no, 'is_correct':is_correct, 'correct_answer':correct_answer};
+			console.log('total_time_consumed'+total_time_consumed);
+			var is_submitted = true;
+			
+			clearInterval(Quizintervals);
+			clearInterval(Questionintervals);
             $('.questions-block').addClass('disable-div');
             rurera_loader($('.question-area-block'), 'div');
-            if( is_gameover == true){
-                //$("#timestables_lifelines_modal").modal('show');
-            }
+            
             var response_layout = '';
 
 
@@ -606,6 +472,7 @@ if( $duration_type == 'total_practice'){
                 },
                 data: {'timestables_data':user_data, 'attempt_id':attempt_id},
                 success: function (return_data) {
+					console.log(return_data);
                     rurera_remove_loader($('.question-area-block'), 'button');
                     if (return_data.return_layout != '') {
                         $(".question-area-block").html(return_data.return_layout);
@@ -614,38 +481,6 @@ if( $duration_type == 'total_practice'){
                     }
                 }
             });
-
-            //window.location.href = '/timestables/summary';
-            //window.location = '/panel/results/'+quiz_result_id+'/timetables';
-            //window.location.href = '/panel/results/'+quiz_result_id+'/timetables';
-
-            return false;
-
-
-
-
-            $.each(user_data, function (field_id, user_data_obj) {
-                var from = user_data_obj.from;
-                var to = user_data_obj.to;
-                var action_type = user_data_obj.type;
-                var user_answer = user_data_obj.answer;
-                var time_consumed = user_data_obj.time_consumed;
-                var time_consumed_seconds = parseInt(time_consumed) / 10;
-
-                var correct_answer = rurera_correct_value(from, to, action_type);
-
-                var is_correct_label = (user_answer == correct_answer)? 'Correct' : 'Incorrect';
-
-                response_layout += '<div class="question-answer-block">\n\
-                    '+from+' '+action_type+' '+to+' = '+user_answer+'   '+is_correct_label+' ('+time_consumed_seconds+' seconds)\n\
-                    </div>';
-
-                console.log(user_answer+'===='+correct_answer+'====='+time_consumed+'======='+time_consumed_seconds);
-
-            });
-            response_layout = '';
-
-            $(".question-area-block").html(response_layout);
         }
 
     });
@@ -720,6 +555,7 @@ if( $duration_type == 'total_practice'){
     if (isMobileOrTablet()) {
         $(".editor-fields").attr('readonly', 'readonly');
     }
+	
 	var sound_playing = 'no';	
 	$(document).on('click', 'body', function (e) {
 		if( sound_playing == 'no'){

@@ -18,7 +18,7 @@
                 <div class="section-title mb-30 text-center"><h2>Select Arithmetic Operations </h2></div>
             </div>
             <div class="col-12 col-lg-12 mx-auto">
-                <form action="/timestables/generate" method="post">
+                <form action="/timestables-practice/freedom-mode/play" method="post">
                     {{ csrf_field() }}
                     <div class="questions-select-option">
                         <ul class="mb-20 d-flex align-items-center">
@@ -104,15 +104,19 @@
                    <thead>
                        <tr>
                            <th>When</th>
-                           <th>Your Score</th>
+                           <th>Average Time</th>
+                           <th>Earned Coins</th>
+                           <th>Earned Play Time</th>
                        </tr>
                    </thead>
                    <tbody>
                    @if( $results_data->count() > 0)
                        @foreach( $results_data as $resultsRow)
                            <tr>
-                               <td>{{dateTimeFormat($resultsRow->created_at,'j M Y')}}</td>
-                               <td>{{$resultsRow->total_correct}}</td>
+                               <td><a href="/panel/results/{{$resultsRow->id}}/timetables">{{dateTimeFormat($resultsRow->created_at,'j M Y')}}</a></td>
+                               <td>{{getTimeWithText($resultsRow->total_time_consumed / $resultsRow->total_attempted)}}</td>
+                               <td>{{$resultsRow->total_coins_earned}}</td>
+                               <td>{{getTimeWithText($resultsRow->total_game_time)}}</td>
                            </tr>
                        @endforeach
                    @else

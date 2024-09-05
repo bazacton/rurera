@@ -460,6 +460,7 @@ class QuestionsAttemptController extends Controller
         }
         $single_question_layout = $updated_questions_layout = '';
 
+		$total_coins_earned = 0;
 
         $next_question_id = 0;
         if (!empty($group_questions_list)) {
@@ -492,13 +493,19 @@ class QuestionsAttemptController extends Controller
                         $question_validate_response = $this->validate_correct_answere($current_question_obj, $question_correct, $question_type, $user_input, $sub_index);
                         $is_question_correct = isset($question_validate_response['is_question_correct']) ? $question_validate_response['is_question_correct'] : true;
 
-                        $this->update_reward_points($QuizzResultQuestions, $is_question_correct);
+						
+                        $earn_coins = $this->update_reward_points($QuizzResultQuestions, $is_question_correct);
+						$total_coins_earned += ($earn_coins > 0)? $earn_coins : 0;
                         //$this->update_vocabulary_list($QuizzResultQuestions, $is_question_correct);
                         $question_correct = isset($question_validate_response['question_correct']) ? $question_validate_response['question_correct'] : array();
                         //pre($question_correct, false);
                         if (empty($question_correct) || (isset($question_correct[0]) && $question_correct[0] == '')) {
                             continue;
                         }
+						
+						//quizAttempt
+						
+						
                         $user_input = is_array($user_input) ? $user_input : array($user_input);
                         if ($is_question_correct == false) {
 
@@ -657,8 +664,10 @@ class QuestionsAttemptController extends Controller
 
                 if ($incorrect_flag == true) {
                     $question_answer_status = 'incorrect';
+					$is_question_correct = false;
                 } else {
                     $question_answer_status = 'correct';
+					$is_question_correct = true;
                 }
 
                 $question_answer_status = ($review_required == true) ? 'in_review' : $question_answer_status;
@@ -670,8 +679,34 @@ class QuestionsAttemptController extends Controller
                     'user_question_layout' => $user_question_layout,
                     'attempted_at'         => time(),
                 ]);
+				
+				
+				$total_questions = json_decode($quizResultObj->questions_list);
+				$total_questions = is_array( $total_questions )? $total_questions : array();
+				$quizResultObj->update([
+					'total_questions' => count($total_questions),
+					'total_attempted' => $quizResultObj->total_attempted+1,
+					'total_correct' => ($is_question_correct == true)? $quizResultObj->total_correct+1 : $quizResultObj->total_correct,
+					'total_incorrect' => ($is_question_correct == false)? $quizResultObj->total_incorrect+1 : $quizResultObj->total_incorrect,
+					'total_coins_earned' => ($is_question_correct == true)? $quizResultObj->total_coins_earned+$total_coins_earned : $quizResultObj->total_coins_earned,
+					'total_time_consumed'     => $quizResultObj->total_time_consumed+$time_consumed,
+				]);
+				
+				$total_questions = json_decode($quizAttempt->questions_list);
+				$total_questions = is_array( $total_questions )? $total_questions : array();
+				$quizAttempt->update([
+					'total_questions' => count($total_questions),
+					'total_attempted' => $quizAttempt->total_attempted+1,
+					'total_correct' => ($is_question_correct == true)? $quizAttempt->total_correct+1 : $quizAttempt->total_correct,
+					'total_incorrect' => ($is_question_correct == false)? $quizAttempt->total_incorrect+1 : $quizAttempt->total_incorrect,
+					'total_coins_earned' => $quizAttempt->total_coins_earned+$total_coins_earned,
+					'total_time_consumed'     => $quizAttempt->total_time_consumed+$time_consumed,
+				]);
+				
             }
         }
+		
+		
 
 
         createAttemptLog($quizAttempt->id, 'Answered question: #' . $QuizzResultQuestions->id, 'attempt', $QuizzResultQuestions->id);
@@ -1380,6 +1415,7 @@ class QuestionsAttemptController extends Controller
             $this->afterQuestionCorrect($parent_type);
         }
 		
+		
 		return $question_score;
 
     }
@@ -1574,11 +1610,7 @@ class QuestionsAttemptController extends Controller
         $column_name = ($parent_type == 'id') ? 'parent_type_id' : '';
         $column_name = ($parent_type == 'type') ? 'quiz_result_type' : $column_name;
 
-        $userQuizDone = QuizzesResult::SELECT('id','status')->where($column_name, $parent_id)->with([
-            'attempts' => function ($query) {
-                $query->with('quizz_result_questions');
-            }
-        ])->where('user_id', $user->id);
+        $userQuizDone = QuizzesResult::SELECT('id','status')->where($column_name, $parent_id)->where('user_id', $user->id);
         if (auth()->guest()) {
             $userQuizDone->where('user_ip', getUserIP());
         }
@@ -1605,17 +1637,9 @@ class QuestionsAttemptController extends Controller
                 }
 
                 $resultsData[$userQuizObj->id]['resultObjData'] = $userQuizObj;
-                $resultCount[$userQuizObj->id]['waiting'] = 0;
-                $resultCount[$userQuizObj->id]['incorrect'] = 0;
-                $resultCount[$userQuizObj->id]['correct'] = 0;
-                if (!empty($userQuizObj->attempts)) {
-                    foreach ($userQuizObj->attempts as $attemptObj) {
-                        $resultCount[$userQuizObj->id]['waiting'] += $attemptObj->quizz_result_questions->where('status', 'waiting')->count();
-                        $resultCount[$userQuizObj->id]['incorrect'] += $attemptObj->quizz_result_questions->where('status', 'incorrect')->count();
-                        $resultCount[$userQuizObj->id]['correct'] += $attemptObj->quizz_result_questions->where('status', 'correct')->count();
-
-                    }
-                }
+                $resultCount[$userQuizObj->id]['waiting'] = $userQuizObj->total_questions - $userQuizObj->total_attempted;
+                $resultCount[$userQuizObj->id]['incorrect'] = $userQuizObj->total_incorrect;
+                $resultCount[$userQuizObj->id]['correct'] = $userQuizObj->total_correct;
             }
         }
 
@@ -1941,10 +1965,12 @@ class QuestionsAttemptController extends Controller
         if (!empty($timestables_data)) {
             foreach ($timestables_data as $tableData) {
 				$tableData['score'] = $score;
+				$tableData['result_id'] = $QuizzesResult->id;
 				$results[$tableData['table_no']][] = $tableData;
             }
         }
-        $new_array = $results;//array_merge($get_last_results, $results);
+        //$new_array = $results;//array_merge($get_last_results, $results);
+		$new_array = array_merge($get_last_results, $results);
 
 
         
@@ -1968,8 +1994,13 @@ class QuestionsAttemptController extends Controller
             'status'         => 'passed',
             //'quiz_result_type' => 'timestables',
             'no_of_attempts' => 100,
-            'other_data'     => json_encode($new_result_data),
+			'other_data'     => json_encode($new_result_data),
         ]);
+		/*if ($QuizzesResult->quiz_result_type == 'timestables' && $QuizzesResult->attempt_mode == 'powerup_mode') {
+			$QuizzesResult->update([
+				'other_data'     => json_encode($new_result_data),
+			]);
+		}*/
 
         $attempt_log_id = createAttemptLog($QuizzAttempts->id, 'Session Ends', 'end');
 
@@ -2030,11 +2061,11 @@ class QuestionsAttemptController extends Controller
 					$percentage_correct_answer = $this->get_percetange_corrct_answer($QuizzesResult);
 					if( $percentage_correct_answer >= 95){
 						$earn_coins = $this->update_reward_points($newQuestionResult, ($is_correct == 'true') ? true : false, $QuizzesResult->parent_type_id);
-						$total_coins_earned =+ ($earn_coins > 0)? $earn_coins : 0;
+						$total_coins_earned += ($earn_coins > 0)? $earn_coins : 0;
 					}
 				}else{
 					$earn_coins = $this->update_reward_points($newQuestionResult, ($is_correct == 'true') ? true : false, $QuizzesResult->parent_type_id);
-					$total_coins_earned =+ ($earn_coins > 0)? $earn_coins : 0;
+					$total_coins_earned += ($earn_coins > 0)? $earn_coins : 0;
 				}
 
             }
@@ -2048,6 +2079,7 @@ class QuestionsAttemptController extends Controller
             'total_not_attempted' => count($not_attempted_array),
             'total_coins_earned' => $total_coins_earned,
             'total_time_consumed'     => ($total_time_consumed > 0)? ($total_time_consumed / 10) : 0,
+			'total_game_time' => (count($correct_array) * gameTime($QuizzesResult->quiz_result_type)),
         ]);
 		
 		$QuizzAttempts->update([
@@ -2058,6 +2090,7 @@ class QuestionsAttemptController extends Controller
             'total_not_attempted' => count($not_attempted_array),
             'total_coins_earned' => $total_coins_earned,
             'total_time_consumed'     => ($total_time_consumed > 0)? ($total_time_consumed / 10) : 0,
+            'total_game_time' => (count($correct_array) * gameTime($QuizzesResult->quiz_result_type)),
 		]);
 
         if( $QuizzesResult->attempt_mode == 'showdown_mode') {
@@ -3103,10 +3136,10 @@ class QuestionsAttemptController extends Controller
     public function get_percetange_corrct_answer($resultLogObj)
     {
         $user = getUser();
-        $total_questions = $resultLogObj->quizz_result_questions_list->count();
+        $total_questions = $resultLogObj->total_questions;
 		$correct_percentage = 0;
 		if( $total_questions > 0){
-			$total_correct_answers = $resultLogObj->quizz_result_questions_list->where('status', 'correct')->count();
+			$total_correct_answers = $resultLogObj->total_correct;
 			$correct_percentage = round(($total_correct_answers * 100) / $total_questions);
 		}
         return $correct_percentage;

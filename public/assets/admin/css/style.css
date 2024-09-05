@@ -367,6 +367,8 @@ select.form-control:not([size]):not([multiple]) {height: calc(2.25rem + 2px); fo
 
 .card .card-body p {font-weight: 500;}
 
+.note-editable p {max-width: 70%;}
+
 .card .card-header {border-bottom-color: #f9f9f9; line-height: 30px; -ms-grid-row-align: center; align-self: center; width: 100%; min-height: 70px; padding: 15px 25px; display: flex; align-items: center;}
 
 .card .card-header .btn {margin-top: 1px; padding: 2px 15px;}

@@ -618,12 +618,12 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
 
     Route::group(['prefix' => 'spells'] , function () {
        Route::get('/' , 'SpellsController@index');
-	   Route::get('/{spell_category}' , 'SpellsController@index');
        Route::get('/{quiz_year}/{quiz_slug}/words-list' , 'SpellsController@words_list');
        Route::get('/words_list' , 'SpellsController@words_list');
        Route::get('/{quiz_year}/{quiz_slug}' , 'SpellsController@start');
         Route::get('/search' , 'SpellsController@search');
         Route::get('/words-data' , 'SpellsController@words_data');
+	   Route::get('/{spell_category}' , 'SpellsController@index');
        //Route::get('/{quiz_id}/start' , 'ElevenplusController@start');
 
    });
@@ -680,7 +680,6 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
 
 
 
-        Route::get('/summary' , 'TimestablesController@summary');
         Route::post('/assignment_create' , 'TimestablesController@assignment_create');
 
         Route::get('/assignment_chase' , 'TimestablesController@assignment_chase');
@@ -689,11 +688,6 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
         Route::get('/global_arena' , 'TimestablesController@global_arena');
         Route::post('/update_tournament_event' , 'TimestablesController@update_tournament_event');
 
-        Route::get('/freedom_mode' , 'TimestablesController@freedom_mode');
-        Route::get('/powerup_mode' , 'TimestablesController@powerup_mode');
-        Route::get('/trophy_mode' , 'TimestablesController@trophy_mode');
-        Route::get('/showdown_mode' , 'TimestablesController@showdown_mode');
-        Route::get('/treasure_mission' , 'TimestablesController@treasure_mission');
     });
 
     //Route::group(['prefix' => 'timestables-practice' , 'middleware' => 'check_is_student'] , function () {
@@ -704,6 +698,16 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
         Route::get('/trophy-mode' , 'TimestablesController@trophy_mode');
         Route::get('/treasure-mission' , 'TimestablesController@treasure_mission');
         Route::get('/showdown-mode' , 'TimestablesController@showdown_mode');
+        Route::get('/heat-map' , 'TimestablesController@summary');
+		
+		
+		Route::post('/freedom-mode/play' , 'TimestablesController@genearte');
+        Route::post('/powerup-mode/play' , 'TimestablesController@generate_powerup');
+        Route::post('/trophy-mode/play' , 'TimestablesController@generate_trophymode');
+        Route::post('/treasure-mission/play' , 'TimestablesController@generate_treasure_mission');
+        Route::post('/showdown-mode/play' , 'TimestablesController@generate_showdown_mode');
+		
+		
     });
 
     Route::group(['prefix' => 'school-zone'] , function () {

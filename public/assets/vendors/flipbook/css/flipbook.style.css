@@ -2381,6 +2381,10 @@ Flip Book Custom Style Start
     color: #186495;
     margin: 0 12px 0 0;
 }
+.listing-btn:hover,
+.listing-btn:hover i {
+    color: #fff;
+}
 .remove-btn {
     color: #000914;
     outline: none;

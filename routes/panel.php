@@ -430,6 +430,7 @@ $parentTutorRoutes = function () {
         Route::get('/graph_data', 'AnalyticsController@graph_data');
         Route::get('/{type}', 'AnalyticsController@index');
         Route::get('/{type}/{id}', 'AnalyticsController@index');
+        Route::get('/{type}/result/{id}', 'ResultsController@results');
     });
 
     Route::group(['prefix' => 'results'], function () {

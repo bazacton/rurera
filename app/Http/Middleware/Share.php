@@ -204,17 +204,14 @@ class Share
             }
             if (auth()->user()->isParent()) {
 				$navData['is_parent'] = false;
-                $childs = User::where('role_id', 1)
-                    ->where('parent_type', 'parent')
-                    ->where('parent_id', $user->id)
-                    ->with([
-                        'userSubscriptions' => function ($query) {
-                            $query->with(['subscribe']);
-                        }
-                    ]);
-
-
-                $childs = $childs->get();
+				$childs = $user->parentChilds->where('status', 'active')->sortBy(function ($child) {
+					if( isset( $child->user->userSubscriptions->id )){
+						return 0;
+					}else{
+						return 1;
+					}
+					//return $child->user->userSubscriptions->count();
+				});
 
                 $navData['profile_navs'] = $childs;
 

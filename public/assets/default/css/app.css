@@ -5519,8 +5519,12 @@ p {line-height: 1.5;}
 .top-navbar .dropdown-menu.user-profile-dropdown:after {display: none;}
 .dropdown-menu.user-profile-dropdown .user-nav-detail {display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 5px 0;}
 .dropdown-menu.user-profile-dropdown .user-nav-detail img {width: 100px;height: 100px;object-fit: contain; margin-bottom: 10px;}
-.user-profile-dropdown .nav-logout {display: inline-flex;align-items: center;gap: 10px;flex-wrap: wrap;border: 1px solid #d3d4d6;border-radius: 10px;justify-content: center;min-width: 175px;width: auto;padding: 10px 30px;}
-.user-profile-dropdown .nav-logout span {font-size: 16px;}
+.user-profile-dropdown .nav-logout {display: inline-flex;align-items: center; float: left; gap: 10px;flex-wrap: wrap;border: 0; min-width: 175px;width: auto;padding: 0 0 0 20px; margin-bottom: 10px;}
+.user-profile-dropdown .nav-logout span {font-weight: 500;color: var(--primary);}
+.user-profile-dropdown .nav-logout img,
+.dropdown-menu.user-profile-dropdown .user-nav-list img {
+    display: none;
+}
 .user-profile-dropdown .dropdown-item:hover {background-color: inherit;}
 .top-navbar .dropdown-menu.user-profile-dropdown .user-nav-detail img {margin: 0 0 15px;}
 .user-manage-btn {border: 1px solid #d3d4d6; padding: 10px 30px; border-radius: 10px;color: #343e47; font-weight: 500; display: block; text-align: center; margin: 0 0 10px;}
@@ -5545,9 +5549,13 @@ p {line-height: 1.5;}
 .user-profile-icons img {width: 28px; height: 28px; object-fit: contain; }
 .user-profile-icons li strong {display: inline-flex; align-items: center; gap: 5px; position: relative;}
 .panel-right-sidebar .dropdown-menu.user-profile-dropdown {min-width: 250px; top: 100%; bottom: auto; left: auto; right: -10px; text-align: center;}
-.panel-right-sidebar .dropdown-menu.user-profile-dropdown .user-nav-list {padding: 0 0 12px !important; margin: 0 0 12px;}
-.panel-right-sidebar .dropdown-menu.user-profile-dropdown .user-nav-list .dropdown-item {padding: 0 !important; margin-bottom: 10px;}
-.panel-right-sidebar .dropdown-menu.user-profile-dropdown .user-nav-list .user-list-name {font-weight: 500;}
+.panel-right-sidebar .dropdown-menu.user-profile-dropdown .user-nav-list {padding: 0 !important; border: 0;}
+.panel-right-sidebar .dropdown-menu.user-profile-dropdown .user-nav-list .dropdown-item {padding: 0 0 0 20px !important; margin-bottom: 10px; display: flex; align-items: center;}
+.panel-right-sidebar .dropdown-menu.user-profile-dropdown .user-nav-list .dropdown-item .user-list-name {
+    color: var(--primary);
+    font-weight: 500;
+}
+.dropdown-menu.user-profile-dropdown .user-nav-list .user-list-email {line-height: normal; display: none;}
 .user-profile-icons .dropdown-menu:after, 
 .user-profile-icons .dropdown-menu:before {content: ""; position: absolute; top: -8px; right: 30px; height: 15px; width: 15px; border-top: 1px solid #ddd; border-left: 1px solid#ddd; transform: rotate(45deg);}
 .user-profile-icons .dropdown-menu:before {background-color: #fff; top: -6px; box-shadow: none; border: 0; }
@@ -7854,7 +7862,8 @@ Custom Pagination Style End
 .subjects-heading {margin: 0 0 35px;}
 .categories-card.medium {display: flex; flex-wrap: wrap; border-bottom: 1px solid #ddd; box-shadow: none; border-radius: 0; align-items: center; padding:20px; margin: 0; transform: none;}
 .categories-card.medium:first-child {border-top: 1px solid #ddd;}
-.categories-card.medium .categories-icon {min-height: 80px; border-radius: 14px; box-shadow: 0 -4px 0 0 rgba(0, 0, 0, 0.2) inset; min-width: 70px; max-width: 70px; padding: 15px;}
+.categories-card.medium .categories-icon,
+.quests-learning .quests-item .icon-box {min-height: 80px; border-radius: 14px; box-shadow: 0 -4px 0 0 rgba(0, 0, 0, 0.2) inset; min-width: 70px; max-width: 70px; padding: 15px;}
 .categories-card.medium .categories-icon svg {width: 40px; height: 40px;}
 .categories-card.medium .categories-text {width: calc(100% - 70px); padding-left: 25px; line-height: normal; position: relative;}
 .categories-card.medium .categories-text .categories-title {padding: 0; text-align: left; margin: 0 0 12px; }
@@ -10030,6 +10039,178 @@ Dashboard Form-Tabs Style Start
 /*************************************
 Dashboard Form-Tabs Style End
 *************************************/
+
+/*************************************
+Sidebar Student-list Style Start
+*************************************/
+.sidebar-students-list .card {
+    gap: 15px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    height: 335px;
+    overflow: hidden;
+}
+.sidebar-students-list .card:has(.item-control) {
+    height: auto;
+    overflow: visible;
+}
+/* .sidebar-students-list .card::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
+.sidebar-students-list .card::-webkit-scrollbar
+{
+	width: 8px;
+	background-color: #F5F5F5;
+}
+
+.sidebar-students-list .card::-webkit-scrollbar-thumb
+{
+	background-color: #bbb;
+	border: 0;
+} */
+.sidebar-students-list {
+    width: 100%;
+}
+.sidebar-students-list .card .col-auto {
+    padding: 0 0 0 15px;
+}
+.sidebar-students-list .card .col-auto:empty {
+    display: none;
+}
+.sidebar-students-list .card .col-auto:has(h6) {
+    max-width: 130px;
+    padding-left: 10px;
+}
+.switch-user-btn .icon-box img {
+    height: 20px;
+    width: 20px;
+}
+.sidebar-students-list .switch-user-btn {
+    font-size: 12px;
+    display: inline-flex;
+    padding: 0 10px 0 0;
+    position: relative;
+    margin-left: auto;
+}
+.sidebar-students-list .switch-user-btn:before {
+    content: "Switch User";
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    color: #fcfcfc;
+    background-color: #000;
+    white-space: nowrap;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transform: translateY(-50%);
+    margin-right: 10px;
+    visibility: hidden;
+    opacity: 0;
+}
+.sidebar-students-list .switch-user-btn:after {
+    content: "";
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    height: 8px;
+    width: 8px;
+    background-color: #000;
+    margin-top: -4px;
+    margin-right: 7px;
+    transform: rotate(45deg);
+    visibility: hidden;
+    opacity: 0;
+}
+.sidebar-students-list .switch-user-btn:hover:before,
+.sidebar-students-list .switch-user-btn:hover:after {
+    opacity: 1;
+    visibility: visible;
+}
+.switch-user-btn .icon-box {
+    display: inline-block;
+    width: 100%;
+    vertical-align: middle;
+    text-align: center;
+}
+.item-control {
+    text-align: center;
+}
+.item-control .showMore {
+display: block;
+font-size: 16px;
+font-weight: 700;
+color: #b2b2b2;
+text-decoration: none;
+}
+.item-control .showMore::after {
+content: "+ View More";
+}
+.item-control .showMore:hover {color: var(--primary);}
+.item-control .showMore.showLess::after {
+content: "- View Less";
+}
+/*************************************
+Sidebar Student-list Style End
+*************************************/
+
+/*************************************
+Sidebar Spell-widget Style Start
+*************************************/
+.spell-widget button {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    width: 100%;
+    height: auto;
+    line-height: normal;
+    text-decoration: none !important;
+}
+.spell-widget .spell-item {
+    padding: 0 20px 12px;
+    border-bottom: 1px solid #c8c6c6;
+
+}
+.spell-widget .spell-item:last-child {
+    border: 0;
+}
+.spell-word img {
+    object-fit: contain;
+    height: 18px;
+    width: 18px;
+}
+.spell-widget .spell-word {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 24px;
+    margin: 8px 0 15px;
+}
+.spell-widget .day-date {
+    color: #fe0000;
+    font-weight: 600;
+    /* border-radius: 6px;
+    padding: 4px 8px;
+    box-shadow: 0 0 0 1px inset #ca0909; */
+}
+.spell-widget .spell-lable {
+    font-weight: 500;
+    display: block;
+    line-height: normal;
+    margin: 0 0 5px;
+}
+.spell-widget .prev-date {
+    color: #999;
+}
+/*************************************
+Sidebar Spell-widget Style End
+*************************************/
 .user-assign-topics {display: inline-block; vertical-align: middle; position: relative;}
 .user-assign-topics button.dropdown-toggle {margin-left: -8px; transition: all .4s ease; opacity: 0; visibility: hidden; border: 0; background-color: inherit; position: absolute; left: 0; top: 50%; padding: 10px 15px; margin-top: 0;}
 .user-assign-topics button.dropdown-toggle:after{content: ""; border: 0; height: 2px; width: 14px; position: absolute; left: 0; top: 0; background-color: #666;}
@@ -10134,6 +10315,40 @@ Product Tabs Slider Style Start
 .chart-summary-fields .sats-summary [class*="col-"].bitcoin-box {background-color: initial;}
 .chart-summary-fields .sats-summary .score {color: #0d173b; font-size: 16px;}
 .chart-summary-fields .sats-summary [class*="col-"].bg-none {background-color: inherit; padding: 20px 0;}
+.finish-steps .result-layout-summary .sats-summary [class*="col-"] {
+    max-width: none;
+    flex: 0 0 auto;
+    width: auto;
+    padding: 8px 15px;
+}
+.finish-steps .row {
+    justify-content: center;
+}
+.finish-steps .result-layout-summary .sats-summary {
+    display: inline-flex;
+    border-radius: 5px;
+}
+.finish-steps .summary-text label {
+    display: inline-block;
+    margin: 0;
+    vertical-align: middle;
+    text-transform: capitalize;
+}
+.finish-steps .summary-text .score {
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 5px;
+}
+.finish-steps .sats-summary .sats-summary-icon {
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+}
+.finish-steps .chart-summary-fields .sats-summary .summary-text {
+    width: calc(100% - 40px);
+    text-align: left;
+}
+
 .chart-filters {display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; border-bottom: 2px solid #a2bad2; margin: 0 0 30px;}
 .chart-filters ul {display: inline-flex; align-items: center; gap: 20px; margin: 0;}
 .chart-filters li a {font-size: 15px; color: #66667e; display: block; line-height: normal; padding: 12px 14px; font-weight: 500; border-radius: 5px 5px 0 0;}
@@ -10890,18 +11105,22 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 
 /* Quests Style Start  */
 .quests-item {display: flex; align-items: center; flex-wrap: wrap; gap: 5px; width: 100%; }
-.quests-item .icon-box {margin-right: 10px; text-align: center; width: 52px; }
-.quests-item .item-text {width: calc(100% - 70px); text-align: left;}
+.quests-item .item-text {width: calc(100% - 85px); text-align: left;}
 .quests-list h3 {display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; margin: 0 0 25px; }
 .quests-item .item-text .levels-progress.horizontal {margin-top: 0; margin-right: -6px; display: inline-block; width: calc(100% - 68px); vertical-align: middle; position: relative;}
 .quests-item .item-text .levels-progress.horizontal .progress-box {min-width: auto; max-width: none; border-radius: 50px 0 0 50px;}
 .progress-icon {background-color: #e5e5e5; border-radius: 14px; display: inline-flex; align-items: center; justify-content: center; gap: 2px; font-size: 12px; font-weight: 500; margin-right: -4px; vertical-align: middle; padding: 6px 5px; width: 58px;}
 .quests-list .progress-icon {width: 70px;}
 .progress-icon img {height: 20px; width: 20px; object-fit: contain;}
+.quests-item .icon-box {
+    margin-right: 10px;
+    text-align: center;
+    width: 52px;
+}
 .quests-item .icon-box img {max-width: 100%;}
 .quests-item .progress-numbers {position: absolute; top: 0; left: 50%; transform: translateX(-50%); font-size: 14px; }
 .quests-list li {margin-bottom: 35px;}
-.quests-list h3 .view-all {color: #36b4ee; text-transform: uppercase;}
+.panel-right-sidebar h3 .view-all {color: var(--primary);}
 .quests-list li:last-child {margin-bottom: 15px;}
 .quests-item .item-text h5 {margin-bottom: 2px; }
 .quests-item .horizontal .progress-count {border-radius: 50px 0 0 50px;}
@@ -11067,7 +11286,7 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .question_inactivity_modal .modal-content .continue-btn,
 .question_inactivity_modal .modal-content .leavenow-btn,
 .inactivity-controls .continue-btn,
-.inactivity-controls .rurera-delete-btn {background-color: var(--primary); color: #fff; padding: 8px 15px; display: inline-block; border-radius: 3px; min-width: 200px; text-align: center;}
+.inactivity-controls .rurera-delete-btn {background-color: var(--primary); color: #fff; padding: 8px 10px; display: inline-block; border-radius: 3px; text-align: center;}
 .rurera-confirm-delete .inactivity-controls .continue-btn {min-width: 100px; margin-right: 10px;}
 .question_inactivity_modal .modal-content .leavenow-btn {margin-bottom: 10px;}
 .inactivity-controls .rurera-delete-btn {background-color: #fb5757; min-width: 100px;}
@@ -11799,7 +12018,6 @@ Lms Responsive Style Start
     .panel-content > .container > .row > [class*="col-"]:last-child {padding-left: 15px;}
     .panel-content .panel-content-holder {max-width: calc(100% - 370px);}
     .panel-content .panel-right-sidebar {flex: 0 0 370px;max-width: 370px;}
-    body .dashboard-banner-container {margin-top: 15px;}
     .panel-sidebar .sidebar-menu .sidenav-item {justify-content: center;}
     body .topbar-right {justify-content: space-between; }
     .question-number-holder {z-index: 1 !important;}
@@ -12836,6 +13054,7 @@ Lms Responsive Style Start
     .spell-quiz-page table[id*='word-search-'] td {font-size: 12px;height: 20px;}
     .stats-list ul {flex-direction: column;}
     .stats-list ul li {padding: 0 0 0 15px; margin-left: 0;}
+    .finish-steps .row {flex-direction: column;}
 }
 @media screen and (max-width: 480px) {
     .lms-count-field .lms-text-holder {flex-direction: column;}

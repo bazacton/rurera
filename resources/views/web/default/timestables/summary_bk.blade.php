@@ -127,11 +127,13 @@
                                 $to_tableObj = isset( $from_table_array[$table_count] )?
                                 $from_table_array[$table_count] : array();
                                 $class = isset( $to_tableObj['class'] )? $to_tableObj['class'] : '';
+								$is_correct = isset( $to_tableObj['is_correct'] )? $to_tableObj['is_correct'] : '';
+								
                                 $attempts = isset( $to_tableObj['attempts'] )? $to_tableObj['attempts'] : 0;
-                                $class = ($attempts > 4)? $class : '';
+                                $class = ($attempts > 0)? $class : '';
 
                                 @endphp
-                                <td class="{{$class}} {{ ($table_count > 12 )? 'above_12' : 'below_12'}}">
+                                <td class="{{$class}} {{ ($table_count > 12 )? 'above_12' : 'below_12'}}" data-is_correct="{{$is_correct}}">
                                     <span>{{$count}} <span>&#215;</span> {{$table_count}}</span></td>
                                 @php $table_count++; @endphp
                                 @endwhile
@@ -148,6 +150,13 @@
 
 
                     </div>
+					
+					<div class="status-in-words">
+						<span class="st-wrong">Wrong</span>
+						<span class="st-ok">Ok</span>
+						<span class="st-fast">Fast</span>
+					</div>
+							
                     <div class="heatmap-heading mb-20">
                         <span>Drag to time travel or click below to focus a table</span>
                     </div>
@@ -188,10 +197,12 @@
 <script type="text/javascript">
     if (jQuery('#storlekslider').length > 0) {
         var valMap = <?php echo json_encode($dates_array); ?>;
-        const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+        var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
         $("#storlekslider").slider({
             max: valMap.length - 1,
+			value: valMap.length - 1,
             slide: function(event, ui) {
+				console.log('test');
                 var datestring = valMap[ui.value];
                 jsTimestamp = new Date(valMap[ui.value] * 1000);
                 var month_label = months[jsTimestamp.getMonth()];
@@ -203,17 +214,26 @@
                 $('.summary-table-item[data-datestring="'+datestring+'"]').addClass('active');
                 $('.summary-table-item[data-datestring="'+datestring+'"]').removeClass('hide');
 
-
-
-
                 $(ui.value).val(jsTimestamp.getDate());
             }
         });
     }
+	
+	function updateDate(value) {
+		var datestring = valMap[value];
+		var jsTimestamp = new Date(valMap[value] * 1000);
+		var month_label = months[jsTimestamp.getMonth()];
+		$(".range-value span").html(month_label + ' ' + jsTimestamp.getFullYear());
+		$("#storlek_testet").val(jsTimestamp.getDate());
+		$("#storlek_testet").attr('data-datestring', datestring);
+		$(".summary-table-item").removeClass('active').addClass('hide');
+		$('.summary-table-item[data-datestring="' + datestring + '"]').addClass('active').removeClass('hide');
+	}
+	
+	updateDate(valMap.length - 1, months, valMap);
 
     if (jQuery('#storlek_testet').length > 0) {
         $("#storlek_testet").keyup(function () {
-
             $("#storlekslider").slider("value", $(this).val());
             var value1 = $("#storlek_testet").val();
         });

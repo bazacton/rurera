@@ -48,7 +48,7 @@
                                     <div class="grid-card timestables-mode-data" itemtype="https://schema.org/NewsArticle">
                                         <div class="text-holder">
                                             <h3 class="blog-grid-title font-18 font-weight-bold" itemprop="title">
-                                                Power-Up
+                                                Power-up Heatmap
                                             </h3>
                                         </div>
                                         <div class="img-holder">
@@ -113,7 +113,7 @@
                                 </a>
                             </div>
                             <div class="col-12 col-md-12 col-lg-12">
-                                <a itemprop="url" href="/timestables/summary">
+                                <a itemprop="url" href="/timestables-practice/heat-map">
                                     <div class="grid-card timestables-mode-data" itemtype="https://schema.org/NewsArticle">
                                         <div class="text-holder">
                                             <h3 class="blog-grid-title font-18 font-weight-bold" itemprop="title">

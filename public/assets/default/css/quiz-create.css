@@ -1975,4 +1975,4 @@ STYLE
 .question-textarea.quiz-group {padding-top: 10px;}
 .leform-properties-content .note-editable .input-holder:has(input[type="text"]:focus) {border: 0; overflow: visible;}
 .leform-properties-content .note-editable input[type="text"],
-.note-editing-area .note-editable input.editor-field {height: 32px; box-shadow: none; border-color: transparent; border-radius: 8px; width: 100%;}
+.note-editing-area .note-editable input.editor-field {height: 32px; box-shadow: none; border-color: transparent; border-radius: 8px; width: auto;}

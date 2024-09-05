@@ -9,7 +9,7 @@
                     <div class="section-title mb-30 text-center"><h2>Completed! </h2></div>
                 </div>
                 <div class="col-12 col-lg-12 mx-auto">
-                   <a href="/panel/results/{{$QuizzesResult->id}}/timetables" class="timestables-results">See Results</a>
+                   <a href="/panel/analytics/timestables/result/{{$QuizzesResult->id}}" class="timestables-results">See Results</a>
                     @if( $percentage_correct_answer >= 95)
                         <a href="javascript:;"  data-id="{{isset( $nuggetObj['id'] )? $nuggetObj['id'] : ''}}" class="timestables-next-stage">Next Stage</a>
                     @else

@@ -558,7 +558,7 @@ class TimestablesController extends Controller
                                             $class = ($class == 'correct' && ($tableRowObj->time_consumed / 10) < 2) ? 'correct-fast' : $class;
                                             $tables_array[$date][$table_no][$tableRowObj->to]['class'] = '';
                                             $tables_array[$date][$table_no][$tableRowObj->to]['class'] = $class;
-                                            if( isset( $already_Exists[$table_no][$tableRowObj->to])){
+                                            if( isset( $already_Exists[$table_no][$tableRowObj->to]) && $already_Exists[$table_no][$tableRowObj->to]['result_id'] != $tableRowObj->result_id){
                                                 $average_time_consumed = $time_consumed_event = 0;
                                                 foreach( $savedData[$table_no][$tableRowObj->to] as $alreadyData){
                                                     $time_consumed_event = ($alreadyData['is_correct'] == true)? $alreadyData['average_time'] : 10;
@@ -566,12 +566,14 @@ class TimestablesController extends Controller
                                                 $average_time_consumed = ($time_consumed_event*100)/(count($savedData[$table_no][$tableRowObj->to])*10);
                                                 $tables_array[$date][$table_no][$tableRowObj->to]['average_time'] = $average_time_consumed;
                                                 $tables_array[$date][$table_no][$tableRowObj->to]['attempts'] = isset( $tables_array[$date][$table_no][$tableRowObj->to]['attempts'] )? $tables_array[$date][$table_no][$tableRowObj->to]['attempts']+1 : 1;
-                                                $tables_array[$date][$table_no][$tableRowObj->to]['class'] = 'average_'.intval(floor($average_time_consumed / 10));
+                                                //$tables_array[$date][$table_no][$tableRowObj->to]['class'] = 'average_'.intval(floor($average_time_consumed / 10));
                                             }else{
                                                 $tables_array[$date][$table_no][$tableRowObj->to]['attempts'] = 1;
                                                 //$tables_array[$date][$table_no][$tableRowObj->to]['class'] = '';
                                             }
-                                            $already_Exists[$table_no][$tableRowObj->to] = $tableRowObj->to;
+											$tables_array[$date][$table_no][$tableRowObj->to]['data'] = $tableRowObj;
+											
+                                            $already_Exists[$table_no][$tableRowObj->to]['result_id'] = $tableRowObj->result_id;
                                         }
                                     }
                                 }

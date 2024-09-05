@@ -214,5 +214,4 @@
         var $chartData = @json($monthlyChart['data']);
     </script>
 
-    <script src="/assets/default/js/panel/dashboard.min.js"></script>
 @endpush

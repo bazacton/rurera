@@ -133,5 +133,16 @@
 
     {!! !empty(getCustomCssAndJs('js')) ? getCustomCssAndJs('js') : '' !!}
 </script>
+
+<script type="text/javascript">
+  window._mfq = window._mfq || [];
+  (function() {
+    var mf = document.createElement("script");
+    mf.type = "text/javascript"; mf.defer = true;
+    mf.src = "//cdn.mouseflow.com/projects/b545a93a-901f-443b-9f07-429206fd8fde.js";
+    document.getElementsByTagName("head")[0].appendChild(mf);
+  })();
+</script>
+
 </body>
 </html>

@@ -13,7 +13,7 @@
 
 <div class="timestables-mode-content">
 <div class="section-title mb-20">
-    <h2 itemprop="title" class="font-22 mb-0"><a href="/timestables-practice" class="timestables-back-btn"></a> Powerup Mode</h2>
+    <h2 itemprop="title" class="font-22 mb-0"><a href="/timestables-practice" class="timestables-back-btn"></a> Power-up Heatmap</h2>
 </div>
 <section class="p-25 panel-border border-bottom-4 border-radius-10 mb-30" style="background-color: #fff;">
     <div class="container">
@@ -27,13 +27,13 @@
                     <div class="section-title mb-30 text-center"><h2>Select Practice Time </h2></div>
                 </div>
                 <div class="col-12 col-lg-12 mx-auto">
-                    <form action="/timestables/generate_powerup" method="post">
+                    <form action="/timestables-practice/powerup-mode/play" method="post">
                         {{ csrf_field() }}
 						
 						
 						
 						<div class="questions-select-option">
-							<h4 class="mb-20">Select Practice Level</h4>
+							<h4 class="mb-20">Select Table Group</h4>
                             <ul class="mb-20 d-flex align-items-center">
                                 <li>
                                     <input checked type="radio" id="practice_level_1_3" value="1" name="practice_level" />
