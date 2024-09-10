@@ -2321,35 +2321,35 @@ function toolbar_tools()
 {
     $toolbar_tools = array(
         'columns'            => array(
-            'title'   => esc_html__('Column layout', 'leform'),
+            'title'   => esc_html__('Column layout', 'rureraform'),
             'icon'    => 'fas fa-columns',
             'options' => array(
-                '1' => esc_html__('1 column', 'leform'),
-                '2' => esc_html__('2 columns', 'leform'),
-                '3' => esc_html__('3 columns', 'leform'),
-                '4' => esc_html__('4 columns', 'leform'),
-                '6' => esc_html__('6 columns', 'leform')
+                '1' => esc_html__('1 column', 'rureraform'),
+                '2' => esc_html__('2 columns', 'rureraform'),
+                '3' => esc_html__('3 columns', 'rureraform'),
+                '4' => esc_html__('4 columns', 'rureraform'),
+                '6' => esc_html__('6 columns', 'rureraform')
             ),
             'type'    => 'other'
         ),
         'question_templates' => array(
-            'title'   => esc_html__('Questions Templates', 'leform'),
+            'title'   => esc_html__('Questions Templates', 'rureraform'),
             'icon'    => 'fas fa-layer-group',
             'options' => array(
-                'multichoice_template' => esc_html__('<img src="/store/1/tool-images/d1.png" alt=""> Multiple Choice', 'leform'),
-                'multiresponse_template' => esc_html__('<img src="/store/1/tool-images/d2.png" alt=""> Multiple Response', 'leform'),
-                'true_false_template' => esc_html__('<img src="/store/1/tool-images/d3.png" alt=""> True/False', 'leform'),
-                'short_answer_template' => esc_html__('<img src="/store/1/tool-images/d4.png" alt=""> Short Answer', 'leform'),
-                'numeric_template' => esc_html__('<img src="/store/1/tool-images/d5.png" alt=""> Numeric', 'leform'),
-                'sequence_template' => esc_html__('<img src="/store/1/tool-images/d6.png" alt=""> Sequence', 'leform'),
-                'matching_template' => esc_html__('<img src="/store/1/tool-images/d7.png" alt=""> Matching', 'leform'),
-                'fill_blanks_template' => esc_html__('<img src="/store/1/tool-images/d8.png" alt=""> Fill in the Blanks', 'leform'),
-                'select_template' => esc_html__('<img src="/store/1/tool-images/d9.png" alt=""> Select from Lists', 'leform'),
-                'drag_word_template' => esc_html__('<img src="/store/1/tool-images/d10.png" alt=""> Drag the Words', 'leform'),
-                'hotspot_template' => esc_html__('<img src="/store/1/tool-images/d11.png" alt=""> Hotspot', 'leform'),
-                'drag_drop_template' => esc_html__('<img src="/store/1/tool-images/d12.png" alt=""> Drag and Drop', 'leform'),
-                'likert_template' => esc_html__('<img src="/store/1/tool-images/d13.png" alt=""> Likert Scale', 'leform'),
-                'essay_template' => esc_html__('<img src="/store/1/tool-images/d14.png" alt=""> Essay', 'leform'),
+                'multichoice_template' => esc_html__('<img src="/store/1/tool-images/d1.png" alt=""> Multiple Choice', 'rureraform'),
+                'multiresponse_template' => esc_html__('<img src="/store/1/tool-images/d2.png" alt=""> Multiple Response', 'rureraform'),
+                'true_false_template' => esc_html__('<img src="/store/1/tool-images/d3.png" alt=""> True/False', 'rureraform'),
+                'short_answer_template' => esc_html__('<img src="/store/1/tool-images/d4.png" alt=""> Short Answer', 'rureraform'),
+                'numeric_template' => esc_html__('<img src="/store/1/tool-images/d5.png" alt=""> Numeric', 'rureraform'),
+                'sequence_template' => esc_html__('<img src="/store/1/tool-images/d6.png" alt=""> Sequence', 'rureraform'),
+                'matching_template' => esc_html__('<img src="/store/1/tool-images/d7.png" alt=""> Matching', 'rureraform'),
+                'fill_blanks_template' => esc_html__('<img src="/store/1/tool-images/d8.png" alt=""> Fill in the Blanks', 'rureraform'),
+                'select_template' => esc_html__('<img src="/store/1/tool-images/d9.png" alt=""> Select from Lists', 'rureraform'),
+                'drag_word_template' => esc_html__('<img src="/store/1/tool-images/d10.png" alt=""> Drag the Words', 'rureraform'),
+                'hotspot_template' => esc_html__('<img src="/store/1/tool-images/d11.png" alt=""> Hotspot', 'rureraform'),
+                'drag_drop_template' => esc_html__('<img src="/store/1/tool-images/d12.png" alt=""> Drag and Drop', 'rureraform'),
+                'likert_template' => esc_html__('<img src="/store/1/tool-images/d13.png" alt=""> Likert Scale', 'rureraform'),
+                'essay_template' => esc_html__('<img src="/store/1/tool-images/d14.png" alt=""> Essay', 'rureraform'),
             ),
             'type'    => 'other',
             'options_elements'    => array(
@@ -2376,14 +2376,14 @@ function toolbar_tools()
 		
 		/* ----------- true_false_template Start */
         'question_label_true_false'  => array(
-            'title' => esc_html__('question_label_true_false', 'leform'),
+            'title' => esc_html__('question_label_true_false', 'rureraform'),
             'icon'  => 'fa fa-plus',
             'classes' => 'rurera-hide',
             'type'  => 'other'
         ),
 		
 		'question_label_paragraph'  => array(
-            'title' => esc_html__('question_label_paragraph', 'leform'),
+            'title' => esc_html__('question_label_paragraph', 'rureraform'),
             'icon'  => 'fa fa-plus',
             'classes' => 'rurera-hide',
             'type'  => 'other'
@@ -2395,14 +2395,14 @@ function toolbar_tools()
 		
 		/* ----------- multichoice_template Start */
         'question_label_multichoice_template'  => array(
-            'title' => esc_html__('question_label_multichoice_template', 'leform'),
+            'title' => esc_html__('question_label_multichoice_template', 'rureraform'),
             'icon'  => 'fa fa-plus',
             'classes' => 'rurera-hide',
             'type'  => 'other'
         ),
 		
 		'paragraph_multichoice_template'  => array(
-            'title' => esc_html__('paragraph_multichoice_template', 'leform'),
+            'title' => esc_html__('paragraph_multichoice_template', 'rureraform'),
             'icon'  => 'fa fa-plus',
             'classes' => 'rurera-hide',
             'type'  => 'other'
@@ -2414,7 +2414,7 @@ function toolbar_tools()
 		
 		/* ----------- sequence_template Start */
         'question_label_sequence_template'  => array(
-            'title' => esc_html__('question_label_sequence_template', 'leform'),
+            'title' => esc_html__('question_label_sequence_template', 'rureraform'),
             'icon'  => 'fa fa-plus',
             'classes' => 'rurera-hide',
             'type'  => 'other'
@@ -2425,13 +2425,13 @@ function toolbar_tools()
 		
 		/* ----------- select_template Start */
         'question_label_select_template'  => array(
-            'title' => esc_html__('question_label_select_template', 'leform'),
+            'title' => esc_html__('question_label_select_template', 'rureraform'),
             'icon'  => 'fa fa-plus',
             'classes' => 'rurera-hide',
             'type'  => 'other'
         ),
 		'html_select_template'  => array(
-            'title' => esc_html__('html_select_template', 'leform'),
+            'title' => esc_html__('html_select_template', 'rureraform'),
             'icon'  => 'fa fa-plus',
             'classes' => 'rurera-hide',
             'type'  => 'other'
@@ -2441,7 +2441,7 @@ function toolbar_tools()
 		
 		/* ----------- matching_template Start */
         'question_label_matching_template'  => array(
-            'title' => esc_html__('question_label_matching_template', 'leform'),
+            'title' => esc_html__('question_label_matching_template', 'rureraform'),
             'icon'  => 'fa fa-plus',
             'classes' => 'rurera-hide',
             'type'  => 'other'
@@ -2456,173 +2456,170 @@ function toolbar_tools()
 		
 		
         'html'               => array(
-            'title' => esc_html__('HTML', 'leform'),
+            'title' => esc_html__('HTML', 'rureraform'),
             'icon'  => 'fas fa-code',
             'type'  => 'other'
         ),
         'multichoice_template'  => array(
-            'title' => esc_html__('SUM Q', 'leform'),
+            'title' => esc_html__('SUM Q', 'rureraform'),
             'icon'  => 'fa fa-plus',
             'classes' => 'rurera-hide',
             'type'  => 'other'
         ),
         'multiresponse_template'  => array(
-            'title' => esc_html__('SUM Q', 'leform'),
+            'title' => esc_html__('SUM Q', 'rureraform'),
             'icon'  => 'fa fa-plus',
             'classes' => 'rurera-hide',
             'type'  => 'other'
         ),
         'sum_quiz'           => array(
-            'title' => esc_html__('SUM Q', 'leform'),
+            'title' => esc_html__('SUM Q', 'rureraform'),
             'icon'  => 'fa fa-plus',
             'type'  => 'other'
         ),
         'sqroot_quiz'        => array(
-            'title' => esc_html__('Sqroot', 'leform'),
+            'title' => esc_html__('Sqroot', 'rureraform'),
             'icon'  => 'fas fa-square-root-alt',
             'type'  => 'other'
         ),
         'image_quiz_draggable'         => array(
-            'title' => esc_html__('Draggable Image', 'leform'),
+            'title' => esc_html__('Draggable Image', 'rureraform'),
             'icon'  => 'fas fa-image',
             'type'  => 'other'
         ),
         'image_quiz'         => array(
-            'title' => esc_html__('Image', 'leform'),
+            'title' => esc_html__('Image', 'rureraform'),
             'icon'  => 'fas fa-image',
             'type'  => 'other'
         ),
         'heading_quiz'     => array(
-            'title' => esc_html__('Text', 'leform'),
+            'title' => esc_html__('Text', 'rureraform'),
             'icon'  => 'fas fa-heading',
+			'classes' => 'rurera-hide',
             'type'  => 'other'
         ),
         'paragraph_quiz'     => array(
-            'title' => esc_html__('Text', 'leform'),
+            'title' => esc_html__('Text', 'rureraform'),
             'icon'  => 'fas fa-paragraph',
+			'classes' => 'rurera-hide',
             'type'  => 'other'
         ),
         'textareafield_quiz'     => array(
-            'title' => esc_html__('Textarea Field', 'leform'),
+            'title' => esc_html__('Textarea Field', 'rureraform'),
             'icon'  => 'textareafield_quiz.svg',
             'icon_type'  => 'svg',
             'type'  => 'other'
         ),
         'textfield_quiz'     => array(
-            'title' => esc_html__('Text Input Field', 'leform'),
+            'title' => esc_html__('Text Input Field', 'rureraform'),
             'icon'  => 'fas fa-i-cursor',
             'type'  => 'other'
         ),
         'truefalse_quiz'     => array(
-            'title' => esc_html__('True/False Field', 'leform'),
+            'title' => esc_html__('True/False Field', 'rureraform'),
             'icon'  => 'truefalse_quiz.svg',
             'icon_type'  => 'svg',
             'type'  => 'other'
         ),
         'attachment_quiz'     => array(
-            'title' => esc_html__('Attachment', 'leform'),
+            'title' => esc_html__('Attachment', 'rureraform'),
             'icon'  => 'fas fa-paperclip',
             'type'  => 'other'
         ),
         'checkbox'           => array(
-            'title' => esc_html__('Checkbox', 'leform'),
+            'title' => esc_html__('Checkbox', 'rureraform'),
             'icon'  => 'far fa-check-square',
             'type'  => 'input'
         ),
         'radio'              => array(
-            'title' => esc_html__('Radio Button', 'leform'),
+            'title' => esc_html__('Radio Button', 'rureraform'),
             'icon'  => 'far fa-dot-circle',
             'type'  => 'input'
         ),
         'sortable_quiz'      => array(
-            'title' => esc_html__('Sortable Quiz', 'leform'),
+            'title' => esc_html__('Sortable Quiz', 'rureraform'),
             'icon'  => 'fas fa-arrows-alt-v',
             'type'  => 'input'
         ),
         'question_label'     => array(
-            'title' => esc_html__('Question label', 'leform'),
+            'title' => esc_html__('Question label', 'rureraform'),
             'icon'  => 'question_label.svg',
 			'icon_type' => 'svg',
             'type'  => 'other'
         ),
         'example_question'     => array(
-            'title' => esc_html__('Example Question', 'leform'),
+            'title' => esc_html__('Example Question', 'rureraform'),
             'icon'  => 'fas fa-question',
             'type'  => 'other'
         ),
         'questions_group'     => array(
-            'title' => esc_html__('Questions Group', 'leform'),
+            'title' => esc_html__('Questions Group', 'rureraform'),
             'icon'  => 'fas fa-object-group',
             'type'  => 'other'
         ),
         'seperator'          => array(
-            'title' => esc_html__('Seperator', 'leform'),
+            'title' => esc_html__('Seperator', 'rureraform'),
             'icon'  => 'fas fa-cut',
             'type'  => 'other'
         ),
         /*'question_no'        => array(
-            'title' => esc_html__('Seperator' , 'leform') ,
+            'title' => esc_html__('Seperator' , 'rureraform') ,
             'icon'  => 'fas fa-question-circle' ,
             'type'  => 'other'
         ) ,*/
 
         'matrix_quiz' => array(
-            'title' => esc_html__('Matrix Quiz', 'leform'),
+            'title' => esc_html__('Matrix Quiz', 'rureraform'),
             'icon'  => 'fas fa-table',
             'type'  => 'input'
         ),
         'draggable_quiz' => array(
-            'title' => esc_html__('Draggable Quiz', 'leform'),
+            'title' => esc_html__('Draggable Quiz', 'rureraform'),
             'icon'  => 'draggable_quiz.svg',
             'icon_type'  => 'svg',
             'type'  => 'input'
         ),
 
         'marking_quiz' => array(
-            'title' => esc_html__('Marking Quiz', 'leform'),
+            'title' => esc_html__('Marking Quiz', 'rureraform'),
             'icon'  => 'fas fa-microphone',
             'type'  => 'input'
         ),
 
         'insert_into_sentense' => array(
-            'title' => esc_html__('Insert into Sentense', 'leform'),
+            'title' => esc_html__('Insert into Sentense', 'rureraform'),
             'icon'  => 'fas fa-question-circle',
             'type'  => 'other'
         ),
 
         'match_quiz' => array(
-            'title' => esc_html__('Match Quiz', 'leform'),
+            'title' => esc_html__('Match Quiz', 'rureraform'),
             'icon'  => 'match_quiz.svg',
             'icon_type'  => 'svg',
             'type'  => 'input'
         ),
         'audio_file'     => array(
-            'title' => esc_html__('Audio', 'leform'),
+            'title' => esc_html__('Audio', 'rureraform'),
             'icon'  => 'fas fa-volume-up',
             'type'  => 'other'
         ),
         'audio_recording'     => array(
-            'title' => esc_html__('Audio Recording', 'leform'),
+            'title' => esc_html__('Audio Recording', 'rureraform'),
             'icon'  => 'fas fa-microphone',
             'type'  => 'other'
         ),
 		
-		'question_example'     => array(
-            'title' => esc_html__('Question Example', 'leform'),
-            'icon'  => 'fas fa-question',
-            'type'  => 'other'
-        ),
 
 
 
         /*'spreadsheet_area' => array(
-            'title' => esc_html__('Spread Sheet Area' , 'leform') ,
+            'title' => esc_html__('Spread Sheet Area' , 'rureraform') ,
             'icon'  => 'fas fa-arrows-alt-v' ,
             'type'  => 'other'
         ) ,*/
 
         /*'imageselect' => array(
-                'title' => esc_html__('Image Select', 'leform'),
+                'title' => esc_html__('Image Select', 'rureraform'),
                 'icon' => 'far fa-images',
                 'type' => 'input'
             ),*/
@@ -2634,27 +2631,27 @@ function toolbar_tools()
 function autocomplete_options()
 {
     $autocomplete_options = array(
-        'off'             => esc_html__('None', 'leform'),
-        'name'            => esc_html__('Full Name', 'leform') . ' (name)',
-        'given-name'      => esc_html__('First Name', 'leform') . ' (given-name)',
-        'additional-name' => esc_html__('Middle Name', 'leform') . ' (additional-name)',
-        'family-name'     => esc_html__('Last Name', 'leform') . ' (family-name)',
-        'email'           => esc_html__('Email', 'leform') . ' (email)',
-        'tel'             => esc_html__('Phone', 'leform') . ' (tel)',
-        'street-address'  => esc_html__('Single Address Line', 'leform') . ' (street-address)',
-        'address-line1'   => esc_html__('Address Line 1', 'leform') . ' (address-line1)',
-        'address-line2'   => esc_html__('Address Line 2', 'leform') . ' (address-line2)',
-        'address-level1'  => esc_html__('State or Province', 'leform') . ' (address-level1)',
-        'address-level2'  => esc_html__('City', 'leform') . ' (address-level2)',
-        'postal-code'     => esc_html__('ZIP Code', 'leform') . ' (postal-code)',
-        'country'         => esc_html__('Country', 'leform') . ' (country)',
-        'cc-name'         => esc_html__('Name on Card', 'leform') . ' (cc-name)',
-        'cc-number'       => esc_html__('Card Number', 'leform') . ' (cc-number)',
-        'cc-csc'          => esc_html__('CVC', 'leform') . ' (cc-csc)',
-        'cc-exp-month'    => esc_html__('Expiry (month)', 'leform') . ' (cc-exp-month)',
-        'cc-exp-year'     => esc_html__('Expiry (year)', 'leform') . ' (cc-exp-year)',
-        'cc-exp'          => esc_html__('Expiry', 'leform') . ' (cc-exp)',
-        'cc-type'         => esc_html__('Card Type', 'leform') . ' (cc-type)'
+        'off'             => esc_html__('None', 'rureraform'),
+        'name'            => esc_html__('Full Name', 'rureraform') . ' (name)',
+        'given-name'      => esc_html__('First Name', 'rureraform') . ' (given-name)',
+        'additional-name' => esc_html__('Middle Name', 'rureraform') . ' (additional-name)',
+        'family-name'     => esc_html__('Last Name', 'rureraform') . ' (family-name)',
+        'email'           => esc_html__('Email', 'rureraform') . ' (email)',
+        'tel'             => esc_html__('Phone', 'rureraform') . ' (tel)',
+        'street-address'  => esc_html__('Single Address Line', 'rureraform') . ' (street-address)',
+        'address-line1'   => esc_html__('Address Line 1', 'rureraform') . ' (address-line1)',
+        'address-line2'   => esc_html__('Address Line 2', 'rureraform') . ' (address-line2)',
+        'address-level1'  => esc_html__('State or Province', 'rureraform') . ' (address-level1)',
+        'address-level2'  => esc_html__('City', 'rureraform') . ' (address-level2)',
+        'postal-code'     => esc_html__('ZIP Code', 'rureraform') . ' (postal-code)',
+        'country'         => esc_html__('Country', 'rureraform') . ' (country)',
+        'cc-name'         => esc_html__('Name on Card', 'rureraform') . ' (cc-name)',
+        'cc-number'       => esc_html__('Card Number', 'rureraform') . ' (cc-number)',
+        'cc-csc'          => esc_html__('CVC', 'rureraform') . ' (cc-csc)',
+        'cc-exp-month'    => esc_html__('Expiry (month)', 'rureraform') . ' (cc-exp-month)',
+        'cc-exp-year'     => esc_html__('Expiry (year)', 'rureraform') . ' (cc-exp-year)',
+        'cc-exp'          => esc_html__('Expiry', 'rureraform') . ' (cc-exp)',
+        'cc-type'         => esc_html__('Card Type', 'rureraform') . ' (cc-type)'
     );
     return $autocomplete_options;
 }
@@ -2666,18 +2663,18 @@ function element_properties_meta($chapters)
             'general-tab'                       => array(
                 'type'  => 'tab',
                 'value' => 'general',
-                'label' => esc_html__('General', 'leform')
+                'label' => esc_html__('General', 'rureraform')
             ),
             'name'                              => array(
-                'value'   => esc_html__('Untitled', 'leform'),
-                'label'   => esc_html__('Name', 'leform'),
-                'tooltip' => esc_html__('The name helps to identify the form.', 'leform'),
+                'value'   => esc_html__('Untitled', 'rureraform'),
+                'label'   => esc_html__('Name', 'rureraform'),
+                'tooltip' => esc_html__('The name helps to identify the form.', 'rureraform'),
                 'type'    => 'text'
             ),
             'active'                            => array(
                 'value'   => 'on',
-                'label'   => esc_html__('Active', 'leform'),
-                'tooltip' => esc_html__('Inactive forms will not appear on the site.', 'leform'),
+                'label'   => esc_html__('Active', 'rureraform'),
+                'tooltip' => esc_html__('Inactive forms will not appear on the site.', 'rureraform'),
                 'type'    => 'checkbox'
             ),
             'key-fields'                        => array(
@@ -2686,15 +2683,15 @@ function element_properties_meta($chapters)
                     'secondary' => ''
                 ),
                 'caption'     => array(
-                    'primary'   => esc_html__('Primary field', 'leform'),
-                    'secondary' => esc_html__('Secondary field', 'leform')
+                    'primary'   => esc_html__('Primary field', 'rureraform'),
+                    'secondary' => esc_html__('Secondary field', 'rureraform')
                 ),
                 'placeholder' => array(
-                    'primary'   => esc_html__('Select primary field', 'leform'),
-                    'secondary' => esc_html__('Select secondary field', 'leform')
+                    'primary'   => esc_html__('Select primary field', 'rureraform'),
+                    'secondary' => esc_html__('Select secondary field', 'rureraform')
                 ),
-                'label'       => esc_html__('Key fields', 'leform'),
-                'tooltip'     => esc_html__('The values of these fields are displayed on Log page in relevant columns.', 'leform'),
+                'label'       => esc_html__('Key fields', 'rureraform'),
+                'tooltip'     => esc_html__('The values of these fields are displayed on Log page in relevant columns.', 'rureraform'),
                 'type'        => 'key-fields'
             ),
             'datetime-args'                     => array(
@@ -2703,8 +2700,8 @@ function element_properties_meta($chapters)
                     'time-format' => 'hh:ii',
                     'locale'      => 'en'
                 ),
-                'label'               => esc_html__('Date and time parameters', 'leform'),
-                'tooltip'             => esc_html__('Choose the date and time formats and language for datetimepicker. It is used for "date" and "time" fields.', 'leform'),
+                'label'               => esc_html__('Date and time parameters', 'rureraform'),
+                'tooltip'             => esc_html__('Choose the date and time formats and language for datetimepicker. It is used for "date" and "time" fields.', 'rureraform'),
                 'type'                => 'datetime-args',
                 'date-format-options' => array(
                     'yyyy-mm-dd' => 'YYYY-MM-DD',
@@ -2712,12 +2709,12 @@ function element_properties_meta($chapters)
                     'dd/mm/yyyy' => 'DD/MM/YYYY',
                     'dd.mm.yyyy' => 'DD.MM.YYYY'
                 ),
-                'date-format-label'   => esc_html__('Date format', 'leform'),
+                'date-format-label'   => esc_html__('Date format', 'rureraform'),
                 'time-format-options' => array(
                     'hh:ii aa' => '12 hours',
                     'hh:ii'    => '24 hours'
                 ),
-                'time-format-label'   => esc_html__('Time format', 'leform'),
+                'time-format-label'   => esc_html__('Time format', 'rureraform'),
                 'locale-options'      => array(
                     'en',
                     'cs',
@@ -2737,24 +2734,24 @@ function element_properties_meta($chapters)
                     'tr',
                     'zh'
                 ),
-                'locale-label'        => esc_html__('Language', 'leform')
+                'locale-label'        => esc_html__('Language', 'rureraform')
             ),
             'cross-domain'                      => array(
                 'value'   => 'off',
-                'label'   => esc_html__('Cross-domain calls', 'leform'),
-                'tooltip' => esc_html__('Enable this option if you want to use cross-domain embedding, i.e. plugin installed on domain1, and form is used on domain2. Due to security reasons this feature is automatically disabled if the form has Signature field.', 'leform'),
+                'label'   => esc_html__('Cross-domain calls', 'rureraform'),
+                'tooltip' => esc_html__('Enable this option if you want to use cross-domain embedding, i.e. plugin installed on domain1, and form is used on domain2. Due to security reasons this feature is automatically disabled if the form has Signature field.', 'rureraform'),
                 'type'    => 'checkbox'
             ),
             'session-enable'                    => array(
                 'value'   => 'off',
-                'label'   => esc_html__('Enable sessions', 'leform'),
-                'tooltip' => esc_html__('Activate this option if you want to enable sessions for the form. Session allows to keep non-completed form data, so user can continue form filling when come back.', 'leform'),
+                'label'   => esc_html__('Enable sessions', 'rureraform'),
+                'tooltip' => esc_html__('Activate this option if you want to enable sessions for the form. Session allows to keep non-completed form data, so user can continue form filling when come back.', 'rureraform'),
                 'type'    => 'checkbox'
             ),
             'session-length'                    => array(
                 'value'   => '48',
-                'label'   => esc_html__('Session length', 'leform'),
-                'tooltip' => esc_html__('Specify how many hours non-completed data are kept.', 'leform'),
+                'label'   => esc_html__('Session length', 'rureraform'),
+                'tooltip' => esc_html__('Specify how many hours non-completed data are kept.', 'rureraform'),
                 'unit'    => 'hrs',
                 'type'    => 'units',
                 'visible' => array('session-enable' => array('on'))
@@ -2762,39 +2759,39 @@ function element_properties_meta($chapters)
             'style-tab'                         => array(
                 'type'  => 'tab',
                 'value' => 'style',
-                'label' => esc_html__('Style', 'leform')
+                'label' => esc_html__('Style', 'rureraform')
             ),
             'style'                             => array(
-                'caption' => array('style' => esc_html__('Load theme.', 'leform')),
-                'label'   => esc_html__('Theme', 'leform'),
-                'tooltip' => esc_html__('Load existing theme or save current one. All parameters on "Style" tab will be overwritten once you load a theme.', 'leform'),
+                'caption' => array('style' => esc_html__('Load theme.', 'rureraform')),
+                'label'   => esc_html__('Theme', 'rureraform'),
+                'tooltip' => esc_html__('Load existing theme or save current one. All parameters on "Style" tab will be overwritten once you load a theme.', 'rureraform'),
                 'type'    => 'style'
             ),
             'style-sections'                    => array(
                 'type'     => 'sections',
                 'sections' => array(
                     'global'   => array(
-                        'label' => esc_html__('Global', 'leform'),
+                        'label' => esc_html__('Global', 'rureraform'),
                         'icon'  => 'fas fa-globe'
                     ),
                     'labels'   => array(
-                        'label' => esc_html__('Labels', 'leform'),
+                        'label' => esc_html__('Labels', 'rureraform'),
                         'icon'  => 'fas fa-font'
                     ),
                     'inputs'   => array(
-                        'label' => esc_html__('Inputs', 'leform'),
+                        'label' => esc_html__('Inputs', 'rureraform'),
                         'icon'  => 'fas fa-pencil-alt'
                     ),
                     'buttons'  => array(
-                        'label' => esc_html__('Buttons', 'leform'),
+                        'label' => esc_html__('Buttons', 'rureraform'),
                         'icon'  => 'far fa-paper-plane'
                     ),
                     'errors'   => array(
-                        'label' => esc_html__('Errors', 'leform'),
+                        'label' => esc_html__('Errors', 'rureraform'),
                         'icon'  => 'far fa-hand-paper'
                     ),
                     'progress' => array(
-                        'label' => esc_html__('Progress Bar', 'leform'),
+                        'label' => esc_html__('Progress Bar', 'rureraform'),
                         'icon'  => 'fas fa-sliders-h'
                     )
                 )
@@ -2814,14 +2811,14 @@ function element_properties_meta($chapters)
                     'align'     => 'left'
                 ),
                 'caption' => array(
-                    'family' => esc_html__('Font family', 'leform'),
-                    'size'   => esc_html__('Size', 'leform'),
-                    'color'  => esc_html__('Color', 'leform'),
-                    'style'  => esc_html__('Style', 'leform'),
-                    'align'  => esc_html__('Alignment', 'leform')
+                    'family' => esc_html__('Font family', 'rureraform'),
+                    'size'   => esc_html__('Size', 'rureraform'),
+                    'color'  => esc_html__('Color', 'rureraform'),
+                    'style'  => esc_html__('Style', 'rureraform'),
+                    'align'  => esc_html__('Alignment', 'rureraform')
                 ),
-                'label'   => esc_html__('Text style', 'leform'),
-                'tooltip' => esc_html__('Adjust the text style.', 'leform'),
+                'label'   => esc_html__('Text style', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the text style.', 'rureraform'),
                 'type'    => 'text-style',
                 'group'   => 'style'
             ),
@@ -2830,11 +2827,11 @@ function element_properties_meta($chapters)
                 'type'     => 'sections',
                 'sections' => array(
                     'wrapper-inline' => array(
-                        'label' => esc_html__('Inline Mode', 'leform'),
+                        'label' => esc_html__('Inline Mode', 'rureraform'),
                         'icon'  => 'fab fa-wpforms'
                     ),
                     'wrapper-popup'  => array(
-                        'label' => esc_html__('Popup Mode', 'leform'),
+                        'label' => esc_html__('Popup Mode', 'rureraform'),
                         'icon'  => 'far fa-window-maximize'
                     ),
                 )
@@ -2855,17 +2852,17 @@ function element_properties_meta($chapters)
                     'gradient'            => 'no'
                 ),
                 'caption' => array(
-                    'image'               => esc_html__('Image URL', 'leform'),
-                    'size'                => esc_html__('Size', 'leform'),
-                    'horizontal-position' => esc_html__('Horizontal position', 'leform'),
-                    'vertical-position'   => esc_html__('Verical position', 'leform'),
-                    'repeat'              => esc_html__('Repeat', 'leform'),
-                    'color'               => esc_html__('Color', 'leform'),
-                    'color2'              => esc_html__('Second color', 'leform'),
-                    'gradient'            => esc_html__('Gradient', 'leform')
+                    'image'               => esc_html__('Image URL', 'rureraform'),
+                    'size'                => esc_html__('Size', 'rureraform'),
+                    'horizontal-position' => esc_html__('Horizontal position', 'rureraform'),
+                    'vertical-position'   => esc_html__('Verical position', 'rureraform'),
+                    'repeat'              => esc_html__('Repeat', 'rureraform'),
+                    'color'               => esc_html__('Color', 'rureraform'),
+                    'color2'              => esc_html__('Second color', 'rureraform'),
+                    'gradient'            => esc_html__('Gradient', 'rureraform')
                 ),
-                'label'   => esc_html__('Wrapper background', 'leform'),
-                'tooltip' => esc_html__('Adjust the background style for inline view of the form.', 'leform'),
+                'label'   => esc_html__('Wrapper background', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the background style for inline view of the form.', 'rureraform'),
                 'type'    => 'background-style',
                 'group'   => 'style'
             ),
@@ -2881,14 +2878,14 @@ function element_properties_meta($chapters)
                     'left'   => 'off'
                 ),
                 'caption' => array(
-                    'width'  => esc_html__('Width', 'leform'),
-                    'style'  => esc_html__('Style', 'leform'),
-                    'radius' => esc_html__('Radius', 'leform'),
-                    'color'  => esc_html__('Color', 'leform'),
-                    'border' => esc_html__('Border', 'leform')
+                    'width'  => esc_html__('Width', 'rureraform'),
+                    'style'  => esc_html__('Style', 'rureraform'),
+                    'radius' => esc_html__('Radius', 'rureraform'),
+                    'color'  => esc_html__('Color', 'rureraform'),
+                    'border' => esc_html__('Border', 'rureraform')
                 ),
-                'label'   => esc_html__('Wrapper border', 'leform'),
-                'tooltip' => esc_html__('Adjust the border style for inline view of the form.', 'leform'),
+                'label'   => esc_html__('Wrapper border', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the border style for inline view of the form.', 'rureraform'),
                 'type'    => 'border-style',
                 'group'   => 'style'
             ),
@@ -2899,12 +2896,12 @@ function element_properties_meta($chapters)
                     'color' => '#444'
                 ),
                 'caption' => array(
-                    'style' => esc_html__('Style', 'leform'),
-                    'size'  => esc_html__('Size', 'leform'),
-                    'color' => esc_html__('Color', 'leform')
+                    'style' => esc_html__('Style', 'rureraform'),
+                    'size'  => esc_html__('Size', 'rureraform'),
+                    'color' => esc_html__('Color', 'rureraform')
                 ),
-                'label'   => esc_html__('Wrapper shadow', 'leform'),
-                'tooltip' => esc_html__('Adjust the shadow for inline view of the form.', 'leform'),
+                'label'   => esc_html__('Wrapper shadow', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the shadow for inline view of the form.', 'rureraform'),
                 'type'    => 'shadow',
                 'group'   => 'style'
             ),
@@ -2916,13 +2913,13 @@ function element_properties_meta($chapters)
                     'left'   => '20'
                 ),
                 'caption' => array(
-                    'top'    => esc_html__('Top', 'leform'),
-                    'right'  => esc_html__('Right', 'leform'),
-                    'bottom' => esc_html__('Bottom', 'leform'),
-                    'left'   => esc_html__('Left', 'leform')
+                    'top'    => esc_html__('Top', 'rureraform'),
+                    'right'  => esc_html__('Right', 'rureraform'),
+                    'bottom' => esc_html__('Bottom', 'rureraform'),
+                    'left'   => esc_html__('Left', 'rureraform')
                 ),
-                'label'   => esc_html__('Padding', 'leform'),
-                'tooltip' => esc_html__('Adjust the padding for inline view of the form.', 'leform'),
+                'label'   => esc_html__('Padding', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the padding for inline view of the form.', 'rureraform'),
                 'type'    => 'padding'
             ),
             'end-wrapper-inline'                => array('type' => 'section-end'),
@@ -2942,17 +2939,17 @@ function element_properties_meta($chapters)
                     'gradient'            => 'no'
                 ),
                 'caption' => array(
-                    'image'               => esc_html__('Image URL', 'leform'),
-                    'size'                => esc_html__('Size', 'leform'),
-                    'horizontal-position' => esc_html__('Horizontal position', 'leform'),
-                    'vertical-position'   => esc_html__('Verical position', 'leform'),
-                    'repeat'              => esc_html__('Repeat', 'leform'),
-                    'color'               => esc_html__('Color', 'leform'),
-                    'color2'              => esc_html__('Second color', 'leform'),
-                    'gradient'            => esc_html__('Gradient', 'leform')
+                    'image'               => esc_html__('Image URL', 'rureraform'),
+                    'size'                => esc_html__('Size', 'rureraform'),
+                    'horizontal-position' => esc_html__('Horizontal position', 'rureraform'),
+                    'vertical-position'   => esc_html__('Verical position', 'rureraform'),
+                    'repeat'              => esc_html__('Repeat', 'rureraform'),
+                    'color'               => esc_html__('Color', 'rureraform'),
+                    'color2'              => esc_html__('Second color', 'rureraform'),
+                    'gradient'            => esc_html__('Gradient', 'rureraform')
                 ),
-                'label'   => esc_html__('Popup background', 'leform'),
-                'tooltip' => esc_html__('Adjust the background style for popup view of the form.', 'leform'),
+                'label'   => esc_html__('Popup background', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the background style for popup view of the form.', 'rureraform'),
                 'type'    => 'background-style',
                 'group'   => 'style'
             ),
@@ -2968,14 +2965,14 @@ function element_properties_meta($chapters)
                     'left'   => 'off'
                 ),
                 'caption' => array(
-                    'width'  => esc_html__('Width', 'leform'),
-                    'style'  => esc_html__('Style', 'leform'),
-                    'radius' => esc_html__('Radius', 'leform'),
-                    'color'  => esc_html__('Color', 'leform'),
-                    'border' => esc_html__('Border', 'leform')
+                    'width'  => esc_html__('Width', 'rureraform'),
+                    'style'  => esc_html__('Style', 'rureraform'),
+                    'radius' => esc_html__('Radius', 'rureraform'),
+                    'color'  => esc_html__('Color', 'rureraform'),
+                    'border' => esc_html__('Border', 'rureraform')
                 ),
-                'label'   => esc_html__('Popup border', 'leform'),
-                'tooltip' => esc_html__('Adjust the border style for popup view of the form.', 'leform'),
+                'label'   => esc_html__('Popup border', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the border style for popup view of the form.', 'rureraform'),
                 'type'    => 'border-style',
                 'group'   => 'style'
             ),
@@ -2986,12 +2983,12 @@ function element_properties_meta($chapters)
                     'color' => '#000'
                 ),
                 'caption' => array(
-                    'style' => esc_html__('Style', 'leform'),
-                    'size'  => esc_html__('Size', 'leform'),
-                    'color' => esc_html__('Color', 'leform')
+                    'style' => esc_html__('Style', 'rureraform'),
+                    'size'  => esc_html__('Size', 'rureraform'),
+                    'color' => esc_html__('Color', 'rureraform')
                 ),
-                'label'   => esc_html__('Popup shadow', 'leform'),
-                'tooltip' => esc_html__('Adjust the shadow for popup view of the form.', 'leform'),
+                'label'   => esc_html__('Popup shadow', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the shadow for popup view of the form.', 'rureraform'),
                 'type'    => 'shadow',
                 'group'   => 'style'
             ),
@@ -3003,26 +3000,26 @@ function element_properties_meta($chapters)
                     'left'   => '20'
                 ),
                 'caption' => array(
-                    'top'    => esc_html__('Top', 'leform'),
-                    'right'  => esc_html__('Right', 'leform'),
-                    'bottom' => esc_html__('Bottom', 'leform'),
-                    'left'   => esc_html__('Left', 'leform')
+                    'top'    => esc_html__('Top', 'rureraform'),
+                    'right'  => esc_html__('Right', 'rureraform'),
+                    'bottom' => esc_html__('Bottom', 'rureraform'),
+                    'left'   => esc_html__('Left', 'rureraform')
                 ),
-                'label'   => esc_html__('Padding', 'leform'),
-                'tooltip' => esc_html__('Adjust the padding for popup view of the form.', 'leform'),
+                'label'   => esc_html__('Padding', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the padding for popup view of the form.', 'rureraform'),
                 'type'    => 'padding'
             ),
             'popup-overlay-color'               => array(
                 'value'   => 'rgba(255,255,255,0.7)',
-                'label'   => esc_html__('Overlay color', 'leform'),
-                'tooltip' => esc_html__('Adjust the overlay color.', 'leform'),
+                'label'   => esc_html__('Overlay color', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the overlay color.', 'rureraform'),
                 'type'    => 'color',
                 'group'   => 'style'
             ),
             'popup-overlay-click'               => array(
                 'value'   => 'on',
-                'label'   => esc_html__('Active overlay', 'leform'),
-                'tooltip' => esc_html__('If enabled, the popup will be closed when user click overlay.', 'leform'),
+                'label'   => esc_html__('Active overlay', 'rureraform'),
+                'tooltip' => esc_html__('If enabled, the popup will be closed when user click overlay.', 'rureraform'),
                 'type'    => 'checkbox'
             ),
             'popup-close-color'                 => array(
@@ -3030,11 +3027,11 @@ function element_properties_meta($chapters)
                     'color1' => '#FF9800',
                     'color2' => '#FFC107'
                 ),
-                'label'   => esc_html__('Close icon colors', 'leform'),
-                'tooltip' => esc_html__('Adjust the color of the close icon.', 'leform'),
+                'label'   => esc_html__('Close icon colors', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the color of the close icon.', 'rureraform'),
                 'caption' => array(
-                    'color1' => esc_html__('Color', 'leform'),
-                    'color2' => esc_html__('Hover color', 'leform')
+                    'color1' => esc_html__('Color', 'rureraform'),
+                    'color2' => esc_html__('Hover color', 'rureraform')
                 ),
                 'type'    => 'two-colors',
                 'group'   => 'style'
@@ -3045,12 +3042,12 @@ function element_properties_meta($chapters)
                     'color2' => '#FF9800',
                     'color3' => '#FFC107'
                 ),
-                'label'   => esc_html__('Spinner colors', 'leform'),
-                'tooltip' => esc_html__('Adjust the color of the spinner.', 'leform'),
+                'label'   => esc_html__('Spinner colors', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the color of the spinner.', 'rureraform'),
                 'caption' => array(
-                    'color1' => esc_html__('Small circle', 'leform'),
-                    'color2' => esc_html__('Middle circle', 'leform'),
-                    'color3' => esc_html__('Large circle', 'leform')
+                    'color1' => esc_html__('Small circle', 'rureraform'),
+                    'color2' => esc_html__('Middle circle', 'rureraform'),
+                    'color3' => esc_html__('Large circle', 'rureraform')
                 ),
                 'type'    => 'three-colors',
                 'group'   => 'style'
@@ -3059,25 +3056,25 @@ function element_properties_meta($chapters)
             'hr-9'                              => array('type' => 'hr'),
             'tooltip-anchor'                    => array(
                 'value'   => 'none',
-                'label'   => esc_html__('Tooltip anchor', 'leform'),
-                'tooltip' => esc_html__('Select the anchor for tooltips.', 'leform'),
+                'label'   => esc_html__('Tooltip anchor', 'rureraform'),
+                'tooltip' => esc_html__('Select the anchor for tooltips.', 'rureraform'),
                 'type'    => 'select',
                 'options' => array(
-                    'none'        => esc_html__('Disable tooltips', 'leform'),
-                    'label'       => esc_html__('Label', 'leform'),
-                    'description' => esc_html__('Description', 'leform'),
-                    'input'       => esc_html__('Input field', 'leform')
+                    'none'        => esc_html__('Disable tooltips', 'rureraform'),
+                    'label'       => esc_html__('Label', 'rureraform'),
+                    'description' => esc_html__('Description', 'rureraform'),
+                    'input'       => esc_html__('Input field', 'rureraform')
                 ),
                 'group'   => 'style'
             ),
             'tooltip-theme'                     => array(
                 'value'   => 'dark',
-                'label'   => esc_html__('Tooltip theme', 'leform'),
-                'tooltip' => esc_html__('Select the theme of tooltips.', 'leform'),
+                'label'   => esc_html__('Tooltip theme', 'rureraform'),
+                'tooltip' => esc_html__('Select the theme of tooltips.', 'rureraform'),
                 'type'    => 'select',
                 'options' => array(
-                    'dark'  => esc_html__('Dark', 'leform'),
-                    'light' => esc_html__('Light', 'leform')
+                    'dark'  => esc_html__('Dark', 'rureraform'),
+                    'light' => esc_html__('Light', 'rureraform')
                 ),
                 'group'   => 'style'
             ),
@@ -3088,19 +3085,19 @@ function element_properties_meta($chapters)
                     'unit'     => 'px',
                     'position' => 'center'
                 ),
-                'label'   => esc_html__('Form width', 'leform'),
-                'tooltip' => esc_html__('Specify the maximum form width and its alignment. Leave this field empty to set maximum form width as 100%.', 'leform'),
+                'label'   => esc_html__('Form width', 'rureraform'),
+                'tooltip' => esc_html__('Specify the maximum form width and its alignment. Leave this field empty to set maximum form width as 100%.', 'rureraform'),
                 'caption' => array(
-                    'value'    => esc_html__('Width', 'leform'),
-                    'unit'     => esc_html__('Units', 'leform'),
-                    'position' => esc_html__('Position', 'leform')
+                    'value'    => esc_html__('Width', 'rureraform'),
+                    'unit'     => esc_html__('Units', 'rureraform'),
+                    'position' => esc_html__('Position', 'rureraform')
                 ),
                 'type'    => 'block-width'
             ),
             'element-spacing'                   => array(
                 'value'   => '20',
-                'label'   => esc_html__('Element spacing', 'leform'),
-                'tooltip' => esc_html__('Specify the spacing between form elements.', 'leform'),
+                'label'   => esc_html__('Element spacing', 'rureraform'),
+                'tooltip' => esc_html__('Specify the spacing between form elements.', 'rureraform'),
                 'unit'    => 'px',
                 'type'    => 'units'
             ),
@@ -3110,17 +3107,17 @@ function element_properties_meta($chapters)
                     'custom' => '480'
                 ),
                 'caption' => array(
-                    'size'   => esc_html__('Width', 'leform'),
-                    'custom' => esc_html__('Custom', 'leform')
+                    'size'   => esc_html__('Width', 'rureraform'),
+                    'custom' => esc_html__('Custom', 'rureraform')
                 ),
-                'label'   => esc_html__('Responsiveness', 'leform'),
-                'tooltip' => esc_html__('At what form width should column layouts be stacked.', 'leform'),
+                'label'   => esc_html__('Responsiveness', 'rureraform'),
+                'tooltip' => esc_html__('At what form width should column layouts be stacked.', 'rureraform'),
                 'type'    => 'select-size',
                 'options' => array(
-                    '480'    => esc_html__('Phone portrait (480px)', 'leform'),
-                    '768'    => esc_html__('Phone landscape (768px)', 'leform'),
-                    '1024'   => esc_html__('Tablet (1024px)', 'leform'),
-                    'custom' => esc_html__('Custom', 'leform')
+                    '480'    => esc_html__('Phone portrait (480px)', 'rureraform'),
+                    '768'    => esc_html__('Phone landscape (768px)', 'rureraform'),
+                    '1024'   => esc_html__('Tablet (1024px)', 'rureraform'),
+                    'custom' => esc_html__('Custom', 'rureraform')
                 )
             ),
             'end-global'                        => array('type' => 'section-end'),
@@ -3139,14 +3136,14 @@ function element_properties_meta($chapters)
                     'align'     => 'left'
                 ),
                 'caption' => array(
-                    'family' => esc_html__('Font family', 'leform'),
-                    'size'   => esc_html__('Size', 'leform'),
-                    'color'  => esc_html__('Color', 'leform'),
-                    'style'  => esc_html__('Style', 'leform'),
-                    'align'  => esc_html__('Alignment', 'leform')
+                    'family' => esc_html__('Font family', 'rureraform'),
+                    'size'   => esc_html__('Size', 'rureraform'),
+                    'color'  => esc_html__('Color', 'rureraform'),
+                    'style'  => esc_html__('Style', 'rureraform'),
+                    'align'  => esc_html__('Alignment', 'rureraform')
                 ),
-                'label'   => esc_html__('Label text style', 'leform'),
-                'tooltip' => esc_html__('Adjust the text style of labels.', 'leform'),
+                'label'   => esc_html__('Label text style', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the text style of labels.', 'rureraform'),
                 'type'    => 'text-style',
                 'group'   => 'style'
             ),
@@ -3156,11 +3153,11 @@ function element_properties_meta($chapters)
                     'width'    => '3'
                 ),
                 'caption' => array(
-                    'position' => esc_html__('Position', 'leform'),
-                    'width'    => esc_html__('Width', 'leform')
+                    'position' => esc_html__('Position', 'rureraform'),
+                    'width'    => esc_html__('Width', 'rureraform')
                 ),
-                'label'   => esc_html__('Label position', 'leform'),
-                'tooltip' => esc_html__('Choose where to display the label relative to the field.', 'leform'),
+                'label'   => esc_html__('Label position', 'rureraform'),
+                'tooltip' => esc_html__('Choose where to display the label relative to the field.', 'rureraform'),
                 'type'    => 'label-position'
             ),
             'description-text-style'            => array(
@@ -3174,42 +3171,42 @@ function element_properties_meta($chapters)
                     'align'     => 'left'
                 ),
                 'caption' => array(
-                    'family' => esc_html__('Font family', 'leform'),
-                    'size'   => esc_html__('Size', 'leform'),
-                    'color'  => esc_html__('Color', 'leform'),
-                    'style'  => esc_html__('Style', 'leform'),
-                    'align'  => esc_html__('Alignment', 'leform')
+                    'family' => esc_html__('Font family', 'rureraform'),
+                    'size'   => esc_html__('Size', 'rureraform'),
+                    'color'  => esc_html__('Color', 'rureraform'),
+                    'style'  => esc_html__('Style', 'rureraform'),
+                    'align'  => esc_html__('Alignment', 'rureraform')
                 ),
-                'label'   => esc_html__('Description text style', 'leform'),
-                'tooltip' => esc_html__('Adjust the text style of descriptions.', 'leform'),
+                'label'   => esc_html__('Description text style', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the text style of descriptions.', 'rureraform'),
                 'type'    => 'text-style',
                 'group'   => 'style'
             ),
             'description-style'                 => array(
                 'value'   => array('position' => 'bottom'),
-                'caption' => array('position' => esc_html__('Position', 'leform')),
-                'label'   => esc_html__('Description position', 'leform'),
-                'tooltip' => esc_html__('Choose where to display the description relative to the field.', 'leform'),
+                'caption' => array('position' => esc_html__('Position', 'rureraform')),
+                'label'   => esc_html__('Description position', 'rureraform'),
+                'tooltip' => esc_html__('Choose where to display the description relative to the field.', 'rureraform'),
                 'type'    => 'description-position'
             ),
             'required-position'                 => array(
                 'value'   => 'none',
-                'label'   => esc_html__('"Required" symbol position', 'leform'),
-                'tooltip' => esc_html__('Select the position of "required" symbol/text. The symbol/text is displayed for fields that are configured as "Required".', 'leform'),
+                'label'   => esc_html__('"Required" symbol position', 'rureraform'),
+                'tooltip' => esc_html__('Select the position of "required" symbol/text. The symbol/text is displayed for fields that are configured as "Required".', 'rureraform'),
                 'type'    => 'select',
                 'options' => array(
-                    'none'              => esc_html__('Do not display', 'leform'),
-                    'label-left'        => esc_html__('To the left of the label', 'leform'),
-                    'label-right'       => esc_html__('To the right of the label', 'leform'),
-                    'description-left'  => esc_html__('To the left of the description', 'leform'),
-                    'description-right' => esc_html__('To the right of the description', 'leform')
+                    'none'              => esc_html__('Do not display', 'rureraform'),
+                    'label-left'        => esc_html__('To the left of the label', 'rureraform'),
+                    'label-right'       => esc_html__('To the right of the label', 'rureraform'),
+                    'description-left'  => esc_html__('To the left of the description', 'rureraform'),
+                    'description-right' => esc_html__('To the right of the description', 'rureraform')
                 ),
                 'group'   => 'style'
             ),
             'required-text'                     => array(
                 'value'   => '*',
-                'label'   => esc_html__('"Required" symbol/text', 'leform'),
-                'tooltip' => esc_html__('The symbol/text is displayed for fields that are configured as "Required".', 'leform'),
+                'label'   => esc_html__('"Required" symbol/text', 'rureraform'),
+                'tooltip' => esc_html__('The symbol/text is displayed for fields that are configured as "Required".', 'rureraform'),
                 'type'    => 'text',
                 'visible' => array(
                     'required-position' => array(
@@ -3232,14 +3229,14 @@ function element_properties_meta($chapters)
                     'align'     => 'left'
                 ),
                 'caption' => array(
-                    'family' => esc_html__('Font family', 'leform'),
-                    'size'   => esc_html__('Size', 'leform'),
-                    'color'  => esc_html__('Color', 'leform'),
-                    'style'  => esc_html__('Style', 'leform'),
-                    'align'  => esc_html__('Alignment', 'leform')
+                    'family' => esc_html__('Font family', 'rureraform'),
+                    'size'   => esc_html__('Size', 'rureraform'),
+                    'color'  => esc_html__('Color', 'rureraform'),
+                    'style'  => esc_html__('Style', 'rureraform'),
+                    'align'  => esc_html__('Alignment', 'rureraform')
                 ),
-                'label'   => esc_html__('"Required" symbol/text style', 'leform'),
-                'tooltip' => esc_html__('Adjust the text style of "required" symbol/text.', 'leform'),
+                'label'   => esc_html__('"Required" symbol/text style', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the text style of "required" symbol/text.', 'rureraform'),
                 'type'    => 'text-style',
                 'visible' => array(
                     'required-position' => array(
@@ -3258,15 +3255,15 @@ function element_properties_meta($chapters)
             ),
             'input-size'                        => array(
                 'value'   => 'medium',
-                'label'   => esc_html__('Input size', 'leform'),
-                'tooltip' => esc_html__('Choose the size of input fields.', 'leform'),
+                'label'   => esc_html__('Input size', 'rureraform'),
+                'tooltip' => esc_html__('Choose the size of input fields.', 'rureraform'),
                 'type'    => 'select',
                 'options' => array(
-                    'tiny'   => esc_html__('Tiny', 'leform'),
-                    'small'  => esc_html__('Small', 'leform'),
-                    'medium' => esc_html__('Medium', 'leform'),
-                    'large'  => esc_html__('Large', 'leform'),
-                    'huge'   => esc_html__('Huge', 'leform')
+                    'tiny'   => esc_html__('Tiny', 'rureraform'),
+                    'small'  => esc_html__('Small', 'rureraform'),
+                    'medium' => esc_html__('Medium', 'rureraform'),
+                    'large'  => esc_html__('Large', 'rureraform'),
+                    'huge'   => esc_html__('Huge', 'rureraform')
                 ),
                 'group'   => 'style'
             ),
@@ -3279,21 +3276,21 @@ function element_properties_meta($chapters)
                     'border'     => ''
                 ),
                 'caption' => array(
-                    'position'   => esc_html__('Position', 'leform'),
-                    'size'       => esc_html__('Size', 'leform'),
-                    'color'      => esc_html__('Color', 'leform'),
-                    'background' => esc_html__('Background', 'leform'),
-                    'border'     => esc_html__('Border', 'leform')
+                    'position'   => esc_html__('Position', 'rureraform'),
+                    'size'       => esc_html__('Size', 'rureraform'),
+                    'color'      => esc_html__('Color', 'rureraform'),
+                    'background' => esc_html__('Background', 'rureraform'),
+                    'border'     => esc_html__('Border', 'rureraform')
                 ),
-                'label'   => esc_html__('Icon style', 'leform'),
-                'tooltip' => esc_html__('Adjust the style of input field icons.', 'leform'),
+                'label'   => esc_html__('Icon style', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the style of input field icons.', 'rureraform'),
                 'type'    => 'icon-style',
                 'group'   => 'style'
             ),
             'textarea-height'                   => array(
                 'value'   => '160',
-                'label'   => esc_html__('Textarea height', 'leform'),
-                'tooltip' => esc_html__('Set the height of textarea fields.', 'leform'),
+                'label'   => esc_html__('Textarea height', 'rureraform'),
+                'tooltip' => esc_html__('Set the height of textarea fields.', 'rureraform'),
                 'unit'    => 'px',
                 'type'    => 'units'
             ),
@@ -3301,17 +3298,17 @@ function element_properties_meta($chapters)
                 'type'     => 'sections',
                 'sections' => array(
                     'inputs-default' => array(
-                        'label' => esc_html__('Default', 'leform'),
+                        'label' => esc_html__('Default', 'rureraform'),
                         'icon'  => 'fas fa-globe',
                         'group' => 'style'
                     ),
                     'inputs-hover'   => array(
-                        'label' => esc_html__('Hover', 'leform'),
+                        'label' => esc_html__('Hover', 'rureraform'),
                         'icon'  => 'far fa-hand-pointer',
                         'group' => 'style'
                     ),
                     'inputs-focus'   => array(
-                        'label' => esc_html__('Focus', 'leform'),
+                        'label' => esc_html__('Focus', 'rureraform'),
                         'icon'  => 'fas fa-i-cursor',
                         'group' => 'style'
                     )
@@ -3332,14 +3329,14 @@ function element_properties_meta($chapters)
                     'align'     => 'left'
                 ),
                 'caption' => array(
-                    'family' => esc_html__('Font family', 'leform'),
-                    'size'   => esc_html__('Size', 'leform'),
-                    'color'  => esc_html__('Color', 'leform'),
-                    'style'  => esc_html__('Style', 'leform'),
-                    'align'  => esc_html__('Alignment', 'leform')
+                    'family' => esc_html__('Font family', 'rureraform'),
+                    'size'   => esc_html__('Size', 'rureraform'),
+                    'color'  => esc_html__('Color', 'rureraform'),
+                    'style'  => esc_html__('Style', 'rureraform'),
+                    'align'  => esc_html__('Alignment', 'rureraform')
                 ),
-                'label'   => esc_html__('Input text', 'leform'),
-                'tooltip' => esc_html__('Adjust the text style of input fields.', 'leform'),
+                'label'   => esc_html__('Input text', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the text style of input fields.', 'rureraform'),
                 'type'    => 'text-style',
                 'group'   => 'style'
             ),
@@ -3355,17 +3352,17 @@ function element_properties_meta($chapters)
                     'gradient'            => 'no'
                 ),
                 'caption' => array(
-                    'image'               => esc_html__('Image URL', 'leform'),
-                    'size'                => esc_html__('Size', 'leform'),
-                    'horizontal-position' => esc_html__('Horizontal position', 'leform'),
-                    'vertical-position'   => esc_html__('Verical position', 'leform'),
-                    'repeat'              => esc_html__('Repeat', 'leform'),
-                    'color'               => esc_html__('Color', 'leform'),
-                    'color2'              => esc_html__('Second color', 'leform'),
-                    'gradient'            => esc_html__('Gradient', 'leform')
+                    'image'               => esc_html__('Image URL', 'rureraform'),
+                    'size'                => esc_html__('Size', 'rureraform'),
+                    'horizontal-position' => esc_html__('Horizontal position', 'rureraform'),
+                    'vertical-position'   => esc_html__('Verical position', 'rureraform'),
+                    'repeat'              => esc_html__('Repeat', 'rureraform'),
+                    'color'               => esc_html__('Color', 'rureraform'),
+                    'color2'              => esc_html__('Second color', 'rureraform'),
+                    'gradient'            => esc_html__('Gradient', 'rureraform')
                 ),
-                'label'   => esc_html__('Input background', 'leform'),
-                'tooltip' => esc_html__('Adjust the background of input fields.', 'leform'),
+                'label'   => esc_html__('Input background', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the background of input fields.', 'rureraform'),
                 'type'    => 'background-style',
                 'group'   => 'style'
             ),
@@ -3381,14 +3378,14 @@ function element_properties_meta($chapters)
                     'left'   => 'on'
                 ),
                 'caption' => array(
-                    'width'  => esc_html__('Width', 'leform'),
-                    'style'  => esc_html__('Style', 'leform'),
-                    'radius' => esc_html__('Radius', 'leform'),
-                    'color'  => esc_html__('Color', 'leform'),
-                    'border' => esc_html__('Border', 'leform')
+                    'width'  => esc_html__('Width', 'rureraform'),
+                    'style'  => esc_html__('Style', 'rureraform'),
+                    'radius' => esc_html__('Radius', 'rureraform'),
+                    'color'  => esc_html__('Color', 'rureraform'),
+                    'border' => esc_html__('Border', 'rureraform')
                 ),
-                'label'   => esc_html__('Input border', 'leform'),
-                'tooltip' => esc_html__('Adjust the border style of input fields.', 'leform'),
+                'label'   => esc_html__('Input border', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the border style of input fields.', 'rureraform'),
                 'type'    => 'border-style',
                 'group'   => 'style'
             ),
@@ -3399,12 +3396,12 @@ function element_properties_meta($chapters)
                     'color' => '#444'
                 ),
                 'caption' => array(
-                    'style' => esc_html__('Style', 'leform'),
-                    'size'  => esc_html__('Size', 'leform'),
-                    'color' => esc_html__('Color', 'leform')
+                    'style' => esc_html__('Style', 'rureraform'),
+                    'size'  => esc_html__('Size', 'rureraform'),
+                    'color' => esc_html__('Color', 'rureraform')
                 ),
-                'label'   => esc_html__('Input shadow', 'leform'),
-                'tooltip' => esc_html__('Adjust the shadow of input fields.', 'leform'),
+                'label'   => esc_html__('Input shadow', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the shadow of input fields.', 'rureraform'),
                 'type'    => 'shadow',
                 'group'   => 'style'
             ),
@@ -3415,8 +3412,8 @@ function element_properties_meta($chapters)
             ),
             'input-hover-inherit'               => array(
                 'value'   => 'on',
-                'label'   => esc_html__('Inherit default style', 'leform'),
-                'tooltip' => esc_html__('Use the same style as for default state.', 'leform'),
+                'label'   => esc_html__('Inherit default style', 'rureraform'),
+                'tooltip' => esc_html__('Use the same style as for default state.', 'rureraform'),
                 'type'    => 'checkbox',
                 'group'   => 'style'
             ),
@@ -3431,14 +3428,14 @@ function element_properties_meta($chapters)
                     'align'     => 'left'
                 ),
                 'caption' => array(
-                    'family' => esc_html__('Font family', 'leform'),
-                    'size'   => esc_html__('Size', 'leform'),
-                    'color'  => esc_html__('Color', 'leform'),
-                    'style'  => esc_html__('Style', 'leform'),
-                    'align'  => esc_html__('Alignment', 'leform')
+                    'family' => esc_html__('Font family', 'rureraform'),
+                    'size'   => esc_html__('Size', 'rureraform'),
+                    'color'  => esc_html__('Color', 'rureraform'),
+                    'style'  => esc_html__('Style', 'rureraform'),
+                    'align'  => esc_html__('Alignment', 'rureraform')
                 ),
-                'label'   => esc_html__('Input text', 'leform'),
-                'tooltip' => esc_html__('Adjust the text style of hovered input fields.', 'leform'),
+                'label'   => esc_html__('Input text', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the text style of hovered input fields.', 'rureraform'),
                 'type'    => 'text-style',
                 'visible' => array('input-hover-inherit' => array('off')),
                 'group'   => 'style'
@@ -3455,17 +3452,17 @@ function element_properties_meta($chapters)
                     'gradient'            => 'no'
                 ),
                 'caption' => array(
-                    'image'               => esc_html__('Image URL', 'leform'),
-                    'size'                => esc_html__('Size', 'leform'),
-                    'horizontal-position' => esc_html__('Horizontal position', 'leform'),
-                    'vertical-position'   => esc_html__('Verical position', 'leform'),
-                    'repeat'              => esc_html__('Repeat', 'leform'),
-                    'color'               => esc_html__('Color', 'leform'),
-                    'color2'              => esc_html__('Second color', 'leform'),
-                    'gradient'            => esc_html__('Gradient', 'leform')
+                    'image'               => esc_html__('Image URL', 'rureraform'),
+                    'size'                => esc_html__('Size', 'rureraform'),
+                    'horizontal-position' => esc_html__('Horizontal position', 'rureraform'),
+                    'vertical-position'   => esc_html__('Verical position', 'rureraform'),
+                    'repeat'              => esc_html__('Repeat', 'rureraform'),
+                    'color'               => esc_html__('Color', 'rureraform'),
+                    'color2'              => esc_html__('Second color', 'rureraform'),
+                    'gradient'            => esc_html__('Gradient', 'rureraform')
                 ),
-                'label'   => esc_html__('Input background', 'leform'),
-                'tooltip' => esc_html__('Adjust the background of hovered input fields.', 'leform'),
+                'label'   => esc_html__('Input background', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the background of hovered input fields.', 'rureraform'),
                 'type'    => 'background-style',
                 'visible' => array('input-hover-inherit' => array('off')),
                 'group'   => 'style'
@@ -3482,14 +3479,14 @@ function element_properties_meta($chapters)
                     'left'   => 'on'
                 ),
                 'caption' => array(
-                    'width'  => esc_html__('Width', 'leform'),
-                    'style'  => esc_html__('Style', 'leform'),
-                    'radius' => esc_html__('Radius', 'leform'),
-                    'color'  => esc_html__('Color', 'leform'),
-                    'border' => esc_html__('Border', 'leform')
+                    'width'  => esc_html__('Width', 'rureraform'),
+                    'style'  => esc_html__('Style', 'rureraform'),
+                    'radius' => esc_html__('Radius', 'rureraform'),
+                    'color'  => esc_html__('Color', 'rureraform'),
+                    'border' => esc_html__('Border', 'rureraform')
                 ),
-                'label'   => esc_html__('Input border', 'leform'),
-                'tooltip' => esc_html__('Adjust the border style of hovered input fields.', 'leform'),
+                'label'   => esc_html__('Input border', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the border style of hovered input fields.', 'rureraform'),
                 'type'    => 'border-style',
                 'visible' => array('input-hover-inherit' => array('off')),
                 'group'   => 'style'
@@ -3501,12 +3498,12 @@ function element_properties_meta($chapters)
                     'color' => '#444'
                 ),
                 'caption' => array(
-                    'style' => esc_html__('Style', 'leform'),
-                    'size'  => esc_html__('Size', 'leform'),
-                    'color' => esc_html__('Color', 'leform')
+                    'style' => esc_html__('Style', 'rureraform'),
+                    'size'  => esc_html__('Size', 'rureraform'),
+                    'color' => esc_html__('Color', 'rureraform')
                 ),
-                'label'   => esc_html__('Input shadow', 'leform'),
-                'tooltip' => esc_html__('Adjust the shadow of hovered input fields.', 'leform'),
+                'label'   => esc_html__('Input shadow', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the shadow of hovered input fields.', 'rureraform'),
                 'type'    => 'shadow',
                 'visible' => array('input-hover-inherit' => array('off')),
                 'group'   => 'style'
@@ -3518,8 +3515,8 @@ function element_properties_meta($chapters)
             ),
             'input-focus-inherit'               => array(
                 'value'   => 'on',
-                'label'   => esc_html__('Inherit default style', 'leform'),
-                'tooltip' => esc_html__('Use the same style as for default state.', 'leform'),
+                'label'   => esc_html__('Inherit default style', 'rureraform'),
+                'tooltip' => esc_html__('Use the same style as for default state.', 'rureraform'),
                 'type'    => 'checkbox',
                 'group'   => 'style'
             ),
@@ -3534,14 +3531,14 @@ function element_properties_meta($chapters)
                     'align'     => 'left'
                 ),
                 'caption' => array(
-                    'family' => esc_html__('Font family', 'leform'),
-                    'size'   => esc_html__('Size', 'leform'),
-                    'color'  => esc_html__('Color', 'leform'),
-                    'style'  => esc_html__('Style', 'leform'),
-                    'align'  => esc_html__('Alignment', 'leform')
+                    'family' => esc_html__('Font family', 'rureraform'),
+                    'size'   => esc_html__('Size', 'rureraform'),
+                    'color'  => esc_html__('Color', 'rureraform'),
+                    'style'  => esc_html__('Style', 'rureraform'),
+                    'align'  => esc_html__('Alignment', 'rureraform')
                 ),
-                'label'   => esc_html__('Input text', 'leform'),
-                'tooltip' => esc_html__('Adjust the text style of focused input fields.', 'leform'),
+                'label'   => esc_html__('Input text', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the text style of focused input fields.', 'rureraform'),
                 'type'    => 'text-style',
                 'visible' => array('input-focus-inherit' => array('off')),
                 'group'   => 'style'
@@ -3558,17 +3555,17 @@ function element_properties_meta($chapters)
                     'gradient'            => 'no'
                 ),
                 'caption' => array(
-                    'image'               => esc_html__('Image URL', 'leform'),
-                    'size'                => esc_html__('Size', 'leform'),
-                    'horizontal-position' => esc_html__('Horizontal position', 'leform'),
-                    'vertical-position'   => esc_html__('Verical position', 'leform'),
-                    'repeat'              => esc_html__('Repeat', 'leform'),
-                    'color'               => esc_html__('Color', 'leform'),
-                    'color2'              => esc_html__('Second color', 'leform'),
-                    'gradient'            => esc_html__('Gradient', 'leform')
+                    'image'               => esc_html__('Image URL', 'rureraform'),
+                    'size'                => esc_html__('Size', 'rureraform'),
+                    'horizontal-position' => esc_html__('Horizontal position', 'rureraform'),
+                    'vertical-position'   => esc_html__('Verical position', 'rureraform'),
+                    'repeat'              => esc_html__('Repeat', 'rureraform'),
+                    'color'               => esc_html__('Color', 'rureraform'),
+                    'color2'              => esc_html__('Second color', 'rureraform'),
+                    'gradient'            => esc_html__('Gradient', 'rureraform')
                 ),
-                'label'   => esc_html__('Input background', 'leform'),
-                'tooltip' => esc_html__('Adjust the background of focused input fields.', 'leform'),
+                'label'   => esc_html__('Input background', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the background of focused input fields.', 'rureraform'),
                 'type'    => 'background-style',
                 'visible' => array('input-focus-inherit' => array('off')),
                 'group'   => 'style'
@@ -3585,14 +3582,14 @@ function element_properties_meta($chapters)
                     'left'   => 'on'
                 ),
                 'caption' => array(
-                    'width'  => esc_html__('Width', 'leform'),
-                    'style'  => esc_html__('Style', 'leform'),
-                    'radius' => esc_html__('Radius', 'leform'),
-                    'color'  => esc_html__('Color', 'leform'),
-                    'border' => esc_html__('Border', 'leform')
+                    'width'  => esc_html__('Width', 'rureraform'),
+                    'style'  => esc_html__('Style', 'rureraform'),
+                    'radius' => esc_html__('Radius', 'rureraform'),
+                    'color'  => esc_html__('Color', 'rureraform'),
+                    'border' => esc_html__('Border', 'rureraform')
                 ),
-                'label'   => esc_html__('Input border', 'leform'),
-                'tooltip' => esc_html__('Adjust the border style of focused input fields.', 'leform'),
+                'label'   => esc_html__('Input border', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the border style of focused input fields.', 'rureraform'),
                 'type'    => 'border-style',
                 'visible' => array('input-focus-inherit' => array('off')),
                 'group'   => 'style'
@@ -3604,12 +3601,12 @@ function element_properties_meta($chapters)
                     'color' => '#444'
                 ),
                 'caption' => array(
-                    'style' => esc_html__('Style', 'leform'),
-                    'size'  => esc_html__('Size', 'leform'),
-                    'color' => esc_html__('Color', 'leform')
+                    'style' => esc_html__('Style', 'rureraform'),
+                    'size'  => esc_html__('Size', 'rureraform'),
+                    'color' => esc_html__('Color', 'rureraform')
                 ),
-                'label'   => esc_html__('Input shadow', 'leform'),
-                'tooltip' => esc_html__('Adjust the shadow of focused input fields.', 'leform'),
+                'label'   => esc_html__('Input shadow', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the shadow of focused input fields.', 'rureraform'),
                 'type'    => 'shadow',
                 'visible' => array('input-focus-inherit' => array('off')),
                 'group'   => 'style'
@@ -3624,13 +3621,13 @@ function element_properties_meta($chapters)
                     'layout'   => '1'
                 ),
                 'caption' => array(
-                    'position' => esc_html__('Position', 'leform'),
-                    'size'     => esc_html__('Size', 'leform'),
-                    'align'    => esc_html__('Alignment', 'leform'),
-                    'layout'   => esc_html__('Layout', 'leform')
+                    'position' => esc_html__('Position', 'rureraform'),
+                    'size'     => esc_html__('Size', 'rureraform'),
+                    'align'    => esc_html__('Alignment', 'rureraform'),
+                    'layout'   => esc_html__('Layout', 'rureraform')
                 ),
-                'label'   => esc_html__('Checkbox and radio style', 'leform'),
-                'tooltip' => esc_html__('Choose how to display checkbox and radio button fields and their captions.', 'leform'),
+                'label'   => esc_html__('Checkbox and radio style', 'rureraform'),
+                'tooltip' => esc_html__('Choose how to display checkbox and radio button fields and their captions.', 'rureraform'),
                 'type'    => 'checkbox-radio-style',
                 'group'   => 'style'
             ),
@@ -3642,8 +3639,8 @@ function element_properties_meta($chapters)
                     'square',
                     'tgl'
                 ),
-                'label'   => esc_html__('Checkbox view', 'leform'),
-                'tooltip' => esc_html__('Choose the checkbox style.', 'leform'),
+                'label'   => esc_html__('Checkbox view', 'rureraform'),
+                'tooltip' => esc_html__('Choose the checkbox style.', 'rureraform'),
                 'type'    => 'checkbox-view',
                 'group'   => 'style'
             ),
@@ -3654,8 +3651,8 @@ function element_properties_meta($chapters)
                     'fa-check',
                     'dot'
                 ),
-                'label'   => esc_html__('Radio button view', 'leform'),
-                'tooltip' => esc_html__('Choose the radio button style.', 'leform'),
+                'label'   => esc_html__('Radio button view', 'rureraform'),
+                'tooltip' => esc_html__('Choose the radio button style.', 'rureraform'),
                 'type'    => 'radio-view',
                 'group'   => 'style'
             ),
@@ -3663,11 +3660,11 @@ function element_properties_meta($chapters)
                 'type'     => 'sections',
                 'sections' => array(
                     'checkbox-radio-unchecked' => array(
-                        'label' => esc_html__('Unchecked', 'leform'),
+                        'label' => esc_html__('Unchecked', 'rureraform'),
                         'icon'  => 'far fa-square'
                     ),
                     'checkbox-radio-checked'   => array(
-                        'label' => esc_html__('Checked', 'leform'),
+                        'label' => esc_html__('Checked', 'rureraform'),
                         'icon'  => 'far fa-check-square'
                     )
                 )
@@ -3682,8 +3679,8 @@ function element_properties_meta($chapters)
                     'color2' => '#fff',
                     'color3' => '#444'
                 ),
-                'label'   => esc_html__('Checkbox and radio colors', 'leform'),
-                'tooltip' => esc_html__('Adjust colors of checkboxes and radio buttons.', 'leform'),
+                'label'   => esc_html__('Checkbox and radio colors', 'rureraform'),
+                'tooltip' => esc_html__('Adjust colors of checkboxes and radio buttons.', 'rureraform'),
                 'caption' => array(
                     'color1' => 'Border',
                     'color2' => 'Background',
@@ -3699,8 +3696,8 @@ function element_properties_meta($chapters)
             ),
             'checkbox-radio-checked-inherit'    => array(
                 'value'   => 'on',
-                'label'   => esc_html__('Inherit colors', 'leform'),
-                'tooltip' => esc_html__('Use the same colors as for unchecked state.', 'leform'),
+                'label'   => esc_html__('Inherit colors', 'rureraform'),
+                'tooltip' => esc_html__('Use the same colors as for unchecked state.', 'rureraform'),
                 'type'    => 'checkbox',
                 'group'   => 'style'
             ),
@@ -3710,8 +3707,8 @@ function element_properties_meta($chapters)
                     'color2' => '#fff',
                     'color3' => '#444'
                 ),
-                'label'   => esc_html__('Checkbox and radio colors', 'leform'),
-                'tooltip' => esc_html__('Adjust colors of checkboxes and radio buttons.', 'leform'),
+                'label'   => esc_html__('Checkbox and radio colors', 'rureraform'),
+                'tooltip' => esc_html__('Adjust colors of checkboxes and radio buttons.', 'rureraform'),
                 'caption' => array(
                     'color1' => 'Border',
                     'color2' => 'Background',
@@ -3729,15 +3726,15 @@ function element_properties_meta($chapters)
                     'effect' => 'none'
                 ),
                 'caption' => array(
-                    'align'  => esc_html__('Alignment', 'leform'),
-                    'effect' => esc_html__('Effect', 'leform')
+                    'align'  => esc_html__('Alignment', 'rureraform'),
+                    'effect' => esc_html__('Effect', 'rureraform')
                 ),
-                'label'   => esc_html__('Image Select style', 'leform'),
-                'tooltip' => esc_html__('Adjust image alignment and effect.', 'leform'),
+                'label'   => esc_html__('Image Select style', 'rureraform'),
+                'tooltip' => esc_html__('Adjust image alignment and effect.', 'rureraform'),
                 'type'    => 'imageselect-style',
                 'options' => array(
-                    'none'      => esc_html__('None', 'leform'),
-                    'grayscale' => esc_html__('Grayscale', 'leform')
+                    'none'      => esc_html__('None', 'rureraform'),
+                    'grayscale' => esc_html__('Grayscale', 'rureraform')
                 ),
                 'group'   => 'style'
             ),
@@ -3752,14 +3749,14 @@ function element_properties_meta($chapters)
                     'align'     => 'left'
                 ),
                 'caption' => array(
-                    'family' => esc_html__('Font family', 'leform'),
-                    'size'   => esc_html__('Size', 'leform'),
-                    'color'  => esc_html__('Color', 'leform'),
-                    'style'  => esc_html__('Style', 'leform'),
-                    'align'  => esc_html__('Alignment', 'leform')
+                    'family' => esc_html__('Font family', 'rureraform'),
+                    'size'   => esc_html__('Size', 'rureraform'),
+                    'color'  => esc_html__('Color', 'rureraform'),
+                    'style'  => esc_html__('Style', 'rureraform'),
+                    'align'  => esc_html__('Alignment', 'rureraform')
                 ),
-                'label'   => esc_html__('Image label text', 'leform'),
-                'tooltip' => esc_html__('Adjust the text style of image label.', 'leform'),
+                'label'   => esc_html__('Image label text', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the text style of image label.', 'rureraform'),
                 'type'    => 'text-style',
                 'group'   => 'style'
             ),
@@ -3767,15 +3764,15 @@ function element_properties_meta($chapters)
                 'type'     => 'sections',
                 'sections' => array(
                     'imageselects-default'  => array(
-                        'label' => esc_html__('Default', 'leform'),
+                        'label' => esc_html__('Default', 'rureraform'),
                         'icon'  => 'fas fa-globe'
                     ),
                     'imageselects-hover'    => array(
-                        'label' => esc_html__('Hover', 'leform'),
+                        'label' => esc_html__('Hover', 'rureraform'),
                         'icon'  => 'far fa-hand-pointer'
                     ),
                     'imageselects-selected' => array(
-                        'label' => esc_html__('Selected', 'leform'),
+                        'label' => esc_html__('Selected', 'rureraform'),
                         'icon'  => 'far fa-check-square'
                     )
                 )
@@ -3796,14 +3793,14 @@ function element_properties_meta($chapters)
                     'left'   => 'on'
                 ),
                 'caption' => array(
-                    'width'  => esc_html__('Width', 'leform'),
-                    'style'  => esc_html__('Style', 'leform'),
-                    'radius' => esc_html__('Radius', 'leform'),
-                    'color'  => esc_html__('Color', 'leform'),
-                    'border' => esc_html__('Border', 'leform')
+                    'width'  => esc_html__('Width', 'rureraform'),
+                    'style'  => esc_html__('Style', 'rureraform'),
+                    'radius' => esc_html__('Radius', 'rureraform'),
+                    'color'  => esc_html__('Color', 'rureraform'),
+                    'border' => esc_html__('Border', 'rureraform')
                 ),
-                'label'   => esc_html__('Image border', 'leform'),
-                'tooltip' => esc_html__('Adjust the border style of images.', 'leform'),
+                'label'   => esc_html__('Image border', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the border style of images.', 'rureraform'),
                 'type'    => 'border-style',
                 'group'   => 'style'
             ),
@@ -3814,12 +3811,12 @@ function element_properties_meta($chapters)
                     'color' => '#444'
                 ),
                 'caption' => array(
-                    'style' => esc_html__('Style', 'leform'),
-                    'size'  => esc_html__('Size', 'leform'),
-                    'color' => esc_html__('Color', 'leform')
+                    'style' => esc_html__('Style', 'rureraform'),
+                    'size'  => esc_html__('Size', 'rureraform'),
+                    'color' => esc_html__('Color', 'rureraform')
                 ),
-                'label'   => esc_html__('Image shadow', 'leform'),
-                'tooltip' => esc_html__('Adjust the shadow of images.', 'leform'),
+                'label'   => esc_html__('Image shadow', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the shadow of images.', 'rureraform'),
                 'type'    => 'shadow',
                 'group'   => 'style'
             ),
@@ -3830,8 +3827,8 @@ function element_properties_meta($chapters)
             ),
             'imageselect-hover-inherit'         => array(
                 'value'   => 'on',
-                'label'   => esc_html__('Inherit default style', 'leform'),
-                'tooltip' => esc_html__('Use the same style as for default state.', 'leform'),
+                'label'   => esc_html__('Inherit default style', 'rureraform'),
+                'tooltip' => esc_html__('Use the same style as for default state.', 'rureraform'),
                 'type'    => 'checkbox',
                 'group'   => 'style'
             ),
@@ -3847,14 +3844,14 @@ function element_properties_meta($chapters)
                     'left'   => 'on'
                 ),
                 'caption' => array(
-                    'width'  => esc_html__('Width', 'leform'),
-                    'style'  => esc_html__('Style', 'leform'),
-                    'radius' => esc_html__('Radius', 'leform'),
-                    'color'  => esc_html__('Color', 'leform'),
-                    'border' => esc_html__('Border', 'leform')
+                    'width'  => esc_html__('Width', 'rureraform'),
+                    'style'  => esc_html__('Style', 'rureraform'),
+                    'radius' => esc_html__('Radius', 'rureraform'),
+                    'color'  => esc_html__('Color', 'rureraform'),
+                    'border' => esc_html__('Border', 'rureraform')
                 ),
-                'label'   => esc_html__('Image border', 'leform'),
-                'tooltip' => esc_html__('Adjust the border style of hovered images.', 'leform'),
+                'label'   => esc_html__('Image border', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the border style of hovered images.', 'rureraform'),
                 'type'    => 'border-style',
                 'visible' => array('imageselect-hover-inherit' => array('off')),
                 'group'   => 'style'
@@ -3866,12 +3863,12 @@ function element_properties_meta($chapters)
                     'color' => '#444'
                 ),
                 'caption' => array(
-                    'style' => esc_html__('Style', 'leform'),
-                    'size'  => esc_html__('Size', 'leform'),
-                    'color' => esc_html__('Color', 'leform')
+                    'style' => esc_html__('Style', 'rureraform'),
+                    'size'  => esc_html__('Size', 'rureraform'),
+                    'color' => esc_html__('Color', 'rureraform')
                 ),
-                'label'   => esc_html__('Image shadow', 'leform'),
-                'tooltip' => esc_html__('Adjust the shadow of hovered images.', 'leform'),
+                'label'   => esc_html__('Image shadow', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the shadow of hovered images.', 'rureraform'),
                 'type'    => 'shadow',
                 'visible' => array('imageselect-hover-inherit' => array('off')),
                 'group'   => 'style'
@@ -3883,8 +3880,8 @@ function element_properties_meta($chapters)
             ),
             'imageselect-selected-inherit'      => array(
                 'value'   => 'on',
-                'label'   => esc_html__('Inherit default style', 'leform'),
-                'tooltip' => esc_html__('Use the same style as for default state.', 'leform'),
+                'label'   => esc_html__('Inherit default style', 'rureraform'),
+                'tooltip' => esc_html__('Use the same style as for default state.', 'rureraform'),
                 'type'    => 'checkbox',
                 'group'   => 'style'
             ),
@@ -3900,14 +3897,14 @@ function element_properties_meta($chapters)
                     'left'   => 'on'
                 ),
                 'caption' => array(
-                    'width'  => esc_html__('Width', 'leform'),
-                    'style'  => esc_html__('Style', 'leform'),
-                    'radius' => esc_html__('Radius', 'leform'),
-                    'color'  => esc_html__('Color', 'leform'),
-                    'border' => esc_html__('Border', 'leform')
+                    'width'  => esc_html__('Width', 'rureraform'),
+                    'style'  => esc_html__('Style', 'rureraform'),
+                    'radius' => esc_html__('Radius', 'rureraform'),
+                    'color'  => esc_html__('Color', 'rureraform'),
+                    'border' => esc_html__('Border', 'rureraform')
                 ),
-                'label'   => esc_html__('Image border', 'leform'),
-                'tooltip' => esc_html__('Adjust the border style of selected images.', 'leform'),
+                'label'   => esc_html__('Image border', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the border style of selected images.', 'rureraform'),
                 'type'    => 'border-style',
                 'visible' => array('imageselect-selected-inherit' => array('off')),
                 'group'   => 'style'
@@ -3919,20 +3916,20 @@ function element_properties_meta($chapters)
                     'color' => '#444'
                 ),
                 'caption' => array(
-                    'style' => esc_html__('Style', 'leform'),
-                    'size'  => esc_html__('Size', 'leform'),
-                    'color' => esc_html__('Color', 'leform')
+                    'style' => esc_html__('Style', 'rureraform'),
+                    'size'  => esc_html__('Size', 'rureraform'),
+                    'color' => esc_html__('Color', 'rureraform')
                 ),
-                'label'   => esc_html__('Image shadow', 'leform'),
-                'tooltip' => esc_html__('Adjust the shadow of selected images.', 'leform'),
+                'label'   => esc_html__('Image shadow', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the shadow of selected images.', 'rureraform'),
                 'type'    => 'shadow',
                 'visible' => array('imageselect-selected-inherit' => array('off')),
                 'group'   => 'style'
             ),
             'imageselect-selected-scale'        => array(
                 'value'   => 'on',
-                'label'   => esc_html__('Zoom selected image', 'leform'),
-                'tooltip' => esc_html__('Zoom selected image.', 'leform'),
+                'label'   => esc_html__('Zoom selected image', 'rureraform'),
+                'tooltip' => esc_html__('Zoom selected image.', 'rureraform'),
                 'type'    => 'checkbox',
                 'group'   => 'style'
             ),
@@ -3948,13 +3945,13 @@ function element_properties_meta($chapters)
                     'selected-color'      => '#ffffff'
                 ),
                 'caption' => array(
-                    'align'          => esc_html__('Alignment', 'leform'),
-                    'height'         => esc_html__('Height', 'leform'),
-                    'hover-color'    => esc_html__('Hover colors', 'leform'),
-                    'selected-color' => esc_html__('Selected colors', 'leform')
+                    'align'          => esc_html__('Alignment', 'rureraform'),
+                    'height'         => esc_html__('Height', 'rureraform'),
+                    'hover-color'    => esc_html__('Hover colors', 'rureraform'),
+                    'selected-color' => esc_html__('Selected colors', 'rureraform')
                 ),
-                'label'   => esc_html__('Multiselect style', 'leform'),
-                'tooltip' => esc_html__('Choose how to display multiselect options.', 'leform'),
+                'label'   => esc_html__('Multiselect style', 'rureraform'),
+                'tooltip' => esc_html__('Choose how to display multiselect options.', 'rureraform'),
                 'type'    => 'multiselect-style',
                 'group'   => 'style'
             ),
@@ -3967,13 +3964,13 @@ function element_properties_meta($chapters)
                     'layout'   => 'inline'
                 ),
                 'caption' => array(
-                    'size'     => esc_html__('Size', 'leform'),
-                    'width'    => esc_html__('Width', 'leform'),
-                    'position' => esc_html__('Position', 'leform'),
-                    'layout'   => esc_html__('Layout', 'leform')
+                    'size'     => esc_html__('Size', 'rureraform'),
+                    'width'    => esc_html__('Width', 'rureraform'),
+                    'position' => esc_html__('Position', 'rureraform'),
+                    'layout'   => esc_html__('Layout', 'rureraform')
                 ),
-                'label'   => esc_html__('Tile style', 'leform'),
-                'tooltip' => esc_html__('Adjust the tile style.', 'leform'),
+                'label'   => esc_html__('Tile style', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the tile style.', 'rureraform'),
                 'type'    => 'global-tile-style',
                 'group'   => 'style'
             ),
@@ -3981,15 +3978,15 @@ function element_properties_meta($chapters)
                 'type'     => 'sections',
                 'sections' => array(
                     'tiles-default' => array(
-                        'label' => esc_html__('Default', 'leform'),
+                        'label' => esc_html__('Default', 'rureraform'),
                         'icon'  => 'fas fa-globe'
                     ),
                     'tiles-hover'   => array(
-                        'label' => esc_html__('Hover', 'leform'),
+                        'label' => esc_html__('Hover', 'rureraform'),
                         'icon'  => 'far fa-hand-pointer'
                     ),
                     'tiles-active'  => array(
-                        'label' => esc_html__('Selected', 'leform'),
+                        'label' => esc_html__('Selected', 'rureraform'),
                         'icon'  => 'far fa-check-square'
                     )
                 )
@@ -4009,14 +4006,14 @@ function element_properties_meta($chapters)
                     'align'     => 'center'
                 ),
                 'caption' => array(
-                    'family' => esc_html__('Font family', 'leform'),
-                    'size'   => esc_html__('Size', 'leform'),
-                    'color'  => esc_html__('Color', 'leform'),
-                    'style'  => esc_html__('Style', 'leform'),
-                    'align'  => esc_html__('Alignment', 'leform')
+                    'family' => esc_html__('Font family', 'rureraform'),
+                    'size'   => esc_html__('Size', 'rureraform'),
+                    'color'  => esc_html__('Color', 'rureraform'),
+                    'style'  => esc_html__('Style', 'rureraform'),
+                    'align'  => esc_html__('Alignment', 'rureraform')
                 ),
-                'label'   => esc_html__('Tile text', 'leform'),
-                'tooltip' => esc_html__('Adjust the text style of tiles.', 'leform'),
+                'label'   => esc_html__('Tile text', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the text style of tiles.', 'rureraform'),
                 'type'    => 'text-style',
                 'group'   => 'style'
             ),
@@ -4032,17 +4029,17 @@ function element_properties_meta($chapters)
                     'gradient'            => 'no'
                 ),
                 'caption' => array(
-                    'image'               => esc_html__('Image URL', 'leform'),
-                    'size'                => esc_html__('Size', 'leform'),
-                    'horizontal-position' => esc_html__('Horizontal position', 'leform'),
-                    'vertical-position'   => esc_html__('Vertical position', 'leform'),
-                    'repeat'              => esc_html__('Repeat', 'leform'),
-                    'color'               => esc_html__('Color', 'leform'),
-                    'color2'              => esc_html__('Second color', 'leform'),
-                    'gradient'            => esc_html__('Gradient', 'leform')
+                    'image'               => esc_html__('Image URL', 'rureraform'),
+                    'size'                => esc_html__('Size', 'rureraform'),
+                    'horizontal-position' => esc_html__('Horizontal position', 'rureraform'),
+                    'vertical-position'   => esc_html__('Vertical position', 'rureraform'),
+                    'repeat'              => esc_html__('Repeat', 'rureraform'),
+                    'color'               => esc_html__('Color', 'rureraform'),
+                    'color2'              => esc_html__('Second color', 'rureraform'),
+                    'gradient'            => esc_html__('Gradient', 'rureraform')
                 ),
-                'label'   => esc_html__('Tile background', 'leform'),
-                'tooltip' => esc_html__('Adjust the background of tiles.', 'leform'),
+                'label'   => esc_html__('Tile background', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the background of tiles.', 'rureraform'),
                 'type'    => 'background-style',
                 'group'   => 'style'
             ),
@@ -4058,14 +4055,14 @@ function element_properties_meta($chapters)
                     'left'   => 'on'
                 ),
                 'caption' => array(
-                    'width'  => esc_html__('Width', 'leform'),
-                    'style'  => esc_html__('Style', 'leform'),
-                    'radius' => esc_html__('Radius', 'leform'),
-                    'color'  => esc_html__('Color', 'leform'),
-                    'border' => esc_html__('Border', 'leform')
+                    'width'  => esc_html__('Width', 'rureraform'),
+                    'style'  => esc_html__('Style', 'rureraform'),
+                    'radius' => esc_html__('Radius', 'rureraform'),
+                    'color'  => esc_html__('Color', 'rureraform'),
+                    'border' => esc_html__('Border', 'rureraform')
                 ),
-                'label'   => esc_html__('Tile border', 'leform'),
-                'tooltip' => esc_html__('Adjust the border style of tiles.', 'leform'),
+                'label'   => esc_html__('Tile border', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the border style of tiles.', 'rureraform'),
                 'type'    => 'border-style',
                 'group'   => 'style'
             ),
@@ -4076,12 +4073,12 @@ function element_properties_meta($chapters)
                     'color' => '#444'
                 ),
                 'caption' => array(
-                    'style' => esc_html__('Style', 'leform'),
-                    'size'  => esc_html__('Size', 'leform'),
-                    'color' => esc_html__('Color', 'leform')
+                    'style' => esc_html__('Style', 'rureraform'),
+                    'size'  => esc_html__('Size', 'rureraform'),
+                    'color' => esc_html__('Color', 'rureraform')
                 ),
-                'label'   => esc_html__('Tile shadow', 'leform'),
-                'tooltip' => esc_html__('Adjust the shadow of tile.', 'leform'),
+                'label'   => esc_html__('Tile shadow', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the shadow of tile.', 'rureraform'),
                 'type'    => 'shadow',
                 'group'   => 'style'
             ),
@@ -4092,8 +4089,8 @@ function element_properties_meta($chapters)
             ),
             'tile-hover-inherit'                => array(
                 'value'   => 'on',
-                'label'   => esc_html__('Inherit default style', 'leform'),
-                'tooltip' => esc_html__('Use the same style as for default state.', 'leform'),
+                'label'   => esc_html__('Inherit default style', 'rureraform'),
+                'tooltip' => esc_html__('Use the same style as for default state.', 'rureraform'),
                 'type'    => 'checkbox',
                 'group'   => 'style'
             ),
@@ -4108,14 +4105,14 @@ function element_properties_meta($chapters)
                     'align'     => 'center'
                 ),
                 'caption' => array(
-                    'family' => esc_html__('Font family', 'leform'),
-                    'size'   => esc_html__('Size', 'leform'),
-                    'color'  => esc_html__('Color', 'leform'),
-                    'style'  => esc_html__('Style', 'leform'),
-                    'align'  => esc_html__('Alignment', 'leform')
+                    'family' => esc_html__('Font family', 'rureraform'),
+                    'size'   => esc_html__('Size', 'rureraform'),
+                    'color'  => esc_html__('Color', 'rureraform'),
+                    'style'  => esc_html__('Style', 'rureraform'),
+                    'align'  => esc_html__('Alignment', 'rureraform')
                 ),
-                'label'   => esc_html__('Tile text', 'leform'),
-                'tooltip' => esc_html__('Adjust the text style of hovered tiles.', 'leform'),
+                'label'   => esc_html__('Tile text', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the text style of hovered tiles.', 'rureraform'),
                 'type'    => 'text-style',
                 'visible' => array('tile-hover-inherit' => array('off')),
                 'group'   => 'style'
@@ -4132,17 +4129,17 @@ function element_properties_meta($chapters)
                     'gradient'            => 'no'
                 ),
                 'caption' => array(
-                    'image'               => esc_html__('Image URL', 'leform'),
-                    'size'                => esc_html__('Size', 'leform'),
-                    'horizontal-position' => esc_html__('Horizontal position', 'leform'),
-                    'vertical-position'   => esc_html__('Verical position', 'leform'),
-                    'repeat'              => esc_html__('Repeat', 'leform'),
-                    'color'               => esc_html__('Color', 'leform'),
-                    'color2'              => esc_html__('Second color', 'leform'),
-                    'gradient'            => esc_html__('Gradient', 'leform')
+                    'image'               => esc_html__('Image URL', 'rureraform'),
+                    'size'                => esc_html__('Size', 'rureraform'),
+                    'horizontal-position' => esc_html__('Horizontal position', 'rureraform'),
+                    'vertical-position'   => esc_html__('Verical position', 'rureraform'),
+                    'repeat'              => esc_html__('Repeat', 'rureraform'),
+                    'color'               => esc_html__('Color', 'rureraform'),
+                    'color2'              => esc_html__('Second color', 'rureraform'),
+                    'gradient'            => esc_html__('Gradient', 'rureraform')
                 ),
-                'label'   => esc_html__('Tile background', 'leform'),
-                'tooltip' => esc_html__('Adjust the background of hovered tiles.', 'leform'),
+                'label'   => esc_html__('Tile background', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the background of hovered tiles.', 'rureraform'),
                 'type'    => 'background-style',
                 'visible' => array('tile-hover-inherit' => array('off')),
                 'group'   => 'style'
@@ -4159,14 +4156,14 @@ function element_properties_meta($chapters)
                     'left'   => 'on'
                 ),
                 'caption' => array(
-                    'width'  => esc_html__('Width', 'leform'),
-                    'style'  => esc_html__('Style', 'leform'),
-                    'radius' => esc_html__('Radius', 'leform'),
-                    'color'  => esc_html__('Color', 'leform'),
-                    'border' => esc_html__('Border', 'leform')
+                    'width'  => esc_html__('Width', 'rureraform'),
+                    'style'  => esc_html__('Style', 'rureraform'),
+                    'radius' => esc_html__('Radius', 'rureraform'),
+                    'color'  => esc_html__('Color', 'rureraform'),
+                    'border' => esc_html__('Border', 'rureraform')
                 ),
-                'label'   => esc_html__('Tile border', 'leform'),
-                'tooltip' => esc_html__('Adjust the border style of hovered tiles.', 'leform'),
+                'label'   => esc_html__('Tile border', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the border style of hovered tiles.', 'rureraform'),
                 'type'    => 'border-style',
                 'visible' => array('tile-hover-inherit' => array('off')),
                 'group'   => 'style'
@@ -4178,12 +4175,12 @@ function element_properties_meta($chapters)
                     'color' => '#444'
                 ),
                 'caption' => array(
-                    'style' => esc_html__('Style', 'leform'),
-                    'size'  => esc_html__('Size', 'leform'),
-                    'color' => esc_html__('Color', 'leform')
+                    'style' => esc_html__('Style', 'rureraform'),
+                    'size'  => esc_html__('Size', 'rureraform'),
+                    'color' => esc_html__('Color', 'rureraform')
                 ),
-                'label'   => esc_html__('Tile shadow', 'leform'),
-                'tooltip' => esc_html__('Adjust the shadow of hovered tiles.', 'leform'),
+                'label'   => esc_html__('Tile shadow', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the shadow of hovered tiles.', 'rureraform'),
                 'type'    => 'shadow',
                 'visible' => array('tile-hover-inherit' => array('off')),
                 'group'   => 'style'
@@ -4195,8 +4192,8 @@ function element_properties_meta($chapters)
             ),
             'tile-selected-inherit'             => array(
                 'value'   => 'on',
-                'label'   => esc_html__('Inherit default style', 'leform'),
-                'tooltip' => esc_html__('Use the same style as for default state.', 'leform'),
+                'label'   => esc_html__('Inherit default style', 'rureraform'),
+                'tooltip' => esc_html__('Use the same style as for default state.', 'rureraform'),
                 'type'    => 'checkbox',
                 'group'   => 'style'
             ),
@@ -4211,14 +4208,14 @@ function element_properties_meta($chapters)
                     'align'     => 'center'
                 ),
                 'caption' => array(
-                    'family' => esc_html__('Font family', 'leform'),
-                    'size'   => esc_html__('Size', 'leform'),
-                    'color'  => esc_html__('Color', 'leform'),
-                    'style'  => esc_html__('Style', 'leform'),
-                    'align'  => esc_html__('Alignment', 'leform')
+                    'family' => esc_html__('Font family', 'rureraform'),
+                    'size'   => esc_html__('Size', 'rureraform'),
+                    'color'  => esc_html__('Color', 'rureraform'),
+                    'style'  => esc_html__('Style', 'rureraform'),
+                    'align'  => esc_html__('Alignment', 'rureraform')
                 ),
-                'label'   => esc_html__('Tile text', 'leform'),
-                'tooltip' => esc_html__('Adjust the text style of selected tiles.', 'leform'),
+                'label'   => esc_html__('Tile text', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the text style of selected tiles.', 'rureraform'),
                 'type'    => 'text-style',
                 'visible' => array('tile-selected-inherit' => array('off')),
                 'group'   => 'style'
@@ -4235,17 +4232,17 @@ function element_properties_meta($chapters)
                     'gradient'            => 'no'
                 ),
                 'caption' => array(
-                    'image'               => esc_html__('Image URL', 'leform'),
-                    'size'                => esc_html__('Size', 'leform'),
-                    'horizontal-position' => esc_html__('Horizontal position', 'leform'),
-                    'vertical-position'   => esc_html__('Verical position', 'leform'),
-                    'repeat'              => esc_html__('Repeat', 'leform'),
-                    'color'               => esc_html__('Color', 'leform'),
-                    'color2'              => esc_html__('Second color', 'leform'),
-                    'gradient'            => esc_html__('Gradient', 'leform')
+                    'image'               => esc_html__('Image URL', 'rureraform'),
+                    'size'                => esc_html__('Size', 'rureraform'),
+                    'horizontal-position' => esc_html__('Horizontal position', 'rureraform'),
+                    'vertical-position'   => esc_html__('Verical position', 'rureraform'),
+                    'repeat'              => esc_html__('Repeat', 'rureraform'),
+                    'color'               => esc_html__('Color', 'rureraform'),
+                    'color2'              => esc_html__('Second color', 'rureraform'),
+                    'gradient'            => esc_html__('Gradient', 'rureraform')
                 ),
-                'label'   => esc_html__('Tile background', 'leform'),
-                'tooltip' => esc_html__('Adjust the background of selected tiles.', 'leform'),
+                'label'   => esc_html__('Tile background', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the background of selected tiles.', 'rureraform'),
                 'type'    => 'background-style',
                 'visible' => array('tile-selected-inherit' => array('off')),
                 'group'   => 'style'
@@ -4262,14 +4259,14 @@ function element_properties_meta($chapters)
                     'left'   => 'on'
                 ),
                 'caption' => array(
-                    'width'  => esc_html__('Width', 'leform'),
-                    'style'  => esc_html__('Style', 'leform'),
-                    'radius' => esc_html__('Radius', 'leform'),
-                    'color'  => esc_html__('Color', 'leform'),
-                    'border' => esc_html__('Border', 'leform')
+                    'width'  => esc_html__('Width', 'rureraform'),
+                    'style'  => esc_html__('Style', 'rureraform'),
+                    'radius' => esc_html__('Radius', 'rureraform'),
+                    'color'  => esc_html__('Color', 'rureraform'),
+                    'border' => esc_html__('Border', 'rureraform')
                 ),
-                'label'   => esc_html__('Tile border', 'leform'),
-                'tooltip' => esc_html__('Adjust the border style of selected tiles.', 'leform'),
+                'label'   => esc_html__('Tile border', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the border style of selected tiles.', 'rureraform'),
                 'type'    => 'border-style',
                 'visible' => array('tile-selected-inherit' => array('off')),
                 'group'   => 'style'
@@ -4281,26 +4278,26 @@ function element_properties_meta($chapters)
                     'color' => '#444'
                 ),
                 'caption' => array(
-                    'style' => esc_html__('Style', 'leform'),
-                    'size'  => esc_html__('Size', 'leform'),
-                    'color' => esc_html__('Color', 'leform')
+                    'style' => esc_html__('Style', 'rureraform'),
+                    'size'  => esc_html__('Size', 'rureraform'),
+                    'color' => esc_html__('Color', 'rureraform')
                 ),
-                'label'   => esc_html__('Tile shadow', 'leform'),
-                'tooltip' => esc_html__('Adjust the shadow of selected tiles.', 'leform'),
+                'label'   => esc_html__('Tile shadow', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the shadow of selected tiles.', 'rureraform'),
                 'type'    => 'shadow',
                 'visible' => array('tile-selected-inherit' => array('off')),
                 'group'   => 'style'
             ),
             'tile-selected-transform'           => array(
                 'value'   => 'zoom-in',
-                'label'   => esc_html__('Transform', 'leform'),
-                'tooltip' => esc_html__('Adjust the transform of selected tiles.', 'leform'),
+                'label'   => esc_html__('Transform', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the transform of selected tiles.', 'rureraform'),
                 'type'    => 'radio-bar',
                 'options' => array(
-                    'none'       => esc_html__('None', 'leform'),
-                    'zoom-in'    => esc_html__('Zoom In', 'leform'),
-                    'zoom-out'   => esc_html__('Zoom Out', 'leform'),
-                    'shift-down' => esc_html__('Shift Down', 'leform')
+                    'none'       => esc_html__('None', 'rureraform'),
+                    'zoom-in'    => esc_html__('Zoom In', 'rureraform'),
+                    'zoom-out'   => esc_html__('Zoom Out', 'rureraform'),
+                    'shift-down' => esc_html__('Shift Down', 'rureraform')
                 ),
                 'group'   => 'style'
             ),
@@ -4308,13 +4305,13 @@ function element_properties_meta($chapters)
             'hr-10'                             => array('type' => 'hr'),
             'rangeslider-skin'                  => array(
                 'value'   => 'flat',
-                'label'   => esc_html__('Range slider skin', 'leform'),
-                'tooltip' => esc_html__('Select the skin of range slider.', 'leform'),
+                'label'   => esc_html__('Range slider skin', 'rureraform'),
+                'tooltip' => esc_html__('Select the skin of range slider.', 'rureraform'),
                 'type'    => 'select',
                 'options' => array(
-                    'flat'  => esc_html__('Flat', 'leform'),
-                    'sharp' => esc_html__('Sharp', 'leform'),
-                    'round' => esc_html__('Round', 'leform')
+                    'flat'  => esc_html__('Flat', 'rureraform'),
+                    'sharp' => esc_html__('Sharp', 'rureraform'),
+                    'round' => esc_html__('Round', 'rureraform')
                 ),
                 'group'   => 'style'
             ),
@@ -4326,8 +4323,8 @@ function element_properties_meta($chapters)
                     'color4' => '#169F85',
                     'color5' => '#ffffff'
                 ),
-                'label'   => esc_html__('Range slider colors', 'leform'),
-                'tooltip' => esc_html__('Adjust colors of range slider.', 'leform'),
+                'label'   => esc_html__('Range slider colors', 'rureraform'),
+                'tooltip' => esc_html__('Adjust colors of range slider.', 'rureraform'),
                 'caption' => array(
                     'color1' => 'Main',
                     'color2' => 'Min/max text',
@@ -4350,12 +4347,12 @@ function element_properties_meta($chapters)
                     'position' => 'center'
                 ),
                 'caption' => array(
-                    'size'     => esc_html__('Size', 'leform'),
-                    'width'    => esc_html__('Width', 'leform'),
-                    'position' => esc_html__('Position', 'leform')
+                    'size'     => esc_html__('Size', 'rureraform'),
+                    'width'    => esc_html__('Width', 'rureraform'),
+                    'position' => esc_html__('Position', 'rureraform')
                 ),
-                'label'   => esc_html__('Button style', 'leform'),
-                'tooltip' => esc_html__('Adjust the button size and position.', 'leform'),
+                'label'   => esc_html__('Button style', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the button size and position.', 'rureraform'),
                 'type'    => 'global-button-style',
                 'group'   => 'style'
             ),
@@ -4363,15 +4360,15 @@ function element_properties_meta($chapters)
                 'type'     => 'sections',
                 'sections' => array(
                     'buttons-default' => array(
-                        'label' => esc_html__('Default', 'leform'),
+                        'label' => esc_html__('Default', 'rureraform'),
                         'icon'  => 'fas fa-globe'
                     ),
                     'buttons-hover'   => array(
-                        'label' => esc_html__('Hover', 'leform'),
+                        'label' => esc_html__('Hover', 'rureraform'),
                         'icon'  => 'far fa-hand-pointer'
                     ),
                     'buttons-active'  => array(
-                        'label' => esc_html__('Active', 'leform'),
+                        'label' => esc_html__('Active', 'rureraform'),
                         'icon'  => 'far fa-paper-plane'
                     )
                 )
@@ -4391,14 +4388,14 @@ function element_properties_meta($chapters)
                     'align'     => 'center'
                 ),
                 'caption' => array(
-                    'family' => esc_html__('Font family', 'leform'),
-                    'size'   => esc_html__('Size', 'leform'),
-                    'color'  => esc_html__('Color', 'leform'),
-                    'style'  => esc_html__('Style', 'leform'),
-                    'align'  => esc_html__('Alignment', 'leform')
+                    'family' => esc_html__('Font family', 'rureraform'),
+                    'size'   => esc_html__('Size', 'rureraform'),
+                    'color'  => esc_html__('Color', 'rureraform'),
+                    'style'  => esc_html__('Style', 'rureraform'),
+                    'align'  => esc_html__('Alignment', 'rureraform')
                 ),
-                'label'   => esc_html__('Button text', 'leform'),
-                'tooltip' => esc_html__('Adjust the text style of buttons.', 'leform'),
+                'label'   => esc_html__('Button text', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the text style of buttons.', 'rureraform'),
                 'type'    => 'text-style',
                 'group'   => 'style'
             ),
@@ -4414,17 +4411,17 @@ function element_properties_meta($chapters)
                     'gradient'            => 'no'
                 ),
                 'caption' => array(
-                    'image'               => esc_html__('Image URL', 'leform'),
-                    'size'                => esc_html__('Size', 'leform'),
-                    'horizontal-position' => esc_html__('Horizontal position', 'leform'),
-                    'vertical-position'   => esc_html__('Verical position', 'leform'),
-                    'repeat'              => esc_html__('Repeat', 'leform'),
-                    'color'               => esc_html__('Color', 'leform'),
-                    'color2'              => esc_html__('Second color', 'leform'),
-                    'gradient'            => esc_html__('Gradient', 'leform')
+                    'image'               => esc_html__('Image URL', 'rureraform'),
+                    'size'                => esc_html__('Size', 'rureraform'),
+                    'horizontal-position' => esc_html__('Horizontal position', 'rureraform'),
+                    'vertical-position'   => esc_html__('Verical position', 'rureraform'),
+                    'repeat'              => esc_html__('Repeat', 'rureraform'),
+                    'color'               => esc_html__('Color', 'rureraform'),
+                    'color2'              => esc_html__('Second color', 'rureraform'),
+                    'gradient'            => esc_html__('Gradient', 'rureraform')
                 ),
-                'label'   => esc_html__('Button background', 'leform'),
-                'tooltip' => esc_html__('Adjust the background of buttons.', 'leform'),
+                'label'   => esc_html__('Button background', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the background of buttons.', 'rureraform'),
                 'type'    => 'background-style',
                 'group'   => 'style'
             ),
@@ -4440,14 +4437,14 @@ function element_properties_meta($chapters)
                     'left'   => 'on'
                 ),
                 'caption' => array(
-                    'width'  => esc_html__('Width', 'leform'),
-                    'style'  => esc_html__('Style', 'leform'),
-                    'radius' => esc_html__('Radius', 'leform'),
-                    'color'  => esc_html__('Color', 'leform'),
-                    'border' => esc_html__('Border', 'leform')
+                    'width'  => esc_html__('Width', 'rureraform'),
+                    'style'  => esc_html__('Style', 'rureraform'),
+                    'radius' => esc_html__('Radius', 'rureraform'),
+                    'color'  => esc_html__('Color', 'rureraform'),
+                    'border' => esc_html__('Border', 'rureraform')
                 ),
-                'label'   => esc_html__('Button border', 'leform'),
-                'tooltip' => esc_html__('Adjust the border style of buttons.', 'leform'),
+                'label'   => esc_html__('Button border', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the border style of buttons.', 'rureraform'),
                 'type'    => 'border-style',
                 'group'   => 'style'
             ),
@@ -4458,12 +4455,12 @@ function element_properties_meta($chapters)
                     'color' => '#444'
                 ),
                 'caption' => array(
-                    'style' => esc_html__('Style', 'leform'),
-                    'size'  => esc_html__('Size', 'leform'),
-                    'color' => esc_html__('Color', 'leform')
+                    'style' => esc_html__('Style', 'rureraform'),
+                    'size'  => esc_html__('Size', 'rureraform'),
+                    'color' => esc_html__('Color', 'rureraform')
                 ),
-                'label'   => esc_html__('Button shadow', 'leform'),
-                'tooltip' => esc_html__('Adjust the shadow of button.', 'leform'),
+                'label'   => esc_html__('Button shadow', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the shadow of button.', 'rureraform'),
                 'type'    => 'shadow',
                 'group'   => 'style'
             ),
@@ -4474,8 +4471,8 @@ function element_properties_meta($chapters)
             ),
             'button-hover-inherit'              => array(
                 'value'   => 'on',
-                'label'   => esc_html__('Inherit default style', 'leform'),
-                'tooltip' => esc_html__('Use the same style as for default state.', 'leform'),
+                'label'   => esc_html__('Inherit default style', 'rureraform'),
+                'tooltip' => esc_html__('Use the same style as for default state.', 'rureraform'),
                 'type'    => 'checkbox',
                 'group'   => 'style'
             ),
@@ -4490,14 +4487,14 @@ function element_properties_meta($chapters)
                     'align'     => 'center'
                 ),
                 'caption' => array(
-                    'family' => esc_html__('Font family', 'leform'),
-                    'size'   => esc_html__('Size', 'leform'),
-                    'color'  => esc_html__('Color', 'leform'),
-                    'style'  => esc_html__('Style', 'leform'),
-                    'align'  => esc_html__('Alignment', 'leform')
+                    'family' => esc_html__('Font family', 'rureraform'),
+                    'size'   => esc_html__('Size', 'rureraform'),
+                    'color'  => esc_html__('Color', 'rureraform'),
+                    'style'  => esc_html__('Style', 'rureraform'),
+                    'align'  => esc_html__('Alignment', 'rureraform')
                 ),
-                'label'   => esc_html__('Button text', 'leform'),
-                'tooltip' => esc_html__('Adjust the text style of hovered buttons.', 'leform'),
+                'label'   => esc_html__('Button text', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the text style of hovered buttons.', 'rureraform'),
                 'type'    => 'text-style',
                 'visible' => array('button-hover-inherit' => array('off')),
                 'group'   => 'style'
@@ -4514,17 +4511,17 @@ function element_properties_meta($chapters)
                     'gradient'            => 'no'
                 ),
                 'caption' => array(
-                    'image'               => esc_html__('Image URL', 'leform'),
-                    'size'                => esc_html__('Size', 'leform'),
-                    'horizontal-position' => esc_html__('Horizontal position', 'leform'),
-                    'vertical-position'   => esc_html__('Verical position', 'leform'),
-                    'repeat'              => esc_html__('Repeat', 'leform'),
-                    'color'               => esc_html__('Color', 'leform'),
-                    'color2'              => esc_html__('Second color', 'leform'),
-                    'gradient'            => esc_html__('Gradient', 'leform')
+                    'image'               => esc_html__('Image URL', 'rureraform'),
+                    'size'                => esc_html__('Size', 'rureraform'),
+                    'horizontal-position' => esc_html__('Horizontal position', 'rureraform'),
+                    'vertical-position'   => esc_html__('Verical position', 'rureraform'),
+                    'repeat'              => esc_html__('Repeat', 'rureraform'),
+                    'color'               => esc_html__('Color', 'rureraform'),
+                    'color2'              => esc_html__('Second color', 'rureraform'),
+                    'gradient'            => esc_html__('Gradient', 'rureraform')
                 ),
-                'label'   => esc_html__('Button background', 'leform'),
-                'tooltip' => esc_html__('Adjust the background of hovered buttons.', 'leform'),
+                'label'   => esc_html__('Button background', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the background of hovered buttons.', 'rureraform'),
                 'type'    => 'background-style',
                 'visible' => array('button-hover-inherit' => array('off')),
                 'group'   => 'style'
@@ -4541,14 +4538,14 @@ function element_properties_meta($chapters)
                     'left'   => 'on'
                 ),
                 'caption' => array(
-                    'width'  => esc_html__('Width', 'leform'),
-                    'style'  => esc_html__('Style', 'leform'),
-                    'radius' => esc_html__('Radius', 'leform'),
-                    'color'  => esc_html__('Color', 'leform'),
-                    'border' => esc_html__('Border', 'leform')
+                    'width'  => esc_html__('Width', 'rureraform'),
+                    'style'  => esc_html__('Style', 'rureraform'),
+                    'radius' => esc_html__('Radius', 'rureraform'),
+                    'color'  => esc_html__('Color', 'rureraform'),
+                    'border' => esc_html__('Border', 'rureraform')
                 ),
-                'label'   => esc_html__('Button border', 'leform'),
-                'tooltip' => esc_html__('Adjust the border style of hovered buttons.', 'leform'),
+                'label'   => esc_html__('Button border', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the border style of hovered buttons.', 'rureraform'),
                 'type'    => 'border-style',
                 'visible' => array('button-hover-inherit' => array('off')),
                 'group'   => 'style'
@@ -4560,12 +4557,12 @@ function element_properties_meta($chapters)
                     'color' => '#444'
                 ),
                 'caption' => array(
-                    'style' => esc_html__('Style', 'leform'),
-                    'size'  => esc_html__('Size', 'leform'),
-                    'color' => esc_html__('Color', 'leform')
+                    'style' => esc_html__('Style', 'rureraform'),
+                    'size'  => esc_html__('Size', 'rureraform'),
+                    'color' => esc_html__('Color', 'rureraform')
                 ),
-                'label'   => esc_html__('Button shadow', 'leform'),
-                'tooltip' => esc_html__('Adjust the shadow of hovered buttons.', 'leform'),
+                'label'   => esc_html__('Button shadow', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the shadow of hovered buttons.', 'rureraform'),
                 'type'    => 'shadow',
                 'visible' => array('button-hover-inherit' => array('off')),
                 'group'   => 'style'
@@ -4577,8 +4574,8 @@ function element_properties_meta($chapters)
             ),
             'button-active-inherit'             => array(
                 'value'   => 'on',
-                'label'   => esc_html__('Inherit default style', 'leform'),
-                'tooltip' => esc_html__('Use the same style as for default state.', 'leform'),
+                'label'   => esc_html__('Inherit default style', 'rureraform'),
+                'tooltip' => esc_html__('Use the same style as for default state.', 'rureraform'),
                 'type'    => 'checkbox',
                 'group'   => 'style'
             ),
@@ -4593,14 +4590,14 @@ function element_properties_meta($chapters)
                     'align'     => 'center'
                 ),
                 'caption' => array(
-                    'family' => esc_html__('Font family', 'leform'),
-                    'size'   => esc_html__('Size', 'leform'),
-                    'color'  => esc_html__('Color', 'leform'),
-                    'style'  => esc_html__('Style', 'leform'),
-                    'align'  => esc_html__('Alignment', 'leform')
+                    'family' => esc_html__('Font family', 'rureraform'),
+                    'size'   => esc_html__('Size', 'rureraform'),
+                    'color'  => esc_html__('Color', 'rureraform'),
+                    'style'  => esc_html__('Style', 'rureraform'),
+                    'align'  => esc_html__('Alignment', 'rureraform')
                 ),
-                'label'   => esc_html__('Button text', 'leform'),
-                'tooltip' => esc_html__('Adjust the text style of clicked buttons.', 'leform'),
+                'label'   => esc_html__('Button text', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the text style of clicked buttons.', 'rureraform'),
                 'type'    => 'text-style',
                 'visible' => array('button-active-inherit' => array('off')),
                 'group'   => 'style'
@@ -4617,17 +4614,17 @@ function element_properties_meta($chapters)
                     'gradient'            => 'no'
                 ),
                 'caption' => array(
-                    'image'               => esc_html__('Image URL', 'leform'),
-                    'size'                => esc_html__('Size', 'leform'),
-                    'horizontal-position' => esc_html__('Horizontal position', 'leform'),
-                    'vertical-position'   => esc_html__('Verical position', 'leform'),
-                    'repeat'              => esc_html__('Repeat', 'leform'),
-                    'color'               => esc_html__('Color', 'leform'),
-                    'color2'              => esc_html__('Second color', 'leform'),
-                    'gradient'            => esc_html__('Gradient', 'leform')
+                    'image'               => esc_html__('Image URL', 'rureraform'),
+                    'size'                => esc_html__('Size', 'rureraform'),
+                    'horizontal-position' => esc_html__('Horizontal position', 'rureraform'),
+                    'vertical-position'   => esc_html__('Verical position', 'rureraform'),
+                    'repeat'              => esc_html__('Repeat', 'rureraform'),
+                    'color'               => esc_html__('Color', 'rureraform'),
+                    'color2'              => esc_html__('Second color', 'rureraform'),
+                    'gradient'            => esc_html__('Gradient', 'rureraform')
                 ),
-                'label'   => esc_html__('Button background', 'leform'),
-                'tooltip' => esc_html__('Adjust the background of clicked buttons.', 'leform'),
+                'label'   => esc_html__('Button background', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the background of clicked buttons.', 'rureraform'),
                 'type'    => 'background-style',
                 'visible' => array('button-active-inherit' => array('off')),
                 'group'   => 'style'
@@ -4644,14 +4641,14 @@ function element_properties_meta($chapters)
                     'left'   => 'on'
                 ),
                 'caption' => array(
-                    'width'  => esc_html__('Width', 'leform'),
-                    'style'  => esc_html__('Style', 'leform'),
-                    'radius' => esc_html__('Radius', 'leform'),
-                    'color'  => esc_html__('Color', 'leform'),
-                    'border' => esc_html__('Border', 'leform')
+                    'width'  => esc_html__('Width', 'rureraform'),
+                    'style'  => esc_html__('Style', 'rureraform'),
+                    'radius' => esc_html__('Radius', 'rureraform'),
+                    'color'  => esc_html__('Color', 'rureraform'),
+                    'border' => esc_html__('Border', 'rureraform')
                 ),
-                'label'   => esc_html__('Button border', 'leform'),
-                'tooltip' => esc_html__('Adjust the border style of clicked buttons.', 'leform'),
+                'label'   => esc_html__('Button border', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the border style of clicked buttons.', 'rureraform'),
                 'type'    => 'border-style',
                 'visible' => array('button-active-inherit' => array('off')),
                 'group'   => 'style'
@@ -4663,25 +4660,25 @@ function element_properties_meta($chapters)
                     'color' => '#444'
                 ),
                 'caption' => array(
-                    'style' => esc_html__('Style', 'leform'),
-                    'size'  => esc_html__('Size', 'leform'),
-                    'color' => esc_html__('Color', 'leform')
+                    'style' => esc_html__('Style', 'rureraform'),
+                    'size'  => esc_html__('Size', 'rureraform'),
+                    'color' => esc_html__('Color', 'rureraform')
                 ),
-                'label'   => esc_html__('Button shadow', 'leform'),
-                'tooltip' => esc_html__('Adjust the shadow of clicked buttons.', 'leform'),
+                'label'   => esc_html__('Button shadow', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the shadow of clicked buttons.', 'rureraform'),
                 'type'    => 'shadow',
                 'visible' => array('button-active-inherit' => array('off')),
                 'group'   => 'style'
             ),
             'button-active-transform'           => array(
                 'value'   => 'zoom-out',
-                'label'   => esc_html__('Transform', 'leform'),
-                'tooltip' => esc_html__('Adjust the transform of clicked buttons.', 'leform'),
+                'label'   => esc_html__('Transform', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the transform of clicked buttons.', 'rureraform'),
                 'type'    => 'radio-bar',
                 'options' => array(
-                    'zoom-in'    => esc_html__('Zoom In', 'leform'),
-                    'zoom-out'   => esc_html__('Zoom Out', 'leform'),
-                    'shift-down' => esc_html__('Shift Down', 'leform')
+                    'zoom-in'    => esc_html__('Zoom In', 'rureraform'),
+                    'zoom-out'   => esc_html__('Zoom Out', 'rureraform'),
+                    'shift-down' => esc_html__('Shift Down', 'rureraform')
                 ),
                 'group'   => 'style'
             ),
@@ -4703,17 +4700,17 @@ function element_properties_meta($chapters)
                     'gradient'            => 'no'
                 ),
                 'caption' => array(
-                    'image'               => esc_html__('Image URL', 'leform'),
-                    'size'                => esc_html__('Size', 'leform'),
-                    'horizontal-position' => esc_html__('Horizontal position', 'leform'),
-                    'vertical-position'   => esc_html__('Verical position', 'leform'),
-                    'repeat'              => esc_html__('Repeat', 'leform'),
-                    'color'               => esc_html__('Color', 'leform'),
-                    'color2'              => esc_html__('Second color', 'leform'),
-                    'gradient'            => esc_html__('Gradient', 'leform')
+                    'image'               => esc_html__('Image URL', 'rureraform'),
+                    'size'                => esc_html__('Size', 'rureraform'),
+                    'horizontal-position' => esc_html__('Horizontal position', 'rureraform'),
+                    'vertical-position'   => esc_html__('Verical position', 'rureraform'),
+                    'repeat'              => esc_html__('Repeat', 'rureraform'),
+                    'color'               => esc_html__('Color', 'rureraform'),
+                    'color2'              => esc_html__('Second color', 'rureraform'),
+                    'gradient'            => esc_html__('Gradient', 'rureraform')
                 ),
-                'label'   => esc_html__('Bubble background', 'leform'),
-                'tooltip' => esc_html__('Adjust the background of error bubbles.', 'leform'),
+                'label'   => esc_html__('Bubble background', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the background of error bubbles.', 'rureraform'),
                 'type'    => 'background-style',
                 'group'   => 'style'
             ),
@@ -4728,14 +4725,14 @@ function element_properties_meta($chapters)
                     'align'     => 'left'
                 ),
                 'caption' => array(
-                    'family' => esc_html__('Font family', 'leform'),
-                    'size'   => esc_html__('Size', 'leform'),
-                    'color'  => esc_html__('Color', 'leform'),
-                    'style'  => esc_html__('Style', 'leform'),
-                    'align'  => esc_html__('Alignment', 'leform')
+                    'family' => esc_html__('Font family', 'rureraform'),
+                    'size'   => esc_html__('Size', 'rureraform'),
+                    'color'  => esc_html__('Color', 'rureraform'),
+                    'style'  => esc_html__('Style', 'rureraform'),
+                    'align'  => esc_html__('Alignment', 'rureraform')
                 ),
-                'label'   => esc_html__('Error text style', 'leform'),
-                'tooltip' => esc_html__('Adjust the text style of errors.', 'leform'),
+                'label'   => esc_html__('Error text style', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the text style of errors.', 'rureraform'),
                 'type'    => 'text-style',
                 'group'   => 'style'
             ),
@@ -4746,14 +4743,14 @@ function element_properties_meta($chapters)
             ),
             'progress-enable'                   => array(
                 'value'   => 'off',
-                'label'   => esc_html__('Enable progress bar', 'leform'),
-                'tooltip' => esc_html__('If your form the form has several pages/steps, it is recommended to display progress bar for better user experience.', 'leform'),
+                'label'   => esc_html__('Enable progress bar', 'rureraform'),
+                'tooltip' => esc_html__('If your form the form has several pages/steps, it is recommended to display progress bar for better user experience.', 'rureraform'),
                 'type'    => 'checkbox'
             ),
             'progress-type'                     => array(
                 'value'   => 'progress-1',
-                'label'   => esc_html__('Progress style', 'leform'),
-                'tooltip' => esc_html__('Select the general view of progress bar.', 'leform'),
+                'label'   => esc_html__('Progress style', 'rureraform'),
+                'tooltip' => esc_html__('Select the general view of progress bar.', 'rureraform'),
                 'type'    => 'select-image',
                 'options' => array(
                     'progress-1' => '/images/progress-1.png',
@@ -4771,8 +4768,8 @@ function element_properties_meta($chapters)
                     'color3' => '#FFFFFF',
                     'color4' => '#444'
                 ),
-                'label'   => esc_html__('Colors', 'leform'),
-                'tooltip' => esc_html__('Adjust colors of progress bar.', 'leform'),
+                'label'   => esc_html__('Colors', 'rureraform'),
+                'tooltip' => esc_html__('Adjust colors of progress bar.', 'rureraform'),
                 'caption' => array(
                     'color1' => 'Passive background',
                     'color2' => 'Active background',
@@ -4785,35 +4782,35 @@ function element_properties_meta($chapters)
             ),
             'progress-striped'                  => array(
                 'value'   => 'off',
-                'label'   => esc_html__('Double-tone stripes', 'leform'),
-                'tooltip' => esc_html__('Add double-tone diagonal stripes to progress bar.', 'leform'),
+                'label'   => esc_html__('Double-tone stripes', 'rureraform'),
+                'tooltip' => esc_html__('Add double-tone diagonal stripes to progress bar.', 'rureraform'),
                 'type'    => 'checkbox',
                 'visible' => array('progress-enable' => array('on')),
                 'group'   => 'style'
             ),
             'progress-label-enable'             => array(
                 'value'   => 'off',
-                'label'   => esc_html__('Show page name', 'leform'),
-                'tooltip' => esc_html__('Show page label.', 'leform'),
+                'label'   => esc_html__('Show page name', 'rureraform'),
+                'tooltip' => esc_html__('Show page label.', 'rureraform'),
                 'type'    => 'checkbox',
                 'visible' => array('progress-enable' => array('on')),
                 'group'   => 'style'
             ),
             'progress-confirmation-enable'      => array(
                 'value'   => 'on',
-                'label'   => esc_html__('Include confirmation page', 'leform'),
-                'tooltip' => esc_html__('Consider Confirmation page as part of total pages and include it into progress bar.', 'leform'),
+                'label'   => esc_html__('Include confirmation page', 'rureraform'),
+                'tooltip' => esc_html__('Consider Confirmation page as part of total pages and include it into progress bar.', 'rureraform'),
                 'type'    => 'checkbox',
                 'visible' => array('progress-enable' => array('on'))
             ),
             'progress-position'                 => array(
                 'value'   => 'inside',
-                'label'   => esc_html__('Position', 'leform'),
-                'tooltip' => esc_html__('Select the position of progress bar. It can be inside or outside of main form wrapper.', 'leform'),
+                'label'   => esc_html__('Position', 'rureraform'),
+                'tooltip' => esc_html__('Select the position of progress bar. It can be inside or outside of main form wrapper.', 'rureraform'),
                 'type'    => 'select',
                 'options' => array(
-                    'inside'  => esc_html__('Inside', 'leform'),
-                    'outside' => esc_html__('Outside', 'leform')
+                    'inside'  => esc_html__('Inside', 'rureraform'),
+                    'outside' => esc_html__('Outside', 'rureraform')
                 ),
                 'visible' => array('progress-enable' => array('on')),
                 'group'   => 'style'
@@ -4822,41 +4819,41 @@ function element_properties_meta($chapters)
             'confirmation-tab'                  => array(
                 'type'  => 'tab',
                 'value' => 'confirmation',
-                'label' => esc_html__('Confirmations', 'leform')
+                'label' => esc_html__('Confirmations', 'rureraform')
             ),
             'confirmations'                     => array(
                 'type'    => 'confirmations',
                 'values'  => array(),
-                'label'   => esc_html__('Confirmations', 'leform'),
-                'message' => esc_html__('By default after successfull form submission the Confirmation Page is displayed. You can customize confirmation and use conditional logic. If several confirmations match form conditions, the first one (higher priority) will be applied. Sort confirmations (drag and drop) to set priority.', 'leform')
+                'label'   => esc_html__('Confirmations', 'rureraform'),
+                'message' => esc_html__('By default after successfull form submission the Confirmation Page is displayed. You can customize confirmation and use conditional logic. If several confirmations match form conditions, the first one (higher priority) will be applied. Sort confirmations (drag and drop) to set priority.', 'rureraform')
             ),
             'double-tab'                        => array(
                 'type'  => 'tab',
                 'value' => 'double',
-                'label' => esc_html__('Double Opt-In', 'leform')
+                'label' => esc_html__('Double Opt-In', 'rureraform')
             ),
             'double-enable'                     => array(
                 'value'   => 'off',
-                'label'   => esc_html__('Enable', 'leform'),
-                'tooltip' => esc_html__('Activate it if you want users to confirm submitted data. If enabled, the plugin sends email message with confirmation link to certain email address (submitted by user). When confirmation link clicked, relevant record is marked as "confirmed". Moreover, if enabled, all notifications and integrations are executed only when data confirmed by user. Important! Double opt-in is disabled if user is requested to pay via existing Payment Gateway.', 'leform'),
+                'label'   => esc_html__('Enable', 'rureraform'),
+                'tooltip' => esc_html__('Activate it if you want users to confirm submitted data. If enabled, the plugin sends email message with confirmation link to certain email address (submitted by user). When confirmation link clicked, relevant record is marked as "confirmed". Moreover, if enabled, all notifications and integrations are executed only when data confirmed by user. Important! Double opt-in is disabled if user is requested to pay via existing Payment Gateway.', 'rureraform'),
                 'type'    => 'checkbox'
             ),
             'double-email-recipient'            => array(
                 'value'   => '',
-                'label'   => esc_html__('Recipient', 'leform'),
-                'tooltip' => esc_html__('Set email address to which confirmation link will be sent to.', 'leform'),
+                'label'   => esc_html__('Recipient', 'rureraform'),
+                'tooltip' => esc_html__('Set email address to which confirmation link will be sent to.', 'rureraform'),
                 'type'    => 'text-shortcodes'
             ),
             'double-email-subject'              => array(
-                'value'   => esc_html__('Please confirm your email address', 'leform'),
-                'label'   => esc_html__('Subject', 'leform'),
-                'tooltip' => esc_html__('The subject of the email message.', 'leform'),
+                'value'   => esc_html__('Please confirm your email address', 'rureraform'),
+                'label'   => esc_html__('Subject', 'rureraform'),
+                'tooltip' => esc_html__('The subject of the email message.', 'rureraform'),
                 'type'    => 'text-shortcodes'
             ),
             'double-email-message'              => array(
-                'value'   => esc_html__('Dear visitor!', 'leform') . '<br /><br />' . esc_html__('Please confirm your email address by clicking the following link:', 'leform') . '<br /><a href="{{confirmation-url}}">{{confirmation-url}}</a><br /><br />' . esc_html__('Thanks.', 'leform'),
-                'label'   => esc_html__('Message', 'leform'),
-                'tooltip' => sprintf(esc_html__('The content of the email message. It is mandatory to include %s{{confirmation-url}}%s shortcode.', 'leform'), '<code>', '</code>'),
+                'value'   => esc_html__('Dear visitor!', 'rureraform') . '<br /><br />' . esc_html__('Please confirm your email address by clicking the following link:', 'rureraform') . '<br /><a href="{{confirmation-url}}">{{confirmation-url}}</a><br /><br />' . esc_html__('Thanks.', 'rureraform'),
+                'label'   => esc_html__('Message', 'rureraform'),
+                'tooltip' => sprintf(esc_html__('The content of the email message. It is mandatory to include %s{{confirmation-url}}%s shortcode.', 'rureraform'), '<code>', '</code>'),
                 'type'    => 'html'
             ),
             'double-from'                       => array(
@@ -4864,62 +4861,62 @@ function element_properties_meta($chapters)
                     'email' => '{{global-from-email}}',
                     'name'  => '{{global-from-name}}'
                 ),
-                'label'   => esc_html__('From', 'leform'),
-                'tooltip' => esc_html__('Sets the "From" address and name. The email address and name set here will be shown as the sender of the email.', 'leform'),
+                'label'   => esc_html__('From', 'rureraform'),
+                'tooltip' => esc_html__('Sets the "From" address and name. The email address and name set here will be shown as the sender of the email.', 'rureraform'),
                 'type'    => 'from'
             ),
             'double-message'                    => array(
                 'value'   => '<h4 style="text-align: center;">Thank you!</h4><p style="text-align: center;">Your email address successfully confirmed.</p>',
-                'label'   => esc_html__('Thanksgiving message', 'leform'),
-                'tooltip' => esc_html__('This message is displayed when users successfully confirmed their e-mail addresses.', 'leform'),
+                'label'   => esc_html__('Thanksgiving message', 'rureraform'),
+                'tooltip' => esc_html__('This message is displayed when users successfully confirmed their e-mail addresses.', 'rureraform'),
                 'type'    => 'html'
             ),
             'double-url'                        => array(
                 'value'   => '',
-                'label'   => esc_html__('Thanksgiving URL', 'leform'),
-                'tooltip' => esc_html__('This is alternate way of thanksgiving message. After confirmation users are redirected to this URL.', 'leform'),
+                'label'   => esc_html__('Thanksgiving URL', 'rureraform'),
+                'tooltip' => esc_html__('This is alternate way of thanksgiving message. After confirmation users are redirected to this URL.', 'rureraform'),
                 'type'    => 'text'
             ),
             'notification-tab'                  => array(
                 'type'  => 'tab',
                 'value' => 'notification',
-                'label' => esc_html__('Notifications', 'leform')
+                'label' => esc_html__('Notifications', 'rureraform')
             ),
             'notifications'                     => array(
                 'type'    => 'notifications',
                 'values'  => array(),
-                'label'   => esc_html__('Notifications', 'leform'),
-                'message' => esc_html__('After successful form submission the notification, welcome, thanksgiving or whatever email can be sent. You can customize these emails and use conditional logic.', 'leform')
+                'label'   => esc_html__('Notifications', 'rureraform'),
+                'message' => esc_html__('After successful form submission the notification, welcome, thanksgiving or whatever email can be sent. You can customize these emails and use conditional logic.', 'rureraform')
             ),
             'integration-tab'                   => array(
                 'type'  => 'tab',
                 'value' => 'integration',
-                'label' => esc_html__('Integrations', 'leform')
+                'label' => esc_html__('Integrations', 'rureraform')
             ),
             'integrations'                      => array(
                 'type'    => 'integrations',
                 'values'  => array(),
-                'label'   => esc_html__('Integrations', 'leform'),
-                'message' => esc_html__('After successful form submission its data can be sent to 3rd party services (such as MailChimp, AWeber, GetResponse, etc.). You can configure integrations and use conditional logic. If you do not see your marketing/CRM provider, make sure that you enabled appropriate integration module on Advanced Settings page.', 'leform')
+                'label'   => esc_html__('Integrations', 'rureraform'),
+                'message' => esc_html__('After successful form submission its data can be sent to 3rd party services (such as MailChimp, AWeber, GetResponse, etc.). You can configure integrations and use conditional logic. If you do not see your marketing/CRM provider, make sure that you enabled appropriate integration module on Advanced Settings page.', 'rureraform')
             ),
             'advanced-tab'                      => array(
                 'type'  => 'tab',
                 'value' => 'advanced',
-                'label' => esc_html__('Advanced', 'leform')
+                'label' => esc_html__('Advanced', 'rureraform')
             ),
             'advanced-sections'                 => array(
                 'type'     => 'sections',
                 'sections' => array(
                     'math'             => array(
-                        'label' => esc_html__('Math Expressions', 'leform'),
+                        'label' => esc_html__('Math Expressions', 'rureraform'),
                         'icon'  => 'fas fa-plus'
                     ),
                     'payment-gateways' => array(
-                        'label' => esc_html__('Payment Gateways', 'leform'),
+                        'label' => esc_html__('Payment Gateways', 'rureraform'),
                         'icon'  => 'fas fa-dollar-sign'
                     ),
                     'misc'             => array(
-                        'label' => esc_html__('Miscellaneous', 'leform'),
+                        'label' => esc_html__('Miscellaneous', 'rureraform'),
                         'icon'  => 'fas fa-project-diagram'
                     )
                 )
@@ -4931,8 +4928,8 @@ function element_properties_meta($chapters)
             'math-expressions'                  => array(
                 'type'    => 'math-expressions',
                 'values'  => array(),
-                'label'   => esc_html__('Math expressions', 'leform'),
-                'tooltip' => esc_html__('Create math expressions and use them along the form.', 'leform')
+                'label'   => esc_html__('Math expressions', 'rureraform'),
+                'tooltip' => esc_html__('Create math expressions and use them along the form.', 'rureraform')
             ),
             'end-math'                          => array('type' => 'section-end'),
             'start-payment-gateways'            => array(
@@ -4942,8 +4939,8 @@ function element_properties_meta($chapters)
             'payment-gateways'                  => array(
                 'type'    => 'payment-gateways',
                 'values'  => array(),
-                'label'   => esc_html__('Payment gateways', 'leform'),
-                'message' => esc_html__('After successful form submission user can be requested to pay some amount via certain payment gateway. Customize payment gateways here. Then go to "Confirmations" tab and create confirmation of one of the following types: "Display Confirmation page and request payment", "Display Message and request payment" or "Request payment".', 'leform')
+                'label'   => esc_html__('Payment gateways', 'rureraform'),
+                'message' => esc_html__('After successful form submission user can be requested to pay some amount via certain payment gateway. Customize payment gateways here. Then go to "Confirmations" tab and create confirmation of one of the following types: "Display Confirmation page and request payment", "Display Message and request payment" or "Request payment".', 'rureraform')
             ),
             'end-payment-gateways'              => array('type' => 'section-end'),
             'start-misc'                        => array(
@@ -4952,66 +4949,66 @@ function element_properties_meta($chapters)
             ),
             'misc-save-ip'                      => array(
                 'value'   => 'on',
-                'label'   => esc_html__('Save IP-address', 'leform'),
-                'tooltip' => esc_html__('Save user\'s IP-address in local database.', 'leform'),
+                'label'   => esc_html__('Save IP-address', 'rureraform'),
+                'tooltip' => esc_html__('Save user\'s IP-address in local database.', 'rureraform'),
                 'type'    => 'checkbox'
             ),
             'misc-save-user-agent'              => array(
                 'value'   => 'on',
-                'label'   => esc_html__('Save User-Agent', 'leform'),
-                'tooltip' => esc_html__('Save user\'s User-Agent in local database.', 'leform'),
+                'label'   => esc_html__('Save User-Agent', 'rureraform'),
+                'tooltip' => esc_html__('Save user\'s User-Agent in local database.', 'rureraform'),
                 'type'    => 'checkbox'
             ),
             'misc-email-tech-info'              => array(
                 'value'   => 'on',
-                'label'   => esc_html__('Send Technical Info by email', 'leform'),
-                'tooltip' => esc_html__('Include Technical Info into "{{form-data}}" shortcode sent by email.', 'leform'),
+                'label'   => esc_html__('Send Technical Info by email', 'rureraform'),
+                'tooltip' => esc_html__('Include Technical Info into "{{form-data}}" shortcode sent by email.', 'rureraform'),
                 'type'    => 'checkbox'
             ),
             'misc-record-tech-info'             => array(
                 'value'   => 'on',
-                'label'   => esc_html__('Show Technical Info on log record details', 'leform'),
-                'tooltip' => esc_html__('Show Technical Info on log record details.', 'leform'),
+                'label'   => esc_html__('Show Technical Info on log record details', 'rureraform'),
+                'tooltip' => esc_html__('Show Technical Info on log record details.', 'rureraform'),
                 'type'    => 'checkbox'
             ),
             'personal-keys'                     => array(
                 'values'  => array(),
-                'label'   => esc_html__('Personal data key fields', 'leform'),
-                'tooltip' => esc_html__('Select fields which contains personal data keys. Usually it is an email field. WordPress uses this key to extract and handle personal data.', 'leform'),
+                'label'   => esc_html__('Personal data key fields', 'rureraform'),
+                'tooltip' => esc_html__('Select fields which contains personal data keys. Usually it is an email field. WordPress uses this key to extract and handle personal data.', 'rureraform'),
                 'type'    => 'personal-keys'
             ),
             'hr-11'                             => array('type' => 'hr'),
             'antibot-enable'                    => array(
                 'value'   => 'on',
-                'label'   => esc_html__('Antibot protection', 'leform'),
-                'tooltip' => esc_html__('Enable protection against of repeated submissions.', 'leform'),
+                'label'   => esc_html__('Antibot protection', 'rureraform'),
+                'tooltip' => esc_html__('Enable protection against of repeated submissions.', 'rureraform'),
                 'type'    => 'checkbox'
             ),
             'antibot-delay'                     => array(
                 'value'   => '10',
-                'label'   => esc_html__('Repeated submission delay', 'leform'),
-                'tooltip' => esc_html__('Specify the delay (seconds) when the same user can submit data through the form.', 'leform'),
+                'label'   => esc_html__('Repeated submission delay', 'rureraform'),
+                'tooltip' => esc_html__('Specify the delay (seconds) when the same user can submit data through the form.', 'rureraform'),
                 'unit'    => 'seconds',
                 'type'    => 'units',
                 'visible' => array('antibot-enable' => array('on'))
             ),
             'antibot-check-form'                => array(
                 'value'   => 'on',
-                'label'   => esc_html__('Check form data', 'leform'),
-                'tooltip' => esc_html__('Enable this feature to prohibit submission of the same data through the form.', 'leform'),
+                'label'   => esc_html__('Check form data', 'rureraform'),
+                'tooltip' => esc_html__('Enable this feature to prohibit submission of the same data through the form.', 'rureraform'),
                 'type'    => 'checkbox',
                 'visible' => array('antibot-enable' => array('on'))
             ),
             'antibot-check-ip'                  => array(
                 'value'   => 'on',
-                'label'   => esc_html__('Check IP-address', 'leform'),
-                'tooltip' => esc_html__('Enable this feature to prohibit submission from the same IP-address.', 'leform'),
+                'label'   => esc_html__('Check IP-address', 'rureraform'),
+                'tooltip' => esc_html__('Enable this feature to prohibit submission from the same IP-address.', 'rureraform'),
                 'type'    => 'checkbox',
                 'visible' => array('antibot-enable' => array('on'))
             ),
             'antibot-error'                     => array(
-                'value'   => esc_html__('Thank you. We have already got your request.', 'leform'),
-                'label'   => esc_html__('Error message', 'leform'),
+                'value'   => esc_html__('Thank you. We have already got your request.', 'rureraform'),
+                'label'   => esc_html__('Error message', 'rureraform'),
                 'type'    => 'error',
                 'visible' => array('antibot-enable' => array('on'))
             ),
@@ -5023,41 +5020,41 @@ function element_properties_meta($chapters)
             'basic'              => array(
                 'type'  => 'tab',
                 'value' => 'basic',
-                'label' => esc_html__('Basic', 'leform')
+                'label' => esc_html__('Basic', 'rureraform')
             ),
             'name'               => array(
-                'value'   => esc_html__('Image select', 'leform'),
-                'label'   => esc_html__('Name', 'leform'),
-                'tooltip' => esc_html__('The name will be shown in place of the label throughout the plugin, in the notification email and when viewing submitted form entries.', 'leform'),
+                'value'   => esc_html__('Image select', 'rureraform'),
+                'label'   => esc_html__('Name', 'rureraform'),
+                'tooltip' => esc_html__('The name will be shown in place of the label throughout the plugin, in the notification email and when viewing submitted form entries.', 'rureraform'),
                 'type'    => 'text'
             ),
             'score'              => array(
                 'value' => '',
-                'label' => esc_html__('Score', 'leform'),
+                'label' => esc_html__('Score', 'rureraform'),
                 'type'  => 'number'
             ),
             'field_id'           => array(
                 'value' => '',
-                'label' => esc_html__('Field_id', 'leform'),
+                'label' => esc_html__('Field_id', 'rureraform'),
                 'type'  => 'hidden'
             ),
             'label'              => array(
-                'value'   => esc_html__('Mark one answer', 'leform'),
-                'label'   => esc_html__('Label', 'leform'),
-                'tooltip' => esc_html__('This is the label of the field.', 'leform'),
+                'value'   => esc_html__('Mark one answer', 'rureraform'),
+                'label'   => esc_html__('Label', 'rureraform'),
+                'tooltip' => esc_html__('This is the label of the field.', 'rureraform'),
                 'type'    => 'text'
             ),
             'mode'               => array(
                 'value'   => 'radio',
-                'label'   => esc_html__('Mode', 'leform'),
-                'tooltip' => esc_html__('Select the mode of the Image Select.', 'leform'),
+                'label'   => esc_html__('Mode', 'rureraform'),
+                'tooltip' => esc_html__('Select the mode of the Image Select.', 'rureraform'),
                 'type'    => 'imageselect-mode'
             ),
             'submit-on-select'   => array(
                 'value'   => 'off',
-                'label'   => esc_html__('Submit on select', 'leform'),
-                'tooltip' => esc_html__('If enabled, the form is submitted when user do selection.', 'leform'),
-                'caption' => esc_html__('Submit on select', 'leform'),
+                'label'   => esc_html__('Submit on select', 'rureraform'),
+                'tooltip' => esc_html__('If enabled, the form is submitted when user do selection.', 'rureraform'),
+                'caption' => esc_html__('Submit on select', 'rureraform'),
                 'type'    => 'checkbox',
                 'visible' => array('mode' => array('radio'))
             ),
@@ -5080,54 +5077,54 @@ function element_properties_meta($chapters)
                         'image' => '/assets/default/img/quiz/placeholder-image.png'
                     )
                 ),
-                'label'        => esc_html__('Options', 'leform'),
-                'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'leform'),
+                'label'        => esc_html__('Options', 'rureraform'),
+                'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'rureraform'),
                 'type'         => 'image-options'
 
             ),
             'description'        => array(
                 'value'   => '',
-                'label'   => esc_html__('Description', 'leform'),
-                'tooltip' => esc_html__('This description appears below the field.', 'leform'),
+                'label'   => esc_html__('Description', 'rureraform'),
+                'tooltip' => esc_html__('This description appears below the field.', 'rureraform'),
                 'type'    => 'text'
             ),
             'style'              => array(
                 'type'  => 'tab',
                 'value' => 'style',
-                'label' => esc_html__('Style', 'leform')
+                'label' => esc_html__('Style', 'rureraform')
             ),
             'image_size'    => array(
                 'value'   => '',
-                'label'   => esc_html__('Image Size', 'leform'),
+                'label'   => esc_html__('Image Size', 'rureraform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'image_small' => esc_html__('Small', 'leform'),
-                        'image_medium' => esc_html__('Medium', 'leform'),
-                        'image_large' => esc_html__('Large', 'leform'),
+                        'image_small' => esc_html__('Small', 'rureraform'),
+                        'image_medium' => esc_html__('Medium', 'rureraform'),
+                        'image_large' => esc_html__('Large', 'rureraform'),
                     )
             ),
             'template_style'     => array(
                 'value'   => 'rurera-in-row',
-                'label'   => esc_html__('Template Style', 'leform'),
+                'label'   => esc_html__('Template Style', 'rureraform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'rurera-in-row' => esc_html__('Row', 'leform'),
-                        'rurera-in-cols' => esc_html__('Columns', 'leform'),
+                        'rurera-in-row' => esc_html__('Row', 'rureraform'),
+                        'rurera-in-cols' => esc_html__('Columns', 'rureraform'),
                     )
             ),
             'template_alignment' => array(
                 'value'   => 'image-right',
-                'label'   => esc_html__('Image Alignment (Optional)', 'leform'),
+                'label'   => esc_html__('Image Alignment (Optional)', 'rureraform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'image-right' => esc_html__('Right', 'leform'),
-                        'image-top'   => esc_html__('Top', 'leform'),
+                        'image-right' => esc_html__('Right', 'rureraform'),
+                        'image-top'   => esc_html__('Top', 'rureraform'),
                     )
             ),
             'description-style'  => array(
@@ -5136,11 +5133,11 @@ function element_properties_meta($chapters)
                     'align'    => ''
                 ),
                 'caption' => array(
-                    'position' => esc_html__('Position', 'leform'),
-                    'align'    => esc_html__('Align', 'leform')
+                    'position' => esc_html__('Position', 'rureraform'),
+                    'align'    => esc_html__('Align', 'rureraform')
                 ),
-                'label'   => esc_html__('Description style', 'leform'),
-                'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'leform'),
+                'label'   => esc_html__('Description style', 'rureraform'),
+                'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'rureraform'),
                 'type'    => 'description-style'
             ),
 
@@ -5157,31 +5154,31 @@ function element_properties_meta($chapters)
             'basic'             => array(
                 'type'  => 'tab',
                 'value' => 'basic',
-                'label' => esc_html__('Basic', 'leform')
+                'label' => esc_html__('Basic', 'rureraform')
             ),
             'name'              => array(
-                'value'   => esc_html__('Tile', 'leform'),
-                'label'   => esc_html__('Name', 'leform'),
-                'tooltip' => esc_html__('The name will be shown in place of the label throughout the plugin, in the notification email and when viewing submitted form entries.', 'leform'),
+                'value'   => esc_html__('Tile', 'rureraform'),
+                'label'   => esc_html__('Name', 'rureraform'),
+                'tooltip' => esc_html__('The name will be shown in place of the label throughout the plugin, in the notification email and when viewing submitted form entries.', 'rureraform'),
                 'type'    => 'text'
             ),
             'label'             => array(
-                'value'   => esc_html__('Options', 'leform'),
-                'label'   => esc_html__('Label', 'leform'),
-                'tooltip' => esc_html__('This is the label of the field.', 'leform'),
+                'value'   => esc_html__('Options', 'rureraform'),
+                'label'   => esc_html__('Label', 'rureraform'),
+                'tooltip' => esc_html__('This is the label of the field.', 'rureraform'),
                 'type'    => 'text'
             ),
             'mode'              => array(
                 'value'   => 'radio',
-                'label'   => esc_html__('Mode', 'leform'),
-                'tooltip' => esc_html__('Select the mode of the Tiles.', 'leform'),
+                'label'   => esc_html__('Mode', 'rureraform'),
+                'tooltip' => esc_html__('Select the mode of the Tiles.', 'rureraform'),
                 'type'    => 'tile-mode'
             ),
             'submit-on-select'  => array(
                 'value'   => 'off',
-                'label'   => esc_html__('Submit on select', 'leform'),
-                'tooltip' => esc_html__('If enabled, the form is submitted when user do selection.', 'leform'),
-                'caption' => esc_html__('Submit on select', 'leform'),
+                'label'   => esc_html__('Submit on select', 'rureraform'),
+                'tooltip' => esc_html__('If enabled, the form is submitted when user do selection.', 'rureraform'),
+                'caption' => esc_html__('Submit on select', 'rureraform'),
                 'type'    => 'checkbox',
                 'visible' => array('mode' => array('radio'))
             ),
@@ -5201,39 +5198,39 @@ function element_properties_meta($chapters)
                         'label' => 'Option 3'
                     )
                 ),
-                'label'        => esc_html__('Options', 'leform'),
-                'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'leform'),
+                'label'        => esc_html__('Options', 'rureraform'),
+                'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'rureraform'),
                 'type'         => 'options'
             ),
             'description'       => array(
                 'value'   => 'Select options.',
-                'label'   => esc_html__('Description', 'leform'),
-                'tooltip' => esc_html__('This description appears below the field.', 'leform'),
+                'label'   => esc_html__('Description', 'rureraform'),
+                'tooltip' => esc_html__('This description appears below the field.', 'rureraform'),
                 'type'    => 'text'
             ),
             'tooltip'           => array(
                 'value'   => '',
-                'label'   => esc_html__('Tooltip', 'leform'),
-                'tooltip' => esc_html__('The tooltip appears when user click/hover tooltip anchor. The location of tooltip anchor is configured on Form Settings (tab "Style").', 'leform'),
+                'label'   => esc_html__('Tooltip', 'rureraform'),
+                'tooltip' => esc_html__('The tooltip appears when user click/hover tooltip anchor. The location of tooltip anchor is configured on Form Settings (tab "Style").', 'rureraform'),
                 'type'    => 'text'
             ),
             'required'          => array(
                 'value'   => 'off',
-                'label'   => esc_html__('Required', 'leform'),
-                'tooltip' => esc_html__('If enabled, the user must select at least one option.', 'leform'),
-                'caption' => esc_html__('The field is required', 'leform'),
+                'label'   => esc_html__('Required', 'rureraform'),
+                'tooltip' => esc_html__('If enabled, the user must select at least one option.', 'rureraform'),
+                'caption' => esc_html__('The field is required', 'rureraform'),
                 'type'    => 'checkbox'
             ),
             'required-error'    => array(
-                'value'   => esc_html__('This field is required.', 'leform'),
-                'label'   => esc_html__('Error message', 'leform'),
+                'value'   => esc_html__('This field is required.', 'rureraform'),
+                'label'   => esc_html__('Error message', 'rureraform'),
                 'type'    => 'error',
                 'visible' => array('required' => array('on'))
             ),
             'style'             => array(
                 'type'  => 'tab',
                 'value' => 'style',
-                'label' => esc_html__('Style', 'leform')
+                'label' => esc_html__('Style', 'rureraform')
             ),
             'label-style'       => array(
                 'value'   => array(
@@ -5242,12 +5239,12 @@ function element_properties_meta($chapters)
                     'align'    => ''
                 ),
                 'caption' => array(
-                    'position' => esc_html__('Position', 'leform'),
-                    'width'    => esc_html__('Width', 'leform'),
-                    'align'    => esc_html__('Alignment', 'leform')
+                    'position' => esc_html__('Position', 'rureraform'),
+                    'width'    => esc_html__('Width', 'rureraform'),
+                    'align'    => esc_html__('Alignment', 'rureraform')
                 ),
-                'label'   => esc_html__('Label style', 'leform'),
-                'tooltip' => esc_html__('Choose where to display the label relative to the field and its alignment.', 'leform'),
+                'label'   => esc_html__('Label style', 'rureraform'),
+                'tooltip' => esc_html__('Choose where to display the label relative to the field and its alignment.', 'rureraform'),
                 'type'    => 'label-style'
             ),
             'tile-style'        => array(
@@ -5258,13 +5255,13 @@ function element_properties_meta($chapters)
                     'layout'   => ''
                 ),
                 'caption' => array(
-                    'size'     => esc_html__('Size', 'leform'),
-                    'width'    => esc_html__('Width', 'leform'),
-                    'position' => esc_html__('Position', 'leform'),
-                    'layout'   => esc_html__('Layout', 'leform')
+                    'size'     => esc_html__('Size', 'rureraform'),
+                    'width'    => esc_html__('Width', 'rureraform'),
+                    'position' => esc_html__('Position', 'rureraform'),
+                    'layout'   => esc_html__('Layout', 'rureraform')
                 ),
-                'label'   => esc_html__('Tile style', 'leform'),
-                'tooltip' => esc_html__('Adjust the tile style.', 'leform'),
+                'label'   => esc_html__('Tile style', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the tile style.', 'rureraform'),
                 'type'    => 'local-tile-style'
             ),
             'description-style' => array(
@@ -5273,47 +5270,47 @@ function element_properties_meta($chapters)
                     'align'    => ''
                 ),
                 'caption' => array(
-                    'position' => esc_html__('Position', 'leform'),
-                    'align'    => esc_html__('Align', 'leform')
+                    'position' => esc_html__('Position', 'rureraform'),
+                    'align'    => esc_html__('Align', 'rureraform')
                 ),
-                'label'   => esc_html__('Description style', 'leform'),
-                'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'leform'),
+                'label'   => esc_html__('Description style', 'rureraform'),
+                'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'rureraform'),
                 'type'    => 'description-style'
             ),
 
             'data'              => array(
                 'type'  => 'tab',
                 'value' => 'data',
-                'label' => esc_html__('Data', 'leform')
+                'label' => esc_html__('Data', 'rureraform')
             ),
             'dynamic-default'   => array(
                 'value'   => 'off',
-                'label'   => esc_html__('Dynamic default value', 'leform'),
-                'tooltip' => esc_html__('Allows the default value of the field to be set dynamically via a URL parameter.', 'leform'),
+                'label'   => esc_html__('Dynamic default value', 'rureraform'),
+                'tooltip' => esc_html__('Allows the default value of the field to be set dynamically via a URL parameter.', 'rureraform'),
                 'type'    => 'checkbox'
             ),
             'dynamic-parameter' => array(
                 'value'   => '',
-                'label'   => esc_html__('Parameter name', 'leform'),
-                'tooltip' => esc_html__('This is the name of the parameter that you will use to set the default value.', 'leform'),
+                'label'   => esc_html__('Parameter name', 'rureraform'),
+                'tooltip' => esc_html__('This is the name of the parameter that you will use to set the default value.', 'rureraform'),
                 'type'    => 'text',
                 'visible' => array('dynamic-default' => array('on'))
             ),
             'save'              => array(
                 'value'   => 'on',
-                'label'   => esc_html__('Save to database', 'leform'),
-                'tooltip' => esc_html__('If enabled, the submitted element data will be saved to the database and shown when viewing an entry.', 'leform'),
+                'label'   => esc_html__('Save to database', 'rureraform'),
+                'tooltip' => esc_html__('If enabled, the submitted element data will be saved to the database and shown when viewing an entry.', 'rureraform'),
                 'type'    => 'checkbox'
             ),
             'logic-tab'         => array(
                 'type'  => 'tab',
                 'value' => 'logic',
-                'label' => esc_html__('Logic', 'leform')
+                'label' => esc_html__('Logic', 'rureraform')
             ),
             'logic-enable'      => array(
                 'value'   => 'off',
-                'label'   => esc_html__('Enable conditional logic', 'leform'),
-                'tooltip' => esc_html__('If enabled, you can create rules to show or hide this element depending on the values of other fields.', 'leform'),
+                'label'   => esc_html__('Enable conditional logic', 'rureraform'),
+                'tooltip' => esc_html__('If enabled, you can create rules to show or hide this element depending on the values of other fields.', 'rureraform'),
                 'type'    => 'checkbox'
             ),
             'logic'             => array(
@@ -5323,27 +5320,27 @@ function element_properties_meta($chapters)
                     'rules'    => array()
                 ),
                 'actions'   => array(
-                    'show' => esc_html__('Show this field', 'leform'),
-                    'hide' => esc_html__('Hide this field', 'leform')
+                    'show' => esc_html__('Show this field', 'rureraform'),
+                    'hide' => esc_html__('Hide this field', 'rureraform')
                 ),
                 'operators' => array(
-                    'and' => esc_html__('if all of these rules match', 'leform'),
-                    'or'  => esc_html__('if any of these rules match', 'leform')
+                    'and' => esc_html__('if all of these rules match', 'rureraform'),
+                    'or'  => esc_html__('if any of these rules match', 'rureraform')
                 ),
-                'label'     => esc_html__('Logic rules', 'leform'),
-                'tooltip'   => esc_html__('Create rules to show or hide this element depending on the values of other fields.', 'leform'),
+                'label'     => esc_html__('Logic rules', 'rureraform'),
+                'tooltip'   => esc_html__('Create rules to show or hide this element depending on the values of other fields.', 'rureraform'),
                 'type'      => 'logic-rules',
                 'visible'   => array('logic-enable' => array('on'))
             ),
             'advanced'          => array(
                 'type'  => 'tab',
                 'value' => 'advanced',
-                'label' => esc_html__('Advanced', 'leform')
+                'label' => esc_html__('Advanced', 'rureraform')
             ),
             'element-id'        => array(
                 'value'   => '',
-                'label'   => esc_html__('ID', 'leform'),
-                'tooltip' => esc_html__('The unique ID of the input field.', 'leform'),
+                'label'   => esc_html__('ID', 'rureraform'),
+                'tooltip' => esc_html__('The unique ID of the input field.', 'rureraform'),
                 'type'    => 'id'
             ),
             'validators'        => array(
@@ -5352,8 +5349,8 @@ function element_properties_meta($chapters)
                     'in-array',
                     'prevent-duplicates'
                 ),
-                'label'          => esc_html__('Validators', 'leform'),
-                'tooltip'        => esc_html__('Validators checks whether the data entered by the user is valid.', 'leform'),
+                'label'          => esc_html__('Validators', 'rureraform'),
+                'tooltip'        => esc_html__('Validators checks whether the data entered by the user is valid.', 'rureraform'),
                 'type'           => 'validators'
             )
         ),
@@ -5361,12 +5358,12 @@ function element_properties_meta($chapters)
             'basic'             => array(
                 'type'  => 'tab',
                 'value' => 'basic',
-                'label' => esc_html__('Basic', 'leform')
+                'label' => esc_html__('Basic', 'rureraform')
             ),
             'label'             => array(
-                'value'   => esc_html__('Options', 'leform'),
-                'label'   => esc_html__('Label', 'leform'),
-                'tooltip' => esc_html__('This is the label of the field.', 'leform'),
+                'value'   => esc_html__('Options', 'rureraform'),
+                'label'   => esc_html__('Label', 'rureraform'),
+                'tooltip' => esc_html__('This is the label of the field.', 'rureraform'),
                 'type'    => 'text'
             ),
             'options'           => array(
@@ -5385,39 +5382,39 @@ function element_properties_meta($chapters)
                         'label' => 'Option 3'
                     )
                 ),
-                'label'        => esc_html__('Options', 'leform'),
-                'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'leform'),
+                'label'        => esc_html__('Options', 'rureraform'),
+                'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'rureraform'),
                 'type'         => 'options'
             ),
             'description'       => array(
                 'value'   => 'Select options.',
-                'label'   => esc_html__('Description', 'leform'),
-                'tooltip' => esc_html__('This description appears below the field.', 'leform'),
+                'label'   => esc_html__('Description', 'rureraform'),
+                'tooltip' => esc_html__('This description appears below the field.', 'rureraform'),
                 'type'    => 'text'
             ),
             'tooltip'           => array(
                 'value'   => '',
-                'label'   => esc_html__('Tooltip', 'leform'),
-                'tooltip' => esc_html__('The tooltip appears when user click/hover tooltip anchor. The location of tooltip anchor is configured on Form Settings (tab "Style").', 'leform'),
+                'label'   => esc_html__('Tooltip', 'rureraform'),
+                'tooltip' => esc_html__('The tooltip appears when user click/hover tooltip anchor. The location of tooltip anchor is configured on Form Settings (tab "Style").', 'rureraform'),
                 'type'    => 'text'
             ),
             'required'          => array(
                 'value'   => 'off',
-                'label'   => esc_html__('Required', 'leform'),
-                'tooltip' => esc_html__('If enabled, the user must fill out the field.', 'leform'),
-                'caption' => esc_html__('The field is required', 'leform'),
+                'label'   => esc_html__('Required', 'rureraform'),
+                'tooltip' => esc_html__('If enabled, the user must fill out the field.', 'rureraform'),
+                'caption' => esc_html__('The field is required', 'rureraform'),
                 'type'    => 'checkbox'
             ),
             'required-error'    => array(
-                'value'   => esc_html__('This field is required.', 'leform'),
-                'label'   => esc_html__('Error message', 'leform'),
+                'value'   => esc_html__('This field is required.', 'rureraform'),
+                'label'   => esc_html__('Error message', 'rureraform'),
                 'type'    => 'error',
                 'visible' => array('required' => array('on'))
             ),
             'style'             => array(
                 'type'  => 'tab',
                 'value' => 'style',
-                'label' => esc_html__('Style', 'leform')
+                'label' => esc_html__('Style', 'rureraform')
             ),
             'label-style'       => array(
                 'value'   => array(
@@ -5426,12 +5423,12 @@ function element_properties_meta($chapters)
                     'align'    => ''
                 ),
                 'caption' => array(
-                    'position' => esc_html__('Position', 'leform'),
-                    'width'    => esc_html__('Width', 'leform'),
-                    'align'    => esc_html__('Alignment', 'leform')
+                    'position' => esc_html__('Position', 'rureraform'),
+                    'width'    => esc_html__('Width', 'rureraform'),
+                    'align'    => esc_html__('Alignment', 'rureraform')
                 ),
-                'label'   => esc_html__('Label style', 'leform'),
-                'tooltip' => esc_html__('Choose where to display the label relative to the field and its alignment.', 'leform'),
+                'label'   => esc_html__('Label style', 'rureraform'),
+                'tooltip' => esc_html__('Choose where to display the label relative to the field and its alignment.', 'rureraform'),
                 'type'    => 'label-style'
             ),
             'multiselect-style' => array(
@@ -5440,11 +5437,11 @@ function element_properties_meta($chapters)
                     'align'  => ''
                 ),
                 'caption' => array(
-                    'height' => esc_html__('Height', 'leform'),
-                    'align'  => esc_html__('Alignment', 'leform')
+                    'height' => esc_html__('Height', 'rureraform'),
+                    'align'  => esc_html__('Alignment', 'rureraform')
                 ),
-                'label'   => esc_html__('Multiselect style', 'leform'),
-                'tooltip' => esc_html__('Adjust the multiselect field style (size and text alignment).', 'leform'),
+                'label'   => esc_html__('Multiselect style', 'rureraform'),
+                'tooltip' => esc_html__('Adjust the multiselect field style (size and text alignment).', 'rureraform'),
                 'type'    => 'local-multiselect-style'
             ),
             'description-style' => array(
@@ -5453,53 +5450,53 @@ function element_properties_meta($chapters)
                     'align'    => ''
                 ),
                 'caption' => array(
-                    'position' => esc_html__('Position', 'leform'),
-                    'align'    => esc_html__('Align', 'leform')
+                    'position' => esc_html__('Position', 'rureraform'),
+                    'align'    => esc_html__('Align', 'rureraform')
                 ),
-                'label'   => esc_html__('Description style', 'leform'),
-                'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'leform'),
+                'label'   => esc_html__('Description style', 'rureraform'),
+                'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'rureraform'),
                 'type'    => 'description-style'
             ),
 
             'data'              => array(
                 'type'  => 'tab',
                 'value' => 'data',
-                'label' => esc_html__('Data', 'leform')
+                'label' => esc_html__('Data', 'rureraform')
             ),
             'max-allowed'       => array(
                 'value'   => '0',
-                'label'   => esc_html__('Maximum selected options', 'leform'),
-                'tooltip' => esc_html__('Enter how many options can be selected. Set 0 for unlimited number.', 'leform'),
+                'label'   => esc_html__('Maximum selected options', 'rureraform'),
+                'tooltip' => esc_html__('Enter how many options can be selected. Set 0 for unlimited number.', 'rureraform'),
                 'type'    => 'integer'
             ),
             'dynamic-default'   => array(
                 'value'   => 'off',
-                'label'   => esc_html__('Dynamic default value', 'leform'),
-                'tooltip' => esc_html__('Allows the default value of the field to be set dynamically via a URL parameter.', 'leform'),
+                'label'   => esc_html__('Dynamic default value', 'rureraform'),
+                'tooltip' => esc_html__('Allows the default value of the field to be set dynamically via a URL parameter.', 'rureraform'),
                 'type'    => 'checkbox'
             ),
             'dynamic-parameter' => array(
                 'value'   => '',
-                'label'   => esc_html__('Parameter name', 'leform'),
-                'tooltip' => esc_html__('This is the name of the parameter that you will use to set the default value.', 'leform'),
+                'label'   => esc_html__('Parameter name', 'rureraform'),
+                'tooltip' => esc_html__('This is the name of the parameter that you will use to set the default value.', 'rureraform'),
                 'type'    => 'text',
                 'visible' => array('dynamic-default' => array('on'))
             ),
             'save'              => array(
                 'value'   => 'on',
-                'label'   => esc_html__('Save to database', 'leform'),
-                'tooltip' => esc_html__('If enabled, the submitted element data will be saved to the database and shown when viewing an entry.', 'leform'),
+                'label'   => esc_html__('Save to database', 'rureraform'),
+                'tooltip' => esc_html__('If enabled, the submitted element data will be saved to the database and shown when viewing an entry.', 'rureraform'),
                 'type'    => 'checkbox'
             ),
             'logic-tab'         => array(
                 'type'  => 'tab',
                 'value' => 'logic',
-                'label' => esc_html__('Logic', 'leform')
+                'label' => esc_html__('Logic', 'rureraform')
             ),
             'logic-enable'      => array(
                 'value'   => 'off',
-                'label'   => esc_html__('Enable conditional logic', 'leform'),
-                'tooltip' => esc_html__('If enabled, you can create rules to show or hide this element depending on the values of other fields.', 'leform'),
+                'label'   => esc_html__('Enable conditional logic', 'rureraform'),
+                'tooltip' => esc_html__('If enabled, you can create rules to show or hide this element depending on the values of other fields.', 'rureraform'),
                 'type'    => 'checkbox'
             ),
             'logic'             => array(
@@ -5509,27 +5506,27 @@ function element_properties_meta($chapters)
                     'rules'    => array()
                 ),
                 'actions'   => array(
-                    'show' => esc_html__('Show this field', 'leform'),
-                    'hide' => esc_html__('Hide this field', 'leform')
+                    'show' => esc_html__('Show this field', 'rureraform'),
+                    'hide' => esc_html__('Hide this field', 'rureraform')
                 ),
                 'operators' => array(
-                    'and' => esc_html__('if all of these rules match', 'leform'),
-                    'or'  => esc_html__('if any of these rules match', 'leform')
+                    'and' => esc_html__('if all of these rules match', 'rureraform'),
+                    'or'  => esc_html__('if any of these rules match', 'rureraform')
                 ),
-                'label'     => esc_html__('Logic rules', 'leform'),
-                'tooltip'   => esc_html__('Create rules to show or hide this element depending on the values of other fields.', 'leform'),
+                'label'     => esc_html__('Logic rules', 'rureraform'),
+                'tooltip'   => esc_html__('Create rules to show or hide this element depending on the values of other fields.', 'rureraform'),
                 'type'      => 'logic-rules',
                 'visible'   => array('logic-enable' => array('on'))
             ),
             'advanced'          => array(
                 'type'  => 'tab',
                 'value' => 'advanced',
-                'label' => esc_html__('Advanced', 'leform')
+                'label' => esc_html__('Advanced', 'rureraform')
             ),
             'element-id'        => array(
                 'value'   => '',
-                'label'   => esc_html__('ID', 'leform'),
-                'tooltip' => esc_html__('The unique ID of the input field.', 'leform'),
+                'label'   => esc_html__('ID', 'rureraform'),
+                'tooltip' => esc_html__('The unique ID of the input field.', 'rureraform'),
                 'type'    => 'id'
             ),
             'validators'        => array(
@@ -5538,8 +5535,8 @@ function element_properties_meta($chapters)
                     'in-array',
                     'prevent-duplicates'
                 ),
-                'label'          => esc_html__('Validators', 'leform'),
-                'tooltip'        => esc_html__('Validators checks whether the data entered by the user is valid.', 'leform'),
+                'label'          => esc_html__('Validators', 'rureraform'),
+                'tooltip'        => esc_html__('Validators checks whether the data entered by the user is valid.', 'rureraform'),
                 'type'           => 'validators'
             )
         ),
@@ -5548,22 +5545,22 @@ function element_properties_meta($chapters)
             'basic'   => array(
                 'type'  => 'tab',
                 'value' => 'basic',
-                'label' => esc_html__('Basic', 'leform')
+                'label' => esc_html__('Basic', 'rureraform')
             ),
             'score'         => array(
                 'value' => '',
-                'label' => esc_html__('Score', 'leform'),
+                'label' => esc_html__('Score', 'rureraform'),
                 'type'  => 'number'
             ),
             'field_id'      => array(
                 'value' => '',
-                'label' => esc_html__('Field_id', 'leform'),
+                'label' => esc_html__('Field_id', 'rureraform'),
                 'type'  => 'hidden'
             ),
             'label'   => array(
-                'value'   => esc_html__('Mark two answers', 'leform'),
-                'label'   => esc_html__('Label', 'leform'),
-                'tooltip' => esc_html__('This is the label of the field.', 'leform'),
+                'value'   => esc_html__('Mark two answers', 'rureraform'),
+                'label'   => esc_html__('Label', 'rureraform'),
+                'tooltip' => esc_html__('This is the label of the field.', 'rureraform'),
                 'type'    => 'text'
             ),
             'options' => array(
@@ -5595,83 +5592,40 @@ function element_properties_meta($chapters)
                         'image' => ''
                     )
                 ),
-                'label'        => esc_html__('Options', 'leform'),
-                'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'leform'),
+                'label'        => esc_html__('Options', 'rureraform'),
+                'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'rureraform'),
                 'type'         => 'image-options'
             ),
 
             'description'        => array(
                 'value'   => '',
-                'label'   => esc_html__('Description', 'leform'),
-                'tooltip' => esc_html__('This description appears below the field.', 'leform'),
+                'label'   => esc_html__('Description', 'rureraform'),
+                'tooltip' => esc_html__('This description appears below the field.', 'rureraform'),
                 'type'    => 'text'
             ),
-            'style'              => array(
-                'type'  => 'tab',
-                'value' => 'style',
-                'label' => esc_html__('Style', 'leform')
-            ),
-            'image_size'    => array(
-                'value'   => '',
-                'label'   => esc_html__('Image Size', 'leform'),
+			
+			'template_style'     => array(
+                'value'   => 'rurera-in-row',
+                'label'   => esc_html__('Template Style', 'rureraform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'image_small' => esc_html__('Small', 'leform'),
-                        'image_medium' => esc_html__('Medium', 'leform'),
-                        'image_large' => esc_html__('Large', 'leform'),
-                    )
-            ),
-            'template_style'     => array(
-                'value'   => 'rurera-in-cols',
-                'label'   => esc_html__('Template Style', 'leform'),
-                '',
-                'type'    => 'select',
-                'options' =>
-                    array(
-                        'rurera-in-row' => esc_html__('Row', 'leform'),
-                        'rurera-in-cols' => esc_html__('Columns', 'leform'),
-                    )
-            ),
-
-            'template_alignment' => array(
-                'value'   => 'image-right',
-                'label'   => esc_html__('Image Alignment (Optional)', 'leform'),
-                '',
-                'type'    => 'select',
-                'options' =>
-                    array(
-                        'image-right' => esc_html__('Right', 'leform'),
-                        'image-top'   => esc_html__('Top', 'leform'),
+                        'rurera-in-row' => esc_html__('Row', 'rureraform'),
+                        'rurera-in-cols' => esc_html__('Columns', 'rureraform'),
                     )
             ),
             'list_style'         => array(
                 'value'   => 'none',
-                'label'   => esc_html__('Bullet list Style', 'leform'),
+                'label'   => esc_html__('Bullet list Style', 'rureraform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        ''                    => esc_html__('None', 'leform'),
-                        'alphabet-list-style' => esc_html__('English Alphabet', 'leform'),
-                        'numeric-list-style'  => esc_html__('Numbers', 'leform'),
+                        ''                    => esc_html__('None', 'rureraform'),
+                        'alphabet-list-style' => esc_html__('English Alphabet', 'rureraform'),
+                        'numeric-list-style'  => esc_html__('Numbers', 'rureraform'),
                     )
-            ),
-
-
-            'description-style' => array(
-                'value'   => array(
-                    'position' => '',
-                    'align'    => ''
-                ),
-                'caption' => array(
-                    'position' => esc_html__('Position', 'leform'),
-                    'align'    => esc_html__('Align', 'leform')
-                ),
-                'label'   => esc_html__('Description style', 'leform'),
-                'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'leform'),
-                'type'    => 'description-style'
             ),
 
             'elements_data' => array(
@@ -5687,18 +5641,18 @@ function element_properties_meta($chapters)
             'basic'              => array(
                 'type'  => 'tab',
                 'value' => 'basic',
-                'label' => esc_html__('Basic', 'leform')
+                'label' => esc_html__('Basic', 'rureraform')
             ),
 
             'score'              => array(
                 'value' => '',
-                'label' => esc_html__('Score', 'leform'),
+                'label' => esc_html__('Score', 'rureraform'),
                 'type'  => 'number'
             ),
             'label'              => array(
-                'value'   => esc_html__('Mark one answer', 'leform'),
-                'label'   => esc_html__('Label', 'leform'),
-                'tooltip' => esc_html__('This is the label of the field.', 'leform'),
+                'value'   => esc_html__('Mark one answer', 'rureraform'),
+                'label'   => esc_html__('Label', 'rureraform'),
+                'tooltip' => esc_html__('This is the label of the field.', 'rureraform'),
                 'type'    => 'text'
             ),
             'options'            => array(
@@ -5720,37 +5674,37 @@ function element_properties_meta($chapters)
                         'image' => ''
                     )
                 ),
-                'label'        => esc_html__('Options', 'leform'),
-                'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'leform'),
+                'label'        => esc_html__('Options', 'rureraform'),
+                'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'rureraform'),
                 'type'         => 'image-options'
             ),
             'description'        => array(
                 'value'   => '',
-                'label'   => esc_html__('Description', 'leform'),
-                'tooltip' => esc_html__('This description appears below the field.', 'leform'),
+                'label'   => esc_html__('Description', 'rureraform'),
+                'tooltip' => esc_html__('This description appears below the field.', 'rureraform'),
                 'type'    => 'text'
             ),
             'template_style'     => array(
                 'value'   => 'rurera-in-row',
-                'label'   => esc_html__('Template Style', 'leform'),
+                'label'   => esc_html__('Template Style', 'rureraform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'rurera-in-row' => esc_html__('Row', 'leform'),
-                        'rurera-in-cols' => esc_html__('Columns', 'leform'),
+                        'rurera-in-row' => esc_html__('Row', 'rureraform'),
+                        'rurera-in-cols' => esc_html__('Columns', 'rureraform'),
                     )
             ),
             'list_style'         => array(
                 'value'   => 'none',
-                'label'   => esc_html__('Bullet list Style', 'leform'),
+                'label'   => esc_html__('Bullet list Style', 'rureraform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        ''                    => esc_html__('None', 'leform'),
-                        'alphabet-list-style' => esc_html__('English Alphabet', 'leform'),
-                        'numeric-list-style'  => esc_html__('Numbers', 'leform'),
+                        ''                    => esc_html__('None', 'rureraform'),
+                        'alphabet-list-style' => esc_html__('English Alphabet', 'rureraform'),
+                        'numeric-list-style'  => esc_html__('Numbers', 'rureraform'),
                     )
             ),
             'elements_data'      => array(
@@ -5768,23 +5722,23 @@ function element_properties_meta($chapters)
             'basic'   => array(
                 'type'  => 'tab',
                 'value' => 'basic',
-                'label' => esc_html__('Basic', 'leform')
+                'label' => esc_html__('Basic', 'rureraform')
             ),
 
             'score'         => array(
                 'value' => '',
-                'label' => esc_html__('Score', 'leform'),
+                'label' => esc_html__('Score', 'rureraform'),
                 'type'  => 'number'
             ),
             'field_id'      => array(
                 'value' => '',
-                'label' => esc_html__('Field_id', 'leform'),
+                'label' => esc_html__('Field_id', 'rureraform'),
                 'type'  => 'hidden'
             ),
             'label'   => array(
-                'value'   => esc_html__('Arrange the following', 'leform'),
-                'label'   => esc_html__('Label', 'leform'),
-                'tooltip' => esc_html__('This is the label of the field.', 'leform'),
+                'value'   => esc_html__('Arrange the following', 'rureraform'),
+                'label'   => esc_html__('Label', 'rureraform'),
+                'tooltip' => esc_html__('This is the label of the field.', 'rureraform'),
                 'type'    => 'text'
             ),
             'options' => array(
@@ -5806,112 +5760,64 @@ function element_properties_meta($chapters)
                         'image' => ''
                     ),
                 ),
-                'label'        => esc_html__('Options', 'leform'),
-                'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'leform'),
+                'label'        => esc_html__('Options', 'rureraform'),
+                'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'rureraform'),
                 'type'         => 'sortable-options'
             ),
 
             'description'        => array(
                 'value'   => '',
-                'label'   => esc_html__('Description', 'leform'),
-                'tooltip' => esc_html__('This description appears below the field.', 'leform'),
+                'label'   => esc_html__('Description', 'rureraform'),
+                'tooltip' => esc_html__('This description appears below the field.', 'rureraform'),
                 'type'    => 'text'
             ),
-            'style'              => array(
-                'type'  => 'tab',
-                'value' => 'style',
-                'label' => esc_html__('Style', 'leform')
-            ),
-            'image_size'    => array(
+			
+			'image_size'    => array(
                 'value'   => '',
-                'label'   => esc_html__('Image Size', 'leform'),
+                'label'   => esc_html__('Image Size', 'rureraform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'image_small' => esc_html__('Small', 'leform'),
-                        'image_medium' => esc_html__('Medium', 'leform'),
-                        'image_large' => esc_html__('Large', 'leform'),
+                        'image_small' => esc_html__('Small', 'rureraform'),
+                        'image_medium' => esc_html__('Medium', 'rureraform'),
+                        'image_large' => esc_html__('Large', 'rureraform'),
                     )
             ),
             'template_style'     => array(
                 'value'   => 'rurera-in-row',
-                'label'   => esc_html__('Template Style', 'leform'),
+                'label'   => esc_html__('Template Style', 'rureraform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'rurera-in-row' => esc_html__('Row', 'leform'),
-                        'rurera-in-cols' => esc_html__('Columns', 'leform'),
+                        'rurera-in-row' => esc_html__('Row', 'rureraform'),
+                        'rurera-in-cols' => esc_html__('Columns', 'rureraform'),
                     )
             ),
 
             'template_alignment' => array(
                 'value'   => 'image-right',
-                'label'   => esc_html__('Image Alignment (Optional)', 'leform'),
+                'label'   => esc_html__('Image Alignment (Optional)', 'rureraform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'image-right' => esc_html__('Right', 'leform'),
-                        'image-top'   => esc_html__('Top', 'leform'),
+                        'image-right' => esc_html__('Right', 'rureraform'),
+                        'image-top'   => esc_html__('Top', 'rureraform'),
                     )
             ),
             'list_style'         => array(
                 'value'   => 'none',
-                'label'   => esc_html__('Bullet list Style', 'leform'),
+                'label'   => esc_html__('Bullet list Style', 'rureraform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        ''                    => esc_html__('None', 'leform'),
-                        'alphabet-list-style' => esc_html__('English Alphabet', 'leform'),
-                        'numeric-list-style'  => esc_html__('Numbers', 'leform'),
+                        ''                    => esc_html__('None', 'rureraform'),
+                        'alphabet-list-style' => esc_html__('English Alphabet', 'rureraform'),
+                        'numeric-list-style'  => esc_html__('Numbers', 'rureraform'),
                     )
-            ),
-
-            'label-style'       => array(
-                'value'   => array(
-                    'position' => '',
-                    'width'    => '',
-                    'align'    => ''
-                ),
-                'caption' => array(
-                    'position' => esc_html__('Position', 'leform'),
-                    'width'    => esc_html__('Width', 'leform'),
-                    'align'    => esc_html__('Alignment', 'leform')
-                ),
-                'label'   => esc_html__('Label style', 'leform'),
-                'tooltip' => esc_html__('Choose where to display the label relative to the field and its alignment.', 'leform'),
-                'type'    => 'label-style'
-            ),
-            'checkbox-style'    => array(
-                'value'   => array(
-                    'position' => '',
-                    'align'    => '',
-                    'layout'   => ''
-                ),
-                'caption' => array(
-                    'position' => esc_html__('Position', 'leform'),
-                    'align'    => esc_html__('Alignment', 'leform'),
-                    'layout'   => esc_html__('Layout', 'leform')
-                ),
-                'label'   => esc_html__('Checkbox style', 'leform'),
-                'tooltip' => esc_html__('Choose how to display checkbox fields and their captions.', 'leform'),
-                'type'    => 'local-checkbox-style'
-            ),
-            'description-style' => array(
-                'value'   => array(
-                    'position' => '',
-                    'align'    => ''
-                ),
-                'caption' => array(
-                    'position' => esc_html__('Position', 'leform'),
-                    'align'    => esc_html__('Align', 'leform')
-                ),
-                'label'   => esc_html__('Description style', 'leform'),
-                'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'leform'),
-                'type'    => 'description-style'
             ),
             'elements_data' => array(
                 'value'   => '',
@@ -5927,23 +5833,23 @@ function element_properties_meta($chapters)
             'basic'    => array(
                 'type'  => 'tab',
                 'value' => 'basic',
-                'label' => esc_html__('Basic', 'leform')
+                'label' => esc_html__('Basic', 'rureraform')
             ),
 
             'score'         => array(
                 'value' => '',
-                'label' => esc_html__('Score', 'leform'),
+                'label' => esc_html__('Score', 'rureraform'),
                 'type'  => 'number'
             ),
             'field_id'      => array(
                 'value' => '',
-                'label' => esc_html__('Field_id', 'leform'),
+                'label' => esc_html__('Field_id', 'rureraform'),
                 'type'  => 'hidden'
             ),
             'label'    => array(
-                'value'   => esc_html__('Arrange', 'leform'),
-                'label'   => esc_html__('Label', 'leform'),
-                'tooltip' => esc_html__('This is the label of the field.', 'leform'),
+                'value'   => esc_html__('Arrange', 'rureraform'),
+                'label'   => esc_html__('Label', 'rureraform'),
+                'tooltip' => esc_html__('This is the label of the field.', 'rureraform'),
                 'type'    => 'text'
             ),
             'options'  => array(
@@ -5965,8 +5871,8 @@ function element_properties_meta($chapters)
                         'image' => ''
                     ),
                 ),
-                'label'        => esc_html__('Columns', 'leform'),
-                'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'leform'),
+                'label'        => esc_html__('Columns', 'rureraform'),
+                'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'rureraform'),
                 'type'         => 'matrix-columns-options'
             ),
             'options2' => array(
@@ -5988,67 +5894,67 @@ function element_properties_meta($chapters)
                         'image' => ''
                     ),
                 ),
-                'label'        => esc_html__('Options', 'leform'),
-                'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'leform'),
+                'label'        => esc_html__('Options', 'rureraform'),
+                'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'rureraform'),
                 'type'         => 'matrix-columns-labels'
             ),
 
             'description'        => array(
                 'value'   => '',
-                'label'   => esc_html__('Description', 'leform'),
-                'tooltip' => esc_html__('This description appears below the field.', 'leform'),
+                'label'   => esc_html__('Description', 'rureraform'),
+                'tooltip' => esc_html__('This description appears below the field.', 'rureraform'),
                 'type'    => 'text'
             ),
             'style'              => array(
                 'type'  => 'tab',
                 'value' => 'style',
-                'label' => esc_html__('Style', 'leform')
+                'label' => esc_html__('Style', 'rureraform')
             ),
             'image_size'    => array(
                 'value'   => '',
-                'label'   => esc_html__('Image Size', 'leform'),
+                'label'   => esc_html__('Image Size', 'rureraform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'image_small' => esc_html__('Small', 'leform'),
-                        'image_medium' => esc_html__('Medium', 'leform'),
-                        'image_large' => esc_html__('Large', 'leform'),
+                        'image_small' => esc_html__('Small', 'rureraform'),
+                        'image_medium' => esc_html__('Medium', 'rureraform'),
+                        'image_large' => esc_html__('Large', 'rureraform'),
                     )
             ),
             'template_style'     => array(
                 'value'   => 'rurera-in-row',
-                'label'   => esc_html__('Template Style', 'leform'),
+                'label'   => esc_html__('Template Style', 'rureraform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'rurera-in-row' => esc_html__('Row', 'leform'),
-                        'rurera-in-cols' => esc_html__('Columns', 'leform'),
+                        'rurera-in-row' => esc_html__('Row', 'rureraform'),
+                        'rurera-in-cols' => esc_html__('Columns', 'rureraform'),
                     )
             ),
 
             'template_alignment' => array(
                 'value'   => 'image-right',
-                'label'   => esc_html__('Image Alignment (Optional)', 'leform'),
+                'label'   => esc_html__('Image Alignment (Optional)', 'rureraform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'image-right' => esc_html__('Right', 'leform'),
-                        'image-top'   => esc_html__('Top', 'leform'),
+                        'image-right' => esc_html__('Right', 'rureraform'),
+                        'image-top'   => esc_html__('Top', 'rureraform'),
                     )
             ),
             'list_style'         => array(
                 'value'   => 'none',
-                'label'   => esc_html__('Bullet list Style', 'leform'),
+                'label'   => esc_html__('Bullet list Style', 'rureraform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        ''                    => esc_html__('None', 'leform'),
-                        'alphabet-list-style' => esc_html__('English Alphabet', 'leform'),
-                        'numeric-list-style'  => esc_html__('Numbers', 'leform'),
+                        ''                    => esc_html__('None', 'rureraform'),
+                        'alphabet-list-style' => esc_html__('English Alphabet', 'rureraform'),
+                        'numeric-list-style'  => esc_html__('Numbers', 'rureraform'),
                     )
             ),
             'description-style' => array(
@@ -6057,11 +5963,11 @@ function element_properties_meta($chapters)
                     'align'    => ''
                 ),
                 'caption' => array(
-                    'position' => esc_html__('Position', 'leform'),
-                    'align'    => esc_html__('Align', 'leform')
+                    'position' => esc_html__('Position', 'rureraform'),
+                    'align'    => esc_html__('Align', 'rureraform')
                 ),
-                'label'   => esc_html__('Description style', 'leform'),
-                'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'leform'),
+                'label'   => esc_html__('Description style', 'rureraform'),
+                'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'rureraform'),
                 'type'    => 'description-style'
             ),
 
@@ -6080,23 +5986,23 @@ function element_properties_meta($chapters)
             'basic'    => array(
                 'type'  => 'tab',
                 'value' => 'basic',
-                'label' => esc_html__('Basic', 'leform')
+                'label' => esc_html__('Basic', 'rureraform')
             ),
 
             'score'         => array(
                 'value' => '',
-                'label' => esc_html__('Score', 'leform'),
+                'label' => esc_html__('Score', 'rureraform'),
                 'type'  => 'number'
             ),
             'field_id'      => array(
                 'value' => '',
-                'label' => esc_html__('Field_id', 'leform'),
+                'label' => esc_html__('Field_id', 'rureraform'),
                 'type'  => 'hidden'
             ),
             'label'    => array(
-                'value'   => esc_html__('Arrange', 'leform'),
-                'label'   => esc_html__('Label', 'leform'),
-                'tooltip' => esc_html__('This is the label of the field.', 'leform'),
+                'value'   => esc_html__('Arrange', 'rureraform'),
+                'label'   => esc_html__('Label', 'rureraform'),
+                'tooltip' => esc_html__('This is the label of the field.', 'rureraform'),
                 'type'    => 'text'
             ),
             'options'  => array(
@@ -6118,13 +6024,12 @@ function element_properties_meta($chapters)
                         'image' => ''
                     ),
                 ),
-                'label'        => esc_html__('Columns', 'leform'),
-                'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'leform'),
+                'label'        => '',
                 'type'         => 'options_label'
             ),
             'content'       => array(
                 'value'   => '',
-                'label'   => esc_html__('Content', 'leform'),
+                'label'   => esc_html__('Content', 'rureraform'),
                 'tooltip' => '',
                 'type'    => 'html_toolbar_draggable'
             ),
@@ -6144,23 +6049,23 @@ function element_properties_meta($chapters)
             'basic'    => array(
                 'type'  => 'tab',
                 'value' => 'basic',
-                'label' => esc_html__('Basic', 'leform')
+                'label' => esc_html__('Basic', 'rureraform')
             ),
 
             'score'         => array(
                 'value' => '',
-                'label' => esc_html__('Score', 'leform'),
+                'label' => esc_html__('Score', 'rureraform'),
                 'type'  => 'number'
             ),
             'field_id'      => array(
                 'value' => '',
-                'label' => esc_html__('Field_id', 'leform'),
+                'label' => esc_html__('Field_id', 'rureraform'),
                 'type'  => 'hidden'
             ),
             'label'    => array(
-                'value'   => esc_html__('Arrange', 'leform'),
-                'label'   => esc_html__('Label', 'leform'),
-                'tooltip' => esc_html__('This is the label of the field.', 'leform'),
+                'value'   => esc_html__('Arrange', 'rureraform'),
+                'label'   => esc_html__('Label', 'rureraform'),
+                'tooltip' => esc_html__('This is the label of the field.', 'rureraform'),
                 'type'    => 'text'
             ),
             'markings_options'  => array(
@@ -6182,8 +6087,8 @@ function element_properties_meta($chapters)
                         'image' => ''
                     ),
                 ),
-                'label'        => esc_html__('Columns', 'leform'),
-                'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'leform'),
+                'label'        => esc_html__('Columns', 'rureraform'),
+                'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'rureraform'),
                 'type'         => 'options_marking'
             ),
             'elements_data' => array(
@@ -6201,23 +6106,23 @@ function element_properties_meta($chapters)
             'basic'    => array(
                 'type'  => 'tab',
                 'value' => 'basic',
-                'label' => esc_html__('Basic', 'leform')
+                'label' => esc_html__('Basic', 'rureraform')
             ),
 
             'score'         => array(
                 'value' => '',
-                'label' => esc_html__('Score', 'leform'),
+                'label' => esc_html__('Score', 'rureraform'),
                 'type'  => 'number'
             ),
             'field_id'      => array(
                 'value' => '',
-                'label' => esc_html__('Field_id', 'leform'),
+                'label' => esc_html__('Field_id', 'rureraform'),
                 'type'  => 'hidden'
             ),
             'label'    => array(
-                'value'   => esc_html__('Match', 'leform'),
-                'label'   => esc_html__('Label', 'leform'),
-                'tooltip' => esc_html__('This is the label of the field.', 'leform'),
+                'value'   => esc_html__('Match', 'rureraform'),
+                'label'   => esc_html__('Label', 'rureraform'),
+                'tooltip' => esc_html__('This is the label of the field.', 'rureraform'),
                 'type'    => 'text'
             ),
             'options'  => array(
@@ -6239,8 +6144,8 @@ function element_properties_meta($chapters)
                         'image' => ''
                     ),
                 ),
-                'label'        => esc_html__('Columns', 'leform'),
-                'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'leform'),
+                'label'        => esc_html__('Columns', 'rureraform'),
+                'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'rureraform'),
                 'type'         => 'matrix-columns-options'
             ),
             'options2' => array(
@@ -6262,67 +6167,67 @@ function element_properties_meta($chapters)
                         'image' => ''
                     ),
                 ),
-                'label'        => esc_html__('Options', 'leform'),
-                'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'leform'),
+                'label'        => esc_html__('Options', 'rureraform'),
+                'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'rureraform'),
                 'type'         => 'matrix-columns-labels'
             ),
 
             'description'        => array(
                 'value'   => '',
-                'label'   => esc_html__('Description', 'leform'),
-                'tooltip' => esc_html__('This description appears below the field.', 'leform'),
+                'label'   => esc_html__('Description', 'rureraform'),
+                'tooltip' => esc_html__('This description appears below the field.', 'rureraform'),
                 'type'    => 'text'
             ),
             'style'              => array(
                 'type'  => 'tab',
                 'value' => 'style',
-                'label' => esc_html__('Style', 'leform')
+                'label' => esc_html__('Style', 'rureraform')
             ),
             'image_size'    => array(
                 'value'   => '',
-                'label'   => esc_html__('Image Size', 'leform'),
+                'label'   => esc_html__('Image Size', 'rureraform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'image_small' => esc_html__('Small', 'leform'),
-                        'image_medium' => esc_html__('Medium', 'leform'),
-                        'image_large' => esc_html__('Large', 'leform'),
+                        'image_small' => esc_html__('Small', 'rureraform'),
+                        'image_medium' => esc_html__('Medium', 'rureraform'),
+                        'image_large' => esc_html__('Large', 'rureraform'),
                     )
             ),
             'template_style'     => array(
                 'value'   => 'rurera-in-row',
-                'label'   => esc_html__('Template Style', 'leform'),
+                'label'   => esc_html__('Template Style', 'rureraform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'rurera-in-row' => esc_html__('Row', 'leform'),
-                        'rurera-in-cols' => esc_html__('Columns', 'leform'),
+                        'rurera-in-row' => esc_html__('Row', 'rureraform'),
+                        'rurera-in-cols' => esc_html__('Columns', 'rureraform'),
                     )
             ),
 
             'template_alignment' => array(
                 'value'   => 'image-right',
-                'label'   => esc_html__('Image Alignment (Optional)', 'leform'),
+                'label'   => esc_html__('Image Alignment (Optional)', 'rureraform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'image-right' => esc_html__('Right', 'leform'),
-                        'image-top'   => esc_html__('Top', 'leform'),
+                        'image-right' => esc_html__('Right', 'rureraform'),
+                        'image-top'   => esc_html__('Top', 'rureraform'),
                     )
             ),
             'list_style'         => array(
                 'value'   => 'none',
-                'label'   => esc_html__('Bullet list Style', 'leform'),
+                'label'   => esc_html__('Bullet list Style', 'rureraform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        ''                    => esc_html__('None', 'leform'),
-                        'alphabet-list-style' => esc_html__('English Alphabet', 'leform'),
-                        'numeric-list-style'  => esc_html__('Numbers', 'leform'),
+                        ''                    => esc_html__('None', 'rureraform'),
+                        'alphabet-list-style' => esc_html__('English Alphabet', 'rureraform'),
+                        'numeric-list-style'  => esc_html__('Numbers', 'rureraform'),
                     )
             ),
 
@@ -6333,11 +6238,11 @@ function element_properties_meta($chapters)
                     'align'    => ''
                 ),
                 'caption' => array(
-                    'position' => esc_html__('Position', 'leform'),
-                    'align'    => esc_html__('Align', 'leform')
+                    'position' => esc_html__('Position', 'rureraform'),
+                    'align'    => esc_html__('Align', 'rureraform')
                 ),
-                'label'   => esc_html__('Description style', 'leform'),
-                'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'leform'),
+                'label'   => esc_html__('Description style', 'rureraform'),
+                'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'rureraform'),
                 'type'    => 'description-style'
             ),
 
@@ -6352,51 +6257,51 @@ function element_properties_meta($chapters)
 
 
         /*'imageselect' => array(
-                'basic' => array('type' => 'tab', 'value' => 'basic', 'label' => esc_html__('Basic', 'leform')),
-                'name' => array('value' => esc_html__('Image select', 'leform'), 'label' => esc_html__('Name', 'leform'), 'tooltip' => esc_html__('The name will be shown in place of the label throughout the plugin, in the notification email and when viewing submitted form entries.', 'leform'), 'type' => 'text'),
-                'label' => array('value' => esc_html__('Options', 'leform'), 'label' => esc_html__('Label', 'leform'), 'tooltip' => esc_html__('This is the label of the field.', 'leform'), 'type' => 'text'),
-                'mode' => array('value' => 'radio', 'label' => esc_html__('Mode', 'leform'), 'tooltip' => esc_html__('Select the mode of the Image Select.', 'leform'), 'type' => 'imageselect-mode'),
-                'submit-on-select' => array('value' => 'off', 'label' => esc_html__('Submit on select', 'leform'), 'tooltip' => esc_html__('If enabled, the form is submitted when user do selection.', 'leform'), 'caption' => esc_html__('Submit on select', 'leform'), 'type' => 'checkbox', 'visible' => array('mode' => array('radio'))),
-                'options' => array('multi-select' => 'off', 'values' => array(array('value' => 'Option 1', 'label' => 'Option 1', 'image' => '/assets/default/img/quiz/placeholder-image.png'), array('value' => 'Option 2', 'label' => 'Option 2', 'image' => '/assets/default/img/quiz/placeholder-image.png'), array('value' => 'Option 3', 'label' => 'Option 3', 'image' => '/assets/default/img/quiz/placeholder-image.png')), 'label' => esc_html__('Options', 'leform'), 'tooltip' => esc_html__('These are the choices that the user will be able to choose from.', 'leform'), 'type' => 'image-options'),
-                'description' => array('value' => 'Select options.', 'label' => esc_html__('Description', 'leform'), 'tooltip' => esc_html__('This description appears below the field.', 'leform'), 'type' => 'text'),
-                'tooltip' => array('value' => '', 'label' => esc_html__('Tooltip', 'leform'), 'tooltip' => esc_html__('The tooltip appears when user click/hover tooltip anchor. The location of tooltip anchor is configured on Form Settings (tab "Style").', 'leform'), 'type' => 'text'),
-                'required' => array('value' => 'off', 'label' => esc_html__('Required', 'leform'), 'tooltip' => esc_html__('If enabled, the user must fill out the field.', 'leform'), 'caption' => esc_html__('The field is required', 'leform'), 'type' => 'checkbox'),
-                'required-error' => array('value' => esc_html__('This field is required.', 'leform'), 'label' => esc_html__('Error message', 'leform'), 'type' => 'error', 'visible' => array('required' => array('on'))),
-                'style' => array('type' => 'tab', 'value' => 'style', 'label' => esc_html__('Style', 'leform')),
-                'label-style' => array('value' => array('position' => '', 'width' => '', 'align' => ''), 'caption' => array('position' => esc_html__('Position', 'leform'), 'width' => esc_html__('Width', 'leform'), 'align' => esc_html__('Alignment', 'leform')), 'label' => esc_html__('Label style', 'leform'), 'tooltip' => esc_html__('Choose where to display the label relative to the field and its alignment.', 'leform'), 'type' => 'label-style'),
-                'image-style' => array('value' => array('width' => "120", 'height' => "160", 'size' => 'contain'), 'caption' => array('width' => esc_html__('Width', 'leform'), 'height' => esc_html__('Height', 'leform'), 'size' => esc_html__('Size', 'leform')), 'label' => esc_html__('Image style', 'leform'), 'tooltip' => esc_html__('Choose how to display images.', 'leform'), 'type' => 'local-imageselect-style'),
-                'label-enable' => array('value' => 'off', 'label' => esc_html__('Enable label', 'leform'), 'tooltip' => esc_html__('If enabled, the label will be displayed below the image.', 'leform'), 'caption' => esc_html__('Label enabled', 'leform'), 'type' => 'checkbox'),
-                'label-height' => array('value' => '60', 'label' => esc_html__('Label height', 'leform'), 'tooltip' => esc_html__('Set the height of label area.', 'leform'), 'unit' => 'px', 'type' => 'units', 'visible' => array('label-enable' => array('on'))),
-                'description-style' => array('value' => array('position' => '', 'align' => ''), 'caption' => array('position' => esc_html__('Position', 'leform'), 'align' => esc_html__('Align', 'leform')), 'label' => esc_html__('Description style', 'leform'), 'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'leform'), 'type' => 'description-style'),
-                'css' => array('type' => 'css', 'values' => array(), 'label' => esc_html__('CSS styles', 'leform'), 'tooltip' => esc_html__('Once you have added a style, enter the CSS styles.', 'leform'), 'selectors' => array(
+                'basic' => array('type' => 'tab', 'value' => 'basic', 'label' => esc_html__('Basic', 'rureraform')),
+                'name' => array('value' => esc_html__('Image select', 'rureraform'), 'label' => esc_html__('Name', 'rureraform'), 'tooltip' => esc_html__('The name will be shown in place of the label throughout the plugin, in the notification email and when viewing submitted form entries.', 'rureraform'), 'type' => 'text'),
+                'label' => array('value' => esc_html__('Options', 'rureraform'), 'label' => esc_html__('Label', 'rureraform'), 'tooltip' => esc_html__('This is the label of the field.', 'rureraform'), 'type' => 'text'),
+                'mode' => array('value' => 'radio', 'label' => esc_html__('Mode', 'rureraform'), 'tooltip' => esc_html__('Select the mode of the Image Select.', 'rureraform'), 'type' => 'imageselect-mode'),
+                'submit-on-select' => array('value' => 'off', 'label' => esc_html__('Submit on select', 'rureraform'), 'tooltip' => esc_html__('If enabled, the form is submitted when user do selection.', 'rureraform'), 'caption' => esc_html__('Submit on select', 'rureraform'), 'type' => 'checkbox', 'visible' => array('mode' => array('radio'))),
+                'options' => array('multi-select' => 'off', 'values' => array(array('value' => 'Option 1', 'label' => 'Option 1', 'image' => '/assets/default/img/quiz/placeholder-image.png'), array('value' => 'Option 2', 'label' => 'Option 2', 'image' => '/assets/default/img/quiz/placeholder-image.png'), array('value' => 'Option 3', 'label' => 'Option 3', 'image' => '/assets/default/img/quiz/placeholder-image.png')), 'label' => esc_html__('Options', 'rureraform'), 'tooltip' => esc_html__('These are the choices that the user will be able to choose from.', 'rureraform'), 'type' => 'image-options'),
+                'description' => array('value' => 'Select options.', 'label' => esc_html__('Description', 'rureraform'), 'tooltip' => esc_html__('This description appears below the field.', 'rureraform'), 'type' => 'text'),
+                'tooltip' => array('value' => '', 'label' => esc_html__('Tooltip', 'rureraform'), 'tooltip' => esc_html__('The tooltip appears when user click/hover tooltip anchor. The location of tooltip anchor is configured on Form Settings (tab "Style").', 'rureraform'), 'type' => 'text'),
+                'required' => array('value' => 'off', 'label' => esc_html__('Required', 'rureraform'), 'tooltip' => esc_html__('If enabled, the user must fill out the field.', 'rureraform'), 'caption' => esc_html__('The field is required', 'rureraform'), 'type' => 'checkbox'),
+                'required-error' => array('value' => esc_html__('This field is required.', 'rureraform'), 'label' => esc_html__('Error message', 'rureraform'), 'type' => 'error', 'visible' => array('required' => array('on'))),
+                'style' => array('type' => 'tab', 'value' => 'style', 'label' => esc_html__('Style', 'rureraform')),
+                'label-style' => array('value' => array('position' => '', 'width' => '', 'align' => ''), 'caption' => array('position' => esc_html__('Position', 'rureraform'), 'width' => esc_html__('Width', 'rureraform'), 'align' => esc_html__('Alignment', 'rureraform')), 'label' => esc_html__('Label style', 'rureraform'), 'tooltip' => esc_html__('Choose where to display the label relative to the field and its alignment.', 'rureraform'), 'type' => 'label-style'),
+                'image-style' => array('value' => array('width' => "120", 'height' => "160", 'size' => 'contain'), 'caption' => array('width' => esc_html__('Width', 'rureraform'), 'height' => esc_html__('Height', 'rureraform'), 'size' => esc_html__('Size', 'rureraform')), 'label' => esc_html__('Image style', 'rureraform'), 'tooltip' => esc_html__('Choose how to display images.', 'rureraform'), 'type' => 'local-imageselect-style'),
+                'label-enable' => array('value' => 'off', 'label' => esc_html__('Enable label', 'rureraform'), 'tooltip' => esc_html__('If enabled, the label will be displayed below the image.', 'rureraform'), 'caption' => esc_html__('Label enabled', 'rureraform'), 'type' => 'checkbox'),
+                'label-height' => array('value' => '60', 'label' => esc_html__('Label height', 'rureraform'), 'tooltip' => esc_html__('Set the height of label area.', 'rureraform'), 'unit' => 'px', 'type' => 'units', 'visible' => array('label-enable' => array('on'))),
+                'description-style' => array('value' => array('position' => '', 'align' => ''), 'caption' => array('position' => esc_html__('Position', 'rureraform'), 'align' => esc_html__('Align', 'rureraform')), 'label' => esc_html__('Description style', 'rureraform'), 'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'rureraform'), 'type' => 'description-style'),
+                'css' => array('type' => 'css', 'values' => array(), 'label' => esc_html__('CSS styles', 'rureraform'), 'tooltip' => esc_html__('Once you have added a style, enter the CSS styles.', 'rureraform'), 'selectors' => array(
                         'wrapper' => array(
-                            'label' => esc_html__('Wrapper', 'leform'),
-                            'admin-class' => '.leform-element-{element-id}',
-                            'front-class' => '.leform-form-{form-id} .leform-element-{element-id}'
+                            'label' => esc_html__('Wrapper', 'rureraform'),
+                            'admin-class' => '.rureraform-element-{element-id}',
+                            'front-class' => '.rureraform-form-{form-id} .rureraform-element-{element-id}'
                         ),
                         'label' => array(
-                            'label' => esc_html__('Label', 'leform'),
-                            'admin-class' => '.leform-element-{element-id} .leform-column-label .leform-label',
-                            'front-class' => '.leform-form-{form-id} .leform-element-{element-id} .leform-column-label .leform-label'
+                            'label' => esc_html__('Label', 'rureraform'),
+                            'admin-class' => '.rureraform-element-{element-id} .rureraform-column-label .rureraform-label',
+                            'front-class' => '.rureraform-form-{form-id} .rureraform-element-{element-id} .rureraform-column-label .rureraform-label'
                         ),
                         'description' => array(
-                            'label' => esc_html__('Description', 'leform'),
-                            'admin-class' => '.leform-element-{element-id} .leform-column-input .leform-description',
-                            'front-class' => '.leform-form-{form-id} .leform-element-{element-id} .leform-column-input .leform-description'
+                            'label' => esc_html__('Description', 'rureraform'),
+                            'admin-class' => '.rureraform-element-{element-id} .rureraform-column-input .rureraform-description',
+                            'front-class' => '.rureraform-form-{form-id} .rureraform-element-{element-id} .rureraform-column-input .rureraform-description'
                         )
                     )
                 ),
                 'elements_data' => array('value' => '', 'label' => '', 'tooltip' => '', 'type' => 'elements_data'),
-                'quiz-settings' => array('type' => 'tab', 'value' => 'settings', 'label' => esc_html__('Settings', 'leform')),
-                'score' => array('value' => '', 'label' => esc_html__('Score', 'leform'), 'type' => 'number'),
-                'attempt_time' => array('value' => '', 'label' => esc_html__('Attempt Time', 'leform'), 'type' => 'number'),
-                'difficulty_level' => array('value' => 'none', 'label' => esc_html__('Difficulty Level', 'leform'), '', 'type' => 'select', 'options' =>
+                'quiz-settings' => array('type' => 'tab', 'value' => 'settings', 'label' => esc_html__('Settings', 'rureraform')),
+                'score' => array('value' => '', 'label' => esc_html__('Score', 'rureraform'), 'type' => 'number'),
+                'attempt_time' => array('value' => '', 'label' => esc_html__('Attempt Time', 'rureraform'), 'type' => 'number'),
+                'difficulty_level' => array('value' => 'none', 'label' => esc_html__('Difficulty Level', 'rureraform'), '', 'type' => 'select', 'options' =>
                     array(
-                        'Below' => esc_html__('Below', 'leform'),
-                        'Emerging' => esc_html__('Emerging', 'leform'),
-                        'Expected' => esc_html__('Expected', 'leform'),
-                        'Exceeding' => esc_html__('Exceeding', 'leform'),
-                        'Challenge' => esc_html__('Challenge', 'leform'),
+                        'Below' => esc_html__('Below', 'rureraform'),
+                        'Emerging' => esc_html__('Emerging', 'rureraform'),
+                        'Expected' => esc_html__('Expected', 'rureraform'),
+                        'Exceeding' => esc_html__('Exceeding', 'rureraform'),
+                        'Challenge' => esc_html__('Challenge', 'rureraform'),
                         )
                 ),
             ),
@@ -6407,12 +6312,12 @@ function element_properties_meta($chapters)
             'general' => array(
                 'type'  => 'tab',
                 'value' => 'general',
-                'label' => esc_html__('General', 'leform')
+                'label' => esc_html__('General', 'rureraform')
             ),
             'name'    => array(
-                'value'   => esc_html__('Page', 'leform'),
-                'label'   => esc_html__('Name', 'leform'),
-                'tooltip' => esc_html__('The name helps to identify the page.', 'leform'),
+                'value'   => esc_html__('Page', 'rureraform'),
+                'label'   => esc_html__('Name', 'rureraform'),
+                'tooltip' => esc_html__('The name helps to identify the page.', 'rureraform'),
                 'type'    => 'text'
             ),
         ),
@@ -6420,12 +6325,12 @@ function element_properties_meta($chapters)
             'general' => array(
                 'type'  => 'tab',
                 'value' => 'general',
-                'label' => esc_html__('General', 'leform')
+                'label' => esc_html__('General', 'rureraform')
             ),
             'name'    => array(
-                'value'   => esc_html__('Confirmation', 'leform'),
-                'label'   => esc_html__('Name', 'leform'),
-                'tooltip' => esc_html__('The name helps to identify the confirmation page.', 'leform'),
+                'value'   => esc_html__('Confirmation', 'rureraform'),
+                'label'   => esc_html__('Name', 'rureraform'),
+                'tooltip' => esc_html__('The name helps to identify the confirmation page.', 'rureraform'),
                 'type'    => 'text'
             )
         ),
@@ -6433,18 +6338,18 @@ function element_properties_meta($chapters)
             'basic'  => array(
                 'type'  => 'tab',
                 'value' => 'basic',
-                'label' => esc_html__('Basic', 'leform')
+                'label' => esc_html__('Basic', 'rureraform')
             ),
             'name'   => array(
-                'value'   => esc_html__('Untitled', 'leform'),
-                'label'   => esc_html__('Name', 'leform'),
-                'tooltip' => esc_html__('The name will be shown throughout the plugin.', 'leform'),
+                'value'   => esc_html__('Untitled', 'rureraform'),
+                'label'   => esc_html__('Name', 'rureraform'),
+                'tooltip' => esc_html__('The name will be shown throughout the plugin.', 'rureraform'),
                 'type'    => 'text'
             ),
             'widths' => array(
                 'value'   => '',
-                'label'   => esc_html__('Column width', 'leform'),
-                'tooltip' => esc_html__('Specify the width of each column. The row is divided into 12 equal pieces. You can decide how many pieces related to each columns. If you want all columns to be in one row, make sure that sum of widths is equal to 12.', 'leform'),
+                'label'   => esc_html__('Column width', 'rureraform'),
+                'tooltip' => esc_html__('Specify the width of each column. The row is divided into 12 equal pieces. You can decide how many pieces related to each columns. If you want all columns to be in one row, make sure that sum of widths is equal to 12.', 'rureraform'),
                 'type'    => 'column-width'
             ),
         ),
@@ -6452,11 +6357,11 @@ function element_properties_meta($chapters)
             'basic'         => array(
                 'type'  => 'tab',
                 'value' => 'basic',
-                'label' => esc_html__('Basic', 'leform')
+                'label' => esc_html__('Basic', 'rureraform')
             ),
             'content'       => array(
                 'value'   => '222 + 222&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =&nbsp;<span class="input-holder"><input type="text" data-field_type="text" size="3" readonly="readonly" class="editor-field field_small" data-id="37851" id="field-37851" correct_answere="4"></span>',
-                'label'   => esc_html__('Content', 'leform'),
+                'label'   => esc_html__('Content', 'rureraform'),
                 'tooltip' => '',
                 'type'    => 'html'
             ),
@@ -6471,46 +6376,46 @@ function element_properties_meta($chapters)
             'basic'        => array(
                 'type'  => 'tab',
                 'value' => 'basic',
-                'label' => esc_html__('Basic', 'leform')
+                'label' => esc_html__('Basic', 'rureraform')
             ),
             'name'         => array(
-                'value' => esc_html__('HTML Content', 'leform'),
-                'label' => esc_html__('Name', 'leform'),
+                'value' => esc_html__('HTML Content', 'rureraform'),
+                'label' => esc_html__('Name', 'rureraform'),
                 'type'  => 'text'
             ),
             'content'      => array(
-                'value'   => esc_html__('Default HTML Content.', 'leform') . '',
-                'label'   => esc_html__('HTML', 'leform'),
-                'tooltip' => esc_html__('This is the content of HTML.', 'leform'),
+                'value'   => esc_html__('Default HTML Content.', 'rureraform') . '',
+                'label'   => esc_html__('HTML', 'rureraform'),
+                'tooltip' => esc_html__('This is the content of HTML.', 'rureraform'),
                 'type'    => 'html'
             ),
             'style'        => array(
                 'type'  => 'tab',
                 'value' => 'style',
-                'label' => esc_html__('Style', 'leform')
+                'label' => esc_html__('Style', 'rureraform')
             ),
             'css'          => array(
                 'type'      => 'css',
                 'values'    => array(),
-                'label'     => esc_html__('CSS styles', 'leform'),
-                'tooltip'   => esc_html__('Once you have added a style, enter the CSS styles.', 'leform'),
+                'label'     => esc_html__('CSS styles', 'rureraform'),
+                'tooltip'   => esc_html__('Once you have added a style, enter the CSS styles.', 'rureraform'),
                 'selectors' => array(
                     'wrapper' => array(
-                        'label'       => esc_html__('Wrapper', 'leform'),
-                        'admin-class' => '.leform-element-{element-id}',
-                        'front-class' => '.leform-form-{form-id} .leform-element-{element-id}'
+                        'label'       => esc_html__('Wrapper', 'rureraform'),
+                        'admin-class' => '.rureraform-element-{element-id}',
+                        'front-class' => '.rureraform-form-{form-id} .rureraform-element-{element-id}'
                     )
                 )
             ),
             'logic-tab'    => array(
                 'type'  => 'tab',
                 'value' => 'logic',
-                'label' => esc_html__('Logic', 'leform')
+                'label' => esc_html__('Logic', 'rureraform')
             ),
             'logic-enable' => array(
                 'value'   => 'off',
-                'label'   => esc_html__('Enable conditional logic', 'leform'),
-                'tooltip' => esc_html__('If enabled, you can create rules to show or hide this element depending on the values of other fields.', 'leform'),
+                'label'   => esc_html__('Enable conditional logic', 'rureraform'),
+                'tooltip' => esc_html__('If enabled, you can create rules to show or hide this element depending on the values of other fields.', 'rureraform'),
                 'type'    => 'checkbox'
             ),
             'logic'        => array(
@@ -6520,15 +6425,15 @@ function element_properties_meta($chapters)
                     'rules'    => array()
                 ),
                 'actions'   => array(
-                    'show' => esc_html__('Show this element', 'leform'),
-                    'hide' => esc_html__('Hide this element', 'leform')
+                    'show' => esc_html__('Show this element', 'rureraform'),
+                    'hide' => esc_html__('Hide this element', 'rureraform')
                 ),
                 'operators' => array(
-                    'and' => esc_html__('if all of these rules match', 'leform'),
-                    'or'  => esc_html__('if any of these rules match', 'leform')
+                    'and' => esc_html__('if all of these rules match', 'rureraform'),
+                    'or'  => esc_html__('if any of these rules match', 'rureraform')
                 ),
-                'label'     => esc_html__('Logic rules', 'leform'),
-                'tooltip'   => esc_html__('Create rules to show or hide this element depending on the values of other fields.', 'leform'),
+                'label'     => esc_html__('Logic rules', 'rureraform'),
+                'tooltip'   => esc_html__('Create rules to show or hide this element depending on the values of other fields.', 'rureraform'),
                 'type'      => 'logic-rules',
                 'visible'   => array('logic-enable' => array('on'))
             ),
@@ -6537,17 +6442,17 @@ function element_properties_meta($chapters)
             'basic'         => array(
                 'type'  => 'tab',
                 'value' => 'basic',
-                'label' => esc_html__('Basic', 'leform')
+                'label' => esc_html__('Basic', 'rureraform')
             ),
             'score'         => array(
                 'value' => '',
-                'label' => esc_html__('Score', 'leform'),
+                'label' => esc_html__('Score', 'rureraform'),
                 'type'  => 'number'
             ),
             'content'       => array(
-                'value'   => esc_html__('Default HTML Content.', 'leform') . '',
-                'label'   => esc_html__('HTML', 'leform'),
-                'tooltip' => esc_html__('This is the content of HTML.', 'leform'),
+                'value'   => esc_html__('Default HTML Content.', 'rureraform') . '',
+                'label'   => esc_html__('HTML', 'rureraform'),
+                'tooltip' => esc_html__('This is the content of HTML.', 'rureraform'),
                 'type'    => 'html_toolbar'
             ),
             'elements_data' => array(
@@ -6563,18 +6468,18 @@ function element_properties_meta($chapters)
             'basic'         => array(
                 'type'  => 'tab',
                 'value' => 'basic',
-                'label' => esc_html__('Basic', 'leform')
+                'label' => esc_html__('Basic', 'rureraform')
             ),
             'score'         => array(
                'value' => '',
-               'label' => esc_html__('Score', 'leform'),
+               'label' => esc_html__('Score', 'rureraform'),
                'type'  => 'number'
            ),
             'content'       => array(
-                'value'   => esc_html__('', 'leform') . '',
+                'value'   => esc_html__('', 'rureraform') . '',
                 'label'
-                          => esc_html__('HTML', 'leform'),
-                'tooltip' => esc_html__('This is the spreadshee.', 'leform'),
+                          => esc_html__('HTML', 'rureraform'),
+                'tooltip' => esc_html__('This is the spreadshee.', 'rureraform'),
                 'type'    =>
                     'html'
             ),
@@ -6590,11 +6495,11 @@ function element_properties_meta($chapters)
             'basic'         => array(
                 'type'  => 'tab',
                 'value' => 'basic',
-                'label' => esc_html__('Basic', 'leform')
+                'label' => esc_html__('Basic', 'rureraform')
             ),
             'content'       => array(
                 'value'   => '222 + 222&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =&nbsp;<span class="input-holder"><input type="text" data-field_type="text" size="3" readonly="readonly" class="editor-field field_small" data-id="37851" id="field-37851" correct_answere="4"></span>',
-                'label'   => esc_html__('Content', 'leform'),
+                'label'   => esc_html__('Content', 'rureraform'),
                 'tooltip' => '',
                 'type'    => 'html'
             ),
@@ -6610,18 +6515,18 @@ function element_properties_meta($chapters)
             'basic'              => array(
                 'type'  => 'tab',
                 'value' => 'basic',
-                'label' => esc_html__('Basic', 'leform')
+                'label' => esc_html__('Basic', 'rureraform')
             ),
 
             'score'              => array(
                 'value' => '',
-                'label' => esc_html__('Score', 'leform'),
+                'label' => esc_html__('Score', 'rureraform'),
                 'type'  => 'number'
             ),
             'label'              => array(
-                'value'   => esc_html__('Mark one answer', 'leform'),
-                'label'   => esc_html__('Label', 'leform'),
-                'tooltip' => esc_html__('This is the label of the field.', 'leform'),
+                'value'   => esc_html__('Mark one answer', 'rureraform'),
+                'label'   => esc_html__('Label', 'rureraform'),
+                'tooltip' => esc_html__('This is the label of the field.', 'rureraform'),
                 'type'    => 'text'
             ),
             'options'            => array(
@@ -6643,54 +6548,54 @@ function element_properties_meta($chapters)
                         'image' => ''
                     )
                 ),
-                'label'        => esc_html__('Options', 'leform'),
-                'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'leform'),
+                'label'        => esc_html__('Options', 'rureraform'),
+                'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'rureraform'),
                 'type'         => 'image-options'
             ),
             'description'        => array(
                 'value'   => '',
-                'label'   => esc_html__('Description', 'leform'),
-                'tooltip' => esc_html__('This description appears below the field.', 'leform'),
+                'label'   => esc_html__('Description', 'rureraform'),
+                'tooltip' => esc_html__('This description appears below the field.', 'rureraform'),
                 'type'    => 'text'
             ),
             'style'              => array(
                 'type'  => 'tab',
                 'value' => 'style',
-                'label' => esc_html__('Style', 'leform')
+                'label' => esc_html__('Style', 'rureraform')
             ),
             'template_style'     => array(
                 'value'   => 'rurera-in-row',
-                'label'   => esc_html__('Template Style', 'leform'),
+                'label'   => esc_html__('Template Style', 'rureraform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'rurera-in-row' => esc_html__('Row', 'leform'),
-                        'rurera-in-cols' => esc_html__('Columns', 'leform'),
+                        'rurera-in-row' => esc_html__('Row', 'rureraform'),
+                        'rurera-in-cols' => esc_html__('Columns', 'rureraform'),
                     )
             ),
 
             'template_alignment' => array(
                 'value'   => 'image-right',
-                'label'   => esc_html__('Image Alignment (Optional)', 'leform'),
+                'label'   => esc_html__('Image Alignment (Optional)', 'rureraform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'image-right' => esc_html__('Right', 'leform'),
-                        'image-top'   => esc_html__('Top', 'leform'),
+                        'image-right' => esc_html__('Right', 'rureraform'),
+                        'image-top'   => esc_html__('Top', 'rureraform'),
                     )
             ),
             'list_style'         => array(
                 'value'   => 'none',
-                'label'   => esc_html__('Bullet list Style', 'leform'),
+                'label'   => esc_html__('Bullet list Style', 'rureraform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        ''                    => esc_html__('None', 'leform'),
-                        'alphabet-list-style' => esc_html__('English Alphabet', 'leform'),
-                        'numeric-list-style'  => esc_html__('Numbers', 'leform'),
+                        ''                    => esc_html__('None', 'rureraform'),
+                        'alphabet-list-style' => esc_html__('English Alphabet', 'rureraform'),
+                        'numeric-list-style'  => esc_html__('Numbers', 'rureraform'),
                     )
             ),
 
@@ -6700,11 +6605,11 @@ function element_properties_meta($chapters)
                     'align'    => ''
                 ),
                 'caption' => array(
-                    'position' => esc_html__('Position', 'leform'),
-                    'align'    => esc_html__('Align', 'leform')
+                    'position' => esc_html__('Position', 'rureraform'),
+                    'align'    => esc_html__('Align', 'rureraform')
                 ),
-                'label'   => esc_html__('Description style', 'leform'),
-                'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'leform'),
+                'label'   => esc_html__('Description style', 'rureraform'),
+                'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'rureraform'),
                 'type'    => 'description-style'
             ),
 
@@ -6721,22 +6626,22 @@ function element_properties_meta($chapters)
             'basic'   => array(
                 'type'  => 'tab',
                 'value' => 'basic',
-                'label' => esc_html__('Basic', 'leform')
+                'label' => esc_html__('Basic', 'rureraform')
             ),
             'score'         => array(
                 'value' => '',
-                'label' => esc_html__('Score', 'leform'),
+                'label' => esc_html__('Score', 'rureraform'),
                 'type'  => 'number'
             ),
             'field_id'      => array(
                 'value' => '',
-                'label' => esc_html__('Field_id', 'leform'),
+                'label' => esc_html__('Field_id', 'rureraform'),
                 'type'  => 'hidden'
             ),
             'label'   => array(
-                'value'   => esc_html__('Mark one answer', 'leform'),
-                'label'   => esc_html__('Label', 'leform'),
-                'tooltip' => esc_html__('This is the label of the field.', 'leform'),
+                'value'   => esc_html__('Mark one answer', 'rureraform'),
+                'label'   => esc_html__('Label', 'rureraform'),
+                'tooltip' => esc_html__('This is the label of the field.', 'rureraform'),
                 'type'    => 'text'
             ),
             'options' => array(
@@ -6758,55 +6663,55 @@ function element_properties_meta($chapters)
                         'image' => ''
                     )
                 ),
-                'label'        => esc_html__('Options', 'leform'),
-                'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'leform'),
+                'label'        => esc_html__('Options', 'rureraform'),
+                'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'rureraform'),
                 'type'         => 'image-options'
             ),
 
             'description'        => array(
                 'value'   => '',
-                'label'   => esc_html__('Description', 'leform'),
-                'tooltip' => esc_html__('This description appears below the field.', 'leform'),
+                'label'   => esc_html__('Description', 'rureraform'),
+                'tooltip' => esc_html__('This description appears below the field.', 'rureraform'),
                 'type'    => 'text'
             ),
             'style'              => array(
                 'type'  => 'tab',
                 'value' => 'style',
-                'label' => esc_html__('Style', 'leform')
+                'label' => esc_html__('Style', 'rureraform')
             ),
             'template_style'     => array(
                 'value'   => 'rurera-in-row',
-                'label'   => esc_html__('Template Style', 'leform'),
+                'label'   => esc_html__('Template Style', 'rureraform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'rurera-in-row' => esc_html__('Row', 'leform'),
-                        'rurera-in-cols' => esc_html__('Columns', 'leform'),
+                        'rurera-in-row' => esc_html__('Row', 'rureraform'),
+                        'rurera-in-cols' => esc_html__('Columns', 'rureraform'),
                     )
             ),
 
             'template_alignment' => array(
                 'value'   => 'image-right',
-                'label'   => esc_html__('Image Alignment (Optional)', 'leform'),
+                'label'   => esc_html__('Image Alignment (Optional)', 'rureraform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'image-right' => esc_html__('Right', 'leform'),
-                        'image-top'   => esc_html__('Top', 'leform'),
+                        'image-right' => esc_html__('Right', 'rureraform'),
+                        'image-top'   => esc_html__('Top', 'rureraform'),
                     )
             ),
             'list_style'         => array(
                 'value'   => 'none',
-                'label'   => esc_html__('Bullet list Style', 'leform'),
+                'label'   => esc_html__('Bullet list Style', 'rureraform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        ''                    => esc_html__('None', 'leform'),
-                        'alphabet-list-style' => esc_html__('English Alphabet', 'leform'),
-                        'numeric-list-style'  => esc_html__('Numbers', 'leform'),
+                        ''                    => esc_html__('None', 'rureraform'),
+                        'alphabet-list-style' => esc_html__('English Alphabet', 'rureraform'),
+                        'numeric-list-style'  => esc_html__('Numbers', 'rureraform'),
                     )
             ),
 
@@ -6817,11 +6722,11 @@ function element_properties_meta($chapters)
                     'align'    => ''
                 ),
                 'caption' => array(
-                    'position' => esc_html__('Position', 'leform'),
-                    'align'    => esc_html__('Align', 'leform')
+                    'position' => esc_html__('Position', 'rureraform'),
+                    'align'    => esc_html__('Align', 'rureraform')
                 ),
-                'label'   => esc_html__('Description style', 'leform'),
-                'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'leform'),
+                'label'   => esc_html__('Description style', 'rureraform'),
+                'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'rureraform'),
                 'type'    => 'description-style'
             ),
 
@@ -6839,17 +6744,17 @@ function element_properties_meta($chapters)
             'basic'         => array(
                 'type'  => 'tab',
                 'value' => 'basic',
-                'label' => esc_html__('Basic', 'leform')
+                'label' => esc_html__('Basic', 'rureraform')
             ),
             /*'content'       => array(
                 'value'   => '<span class="block-holder image-field"><img data-field_type="image" data-id="23119" id="field-23119" class="editor-field" src="/assets/default/img/quiz/placeholder-image.png" heigh="50" width="50"></span>',
-                'label'   => esc_html__('Content', 'leform'),
+                'label'   => esc_html__('Content', 'rureraform'),
                 'tooltip' => '',
                 'type'    => 'html'
             ),*/
             'content'       => array(
                 'value' => '/assets/default/img/quiz/placeholder-image.png',
-                'label' => esc_html__('Image', 'leform'),
+                'label' => esc_html__('Image', 'rureraform'),
                 'type'  => 'image'
             ),
             'elements_data' => array(
@@ -6865,42 +6770,42 @@ function element_properties_meta($chapters)
             'basic'         => array(
                 'type'  => 'tab',
                 'value' => 'basic',
-                'label' => esc_html__('Basic', 'leform')
+                'label' => esc_html__('Basic', 'rureraform')
             ),
             /*'content'       => array(
                 'value'   => '<span class="block-holder image-field"><img data-field_type="image" data-id="23119" id="field-23119" class="editor-field" src="/assets/default/img/quiz/placeholder-image.png" heigh="50" width="50"></span>',
-                'label'   => esc_html__('Content', 'leform'),
+                'label'   => esc_html__('Content', 'rureraform'),
                 'tooltip' => '',
                 'type'    => 'html'
             ),*/
             'content'       => array(
                 'value' => '/assets/default/img/quiz/placeholder-image.png',
-                'label' => esc_html__('Image', 'leform'),
+                'label' => esc_html__('Image', 'rureraform'),
                 'type'  => 'image'
             ),
             'image_size'     => array(
                 'value'   => 'image-small',
-                'label'   => esc_html__('Image Size', 'leform'),
+                'label'   => esc_html__('Image Size', 'rureraform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'image-small' => esc_html__('Small', 'leform'),
-                        'image-medium' => esc_html__('Medium', 'leform'),
-                        'image-large' => esc_html__('Large', 'leform'),
-                        'image-full' => esc_html__('Full Size', 'leform'),
+                        'image-small' => esc_html__('Small', 'rureraform'),
+                        'image-medium' => esc_html__('Medium', 'rureraform'),
+                        'image-large' => esc_html__('Large', 'rureraform'),
+                        'image-full' => esc_html__('Full Size', 'rureraform'),
                     )
             ),
             'image_position'     => array(
                 'value'   => 'image-left',
-                'label'   => esc_html__('Image Position', 'leform'),
+                'label'   => esc_html__('Image Position', 'rureraform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'image-left' => esc_html__('Left', 'leform'),
-                        'image-center' => esc_html__('Center', 'leform'),
-                        'image-right' => esc_html__('Right', 'leform'),
+                        'image-left' => esc_html__('Left', 'rureraform'),
+                        'image-center' => esc_html__('Center', 'rureraform'),
+                        'image-right' => esc_html__('Right', 'rureraform'),
                     )
             ),
             'elements_data' => array(
@@ -6915,11 +6820,11 @@ function element_properties_meta($chapters)
             'basic'         => array(
                 'type'  => 'tab',
                 'value' => 'basic',
-                'label' => esc_html__('Basic', 'leform')
+                'label' => esc_html__('Basic', 'rureraform')
             ),
             'content'       => array(
                 'value'   => '<h2>Example Heading</h2>',
-                'label'   => esc_html__('Content', 'leform'),
+                'label'   => esc_html__('Content', 'rureraform'),
                 'tooltip' => '',
                 'type'    => 'html'
             ),
@@ -6935,7 +6840,7 @@ function element_properties_meta($chapters)
             'basic'         => array(
                 'type'  => 'tab',
                 'value' => 'basic',
-                'label' => esc_html__('Basic', 'leform')
+                'label' => esc_html__('Basic', 'rureraform')
             ),
             'content'       => array(
                 'value'   => "<p><b>Lorem Ipsum</b> is simply <u>dummy text</u> of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the <font color='#ffff00''' style='background-color: rgb(156, 156, 148);'''>1500s</font>, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
@@ -6943,7 +6848,7 @@ function element_properties_meta($chapters)
                 <li>List item # 2</li>
                 <li>List item # 3</li>
                 <li>List item # 4</li></ol><p>It was popularised in the <a href='https://rurera.com' target='_blank'>1960s</a> with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>",
-                'label'   => esc_html__('Content', 'leform'),
+                'label'   => esc_html__('Content', 'rureraform'),
                 'tooltip' => '',
                 'type'    => 'html'
             ),
@@ -6959,54 +6864,54 @@ function element_properties_meta($chapters)
             'basic'         => array(
                 'type'  => 'tab',
                 'value' => 'basic',
-                'label' => esc_html__('Basic', 'leform')
+                'label' => esc_html__('Basic', 'rureraform')
             ),
             'placeholder'   => array(
                'value' => '',
-               'label' => esc_html__('Placeholder', 'leform'),
+               'label' => esc_html__('Placeholder', 'rureraform'),
                'type'  => 'text'
            ),
            'field_size'    => array(
                 'value'   => '',
-                'label'   => esc_html__('Field Size', 'leform'),
+                'label'   => esc_html__('Field Size', 'rureraform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'field_small' => esc_html__('Small', 'leform'),
-                        'field_medium' => esc_html__('Medium', 'leform'),
-                        'field_large' => esc_html__('Large', 'leform'),
+                        'field_small' => esc_html__('Small', 'rureraform'),
+                        'field_medium' => esc_html__('Medium', 'rureraform'),
+                        'field_large' => esc_html__('Large', 'rureraform'),
                     )
             ),
             'style_format'    => array(
                 'value'   => '',
-                'label'   => esc_html__('Style Format', 'leform'),
+                'label'   => esc_html__('Style Format', 'rureraform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'textarea_plain' => esc_html__('plain', 'leform'),
-                        'textarea_lines' => esc_html__('Dotted Line', 'leform'),
+                        'textarea_plain' => esc_html__('plain', 'rureraform'),
+                        'textarea_lines' => esc_html__('Dotted Line', 'rureraform'),
                     )
             ),
             'maxlength'         => array(
                'value' => '',
-               'label' => esc_html__('Maximum Length', 'leform'),
+               'label' => esc_html__('Maximum Length', 'rureraform'),
                'type'  => 'number'
            ),
             'rows'   => array(
                'value' => '3',
-               'label' => esc_html__('Rows', 'leform'),
+               'label' => esc_html__('Rows', 'rureraform'),
                'type'  => 'number'
            ),
             'correct_answer'    => array(
                'value' => '',
-               'label' => esc_html__('Correct Answer', 'leform'),
+               'label' => esc_html__('Correct Answer', 'rureraform'),
                'type'  => 'text'
            ),
             'score'         => array(
                'value' => '',
-               'label' => esc_html__('Score', 'leform'),
+               'label' => esc_html__('Score', 'rureraform'),
                'type'  => 'number'
            ),
             'elements_data' => array(
@@ -7017,7 +6922,7 @@ function element_properties_meta($chapters)
             ),
             'field_id'      => array(
                 'value' => '',
-                'label' => esc_html__('Field_id', 'leform'),
+                'label' => esc_html__('Field_id', 'rureraform'),
                 'type'  => 'hidden'
             ),
         ),
@@ -7025,48 +6930,48 @@ function element_properties_meta($chapters)
             'basic'         => array(
                 'type'  => 'tab',
                 'value' => 'basic',
-                'label' => esc_html__('Basic', 'leform')
+                'label' => esc_html__('Basic', 'rureraform')
             ),
             'placeholder'   => array(
                'value' => '',
-               'label' => esc_html__('Placeholder', 'leform'),
+               'label' => esc_html__('Placeholder', 'rureraform'),
                'type'  => 'text'
            ),
             'label_before'   => array(
                'value' => '',
-               'label' => esc_html__('Label Before', 'leform'),
+               'label' => esc_html__('Label Before', 'rureraform'),
                'type'  => 'text'
            ),
            'label_after'   => array(
                'value' => '',
-               'label' => esc_html__('Label After', 'leform'),
+               'label' => esc_html__('Label After', 'rureraform'),
                'type'  => 'text'
            ),
             'style_format'    => array(
                 'value'   => '',
-                'label'   => esc_html__('Style Format', 'leform'),
+                'label'   => esc_html__('Style Format', 'rureraform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'input_box' => esc_html__('Box', 'leform'),
-                        'input_line' => esc_html__('Underline', 'leform'),
+                        'input_box' => esc_html__('Box', 'rureraform'),
+                        'input_line' => esc_html__('Underline', 'rureraform'),
                     )
             ),
             'text_format'    => array(
                 'value'   => '',
-                'label'   => esc_html__('Text Format', 'leform'),
+                'label'   => esc_html__('Text Format', 'rureraform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'text' => esc_html__('Alpha Numeric', 'leform'),
-                        'numbers' => esc_html__('Numbers', 'leform'),
+                        'text' => esc_html__('Alpha Numeric', 'rureraform'),
+                        'numbers' => esc_html__('Numbers', 'rureraform'),
                     )
             ),
             'maxlength'         => array(
                'value' => '',
-               'label' => esc_html__('Maximum Length', 'leform'),
+               'label' => esc_html__('Maximum Length', 'rureraform'),
                'type'  => 'number'
            ),
 		   
@@ -7077,13 +6982,13 @@ function element_properties_meta($chapters)
 		   
             'correct_answer'    => array(
                'value' => '',
-               'label' => esc_html__('Correct Answer', 'leform'),
+               'label' => esc_html__('Correct Answer', 'rureraform'),
                'type'  => 'text'
            ),
 
             'score'         => array(
                'value' => '',
-               'label' => esc_html__('Score', 'leform'),
+               'label' => esc_html__('Score', 'rureraform'),
                'type'  => 'number'
            ),
             'elements_data' => array(
@@ -7094,7 +6999,7 @@ function element_properties_meta($chapters)
             ),
             'field_id'      => array(
                 'value' => '',
-                'label' => esc_html__('Field_id', 'leform'),
+                'label' => esc_html__('Field_id', 'rureraform'),
                 'type'  => 'hidden'
             ),
         ),
@@ -7102,23 +7007,23 @@ function element_properties_meta($chapters)
             'basic'         => array(
                 'type'  => 'tab',
                 'value' => 'basic',
-                'label' => esc_html__('Basic', 'leform')
+                'label' => esc_html__('Basic', 'rureraform')
             ),
         'correct_answer'    => array(
             'value'   => '',
-            'label'   => esc_html__('Correct Answer', 'leform'),
+            'label'   => esc_html__('Correct Answer', 'rureraform'),
             '',
             'type'    => 'select',
             'options' =>
                 array(
-                    'True' => esc_html__('True', 'leform'),
-                    'False' => esc_html__('False', 'leform'),
+                    'True' => esc_html__('True', 'rureraform'),
+                    'False' => esc_html__('False', 'rureraform'),
                 )
         ),
 
         'score'         => array(
            'value' => '',
-           'label' => esc_html__('Score', 'leform'),
+           'label' => esc_html__('Score', 'rureraform'),
            'type'  => 'number'
        ),
         'elements_data' => array(
@@ -7129,7 +7034,7 @@ function element_properties_meta($chapters)
         ),
         'field_id'      => array(
             'value' => '',
-            'label' => esc_html__('Field_id', 'leform'),
+            'label' => esc_html__('Field_id', 'rureraform'),
             'type'  => 'hidden'
         ),
         ),
@@ -7138,26 +7043,26 @@ function element_properties_meta($chapters)
             'basic'         => array(
                 'type'  => 'tab',
                 'value' => 'basic',
-                'label' => esc_html__('Basic', 'leform')
+                'label' => esc_html__('Basic', 'rureraform')
             ),
             'content'         => array(
                'value' => 'Attachment',
-               'label' => esc_html__('Label', 'leform'),
+               'label' => esc_html__('Label', 'rureraform'),
                'type'  => 'text'
            ),
            'allowed_types'         => array(
                'value' => '',
-               'label' => esc_html__('Allowed Types (e.g png, jpg)', 'leform'),
+               'label' => esc_html__('Allowed Types (e.g png, jpg)', 'rureraform'),
                'type'  => 'text'
            ),
             'no_of_files'         => array(
                'value' => '1',
-               'label' => esc_html__('No of Files', 'leform'),
+               'label' => esc_html__('No of Files', 'rureraform'),
                'type'  => 'number'
            ),
             'score'         => array(
                'value' => '',
-               'label' => esc_html__('Score', 'leform'),
+               'label' => esc_html__('Score', 'rureraform'),
                'type'  => 'number'
            ),
             'elements_data' => array(
@@ -7172,17 +7077,17 @@ function element_properties_meta($chapters)
             'basic'         => array(
                 'type'  => 'tab',
                 'value' => 'basic',
-                'label' => esc_html__('Basic', 'leform')
+                'label' => esc_html__('Basic', 'rureraform')
             ),
 
             'score'         => array(
                 'value' => '',
-                'label' => esc_html__('Score', 'leform'),
+                'label' => esc_html__('Score', 'rureraform'),
                 'type'  => 'number'
             ),
             'content'       => array(
                 'value'   => '<span class="block-holder" data-id="87714" data-field_type="select" id="field-87714"><span class="lms-root-block">&nbsp;<span class="lms-scaled"><span class="lms-sqrt-prefix lms-scaled" contenteditable="false">&radic;</span><span class="lms-sqrt-stem lms-non-leaf lms-empty" contenteditable="true">X</span></span></span></span>&nbsp;',
-                'label'   => esc_html__('Content', 'leform'),
+                'label'   => esc_html__('Content', 'rureraform'),
                 'tooltip' => '',
                 'type'    => 'html'
             ),
@@ -7212,12 +7117,12 @@ function element_properties_meta($chapters)
             'basic'         => array(
                 'type'  => 'tab',
                 'value' => 'basic',
-                'label' => esc_html__('Basic', 'leform')
+                'label' => esc_html__('Basic', 'rureraform')
             ),
             'content'       => array(
-                'value' => esc_html__('Mark the following true and false :', 'leform'),
-                'label' => esc_html__('Name', 'leform'),
-                'type'  => 'html'
+                'value' => esc_html__('Mark the following true and false :', 'rureraform'),
+                'label' => esc_html__('Question Label', 'rureraform'),
+                'type'  => 'textarea'
             ),
             'elements_data' => array(
                 'value'   => '',
@@ -7231,11 +7136,11 @@ function element_properties_meta($chapters)
             'basic'         => array(
                 'type'  => 'tab',
                 'value' => 'basic',
-                'label' => esc_html__('Basic', 'leform')
+                'label' => esc_html__('Basic', 'rureraform')
             ),
             'content'       => array(
                 'value'   => "<p>When we round 6,600,000 to the nearest million it is 7,000,000</p>",
-                'label'   => esc_html__('Content', 'leform'),
+                'label'   => esc_html__('Content', 'rureraform'),
                 'tooltip' => '',
                 'type'    => 'html'
             ),
@@ -7256,12 +7161,12 @@ function element_properties_meta($chapters)
             'basic'         => array(
                 'type'  => 'tab',
                 'value' => 'basic',
-                'label' => esc_html__('Basic', 'leform')
+                'label' => esc_html__('Basic', 'rureraform')
             ),
             'content'       => array(
-                'value' => esc_html__('Choose the correct Option', 'leform'),
-                'label' => esc_html__('Name', 'leform'),
-                'type'  => 'html'
+                'value' => esc_html__('Choose the correct Option', 'rureraform'),
+                'label' => esc_html__('Question Label', 'rureraform'),
+                'type'  => 'textarea'
             ),
             'elements_data' => array(
                 'value'   => '',
@@ -7275,11 +7180,11 @@ function element_properties_meta($chapters)
             'basic'         => array(
                 'type'  => 'tab',
                 'value' => 'basic',
-                'label' => esc_html__('Basic', 'leform')
+                'label' => esc_html__('Basic', 'rureraform')
             ),
             'content'       => array(
                 'value'   => "<p><b>When we round 9,780,000 to the nearest million we get</b></p>",
-                'label'   => esc_html__('Content', 'leform'),
+                'label'   => esc_html__('Content', 'rureraform'),
                 'tooltip' => '',
                 'type'    => 'html'
             ),
@@ -7301,12 +7206,12 @@ function element_properties_meta($chapters)
             'basic'         => array(
                 'type'  => 'tab',
                 'value' => 'basic',
-                'label' => esc_html__('Basic', 'leform')
+                'label' => esc_html__('Basic', 'rureraform')
             ),
             'content'       => array(
-                'value' => esc_html__('Arrange options in correct sequence ', 'leform'),
-                'label' => esc_html__('Name', 'leform'),
-                'type'  => 'html'
+                'value' => esc_html__('Arrange options in correct sequence ', 'rureraform'),
+                'label' => esc_html__('Question Label', 'rureraform'),
+                'type'  => 'textarea'
             ),
             'elements_data' => array(
                 'value'   => '',
@@ -7325,11 +7230,11 @@ function element_properties_meta($chapters)
             'basic'         => array(
                 'type'  => 'tab',
                 'value' => 'basic',
-                'label' => esc_html__('Basic', 'leform')
+                'label' => esc_html__('Basic', 'rureraform')
             ),
             'content'       => array(
-                'value' => esc_html__('Read this abstract and choose one correct answer in each drop-down list ', 'leform'),
-                'label' => esc_html__('Name', 'leform'),
+                'value' => esc_html__('Read this abstract and choose one correct answer in each drop-down list ', 'rureraform'),
+                'label' => esc_html__('Name', 'rureraform'),
                 'type'  => 'html'
             ),
             'elements_data' => array(
@@ -7344,7 +7249,7 @@ function element_properties_meta($chapters)
             'basic'         => array(
                 'type'  => 'tab',
                 'value' => 'basic',
-                'label' => esc_html__('Basic', 'leform')
+                'label' => esc_html__('Basic', 'rureraform')
             ),
             'content'       => array(
                 'value'   => '<div style="text-align: left;">The most&nbsp; <span class="select-box quiz-input-group">
@@ -7354,7 +7259,7 @@ function element_properties_meta($chapters)
 </span>. Which is particularly dangerous due to the <span class="select-box quiz-input-group">
         <select class="editor-field" data-id="95730" data-options="WyIgT3B0aW9uIDEgT3B0aW9uIDEgT3B0aW9uIDEgT3B0aW9uIDEgT3B0aW9uIDEgT3B0aW9uIDEiLCJPcHRpb24gMiIsIk9wdGlvbiAzIl0=" data-field_type="select" id="field-95730" data-correct="WyJPcHRpb24gMSJd" data-select_option=" Option 1 Option 1 Option 1 Option 1 Option 1 Option 1"><option value=" Option 1 Option 1 Option 1 Option 1 Option 1 Option 1"> Option 1 Option 1 Option 1 Option 1 Option 1 Option 1</option><option value="Option 2">Option 2</option><option value="Option 3">Option 3</option></select>
 </span> movement of&nbsp;the&nbsp;Ice&nbsp;Fall.</div>',
-                'label'   => esc_html__('Content', 'leform'),
+                'label'   => esc_html__('Content', 'rureraform'),
                 'tooltip' => '',
                 'type'    => 'html_toolbar'
             ),
@@ -7375,12 +7280,12 @@ function element_properties_meta($chapters)
             'basic'         => array(
                 'type'  => 'tab',
                 'value' => 'basic',
-                'label' => esc_html__('Basic', 'leform')
+                'label' => esc_html__('Basic', 'rureraform')
             ),
             'content'       => array(
-                'value' => esc_html__('Match each type of option on the left with a corresponding function on the right. ', 'leform'),
-                'label' => esc_html__('Name', 'leform'),
-                'type'  => 'html'
+                'value' => esc_html__('Match each type of option on the left with a corresponding function on the right. ', 'rureraform'),
+                'label' => esc_html__('Question Label', 'rureraform'),
+                'type'  => 'textarea'
             ),
             'elements_data' => array(
                 'value'   => '',
@@ -7414,12 +7319,12 @@ function element_properties_meta($chapters)
             'basic'         => array(
                 'type'  => 'tab',
                 'value' => 'basic',
-                'label' => esc_html__('Basic', 'leform')
+                'label' => esc_html__('Basic', 'rureraform')
             ),
             'content'       => array(
-                'value' => esc_html__('Question Label', 'leform'),
-                'label' => esc_html__('Name', 'leform'),
-                'type'  => 'html'
+                'value' => esc_html__('Question Label', 'rureraform'),
+                'label' => esc_html__('Question Label', 'rureraform'),
+                'type'  => 'textarea'
             ),
             'elements_data' => array(
                 'value'   => '',
@@ -7432,16 +7337,16 @@ function element_properties_meta($chapters)
             'basic'         => array(
                 'type'  => 'tab',
                 'value' => 'basic',
-                'label' => esc_html__('Basic', 'leform')
+                'label' => esc_html__('Basic', 'rureraform')
             ),
             'question_id'    => array(
                 'value'   => '',
-                'label'   => esc_html__('Question', 'leform'),
+                'label'   => esc_html__('Question', 'rureraform'),
                 'class' => 'search-question-select2',
                 'type'    => 'ajax_select_new',
                 'options' =>
                     array(
-                        '0' => esc_html__('Select Question', 'leform'),
+                        '0' => esc_html__('Select Question', 'rureraform'),
                     )
             ),
             'elements_data' => array(
@@ -7455,7 +7360,7 @@ function element_properties_meta($chapters)
             'basic'         => array(
                 'type'  => 'tab',
                 'value' => 'basic',
-                'label' => esc_html__('Basic', 'leform')
+                'label' => esc_html__('Basic', 'rureraform')
             ),
             'elements_data' => array(
                 'value'   => '',
@@ -7468,22 +7373,22 @@ function element_properties_meta($chapters)
             'basic'         => array(
                 'type'  => 'tab',
                 'value' => 'basic',
-                'label' => esc_html__('Basic', 'leform')
+                'label' => esc_html__('Basic', 'rureraform')
             ),
             'no_of_display_questions'         => array(
                 'value' => '1',
-                'label' => esc_html__('No of Displaying Questions', 'leform'),
+                'label' => esc_html__('No of Displaying Questions', 'rureraform'),
                 'type'  => 'number'
             ),
             'question_ids'    => array(
                 'value'   => '',
-                'label'   => esc_html__('Questions', 'leform'),
+                'label'   => esc_html__('Questions', 'rureraform'),
                 'class' => 'search-question-select2',
                 'type'    => 'ajax_multi_select_new',
                 'multi-select' => 'on',
                 'options' =>
                     array(
-                        '0' => esc_html__('Select Questions', 'leform'),
+                        '0' => esc_html__('Select Questions', 'rureraform'),
                     )
             ),
             'elements_data' => array(
@@ -7499,22 +7404,22 @@ function element_properties_meta($chapters)
             'basic'         => array(
                 'type'  => 'tab',
                 'value' => 'basic',
-                'label' => esc_html__('Basic', 'leform')
+                'label' => esc_html__('Basic', 'rureraform')
             ),
             'audio_text'       => array(
-                'value' => esc_html__('', 'leform'),
-                'label' => esc_html__('Word', 'leform'),
+                'value' => esc_html__('', 'rureraform'),
+                'label' => esc_html__('Word', 'rureraform'),
                 'after' => '<a href="javascript:;" class="rurera-generate-audio">Generate</a>',
                 'type'  => 'text'
             ),
             'audio_sentense'       => array(
-                'value' => esc_html__('', 'leform'),
-                'label' => esc_html__('Sentence', 'leform'),
+                'value' => esc_html__('', 'rureraform'),
+                'label' => esc_html__('Sentence', 'rureraform'),
                 'type'  => 'text'
             ),
             'audio_defination'       => array(
-                'value' => esc_html__('', 'leform'),
-                'label' => esc_html__('Defination', 'leform'),
+                'value' => esc_html__('', 'rureraform'),
+                'label' => esc_html__('Defination', 'rureraform'),
                 'type'  => 'text'
             ),
 			'options'           => array(
@@ -7530,23 +7435,23 @@ function element_properties_meta($chapters)
                         'label' => 'Sentence'
                     )
                 ),
-                'label'        => esc_html__('Sentences', 'leform'),
-                'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'leform'),
+                'label'        => esc_html__('Sentences', 'rureraform'),
+                'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'rureraform'),
                 'type'         => 'repeater_fields'
             ),
 			'words_options'       => array(
-                'value' => esc_html__('', 'leform'),
-                'label' => esc_html__('Words', 'leform'),
+                'value' => esc_html__('', 'rureraform'),
+                'label' => esc_html__('Words', 'rureraform'),
                 'type'  => 'text'
             ),
             'word_audio'       => array(
-                'value' => esc_html__('', 'leform'),
-                'label' => esc_html__('Audio File Word Upload', 'leform'),
+                'value' => esc_html__('', 'rureraform'),
+                'label' => esc_html__('Audio File Word Upload', 'rureraform'),
                 'type'  => 'file'
             ),
             'content'       => array(
-                'value' => esc_html__('', 'leform'),
-                'label' => esc_html__('Audio File with Sentense Upload', 'leform'),
+                'value' => esc_html__('', 'rureraform'),
+                'label' => esc_html__('Audio File with Sentense Upload', 'rureraform'),
                 'type'  => 'file'
             ),
             'elements_data' => array(
@@ -7560,11 +7465,11 @@ function element_properties_meta($chapters)
                 'basic'         => array(
                     'type'  => 'tab',
                     'value' => 'basic',
-                    'label' => esc_html__('Basic', 'leform')
+                    'label' => esc_html__('Basic', 'rureraform')
                 ),
                 'content'       => array(
-                    'value' => esc_html__('30', 'leform'),
-                    'label' => esc_html__('Time Limit (seconds)', 'leform'),
+                    'value' => esc_html__('30', 'rureraform'),
+                    'label' => esc_html__('Time Limit (seconds)', 'rureraform'),
                     'type'  => 'number'
                 ),
                 'elements_data' => array(
@@ -7600,7 +7505,7 @@ function element_properties_meta($chapters)
             ),
             'content'       => array(
                 'value'   => "1",
-                'label'   => esc_html__('Question No', 'leform'),
+                'label'   => esc_html__('Question No', 'rureraform'),
                 'tooltip' => '',
                 'type'    => 'text'
             ),
@@ -7615,44 +7520,44 @@ function element_properties_meta($chapters)
             ),
             'insert_symbols'    => array(
                 'value'   => '',
-                'label'   => esc_html__('Insert Symbols', 'leform'),
+                'label'   => esc_html__('Insert Symbols', 'rureraform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        '-' => esc_html__('hyphen', 'leform'),
-                        '-' => esc_html__('hyphen', 'leform'),
-                        'both' => esc_html__('Both', 'leform'),
+                        '-' => esc_html__('hyphen', 'rureraform'),
+                        '-' => esc_html__('hyphen', 'rureraform'),
+                        'both' => esc_html__('Both', 'rureraform'),
                     )
             ),
             'insert_into_type'  => array(
                 'value'   => '',
-                'label'   => esc_html__('Insert Into', 'leform'),
+                'label'   => esc_html__('Insert Into', 'rureraform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'words'      => esc_html__('Words', 'leform'),
-                        'characters' => esc_html__('Characters', 'leform'),
+                        'words'      => esc_html__('Words', 'rureraform'),
+                        'characters' => esc_html__('Characters', 'rureraform'),
                     )
             ),
             'question_sentense' => array(
                 'classes' => "elements_fetchable",
                 'value'   => "",
-                'label'   => esc_html__('Question Sentense', 'leform'),
+                'label'   => esc_html__('Question Sentense', 'rureraform'),
                 'tooltip' => '',
                 'type'    => 'textarea'
             ),
             'correct_sentense'  => array(
                 'classes' => "elements_fetchable",
                 'value'   => "",
-                'label'   => esc_html__('Correct Sentense', 'leform'),
+                'label'   => esc_html__('Correct Sentense', 'rureraform'),
                 'tooltip' => '',
                 'type'    => 'textarea'
             ),
             'elements_fetcher'  => array(
                 'value'   => "",
-                'label'   => esc_html__('Correct Sentense', 'leform'),
+                'label'   => esc_html__('Correct Sentense', 'rureraform'),
                 'tooltip' => '',
                 'type'    => 'elements_fetcher'
             ),
@@ -7667,38 +7572,38 @@ function element_properties_meta($chapters)
             ),
             'insert_symbols'   => array(
                 'value'   => '',
-                'label'   => esc_html__('Insert Symbols', 'leform'),
+                'label'   => esc_html__('Insert Symbols', 'rureraform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        '-' => esc_html__('hyphen', 'leform'),
-                        ',' => esc_html__('Comma', 'leform'),
-                        'both' => esc_html__('Both', 'leform'),
+                        '-' => esc_html__('hyphen', 'rureraform'),
+                        ',' => esc_html__('Comma', 'rureraform'),
+                        'both' => esc_html__('Both', 'rureraform'),
                     )
             ),
             'insert_into_type' => array(
                 'value'   => '',
-                'label'   => esc_html__('Insert Into', 'leform'),
+                'label'   => esc_html__('Insert Into', 'rureraform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'words'      => esc_html__('Words', 'leform'),
-                        'characters' => esc_html__('Characters', 'leform'),
+                        'words'      => esc_html__('Words', 'rureraform'),
+                        'characters' => esc_html__('Characters', 'rureraform'),
                     )
             ),
             'content'          => array(
                 'classes' => "note-editable",
                 'value'   => '<p data-field_type="insert_into_sentense" type="paragraph" class="editor-field given" data-id="37851" id="field-37851" correct_answere="4">test text goes h</p>',
                 'label'   =>
-                    esc_html__('Content', 'leform'),
+                    esc_html__('Content', 'rureraform'),
                 'tooltip' => '',
                 'type'    => 'html_notool_editor'
             ),
             'elements_fetcher' => array(
                 'value'   => "",
-                'label'   => esc_html__('Correct Sentense', 'leform'),
+                'label'   => esc_html__('Correct Sentense', 'rureraform'),
                 'tooltip' => '',
                 'type'    => 'elements_fetcher'
             ),
@@ -9740,4 +9645,12 @@ function get_powerup_tables($tables_numbers, $practice_level = 0){
             break;
     }
 	return $tables_numbers;
+}
+
+function getLevelByPercentage($topic_student_percentage){
+	$level = ($topic_student_percentage > 0)? 'Concern' : '';
+	$level = ($topic_student_percentage > 25)? 'Requires Improvement' : $level;
+	$level = ($topic_student_percentage > 50)? 'Good' : $level;
+	$level = ($topic_student_percentage > 75)? 'Exceptional' : $level;
+	return $level;
 }

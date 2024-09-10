@@ -223,8 +223,8 @@ $section_class = ($quiz->quiz_type == 'vocabulary')? 'lms-quiz-section1' : $sect
                         <div class="question-layout-block">
                             <div class="left-content has-bg">
                                 <h2>&nbsp;</h2>
-                                <div id="leform-form-1"
-                                     class="leform-form leform-elements leform-form-input-medium leform-form-icon-inside leform-form-description-bottom ui-sortable"
+                                <div id="rureraform-form-1"
+                                     class="rureraform-form rureraform-elements rureraform-form-input-medium rureraform-form-icon-inside rureraform-form-description-bottom ui-sortable"
                                      _data-parent="1"
                                      _data-parent-col="0" style="display: block;">
                                     <div class="question-layout">

@@ -112,9 +112,12 @@
                    <tbody>
                    @if( $results_data->count() > 0)
                        @foreach( $results_data as $resultsRow)
+						@php 
+						if($resultsRow->status == 'waiting'){ continue; }
+						$average_time = ($resultsRow->total_time_consumed > 0 )? getTimeWithText($resultsRow->total_time_consumed / $resultsRow->total_attempted) : 0; @endphp
                            <tr>
                                <td><a href="/panel/results/{{$resultsRow->id}}/timetables">{{dateTimeFormat($resultsRow->created_at,'j M Y')}}</a></td>
-                               <td>{{getTimeWithText($resultsRow->total_time_consumed / $resultsRow->total_attempted)}}</td>
+                               <td>{{$average_time}}</td>
                                <td>{{$resultsRow->total_coins_earned}}</td>
                                <td>{{getTimeWithText($resultsRow->total_game_time)}}</td>
                            </tr>

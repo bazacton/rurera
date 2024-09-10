@@ -111,9 +111,9 @@ Lms Signs Style
 .alphabet-list-style .lms-radio-select.image-right .field-holder input[type="radio"]:checked ~ label  {padding-left: 45px;}
 .numeric-list-style .lms-radio-select.image-right .field-holder label:before,
 .alphabet-list-style .lms-radio-select.image-right .field-holder label:before {left: 40px;}
-#question_preview .leform-element[data-type="radio"] {padding-top: 0;}
-#question_preview .leform-element[data-type="html"] p {margin-bottom: 0;}
-#question_preview .leform-element[data-type="html"] {padding-bottom: 5px;}
+#question_preview .rureraform-element[data-type="radio"] {padding-top: 0;}
+#question_preview .rureraform-element[data-type="html"] p {margin-bottom: 0;}
+#question_preview .rureraform-element[data-type="html"] {padding-bottom: 5px;}
 /**********************************
 Rurera Row Style 
 **********************************/
@@ -122,9 +122,9 @@ Rurera Row Style
 .rurera-in-row .field-holder,
 .rurera-in-row .form-field {width: 31.888%;}
 .lms-radio-select input[type=radio] ~ label {padding-right: 50px;}
-.leform-element .leform-col .leform-element {padding: 0;}
-.quiz-group .leform-column-label {margin-bottom: 15px;}
-.quiz-group .leform-column-label:has(label:empty) {display: none;}
+.rureraform-element .rureraform-col .rureraform-element {padding: 0;}
+.quiz-group .rureraform-column-label {margin-bottom: 15px;}
+.quiz-group .rureraform-column-label:has(label:empty) {display: none;}
 .spells-quiz-from .lms-radio-select.rurera-in-row {align-items: center; justify-content: center; padding: 15px 15px 0;}
 .spells-quiz-from .lms-radio-select label {max-height: 50px; padding-right: 15px !important; justify-content: center;}
 .spells-quiz-from .rurera-in-row .field-holder,
@@ -136,6 +136,7 @@ Rurera Col Style
 /************************ 
 Lms Form Fields Style 
 ************************/
+.rurera-hide {display: none;}
 .question-step {position: relative; }
 .question-step:has(.prev-next-controls){padding-bottom: 80px;}
 .question-step:has(.prev-next-controls.questions-nav-controls.rurera-hide){padding-bottom: 0;}
@@ -145,7 +146,7 @@ Lms Form Fields Style
 .lms-content-holder form {margin: 0; display: flex; align-items: center; width: 520px;}
 .lms-content-holder form.question-fields {width: 100%; display: inline-flex; background-color: #fff; height: 100%; padding: 0 0 30px; min-height: 680px; align-items: flex-start;}
 .form-box { width: calc(100% - 120px); position: relative;}
-.leform-form-editor .form-box {width: 100%;}
+.rureraform-form-editor .form-box {width: 100%;}
 .form-field input[type="checkbox"] {position: absolute; left: 0; top: 0; opacity: 0;}
 .form-field label {background-color: #fff; border: 2px solid #ddd; border-bottom-width: 4px; border-radius: 8px; position: relative; cursor: pointer; padding: 15px; width: 100%; margin-bottom: 0; -webkit-transition: all 0.4s ease-in-out; transition: all 0.4s ease-in-out;}
 .lms-checkbox-img .form-field label {height: 100%;}
@@ -204,7 +205,7 @@ body .form-field.wrong label  {background: #ffe2eb !important; border-color: #ff
 .right-content {width: 300px; height: calc(100% - 60px); position: absolute; right: 0; top: 0; display: inline-block;}
 .mastery-text {margin: 0; text-align: center; font-weight: 600; }
 .left-content.has-bg {background: url(../assets/images/lms-bg.png) no-repeat center top;}
-.leform-element-html img {object-fit: cover;}
+.rureraform-element-html img {object-fit: cover;}
 .block-holder img.editor-field {padding: 4px; box-shadow: 0 0 0 2px #fff inset; border: 4px solid rgba(0,0,0,0.1); border-radius: 2px;}
 .spells-quiz-from .question-next-btn {height: auto; position: relative; min-height: 48px; min-width: 150px;}
 .spells-quiz-from .question-next-btn svg {display: none;}
@@ -228,8 +229,8 @@ body .form-field.wrong label  {background: #ffe2eb !important; border-color: #ff
 .inline-fields.lms-checkbox-img label {display: inline-flex; align-items: center; }
 .inline-fields .form-field:nth-child(3), 
 .inline-fields .form-field:nth-child(6) {margin-right: 0;}
-.leform-form-editor .form-box .form-field:last-child,
-.leform-form-editor .input-holder input.input-simple { margin-bottom: 0;}
+.rureraform-form-editor .form-box .form-field:last-child,
+.rureraform-form-editor .input-holder input.input-simple { margin-bottom: 0;}
 .form-field input[type="checkbox"]:checked ~ label,
 .form-field label:hover {background-color: rgba(0,0,0,0.06);}
 .form-field input[type="checkbox"]:checked ~ label img {margin-right: 15px;}
@@ -324,10 +325,10 @@ Lms Question List Style
 .learning-page.type-vocabulary:has(.virtual-keyboard) .left-content {height: auto;}
 .question-fields .left-content::-webkit-scrollbar-track,
 .lms-sorting-fields::-webkit-scrollbar-trackt,
-.learning-page.type-practice .leform-elements::-webkit-scrollbar-trackt {-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);}
+.learning-page.type-practice .rureraform-elements::-webkit-scrollbar-trackt {-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);}
 .question-fields .left-content::-webkit-scrollbar-thumb,
 .lms-sorting-fields::-webkit-scrollbar-thumb,
-.learning-page.type-practice .leform-elements::-webkit-scrollbar-thumb {background-color: darkgrey;}
+.learning-page.type-practice .rureraform-elements::-webkit-scrollbar-thumb {background-color: darkgrey;}
 .question-textarea p {line-height: 35px;}
 .question-textarea h4 {margin: 0 0 10px; color: #fff; font-size: 22px; line-height: 28px; font-weight: 600;}
 .question-textarea select,
@@ -342,22 +343,22 @@ Lms Question List Style
 .question-layout .select-box:after {content: ""; width: 0; height: 0; border: 5px solid transparent; border-color: #ccc transparent transparent transparent; position: absolute; top: 50%; right: 0; margin-top: -2px;}
 .question-textarea input[type="text"],
 .question-layout input[type="text"],
-.input-holder input.input-simple {border: 3px solid #000; height: 32px; min-height: 50px; color: #000; font-size: 16px; text-align: left; font-weight: 400; border-radius: 8px; display: inline-block; padding: 0 10px;}
+.input-holder input.input-simple {border: 3px solid #000; height: 32px; min-height: 50px; color: #000; font-size: 16px; text-align: left; font-weight: 400; border-radius: 8px; display: inline-block; padding: 0 10px; width: 100%;}
 .input-holder input[type="text"],
 .input-holder input.input-simple {border: 0; background-color: #fcfcfc;}
 .question-result-layout .input-holder .input-simple {width: 100%; }
-.leform-row.leform-element [class*="leform-col-"] {float: none; display: inline-block; margin-right: -4px; vertical-align: middle;}
+.rureraform-row.rureraform-element [class*="rureraform-col-"] {float: none; display: inline-block; margin-right: -4px; vertical-align: middle;}
 .input-holder.input_line,
 .lms-quiz-section .input-holder.input_line {border: 0; vertical-align: middle;}
 .input-holder input.input_line,
-.lms-quiz-create .leform-properties-content .note-editable input.input_line {background-color: transparent; border-radius: 0; height: auto; min-height: auto; padding: 0 !important; text-align: left; border-bottom: 2px dotted #ddd; line-height: normal;}
+.lms-quiz-create .rureraform-properties-content .note-editable input.input_line {background-color: transparent; border-radius: 0; height: auto; min-height: auto; padding: 0 !important; text-align: left; border-bottom: 2px dotted #ddd; line-height: normal;}
 .question-layout .input-group-prepend ~ input[type="text"] {border-radius: 0; border-color: #eee; border-width: 1px; text-align: left;}
 .question-layout .input-group .admin-file-manager,
 .question-layout .input-group .admin-file-view {background-color: #fff !important; border: 1px solid #eee !important;}
 .question-layout .input-group .admin-file-manager i,
 .question-layout .input-group .admin-file-view i {font-size: 16px; font-style: normal; font-weight: 900 !important; font-family: "Font Awesome 5 Free" !important;}
 .question-layout .input-group .admin-file-manager .fa-chevron-up:before {content: ""; border-style: solid; border-width: 1px 0 0 1px; border-color: #ccc; display: inline-block; height: 10px; width: 10px; transform: rotate(45deg); vertical-align: middle;}
-.question-step:has(.question-number-holder .flag-question) .leform-form,
+.question-step:has(.question-number-holder .flag-question) .rureraform-form,
 .question-step:has(.question-number-holder .flag-question) .questions-total-holder {padding-left: 70px; margin-left: 0 !important;}
 
 /**********************************
@@ -410,7 +411,7 @@ Lms Radio And Question Section Style Start
 .lms-question-lists .lms-quest-title {margin-bottom: 10px;}
 .lms-question-lists .lms-quest-title span,
 .lms-question-lists .lms-quest span {font-size: 0.95em; color: #222; font-weight: 500; display: inline-flex; }
-.lms-remember-holder .leform-element {padding: 0; margin: 0;}
+.lms-remember-holder .rureraform-element {padding: 0; margin: 0;}
 .lms-question-lists .symbol-sign {padding: 0 5px;}
 .lms-button-holder .lms-quest-btn {font-size: 22px; color: #fff; background-color: #8fc963; height: 55px; line-height: 55px; display: inline-block; padding: 0 18px; text-decoration: none; border-radius: 6px; font-weight: 500; margin: 0 20px 20px 0; box-shadow: 0 0 0 5px #ebefee; text-align: center; min-width: 190px; vertical-align: top;}
 .field-sub-title {font-size: 28px; font-weight: 500; display: block; line-height: normal; color: #75a012;}
@@ -485,19 +486,19 @@ Lms Quiz Wf Style Start
 .lms-quiz-section .section-title {margin: 0 0 30px; position: relative;}
 .question-icon svg {width: 42px; height: 42px; text-align: center;}
 .question-number-holder {width: 45px; text-align: center; float: left; margin-right: 20px; position: absolute; margin-top: 0; cursor: pointer; z-index: 1 !important;}
-.question-number-holder ~ .leform-elements {padding-left: 0;}
+.question-number-holder ~ .rureraform-elements {padding-left: 0;}
 .question-number-holder ~ .show-notifications { margin-bottom: 30px;}
 .question-number-holder .question-number {margin: 0 0 10px; }
 .lms-quiz-section .divide-numbers span {font-size: 20px;}
 .question-number-holder ~ span {padding-left: 65px; font-size: 20px;}
-.leform-element[data-type="question_no"] + .leform-element[data-type="html"] {margin-top: -32px;}
-.leform-form-editor .leform-element[data-type="question_no"] + .leform-element[data-type="html"],
-.leform-form-editor .leform-element[data-type="question_no"] + .leform-element[data-type="question_label"] {margin-top: 0;}
-.leform-element[data-type="question_no"] + .leform-element[data-type="question_label"] {padding-left: 60px; margin-top: -30px;}
-.leform-element[data-type="question_no"] { padding-left: 0; margin-top: 0;  outline: none !important;} 
-.leform-form-editor .question-number-holder {position: relative; float: none; display: inline-block; margin-bottom: 0;}
-.leform-form-editor .question-number {margin-bottom: 0;}
-.leform-element[data-type="seperator"] {padding-left: 0; padding-right: 0;}
+.rureraform-element[data-type="question_no"] + .rureraform-element[data-type="html"] {margin-top: -32px;}
+.rureraform-form-editor .rureraform-element[data-type="question_no"] + .rureraform-element[data-type="html"],
+.rureraform-form-editor .rureraform-element[data-type="question_no"] + .rureraform-element[data-type="question_label"] {margin-top: 0;}
+.rureraform-element[data-type="question_no"] + .rureraform-element[data-type="question_label"] {padding-left: 60px; margin-top: -30px;}
+.rureraform-element[data-type="question_no"] { padding-left: 0; margin-top: 0;  outline: none !important;} 
+.rureraform-form-editor .question-number-holder {position: relative; float: none; display: inline-block; margin-bottom: 0;}
+.rureraform-form-editor .question-number {margin-bottom: 0;}
+.rureraform-element[data-type="seperator"] {padding-left: 0; padding-right: 0;}
 .question-icon {display: block; line-height: normal; text-align: center; }
 .graph-holder {text-align: center;}
 .lms-quiz-section .img-holder img {border-radius: 0; width: auto;}
@@ -551,18 +552,18 @@ Lms Quiz Wf Style Start
 @supports (selector(.quiz-group:has(.input-holder))) {
     .input-holder:has(.divide-numbers) {border: 0 !important;}
 }
-.lms-quiz-section .leform-col-4 .input-holder {width: 90% !important;}
+.lms-quiz-section .rureraform-col-4 .input-holder {width: 90% !important;}
 .input-holder textarea {padding: 10px; border: 0; border-radius: 8px; color: #000; outline: none; width: 100%;}
 .input-holder textarea::-webkit-input-placeholder {color: #000; }
 .input-holder textarea:-moz-placeholder {color: #000;}
 .input-holder textarea::-moz-placeholder {color: #000;}
 .input-holder textarea:-ms-input-placeholder {color: #000;}
 /* Textarea Style with lines */
-.leform-element[data-type="textareafield_quiz"] .input-holder {width: 100% !important; padding: 0;}
-.leform-element[data-type="textareafield_quiz"] .input-holder.field_medium {width: 75% !important;}
-.leform-element[data-type="textareafield_quiz"] .input-holder.field_small {width: 50% !important;}
-.leform-element label.leform-label {margin-bottom: 0;}
-.leform-admin-editor .input-holder.textarea_lines {padding: 0;}
+.rureraform-element[data-type="textareafield_quiz"] .input-holder {width: 100% !important; padding: 0;}
+.rureraform-element[data-type="textareafield_quiz"] .input-holder.field_medium {width: 75% !important;}
+.rureraform-element[data-type="textareafield_quiz"] .input-holder.field_small {width: 50% !important;}
+.rureraform-element label.rureraform-label {margin-bottom: 0;}
+.rureraform-admin-editor .input-holder.textarea_lines {padding: 0;}
 .input-holder.textarea_lines,
 .lms-quiz-section .input-holder.textarea_lines {border: 0;border-radius: 0;margin-left: -10px;line-height: 31px;}
 .textarea_lines textarea {background-attachment: local; padding: 0 10px; outline: none; width: 100%; resize: none; color: #999; background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 6 6"><circle cx="3" cy="3" r="2" fill="LightGray" /></svg>') 0 0.7em/3px 1.9em white;}
@@ -577,13 +578,13 @@ Lms Quiz Wf Style Start
 .image-field-box{position:absolute !important;}
 .input-holder:empty {display: none;}
 .input-holder input.input-simple::-moz-placeholder,
-.leform-element input.input-simple::-moz-placeholder {color: #d1d1d1; opacity: 1;}
+.rureraform-element input.input-simple::-moz-placeholder {color: #d1d1d1; opacity: 1;}
 .input-holder input.input-simple::-webkit-input-placeholder,
-.leform-element input.input-simple::-webkit-input-placeholder {color: #d1d1d1; opacity: 1;}
+.rureraform-element input.input-simple::-webkit-input-placeholder {color: #d1d1d1; opacity: 1;}
 .input-holder input.input-simple:focus::-moz-placeholder,
-.leform-element input.input-simple:focus::-moz-placeholder {color: transparent;}
+.rureraform-element input.input-simple:focus::-moz-placeholder {color: transparent;}
 .input-holder input.input-simple:focus::-webkit-input-placeholder,
-.leform-element input.input-simple:focus::-webkit-input-placeholder {color: transparent;}
+.rureraform-element input.input-simple:focus::-webkit-input-placeholder {color: transparent;}
 .input-holder .input-label {position: absolute; left: 10px; top: 50%; transform: translateY(-50%);}
 .input_line {border-right: 0 !important; border-top: 0 !important; border-left: 0 !important; border-color: #000; border-radius: 0;}
 .input-holder .input-label.right,
@@ -605,11 +606,11 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {-webkit-appearance: none;}
 input[type=number] {-moz-appearance:textfield;}
 .input-holder .wf-input-label {position: absolute; text-align: center; width: 100%; bottom: -35px; line-height: normal; z-index: 1; left: 0; font-size: 18px; font-weight: 700;}
-.leform-admin-editor .input-holder {display: inline-flex !important; align-items: center; padding: 0 15px;}
-.leform-admin-editor .input-holder .input-label {position: initial; transform: none; width: auto; display: inline-block; padding-left: 10px;}
-.leform-admin-editor .input-holder input.editor-field {text-align: left; outline: none; width: 100%;}
+.rureraform-admin-editor .input-holder {display: inline-flex !important; align-items: center; padding: 0 15px;}
+.rureraform-admin-editor .input-holder .input-label {position: initial; transform: none; width: auto; display: inline-block; padding-left: 10px;}
+.rureraform-admin-editor .input-holder input.editor-field {text-align: left; outline: none; width: 100%;}
 .question-textarea .input-simple.full-width {max-width: 100%;}
-.leform-admin-editor .input-holder:has(input) {padding: 0; overflow: hidden;}
+.rureraform-admin-editor .input-holder:has(input) {padding: 0; overflow: hidden;}
 .input-field .wf-input-label,
 .wf-input-label {font-weight: 700; color: #000; text-align: center; display: block; margin: 0; font-size: 16px;}
 .quiz-group .field-group {margin-top: 0;}
@@ -674,7 +675,7 @@ input.large,
 .column-2 .input-holder .medium, 
 .column-3 .input-holder .medium,
 .column-4 .input-holder .medium{width: 100%; max-width: 100%;}
-.leform-col-3 input.small {width: 100%; text-align: center;}
+.rureraform-col-3 input.small {width: 100%; text-align: center;}
 .quiz-input-group .field-holder {text-align: right;}
 .quiz-input-group .field-holder span {display: inline-block;}
 .input-holder .field-lable {min-height: 50px; font-size: 18px; font-weight: 700; display: inline-block; line-height: 50px; padding-right: 12px; }
@@ -695,13 +696,13 @@ input.large,
 .lms-drwa-lines .FL-left {width: 35% !important;}
 .lms-drwa-lines .FL-right {width: 15% !important;}
 .lms-drwa-lines .FL-mid {width: 50% !important;}
-.leform-form-editor .leform-form {max-width: 740px;}
-.leform-form-editor .table {margin: 0;}
-.leform-form-editor .table tr td {padding-top: 10px !important; padding-bottom: 10px !important;}
-.leform-form-editor .table tr td p {text-align: center;}
-.leform-form-editor .input-group-prepend ~ input[type="text"] {margin-bottom: 0; border: 1px solid #ccc; height: 42px; padding: 0 10px;}
-.leform-form-editor .input-group-append .input-group-text,
-.leform-form-editor .input-group-prepend .input-group-text{border-color: #ccc;}
+.rureraform-form-editor .rureraform-form {max-width: 740px;}
+.rureraform-form-editor .table {margin: 0;}
+.rureraform-form-editor .table tr td {padding-top: 10px !important; padding-bottom: 10px !important;}
+.rureraform-form-editor .table tr td p {text-align: center;}
+.rureraform-form-editor .input-group-prepend ~ input[type="text"] {margin-bottom: 0; border: 1px solid #ccc; height: 42px; padding: 0 10px;}
+.rureraform-form-editor .input-group-append .input-group-text,
+.rureraform-form-editor .input-group-prepend .input-group-text{border-color: #ccc;}
 /***************************** 
 Lms Quiz Wf Style End 
 ******************************/
@@ -744,14 +745,14 @@ Lms Quiz Wf Style End
 .quiz-pagination .has-flag a:before {content: ""; position: absolute; top: -20px; height: 25px; width: 25px; left: 50%; transform: translateX(-50%); background: url(../../default/svgs/pagination-flag.svg) no-repeat; background-size: contain; margin-left: 3px; filter: invert(32%) sepia(11%) saturate(2395%) hue-rotate(195deg) brightness(92%) contrast(84%);}
 .assignment-questions-preview .quiz-pagination .swiper-container ul {flex-wrap: wrap;}
 .assignment-questions-preview .quiz-pagination .swiper-container li {margin: 6px 6px 0 0; width: 25px; max-width: 25px;}
-.assignment-questions-preview .leform-elements,
-.single-question-preview .leform-elements {padding-left: 100px;}
-.assignment-questions-preview .leform-element[data-type="question_label"], .assignment-questions-preview .leform-element[data-type="checkbox"], 
-.assignment-questions-preview .leform-element[data-type="radio"], .assignment-questions-preview .leform-element[data-type="sortable_quiz"], 
-.assignment-questions-preview .leform-element[data-type="html"], .assignment-questions-preview .leform-element[data-type="match_quiz"],
-.single-question-preview .leform-element[data-type="question_label"], .single-question-preview .leform-element[data-type="checkbox"], 
-.single-question-preview .leform-element[data-type="radio"], .single-question-preview .leform-element[data-type="sortable_quiz"], 
-.single-question-preview .leform-element[data-type="html"], .single-question-preview .leform-element[data-type="match_quiz"] {padding-left: 0;}
+.assignment-questions-preview .rureraform-elements,
+.single-question-preview .rureraform-elements {padding-left: 100px;}
+.assignment-questions-preview .rureraform-element[data-type="question_label"], .assignment-questions-preview .rureraform-element[data-type="checkbox"], 
+.assignment-questions-preview .rureraform-element[data-type="radio"], .assignment-questions-preview .rureraform-element[data-type="sortable_quiz"], 
+.assignment-questions-preview .rureraform-element[data-type="html"], .assignment-questions-preview .rureraform-element[data-type="match_quiz"],
+.single-question-preview .rureraform-element[data-type="question_label"], .single-question-preview .rureraform-element[data-type="checkbox"], 
+.single-question-preview .rureraform-element[data-type="radio"], .single-question-preview .rureraform-element[data-type="sortable_quiz"], 
+.single-question-preview .rureraform-element[data-type="html"], .single-question-preview .rureraform-element[data-type="match_quiz"] {padding-left: 0;}
 .block-holder .lms-root-block {overflow: visible;}
 .match-question .stems ol {padding: 0; margin: 0;}
 .assignment-questions-preview .table:not(.table-sm):not(.table-md):not(.dataTable) th,
@@ -842,27 +843,27 @@ Lms Table Style
 .lms-table tr th {background-color: #82a724; color: #fff; font-weight: 400; border-left: 1px solid; padding: 5px 10px; min-width: 60px;}
 .lms-table input[type="text"] {width: 40px; border: 1px solid #b7b6b9; height: 25px; text-align: center; font-size: 13px;}
 .lms-table tr td {border: 1px solid #ccc; text-align: center; padding: 5px 10px;}
-.leform-element table.table {margin: 0; border-color: #000; overflow: hidden;}
-.leform-element table.table td {line-height: normal; text-align: center; vertical-align: middle; padding: 5px; height: 50px; border-color: #000;}
-.leform-element table.table td .field-holder {border: 0;}
-.leform-element table.table td:first-child,
-.leform-element table.table th:first-child {width: 220px;}
+.rureraform-element table.table {margin: 0; border-color: #000; overflow: hidden;}
+.rureraform-element table.table td {line-height: normal; text-align: center; vertical-align: middle; padding: 5px; height: 50px; border-color: #000;}
+.rureraform-element table.table td .field-holder {border: 0;}
+.rureraform-element table.table td:first-child,
+.rureraform-element table.table th:first-child {width: 220px;}
 .question-layout table.table td p {margin: 0;}
-.leform-element table.table td .input-holder {width: 100%; border-width: 0;}
-.leform-element table.table td .input-holder input {text-align: center; background-color: initial; border: 1px solid #ddd; height: 38px; min-height: 38px; background-color: #fcfcfc;}
-.leform-element table.table td .input_line {width: 100% !important; margin: 0;}
-.leform-element table.table th {background-color: #c8d2ec; border-top: 1px solid !important; border-color: #000;}
-.leform-element table.table th b {font-weight: 500;}
+.rureraform-element table.table td .input-holder {width: 100%; border-width: 0;}
+.rureraform-element table.table td .input-holder input {text-align: center; background-color: initial; border: 1px solid #ddd; height: 38px; min-height: 38px; background-color: #fcfcfc;}
+.rureraform-element table.table td .input_line {width: 100% !important; margin: 0;}
+.rureraform-element table.table th {background-color: #c8d2ec; border-top: 1px solid !important; border-color: #000;}
+.rureraform-element table.table th b {font-weight: 500;}
 /************************************ 
  Tool Dropdown Style Start
 *************************************/
-.leform-toolbar-list .question_templates {max-width: 480px; min-width: 480px; background-color: #fff; position: absolute; left: 10px; top: 100%; border: 1px solid #c7c7c7; z-index: 2; visibility: hidden; opacity: 0; display: flex; flex-wrap: wrap; padding: 0; margin: 0; transform: translateY(10px); box-shadow: 3px 3px 3px rgba(0,0,0,0.4); -webkit-transition: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) all; -moz-transition: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) all; -o-transition: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) all; transition: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) all;}
-.leform-toolbar-list>li:hover .question_templates {visibility: visible; opacity: 1; transform: translateY(0); display: flex;}
-.leform-toolbar-list .question_templates li {flex: 0 0 25%; max-width: 25%; padding: 0; margin: 0; height: auto; line-height: normal; }
-.leform-toolbar-list .question_templates li a {display: block; text-align: center; font-size: 11px; font-weight: 500; padding: 10px 10px 5px; color: #544951; line-height: normal; text-decoration: none; height: auto; transition-duration: .8s; -webkit-transition-duration: .8s;}
-.leform-toolbar-list .question_templates li a img {display: block; max-width: 100%; margin: 0 auto 8px;}
-.leform-toolbar-list .question_templates li a:hover img {animation: bouncing 0.5s 0.3s;}
-.leform-toolbar-list .question_templates li a:hover {background-color: #f8e6ce;}
+.rureraform-toolbar-list .question_templates {max-width: 480px; min-width: 480px; background-color: #fff; position: absolute; left: 10px; top: 100%; border: 1px solid #c7c7c7; z-index: 2; visibility: hidden; opacity: 0; display: flex; flex-wrap: wrap; padding: 0; margin: 0; transform: translateY(10px); box-shadow: 3px 3px 3px rgba(0,0,0,0.4); -webkit-transition: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) all; -moz-transition: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) all; -o-transition: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) all; transition: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) all;}
+.rureraform-toolbar-list>li:hover .question_templates {visibility: visible; opacity: 1; transform: translateY(0); display: flex;}
+.rureraform-toolbar-list .question_templates li {flex: 0 0 25%; max-width: 25%; padding: 0; margin: 0; height: auto; line-height: normal; }
+.rureraform-toolbar-list .question_templates li a {display: block; text-align: center; font-size: 11px; font-weight: 500; padding: 10px 10px 5px; color: #544951; line-height: normal; text-decoration: none; height: auto; transition-duration: .8s; -webkit-transition-duration: .8s;}
+.rureraform-toolbar-list .question_templates li a img {display: block; max-width: 100%; margin: 0 auto 8px;}
+.rureraform-toolbar-list .question_templates li a:hover img {animation: bouncing 0.5s 0.3s;}
+.rureraform-toolbar-list .question_templates li a:hover {background-color: #f8e6ce;}
 @keyframes bouncing {
     from, to {
       transform: scale(1, 1);
@@ -929,7 +930,7 @@ span.Selectable:hover {text-decoration: underline;}
 .question-result-layout .prev-next-controls {display: none;}
 .question-result-layout .left-content {min-height: auto;}
 .question-result-layout .question-layout-block form.question-fields .questions-total-holder {margin: 0 !important; padding: 0 0 20px; font-size: 16px; color: #333;}
-.question-result-layout .leform-element {padding: 0 0 25px; margin: 0;}
+.question-result-layout .rureraform-element {padding: 0 0 25px; margin: 0;}
 .question-result-layout .lms-radio-btn-group {align-items: flex-start; justify-content: flex-start; margin-bottom: 15px;}
 .question-result-layout .lms-radio-btn-group .lms-question-label {background-color: #ededed; height: auto; border-color: #92aec4; border-width: 1px; border-radius: 0; padding: 8px 10px;}
 .question-result-layout .lms-radio-btn-group li {min-width: auto;}
@@ -1073,8 +1074,6 @@ span.Selectable:hover {text-decoration: underline;}
 .input-holder:has(.field_extra_large),
 .input-holder:has(.extra-large) {width: 40% !important;}
 
-
-
 /*Field Sizes Style End*/
 .image-right {
   text-align: right !important;
@@ -1082,3 +1081,125 @@ span.Selectable:hover {text-decoration: underline;}
 .image-center {
   text-align: center !important;
 }
+
+/*quiz style from app.css start*/
+.question-number-holder ~ .rureraform-form .question-textarea {
+  min-height: auto;
+  clear: inherit;
+}
+.question-number-holder ~ .rureraform-form .question-textarea p {
+  margin-top: 0;
+}
+.question-layout .rureraform-element-html p {
+  margin-bottom: 0;
+}
+.rureraform-element-html .question-label p {
+  margin-top: 0;
+}
+.question-layout .rureraform-element-html p:empty {
+  display: none;
+}
+.markscoin{
+  position:absolute;
+  width:20px;
+  height:20px;
+  margin-left:15px;
+  border-radius:50%;
+  background: url(../img/quiz/coin-img.jpg) no-repeat center;
+  border:1px dotted #333;
+  -webkit-animation:1s animateOpacity;
+}
+@-webkit-keyframes animateOpacity {
+  from {opacity: 0;}
+  5% {opacity: 0.6;}
+  50% {opacity: 1;}
+  95% {opacity: 0.6;}
+  to {opacity: 0;}
+}
+.correct-appriciate{
+font-size: 30px;
+  width: fit-content;
+  padding: 20px;
+  font-weight: bold;
+margin: auto;
+}
+.correct-appriciate.red{
+  border: 1px solid #ff5b5b;
+color: #ff5b5b;
+}
+.correct-appriciate.orange{
+  border: 1px solid orange;
+color: orange;
+}
+.correct-appriciate.blue{
+  border: 1px solid blue;
+color: blue;
+}
+.correct-appriciate.green{
+  border: 1px solid green;
+color: green;
+}
+.question-step.quiz-complete1{
+pointer-events:none;
+}
+label.lms-question-label.correct {
+  background: #70c17c !important;
+border:none !important;
+}
+label.lms-question-label.wrong {
+  background: #ff4f4f !important;
+border:none !important;
+}
+label.lms-question-label.correct span, 
+label.lms-question-label.wrong span {
+  color: #fff !important;
+}
+.image-center {
+  text-align: center;
+}
+
+/*Question Block Style*/
+.spells-quiz-info ul {border: 1px solid #bac3ca; border-left: 0; border-right: 0; border-top: 0; display: flex; gap: 15px; justify-content: space-between;}
+.spells-quiz-info ul li {border-left: 1px solid #bac3ca;text-align: center;width: 32%;padding: 15px 0;font-size: 20px;color: #343434;text-transform: uppercase;display: inline-flex;align-items: center;justify-content: center;gap: 5px;}
+.spells-quiz-info ul li:first-child {border-left: 0;}
+.spells-quiz-info ul li span {display: inline-block; font-weight: 600; font-size: 20px;}
+.spells-quiz-info ul li .nub-of-sec {color: #7caf40; }
+.spells-quiz-info ul li img {max-width: 100%; width: 20px; height: 20px; display: inline-block; vertical-align: middle; object-fit: contain;}
+.question-layout-block form.question-fields,
+.spell-question-area .question-layout-block form.question-fields {border: 1px solid #bac3ca; margin: 0 0 50px; border-radius: 5px; background-color: #fff; padding: 30px 30px 0; overflow: hidden;}
+.quiz-first-question .spells-quiz-info ul {gap: 0; border: 1px solid #f1f0f5; border-radius: 0;position: relative;z-index: 1;}
+.quiz-first-question .spells-quiz-info ul li {width: 33%; border-left-color: #f1f0f5; word-wrap: break-word;}
+.quiz-first-question .spells-quiz-info ul li .quiz-timer-counter {width: 100%;}
+.quiz-first-question .spells-quiz-info ~ br {display: none;}
+.questions-block {border: 1px solid #f1f0f5; border-bottom-width: 5px;border-radius: 0;padding: 20px 0 0;border-top: 0;}
+.questions-status span {background-color: #000; height: 15px; flex-basis: 10%; margin: 0 2px; border-radius: 2px;}
+.questions-status {margin: 0 -3px; padding: 0 20px;}
+.questions-status .successful {background-color: #3ebc3f;}
+.questions-status .wrong {background-color: #d11d1e;}
+.questions-arithmetic-box {box-sizing: border-box; position: relative; min-height: 100px; padding: 0 15px;}
+.questions-arithmetic-box:before {content: ""; position: absolute; left: -37px; top: 0; width: 115%;height: 100%; pointer-events: none; background-color: var(--primary); box-shadow: 0 0 8px rgba(0,0,0,0.2);}
+.questions-arithmetic-box input[type="text"] {border: 0; font-size: 35px; color: #fff; font-weight: 700; width: calc(100% - 300px); background-color: inherit; margin-left: 8px;     position: relative; z-index: 1;}
+.questions-arithmetic-box span,
+.lms-quiz-section .questions-arithmetic-box span {font-size: 35px; color: #fff; font-weight: 700; position: relative; z-index: 1;}
+.questions-arithmetic-box span span {font-weight: 400;}
+.questions-block-numbers {overflow: hidden;}
+.questions-block-numbers ul {border-right: 1px solid #f1f0f5; border-bottom: 1px solid #f1f0f5; margin: 0 -3px;}
+.questions-block-numbers li {flex-basis: 33%;}
+.questions-block-numbers span {display: block; padding: 40px 15px; text-align: center; font-size: 26px; font-weight: 500; transition: all .5s ease; border: 1px solid #f1f0f5; border-bottom: 0; border-right: 0; color: #000; cursor: pointer;}
+.questions-block-numbers .delete span {color: #fe0000;}
+.questions-block-numbers .enter span {    color: #008001;}
+.questions-block-numbers span:active {background-color: var(--primary); color: #fff;}
+.questions-controls {position: relative; z-index: 1; margin-left: auto;}
+.questions-controls svg path {transition: all .5s;}
+.questions-controls a:hover svg path {fill: #fff;}
+.questions-controls a:hover svg path {fill: #000;}
+.questions-controls a.setting-btn svg path {fill: none;}
+.questions-controls a.setting-btn:hover svg path {stroke: #000;}
+.questions-controls a img {width: 28px; height: 28px;}
+.start-counter {background-color: #fff; position: fixed; height: 100%; width: 100%; left: 0; top: 0; display: flex; align-items: center; justify-content: center; font-size: 50px; color: var(--primary);}
+.rureraform-properties-content .input-group-prepend button,
+.rureraform-properties-content .input-group-append button{position: absolute; left: 0; top: 0; z-index: 1; height: 100%; background-color:#fff; border-radius: 0; border-color: #ddd; z-index: 4;}
+.rureraform-properties-content .input-group-append button {right: 0; left: auto;}
+.rureraform-properties-content .input-group-prepend ~ input[type="text"] {height: 42px; background-color: #fff; outline: none; padding: 0 50px;}
+.rureraform-properties-content .input-group-prepend ~ input[type="text"]:focus {border-color: #ddd;}
+/*quiz style from app.css end*/

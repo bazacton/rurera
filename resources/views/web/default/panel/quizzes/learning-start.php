@@ -53,7 +53,7 @@ $rand_id = rand(99,9999);
         <div class="question-layout-block">
                 <div class="left-content has-bg">
                     <h2>&nbsp;</h2>
-                    <div id="leform-form-1" class="leform-form leform-elements leform-form-input-medium leform-form-icon-inside leform-form-description-bottom ui-sortable" _data-parent="1" _data-parent-col="0" style="display: block;">
+                    <div id="rureraform-form-1" class="rureraform-form rureraform-elements rureraform-form-input-medium rureraform-form-icon-inside rureraform-form-description-bottom ui-sortable" _data-parent="1" _data-parent-col="0" style="display: block;">
                         <div class="question-layout">
                             
                         </div>
@@ -80,7 +80,7 @@ $rand_id = rand(99,9999);
             <form class="question-fields" data-question_id="{{ $question->id }}">
                 <div class="left-content has-bg">
                     <h2><span>Q {{$j}}</span> - {{ $question->question_title }} <span class="icon-img"><img src="../../assets/default/img/quiz/sound-img.png" alt=""></span> </h2>
-                    <div id="leform-form-1" class="leform-form leform-elements leform-form-input-medium leform-form-icon-inside leform-form-description-bottom ui-sortable" _data-parent="1" _data-parent-col="0" style="display: block;">
+                    <div id="rureraform-form-1" class="rureraform-form rureraform-elements rureraform-form-input-medium rureraform-form-icon-inside rureraform-form-description-bottom ui-sortable" _data-parent="1" _data-parent-col="0" style="display: block;">
                         <div class="question-layout">
                             <span class="marks" data-marks="{{$question->question_score}}">[{{$question->question_score}}]</span>
                             {!! $question_layout !!}

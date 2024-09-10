@@ -18,14 +18,11 @@
     <link rel="stylesheet" href="/assets/default/vendors/sweetalert2/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="/assets/default/vendors/toast/jquery.toast.min.css">
     <link rel="stylesheet" href="/assets/default/vendors/simplebar/simplebar.css">
-    <link rel="stylesheet" href="/assets/default/css/app.css?ver={{$rand_no}}">
+	<link rel="stylesheet" href="/assets/default/css/common.css?ver={{$rand_no}}">
     <link rel="stylesheet" href="/assets/default/css/panel.css?ver={{$rand_no}}">
     <link rel="stylesheet" href="/assets/vendors/jquerygrowl/jquery.growl.css">
     <link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
-
-    @if($isRtl)
-        <link rel="stylesheet" href="/assets/default/css/rtl-app.css">
-    @endif
+    <link rel="stylesheet" href="/assets/default/css/responsive.css">
 
     @stack('styles_top')
     @stack('scripts_top')
@@ -221,8 +218,11 @@
 							</h3>
 							
 							@foreach( $profile_navs as $profile_nav)
-								@php $childObj = $profile_nav->user; @endphp
-								@php $full_name = (isset( $navData['is_parent'] ) && $navData['is_parent'] == true)? 'Parent' : $childObj->get_full_name(); @endphp
+								@php $childObj = $profile_nav->user; 
+								if( !isset( $childObj->id)){
+									continue;
+								}@endphp
+								@php $full_name = (isset( $navData['is_parent'] ) && $navData['is_parent'] == true)? 'Parent Dashboard' : $childObj->get_full_name(); @endphp
 							<div class="row align-items-center students-list-item">
 								<a href="javascript:;" class="col-auto">
 									<img src="{{ $childObj->getAvatar() }}" alt="{{$full_name}}" class="avatar rounded-circle" width="40">

@@ -24,6 +24,7 @@ $rand_no = rand(99,9999);
     <link rel="stylesheet" href="/assets/default/vendors/sweetalert2/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="/assets/default/vendors/toast/jquery.toast.min.css">
     <link rel="stylesheet" href="/assets/default/vendors/simplebar/simplebar.css">
+	<link rel="stylesheet" href="/assets/default/css/common.css?ver={{$rand_no}}">
     <link rel="stylesheet" href="/assets/default/css/app.css?ver={{$rand_no}}">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">

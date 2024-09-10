@@ -255,7 +255,7 @@ class AnalyticsController extends Controller
                             $question_incorrect = $QuizzesAttemptObj->total_incorrect;
                             $coins_earned = $QuizzesAttemptObj->total_coins_earned;
                             //$last_attempted = $QuizzesAttemptObj->timeConsumed->whereNotIn('status', array('waiting'))->orderBy('name', 'desc')->count();
-                            $practice_time = ($QuizzesAttemptObj->attempt_type == 'timestables' || $QuizzesAttemptObj->attempt_type == 'timestables_assignment') ? round(($practice_time / 10), 2) : $practice_time;
+                            //$practice_time = ($QuizzesAttemptObj->attempt_type == 'timestables' || $QuizzesAttemptObj->attempt_type == 'timestables_assignment') ? round(($practice_time / 10), 2) : $practice_time;
                             $practice_time = ($practice_time > 0) ? round($practice_time, 2) : 0;
 							
 							//$practice_time = ($QuizzesAttemptObj->attempt_type == '11plus' )? $QuizzesAttemptObj->quizzes_results->total_time_consumed: $practice_time;

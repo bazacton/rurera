@@ -1,5 +1,5 @@
 @charset "UTF-8";
-.leform-form .fa {
+.rureraform-form .fa {
 	display: inline-block;
 	font: normal normal normal 14px/1 FontAwesome;
 	font-size: inherit;
@@ -7,115 +7,115 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
-.leform-form .fas, .leform-form .far {
+.rureraform-form .fas, .rureraform-form .far {
 	font-family: "Font Awesome 5 Free" !important;
 }
-.leform-form .fas {
+.rureraform-form .fas {
 	font-weight: 900 !important;
 }
-.leform-form .far {
+.rureraform-form .far {
 	font-weight: 400 !important;
 }
-.leform-form .fab {
+.rureraform-form .fab {
 	font-family: "Font Awesome 5 Brands" !important;
 	font-weight: 400 !important;
 }
 
-.leform-element {
+.rureraform-element {
 	clear: both;
 	height: auto !important;
 	padding: 10px;
 	position: relative;
 }
-.leform-element:before {
+.rureraform-element:before {
 	content: " ";
 	display: block;
 }
-.leform-element:after {
+.rureraform-element:after {
 	content: ".";
 	display: block;
 	font-size: 1px;
 	line-height: 0px;
 	visibility: hidden;
 }
-.leform-row.leform-element {
+.rureraform-row.rureraform-element {
 	padding: 0 !important;
 }
-.leform-row.leform-element::after {
+.rureraform-row.rureraform-element::after {
 	display: table;
 	content: ' ';
 	clear: both;
 }
-.leform-col {
+.rureraform-col {
 	float: left;
 	min-height: 1px;
 }
-.leform-collapsed .leform-col {
+.rureraform-collapsed .rureraform-col {
 	width: 100% !important;
 }
-.leform-collapsed .leform-cr-container {
+.rureraform-collapsed .rureraform-cr-container {
 	width: 100% !important;
 	padding: 4px 0;
 }
-.leform-collapsed .leform-button {
+.rureraform-collapsed .rureraform-button {
 	display: block !important;
 }
-.leform-collapsed .leform-element-label-left .leform-column-label, .leform-collapsed .leform-element-label-left .leform-column-input {
+.rureraform-collapsed .rureraform-element-label-left .rureraform-column-label, .rureraform-collapsed .rureraform-element-label-left .rureraform-column-input {
 	width: 100%;
 }
-.leform-collapsed .leform-element-label-right .leform-column-label, .leform-collapsed .leform-element-label-right .leform-column-input {
+.rureraform-collapsed .rureraform-element-label-right .rureraform-column-label, .rureraform-collapsed .rureraform-element-label-right .rureraform-column-input {
 	width: 100%;
 }
-.leform-col .leform-element:first-of-type {
+.rureraform-col .rureraform-element:first-of-type {
 	margin-top: 0;
 }
-.leform-col .leform-element:last-of-type {
+.rureraform-col .rureraform-element:last-of-type {
 	margin-bottom: 0;
 }
-.leform-col-1 {
+.rureraform-col-1 {
 	width: 8.33333333%;
 }
-.leform-col-2 {
+.rureraform-col-2 {
 	width: 16.66666666%;
 }
-.leform-col-3 {
+.rureraform-col-3 {
 	width: 25%;
 }
-.leform-col-4 {
+.rureraform-col-4 {
 	width: 33.33333333%;
 }
-.leform-col-5 {
+.rureraform-col-5 {
 	width: 41.66666666%;
 }
-.leform-col-6 {
+.rureraform-col-6 {
 	width: 50%;
 }
-.leform-col-7 {
+.rureraform-col-7 {
 	width: 58.33333333%;
 }
-.leform-col-8 {
+.rureraform-col-8 {
 	width: 66.66666666%;
 }
-.leform-col-9 {
+.rureraform-col-9 {
 	width: 75%;
 }
-.leform-col-10 {
+.rureraform-col-10 {
 	width: 83.33333333%;
 }
-.leform-col-11 {
+.rureraform-col-11 {
 	width: 91.66666666%;
 }
-.leform-col-12 {
+.rureraform-col-12 {
 	width: 100%;
 }
 
-/* .leform-element * {
+/* .rureraform-element * {
 	font-family: inherit;
 	font-size: 15px;
 	font-weight: normal;
 	box-sizing: border-box;
 } */
-.leform-element form {
+.rureraform-element form {
 	margin: 0 !important;
 	padding: 0 !important;
 	border: none !important;
@@ -123,7 +123,7 @@
 	outline: none !important;
 	box-shadow: none !important;
 }
-.leform-element .leform-input:after {
+.rureraform-element .rureraform-input:after {
 	content: ".";
 	display: block;
 	font-size: 1px;
@@ -132,8 +132,8 @@
 	clear: both;
 }
 
-.leform-element .leform-input .leform-element-error:before,
-.leform-uploader-error:before {
+.rureraform-element .rureraform-input .rureraform-element-error:before,
+.rureraform-uploader-error:before {
 	content: ' ';
 	background: inherit;
 	position: absolute;
@@ -145,8 +145,8 @@
 	margin-top: -3px;
 	margin-left: 5px;
 	}
-.leform-element .leform-input .leform-element-error,
-.leform-uploader-error {
+.rureraform-element .rureraform-input .rureraform-element-error,
+.rureraform-uploader-error {
 	background: red;
 	position: absolute;
 	line-height: 1.4;
@@ -160,40 +160,40 @@
 	margin-bottom: -5px;	
 	box-shadow: 1px 1px 10px -4px #000;
 }
-.leform-element .leform-input .leform-element-error span,
-.leform-uploader-error span {
+.rureraform-element .rureraform-input .rureraform-element-error span,
+.rureraform-uploader-error span {
 	padding: 0.3em 0.7em;
 	font-size: inherit;
 	font-family: inherit;
 	color: inherit;
 	display: inline-block;
 }
-.leform-column-label {
+.rureraform-column-label {
     margin-bottom: 25px;
 }
-.leform-element label.leform-label {
+.rureraform-element label.rureraform-label {
 	line-height: 1em;
 	margin: 0;
 	/* font-size: 16px; */
 	display: block;
 	color: #adabab;
 }
-.leform-form .leform-element-label-left .leform-column-label {
+.rureraform-form .rureraform-element-label-left .rureraform-column-label {
 	padding-right: 0.5em;
 }
-.leform-form .leform-element-label-left .leform-column-label, .leform-form .leform-element-label-left .leform-column-input {
+.rureraform-form .rureraform-element-label-left .rureraform-column-label, .rureraform-form .rureraform-element-label-left .rureraform-column-input {
 	float: left;
 }
-.leform-form .leform-element-label-right .leform-column-label {
+.rureraform-form .rureraform-element-label-right .rureraform-column-label {
 	padding-left: 0.5em;
 }
-.leform-form .leform-element-label-right .leform-column-label, .leform-form .leform-element-label-right .leform-column-input {
+.rureraform-form .rureraform-element-label-right .rureraform-column-label, .rureraform-form .rureraform-element-label-right .rureraform-column-input {
 	float: right;
 }
-.leform-form .leform-element-label-none .leform-column-label {
+.rureraform-form .rureraform-element-label-none .rureraform-column-label {
 	display:none !important;
 }
-.leform-element label.leform-description {
+.rureraform-element label.rureraform-description {
 	line-height: 1em;
 	margin: 0.4em 0 0 0;
 	padding: 0;
@@ -201,51 +201,51 @@
 	color: #888;
 	display: block;
 }
-.leform-form-description-none .leform-element label.leform-description {
+.rureraform-form-description-none .rureraform-element label.rureraform-description {
 	display:none;
 }
-.leform-form .leform-element-description-none label.leform-description {
+.rureraform-form .rureraform-element-description-none label.rureraform-description {
 	display:none !important;
 }
-.leform-form .leform-element-description-bottom label.leform-description {
+.rureraform-form .rureraform-element-description-bottom label.rureraform-description {
 	display:block !important;
 }
-.leform-form .leform-element-label-none label.leform-description,
-.leform-form .leform-element-label-top label.leform-description {
+.rureraform-form .rureraform-element-label-none label.rureraform-description,
+.rureraform-form .rureraform-element-label-top label.rureraform-description {
 	margin-left:0 !important;margin-right:0 !important;
 }
-.leform-element .leform-input {
+.rureraform-element .rureraform-input {
 	position: relative;
 }
-.leform-input .airdatepicker {
+.rureraform-input .airdatepicker {
 	z-index: 1000;
 }
-.leform-form-input-tiny .leform-element .leform-input {
+.rureraform-form-input-tiny .rureraform-element .rureraform-input {
 	height: 20px;
 	line-height: 20px;
 }
-.leform-form-input-small .leform-element .leform-input {
+.rureraform-form-input-small .rureraform-element .rureraform-input {
 	height: 30px;
 	line-height: 30px;
 }
-.leform-form-input-medium .leform-element .leform-input {
+.rureraform-form-input-medium .rureraform-element .rureraform-input {
 	height: 40px;
 	line-height: 40px;
 }
-.leform-form-input-large .leform-element .leform-input {
+.rureraform-form-input-large .rureraform-element .rureraform-input {
 	height: 50px;
 	line-height: 50px;
 }
-.leform-form-input-huge .leform-element .leform-input {
+.rureraform-form-input-huge .rureraform-element .rureraform-input {
 	height: 60px;
 	line-height: 60px;
 }
 
-.leform-element .leform-input input[type="text"],
-.leform-element .leform-input input[type="email"],
-.leform-element .leform-input input[type="password"],
-.leform-element .leform-input select,
-.leform-element .leform-input textarea {
+.rureraform-element .rureraform-input input[type="text"],
+.rureraform-element .rureraform-input input[type="email"],
+.rureraform-element .rureraform-input input[type="password"],
+.rureraform-element .rureraform-input select,
+.rureraform-element .rureraform-input textarea {
 	border-spacing: 0;
 	vertical-align: top;
 	outline: none;
@@ -262,45 +262,45 @@
 	transition-duration: .3s;
 	-webkit-transition-duration: .3s;
 }
-.leform-element .leform-input textarea {
+.rureraform-element .rureraform-input textarea {
 	padding-top: 0.5em !important;
 	padding-bottom: 0.5em;
 }
-.leform-element .leform-input.leform-icon-left input[type="text"],
-.leform-element .leform-input.leform-icon-left input[type="email"],
-.leform-element .leform-input.leform-icon-left input[type="password"],
-.leform-element .leform-input.leform-icon-left textarea {
+.rureraform-element .rureraform-input.rureraform-icon-left input[type="text"],
+.rureraform-element .rureraform-input.rureraform-icon-left input[type="email"],
+.rureraform-element .rureraform-input.rureraform-icon-left input[type="password"],
+.rureraform-element .rureraform-input.rureraform-icon-left textarea {
 	padding-left: 48px !important;
 }
-.leform-element .leform-input.leform-icon-right input[type="text"],
-.leform-element .leform-input.leform-icon-right input[type="email"],
-.leform-element .leform-input.leform-icon-right input[type="password"],
-.leform-element .leform-input.leform-icon-right textarea {
+.rureraform-element .rureraform-input.rureraform-icon-right input[type="text"],
+.rureraform-element .rureraform-input.rureraform-icon-right input[type="email"],
+.rureraform-element .rureraform-input.rureraform-icon-right input[type="password"],
+.rureraform-element .rureraform-input.rureraform-icon-right textarea {
 	padding-right: 48px !important;
 }
-.leform-form-icon-outside .leform-element .leform-input.leform-icon-left input[type="text"],
-.leform-form-icon-outside .leform-element .leform-input.leform-icon-left input[type="email"],
-.leform-form-icon-outside .leform-element .leform-input.leform-icon-left input[type="password"],
-.leform-form-icon-outside .leform-element .leform-input.leform-icon-left textarea {
+.rureraform-form-icon-outside .rureraform-element .rureraform-input.rureraform-icon-left input[type="text"],
+.rureraform-form-icon-outside .rureraform-element .rureraform-input.rureraform-icon-left input[type="email"],
+.rureraform-form-icon-outside .rureraform-element .rureraform-input.rureraform-icon-left input[type="password"],
+.rureraform-form-icon-outside .rureraform-element .rureraform-input.rureraform-icon-left textarea {
 	padding-left: 1em !important;
 	margin-left: 40px;
 	width: calc(100% - 40px);
 }
-.leform-form-icon-outside .leform-element .leform-input.leform-icon-right input[type="text"],
-.leform-form-icon-outside .leform-element .leform-input.leform-icon-right input[type="email"],
-.leform-form-icon-outside .leform-element .leform-input.leform-icon-right input[type="password"],
-.leform-form-icon-outside .leform-element .leform-input.leform-icon-right textarea {
+.rureraform-form-icon-outside .rureraform-element .rureraform-input.rureraform-icon-right input[type="text"],
+.rureraform-form-icon-outside .rureraform-element .rureraform-input.rureraform-icon-right input[type="email"],
+.rureraform-form-icon-outside .rureraform-element .rureraform-input.rureraform-icon-right input[type="password"],
+.rureraform-form-icon-outside .rureraform-element .rureraform-input.rureraform-icon-right textarea {
 	padding-right: 1em !important;
 	margin-right: 40px;
 	width: calc(100% - 40px);
 }
-.leform-form-icon-outside .leform-element .leform-input.leform-icon-left.leform-icon-right input[type="text"],
-.leform-form-icon-outside .leform-element .leform-input.leform-icon-left.leform-icon-right input[type="email"],
-.leform-form-icon-outside .leform-element .leform-input.leform-icon-left.leform-icon-right input[type="password"],
-.leform-form-icon-outside .leform-element .leform-input.leform-icon-left.leform-icon-right textarea {
+.rureraform-form-icon-outside .rureraform-element .rureraform-input.rureraform-icon-left.rureraform-icon-right input[type="text"],
+.rureraform-form-icon-outside .rureraform-element .rureraform-input.rureraform-icon-left.rureraform-icon-right input[type="email"],
+.rureraform-form-icon-outside .rureraform-element .rureraform-input.rureraform-icon-left.rureraform-icon-right input[type="password"],
+.rureraform-form-icon-outside .rureraform-element .rureraform-input.rureraform-icon-left.rureraform-icon-right textarea {
 	width: calc(100% - 80px);
 }
-.leform-element .leform-input>i {
+.rureraform-element .rureraform-input>i {
 	position: absolute;
 	line-height: inherit;
 	width: 48px;
@@ -308,77 +308,77 @@
 	font-size: 16px;
 	z-index: 102;
 }
-.leform-form-icon-outside .leform-element .leform-input>i {
+.rureraform-form-icon-outside .rureraform-element .rureraform-input>i {
 	width: 40px;
 }
-/*.leform-form-icon-outside .leform-element .leform-input.leform-icon-left>i,
-.leform-form-icon-outside .leform-element .leform-input.leform-icon-right>i {
+/*.rureraform-form-icon-outside .rureraform-element .rureraform-input.rureraform-icon-left>i,
+.rureraform-form-icon-outside .rureraform-element .rureraform-input.rureraform-icon-right>i {
 	font-size: 1.3em;
 }*/
-.leform-form-icon-outside .leform-element .leform-input.leform-icon-left+label.leform-description {
+.rureraform-form-icon-outside .rureraform-element .rureraform-input.rureraform-icon-left+label.rureraform-description {
 	padding-left: 40px;
 }
-.leform-form-icon-outside .leform-element .leform-input.leform-icon-right+label.leform-description {
+.rureraform-form-icon-outside .rureraform-element .rureraform-input.rureraform-icon-right+label.rureraform-description {
 	padding-right: 40px;
 }
-.leform-element .leform-input>i.leform-icon-left {
+.rureraform-element .rureraform-input>i.rureraform-icon-left {
 	top: 0;
 	left: 0;
 	border-top-right-radius: 0 !important;
 	border-bottom-right-radius: 0 !important;
 }
-.leform-element .leform-input>i.leform-icon-right {
+.rureraform-element .rureraform-input>i.rureraform-icon-right {
 	top: 0;
 	right: 0;
 	border-top-left-radius: 0 !important;
 	border-bottom-left-radius: 0 !important;
 }
-.leform-form-icon-inside .leform-element .leform-input>i.leform-icon-left, .leform-form-icon-inside .leform-element .leform-input>i.leform-icon-right {
+.rureraform-form-icon-inside .rureraform-element .rureraform-input>i.rureraform-icon-left, .rureraform-form-icon-inside .rureraform-element .rureraform-input>i.rureraform-icon-right {
 	display: table;
 	line-height: initial;
 	height: 100%;
 }
-.leform-form-icon-inside .leform-element .leform-input>i.leform-icon-left::before, .leform-form-icon-inside .leform-element .leform-input>i.leform-icon-right::before {
+.rureraform-form-icon-inside .rureraform-element .rureraform-input>i.rureraform-icon-left::before, .rureraform-form-icon-inside .rureraform-element .rureraform-input>i.rureraform-icon-right::before {
 	display: table-cell;
 	vertical-align: middle;
 }
 
-.leform-element .leform-input.leform-input-tiny {
+.rureraform-element .rureraform-input.rureraform-input-tiny {
 	height: 20px;
 	line-height: 20px;
 }
-.leform-element .leform-input.leform-input-small {
+.rureraform-element .rureraform-input.rureraform-input-small {
 	height: 30px;
 	line-height: 30px;
 }
-.leform-element .leform-input.leform-input-medium {
+.rureraform-element .rureraform-input.rureraform-input-medium {
 	height: 40px;
 	line-height: 40px;
 }
-.leform-element .leform-input.leform-input-large {
+.rureraform-element .rureraform-input.rureraform-input-large {
 	height: 50px;
 	line-height: 50px;
 }
-.leform-element .leform-input.leform-input-huge {
+.rureraform-element .rureraform-input.rureraform-input-huge {
 	height: 60px;
 	line-height: 60px;
 }
-.leform-element .leform-input.leform-input-tiny select {
+.rureraform-element .rureraform-input.rureraform-input-tiny select {
 	line-height: 20px;
 }
-.leform-element .leform-input.leform-input-small select {
+.rureraform-element .rureraform-input.rureraform-input-small select {
 	line-height: 30px;
 }
-.leform-element .leform-input.leform-input-medium select {
+.rureraform-element .rureraform-input.rureraform-input-medium select {
 	line-height: 40px;
 }
-.leform-element .leform-input.leform-input-large select {
+.rureraform-element .rureraform-input.rureraform-input-large select {
 	line-height: 50px;
 }
-.leform-element .leform-input.leform-input-huge select {
+.rureraform-element .rureraform-input.rureraform-input-huge select {
 	line-height: 60px;
 }
-.leform-element .leform-button {
+.rureraform-element .rureraform-button {
 	display: inline-block;
 	white-space: nowrap;
 	vertical-align: middle;
@@ -394,35 +394,35 @@
 	outline: none;
 	overflow: hidden;
 }
-.leform-element .leform-button-full {
+.rureraform-element .rureraform-button-full {
 	display: block;
 }
-.leform-element .leform-button.leform-button-tiny {
+.rureraform-element .rureraform-button.rureraform-button-tiny {
 	height: 20px;
 	line-height: 20px;
 	padding: 0 10px;
 }
-.leform-element .leform-button.leform-button-small {
+.rureraform-element .rureraform-button.rureraform-button-small {
 	height: 30px;
 	line-height: 30px;
 	padding: 0 15px;
 }
-.leform-element .leform-button.leform-button-medium {
+.rureraform-element .rureraform-button.rureraform-button-medium {
 	height: 40px;
 	line-height: 40px;
 	padding: 0 20px;
 }
-.leform-element .leform-button.leform-button-large {
+.rureraform-element .rureraform-button.rureraform-button-large {
 	height: 50px;
 	line-height: 50px;
 	padding: 0 25px;
 }
-.leform-element .leform-button.leform-button-huge {
+.rureraform-element .rureraform-button.rureraform-button-huge {
 	height: 60px;
 	line-height: 60px;
 	padding: 0 30px;
 }
-.leform-element .leform-button i {
+.rureraform-element .rureraform-button i {
 	font-size: inherit;
 	color: inherit;
 	width: 1em;
@@ -432,11 +432,11 @@
 	vertical-align: top;
 	transform: translateY(-1px);	
 }
-.leform-element .leform-button span+i {
+.rureraform-element .rureraform-button span+i {
 	margin: 0 0 0 0.5em;
 	text-align: right;
 }
-.leform-element .leform-button span {
+.rureraform-element .rureraform-button span {
 	font-size: inherit;
 	font-weight: inherit;
 	font-style: inherit;	
@@ -454,91 +454,91 @@
 	vertical-align: top;
 	transform: translateY(-1px);	
 }
-.leform-element .leform-button.leform-button-zoom-in:active {
+.rureraform-element .rureraform-button.rureraform-button-zoom-in:active {
 	transform: scale(1.02);
 	-webkit-transform: scale(1.02);
 }
-.leform-element .leform-button.leform-button-zoom-out:active {
+.rureraform-element .rureraform-button.rureraform-button-zoom-out:active {
 	transform: scale(0.95);
 	-webkit-transform: scale(0.95);
 }
-.leform-element .leform-button.leform-button-shift-down:active {
+.rureraform-element .rureraform-button.rureraform-button-shift-down:active {
 	transform:translateY(2px);
 	-webkit-transform:translateY(2px);
 }
-.leform-element .leform-button-disabled {
+.rureraform-element .rureraform-button-disabled {
 	transform:none !important;
 	-webkit-transform:none !important;
 	opacity:0.7 !important;
 }
-.leform-element-html strong, .leform-element-html b {
+.rureraform-element-html strong, .rureraform-element-html b {
 	font-weight: 700;
 	font-size: inherit;
 	color: inherit;
 	text-shadow: none;
 }
-.leform-element-html em, .leform-element-html i {
+.rureraform-element-html em, .rureraform-element-html i {
 	font-style: italic;
 	font-size: inherit;
 	color: inherit;
 	text-shadow: none;
 }
-.leform-element-html span {
+.rureraform-element-html span {
 	font-style: inherit;
 	text-shadow: none;
 	overflow: visible;
 }
-.leform-element-html h1,
-.leform-element-html h2,
-.leform-element-html h3,
-.leform-element-html h4,
-.leform-element-html h5,
-.leform-element-html h6 {
+.rureraform-element-html h1,
+.rureraform-element-html h2,
+.rureraform-element-html h3,
+.rureraform-element-html h4,
+.rureraform-element-html h5,
+.rureraform-element-html h6 {
 	font-weight: 700;
 	margin: 0.4em 0;
 	padding: 0;
 	line-height: 1.475;
 	text-shadow: none;
 }
-.leform-element-html h1 {
+.rureraform-element-html h1 {
 	font-size: 32px
 }
-.leform-element-html h2 {
+.rureraform-element-html h2 {
 	font-size: 24px
 }
-.leform-element-html h3 {
+.rureraform-element-html h3 {
 	font-size: 20px
 }
-.leform-element-html h4 {
+.rureraform-element-html h4 {
 	font-size: 18px
 }
-.leform-element-html h5 {
+.rureraform-element-html h5 {
 	font-size: 16px
 }
-.leform-element-html h6 {
+.rureraform-element-html h6 {
 	font-size: 14px
 }
-.leform-element-html p {
+.rureraform-element-html p {
 	line-height: 1.475;
 	padding: 0;
 	margin: 0.4em 0;
 	font-style: inherit;
 	text-shadow: none;
 }
-.leform-element-html .aligncenter {
+.rureraform-element-html .aligncenter {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
 }
-.leform-element-html .alignleft {
+.rureraform-element-html .alignleft {
 	float: left;
 	margin: 0.5em 1em 0.5em 0;
 }
-.leform-element-html .alignright {
+.rureraform-element-html .alignright {
 	float: right;
 	margin: 0.5em 0 0.5em 1em;
 }
-.leform-element-html img {
+.rureraform-element-html img {
 	max-width: 100%;
 	width: auto !important;
 }
@@ -546,25 +546,25 @@ img.note-float-right {
     margin-top: 30px;
     margin-bottom: 30px;
 }
-.leform-element-html hr {
+.rureraform-element-html hr {
 	border: 0;
 	border-top: 2px dashed #ddd;
 	margin: 0.3em 0;
 }
-.leform-element-html ul {
+.rureraform-element-html ul {
 	list-style: disc inside;
 	margin: 0.3em 0;
 	padding: 0;
 	line-height: 1.475;
 }
-.leform-element-html ol {
+.rureraform-element-html ol {
 	list-style: decimal inside;
 	margin: 0.3em 0;
 	padding: 0;
 	line-height: 1.475;
 }
-.leform-element-html ul li,
-.leform-element-html ol li {
+.rureraform-element-html ul li,
+.rureraform-element-html ol li {
 	margin: 0 0 0 1em;
 	padding: 0;
 	line-height: 1.475;
@@ -574,83 +574,83 @@ img.note-float-right {
 	color: inherit;
 	text-shadow: none;
 }
-.leform-confirmaton-message {
+.rureraform-confirmaton-message {
 	display: none;
 }
-.leform-ta-left {
+.rureraform-ta-left {
 	text-align: left !important;
 }
-.leform-ta-center {
+.rureraform-ta-center {
 	text-align: center !important;
 }
-.leform-ta-right {
+.rureraform-ta-right {
 	text-align: right !important;
 }
 
 /* Tiles - begin */
-.leform-tile-layout-inline div.leform-tile-container {
+.rureraform-tile-layout-inline div.rureraform-tile-container {
 	width: auto;
 	display: inline-block;
 	float: left;
 }
-div.leform-tile-container, div.leform-tile-box {
+div.rureraform-tile-container, div.rureraform-tile-box {
 	max-width: 100%;
 }	
-.leform-tile-layout-2 div.leform-tile-container,
-.leform-tile-layout-3 div.leform-tile-container,
-.leform-tile-layout-4 div.leform-tile-container,
-.leform-tile-layout-6 div.leform-tile-container {
+.rureraform-tile-layout-2 div.rureraform-tile-container,
+.rureraform-tile-layout-3 div.rureraform-tile-container,
+.rureraform-tile-layout-4 div.rureraform-tile-container,
+.rureraform-tile-layout-6 div.rureraform-tile-container {
 	width: auto;
 	display: block;
 	float: left;
 }
-.leform-tile-layout-2 div.leform-tile-container {
+.rureraform-tile-layout-2 div.rureraform-tile-container {
 	width: 50%;
 }
-.leform-tile-layout-3 div.leform-tile-container {
+.rureraform-tile-layout-3 div.rureraform-tile-container {
 	width: 33.33333333%;
 }
-.leform-tile-layout-4 div.leform-tile-container {
+.rureraform-tile-layout-4 div.rureraform-tile-container {
 	width: 25%;
 }
-.leform-tile-layout-6 div.leform-tile-container {
+.rureraform-tile-layout-6 div.rureraform-tile-container {
 	width: 16.66666666%;
 }
-.leform-tile-layout-inline::after,
-.leform-tile-layout-2::after,
-.leform-tile-layout-3::after,
-.leform-tile-layout-4::after,
-.leform-tile-layout-6::after {
+.rureraform-tile-layout-inline::after,
+.rureraform-tile-layout-2::after,
+.rureraform-tile-layout-3::after,
+.rureraform-tile-layout-4::after,
+.rureraform-tile-layout-6::after {
 	content: ' ';
 	display: table;
 	clear: both;
 }
-.leform-tile-layout-right div.leform-tile-container {
+.rureraform-tile-layout-right div.rureraform-tile-container {
 	float: right !important;
 	text-align: right;
 }
-.leform-tile-layout-1.leform-tile-layout-right div.leform-tile-container {
+.rureraform-tile-layout-1.rureraform-tile-layout-right div.rureraform-tile-container {
 	clear: both;
 }
-input[type="checkbox"].leform-tile, input[type="radio"].leform-tile {
+input[type="checkbox"].rureraform-tile, input[type="radio"].rureraform-tile {
 	display: none !important;
 }
-input[type="checkbox"].leform-tile+label, input[type="radio"].leform-tile+label {
+input[type="checkbox"].rureraform-tile+label, input[type="radio"].rureraform-tile+label {
 	vertical-align: middle;
 	margin: 0;
 }
-input[type="checkbox"].leform-tile+label:before,
-input[type="checkbox"].leform-tile+label:after,
-input[type="radio"].leform-tile+label:before,
-input[type="radio"].leform-tile+label:after {
+input[type="checkbox"].rureraform-tile+label:before,
+input[type="checkbox"].rureraform-tile+label:after,
+input[type="radio"].rureraform-tile+label:before,
+input[type="radio"].rureraform-tile+label:after {
 	content: '';
 }
-input[type="checkbox"].leform-tile+label:before,
-input[type="radio"].leform-tile+label:before {
+input[type="checkbox"].rureraform-tile+label:before,
+input[type="radio"].rureraform-tile+label:before {
 	display: none !important;
 }
-input[type="checkbox"].leform-tile+label,
-input[type="radio"].leform-tile+label {
+input[type="checkbox"].rureraform-tile+label,
+input[type="radio"].rureraform-tile+label {
 	appearance: none;
 	border-style: solid;
 	border-color: #ccc;
@@ -671,181 +671,181 @@ input[type="radio"].leform-tile+label {
 	white-space: nowrap;
 	overflow: hidden;
 }
-input[type="checkbox"].leform-tile:checked+label,
-input[type="radio"].leform-tile:checked+label {
+input[type="checkbox"].rureraform-tile:checked+label,
+input[type="radio"].rureraform-tile:checked+label {
 	border-color: red;
 }
-.leform-tile-tiny+label {
+.rureraform-tile-tiny+label {
 	line-height: 18px;
 	height: 20px;
 }
-.leform-tile-tiny+label {
+.rureraform-tile-tiny+label {
 	padding: 0 0.6em;
 }
-.leform-tile-small+label {
+.rureraform-tile-small+label {
 	line-height: 28px;
 	height: 30px;
 }
-.leform-tile-small+label {
+.rureraform-tile-small+label {
 	padding: 0 0.8em;
 }
-.leform-tile-medium+label {
+.rureraform-tile-medium+label {
 	line-height: 38px;
 	height: 40px;
 }
-.leform-tile-medium+label {
+.rureraform-tile-medium+label {
 	padding: 0 1em;
 }
-.leform-tile-large+label {
+.rureraform-tile-large+label {
 	line-height: 48px;
 	height: 50px;
 }
-.leform-tile-large+label {
+.rureraform-tile-large+label {
 	padding: 0 1.2em;
 }
-.leform-tile-huge+label {
+.rureraform-tile-huge+label {
 	line-height: 58px;
 	height: 60px;
 }
-.leform-tile-huge+label {
+.rureraform-tile-huge+label {
 	padding: 0 1.4em;
 }
-.leform-tile-box {
+.rureraform-tile-box {
 	display: inline-block;
 	padding: 0.3em;
 }
-.leform-tile-full .leform-tile-box {
+.rureraform-tile-full .rureraform-tile-box {
 	display: block !important;
 }
-.leform-tile-transform-zoom-in .leform-tile-box input[type="checkbox"].leform-tile:checked+label,
-.leform-tile-transform-zoom-in .leform-tile-box input[type="radio"].leform-tile:checked+label {
+.rureraform-tile-transform-zoom-in .rureraform-tile-box input[type="checkbox"].rureraform-tile:checked+label,
+.rureraform-tile-transform-zoom-in .rureraform-tile-box input[type="radio"].rureraform-tile:checked+label {
 	transform: scale(1.05);
 }
-.leform-tile-transform-zoom-out .leform-tile-box input[type="checkbox"].leform-tile:checked+label,
-.leform-tile-transform-zoom-out .leform-tile-box input[type="radio"].leform-tile:checked+label {
+.rureraform-tile-transform-zoom-out .rureraform-tile-box input[type="checkbox"].rureraform-tile:checked+label,
+.rureraform-tile-transform-zoom-out .rureraform-tile-box input[type="radio"].rureraform-tile:checked+label {
 	transform: scale(0.95);
 }
-.leform-tile-transform-shift-down .leform-tile-box input[type="checkbox"].leform-tile:checked+label,
-.leform-tile-transform-shift-down .leform-tile-box input[type="radio"].leform-tile:checked+label {
+.rureraform-tile-transform-shift-down .rureraform-tile-box input[type="checkbox"].rureraform-tile:checked+label,
+.rureraform-tile-transform-shift-down .rureraform-tile-box input[type="radio"].rureraform-tile:checked+label {
 	transform: translateY(2px);
 }
 /* Tiles - end */
 
 /* Checkboxes and Radio Buttons - begin */
-.leform-cr-layout-inline div.leform-cr-container {
+.rureraform-cr-layout-inline div.rureraform-cr-container {
 	width: auto;
 	display: inline-block;
 	float: left;
 }
-.leform-cr-layout-2 div.leform-cr-container,
-.leform-cr-layout-3 div.leform-cr-container,
-.leform-cr-layout-4 div.leform-cr-container,
-.leform-cr-layout-6 div.leform-cr-container {
+.rureraform-cr-layout-2 div.rureraform-cr-container,
+.rureraform-cr-layout-3 div.rureraform-cr-container,
+.rureraform-cr-layout-4 div.rureraform-cr-container,
+.rureraform-cr-layout-6 div.rureraform-cr-container {
 	width: auto;
 	display: block;
 	float: left;
 }
-.leform-cr-layout-2 div.leform-cr-container {
+.rureraform-cr-layout-2 div.rureraform-cr-container {
 	width: 50%;
 }
-.leform-cr-layout-3 div.leform-cr-container {
+.rureraform-cr-layout-3 div.rureraform-cr-container {
 	width: 33.33333333%;
 }
-.leform-cr-layout-4 div.leform-cr-container {
+.rureraform-cr-layout-4 div.rureraform-cr-container {
 	width: 25%;
 }
-.leform-cr-layout-6 div.leform-cr-container {
+.rureraform-cr-layout-6 div.rureraform-cr-container {
 	width: 16.66666666%;
 }
-.leform-cr-layout-inline::after,
-.leform-cr-layout-2::after,
-.leform-cr-layout-3::after,
-.leform-cr-layout-4::after,
-.leform-cr-layout-6::after {
+.rureraform-cr-layout-inline::after,
+.rureraform-cr-layout-2::after,
+.rureraform-cr-layout-3::after,
+.rureraform-cr-layout-4::after,
+.rureraform-cr-layout-6::after {
 	content: ' ';
 	display: table;
 	clear: both;
 }
-.leform-cr-layout-inline.leform-cr-layout-right div.leform-cr-container {
+.rureraform-cr-layout-inline.rureraform-cr-layout-right div.rureraform-cr-container {
 	float: right;
 }
-.leform-cr-layout-inline div.leform-cr-container div.leform-cr-label {
+.rureraform-cr-layout-inline div.rureraform-cr-container div.rureraform-cr-label {
 	width: auto;
 }
-.leform-cr-layout-2.leform-cr-layout-right div.leform-cr-container-left div.leform-cr-label,
-.leform-cr-layout-3.leform-cr-layout-right div.leform-cr-container-left div.leform-cr-label,
-.leform-cr-layout-4.leform-cr-layout-right div.leform-cr-container-left div.leform-cr-label,
-.leform-cr-layout-6.leform-cr-layout-right div.leform-cr-container-left div.leform-cr-label,
-.leform-cr-layout-inline div.leform-cr-container-left div.leform-cr-label {
+.rureraform-cr-layout-2.rureraform-cr-layout-right div.rureraform-cr-container-left div.rureraform-cr-label,
+.rureraform-cr-layout-3.rureraform-cr-layout-right div.rureraform-cr-container-left div.rureraform-cr-label,
+.rureraform-cr-layout-4.rureraform-cr-layout-right div.rureraform-cr-container-left div.rureraform-cr-label,
+.rureraform-cr-layout-6.rureraform-cr-layout-right div.rureraform-cr-container-left div.rureraform-cr-label,
+.rureraform-cr-layout-inline div.rureraform-cr-container-left div.rureraform-cr-label {
 	padding-right: 1.4em;
 }
-.leform-cr-layout-2.leform-cr-layout-left div.leform-cr-container-right div.leform-cr-label,
-.leform-cr-layout-3.leform-cr-layout-left div.leform-cr-container-right div.leform-cr-label,
-.leform-cr-layout-4.leform-cr-layout-left div.leform-cr-container-right div.leform-cr-label,
-.leform-cr-layout-6.leform-cr-layout-left div.leform-cr-container-right div.leform-cr-label,
-.leform-cr-layout-inline div.leform-cr-container-right div.leform-cr-label {
+.rureraform-cr-layout-2.rureraform-cr-layout-left div.rureraform-cr-container-right div.rureraform-cr-label,
+.rureraform-cr-layout-3.rureraform-cr-layout-left div.rureraform-cr-container-right div.rureraform-cr-label,
+.rureraform-cr-layout-4.rureraform-cr-layout-left div.rureraform-cr-container-right div.rureraform-cr-label,
+.rureraform-cr-layout-6.rureraform-cr-layout-left div.rureraform-cr-container-right div.rureraform-cr-label,
+.rureraform-cr-layout-inline div.rureraform-cr-container-right div.rureraform-cr-label {
 	padding-left: 1.4em;
 }
-div.leform-cr-container {
+div.rureraform-cr-container {
 	display: table;
 	width: 100%;
 	margin: 0 0 5px 0;
 }
-div.leform-cr-container>div {
+div.rureraform-cr-container>div {
 	vertical-align: top;
 }
-div.leform-cr-container.leform-cr-container-small {
+div.rureraform-cr-container.rureraform-cr-container-small {
 	line-height: 16px;
 }
-div.leform-cr-container.leform-cr-container-medium {
+div.rureraform-cr-container.rureraform-cr-container-medium {
 	line-height: 20px;
 }
-div.leform-cr-container.leform-cr-container-large {
+div.rureraform-cr-container.rureraform-cr-container-large {
 	line-height: 24px;
 }
-div.leform-cr-container.leform-cr-container-huge {
+div.rureraform-cr-container.rureraform-cr-container-huge {
 	line-height: 28px;
 }
-div.leform-cr-container div.leform-cr-box {
+div.rureraform-cr-container div.rureraform-cr-box {
 	display: table-cell;
 }
-div.leform-cr-container div.leform-cr-label {
+div.rureraform-cr-container div.rureraform-cr-label {
 	display: table-cell;
 	width: 100%;
 }
-div.leform-cr-container div.leform-cr-label label {
+div.rureraform-cr-container div.rureraform-cr-label label {
 	margin: 0;
 	padding: 0;
 	display: block;
 	text-align: inherit;
 }
-div.leform-cr-container-left div.leform-cr-label {
+div.rureraform-cr-container-left div.rureraform-cr-label {
 	padding-left: 0.7em;
 }
-div.leform-cr-container-right div.leform-cr-label {
+div.rureraform-cr-container-right div.rureraform-cr-label {
 	padding-right: 0.7em;
 }
-input[type="checkbox"].leform-checkbox {
+input[type="checkbox"].rureraform-checkbox {
 	display: none !important;
 }
-input[type="checkbox"].leform-checkbox+label {
+input[type="checkbox"].rureraform-checkbox+label {
 	vertical-align: middle;
 	margin: 0;
 }
-input[type="checkbox"].leform-checkbox+label:before,
-input[type="checkbox"].leform-checkbox+label:after {
+input[type="checkbox"].rureraform-checkbox+label:before,
+input[type="checkbox"].rureraform-checkbox+label:after {
 	content: '';
 	-webkit-transform: none;
 	transform: none;
 	position: relative;
 	margin: 0;
 }
-input[type="checkbox"].leform-checkbox+label:before {
+input[type="checkbox"].rureraform-checkbox+label:before {
 	display: none !important;
 }
-input[type="checkbox"].leform-checkbox-classic+label,
-input[type="checkbox"].leform-checkbox-fa-check+label,
-input[type="checkbox"].leform-checkbox-square+label {
+input[type="checkbox"].rureraform-checkbox-classic+label,
+input[type="checkbox"].rureraform-checkbox-fa-check+label,
+input[type="checkbox"].rureraform-checkbox-square+label {
 	appearance: none;
 	border-style: solid;
 	border-color: #aaa;
@@ -863,20 +863,20 @@ input[type="checkbox"].leform-checkbox-square+label {
 	transition-duration: .2s;
 	-webkit-transition-duration: .2s;
 }
-input[type="checkbox"].leform-checkbox-classic:checked+label,
-input[type="checkbox"].leform-checkbox-fa-check:checked+label,
-input[type="checkbox"].leform-checkbox-square:checked+label {
+input[type="checkbox"].rureraform-checkbox-classic:checked+label,
+input[type="checkbox"].rureraform-checkbox-fa-check:checked+label,
+input[type="checkbox"].rureraform-checkbox-square:checked+label {
 	transform: scale(1.1);
 }
-input[type="checkbox"].leform-checkbox-classic:checked+label:after {
+input[type="checkbox"].rureraform-checkbox-classic:checked+label:after {
 	font-family: arial;
 	content: '✔';
 }
-input[type="checkbox"].leform-checkbox-fa-check:checked+label:after {
-	font-family: leform-if;
+input[type="checkbox"].rureraform-checkbox-fa-check:checked+label:after {
+	font-family: rureraform-if;
 	content: "\e801";
 }
-input[type="checkbox"].leform-checkbox-square:checked+label:after {
+input[type="checkbox"].rureraform-checkbox-square:checked+label:after {
 	position: absolute;
 	top: 4px;
 	left: 4px;
@@ -888,16 +888,16 @@ input[type="checkbox"].leform-checkbox-square:checked+label:after {
 	transition-duration: .2s;
 	-webkit-transition-duration: .2s;
 }
-input[type="checkbox"].leform-checkbox-none+label {
+input[type="checkbox"].rureraform-checkbox-none+label {
 	appearance: none;
 	font-family: arial;
 	font-size: 16px;
 	color: #aaa;
 }
-input[type="checkbox"].leform-checkbox-none+label:after {
+input[type="checkbox"].rureraform-checkbox-none+label:after {
 	content: 'none';
 }
-input[type="checkbox"].leform-checkbox-tgl+label {
+input[type="checkbox"].rureraform-checkbox-tgl+label {
 	appearance: none;
 	border-style: solid;
 	border-color: #aaa;
@@ -914,7 +914,7 @@ input[type="checkbox"].leform-checkbox-tgl+label {
 	margin: 0;
 	padding: 0;
 }
-input[type="checkbox"].leform-checkbox-tgl+label:after {
+input[type="checkbox"].rureraform-checkbox-tgl+label:after {
 	position: absolute;
 	top: 2px;
 	left: 2px;
@@ -923,165 +923,165 @@ input[type="checkbox"].leform-checkbox-tgl+label:after {
 	border-radius: 100px;
 	transition: left 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
 }
-input[type="checkbox"].leform-checkbox-tgl:checked+label {
+input[type="checkbox"].rureraform-checkbox-tgl:checked+label {
 	background: #aaa;
 }
-input[type="checkbox"].leform-checkbox-tgl:checked+label:after {
+input[type="checkbox"].rureraform-checkbox-tgl:checked+label:after {
 	background: #fff;
 }
 
-input[type="checkbox"].leform-checkbox-classic.leform-checkbox-huge+label,
-input[type="checkbox"].leform-checkbox-fa-check.leform-checkbox-huge+label,
-input[type="checkbox"].leform-checkbox-square.leform-checkbox-huge+label {
+input[type="checkbox"].rureraform-checkbox-classic.rureraform-checkbox-huge+label,
+input[type="checkbox"].rureraform-checkbox-fa-check.rureraform-checkbox-huge+label,
+input[type="checkbox"].rureraform-checkbox-square.rureraform-checkbox-huge+label {
 	width: 28px;
 	height: 28px;
 	line-height: 28px;
 	border-width: 2px;
 }
-input[type="checkbox"].leform-checkbox-classic.leform-checkbox-huge:checked+label:after {
+input[type="checkbox"].rureraform-checkbox-classic.rureraform-checkbox-huge:checked+label:after {
 	font-size: 28px;
 	line-height: 26px;
 }
-input[type="checkbox"].leform-checkbox-fa-check.leform-checkbox-huge:checked+label:after {
+input[type="checkbox"].rureraform-checkbox-fa-check.rureraform-checkbox-huge:checked+label:after {
 	font-size: 25px;
 	line-height: 25px;
 }
-input[type="checkbox"].leform-checkbox-square.leform-checkbox-huge:checked+label:after {
+input[type="checkbox"].rureraform-checkbox-square.rureraform-checkbox-huge:checked+label:after {
 	width: 16px;
 	height: 16px;
 }
-input[type="checkbox"].leform-checkbox-tgl.leform-checkbox-huge+label {
+input[type="checkbox"].rureraform-checkbox-tgl.rureraform-checkbox-huge+label {
 	width: 48px;
 	height: 26px;
 	border-width: 2px;
 }
-input[type="checkbox"].leform-checkbox-tgl.leform-checkbox-huge+label:after {
+input[type="checkbox"].rureraform-checkbox-tgl.rureraform-checkbox-huge+label:after {
 	width: 18px;
 	height: 18px;
 }
-input[type="checkbox"].leform-checkbox-tgl.leform-checkbox-huge:checked+label:after {
+input[type="checkbox"].rureraform-checkbox-tgl.rureraform-checkbox-huge:checked+label:after {
 	left: 24px;
 }
 
-input[type="checkbox"].leform-checkbox-classic.leform-checkbox-large+label,
-input[type="checkbox"].leform-checkbox-fa-check.leform-checkbox-large+label,
-input[type="checkbox"].leform-checkbox-square.leform-checkbox-large+label {
+input[type="checkbox"].rureraform-checkbox-classic.rureraform-checkbox-large+label,
+input[type="checkbox"].rureraform-checkbox-fa-check.rureraform-checkbox-large+label,
+input[type="checkbox"].rureraform-checkbox-square.rureraform-checkbox-large+label {
 	width: 24px;
 	height: 24px;
 	line-height: 24px;
 	border-width: 2px;
 }
-input[type="checkbox"].leform-checkbox-classic.leform-checkbox-large:checked+label:after {
+input[type="checkbox"].rureraform-checkbox-classic.rureraform-checkbox-large:checked+label:after {
 	font-size: 24px;
 	line-height: 22px;
 }
-input[type="checkbox"].leform-checkbox-fa-check.leform-checkbox-large:checked+label:after {
+input[type="checkbox"].rureraform-checkbox-fa-check.rureraform-checkbox-large:checked+label:after {
 	font-size: 21px;
 	line-height: 21px;
 }
-input[type="checkbox"].leform-checkbox-square.leform-checkbox-large:checked+label:after {
+input[type="checkbox"].rureraform-checkbox-square.rureraform-checkbox-large:checked+label:after {
 	width: 12px;
 	height: 12px;
 }
-input[type="checkbox"].leform-checkbox-tgl.leform-checkbox-large+label {
+input[type="checkbox"].rureraform-checkbox-tgl.rureraform-checkbox-large+label {
 	width: 44px;
 	height: 24px;
 	border-width: 2px;
 }
-input[type="checkbox"].leform-checkbox-tgl.leform-checkbox-large+label:after {
+input[type="checkbox"].rureraform-checkbox-tgl.rureraform-checkbox-large+label:after {
 	width: 16px;
 	height: 16px;
 }
-input[type="checkbox"].leform-checkbox-tgl.leform-checkbox-large:checked+label:after {
+input[type="checkbox"].rureraform-checkbox-tgl.rureraform-checkbox-large:checked+label:after {
 	left: 22px;
 }
 
-input[type="checkbox"].leform-checkbox-classic.leform-checkbox-medium+label,
-input[type="checkbox"].leform-checkbox-fa-check.leform-checkbox-medium+label,
-input[type="checkbox"].leform-checkbox-square.leform-checkbox-medium+label {
+input[type="checkbox"].rureraform-checkbox-classic.rureraform-checkbox-medium+label,
+input[type="checkbox"].rureraform-checkbox-fa-check.rureraform-checkbox-medium+label,
+input[type="checkbox"].rureraform-checkbox-square.rureraform-checkbox-medium+label {
 	width: 20px;
 	height: 20px;
 	line-height: 20px;
 	border-width: 1px;
 }
-input[type="checkbox"].leform-checkbox-classic.leform-checkbox-medium:checked+label:after {
+input[type="checkbox"].rureraform-checkbox-classic.rureraform-checkbox-medium:checked+label:after {
 	font-size: 20px;
 	line-height: 19px;
 }
-input[type="checkbox"].leform-checkbox-fa-check.leform-checkbox-medium:checked+label:after {
+input[type="checkbox"].rureraform-checkbox-fa-check.rureraform-checkbox-medium:checked+label:after {
 	font-size: 18px;
 	line-height: 18px;
 }
-input[type="checkbox"].leform-checkbox-square.leform-checkbox-medium:checked+label:after {
+input[type="checkbox"].rureraform-checkbox-square.rureraform-checkbox-medium:checked+label:after {
 	width: 10px;
 	height: 10px;
 }
-input[type="checkbox"].leform-checkbox-tgl.leform-checkbox-medium+label {
+input[type="checkbox"].rureraform-checkbox-tgl.rureraform-checkbox-medium+label {
 	width: 38px;
 	height: 20px;
 	border-width: 1px;
 }
-input[type="checkbox"].leform-checkbox-tgl.leform-checkbox-medium+label:after {
+input[type="checkbox"].rureraform-checkbox-tgl.rureraform-checkbox-medium+label:after {
 	width: 14px;
 	height: 14px;
 }
-input[type="checkbox"].leform-checkbox-tgl.leform-checkbox-medium:checked+label:after {
+input[type="checkbox"].rureraform-checkbox-tgl.rureraform-checkbox-medium:checked+label:after {
 	left: 20px;
 }
 
-input[type="checkbox"].leform-checkbox-classic.leform-checkbox-small+label,
-input[type="checkbox"].leform-checkbox-fa-check.leform-checkbox-small+label,
-input[type="checkbox"].leform-checkbox-square.leform-checkbox-small+label {
+input[type="checkbox"].rureraform-checkbox-classic.rureraform-checkbox-small+label,
+input[type="checkbox"].rureraform-checkbox-fa-check.rureraform-checkbox-small+label,
+input[type="checkbox"].rureraform-checkbox-square.rureraform-checkbox-small+label {
 	width: 16px;
 	height: 16px;
 	line-height: 16px;
 	border-width: 1px;
 }
-input[type="checkbox"].leform-checkbox-classic.leform-checkbox-small:checked+label:after {
+input[type="checkbox"].rureraform-checkbox-classic.rureraform-checkbox-small:checked+label:after {
 	font-size: 16px;
 	line-height: 15px;
 }
-input[type="checkbox"].leform-checkbox-fa-check.leform-checkbox-small:checked+label:after {
+input[type="checkbox"].rureraform-checkbox-fa-check.rureraform-checkbox-small:checked+label:after {
 	font-size: 15px;
 	line-height: 14px;
 }
-input[type="checkbox"].leform-checkbox-square.leform-checkbox-small:checked+label:after {
+input[type="checkbox"].rureraform-checkbox-square.rureraform-checkbox-small:checked+label:after {
 	width: 6px;
 	height: 6px;
 }
-input[type="checkbox"].leform-checkbox-tgl.leform-checkbox-small+label {
+input[type="checkbox"].rureraform-checkbox-tgl.rureraform-checkbox-small+label {
 	width: 30px;
 	height: 16px;
 	border-width: 1px;
 }
-input[type="checkbox"].leform-checkbox-tgl.leform-checkbox-small+label:after {
+input[type="checkbox"].rureraform-checkbox-tgl.rureraform-checkbox-small+label:after {
 	width: 10px;
 	height: 10px;
 }
-input[type="checkbox"].leform-checkbox-tgl.leform-checkbox-small:checked+label:after {
+input[type="checkbox"].rureraform-checkbox-tgl.rureraform-checkbox-small:checked+label:after {
 	left: 16px;
 }
 
-input[type="radio"].leform-radio {
+input[type="radio"].rureraform-radio {
 	display: none !important;
 }
-input[type="radio"].leform-radio+label {
+input[type="radio"].rureraform-radio+label {
 	vertical-align: middle;
 	margin: 0;
 }
-input[type="radio"].leform-radio+label:before,
-input[type="radio"].leform-radio+label:after {
+input[type="radio"].rureraform-radio+label:before,
+input[type="radio"].rureraform-radio+label:after {
 	content: '';
 	background: transparent;
 	border: none;
 	margin: 0;
 }
-input[type="radio"].leform-radio+label:before {
+input[type="radio"].rureraform-radio+label:before {
 	display: none !important;
 }
-input[type="radio"].leform-radio-classic+label,
-input[type="radio"].leform-radio-fa-check+label,
-input[type="radio"].leform-radio-dot+label {
+input[type="radio"].rureraform-radio-classic+label,
+input[type="radio"].rureraform-radio-fa-check+label,
+input[type="radio"].rureraform-radio-dot+label {
 	appearance: none;
 	border-style: solid;
 	border-color: #aaa;
@@ -1099,21 +1099,21 @@ input[type="radio"].leform-radio-dot+label {
 	-webkit-transition-duration: .2s;
 	padding: 0;
 }
-input[type="radio"].leform-radio-classic:checked+label,
-input[type="radio"].leform-radio-fa-check:checked+label,
-input[type="radio"].leform-radio-dot:checked+label {
+input[type="radio"].rureraform-radio-classic:checked+label,
+input[type="radio"].rureraform-radio-fa-check:checked+label,
+input[type="radio"].rureraform-radio-dot:checked+label {
 	transform: scale(1.1);
 }
 
-input[type="radio"].leform-radio-classic:checked+label:after {
+input[type="radio"].rureraform-radio-classic:checked+label:after {
 	font-family: arial;
 	content: '✔';
 }
-input[type="radio"].leform-radio-fa-check:checked+label:after {
-	font-family: leform-if;
+input[type="radio"].rureraform-radio-fa-check:checked+label:after {
+	font-family: rureraform-if;
 	content: "\e801";
 }
-input[type="radio"].leform-radio-dot:checked+label:after {
+input[type="radio"].rureraform-radio-dot:checked+label:after {
 	position: absolute;
 	top: 4px;
 	left: 4px;
@@ -1125,100 +1125,100 @@ input[type="radio"].leform-radio-dot:checked+label:after {
 	transition-duration: .2s;
 	-webkit-transition-duration: .2s;
 }
-input[type="radio"].leform-radio-classic.leform-radio-huge+label,
-input[type="radio"].leform-radio-fa-check.leform-radio-huge+label,
-input[type="radio"].leform-radio-dot.leform-radio-huge+label {
+input[type="radio"].rureraform-radio-classic.rureraform-radio-huge+label,
+input[type="radio"].rureraform-radio-fa-check.rureraform-radio-huge+label,
+input[type="radio"].rureraform-radio-dot.rureraform-radio-huge+label {
 	width: 28px;
 	height: 28px;
 	line-height: 28px;
 	border-width: 2px;
 }
-input[type="radio"].leform-radio-classic.leform-radio-huge:checked+label:after {
+input[type="radio"].rureraform-radio-classic.rureraform-radio-huge:checked+label:after {
 	font-size: 28px;
 	line-height: 28px;
 }
-input[type="radio"].leform-radio-fa-check.leform-radio-huge:checked+label:after {
+input[type="radio"].rureraform-radio-fa-check.rureraform-radio-huge:checked+label:after {
 	font-size: 25px;
 	line-height: 29px;
 }
-input[type="radio"].leform-radio-dot.leform-radio-huge:checked+label:after {
+input[type="radio"].rureraform-radio-dot.rureraform-radio-huge:checked+label:after {
 	width: 16px;
 	height: 16px;
 }
 
-input[type="radio"].leform-radio-classic.leform-radio-large+label,
-input[type="radio"].leform-radio-fa-check.leform-radio-large+label,
-input[type="radio"].leform-radio-dot.leform-radio-large+label {
+input[type="radio"].rureraform-radio-classic.rureraform-radio-large+label,
+input[type="radio"].rureraform-radio-fa-check.rureraform-radio-large+label,
+input[type="radio"].rureraform-radio-dot.rureraform-radio-large+label {
 	width: 24px;
 	height: 24px;
 	line-height: 24px;
 	border-width: 2px;
 }
-input[type="radio"].leform-radio-classic.leform-radio-large:checked+label:after {
+input[type="radio"].rureraform-radio-classic.rureraform-radio-large:checked+label:after {
 	font-size: 24px;
 	line-height: 24px;
 }
-input[type="radio"].leform-radio-fa-check.leform-radio-large:checked+label:after {
+input[type="radio"].rureraform-radio-fa-check.rureraform-radio-large:checked+label:after {
 	font-size: 21px;
 	line-height: 23px;
 }
-input[type="radio"].leform-radio-dot.leform-radio-large:checked+label:after {
+input[type="radio"].rureraform-radio-dot.rureraform-radio-large:checked+label:after {
 	width: 12px;
 	height: 12px;
 }
 
-input[type="radio"].leform-radio-classic.leform-radio-medium+label,
-input[type="radio"].leform-radio-fa-check.leform-radio-medium+label,
-input[type="radio"].leform-radio-dot.leform-radio-medium+label {
+input[type="radio"].rureraform-radio-classic.rureraform-radio-medium+label,
+input[type="radio"].rureraform-radio-fa-check.rureraform-radio-medium+label,
+input[type="radio"].rureraform-radio-dot.rureraform-radio-medium+label {
 	width: 20px;
 	height: 20px;
 	line-height: 20px;
 	border-width: 1px;
 }
-input[type="radio"].leform-radio-classic.leform-radio-medium:checked+label:after {
+input[type="radio"].rureraform-radio-classic.rureraform-radio-medium:checked+label:after {
 	font-size: 20px;
 	line-height: 20px;
 }
-input[type="radio"].leform-radio-fa-check.leform-radio-medium:checked+label:after {
+input[type="radio"].rureraform-radio-fa-check.rureraform-radio-medium:checked+label:after {
 	font-size: 18px;
 	line-height: 18px;
 }
-input[type="radio"].leform-radio-dot.leform-radio-medium:checked+label:after {
+input[type="radio"].rureraform-radio-dot.rureraform-radio-medium:checked+label:after {
 	width: 10px;
 	height: 10px;
 }
 
-input[type="radio"].leform-radio-classic.leform-radio-small+label,
-input[type="radio"].leform-radio-fa-check.leform-radio-small+label,
-input[type="radio"].leform-radio-dot.leform-radio-small+label {
+input[type="radio"].rureraform-radio-classic.rureraform-radio-small+label,
+input[type="radio"].rureraform-radio-fa-check.rureraform-radio-small+label,
+input[type="radio"].rureraform-radio-dot.rureraform-radio-small+label {
 	width: 16px;
 	height: 16px;
 	line-height: 16px;
 	border-width: 1px;
 }
-input[type="radio"].leform-radio-classic.leform-radio-small:checked+label:after {
+input[type="radio"].rureraform-radio-classic.rureraform-radio-small:checked+label:after {
 	font-size: 16px;
 	line-height: 16px;
 }
-input[type="radio"].leform-radio-fa-check.leform-radio-small:checked+label:after {
+input[type="radio"].rureraform-radio-fa-check.rureraform-radio-small:checked+label:after {
 	font-size: 15px;
 	line-height: 15px;
 }
-input[type="radio"].leform-radio-dot.leform-radio-small:checked+label:after {
+input[type="radio"].rureraform-radio-dot.rureraform-radio-small:checked+label:after {
 	width: 6px;
 	height: 6px;
 }
-.leform-cr-box input[type="checkbox"]+label, .leform-cr-box input[type="radio"]+label {
+.rureraform-cr-box input[type="checkbox"]+label, .rureraform-cr-box input[type="radio"]+label {
 	vertical-align: top !important;
 }
 
 /* Checkboxes and Radio Buttons - begin */
 
 /* Imageselect select - begin */
-.leform-imageselect {
+.rureraform-imageselect {
 	display: none !important;
 }
-.leform-imageselect+label {
+.rureraform-imageselect+label {
 	display: inline-block !important;
 	width: 100px;
 	height: 100px;
@@ -1233,7 +1233,7 @@ input[type="radio"].leform-radio-dot.leform-radio-small:checked+label:after {
 	background-position: 50% 50%;
 	overflow: hidden;
 }
-.leform-imageselect+label span.leform-imageselect-image {
+.rureraform-imageselect+label span.rureraform-imageselect-image {
 	display: block;
 	vertical-align: middle;
 	margin: 0;
@@ -1241,39 +1241,39 @@ input[type="radio"].leform-radio-dot.leform-radio-small:checked+label:after {
 	background-repeat: no-repeat;
 	background-position: 50% 50%;
 }
-.leform-imageselect+label span.leform-imageselect-label {
+.rureraform-imageselect+label span.rureraform-imageselect-label {
 	padding: 0.5em;
 	display: block;
 }
-.leform-ta-left .leform-imageselect+label {
+.rureraform-ta-left .rureraform-imageselect+label {
 	margin: 5px 10px 5px 0;
 }
-.leform-ta-center .leform-imageselect+label {
+.rureraform-ta-center .rureraform-imageselect+label {
 	margin: 5px 5px 5px 5px;
 }
-.leform-ta-right .leform-imageselect+label {
+.rureraform-ta-right .rureraform-imageselect+label {
 	margin: 5px 0 5px 10px;
 }
-.leform-imageselect-grayscale .leform-imageselect+label {
+.rureraform-imageselect-grayscale .rureraform-imageselect+label {
 	-moz-filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
 	-o-filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
 	-webkit-filter: grayscale(100%);
 	filter: gray;
 	filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
 }
-.leform-imageselect-grayscale .leform-imageselect+label:hover,
-.leform-imageselect-grayscale .leform-imageselect:checked+label {
+.rureraform-imageselect-grayscale .rureraform-imageselect+label:hover,
+.rureraform-imageselect-grayscale .rureraform-imageselect:checked+label {
 	-moz-filter: none;
 	-o-filter: none;
 	-webkit-filter: none;
 	filter: none;
 	filter: none;
 }
-.leform-imageselect+label:before,
-.leform-imageselect+label:after {
+.rureraform-imageselect+label:before,
+.rureraform-imageselect+label:after {
 	content: '';
 }
-.leform-imageselect:checked+label {
+.rureraform-imageselect:checked+label {
 	display: inline-block;
 	width: 100px;
 	height: 100px;
@@ -1281,7 +1281,7 @@ input[type="radio"].leform-radio-dot.leform-radio-small:checked+label:after {
 /* Imageselect select - end */
 
 /* Popup message - begin */
-.leform-popup-message-overlay {
+.rureraform-popup-message-overlay {
 	position: fixed !important;
 	z-index: 999999;
 	top: 0px;
@@ -1293,7 +1293,7 @@ input[type="radio"].leform-radio-dot.leform-radio-small:checked+label:after {
 	background-color: rgba(0,0,0,0.8);
 	display: none;
 }
-.leform-popup-message {
+.rureraform-popup-message {
 	position: fixed;
 	z-index: 1000000;
 	text-align: left;
@@ -1313,10 +1313,10 @@ input[type="radio"].leform-radio-dot.leform-radio-small:checked+label:after {
 	line-height: 26px;
 	text-align: center;
 }
-.leform-popup-message-conntent {
+.rureraform-popup-message-conntent {
 	position: relative;
 }
-.leform-popup-message-close {
+.rureraform-popup-message-close {
 	position: absolute;
 	z-index: 1000001;
 	top: 8px;
@@ -1328,18 +1328,18 @@ input[type="radio"].leform-radio-dot.leform-radio-small:checked+label:after {
 	text-align: center;
 	display: inline-block;
 	cursor: pointer;
-	font-family: leform-if;
+	font-family: rureraform-if;
 	transition: color 0.3s;
 	-webkit-transition: color 0.3s;
 }
-.leform-popup-message-close:active {
+.rureraform-popup-message-close:active {
 	transform: translateY(2px);
 	-webkit-transform: translateY(2px);
 }
 /* Popup message - end */
 
 /* Popup mode - begin */
-.leform-popup-overlay {
+.rureraform-popup-overlay {
 	position: fixed !important;
 	z-index: 999999;
 	top: 0px;
@@ -1354,7 +1354,7 @@ input[type="radio"].leform-radio-dot.leform-radio-small:checked+label:after {
 	box-sizing: content-box;
 	padding-right: 20px;	
 }
-.leform-popup-loader {
+.rureraform-popup-loader {
 	width: 90px;
 	height: 90px;
 	position: relative;
@@ -1365,7 +1365,7 @@ input[type="radio"].leform-radio-dot.leform-radio-small:checked+label:after {
 	transform: translate(-50%, -50%);
 	-webkit-transform: translate(-50%, -50%);
 }
-.leform-popup {
+.rureraform-popup {
 	position: absolute;
 	z-index: 1000000;
 	text-align: left;
@@ -1376,7 +1376,7 @@ input[type="radio"].leform-radio-dot.leform-radio-small:checked+label:after {
 	padding: 25px 10px 10px 10px;
 	box-sizing: border-box;
 }
-.leform-popup-close {
+.rureraform-popup-close {
 	position: absolute;
 	top: 3px;
 	right: 10px;
@@ -1391,14 +1391,14 @@ input[type="radio"].leform-radio-dot.leform-radio-small:checked+label:after {
 	transition: color 0.3s;
 	-webkit-transition: color 0.3s;
 }
-.leform-popup-close:active {
+.rureraform-popup-close:active {
 	transform: translateY(2px);
 	-webkit-transform: translateY(2px);
 }
 /* Popup mode - end */
 
 /* Tripple Spinner - begin */
-.leform-popup-loader-triple-spinner {
+.rureraform-popup-loader-triple-spinner {
   display: block;
   position: relative;
   width: 90px;
@@ -1406,36 +1406,36 @@ input[type="radio"].leform-radio-dot.leform-radio-small:checked+label:after {
   border-radius: 50%;
   border: 4px solid transparent;
   border-top: 4px solid #FF5722;
-  -webkit-animation: leform-popup-loader-triple-spinner-spin 2s linear infinite;
-  animation: leform-popup-loader-triple-spinner-spin 2s linear infinite;
+  -webkit-animation: rureraform-popup-loader-triple-spinner-spin 2s linear infinite;
+  animation: rureraform-popup-loader-triple-spinner-spin 2s linear infinite;
 }
 
-.leform-popup-loader-triple-spinner::before,
-.leform-popup-loader-triple-spinner::after {
+.rureraform-popup-loader-triple-spinner::before,
+.rureraform-popup-loader-triple-spinner::after {
   content: "";
   position: absolute;
   border-radius: 50%;
   border: 4px solid transparent;
 }
-.leform-popup-loader-triple-spinner::before {
+.rureraform-popup-loader-triple-spinner::before {
   top: 5px;
   left: 5px;
   right: 5px;
   bottom: 5px;
   border-top-color: #FF9800;
-  -webkit-animation: leform-popup-loader-triple-spinner-spin 3s linear infinite;
-  animation: leform-popup-loader-triple-spinner-spin 3.5s linear infinite;
+  -webkit-animation: rureraform-popup-loader-triple-spinner-spin 3s linear infinite;
+  animation: rureraform-popup-loader-triple-spinner-spin 3.5s linear infinite;
 }
-.leform-popup-loader-triple-spinner::after {
+.rureraform-popup-loader-triple-spinner::after {
   top: 15px;
   left: 15px;
   right: 15px;
   bottom: 15px;
   border-top-color: #FFC107;
-  -webkit-animation: leform-popup-loader-triple-spinner-spin 1.5s linear infinite;
-  animation: leform-popup-loader-triple-spinner-spin 1.75s linear infinite;
+  -webkit-animation: rureraform-popup-loader-triple-spinner-spin 1.5s linear infinite;
+  animation: rureraform-popup-loader-triple-spinner-spin 1.75s linear infinite;
 }
-@-webkit-keyframes leform-popup-loader-triple-spinner-spin {
+@-webkit-keyframes rureraform-popup-loader-triple-spinner-spin {
 	from {
 		-webkit-transform: rotate(0deg);
 		transform: rotate(0deg);
@@ -1445,7 +1445,7 @@ input[type="radio"].leform-radio-dot.leform-radio-small:checked+label:after {
 		transform: rotate(360deg);
 	}
 }
-@keyframes leform-popup-loader-triple-spinner-spin {
+@keyframes rureraform-popup-loader-triple-spinner-spin {
 	from {
 		-webkit-transform: rotate(0deg);
 		transform: rotate(0deg);
@@ -1458,10 +1458,10 @@ input[type="radio"].leform-radio-dot.leform-radio-small:checked+label:after {
 /* Tripple Spinner - end */
 
 /* File uploader - begin */
-div.leform-uploader {
+div.rureraform-uploader {
 	position: relative;
 }
-div.leform-uploader-engine, div.leform-uploader-engine>form, div.leform-uploader-engine>form>input, div.leform-uploader-engine>iframe {
+div.rureraform-uploader-engine, div.rureraform-uploader-engine>form, div.rureraform-uploader-engine>form>input, div.rureraform-uploader-engine>iframe {
 	display: none !important;
 	width: 0 !important;
 	height: 0 !important;
@@ -1470,12 +1470,12 @@ div.leform-uploader-engine, div.leform-uploader-engine>form, div.leform-uploader
 	visibility: hidden !important;
 	opacity: 0 !important;
 }
-div.leform-uploader-file {
+div.rureraform-uploader-file {
 	margin: 0.5em 0;
 	line-height: 1.8;
 	position: relative;
 }
-div.leform-uploader-file>span {
+div.rureraform-uploader-file>span {
 	font-size: 0.9em;
 	line-height: 1.8;
 	position: absolute;
@@ -1485,31 +1485,31 @@ div.leform-uploader-file>span {
 	display: inline-block;
 	opacity: 0.7;
 }
-div.leform-uploader-file>span>i {
+div.rureraform-uploader-file>span>i {
 	transition: color 0.3s;
 	-webkit-transition: color 0.3s;
 }
-div.leform-uploader-file>span:hover>i {
+div.rureraform-uploader-file>span:hover>i {
 	color: red !important;
 }
-div.leform-uploader-file>div.leform-uploader-file-title {
+div.rureraform-uploader-file>div.rureraform-uploader-file-title {
 	white-space: nowrap;
 	overflow: hidden;
 	font-size: 0.9em;
 	margin-right: 40px;
 }
-div.leform-uploader-file>div.leform-uploader-progress {
+div.rureraform-uploader-file>div.rureraform-uploader-progress {
 	line-height: 0.8em;
 	height: 0.8em;
 	font-size: 0.8em;
 	opacity: 0.6;
 }
-div.leform-uploader-file>div.leform-uploader-progress>div.leform-uploader-progress-bar {
+div.rureraform-uploader-file>div.rureraform-uploader-progress>div.rureraform-uploader-progress-bar {
 	height: 4px;
 	background: green;
 	border-radius: 4px;
 }
-div.leform-uploader-file>div.leform-uploader-progress>div.leform-uploader-progress-error {
+div.rureraform-uploader-file>div.rureraform-uploader-progress>div.rureraform-uploader-progress-error {
 	line-height: 1em;
 	height: 1em;
 	font-size: 1em;
@@ -1518,24 +1518,24 @@ div.leform-uploader-file>div.leform-uploader-progress>div.leform-uploader-progre
 /* File uploader - end */
 
 /* Star rating - begin */
-.leform-star-rating, .leform-star-rating>label { 
+.rureraform-star-rating, .rureraform-star-rating>label { 
 	margin: 0 !important;
 	padding: 0 !important;
 	border: none;
 	display: inline-block;
 }
-.leform-star-rating>input {
+.rureraform-star-rating>input {
 	display: none;
 } 
-.leform-star-rating>label:before {
+.rureraform-star-rating>label:before {
 	content: "" !important;
 	display: none;
 }
-.leform-star-rating>label:after {
+.rureraform-star-rating>label:after {
 	cursor: pointer;
 	margin: 5px 0.4em 5px 0;
 	font-size: 1.25em;
-	font-family: leform-if;
+	font-family: rureraform-if;
 	display: inline-block;
 	content: "\e800";
 	position: relative;
@@ -1547,28 +1547,28 @@ div.leform-uploader-file>div.leform-uploader-progress>div.leform-uploader-progre
 	-webkit-transform: none !important;
 	transform: none !important;
 }
-.leform-ta-right .leform-star-rating>label:after {
+.rureraform-ta-right .rureraform-star-rating>label:after {
 	margin: 5px 0 5px 0.4em;
 }
-.leform-ta-center .leform-star-rating>label:after {
+.rureraform-ta-center .rureraform-star-rating>label:after {
 	margin: 5px 0.2em 5px 0.2em;
 }
-.leform-star-rating-tiny>label:after { 
+.rureraform-star-rating-tiny>label:after { 
 	font-size: 16px;
 }
-.leform-star-rating-small>label:after { 
+.rureraform-star-rating-small>label:after { 
 	font-size: 20px;
 }
-.leform-star-rating-medium>label:after { 
+.rureraform-star-rating-medium>label:after { 
 	font-size: 24px;
 }
-.leform-star-rating-large>label:after { 
+.rureraform-star-rating-large>label:after { 
 	font-size: 28px;
 }
-.leform-star-rating-huge>label:after { 
+.rureraform-star-rating-huge>label:after { 
 	font-size: 32px;
 }
-.leform-star-rating>label { 
+.rureraform-star-rating>label { 
 	color: #ddd; 
 	float: right;
 	transition-property: color, transform;
@@ -1579,31 +1579,31 @@ div.leform-uploader-file>div.leform-uploader-progress>div.leform-uploader-progre
 	width: auto !important;
 }
 
-.leform-star-rating>input:checked~label,
-.leform-star-rating:not(:checked)>label:hover,
-.leform-star-rating:not(:checked)>label:hover~label {
+.rureraform-star-rating>input:checked~label,
+.rureraform-star-rating:not(:checked)>label:hover,
+.rureraform-star-rating:not(:checked)>label:hover~label {
 	color: #FFD700;
 	transform: scale(1.2);
 }
 
-.leform-star-rating>input:checked+label:hover,
-.leform-star-rating>input:checked~label:hover,
-.leform-star-rating>label:hover~input:checked~label,
-.leform-star-rating>input:checked~label:hover~label {
+.rureraform-star-rating>input:checked+label:hover,
+.rureraform-star-rating>input:checked~label:hover,
+.rureraform-star-rating>label:hover~input:checked~label,
+.rureraform-star-rating>input:checked~label:hover~label {
 	opacity: 0.7;
 } 
 /* Star rating - end */
 /* Multiselect - start */
-.leform-multiselect {
+.rureraform-multiselect {
 	height: 90px;
 	overflow-x: hidden;
 	overflow-y: scroll;
 	padding: 0;
 }
-.leform-multiselect>input[type="checkbox"] {
+.rureraform-multiselect>input[type="checkbox"] {
 	display: none !important;
 }
-.leform-multiselect>label {
+.rureraform-multiselect>label {
 	display: block !important;
 	vertical-align: middle;
 	margin: 0;
@@ -1620,68 +1620,68 @@ div.leform-uploader-file>div.leform-uploader-progress>div.leform-uploader-progre
 	user-select: none;
 	cursor: pointer;
 }
-.leform-multiselect>label:nth-child(4n) {
+.rureraform-multiselect>label:nth-child(4n) {
 	background: rgba(0,0,0,0.02);
 }
-.leform-multiselect>label:before,
-.leform-multiselect>label:after {
+.rureraform-multiselect>label:before,
+.rureraform-multiselect>label:after {
 	content: '' !important;
 }
-.leform-multiselect>label:hover {
+.rureraform-multiselect>label:hover {
 	background: rgba(0,0,0,0.1);
 }
-.leform-multiselect>input[type="checkbox"]:checked+label {
+.rureraform-multiselect>input[type="checkbox"]:checked+label {
 	background: rgba(0,0,0,0.3);
 }
-.leform-multiselect>input[type="checkbox"]:disabled+label {
+.rureraform-multiselect>input[type="checkbox"]:disabled+label {
 	opacity: 0.5;
 }
-.leform-multiselect::-webkit-scrollbar {
+.rureraform-multiselect::-webkit-scrollbar {
 	width: 5px;
 }
-.leform-multiselect::-webkit-scrollbar-track {
+.rureraform-multiselect::-webkit-scrollbar-track {
 	box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
 }
-.leform-multiselect::-webkit-scrollbar-thumb {
+.rureraform-multiselect::-webkit-scrollbar-thumb {
 	/*background-color: #26B99A;*/
 	opacity: 0.8;
 }
 
 /* Multiselect - end */
-#leform-ready{width: 1px !important;}
-.leform-dl {
+#rureraform-ready{width: 1px !important;}
+.rureraform-dl {
 	text-align: right;
 	font-size: 14px;
 	font-family: arial;
 }
-.leform-dl a {
+.rureraform-dl a {
 	text-decoration: none !important;
 	outline: none !important;
 	box-shadow: none !important;
 	color: #52af00;
 	display: block;
 }
-.leform-dl a:hover {
+.rureraform-dl a:hover {
 	text-decoration: underline !important;
 }
-.leform-dl a:active {
+.rureraform-dl a:active {
 	transform: translateY(2px);
 }
 
 /* Progress Bar - start */
-div.leform-progress {
+div.rureraform-progress {
 	padding: 10px 0;
 	margin: 0 auto;
 }
-div.leform-progress.leform-progress-outside {
+div.rureraform-progress.rureraform-progress-outside {
 	display: none;
 }
-div.leform-progress::after {
+div.rureraform-progress::after {
 	content: ' ';
 	display: table;
 	clear: both;
 }
-div.leform-progress-t1>div {
+div.rureraform-progress-t1>div {
   width: 100%;
   height: 18px;
   line-height: 18px;
@@ -1691,7 +1691,7 @@ div.leform-progress-t1>div {
   overflow: hidden;
   margin: 0px auto;
 }
-div.leform-progress-t1>div>div {
+div.rureraform-progress-t1>div>div {
   background: #26B99A;
   position: absolute;
   left: 0;
@@ -1710,7 +1710,7 @@ div.leform-progress-t1>div>div {
 		-ms-user-select: none;
 			user-select: none;
 }
-div.leform-progress-t1>div>div:after {
+div.rureraform-progress-t1>div>div:after {
   background-size: 40px 40px;
   position: absolute;
   content: '';
@@ -1719,7 +1719,7 @@ div.leform-progress-t1>div>div:after {
   width: 100%;
   height: 100%;
 }
-div.leform-progress-t1>label {
+div.rureraform-progress-t1>label {
   display: block;
   font-size: 90%;
   margin-top: 4px;
@@ -1728,11 +1728,11 @@ div.leform-progress-t1>label {
   text-align: center;
   cursor: default;
 }
-div.leform-progress-t1.leform-progress-stripes>div>div:after {
+div.rureraform-progress-t1.rureraform-progress-stripes>div>div:after {
   background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMSAxIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48bGluZWFyR3JhZGllbnQgaWQ9Imxlc3NoYXQtZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIyNSUiIHN0b3AtY29sb3I9InJnYigyNTUsIDI1NSwgMjU1KSIgc3RvcC1vcGFjaXR5PSIwLjE1Ii8+PHN0b3Agb2Zmc2V0PSIyNSUiIHN0b3AtY29sb3I9InJnYigwLDAsMCkiIHN0b3Atb3BhY2l0eT0iMCIvPjxzdG9wIG9mZnNldD0iNTAlIiBzdG9wLWNvbG9yPSJyZ2IoMCwwLDApIiBzdG9wLW9wYWNpdHk9IjAiLz48c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0icmdiKDI1NSwgMjU1LCAyNTUpIiBzdG9wLW9wYWNpdHk9IjAuMTUiLz48c3RvcCBvZmZzZXQ9Ijc1JSIgc3RvcC1jb2xvcj0icmdiKDI1NSwgMjU1LCAyNTUpIiBzdG9wLW9wYWNpdHk9IjAuMTUiLz48c3RvcCBvZmZzZXQ9Ijc1JSIgc3RvcC1jb2xvcj0icmdiKDAsMCwwKSIgc3RvcC1vcGFjaXR5PSIwIi8+PHN0b3Agb2Zmc2V0PSIzMDAlIiBzdG9wLWNvbG9yPSJyZ2IoMCwwLDApIiBzdG9wLW9wYWNpdHk9IjAiLz48L2xpbmVhckdyYWRpZW50PjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjbGVzc2hhdC1nZW5lcmF0ZWQpIiAvPjwvc3ZnPg==);
 }
 
-ul.leform-progress-t2 * {
+ul.rureraform-progress-t2 * {
   margin: 0;
   padding: 0;
   box-shadow: none;
@@ -1747,7 +1747,7 @@ ul.leform-progress-t2 * {
 			user-select: none;
 }
 
-ul.leform-progress-t2 {
+ul.rureraform-progress-t2 {
   width: 100%;
   height: 6px;
   background-color: #e0e0e0;
@@ -1757,17 +1757,17 @@ ul.leform-progress-t2 {
   list-style: none;
   padding: 0;
 }
-ul.leform-progress-t2>li {
+ul.rureraform-progress-t2>li {
   float: left !important;
   text-align: center !important;
   margin: -10px 0 0 0 !important;
   padding: 0 !important;
   list-style: none !important;
 }
-ul.leform-progress-t2>li::before, ul.leform-progress-t2>li::after {
+ul.rureraform-progress-t2>li::before, ul.rureraform-progress-t2>li::after {
   display:none !important;
 }
-ul.leform-progress-t2>li>span {
+ul.rureraform-progress-t2>li>span {
   background-color: #e0e0e0;
   font-size: 90%;
   color: #fff;
@@ -1778,7 +1778,7 @@ ul.leform-progress-t2>li>span {
   border-radius: 24px;
   text-align: center;
 }
-ul.leform-progress-t2>li>label {
+ul.rureraform-progress-t2>li>label {
   display: block;
   font-size: 90%;
   margin-top: 4px;
@@ -1787,31 +1787,31 @@ ul.leform-progress-t2>li>label {
   cursor: default;
   line-height: 1.2;
 }
-ul.leform-progress-t2>li.leform-progress-t2-active>span {
+ul.rureraform-progress-t2>li.rureraform-progress-t2-active>span {
   background-color: #26B99A;
 }
-ul.leform-progress-t2>li.leform-progress-t2-active>label {
+ul.rureraform-progress-t2>li.rureraform-progress-t2-active>label {
   color: #444;
 }
-ul.leform-progress-t2>li.leform-progress-t2-passed>span {
+ul.rureraform-progress-t2>li.rureraform-progress-t2-passed>span {
   background-color: #26B99A;
 }
-.leform-progress-t2.leform-progress-stripes>li>span {
+.rureraform-progress-t2.rureraform-progress-stripes>li>span {
   background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMSAxIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48bGluZWFyR3JhZGllbnQgaWQ9Imxlc3NoYXQtZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIyNSUiIHN0b3AtY29sb3I9InJnYigyNTUsIDI1NSwgMjU1KSIgc3RvcC1vcGFjaXR5PSIwLjE1Ii8+PHN0b3Agb2Zmc2V0PSIyNSUiIHN0b3AtY29sb3I9InJnYigwLDAsMCkiIHN0b3Atb3BhY2l0eT0iMCIvPjxzdG9wIG9mZnNldD0iNTAlIiBzdG9wLWNvbG9yPSJyZ2IoMCwwLDApIiBzdG9wLW9wYWNpdHk9IjAiLz48c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0icmdiKDI1NSwgMjU1LCAyNTUpIiBzdG9wLW9wYWNpdHk9IjAuMTUiLz48c3RvcCBvZmZzZXQ9Ijc1JSIgc3RvcC1jb2xvcj0icmdiKDI1NSwgMjU1LCAyNTUpIiBzdG9wLW9wYWNpdHk9IjAuMTUiLz48c3RvcCBvZmZzZXQ9Ijc1JSIgc3RvcC1jb2xvcj0icmdiKDAsMCwwKSIgc3RvcC1vcGFjaXR5PSIwIi8+PHN0b3Agb2Zmc2V0PSIzMDAlIiBzdG9wLWNvbG9yPSJyZ2IoMCwwLDApIiBzdG9wLW9wYWNpdHk9IjAiLz48L2xpbmVhckdyYWRpZW50PjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjbGVzc2hhdC1nZW5lcmF0ZWQpIiAvPjwvc3ZnPg==);
 }
 /* Progress Bar - end */
 
 /* Signature Pad - begin */
-.leform-signature-box {
+.rureraform-signature-box {
 	border-style: dashed !important;
 	position: relative;
 }
-.leform-signature-box canvas {
+.rureraform-signature-box canvas {
 	width: 1px;
 	height: 1px;
 	cursor: crosshair;
 }
-.leform-signature-box span {
+.rureraform-signature-box span {
 	position: absolute;
 	width: 18px;
 	height: 18px;
@@ -1825,20 +1825,20 @@ ul.leform-progress-t2>li.leform-progress-t2-passed>span {
 /* Signature Pad - end */
 
 /* Ion.RangeSlider - begin */
-.leform-rangeslider .irs-from, .leform-rangeslider .irs-to, .leform-rangeslider .irs-single, .leform-rangeslider .irs-min, .leform-rangeslider .irs-max {
+.rureraform-rangeslider .irs-from, .rureraform-rangeslider .irs-to, .rureraform-rangeslider .irs-single, .rureraform-rangeslider .irs-min, .rureraform-rangeslider .irs-max {
 	font-size: 13px !important;
 }
-.leform-rangeslider .irs-grid-text {
+.rureraform-rangeslider .irs-grid-text {
 	font-size: 12px !important;
 }
-.leform-rangeslider .irs-from:before, .leform-rangeslider .irs-to:before, .leform-rangeslider .irs-single:before {
+.rureraform-rangeslider .irs-from:before, .rureraform-rangeslider .irs-to:before, .rureraform-rangeslider .irs-single:before {
 	display: none !important;
 }
 /* Ion.RangeSlider - end */
 
 /* Numeric spinner - begin */
-.leform-numspinner-minus,
-.leform-numspinner-plus {
+.rureraform-numspinner-minus,
+.rureraform-numspinner-plus {
 	cursor: pointer;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
@@ -1847,13 +1847,13 @@ ul.leform-progress-t2>li.leform-progress-t2-passed>span {
 	-ms-user-select: none;
 	user-select: none;
 }
-.leform-numspinner-minus:before,
-.leform-numspinner-plus:before {
+.rureraform-numspinner-minus:before,
+.rureraform-numspinner-plus:before {
 	font-size: 12px;
 }
 /* Numeric spinner - end */
 
-.leform-xd-forbidden {
+.rureraform-xd-forbidden {
 	font-size: 16px;
 	font-family: arial;
 	text-align: center;
@@ -1864,16 +1864,16 @@ ul.leform-progress-t2>li.leform-progress-t2-passed>span {
 	box-shadow: 2px 2px 10px -4px rgba(0,0,0,0.7);
 }
 
-.leform-tooltipster-content-dark, .leform-tooltipster-content-dark * {
+.rureraform-tooltipster-content-dark, .rureraform-tooltipster-content-dark * {
 	color: #fff !important;
 }
 
-.leform-tooltipster-content-light, .leform-tooltipster-content-light * {
+.rureraform-tooltipster-content-light, .rureraform-tooltipster-content-light * {
 	color: #444 !important;
 }
 
 /* Global message - start */
-.leform-global-message {
+.rureraform-global-message {
 	position: fixed;
 	top: 50px;
 	right: 10px;
@@ -1887,58 +1887,58 @@ ul.leform-progress-t2>li.leform-progress-t2-passed>span {
 	font-weight: 400;
 	box-shadow: 2px 2px 10px -6px #000000;
 }
-.leform-global-message-info {
+.rureraform-global-message-info {
 	color: #fff;
 	background: #5bc0de;
 }
-.leform-global-message-success {
+.rureraform-global-message-success {
 	color: #fff;
 	background: #5cb85c;
 }
-.leform-global-message-danger {
+.rureraform-global-message-danger {
 	color: #fff;
 	background: #d9534f;
 }
 /* Global message - end */
 
 /* Required symbol - start */
-span.leform-required-symbol {
+span.rureraform-required-symbol {
 
 }
-span.leform-required-symbol-label-left {
+span.rureraform-required-symbol-label-left {
 	margin-right: 0.2em;
 }
-span.leform-required-symbol-label-right {
+span.rureraform-required-symbol-label-right {
 	margin-left: 0.2em;
 }
 /* Required symbol - start */
 
 /* Mandatory Icons - start */
 @font-face {
-  font-family: 'leform-if';
-  src: url('../fonts/leform-if.eot?95267912');
-  src: url('../fonts/leform-if.eot?95267912#iefix') format('embedded-opentype'),
-	   url('../fonts/leform-if.woff2?95267912') format('woff2'),
-	   url('../fonts/leform-if.woff?95267912') format('woff'),
-	   url('../fonts/leform-if.ttf?95267912') format('truetype'),
-	   url('../fonts/leform-if.svg?95267912#leform-if') format('svg');
+  font-family: 'rureraform-if';
+  src: url('../fonts/rureraform-if.eot?95267912');
+  src: url('../fonts/rureraform-if.eot?95267912#iefix') format('embedded-opentype'),
+	   url('../fonts/rureraform-if.woff2?95267912') format('woff2'),
+	   url('../fonts/rureraform-if.woff?95267912') format('woff'),
+	   url('../fonts/rureraform-if.ttf?95267912') format('truetype'),
+	   url('../fonts/rureraform-if.svg?95267912#rureraform-if') format('svg');
   font-weight: normal;
   font-style: normal;
 }
 
-span.leform-if, i.leform-if {
+span.rureraform-if, i.rureraform-if {
 	display: inline-block;
-	font: normal normal normal 14px/1 'leform-if';
+	font: normal normal normal 14px/1 'rureraform-if';
 	font-size: inherit;
 	text-rendering: auto;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
-.leform-if-spin {
-	-webkit-animation: leform-if-spin 2s infinite linear;
-	animation: leform-if-spin 2s infinite linear;
+.rureraform-if-spin {
+	-webkit-animation: rureraform-if-spin 2s infinite linear;
+	animation: rureraform-if-spin 2s infinite linear;
 }
-@-webkit-keyframes leform-if-spin {
+@-webkit-keyframes rureraform-if-spin {
 	0% {
 		-webkit-transform: rotate(0deg);
 		transform: rotate(0deg);
@@ -1948,7 +1948,7 @@ span.leform-if, i.leform-if {
 		transform: rotate(359deg);
 	}
 }
-@keyframes leform-if-spin {
+@keyframes rureraform-if-spin {
 	0% {
 		-webkit-transform: rotate(0deg);
 		transform: rotate(0deg);
@@ -1958,23 +1958,23 @@ span.leform-if, i.leform-if {
 		transform: rotate(359deg);
 	}
 }
-.leform-if-star:before { content: '\e800'; }
-.leform-if-check:before { content: '\e801'; }
-.leform-if-times:before { content: '\e802'; }
-.leform-if-help-circled:before { content: '\e803'; }
-.leform-if-plus:before { content: '\e804'; }
-.leform-if-minus:before { content: '\e805'; }
-.leform-if-spinner:before { content: '\f110'; }
-.leform-if-eraser:before { content: '\f12d'; }
+.rureraform-if-star:before { content: '\e800'; }
+.rureraform-if-check:before { content: '\e801'; }
+.rureraform-if-times:before { content: '\e802'; }
+.rureraform-if-help-circled:before { content: '\e803'; }
+.rureraform-if-plus:before { content: '\e804'; }
+.rureraform-if-minus:before { content: '\e805'; }
+.rureraform-if-spinner:before { content: '\f110'; }
+.rureraform-if-eraser:before { content: '\f12d'; }
 /* Mandatory Icons - end */
 
 /* Hack for Memeberlite theme - begin */
-.leform-element-label-none [class*="column"]+[class*="column"]:last-child {float: none;}
+.rureraform-element-label-none [class*="column"]+[class*="column"]:last-child {float: none;}
 /* Hack for Memeberlite theme - end */
 
 /* IE10+ hacks - begin */
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-	.leform-column-input {
+	.rureraform-column-input {
 		display: inline-flex;
 	}
 }

@@ -16,17 +16,17 @@ function chimp_utf8encode(string) {
     }
     return output;
 }
-const startRecordButton = $('#startRecord');
-const stopRecordButton = $('#stopRecord');
-const saveRecordButton = $('#saveRecord');
-const audioPlayer = $('#audioPlayer')[0];
-const timer = $('#timer');
-const timeLeftElement = $('#timeLeft');
+var startRecordButton = $('#startRecord');
+var stopRecordButton = $('#stopRecord');
+var saveRecordButton = $('#saveRecord');
+var audioPlayer = $('#audioPlayer')[0];
+var timer = $('#timer');
+var timeLeftElement = $('#timeLeft');
 
-let mediaRecorder;
-let timerInterval;
-let audioChunks = [];
-let timeLimit = 60; // Set the time limit in seconds
+var mediaRecorder;
+var timerInterval;
+var audioChunks = [];
+var timeLimit = 60; // Set the time limit in seconds
 
 var quiz_user_data = [];
 var attempted_questions = 0;
@@ -85,13 +85,16 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
         question_submit_process = false;
         return false;
     }
+	
+	
 
     //question_submit_process = false;
     if(rurera_is_field(Questioninterval)) {
         clearInterval(Questioninterval);
     }
 
-    rurera_loader($(this), 'div');
+    //rurera_loader($(this), 'div');
+	question_submit_process = false;
 
     var quiz_type = $(".question-area-block").attr('data-type');
     if (!rurera_is_field(quiz_type)) {
@@ -105,24 +108,28 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
     var appricate_colors_array = ['red', 'orange', 'blue', 'green'];
     var appricate_color = appricate_colors_array[Math.floor(Math.random() * appricate_colors_array.length)];
     var thisObj = $(this);
-    var attempt_id = $(".question-area .question-step").attr('data-qattempt');
-    var quiz_result_id = $(".question-area .question-step").attr('data-quiz_result_id');
-    var time_consumed = $(".question-area .question-step").attr('data-elapsed');
+	
+	var thisBlock = $(".rurera-question-block.active");
+	
+    var attempt_id = thisBlock.attr('data-qattempt');
+    var quiz_result_id = thisBlock.attr('data-quiz_result_id');
+    var time_consumed = thisBlock.attr('data-elapsed');
 
 
     var total_elapsed_time = $(".range-price").attr('data-time_elapsed');
-    var start_time = thisObj.closest('.question-step').attr('data-start_time');
+	
+    var start_time = thisBlock.attr('data-start_time');
     var time_consumed_bk = parseInt(total_elapsed_time) - parseInt(start_time);
 
     var question_no = $(this).attr('data-question_no');
     var total_questions = thisObj.closest('.questions-data-block').attr('data-total_questions');
-    var thisForm = $(this).closest('form');
-    var question_id = $(this).closest('form').data('question_id');
-    var defination_text = $(this).closest('form').data('defination');
+    var thisForm = thisBlock.find('form');
+    var question_id = thisForm.data('question_id');
+    var defination_text = thisForm.data('defination');
     var user_question_layout = thisForm.find('.question-layout').html();
-    var user_question_layout = leform_encode64(JSON.stringify(user_question_layout));
+    var user_question_layout = rureraform_encode64(JSON.stringify(user_question_layout));
     $('.question-all-good').remove();
-    $(this).closest('form').find('.editor-field:not(img)').each(function () {
+    thisForm.find('.editor-field:not(img)').each(function () {
         $(this).removeClass('validate-error');
         var field_name = $(this).attr('name');
         var field_id = $(this).attr('id');
@@ -165,10 +172,11 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
 
 
     question_data_array = question_data;
+	console.log(question_data);
     question_data = chimp_encode64(JSON.stringify(question_data));
     quiz_user_data[0]['attempt'][question_id] = question_data_array;
-    var qresult_id = thisObj.closest('.question-step').attr('data-qresult');
-    var qattempt_id = thisObj.closest('.question-step').attr('data-qattempt');
+    var qresult_id = thisBlock.attr('data-qresult');
+    var qattempt_id = thisBlock.attr('data-qattempt');
 
     QuestionSubmitRequest = jQuery.ajax({
         type: "POST",
@@ -206,7 +214,7 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
 				return_data.attempted_questions = attempted_questions;
 				return_data.correct_questions = correct_questions;
 				return_data.incorrect_questions = incorrect_questions;
-				afterQuestionValidation(return_data, thisForm, question_id);
+				afterQuestionValidation(return_data, thisForm, question_id, thisBlock);
 			}
 			
 			
@@ -248,8 +256,9 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
 
             if (rurera_is_field(return_data.updated_questions_layout) && return_data.updated_questions_layout != '') {
                 var updated_questions_layout = return_data.updated_questions_layout;
-
-                $(".question-area-block").attr('data-questions_layout', updated_questions_layout);
+				var layout_after_question = return_data.layout_after_question;
+				$('.rurera-question-block[data-qresult="'+layout_after_question+'"]').after(updated_questions_layout);
+                //$(".question-area-block").attr('data-questions_layout', updated_questions_layout);
             }
             if (rurera_is_field(return_data.next_question_id) && return_data.next_question_id != 0) {
                var next_question_id = return_data.next_question_id;
@@ -363,13 +372,13 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
                         //thisForm.find('.question-submit-btn').remove();
                         if (quiz_type == 'practice') {
                             //$("#quiz_question_status_modal").modal('show');
-                            thisForm.find('.show-notifications').html('<span class="question-status-wrong">Thats incorrect, but well done for trying</span>');
-                            thisForm.find('.show-notifications').append('<audio autoPlay="" className="player-box-audio" id="audio_file_4492" src="/speech-audio/wrong-answer.mp3"></audio>');
+                            $(".question-area-block").find('.show-notifications').html('<span class="question-status-wrong">Thats incorrect, but well done for trying</span>');
+                            $(".question-area-block").find('.show-notifications').append('<audio autoPlay="" className="player-box-audio" id="audio_file_4492" src="/speech-audio/wrong-answer.mp3"></audio>');
                             if (rurera_is_field(return_data.question_solution)) {
-                                thisForm.find('.show-notifications').append(return_data.question_solution);
+                                $(".question-area-block").find('.show-notifications').append(return_data.question_solution);
                             }
-                            thisForm.find('.question-submit-btn').addClass('rurera-hide');
-                            thisForm.find('.question-next-btn').removeClass('rurera-hide');
+                            $(".question-area-block").find('.question-submit-btn').addClass('rurera-hide');
+                            $(".question-area-block").find('.question-next-btn').removeClass('rurera-hide');
                             $(".quiz-status-bar").removeClass('rurera-hide');
 
 
@@ -433,12 +442,12 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
                 }
 
                 if (quiz_type != 'book') {
-                    //thisForm.find('.question-submit-btn').remove();
+                    //$(".question-area-block").find('.question-submit-btn').remove();
                 }
                 if (return_data.incorrect_flag == true) {
 
                     if (quiz_type == 'practice') {
-                        thisForm.find('.show-notifications').html('<span class="question-status-wrong">Thats incorrect, but well done for trying</span>');
+                        $(".question-area-block").find('.show-notifications').html('<span class="question-status-wrong">Thats incorrect, but well done for trying</span>');
 
                     }else {
                         if (quiz_type == 'book') {
@@ -464,12 +473,12 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
                     }
 
                     if (quiz_type == 'practice') {
-                        thisForm.find('.show-notifications').html('<span class="question-status-correct">Well done! Thats exactly right.</span>');
+                        $(".question-area-block").find('.show-notifications').html('<span class="question-status-correct">Well done! Thats exactly right.</span>');
                         if (rurera_is_field(return_data.question_solution)) {
                             thisForm.find('.show-notifications').append(return_data.question_solution);
                         }
-                        thisForm.find('.question-submit-btn').addClass('rurera-hide');
-                        thisForm.find('.question-next-btn').removeClass('rurera-hide');
+                        $(".question-area-block").find('.question-submit-btn').addClass('rurera-hide');
+                        $(".question-area-block").find('.question-next-btn').removeClass('rurera-hide');
                         $(".quiz-status-bar").removeClass('rurera-hide');
                     }
                     else {
@@ -854,7 +863,17 @@ function init_question_functions() {
     });
 
     var currentRequest = null;
-    $("body").on('click', '.quiz-pagination ul li, .questions-nav-controls .prev-btn, .questions-nav-controls .next-btn', function (e) {
+	
+	
+	$("body").on('click', '.questions-nav-controls .next-btn', function (e) {
+		$(".question-area-block").find('.show-notifications').html('');
+		$('.rurera-question-block.active').removeClass('active').next().addClass('active');
+		$(this).addClass('rurera-hide');
+		$('.question-next-btn').addClass('rurera-hide');
+		$('.question-submit-btn').removeClass('rurera-hide');
+	});
+	
+    $("body").on('click', '.quiz-pagination ul li, .questions-nav-controls .prev-btn, .questions-nav-controls .next-btn1', function (e) {
 
         if ($(this).hasClass('disable-btn')) {
             return;
@@ -868,34 +887,33 @@ function init_question_functions() {
         var question_id = $(this).attr('data-question_id');
 
         var li_obj = $('.quiz-pagination ul li[data-question_id="' + question_id + '"]');
-        if ($(this).hasClass('correct') || $(this).hasClass('incorrect')) {
+        /*if ($(this).hasClass('correct') || $(this).hasClass('incorrect')) {
             return;
         }
         if (li_obj.hasClass('correct') || li_obj.hasClass('incorrect')) {
             li_obj.click();
             return;
-        }
+        }*/
         $(".quiz-pagination ul li").removeClass('active');
         $(this).addClass('active');
         $('.quiz-pagination ul li[data-question_id="' + question_id + '"]').addClass('active');
         var qattempt_id = $(".question-area .question-step").attr('data-qattempt');
-
+		/*
         var questions_layout_obj = JSON.parse($('.question-area-block').attr('data-questions_layout'));
         var questions_layout = [];
         var questions_layout_obj = $.map(questions_layout_obj, function (value, index) {
             questions_layout[index] = value;
-        });
+        });*/
 
 
+		console.log('quiz-pagination ul li===' + question_id);
 
 
-        var question_layout = leform_decode64(questions_layout[question_id]);
-
-        var question_layout = JSON.parse(question_layout);
-
-
-
-        $(".question-area-block").html(question_layout);
+		$('.rurera-question-block').addClass('rurera-hide');
+		$('.rurera-question-block[data-qresult="'+question_id+'"]').removeClass('rurera-hide');
+        //var question_layout = rureraform_decode64(questions_layout[question_id]);
+        //var question_layout = JSON.parse(question_layout);
+        //$(".question-area-block").html(question_layout);
         var quizQuestionID = $(".question-area-block").find('.question-fields').attr('data-question_id');
 		
 		
@@ -1298,7 +1316,7 @@ function chunkWords(p) {
     return words.join("");
 }
 
-function leform_random_string(_length) {
+function rureraform_random_string(_length) {
     var length, text = "";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     if (typeof _length == "undefined")
@@ -1310,7 +1328,7 @@ function leform_random_string(_length) {
     return text;
 }
 
-function leform_utf8encode(string) {
+function rureraform_utf8encode(string) {
     string = string.replace(/\x0d\x0a/g, "\x0a");
     var output = "";
     for (var n = 0; n < string.length; n++) {
@@ -1329,12 +1347,12 @@ function leform_utf8encode(string) {
     return output;
 }
 
-function leform_encode64(input) {
+function rureraform_encode64(input) {
     var keyString = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
     var output = "";
     var chr1, chr2, chr3, enc1, enc2, enc3, enc4;
     var i = 0;
-    input = leform_utf8encode(input);
+    input = rureraform_utf8encode(input);
     while (i < input.length) {
         chr1 = input.charCodeAt(i++);
         chr2 = input.charCodeAt(i++);
@@ -1353,7 +1371,7 @@ function leform_encode64(input) {
     return output;
 }
 
-function leform_utf8decode(input) {
+function rureraform_utf8decode(input) {
     var string = "";
     var i = 0;
     var c = 0, c1 = 0, c2 = 0;
@@ -1376,7 +1394,7 @@ function leform_utf8decode(input) {
     return string;
 }
 
-function leform_decode64(input) {
+function rureraform_decode64(input) {
     var keyString = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
     var output = "";
     var chr1, chr2, chr3;
@@ -1399,19 +1417,19 @@ function leform_decode64(input) {
             output = output + String.fromCharCode(chr3);
         }
     }
-    output = leform_utf8decode(output);
+    output = rureraform_utf8decode(output);
     return output;
 }
 
-function leform_esc_html__(_string) {
+function rureraform_esc_html__(_string) {
     var string;
-    if (typeof leform_translations == typeof {} && leform_translations.hasOwnProperty(_string)) {
-        string = leform_translations[_string];
+    if (typeof rureraform_translations == typeof {} && rureraform_translations.hasOwnProperty(_string)) {
+        string = rureraform_translations[_string];
         if (string.length == 0)
             string = _string;
     } else
         string = _string;
-    return leform_escape_html(string);
+    return rureraform_escape_html(string);
 }
 
 //Match Draw

@@ -40,6 +40,8 @@ class LearnController extends Controller
 		$courses_list = $courses_list->whereNotIn('id', $hide_subjects);
 		$courses_list = $courses_list->where('status', 'active')->get();
 		
+		//pre($courses_list);
+		
         $page = Page::where('link', '/learn')->where('status', 'publish')->first();
         if (!empty($courses_list)) {
 

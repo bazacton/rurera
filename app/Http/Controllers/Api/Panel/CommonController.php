@@ -64,7 +64,7 @@ class CommonController extends Controller
 				'activeColor' => '#FF0000',
 				'pageTitle' => 'Word Lists',
 				'target_api' => '/panel/spells',
-				'target_layout' => 'list',
+				'target_layout' => 'list3',
 			),
 			array(
 				'title' => 'Books',
@@ -162,9 +162,8 @@ class CommonController extends Controller
 				'icon_position' => 'left',
 				'color' => '#FFFFFF',
 				'activeColor' => '#FF0000',
-				'pageTitle' => 'Logout',
-				'target_api' => '/panel/logout',
-				'target_layout' => 'list',
+				'target_api' => '/logout',
+				'target_layout' => 'logout',
 			),
 		);
 		
@@ -238,8 +237,8 @@ class CommonController extends Controller
 					'color' => '#FFFFFF',
 					'activeColor' => '#FF0000',
 					'pageTitle' => 'Logout',
-					'target_api' => '/panel/logout',
-					'target_layout' => 'list',
+					'target_api' => '/logout',
+					'target_layout' => 'logout',
 				),
 			);
 		}

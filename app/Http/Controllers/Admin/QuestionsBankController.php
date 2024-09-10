@@ -453,20 +453,20 @@ class QuestionsBankController extends Controller
                 $question_layout = html_entity_decode(json_decode(base64_decode(trim(stripslashes($question_layout)))));
 
 
-                $question_layout = '<div id="leform-element-1" class="leform-element-1 leform-element quiz-group leform-element-html" data-type="question_label"><div class="question-label"><span>'.$new_label.'</span></div></div>';
-                $question_layout .= '<div id="leform-element-0" class="leform-element-0 leform-element quiz-group leform-element-html" data-type="truefalse_quiz"><span class="truefalse_quiz leform-input leform-cr-layout-undefined leform-cr-layout-undefined">
+                $question_layout = '<div id="rureraform-element-1" class="rureraform-element-1 rureraform-element quiz-group rureraform-element-html" data-type="question_label"><div class="question-label"><span>'.$new_label.'</span></div></div>';
+                $question_layout .= '<div id="rureraform-element-0" class="rureraform-element-0 rureraform-element quiz-group rureraform-element-html" data-type="truefalse_quiz"><span class="truefalse_quiz rureraform-input rureraform-cr-layout-undefined rureraform-cr-layout-undefined">
                 <div class="form-box rurera-in-row undefined image-right none">
                 <div class="lms-radio-select rurera-in-row undefined image-right none">
-                <div class="field-holder leform-cr-container-medium leform-cr-container-undefined">
+                <div class="field-holder rureraform-cr-container-medium rureraform-cr-container-undefined">
                 <input class="editor-field" type="radio" name="field-37382" id="field-37382-0" value="True">
                 <label for="field-37382-0">True</label>
                 </div>
-                <div class="field-holder leform-cr-container-medium leform-cr-container-undefined">
+                <div class="field-holder rureraform-cr-container-medium rureraform-cr-container-undefined">
                 <input class="editor-field" type="radio" name="field-37382" id="field-37382-1" value="False">
                 <label for="field-37382-1">False</label>
                 </div>
                 </div>
-                </div></span><div class="leform-element-cover"></div></div>';
+                </div></span><div class="rureraform-element-cover"></div></div>';
 
                 $question_layout = str_replace('37382', $dynamic_id, $question_layout);
 
@@ -1537,16 +1537,16 @@ class QuestionsBankController extends Controller
                     if ($option_value == '') {
                         continue;
                     }
-                    $radio_layout_response .= '<div class="field-holder leform-cr-container-medium leform-cr-container-undefined"><input class="editor-field" type="radio" name="field-' . $random_id . '" id="field-' . $random_id . '-' . $option_index . '" value="' . $option_value . '"><label for="field-' . $random_id . '-' . $option_index . '">' . $option_value . '</label></div>';
+                    $radio_layout_response .= '<div class="field-holder rureraform-cr-container-medium rureraform-cr-container-undefined"><input class="editor-field" type="radio" name="field-' . $random_id . '" id="field-' . $random_id . '-' . $option_index . '" value="' . $option_value . '"><label for="field-' . $random_id . '-' . $option_index . '">' . $option_value . '</label></div>';
                     $option_index++;
                 }
 
                 $question_layout = str_replace("Don't know", 'Dont know', $question_layout);
 
-                $replaceable = '<div class="lms-radio-select rurera-in-row undefined "><div class="field-holder leform-cr-container-medium leform-cr-container-undefined"><input class="editor-field" type="radio" name="field-' . $random_id . '" id="field-' . $random_id . '-0" value="Option 1"><label for="field-' . $random_id . '-0"><span class="inner-label">True</span></label></div><div class="field-holder leform-cr-container-medium leform-cr-container-undefined"><input class="editor-field" type="radio" name="field-' . $random_id . '" id="field-' . $random_id . '-1" value="Option 2"><label for="field-' . $random_id . '-1"><span class="inner-label">False</span></label></div><div class="field-holder leform-cr-container-medium leform-cr-container-undefined"><input class="editor-field" type="radio" name="field-' . $random_id . '" id="field-' . $random_id . '-2" value="Option 3"><label for="field-' . $random_id . '-2"><span class="inner-label">Dont know</span></label></div></div>';
+                $replaceable = '<div class="lms-radio-select rurera-in-row undefined "><div class="field-holder rureraform-cr-container-medium rureraform-cr-container-undefined"><input class="editor-field" type="radio" name="field-' . $random_id . '" id="field-' . $random_id . '-0" value="Option 1"><label for="field-' . $random_id . '-0"><span class="inner-label">True</span></label></div><div class="field-holder rureraform-cr-container-medium rureraform-cr-container-undefined"><input class="editor-field" type="radio" name="field-' . $random_id . '" id="field-' . $random_id . '-1" value="Option 2"><label for="field-' . $random_id . '-1"><span class="inner-label">False</span></label></div><div class="field-holder rureraform-cr-container-medium rureraform-cr-container-undefined"><input class="editor-field" type="radio" name="field-' . $random_id . '" id="field-' . $random_id . '-2" value="Option 3"><label for="field-' . $random_id . '-2"><span class="inner-label">Dont know</span></label></div></div>';
 
                 if ($question_type == 'single_select') {
-                    $replaceable = '<div class="lms-radio-select rurera-in-row undefined "><div class="field-holder leform-cr-container-medium leform-cr-container-undefined"><input class="editor-field" type="radio" name="field-' . $random_id . '" id="field-' . $random_id . '-0" value="Option 1"><label for="field-' . $random_id . '-0"><span class="inner-label">Option 1</span></label></div></div>';
+                    $replaceable = '<div class="lms-radio-select rurera-in-row undefined "><div class="field-holder rureraform-cr-container-medium rureraform-cr-container-undefined"><input class="editor-field" type="radio" name="field-' . $random_id . '" id="field-' . $random_id . '-0" value="Option 1"><label for="field-' . $random_id . '-0"><span class="inner-label">Option 1</span></label></div></div>';
 
                 }
 
@@ -1628,7 +1628,7 @@ class QuestionsBankController extends Controller
                 $option_count = 0;
                 if( !empty( $options_array ) ){
                     foreach( $options_array as $optionObj){
-                        $options_text .= '<div class="field-holder leform-cr-container-medium leform-cr-container-undefined"><input class="editor-field" type="radio" name="field-75400" id="field-75400-'.$option_count.'" value="'.$optionObj->value.'"><label for="field-75400-'.$option_count.'">'.$optionObj->value.'</label></div>';
+                        $options_text .= '<div class="field-holder rureraform-cr-container-medium rureraform-cr-container-undefined"><input class="editor-field" type="radio" name="field-75400" id="field-75400-'.$option_count.'" value="'.$optionObj->value.'"><label for="field-75400-'.$option_count.'">'.$optionObj->value.'</label></div>';
                         $option_count++;
                     }
                 }
@@ -1638,9 +1638,9 @@ class QuestionsBankController extends Controller
 
 
 
-               $question_layout = '<div id="leform-element-1" class="leform-element-1 leform-element quiz-group leform-element-html ui-sortable-handle" data-type="paragraph_quiz">'.$new_question_text.'<div class="leform-element-cover"></div></div>';
-               $question_layout .= '<div id="leform-element-2" class="leform-element-2 leform-element quiz-group leform-element-html ui-sortable-handle" data-type="question_label"><div class="question-label"><span>'.$new_label.'</span></div></div>';
-               $question_layout .= '<div id="leform-element-0" class="quiz-group draggable3 leform-element-0 leform-element leform-element-label-undefined ui-sortable-handle" data-type="radio"><div class="leform-column-label"><label class="leform-label leform-ta-undefined"></label></div><div class="leform-column-input"><div class="leform-input leform-cr-layout-undefined leform-cr-layout-undefined"><div class="form-box rurera-in-row undefined image-right  image_small "><div class="lms-radio-select rurera-in-row undefined image-right  image_small">'.$options_text.'</div></div></div><label class="leform-description"></label></div><div class="leform-element-cover"></div></div>';
+               $question_layout = '<div id="rureraform-element-1" class="rureraform-element-1 rureraform-element quiz-group rureraform-element-html ui-sortable-handle" data-type="paragraph_quiz">'.$new_question_text.'<div class="rureraform-element-cover"></div></div>';
+               $question_layout .= '<div id="rureraform-element-2" class="rureraform-element-2 rureraform-element quiz-group rureraform-element-html ui-sortable-handle" data-type="question_label"><div class="question-label"><span>'.$new_label.'</span></div></div>';
+               $question_layout .= '<div id="rureraform-element-0" class="quiz-group draggable3 rureraform-element-0 rureraform-element rureraform-element-label-undefined ui-sortable-handle" data-type="radio"><div class="rureraform-column-label"><label class="rureraform-label rureraform-ta-undefined"></label></div><div class="rureraform-column-input"><div class="rureraform-input rureraform-cr-layout-undefined rureraform-cr-layout-undefined"><div class="form-box rurera-in-row undefined image-right  image_small "><div class="lms-radio-select rurera-in-row undefined image-right  image_small">'.$options_text.'</div></div></div><label class="rureraform-description"></label></div><div class="rureraform-element-cover"></div></div>';
 
                 $question_layout = str_replace('75400', $dynamic_id, $question_layout);
 
@@ -1912,8 +1912,8 @@ class QuestionsBankController extends Controller
 
                             $content_data = str_replace('. .', '.', $content_data);
                             $question_layout = '';
-                            $question_layout .= '<div id="leform-element-0" class="leform-element-0 leform-element quiz-group leform-element-html" data-type="question_label"><div class="question-label"><span>'.$questionLabel.'</span></div></div>';
-                            $question_layout .= '<div id="leform-element-1" class="leform-element-1 leform-element question-textarea quiz-group leform-element-html" data-type="html">'.$content_data.'<div class="leform-element-cover"></div></div>';
+                            $question_layout .= '<div id="rureraform-element-0" class="rureraform-element-0 rureraform-element quiz-group rureraform-element-html" data-type="question_label"><div class="question-label"><span>'.$questionLabel.'</span></div></div>';
+                            $question_layout .= '<div id="rureraform-element-1" class="rureraform-element-1 rureraform-element question-textarea quiz-group rureraform-element-html" data-type="html">'.$content_data.'<div class="rureraform-element-cover"></div></div>';
 
 
                             $element_data = str_replace('Dropdown Label', $questionLabel, $element_data);

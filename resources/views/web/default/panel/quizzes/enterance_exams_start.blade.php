@@ -146,8 +146,8 @@ $timer_counter = $practice_time;
                         <div class="question-layout-block">
                             <div class="left-content has-bg">
                                 <h2>&nbsp;</h2>
-                                <div id="leform-form-1"
-                                     class="leform-form leform-elements leform-form-input-medium leform-form-icon-inside leform-form-description-bottom ui-sortable"
+                                <div id="rureraform-form-1"
+                                     class="rureraform-form rureraform-elements rureraform-form-input-medium rureraform-form-icon-inside rureraform-form-description-bottom ui-sortable"
                                      _data-parent="1"
                                      _data-parent-col="0" style="display: block;">
                                     <div class="question-layout">
@@ -322,7 +322,7 @@ $timer_counter = $practice_time;
 		var current_question_layout = getDivWithValues().html();//$(".question-area-block").html();
 		//console.log(current_question_layout.html());
 		current_question_layout = JSON.stringify(current_question_layout);
-		current_question_layout = leform_encode64(current_question_layout);
+		current_question_layout = rureraform_encode64(current_question_layout);
 		var questions_layout_obj = JSON.parse($('.question-area-block').attr('data-questions_layout'));
 		console.log(questions_layout_obj);
 		var question_local_id = $(".quiz-pagination ul li[data-actual_question_id='" + question_id + "']").attr('data-question_id');
@@ -330,7 +330,7 @@ $timer_counter = $practice_time;
         var questions_layout_obj = $.map(questions_layout_obj, function (value, index) {
             questions_layout[index] = value;
         });
-        var question_layout = leform_decode64(questions_layout[question_local_id]);
+        var question_layout = rureraform_decode64(questions_layout[question_local_id]);
 
         var question_layout = JSON.parse(question_layout);
 		console.log('afterQuestionValidation');

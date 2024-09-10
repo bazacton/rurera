@@ -24,6 +24,6 @@ Route::group(['namespace' => 'Auth'], function () {
 
 });
 
-Route::post('/logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout', 'middleware' => ['api.auth']]);
+Route::get('/logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout', 'middleware' => ['api.auth']]);
 
 

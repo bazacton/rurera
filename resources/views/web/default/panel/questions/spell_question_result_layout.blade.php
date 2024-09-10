@@ -8,8 +8,8 @@
         <div class="left-content has-bg">
 		
             <h2>&nbsp;</h2>
-            <div id="leform-form-1"
-                 class="leform-form leform-elements leform-form-input-medium leform-form-icon-inside leform-form-description-bottom ui-sortable"
+            <div id="rureraform-form-1"
+                 class="rureraform-form rureraform-elements rureraform-form-input-medium rureraform-form-icon-inside rureraform-form-description-bottom ui-sortable"
                  _data-parent="1"
                  _data-parent-col="0" style="display: block;">
                 <div class="question-layout">
@@ -39,8 +39,8 @@ $question_unique_id = $question->id.$rand_id;
             <form class="question-fields" action="javascript:;" data-question_id="{{ $question->id }}">
                 <div class="left-content has-bg">
                     @php $classes = isset( $class )? $class : ''; @endphp
-                    <div id="leform-form-1"
-                         class="{{$classes}} leform-form leform-elements leform-form-input-medium leform-form-icon-inside leform-form-description-bottom ui-sortable"
+                    <div id="rureraform-form-1"
+                         class="{{$classes}} rureraform-form rureraform-elements rureraform-form-input-medium rureraform-form-icon-inside rureraform-form-description-bottom ui-sortable"
                          _data-parent="1"
                          _data-parent-col="0" style="display: block;">
 						 <div class="question-layout-data">

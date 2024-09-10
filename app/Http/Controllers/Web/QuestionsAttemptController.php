@@ -438,7 +438,10 @@ class QuestionsAttemptController extends Controller
 
 
         $questions_data = isset($question_data[0]) ? $question_data[0] : $question_data;
+		
 
+		$layout_after_question = 0;
+		
 
         if (!empty($group_questions_list)) {
             foreach ($group_questions_list as $group_question_id) {
@@ -461,6 +464,7 @@ class QuestionsAttemptController extends Controller
         $single_question_layout = $updated_questions_layout = '';
 
 		$total_coins_earned = 0;
+		
 
         $next_question_id = 0;
         if (!empty($group_questions_list)) {
@@ -491,6 +495,7 @@ class QuestionsAttemptController extends Controller
                         $question_correct = is_array($question_correct) ? $question_correct : array($question_correct);
                         $question_user_input = $user_input;
                         $question_validate_response = $this->validate_correct_answere($current_question_obj, $question_correct, $question_type, $user_input, $sub_index);
+						
                         $is_question_correct = isset($question_validate_response['is_question_correct']) ? $question_validate_response['is_question_correct'] : true;
 
 						
@@ -505,135 +510,10 @@ class QuestionsAttemptController extends Controller
 						
 						//quizAttempt
 						
-						
                         $user_input = is_array($user_input) ? $user_input : array($user_input);
                         if ($is_question_correct == false) {
 
-							if (in_array($quizAttempt->attempt_type, array('practice','learning_journey'))) {	
-                                /*
-                                * Practice Quiz Incorrect attempt add another Question
-                                * @Start
-                                */
-                                $other_data = isset($quizResultObj->other_data) ? json_decode($quizResultObj->other_data) : array();
-								($qresult_id);
-                                $return_search_data = find_array_index_by_value($other_data, $qresult_id);
-                                $main_index = isset($return_search_data['main_index']) ? $return_search_data['main_index'] : '';
-                                $parent_index = isset($return_search_data['parent_index']) ? $return_search_data['parent_index'] : '';
-                                $value_index = isset($return_search_data['value_index']) ? $return_search_data['value_index'] : 0;
-
-                                $quizObj = Quiz::find($quizResultObj->parent_type_id);
-                                $questions_list = array();
-                                if (!empty($quizObj->quizQuestionsList)) {
-                                    foreach ($quizObj->quizQuestionsList as $questionlistData) {
-                                        $questions_list[] = $questionlistData->question_id;
-                                    }
-                                }
-
-                                //DB::enableQueryLog();
-                                //pre(DB::getQueryLog());
-                                //DB::disableQueryLog();
-                                $new_question_id = QuizzesQuestion::leftJoin('quizz_result_questions', 'quizzes_questions.id', '=', 'quizz_result_questions.question_id')->whereIN('quizzes_questions.id', $questions_list)->where('quizzes_questions.question_type', $parent_index)->where('quizzes_questions.question_difficulty_level', $main_index)->whereNull('quizz_result_questions.question_id')->limit(1)->pluck('quizzes_questions.id')->toArray();
-
-                                $new_question_id = isset($new_question_id[0]) ? $new_question_id[0] : 0;
-                                if ($new_question_id == 0) {
-                                    $new_question_id = QuizzesQuestion::leftJoin('quizz_result_questions', 'quizzes_questions.id', '=', 'quizz_result_questions.question_id')->whereIN('quizzes_questions.id', $questions_list)->where('quizzes_questions.question_type', $parent_index)->where('quizzes_questions.question_difficulty_level', $main_index)->where('quizz_result_questions.status', 'incorrect')->limit(1)->pluck('quizzes_questions.id')->toArray();
-                                    $new_question_id = isset($new_question_id[0]) ? $new_question_id[0] : 0;
-                                    if ($new_question_id == 0) {
-                                        $new_question_id = QuizzesQuestion::leftJoin('quizz_result_questions', 'quizzes_questions.id', '=', 'quizz_result_questions.question_id')->whereIN('quizzes_questions.id', $questions_list)->where('quizzes_questions.question_type', $parent_index)->where('quizzes_questions.question_difficulty_level', $main_index)->where('quizz_result_questions.status', 'correct')->limit(1)->pluck('quizzes_questions.id')->toArray();
-                                        $new_question_id = isset($new_question_id[0]) ? $new_question_id[0] : 0;
-                                    }
-                                }
-                                if ($new_question_id > 0) {
-                                    $nextQuestionArray = $this->nextQuestion($quizAttempt, array(), 0, true, array(), $quizResultObj, $new_question_id);
-                                    $newQuestionResult = isset($nextQuestionArray['newQuestionResult']) ? $nextQuestionArray['newQuestionResult'] : array();
-
-                                    $other_data->{$main_index}->{$parent_index}[] = $newQuestionResult->id;
-
-                                    $updated_questions_list = array();
-                                    foreach ($other_data as $difficulty_level => $question_type) {
-                                        foreach ($question_type as $q_id_array) {
-                                            foreach ($q_id_array as $q_id) {
-                                                $updated_questions_list[] = $q_id;
-                                            }
-                                        }
-                                    }
-                                    $questions_list = $updated_questions_list;
-
-                                    $quizResultObj->update([
-                                        'questions_list' => json_encode($questions_list),
-                                        'other_data'     => json_encode($other_data),
-                                    ]);
-                                    $quizAttempt->update([
-                                        'questions_list' => json_encode($questions_list),
-                                    ]);
-									
-									
-
-                                    $questions_layout_response = $this->practice_questions_layout_update($questions_list, $quizAttempt, $quizResultObj, array());
-                                    $questions_layout = isset($questions_layout_response['questions_layout']) ? $questions_layout_response['questions_layout'] : '';
-                                    $next_question_id = isset($questions_layout_response['next_question_id']) ? $questions_layout_response['next_question_id'] : 0;
-                                    $updated_questions_layout = json_encode($questions_layout);
-                                }
-
-                                /*
-                                 * Practice Quiz Incorrect attempt add another Question
-                                 * @Ends
-                                 */
-                            }
 							
-							
-							
-							if (in_array($quizAttempt->attempt_type, array('vocabulary')) && $quizResultObj->attempt_mode != '') {	
-                                /*
-                                * Practice Quiz Incorrect attempt add another Question
-                                * @Start
-                                */
-                                $other_data = isset($quizResultObj->other_data) ? json_decode($quizResultObj->other_data) : array();
-                               
-								
-								
-								$questions_list = json_decode($quizResultObj->questions_list);
-								
-								if( $other_data == ''){
-									$quizResultObj->update([
-										'other_data' => json_encode($questions_list),
-									]);
-								}
-								
-								
-								$incorrectQuestionObj = QuizzResultQuestions::find($group_question_id);
-                                $incorrectQuestionObjNew = $incorrectQuestionObj->replicate();
-                                $incorrectQuestionObjNew->user_answer = '';
-                                $incorrectQuestionObjNew->status = 'waiting';
-                                $incorrectQuestionObjNew->created_at = time();
-                                $incorrectQuestionObjNew->push();
-								$new_question_id = $incorrectQuestionObjNew->id;
-								
-								
-								$current_index = array_search($group_question_id, $questions_list);
-
-								if ($current_index !== false) {
-									array_splice($questions_list, $current_index + 1, 0, $new_question_id);
-								}
-								
-								
-								$quizResultObj->update([
-									'questions_list' => json_encode($questions_list),
-								]);
-								$quizAttempt->update([
-									'questions_list' => json_encode($questions_list),
-								]);
-								
-								$questions_layout_response = $this->spell_questions_layout_update($questions_list, $quizAttempt, $quizResultObj, $new_question_id, array());
-								$questions_layout = isset($questions_layout_response['questions_layout']) ? $questions_layout_response['questions_layout'] : '';
-								$next_question_id = isset($questions_layout_response['next_question_id']) ? $questions_layout_response['next_question_id'] : 0;
-								$updated_questions_layout = json_encode($questions_layout);
-								
-                                /*
-                                 * Practice Quiz Incorrect attempt add another Question
-                                 * @Ends
-                                 */
-                            }
 							
 
 
@@ -681,6 +561,153 @@ class QuestionsAttemptController extends Controller
                 ]);
 				
 				
+				if( $incorrect_flag == true){
+					if (in_array($quizAttempt->attempt_type, array('practice','learning_journey'))) {	
+						/*
+						* Practice Quiz Incorrect attempt add another Question
+						* @Start
+						*/
+						$other_data = isset($quizResultObj->other_data) ? json_decode($quizResultObj->other_data) : array();
+						$return_search_data = find_array_index_by_value($other_data, $qresult_id);
+						$main_index = isset($return_search_data['main_index']) ? $return_search_data['main_index'] : '';
+						$parent_index = isset($return_search_data['parent_index']) ? $return_search_data['parent_index'] : '';
+						$value_index = isset($return_search_data['value_index']) ? $return_search_data['value_index'] : 0;
+
+						$quizObj = Quiz::find($quizResultObj->parent_type_id);
+						$questions_list = array();
+						if (!empty($quizObj->quizQuestionsList)) {
+							foreach ($quizObj->quizQuestionsList as $questionlistData) {
+								$questions_list[] = $questionlistData->question_id;
+							}
+						}
+
+						//DB::enableQueryLog();
+						//pre(DB::getQueryLog());
+						//DB::disableQueryLog();
+						$new_question_id = QuizzesQuestion::leftJoin('quizz_result_questions', 'quizzes_questions.id', '=', 'quizz_result_questions.question_id')->whereIN('quizzes_questions.id', $questions_list)->where('quizzes_questions.question_type', $parent_index)->where('quizzes_questions.question_difficulty_level', $main_index)->whereNull('quizz_result_questions.question_id')->limit(1)->pluck('quizzes_questions.id')->toArray();
+
+						$new_question_id = isset($new_question_id[0]) ? $new_question_id[0] : 0;
+						if ($new_question_id == 0) {
+							
+							$new_question_id = QuizzesQuestion::leftJoin('quizz_result_questions', 'quizzes_questions.id', '=', 'quizz_result_questions.question_id')->whereIN('quizzes_questions.id', $questions_list)->where('quizzes_questions.question_type', $parent_index)->where('quizzes_questions.question_difficulty_level', $main_index)->where('quizz_result_questions.status', 'incorrect')->limit(1)->pluck('quizzes_questions.id')->toArray();
+							
+							$new_question_id = isset($new_question_id[0]) ? $new_question_id[0] : 0;
+							if ($new_question_id == 0) {
+								$new_question_id = QuizzesQuestion::leftJoin('quizz_result_questions', 'quizzes_questions.id', '=', 'quizz_result_questions.question_id')->whereIN('quizzes_questions.id', $questions_list)->where('quizzes_questions.question_type', $parent_index)->where('quizzes_questions.question_difficulty_level', $main_index)->where('quizz_result_questions.status', 'correct')->limit(1)->pluck('quizzes_questions.id')->toArray();
+								$new_question_id = isset($new_question_id[0]) ? $new_question_id[0] : 0;
+							}
+						}
+						
+						if ($new_question_id > 0) {
+							$nextQuestionArray = $this->nextQuestion($quizAttempt, array(), 0, true, array(), $quizResultObj, $new_question_id);
+							$newQuestionResult = isset($nextQuestionArray['newQuestionResult']) ? $nextQuestionArray['newQuestionResult'] : array();
+
+							$layout_after_question = end($other_data->{$main_index}->{$parent_index});
+							$other_data->{$main_index}->{$parent_index}[] = $newQuestionResult->id;
+							
+							
+
+							$updated_questions_list = array();
+							foreach ($other_data as $difficulty_level => $question_type) {
+								foreach ($question_type as $q_id_array) {
+									foreach ($q_id_array as $q_id) {
+										$updated_questions_list[] = $q_id;
+									}
+								}
+							}
+							$questions_list = $updated_questions_list;
+
+							$quizResultObj->update([
+								'questions_list' => json_encode($questions_list),
+								'other_data'     => json_encode($other_data),
+							]);
+							$quizAttempt->update([
+								'questions_list' => json_encode($questions_list),
+							]);
+							
+							$new_questions_list = array($newQuestionResult->id);
+
+							$questions_layout_response = $this->practice_questions_layout_update($new_questions_list, $quizAttempt, $quizResultObj, array());
+							
+							$questions_layout = isset($questions_layout_response['questions_layout']) ? $questions_layout_response['questions_layout'] : '';
+							$next_question_id = isset($questions_layout_response['next_question_id']) ? $questions_layout_response['next_question_id'] : 0;
+							$updated_questions_layout = $questions_layout;
+							
+						}
+
+						/*
+						 * Practice Quiz Incorrect attempt add another Question
+						 * @Ends
+						 */
+					}
+					
+					
+					
+					if (in_array($quizAttempt->attempt_type, array('vocabulary')) && $quizResultObj->attempt_mode != '') {	
+						/*
+						* Practice Quiz Incorrect attempt add another Question
+						* @Start
+						*/
+						$layout_after_question = $group_question_id;
+						$other_data = isset($quizResultObj->other_data) ? json_decode($quizResultObj->other_data) : array();
+					   
+						
+						
+						$questions_list = json_decode($quizResultObj->questions_list);
+						
+						if( $other_data == ''){
+							$quizResultObj->update([
+								'other_data' => json_encode($questions_list),
+							]);
+						}
+						
+						
+						$incorrectQuestionObj = QuizzResultQuestions::find($group_question_id);
+						$incorrectQuestionObjNew = $incorrectQuestionObj->replicate();
+						$incorrectQuestionObjNew->user_answer = '';
+						$incorrectQuestionObjNew->status = 'waiting';
+						$incorrectQuestionObjNew->created_at = time();
+						$incorrectQuestionObjNew->push();
+						$new_question_id = $incorrectQuestionObjNew->id;
+						
+						
+						$current_index = array_search($group_question_id, $questions_list);
+
+						if ($current_index !== false) {
+							array_splice($questions_list, $current_index + 1, 0, $new_question_id);
+						}
+						
+						
+						$quizResultObj->update([
+							'questions_list' => json_encode($questions_list),
+						]);
+						$quizAttempt->update([
+							'questions_list' => json_encode($questions_list),
+						]);
+						$new_questions_list = array($new_question_id);
+
+						
+						$questions_layout_response = $this->spell_questions_layout_update($new_questions_list, $quizAttempt, $quizResultObj, $new_question_id, array());
+						$questions_layout = isset($questions_layout_response['questions_layout']) ? $questions_layout_response['questions_layout'] : '';
+						$next_question_id = isset($questions_layout_response['next_question_id']) ? $questions_layout_response['next_question_id'] : 0;
+						$updated_questions_layout = $questions_layout;
+						
+						
+						/*
+						 * Practice Quiz Incorrect attempt add another Question
+						 * @Ends
+						 */
+					}
+				}
+				
+				
+				
+				
+				
+				
+				
+				
+				
 				$total_questions = json_decode($quizResultObj->questions_list);
 				$total_questions = is_array( $total_questions )? $total_questions : array();
 				$quizResultObj->update([
@@ -705,9 +732,6 @@ class QuestionsAttemptController extends Controller
 				
             }
         }
-		
-		
-
 
         createAttemptLog($quizAttempt->id, 'Answered question: #' . $QuizzResultQuestions->id, 'attempt', $QuizzResultQuestions->id);
 
@@ -717,7 +741,7 @@ class QuestionsAttemptController extends Controller
 
         $currentIndex = array_search($qresult_id, $questions_list);
         $is_complete = ($currentIndex < count($questions_list) - 1) ? false : true;
-
+		
 
         $QuestionsAttemptController = new QuestionsAttemptController();
 		
@@ -729,6 +753,7 @@ class QuestionsAttemptController extends Controller
 				'questions_list'   => $questions_list,
 			]);
 		}
+		
 
 
         $question_correct_answere = '';
@@ -913,11 +938,13 @@ class QuestionsAttemptController extends Controller
             'populated_response'       => $populated_response,
             'single_question_layout'   => $single_question_layout,
             'updated_questions_layout' => $updated_questions_layout,
+			'layout_after_question' => $layout_after_question,
             'finish_reponse' 			=> $finish_reponse,
             'question_solution'        => isset($questionObj->question_solve) ? '<div class="question-solution">' . $questionObj->question_solve . '</div>' : '',
             'test'                     => $test,
             'next_question_id'         => $next_question_id,
         );
+		//pre($response);
         echo json_encode($response);
         exit;
     }
@@ -978,8 +1005,10 @@ class QuestionsAttemptController extends Controller
 
     public function practice_questions_layout_update($questions_list, $attemptLogObj, $resultLogObj, $newQuestionsArray)
     {
+		
         $exclude_array = $questions_layout = $results_questions_array = array();
         $QuestionsAttemptController = new QuestionsAttemptController();
+		$question_response_layout  = '';
         $next_question_id = 0;
         if (!empty($questions_list)) {
             $questions_counter = 0;
@@ -1032,12 +1061,12 @@ class QuestionsAttemptController extends Controller
 
             if (!empty($results_questions_array)) {
                 $array_keys = array_keys($results_questions_array);
-                $resultLogObj->update([
+                /*$resultLogObj->update([
                     'questions_list' => json_encode($array_keys),
                 ]);
                 $attemptLogObj->update([
                     'questions_list' => json_encode($array_keys),
-                ]);
+                ]);*/
                 foreach ($results_questions_array as $resultQuestionID => $resultsQuestionsData) {
 
                     $resultsQuestionsData['prev_question'] = 0;
@@ -1054,15 +1083,27 @@ class QuestionsAttemptController extends Controller
                         $resultsQuestionsData['next_question'] = $nextIndex;
 
                     }
+					
+					$resultsQuestionsData['QuestionsAttemptController']	= $this;
 
 
-                    $question_response_layout = view('web.default.panel.questions.question_layout', $resultsQuestionsData)->render();
-                    $questions_layout[$resultQuestionID] = rurera_encode(stripslashes($question_response_layout));
+                    $question_response_layout_file = view('web.default.panel.questions.question_layout', $resultsQuestionsData)->render();
+                    //$questions_layout[$resultQuestionID] = rurera_encode(stripslashes($question_response_layout));
+					
+					$question_response_layout_single = '<div class="rurera-question-block question-step question-step-'.$questionObj->id.'" data-elapsed="0"
+								data-qattempt="'.$attemptLogObj->id.'"
+								data-start_time="0" data-qresult="'.$result_question_id.'"
+								data-quiz_result_id="'.$attemptLogObj->quiz_result_id.'">'.$question_response_layout_file.'</div>';
+
+					$question_response_layout .= $question_response_layout_single;
+					$questions_layout[$resultQuestionID] = $question_response_layout_single;
+					
                 }
             }
         }
+		
         return array(
-            'questions_layout' => $questions_layout,
+            'questions_layout' => $question_response_layout,
             'next_question_id' => $next_question_id,
         );
 
@@ -1074,6 +1115,7 @@ class QuestionsAttemptController extends Controller
         $exclude_array = $questions_layout = $results_questions_array = array();
         $QuestionsAttemptController = new QuestionsAttemptController();
 		$quiz_level = 'easy';
+		$question_response_layout  = '';
 		$already_added_question = [];
         if (!empty($questions_list)) {
             $questions_counter = 0;
@@ -1205,12 +1247,12 @@ class QuestionsAttemptController extends Controller
 
             if (!empty($results_questions_array)) {
                 $array_keys = array_keys($results_questions_array);
-                $resultLogObj->update([
+                /*$resultLogObj->update([
                     'questions_list' => json_encode($array_keys),
                 ]);
                 $attemptLogObj->update([
                     'questions_list' => json_encode($array_keys),
-                ]);
+                ]);*/
                 foreach ($results_questions_array as $resultQuestionID => $resultsQuestionsData) {
 					
 					
@@ -1258,20 +1300,29 @@ class QuestionsAttemptController extends Controller
 					
 					$resultsQuestionsData['no_of_questions_fixed'] = isset( $resultLogObj->other_data )? $resultLogObj->other_data : array();
 					
+					$resultsQuestionsData['QuestionsAttemptController']	= $this;
+					
 					if( $test_type_file == ''){
-						$question_response_layout = view('web.default.panel.questions.spell_question_layout', $resultsQuestionsData)->render();
+						$question_response_layout_file = view('web.default.panel.questions.spell_question_layout', $resultsQuestionsData)->render();
 					}else{
-						$question_response_layout = view('web.default.panel.questions.spell_'.$test_type_file.'_question_layout', $resultsQuestionsData)->render();
+						$question_response_layout_file = view('web.default.panel.questions.spell_'.$test_type_file.'_question_layout', $resultsQuestionsData)->render();
 					}
 					if( isset( $newQuestionResult->id)){
-						$newQuestionResult->update(['quiz_layout' => htmlentities(base64_encode(json_encode($question_response_layout)))]);
+						$newQuestionResult->update(['quiz_layout' => htmlentities(base64_encode(json_encode($question_response_layout_file)))]);
 					}
-                    $questions_layout[$resultQuestionID] = rurera_encode(stripslashes($question_response_layout));
+					
+					$question_response_layout_single = '<div class="rurera-question-block question-step question-step-'.$questionObj->id.'" data-time_counter="0" data-elapsed="0"
+							 data-qattempt="'.$attemptLogObj->id.'"
+							 data-start_time="0" data-qresult="'.$result_question_id.'"
+							 data-quiz_result_id="'.$attemptLogObj->quiz_result_id.'">'.$question_response_layout_file.'</div>';
+
+					$question_response_layout .= $question_response_layout_single;
+					$questions_layout[$resultQuestionID] = $question_response_layout_single;
                 }
             }
         }
         return array(
-            'questions_layout' => $questions_layout,
+            'questions_layout' => $question_response_layout,
             'next_question_id' => $new_question_id,
         );
 
@@ -1290,14 +1341,12 @@ class QuestionsAttemptController extends Controller
         }
 
 
-        //pre($question_type);
-
         if ($question_type == 'checkbox' || $question_type == 'radio') {
             $question_correct = array();
             $options_array = $current_question_obj->options;
             if (!empty($options_array)) {
                 foreach ($options_array as $optionData) {
-                    if ($optionData->default == 'on') {
+                    if (isset( $optionData->default ) && $optionData->default == 'on') {
                         $question_correct[] = $optionData->value;
                     }
                 }
@@ -1324,11 +1373,19 @@ class QuestionsAttemptController extends Controller
 			}else{
 				$user_input = ucfirst($user_input);
 			}
+			
             if (!in_array($user_input, $question_correct)) {
                 $is_question_correct = false;
             } else {
                 $is_question_correct = true;
             }
+			if( is_array($user_input)){
+				if (array_diff($user_input, $question_correct)) {
+					$is_question_correct = false;
+				}else{
+					$is_question_correct = true;
+				}
+			}
         }
         $question_correct = is_array($question_correct) ? $question_correct : array($question_correct);
 
@@ -3669,17 +3726,102 @@ class QuestionsAttemptController extends Controller
     }
 	
 	
+	public function get_question_layout($questionObj){
+		$question_layout = '';
+		$layout_elements = isset( $questionObj->layout_elements)? json_decode($questionObj->layout_elements) : array();
+		usort($layout_elements, function($a, $b) {
+			return $a->_seq <=> $b->_seq;
+		});
+		
+		$layout_elements_array = array();
+		if( !empty( $layout_elements )){
+			foreach( $layout_elements as $element_id => $elementObj){
+				$id = isset( $elementObj->id )? $elementObj->id : 0;
+				$parent_id = isset( $elementObj->_parent )? $elementObj->_parent : 0;
+				$layout_elements_array[$parent_id][] = $elementObj;
+				//$element_id = isset( $elementObj->field_id )? $elementObj->field_id : $element_id;
+				//$question_layout .= $this->get_question_element_layout($element_id, $elementObj, $questionObj);
+			}
+		}
+		$elments_array = array();
+		if( !empty( $layout_elements_array[1] ) ){
+			foreach( $layout_elements_array[1] as $parent_id => $layout_elements){
+				$id = isset( $layout_elements->id )? $layout_elements->id : 0;
+				$inner_elements = isset( $layout_elements_array[$id] )? $layout_elements_array[$id] : array();
+				$_cols = isset( $layout_elements->_cols )? $layout_elements->_cols : 1;
+				
+				$inner_elements = ($layout_elements->type == 'columns')? $inner_elements : array($layout_elements);
+				$counter = 0;
+				//pre($layout_elements);
+				while($counter < $_cols){
+					$element_id = $counter;
+					$elementObj = isset( $inner_elements[$counter] )?$inner_elements[$counter] : array();
+					$element_width = isset( $layout_elements->{'widths-'.$counter} )? $layout_elements->{'widths-'.$counter} : 12;
+					//pre($elementObj, false);
+					$question_layout .= '<div class="rureraform-col rureraform-col-'.$element_width.'">';
+					$question_layout .= $this->get_question_element_layout($element_id, $elementObj, $questionObj);
+					$question_layout .= '</div>';
+					$counter++;
+				}
+			}
+		}
+		
+		return $question_layout;
+	}
+	
 	/*
 	* Get Question Layout
 	*/
-	public function get_question_layout($element_id, $elementObj){
+	public function get_question_element_layout($element_id, $elementObj, $questionObj){
 		$question_layout = '';
-		//pre($elementObj);
+		//pre($questionObj);
+		//pre($elementObj, false);
 		switch($elementObj->type) {
+			
+			case "question_label":
+			case "question_label_true_false":
+			case "question_label_multichoice_template":
+			case "question_label_sequence_template":
+			case "question_label_select_template":
+			case "question_label_matching_template":
+                $question_layout = view('web.default.question_layouts.label_layout', ['element_id' => $element_id, 'elementObj' => $elementObj])->render();
+			break;
+				
+			case "paragraph_quiz":
+			case "paragraph_multichoice_template":
+                $question_layout = view('web.default.question_layouts.paragraph_layout', ['element_id' => $element_id, 'elementObj' => $elementObj])->render();
+			break;
+			
+			case "html":
+                $question_layout = view('web.default.question_layouts.html_layout', ['element_id' => $element_id, 'elementObj' => $elementObj])->render();
+			break;
+			
 
             case "checkbox":
                 $question_layout = view('web.default.question_layouts.checkbox_layout', ['element_id' => $element_id, 'elementObj' => $elementObj])->render();
 			break;
+			
+            case "radio":
+                $question_layout = view('web.default.question_layouts.radio_layout', ['element_id' => $element_id, 'elementObj' => $elementObj])->render();
+			break;
+			
+            case "truefalse_quiz":
+                $question_layout = view('web.default.question_layouts.truefalse_quiz_layout', ['element_id' => $element_id, 'elementObj' => $elementObj])->render();
+			break;
+			
+            case "match_quiz":
+                $question_layout = view('web.default.question_layouts.match_quiz_layout', ['element_id' => $element_id, 'elementObj' => $elementObj])->render();
+			break;
+			
+            case "sortable_quiz":
+                $question_layout = view('web.default.question_layouts.sortable_quiz_layout', ['element_id' => $element_id, 'elementObj' => $elementObj])->render();
+			break;
+			
+            case "marking_quiz":
+                $question_layout = view('web.default.question_layouts.marking_quiz_layout', ['element_id' => $element_id, 'elementObj' => $elementObj])->render();
+			break;
+			
+			
 		}
 		//pre($question_layout);
 		return $question_layout;

@@ -272,53 +272,86 @@
     };
 
     window.handleMultiSelect2 = function (className, path, itemColumn, select_data) {
-        const $el = $('.' + className);
+    const $el = $('.' + className);
 
-        if ($el.length) {
-            $el.select2({
-                placeholder: $el.attr('data-placeholder'),
-                minimumInputLength: 3,
-                //allowClear: true,
-                data: select_data,
-                ajax: {
-                    url: path,
-                    dataType: 'json',
-                    type: "POST",
-                    quietMillis: 50,
-                    data: function (params) {
-                        return {
-                            term: params.term,
-                            option: $el.attr('data-search-option'),
-                        };
-                    },
-                    processResults: function (data) {
-                        return {
-                            results: $.map(data, function (item) {
-                                if ($.isArray(itemColumn)) {
-                                    var text_label = [];
-                                    $.each(itemColumn, function (index, itemColumnName) {
-                                        if (!DataIsEmpty(item[itemColumnName])) {
-                                            text_label.push(item[itemColumnName]);
-                                        }
-                                    });
-                                    text_label = text_label.join(' / ');
-                                    return {
-                                        text: text_label,
-                                        id: item.id
-                                    };
-                                } else {
-                                    return {
-                                        text: item[itemColumn],
-                                        id: item.id
-                                    };
+    if ($el.length) {
+        // Initialize select2
+        $el.select2({
+            placeholder: $el.attr('data-placeholder'),
+            minimumInputLength: 3,
+            data: select_data,
+            ajax: {
+                url: path,
+                dataType: 'json',
+                type: "POST",
+                quietMillis: 50,
+                data: function (params) {
+                    return {
+                        term: params.term,
+                        option: $el.attr('data-search-option'),
+                    };
+                },
+                processResults: function (data) {
+                    let results = $.map(data, function (item) {
+                        if ($.isArray(itemColumn)) {
+                            let text_label = [];
+                            $.each(itemColumn, function (index, itemColumnName) {
+                                if (!DataIsEmpty(item[itemColumnName])) {
+                                    text_label.push(item[itemColumnName]);
                                 }
-                            })
-                        };
+                            });
+                            text_label = text_label.join(' / ');
+                            return {
+                                text: text_label,
+                                id: item.id
+                            };
+                        } else {
+                            return {
+                                text: item[itemColumn],
+                                id: item.id
+                            };
+                        }
+                    });
+
+                    // Add "Deselect All" option if any options are selected
+                    if ($el.val() && $el.val().length > 0) {
+                        results.unshift({
+                            id: 'deselect-all',
+                            text: 'Deselect All'
+                        });
                     }
+
+                    return {
+                        results: results
+                    };
                 }
-            });
-        }
-    };
+            }
+        });
+
+        // Always add "Deselect All" when the dropdown is opened
+        $el.on('select2:open', function () {
+            // Get the current selected options
+            if ($el.val() && $el.val().length > 0) {
+                // Check if "Deselect All" is already in the dropdown
+                if (!$el.find("option[value='deselect-all']").length) {
+                    // Add "Deselect All" option to the select element
+                    $el.prepend(new Option('Deselect All', 'deselect-all', false, false));
+                    $el.trigger('change'); // Ensure the UI is updated
+                }
+            }
+        });
+
+        // Handle selection of "Deselect All"
+        $el.on('select2:select', function (e) {
+            if (e.params.data.id === 'deselect-all') {
+                // Clear all selected options
+                $el.val(null).trigger('change');
+            }
+        });
+    }
+};
+
+
 
     window.handleQuestionsMultiSelect2 = function (className, path, itemColumn, select_data) {
         const $el = $('.' + className);

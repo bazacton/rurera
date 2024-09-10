@@ -48,8 +48,8 @@
 .spell-question-area .question-layout-block form.question-fields {
     overflow: hidden;
 }
-.leform-inline.leform-container {position: relative; background-color: #fff; border-radius: 0 5px 5px 5px; height: calc(100vh - 100px); overflow: hidden; overflow-y: auto;}
-.leform-element .field-group {display: inline-flex; align-items: center;}
+.rureraform-inline.rureraform-container {position: relative; background-color: #fff; border-radius: 0 5px 5px 5px; height: calc(100vh - 100px); overflow: hidden; overflow-y: auto;}
+.rureraform-element .field-group {display: inline-flex; align-items: center;}
 .field-group p.text-field {margin: 0 5px 0 0; display: flex; align-items: center; max-width: 30%; width: 30%; justify-content: right; flex-wrap: wrap;}
 .field-group p.text-field span {font-size: 16px; color: #000;}
 .input-field.input-lg input[type="text"] {max-width: 80px;}
@@ -74,8 +74,8 @@
 .field-group .actions-control {font-size: 16px; text-transform: capitalize; font-weight: 600; margin: 0; display: flex; align-items: center;}
 .field-group .action-btn {text-decoration: none; outline: none;}
 .field-group .actions-control span {margin-left: 10px; display: block; line-height: normal;}
-/*.leform-elements .leform-element-html > span {font-family: Verdana; font-size: 18px;}*/
-.leform-element-html h5 {font-family: Verdana;}
+/*.rureraform-elements .rureraform-element-html > span {font-family: Verdana; font-size: 18px;}*/
+.rureraform-element-html h5 {font-family: Verdana;}
 .mr-5 {margin-right: 5px;}
 .mr-10{margin-right: 10px;}
 .mr-15{margin-right: 15px;}
@@ -85,54 +85,54 @@
 .ml-15{margin-left: 15px;}
 .ml-20{margin-left: 20px;}
 /* Leform Pages Bar Style Start */
-.leform-form-editor{position:relative;margin-left:100px;}
-.leform-pages-bar{background-color: transparent; position: absolute; left: 320px; top: 62px; border: 0; width: 70px;}
-.leform-admin .leform-pages-bar {left: -69px; top: 144px;}
-.leform-pages-bar-items{width: 100%;}
-.leform-pages-bar-items>li{border-bottom-left-radius: 25px;border-top-left-radius: 25px;height: 60px;line-height:62px;border-top:0;min-width:100%;margin:0;padding: 0;text-align: center;}
-.leform-pages-bar-items>li:first-child{border-top:1px solid #d4d4d4;margin-top:1px;}
-.leform-pages-bar-items>li{-webkit-transition:all .5s linear;-moz-transition:all .5s linear;-ms-transition:all .5s linear;-o-transition:all .5s linear;transition:all .5s linear;background-color: hsla(0,0%,100%,.75);}
-.leform-pages-bar-items>li label{color:#172e50;font-size: 18px;-webkit-transition:all .5s ease-in-out;-moz-transition:all .5s ease-in-out;-ms-transition:all .5s ease-in-out;-o-transition:all .5s ease-in-out;transition:all .5s ease-in-out;}
-.leform-pages-bar-items>li span a, 
-.leform-pages-bar-items>li span a:visited{font-size: 1rem;}
-.leform-pages-bar-items>li span{-webkit-transition:all .5s ease-in-out;-moz-transition:all .5s ease-in-out;-ms-transition:all .5s ease-in-out;-o-transition:all .5s ease-in-out;transition:all .5s ease-in-out;line-height:60px;height:55px;}
-.leform-pages-bar-items>li:hover > label {padding-left: 3px;margin-right: 26px;}
-.leform-pages-bar-items>li:hover, .leform-pages-bar-items>li:hover span{background-color: #fff;}
-.leform-pages-bar-items>li.leform-pages-add:hover > label {margin: 0;padding-left: 0;}
-.leform-pages-bar-items>li.leform-pages-add label{font-size:1rem;line-height:1.6rem;padding:12px 0 0;margin:0;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;}
-.leform-pages-bar-items>li.leform-pages-add{height: 80px; line-height: 80px;}
-.leform-pages-bar-items>li.leform-pages-add label i{display: block;}
-.leform-pages-bar-items>li.leform-pages-bar-item-active, 
-.leform-pages-bar-items>li.leform-pages-bar-item-active.leform-pages-bar-item-confirmation{border-bottom:3px solid #169f85;margin-right:-1px;background:#fff;border-right:1px solid transparent;}
+.rureraform-form-editor{position:relative;margin-left:100px;}
+.rureraform-pages-bar{background-color: transparent; position: absolute; left: 320px; top: 62px; border: 0; width: 70px;}
+.rureraform-admin .rureraform-pages-bar {left: -69px; top: 144px;}
+.rureraform-pages-bar-items{width: 100%;}
+.rureraform-pages-bar-items>li{border-bottom-left-radius: 25px;border-top-left-radius: 25px;height: 60px;line-height:62px;border-top:0;min-width:100%;margin:0;padding: 0;text-align: center;}
+.rureraform-pages-bar-items>li:first-child{border-top:1px solid #d4d4d4;margin-top:1px;}
+.rureraform-pages-bar-items>li{-webkit-transition:all .5s linear;-moz-transition:all .5s linear;-ms-transition:all .5s linear;-o-transition:all .5s linear;transition:all .5s linear;background-color: hsla(0,0%,100%,.75);}
+.rureraform-pages-bar-items>li label{color:#172e50;font-size: 18px;-webkit-transition:all .5s ease-in-out;-moz-transition:all .5s ease-in-out;-ms-transition:all .5s ease-in-out;-o-transition:all .5s ease-in-out;transition:all .5s ease-in-out;}
+.rureraform-pages-bar-items>li span a, 
+.rureraform-pages-bar-items>li span a:visited{font-size: 1rem;}
+.rureraform-pages-bar-items>li span{-webkit-transition:all .5s ease-in-out;-moz-transition:all .5s ease-in-out;-ms-transition:all .5s ease-in-out;-o-transition:all .5s ease-in-out;transition:all .5s ease-in-out;line-height:60px;height:55px;}
+.rureraform-pages-bar-items>li:hover > label {padding-left: 3px;margin-right: 26px;}
+.rureraform-pages-bar-items>li:hover, .rureraform-pages-bar-items>li:hover span{background-color: #fff;}
+.rureraform-pages-bar-items>li.rureraform-pages-add:hover > label {margin: 0;padding-left: 0;}
+.rureraform-pages-bar-items>li.rureraform-pages-add label{font-size:1rem;line-height:1.6rem;padding:12px 0 0;margin:0;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.rureraform-pages-bar-items>li.rureraform-pages-add{height: 80px; line-height: 80px;}
+.rureraform-pages-bar-items>li.rureraform-pages-add label i{display: block;}
+.rureraform-pages-bar-items>li.rureraform-pages-bar-item-active, 
+.rureraform-pages-bar-items>li.rureraform-pages-bar-item-active.rureraform-pages-bar-item-confirmation{border-bottom:3px solid #169f85;margin-right:-1px;background:#fff;border-right:1px solid transparent;}
 /* Leform Pages Bar Style End */
 
 /* Green Form Fields Responsive Style */
 @media screen and (min-width:992px) and (max-width:1800px) {
-	.leform-pages-bar {left: 30px;}
-	.leform-inline.leform-container {margin-left: 100px !important; margin-right: 30px !important; max-width: 100% !important;}
+	.rureraform-pages-bar {left: 30px;}
+	.rureraform-inline.rureraform-container {margin-left: 100px !important; margin-right: 30px !important; max-width: 100% !important;}
 }
 @media screen and (max-width: 992px) {
 	/* body {padding-left: 10px; padding-right: 10px;} */
-	.leform-pages-bar {position: fixed; left: 10px; top: 5px; border: 0; width: 100%;}
-	.leform-pages-bar-items {width: 100%; display: flex;}
-	.leform-pages-bar-items>li:first-child {border-top: 0; margin-top: 0;}
-	.leform-pages-bar-items>li {display: inline-flex; align-items: center; justify-content: center;padding: 0 20px; min-width: auto; border-radius: 0; margin-right: 2px;}
-	.leform-inline.leform-container {width: 100% !important; margin-left: 0 !important;}
-	.leform-form .leform-col-6,
-	.leform-form .leform-col-4 {width: 100%;}
-	.leform-form .leform-col-3,
-	.leform-form .leform-col-2 {width: 50%;}
+	.rureraform-pages-bar {position: fixed; left: 10px; top: 5px; border: 0; width: 100%;}
+	.rureraform-pages-bar-items {width: 100%; display: flex;}
+	.rureraform-pages-bar-items>li:first-child {border-top: 0; margin-top: 0;}
+	.rureraform-pages-bar-items>li {display: inline-flex; align-items: center; justify-content: center;padding: 0 20px; min-width: auto; border-radius: 0; margin-right: 2px;}
+	.rureraform-inline.rureraform-container {width: 100% !important; margin-left: 0 !important;}
+	.rureraform-form .rureraform-col-6,
+	.rureraform-form .rureraform-col-4 {width: 100%;}
+	.rureraform-form .rureraform-col-3,
+	.rureraform-form .rureraform-col-2 {width: 50%;}
 	.field-group p.text-field {max-width: 25%; width: 25%; justify-content: flex-start; padding-left: 30px;}
-	.leform-element-html h5 .ml-20 {margin: 15px 0 0; display: block;}
-	.leform-element-html h5 span {font-size: 15px;}
-    .leform-pages-bar-items>li label {font-size: 16px;}
+	.rureraform-element-html h5 .ml-20 {margin: 15px 0 0; display: block;}
+	.rureraform-element-html h5 span {font-size: 15px;}
+    .rureraform-pages-bar-items>li label {font-size: 16px;}
 	.field-group p.text-field span {font-size: 14px;}
 }
 @media screen and (max-width: 480px) {
-    .leform-element .field-group {margin: 20px 0 0 0;}
-	.leform-form .leform-col-3,
-	.leform-form .leform-col-2 {width: 100%;}
-	.leform-form-2 .leform-element-34 div.leform-input .leform-imageselect+label {width: 48%;}
+    .rureraform-element .field-group {margin: 20px 0 0 0;}
+	.rureraform-form .rureraform-col-3,
+	.rureraform-form .rureraform-col-2 {width: 100%;}
+	.rureraform-form-2 .rureraform-element-34 div.rureraform-input .rureraform-imageselect+label {width: 48%;}
     .field-group p.text-field {max-width: 36%; width: 36%; justify-content: flex-start;	padding: 0;}
 }
 /****************************
@@ -327,7 +327,7 @@ form .marks,
     font-weight: 500;
     letter-spacing: 1px;
 }
-/* .marks ~ .leform-element {
+/* .marks ~ .rureraform-element {
     width: calc(100% - 60px);
 } */
 

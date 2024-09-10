@@ -261,9 +261,10 @@ class Quiz extends Model implements TranslatableContract
         $quiz_percentage = 0;
         $total_questions_count = $total_correct_questions = 0;
 
+		$topic_student_level = '';
         if( isset( $resultObj->id ) ){
-            $total_questions = count(json_decode($resultObj->questions_list));
-            $correct_questions = $resultObj->quizz_result_questions_list->where('status','correct')->where('user_id',$user->id)->count();
+            $total_questions = $resultObj->total_questions;
+            $correct_questions = $resultObj->total_correct;
             $total_questions_count += $total_questions;
             $total_correct_questions += $correct_questions;
             $percentage = ($correct_questions * 100)/$quiz_total_questions;
@@ -273,12 +274,18 @@ class Quiz extends Model implements TranslatableContract
             if( $quiz_percentage == 100){
                 $resultObj->update(['is_completed' => 1]);
             }
+			
+			if( $total_questions > 0){
+				$topic_student_percentage = ($correct_questions * 100)/$total_questions;
+				$topic_student_level = getLevelByPercentage($topic_student_percentage);
+			}
         }
         //pre($total_questions_count, false);
         //pre($total_correct_questions);
         if( $all_data == true){
             return array(
                 'topic_percentage' => $quiz_percentage,
+                'topic_student_level' => $topic_student_level,
                 'total_questions_count' => $quiz_total_questions,
                 'total_correct_questions' => $total_correct_questions,
                 'completion_count' => $completion_count,

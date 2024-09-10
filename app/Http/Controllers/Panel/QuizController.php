@@ -705,6 +705,7 @@ class QuizController extends Controller
                         $resultsQuestionsData['duration_type'] = $duration_type;
                         $resultsQuestionsData['exam_sentenses'] = $resultsQuestionsData['word_data']['exam_sentenses'];
                         $resultsQuestionsData['words_options'] = $resultsQuestionsData['word_data']['words_options'];
+                        $resultsQuestionsData['QuestionsAttemptController'] = $QuestionsAttemptController;
 						
 						//print
 						//pre($resultsQuestionsData['word_data']['exam_sentenses']);
@@ -794,6 +795,7 @@ class QuizController extends Controller
                         $resultsQuestionsData['group_questions_layout'] = $group_questions_layout;
                         $question_layout_file = get_quiz_question_layout_file($quiz);
                         $resultsQuestionsData['disable_finish'] = true;
+                        $resultsQuestionsData['QuestionsAttemptController'] = $QuestionsAttemptController;
                         $question_response_layout = view('web.default.panel.questions.'.$question_layout_file, $resultsQuestionsData)->render();
 
                     }
@@ -806,7 +808,7 @@ class QuizController extends Controller
 					if( $newQuestionResult->status != 'waiting' && $quiz->quiz_type != 'vocabulary'){
 						$question_response_layout .= $QuestionsAttemptController->get_question_result_layout($resultQuestionID, false);
 					}
-                    $questions_layout[$resultQuestionID] = rurera_encode(stripslashes($question_response_layout));
+                    $questions_layout[$resultQuestionID] = $question_response_layout;//rurera_encode(stripslashes($question_response_layout));
                     $questionDisplayCounter++;
                 }
             }
@@ -830,7 +832,6 @@ class QuizController extends Controller
 			//pre($actual_question_ids, false);
 			//pre($questions_list);
 			
-
             $data = [
                 'pageTitle'              => trans('quiz.quiz_start'),
                 'questions_list'         => $questions_list,

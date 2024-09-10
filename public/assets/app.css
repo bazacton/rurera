@@ -20349,7 +20349,7 @@ Lms Responsive Style Start
     body .image-top.rurera-in-row .lms-radio-select .field-holder {max-width: 48%;flex: 0 0 48%;}
     .lms-quiz-section .questions-data-block {max-width: 100%;}
     .quiz-pagination .swiper-container ul {flex-wrap: wrap; transform: none !important;}
-    body .question-number-holder ~ .leform-elements {padding-left: 0; padding-top: 60px;}
+    body .question-number-holder ~ .rureraform-elements {padding-left: 0; padding-top: 60px;}
     .lms-data-table h3 {margin: 0 0 15px; font-size: 20px;}
     body .prev-next-controls .review-btn,
     body .prev-next-controls .question-submit-btn {position: relative;}
@@ -20712,7 +20712,7 @@ Lms Responsive Style Start
     .lms-data-table.spells table.table thead th {display: table-cell; width: auto !important;}
     .learning-page .learning-page-content {overflow: hidden;}
     .question-layout-block form.question-fields {padding: 20px 15px 0;}
-    .question-layout-block .question-fields .leform-element {padding-left: 0; padding-right: 0;}
+    .question-layout-block .question-fields .rureraform-element {padding-left: 0; padding-right: 0;}
     body .question-layout-block form.question-fields .questions-total-holder {padding-left: 60px; margin-top: -5px !important; font-size: 16px;}
     .counter-holder .svg-shapes-bottom {position: absolute; left: 68px; right: auto; bottom: 60px; transform: rotate(20deg);}
     .lms-contact-form-section {padding-bottom: 0 !important;}

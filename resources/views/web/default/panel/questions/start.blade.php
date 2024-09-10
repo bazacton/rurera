@@ -35,6 +35,12 @@ $rand_id = rand(99,9999);
     .rurera-droppable{
             width:100; border:1px solid #efefef; height:50px; display:inline-block;
         }
+		
+		
+		
+	.rureraform-form-input-medium .rureraform-element .rureraform-input{
+		height:auto;
+	}
 </style>
 @section('content')
 
@@ -69,18 +75,10 @@ $rand_id = rand(99,9999);
 											<span class="questions-total-holder d-block mb-30"><span class="question-dev-details">({{$question->id}}) ({{ $question->question_difficulty_level }}) ({{ $question->question_type }})</span></span>
 											<span class="question-number-holder" style="z-index: 999999999;"> <span class="question-number">1</span></span>
 												
-											<div id="leform-form-1" class=" leform-form leform-elements leform-form-input-medium leform-form-icon-inside leform-form-description-bottom ui-sortable" _data-parent="1" _data-parent-col="0" style="display: block;">
+											<div id="rureraform-form-1" class=" rureraform-form rureraform-elements rureraform-form-input-medium rureraform-form-icon-inside rureraform-form-description-bottom ui-sortable" _data-parent="1" _data-parent-col="0" style="display: block;">
 												<div class="question-layout">
-												@php
-													$question_layout = '';
-													$elements_data = isset( $question->elements_data)? json_decode($question->elements_data) : array();
-												@endphp
-												@if( !empty( $elements_data ))
-													@foreach( $elements_data as $element_id => $elementObj)
-														@php $question_layout .= $QuestionsAttemptController->get_question_layout($element_id, $elementObj); @endphp
-													@endforeach
-												@endif
-													{!! $question_layout !!}111
+												@php $question_layout = $QuestionsAttemptController->get_question_layout($question); @endphp
+													{!! $question_layout !!}
 												</div>
 											</div>
 											<div class="show-notifications" data-show_message="yes"></div>

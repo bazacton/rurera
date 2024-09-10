@@ -114,16 +114,16 @@
                 <option value="extra-large">Extra Large</option>
 
             </select>
-        </div>
+        </div><br><br><br><br><br>
         <i class="fas fa-plus repeater-class" data-field_id="field_dynamic_id"
-           data-field_type="select"></i>
-				<div class="leform-properties-options-table-header">
+           data-field_type="select">Add Option</i> 
+				<div class="rureraform-properties-options-table-header">
 					<div>Label</div>
 				</div>
-				<div class="leform-properties-options-box ui-resizable">
-					<div class="leform-properties-options-container ui-sortable" data-multi="off">
-						<div class="leform-properties-options-item leform-properties-options-item">
-							<div class="leform-properties-options-table">
+				<div class="rureraform-properties-options-box ui-resizable">
+					<div class="rureraform-properties-options-container ui-sortable" data-multi="off">
+						<div class="rureraform-properties-options-item rureraform-properties-options-item">
+							<div class="rureraform-properties-options-table">
 								<div class="repeater-fields">
 									<div class='quiz-form-control'>
 										<div class="field-div">
@@ -133,7 +133,7 @@
 											   data-field_id="field_dynamic_id">
 										<input type='text' class="element-field" data-field_type="select_option"
 											   placeholder="Select Option" data-field_id="field_dynamic_id"
-											   data-field_option_id="correct-field_dynamic_id-option_dynamic_id">
+											   data-field_option_id="correct-field_dynamic_id-option_dynamic_id" value="Choose the correct answer">
 									   </div>
 										<div class="tools-div">
 											<span title="Set the option as correct value">

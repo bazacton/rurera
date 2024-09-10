@@ -3833,8 +3833,14 @@ class User extends Authenticatable
 		if( $is_subscribed == false){
 			$is_subscribed = SchoolSubscriptions::where('school_id', $this->school_id)->where('status', 'active')->where($subscription_package, 1)->count();
 		}
+		
 		//$is_subscribed = 1;
         $is_subscribed = ($is_subscribed > 0) ? true : false;
+		
+		if( $this->parent_id == 1284 && $slug != 'is_timestables'){
+			$is_subscribed = false;
+		}
+		
 		
         return $is_subscribed;
     }

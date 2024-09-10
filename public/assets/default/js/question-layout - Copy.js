@@ -98,7 +98,7 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
     var question_id = $(this).closest('form').data('question_id');
     var defination_text = $(this).closest('form').data('defination');
     var user_question_layout = thisForm.find('.question-layout').html();
-    var user_question_layout = leform_encode64(JSON.stringify(user_question_layout));
+    var user_question_layout = rureraform_encode64(JSON.stringify(user_question_layout));
     $('.question-all-good').remove();
     $(this).closest('form').find('.editor-field').each(function () {
         $(this).removeClass('validate-error');
@@ -803,7 +803,7 @@ function init_question_functions() {
 
 
 
-        var question_layout = leform_decode64(questions_layout[question_id]);
+        var question_layout = rureraform_decode64(questions_layout[question_id]);
 
         var question_layout = JSON.parse(question_layout);
 
@@ -1146,7 +1146,7 @@ function chunkWords(p) {
     return words.join("");
 }
 
-function leform_random_string(_length) {
+function rureraform_random_string(_length) {
     var length, text = "";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     if (typeof _length == "undefined")
@@ -1158,7 +1158,7 @@ function leform_random_string(_length) {
     return text;
 }
 
-function leform_utf8encode(string) {
+function rureraform_utf8encode(string) {
     string = string.replace(/\x0d\x0a/g, "\x0a");
     var output = "";
     for (var n = 0; n < string.length; n++) {
@@ -1177,12 +1177,12 @@ function leform_utf8encode(string) {
     return output;
 }
 
-function leform_encode64(input) {
+function rureraform_encode64(input) {
     var keyString = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
     var output = "";
     var chr1, chr2, chr3, enc1, enc2, enc3, enc4;
     var i = 0;
-    input = leform_utf8encode(input);
+    input = rureraform_utf8encode(input);
     while (i < input.length) {
         chr1 = input.charCodeAt(i++);
         chr2 = input.charCodeAt(i++);
@@ -1201,7 +1201,7 @@ function leform_encode64(input) {
     return output;
 }
 
-function leform_utf8decode(input) {
+function rureraform_utf8decode(input) {
     var string = "";
     var i = 0;
     var c = 0, c1 = 0, c2 = 0;
@@ -1224,7 +1224,7 @@ function leform_utf8decode(input) {
     return string;
 }
 
-function leform_decode64(input) {
+function rureraform_decode64(input) {
     var keyString = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
     var output = "";
     var chr1, chr2, chr3;
@@ -1247,19 +1247,19 @@ function leform_decode64(input) {
             output = output + String.fromCharCode(chr3);
         }
     }
-    output = leform_utf8decode(output);
+    output = rureraform_utf8decode(output);
     return output;
 }
 
-function leform_esc_html__(_string) {
+function rureraform_esc_html__(_string) {
     var string;
-    if (typeof leform_translations == typeof {} && leform_translations.hasOwnProperty(_string)) {
-        string = leform_translations[_string];
+    if (typeof rureraform_translations == typeof {} && rureraform_translations.hasOwnProperty(_string)) {
+        string = rureraform_translations[_string];
         if (string.length == 0)
             string = _string;
     } else
         string = _string;
-    return leform_escape_html(string);
+    return rureraform_escape_html(string);
 }
 
 //Match Draw
