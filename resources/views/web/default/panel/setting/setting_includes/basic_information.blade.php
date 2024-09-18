@@ -249,11 +249,14 @@ if( !empty( $emojisArray ) ){
                                     </h6>
                                 </div>
                                 <div class="edit-profile-body">
-                                    <div class="edit-profile-image">
-                                        <div class="profile-image text-center">
+                                    <div class="edit-profile-image mb-30">
+                                        <div class="profile-image">
                                             <figure class="d-inline-flex position-relative">
                                                 <img src="{{ (!empty($user)) ? $user->getAvatar(150) : '' }}" height="96" width="96" alt="">
-                                                <a href="javascript:;" class="profile-image-btn cancel-btn d-inline-flex align-items-center justify-content-center font-16 bg-white"><img src="/assets/default/svgs/edit-2.svg" alt="" style="width:18px; height:18px"></a>
+                                                <a href="javascript:;" class="profile-image-btn cancel-btn d-inline-flex justify-content-center font-14 flex-column">
+                                                    <small class="img-type font-14 font-weight-500">JPG, GIF or PNG. Maximum file size 1 MB.</small>    
+                                                    <span class="font-weight-bold">Change photo</span>
+                                                </a>
                                             </figure>
                                         </div>
                                     </div>

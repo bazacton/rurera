@@ -512,7 +512,6 @@ function _rureraform_properties_prepare(_object) {
         return false;
 
 	
-	console.log(properties);
     if (type == "settings") {
         properties = rureraform_form_options;
         jQuery("#rureraform-element-properties").find(".rureraform-admin-popup-title h3").html("<i class='fas fa-cogs'></i> " + rureraform_esc_html__("Form Settings"));
@@ -532,6 +531,7 @@ function _rureraform_properties_prepare(_object) {
         properties = rureraform_form_elements[i];
         //jQuery("#rureraform-element-properties").find(".rureraform-admin-popup-title h3").html("<i class='fas fa-cog'></i> " + rureraform_esc_html__("Element Properties") + "<span><i class='" + rureraform_toolbar_tools[properties["type"]]["icon"] + "'></i> " + rureraform_escape_html(properties["name"]) + "</span>");
     }
+	console.log(properties);
 	console.log('properties===='+properties);
 
     input_fields = rureraform_input_sort();
@@ -1138,7 +1138,6 @@ function _rureraform_properties_prepare(_object) {
                    break;
 
                 case 'html':
-				console.log(properties);
                     html += "<div class='rureraform-properties-item' data-id='" + key + "'>\n\
                     \n\
                     <div class='rureraform-properties-tooltip'></div>\n\
@@ -1485,6 +1484,9 @@ function _rureraform_properties_prepare(_object) {
                     options = "";
                     for (var j = 0; j < properties[key].length; j++) {
                         selected = false;
+						if(DataIsEmpty(properties[key][j]["label"])){
+								continue;
+							}
                         if (properties[key][j].hasOwnProperty("default") && properties[key][j]["default"] == "on")
                             selected = true;
                         options += rureraform_properties_options_item_get(properties[key][j]["label"], properties[key][j]["value"], selected);
@@ -1497,6 +1499,9 @@ function _rureraform_properties_prepare(_object) {
                     options = "";
                     for (var j = 0; j < properties[key].length; j++) {
                         selected = false;
+						if(DataIsEmpty(properties[key][j]["label"])){
+								continue;
+							}
                         if (properties[key][j].hasOwnProperty("default") && properties[key][j]["default"] == "on")
                             selected = true;
                         options += rureraform_properties_options_label_item_get(properties[key][j]["label"], selected);
@@ -1504,13 +1509,59 @@ function _rureraform_properties_prepare(_object) {
                     html += "<div class='rureraform-properties-item' data-id='" + key + "'><div class='rureraform-properties-label'><label>" + rureraform_meta[type][key]['label'] + "</label></div><div class='rureraform-properties-tooltip'>" + tooltip_html + "</div><div class='rureraform-properties-content'><div class='rureraform-properties-options-table-header'><div>Label</div><div></div></div><div class='rureraform-properties-options-box'><div class='rureraform-properties-options-container' data-multi='" + rureraform_escape_html(rureraform_meta[type][key]['multi-select']) + "'>" + options + "</div></div><div class='rureraform-properties-options-table-footer'><a class='rureraform-admin-button rureraform-admin-button-gray rureraform-admin-button-small' href='#' onclick='return rureraform_properties_options_new(null, $(this), \"only_label\");'><i class='fas fa-plus'></i><label>Add option</label></a></div></div></div>";
                     break;
 					
+				case 'options_label_minimal':
+					options = "";
+					var option_id = rureraform_meta[type][key]['option_id'];
+                    for (var j = 0; j < properties[key].length; j++) {
+                        selected = false;
+						if(DataIsEmpty(properties[key][j]["label"])){
+								continue;
+							}
+                        if (properties[key][j].hasOwnProperty("default") && properties[key][j]["default"] == "on")
+                            selected = true;
+                        options += rureraform_properties_options_label_item_get(properties[key][j]["label"], selected);
+                    }
+					var element_class = 'rurera-hide';
+					if( option_id == 1){
+						element_class = '';
+					}
+                    html += "<div class='rureraform-properties-item rurera-dropdown-options "+element_class+"' data-option_id='"+option_id+"' data-id='" + key + "'><div class='rureraform-properties-label'><label>" + rureraform_meta[type][key]['label'] + "</label></div><div class='rureraform-properties-tooltip'>" + tooltip_html + "</div><div class='rureraform-properties-content'><div class='rureraform-properties-options-table-header'><div>Label</div><div></div></div><div class='rureraform-properties-options-box'><div class='rureraform-properties-options-container' data-multi='" + rureraform_escape_html(rureraform_meta[type][key]['multi-select']) + "'>" + options + "</div></div><div class='rureraform-properties-options-table-footer'><a class='rureraform-admin-button rureraform-admin-button-gray rureraform-admin-button-small' href='#' onclick='return rureraform_properties_options_new(null, $(this), \"only_label\");'><i class='fas fa-plus'></i><label>Add option</label></a></div></div></div>";
+                    break;
+				break;
 					
+				 case 'options_label_minimal11':
+					options = "";
+					var option_id = rureraform_meta[type][key]['option_id'];
+					console.log('options-labels-start');
+
+					console.log('type=='+ type)
+					console.log(properties[key]);
+					console.log('options-labels-ends');
+					for (var j = 0; j < properties[key].length; j++) {
+						selected = false;
+						if(DataIsEmpty(properties[key][j]["label"])){
+								continue;
+							}
+						if (properties[key][j].hasOwnProperty("default") && properties[key][j]["default"] == "on")
+							selected = true;
+						options += rureraform_properties_inside_options_item_get(properties[key][j]["label"], selected);
+					}
+					var element_class = 'rurera-hide';
+					if( option_id == 1){
+						element_class = '';
+					}
+					html += "<div class='rureraform-properties-item rurera-dropdown-options "+element_class+"' data-option_id='"+option_id+"' data-id='" + key + "'><div class='rureraform-properties-label'><label>" + rureraform_meta[type][key]['label'] + "</label></div><div class='rureraform-properties-tooltip'>" + tooltip_html + "</div><div class='rureraform-properties-content'><div class='rureraform-properties-options-table-header'><div>Label</div><div></div></div><div class='rureraform-properties-options-box'><div class='rureraform-properties-options-container' data-multi='" + rureraform_escape_html(rureraform_meta[type][key]['multi-select']) + "'>" + options + "</div></div><div class='rureraform-properties-options-table-footer'><a class='rureraform-admin-button rureraform-admin-button-gray rureraform-admin-button-small' href='#' onclick='return rureraform_properties_options_new(null, $(this), \"inside_options\");'><i class='fas fa-plus'></i><label>Add option</label></a></div></div></div>";
+				break;
+				
 
                 case 'repeater_fields':
                     options = "";
 					console.log(properties[key]);
                     for (var j = 0; j < properties[key].length; j++) {
                         selected = false;
+						if(DataIsEmpty(properties[key][j]["label"])){
+								continue;
+							}
                         if (properties[key][j].hasOwnProperty("default") && properties[key][j]["default"] == "on")
                             selected = true;
                         options += rureraform_properties_repeater_field_item_get(properties[key][j]["label"], selected);
@@ -1523,6 +1574,9 @@ function _rureraform_properties_prepare(_object) {
                        options = "";
                        for (var j = 0; j < properties[key].length; j++) {
                            selected = false;
+						   if(DataIsEmpty(properties[key][j]["label"])){
+								continue;
+							}
                            if (properties[key][j].hasOwnProperty("default") && properties[key][j]["default"] == "on")
                                selected = true;
                            options += rureraform_properties_options_markings_item_get(properties[key][j]["label"], properties[key][j]["value"], selected);
@@ -1549,6 +1603,9 @@ function _rureraform_properties_prepare(_object) {
                             selected = " rureraform-properties-options-item-default";
                         }
                         var image_url = !DataIsEmpty(properties[key][j]["image"])? properties[key][j]["image"] : '';
+						if(DataIsEmpty(properties[key][j]["label"])){
+							continue;
+						}
                         options += "<div class='rureraform-properties-options-item" + selected + "'><div class='rureraform-properties-options-table'><div><input class='rureraform-properties-options-label' type='text' value='" + rureraform_escape_html(properties[key][j]["label"]) + "' placeholder='Label'></div><div class='rureraform-image-url'><div class='input-group-prepend'><button type='button' class='input-group-text admin-file-manager' data-input='image-" + key + "-" + j + "' data-preview='holder'><i class='fa fa-upload'></i></button></div><input class='rureraform-properties-options-image' type='text' id='image-" + key + "-" + j + "' value='" + rureraform_escape_html(image_url) + "' placeholder='Upload Image'><span><i class='far fa-image'></i></span></div><div class='lms-hide'><input class='rureraform-properties-options-value' type='text' value='" + rureraform_escape_html(properties[key][j]["value"]) + "' placeholder='Value'></div><div><span onclick='return rureraform_properties_options_default(this);' title='Set the option as correct value'><i class='fas fa-check'></i></span><span onclick='return rureraform_properties_options_new(this);' title='Add the option after this one'><i class='fas fa-plus'></i></span><span onclick='return rureraform_properties_options_copy(this);' title='Duplicate the option'><i class='far fa-copy'></i></span><span onclick='return rureraform_properties_options_delete(this);' title='Delete the option'><i class='fas fa-trash-alt'></i></span><span title='Move the option'><i class='fas fa-arrows-alt rureraform-properties-options-item-handler'></i></span></div></div></div>";
                     }
                     html += "<div class='rureraform-properties-item' data-id='" + key + "'><div class='rureraform-properties-label'><label>" + rureraform_meta[type][key]['label'] + "</label></div><div class='rureraform-properties-tooltip'>" + tooltip_html + "</div><div class='rureraform-properties-content rureraform-properties-image-options-table'><div class='rureraform-properties-options-table-header'><div>Label</div><div>Image</div><div class='lms-hide'>Value</div><div></div></div><div class='rureraform-properties-options-box'><div class='rureraform-properties-options-container' data-multi='" + (properties.type == "radio" ? "off" : "on") + "'>" + options + "</div></div><div class='rureraform-properties-options-table-footer'><a class='rureraform-admin-button rureraform-admin-button-gray rureraform-admin-button-small' href='#' onclick='return rureraform_properties_options_new(null);'><i class='fas fa-plus'></i><label>Add option</label></a></div></div></div>";
@@ -1748,6 +1805,16 @@ function _rureraform_properties_prepare(_object) {
     }
     jQuery("#rureraform-element-properties .rureraform-admin-popup-content-form").html(tab_html + html);
     render_matrix_columns_options();
+	if(jQuery('input[name="rureraform-no_of_options"]').val() > 0){
+		jQuery('input[name="rureraform-no_of_options"]').each(function () {
+			var no_of_options = $(this).val();
+			var thisBlock = $(this).closest('.rureraform-tab-content');
+			thisBlock.find('.rurera-dropdown-options').addClass('rurera-hide');
+			thisBlock.find('.rurera-dropdown-options').filter(function() {
+				return $(this).attr('data-option_id') <= no_of_options;
+			}).removeClass('rurera-hide');
+		});
+	}
 
 
     /*var HelloButton = function (context) {
@@ -2120,6 +2187,7 @@ function rureraform_properties_open(_object) {
     }, 500);
 
 
+	
 
     return false;
 }
@@ -2464,6 +2532,101 @@ function rureraform_properties_save() {
                 "value": jQuery(this).find(".rureraform-properties-options-label").val(),
                 //"value": option_value,
                 "image": jQuery(this).find(".rureraform-properties-options-image").val()
+            });
+        });
+    }
+	
+	if (properties.hasOwnProperty("inner_options1")) {
+        properties["inner_options1"] = new Array();
+        jQuery('.rurera-dropdown-options[data-option_id="1"] .rureraform-properties-options-container .rureraform-properties-options-item').each(function () {
+			if( $(this).closest('.rurera-dropdown-options').hasClass('rurera-hide')){
+				return;
+			}
+            var option_value = jQuery(this).find(".rureraform-properties-options-value").val();
+            option_value = (option_value != '')? option_value : jQuery(this).find(".rureraform-properties-options-label").val();
+            var selected = "off";
+            if (jQuery(this).hasClass("rureraform-properties-options-item-default"))
+                selected = "on";
+            (properties["inner_options1"]).push({
+                "default": selected,
+                "label": jQuery(this).find(".rureraform-properties-options-label").val(),
+                "value": jQuery(this).find(".rureraform-properties-options-label").val(),
+            });
+        });
+    }
+	
+	if (properties.hasOwnProperty("inner_options2")) {
+        properties["inner_options2"] = new Array();
+        jQuery('.rurera-dropdown-options[data-option_id="2"] .rureraform-properties-options-container .rureraform-properties-options-item').each(function () {
+			if( $(this).closest('.rurera-dropdown-options').hasClass('rurera-hide')){
+				return;
+			}
+            var option_value = jQuery(this).find(".rureraform-properties-options-value").val();
+            option_value = (option_value != '')? option_value : jQuery(this).find(".rureraform-properties-options-label").val();
+            var selected = "off";
+            if (jQuery(this).hasClass("rureraform-properties-options-item-default"))
+                selected = "on";
+            (properties["inner_options2"]).push({
+                "default": selected,
+                "label": jQuery(this).find(".rureraform-properties-options-label").val(),
+                "value": jQuery(this).find(".rureraform-properties-options-label").val(),
+            });
+        });
+    }
+	
+	if (properties.hasOwnProperty("inner_options3")) {
+        properties["inner_options3"] = new Array();
+        jQuery('.rurera-dropdown-options[data-option_id="3"] .rureraform-properties-options-container .rureraform-properties-options-item').each(function () {
+			if( $(this).closest('.rurera-dropdown-options').hasClass('rurera-hide')){
+				return;
+			}
+            var option_value = jQuery(this).find(".rureraform-properties-options-value").val();
+            option_value = (option_value != '')? option_value : jQuery(this).find(".rureraform-properties-options-label").val();
+            var selected = "off";
+            if (jQuery(this).hasClass("rureraform-properties-options-item-default"))
+                selected = "on";
+            (properties["inner_options3"]).push({
+                "default": selected,
+                "label": jQuery(this).find(".rureraform-properties-options-label").val(),
+                "value": jQuery(this).find(".rureraform-properties-options-label").val(),
+            });
+        });
+    }
+	
+	if (properties.hasOwnProperty("inner_options4")) {
+        properties["inner_options4"] = new Array();
+        jQuery('.rurera-dropdown-options[data-option_id="4"] .rureraform-properties-options-container .rureraform-properties-options-item').each(function () {
+			if( $(this).closest('.rurera-dropdown-options').hasClass('rurera-hide')){
+				return;
+			}
+            var option_value = jQuery(this).find(".rureraform-properties-options-value").val();
+            option_value = (option_value != '')? option_value : jQuery(this).find(".rureraform-properties-options-label").val();
+            var selected = "off";
+            if (jQuery(this).hasClass("rureraform-properties-options-item-default"))
+                selected = "on";
+            (properties["inner_options4"]).push({
+                "default": selected,
+                "label": jQuery(this).find(".rureraform-properties-options-label").val(),
+                "value": jQuery(this).find(".rureraform-properties-options-label").val(),
+            });
+        });
+    }
+	
+	if (properties.hasOwnProperty("inner_options5")) {
+        properties["inner_options5"] = new Array();
+        jQuery('.rurera-dropdown-options[data-option_id="5"] .rureraform-properties-options-container .rureraform-properties-options-item').each(function () {
+			if( $(this).closest('.rurera-dropdown-options').hasClass('rurera-hide')){
+				return;
+			}
+            var option_value = jQuery(this).find(".rureraform-properties-options-value").val();
+            option_value = (option_value != '')? option_value : jQuery(this).find(".rureraform-properties-options-label").val();
+            var selected = "off";
+            if (jQuery(this).hasClass("rureraform-properties-options-item-default"))
+                selected = "on";
+            (properties["inner_options5"]).push({
+                "default": selected,
+                "label": jQuery(this).find(".rureraform-properties-options-label").val(),
+                "value": jQuery(this).find(".rureraform-properties-options-label").val(),
             });
         });
     }
@@ -5420,9 +5583,11 @@ function _rureraform_build_children(_parent, _parent_col, image_styles = []) {
                             label_data += '<img src="' + rureraform_form_elements[i]["options"][j]["image"] + '" alt=""> ';
                             var is_image = true;
                         }
+						//console.log('label++++'+rureraform_form_elements[i]["options"][j]["label"]);
 						if(DataIsEmpty(rureraform_form_elements[i]["options"][j]["label"])){
 							continue;
 						}
+						console.log('label++++'+rureraform_form_elements[i]["options"][j]["label"]);
                         label_data += rureraform_form_elements[i]["options"][j]["label"];
                         option = "<input class='editor-field rureraform-checkbox-" + properties["checkbox-size"] + "'  type='checkbox' data-field_id='" + random_id + "' name='field-" + random_id + "' id='field-" + random_id + "-" + j + "' value='" + rureraform_escape_html(rureraform_form_elements[i]["options"][j]["value"]) + "'" + selected + " /><label for='field-" + random_id + "-" + j + "'>" + label_data + "</label>";
                         options += "<div class='form-field rureraform-cr-container-" + properties["checkbox-size"] + " rureraform-cr-container-" + properties["checkbox-position"] + "'>\n\
@@ -5750,6 +5915,43 @@ function _rureraform_build_children(_parent, _parent_col, image_styles = []) {
 
                     html += "<div id='rureraform-element-" + i + "' class='quiz-group rureraform-element-" + i + " rureraform-element" + (properties["label-style-position"] != "" ? " rureraform-element-label-" + properties["label-style-position"] : "") + (rureraform_form_elements[i]['description-style-position'] != "" ? " rureraform-element-description-" + rureraform_form_elements[i]['description-style-position'] : "") + "' data-type='" + rureraform_form_elements[i]["type"] + "'><div class='rureraform-column-label" + column_label_class + "'><label class='rureraform-label" + (rureraform_form_elements[i]['label-style-align'] != "" ? " rureraform-ta-" + rureraform_form_elements[i]['label-style-align'] : "") + "'>" + properties["required-label-left"] + rureraform_escape_html(rureraform_form_elements[i]["label"]) + properties["required-label-right"] + properties["tooltip-label"] + "</label></div><div class='rureraform-column-input" + column_input_class + "'><div class='rureraform-input" + extra_class + "'" + properties["tooltip-input"] + "><div class='form-box " + template_style + " " + image_class + "'><div class='lms-sorting-fields' id='lmssort" + sort_id + "'>" + options + "</div></div></div><label class='rureraform-description" + (rureraform_form_elements[i]['description-style-align'] != "" ? " rureraform-ta-" + rureraform_form_elements[i]['description-style-align'] : "") + "'>" + properties["required-description-left"] + rureraform_escape_html(rureraform_form_elements[i]["description"]) + properties["required-description-right"] + properties["tooltip-description"] + "</label></div><div class='rureraform-element-cover'></div></div>";
                     break;
+					
+					
+				case "inner_dropdown":
+				
+					console.log(rureraform_form_elements[i]["inner_options1"]);
+                    var random_id = Math.floor((Math.random() * 99999) + 1);
+                    var sort_id = Math.floor((Math.random() * 99999) + 1);
+                    rureraform_form_elements[i]['field_id'] = random_id;
+                    var template_style = rureraform_form_elements[i]['template_style'];
+                    var template_size = rureraform_form_elements[i]['template_size'];
+                    var template_alignment = rureraform_form_elements[i]['template_alignment'];
+                    var list_style = rureraform_form_elements[i]['list_style'];
+                    var image_size = rureraform_form_elements[i]['image_size'];
+                   template_style = template_style +' '+template_size +' '+template_alignment +' '+list_style +' '+image_size;
+                    style += "#rureraform-element-" + i + " div.rureraform-input{height:auto;line-height:1;}";
+                    properties['checkbox-size'] = rureraform_form_options['checkbox-radio-style-size'];
+                    if (rureraform_form_elements[i]['checkbox-style-position'] == "")
+                        properties['checkbox-position'] = rureraform_form_options['checkbox-radio-style-position'];
+                    else
+                        properties['checkbox-position'] = rureraform_form_elements[i]['checkbox-style-position'];
+                    if (rureraform_form_elements[i]['checkbox-style-align'] == "")
+                        properties['checkbox-align'] = rureraform_form_options['checkbox-radio-style-align'];
+                    else
+                        properties['checkbox-align'] = rureraform_form_elements[i]['checkbox-style-align'];
+                    if (rureraform_form_elements[i]['checkbox-style-layout'] == "")
+                        properties['checkbox-layout'] = rureraform_form_options['checkbox-radio-style-layout'];
+                    else
+                        properties['checkbox-layout'] = rureraform_form_elements[i]['checkbox-style-layout'];
+                    extra_class = " rureraform-cr-layout-" + properties['checkbox-layout'] + " rureraform-cr-layout-" + properties['checkbox-align'];
+                    var label_options = '';
+                    var label_values = '';
+
+
+					var html_data = "<div id='rureraform-element-" + i + "' class='rureraform-element-" + i + " rureraform-element quiz-group rureraform-element-html'  data-type='" + rureraform_form_elements[i]["type"] + "'>" + rureraform_form_elements[i]["content"] + "<div class='rureraform-element-cover'></div></div>";
+                    html += html_data;
+					
+                    break;	
 
 
                 case "imageselect":
@@ -9707,3 +9909,11 @@ $(document).on('click', '.rurera-generate-audio', function () {
     });
 });
 
+$(document).on('keyup change paste checked', 'input[name="rureraform-no_of_options"]', function () {
+	var no_of_options = $(this).val();
+	var thisBlock = $(this).closest('.rureraform-tab-content');
+	thisBlock.find('.rurera-dropdown-options').addClass('rurera-hide');
+	thisBlock.find('.rurera-dropdown-options').filter(function() {
+		return $(this).attr('data-option_id') <= no_of_options;
+	}).removeClass('rurera-hide');
+});

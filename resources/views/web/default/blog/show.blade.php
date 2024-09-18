@@ -1,56 +1,79 @@
 @extends(getTemplate().'.layouts.app')
 
 @section('content')
-    <section class="cart-banner position-relative">
-        <div class="container h-100">
-            <div class="row h-100 align-items-center justify-content-center">
-                <div class="col-12 col-md-9 col-lg-7">
+    <section class="cart-banner position-relative single-post-subheader pb-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-12">
+                    <a href="/blog" itemprop="url" class="post-back-btn font-18 font-weight-normal">Back to blog</a>
+                    
+                    <h1 class="font-30 font-weight-bold my-20">{{ $post->title }}</h1>
 
-                    <h1 class="font-30 font-weight-bold">{{ $post->title }}</h1>
-
-                    <div class="d-flex flex-column lms-blog-header flex-sm-row align-items-center align-sm-items-start">
-                        @if(!empty($post->author))
-                        <span class="mt-10 mt-md-20 font-16 font-weight-500">
-                            <span class="lms-blog-author-img"><img src="{{ $post->author->getAvatar(100) }}" class="img-cover" alt=""></span>
-                            {{ trans('public.created_by') }}
-                                @if($post->author->isTeacher())
-                                    <a href="{{ $post->author->getProfileUrl() }}" target="_blank" >{{ $post->author->get_full_name() }}</a>
-                                @elseif(!empty($post->author->get_full_name()))
-                                    <span>{{ $post->author->get_full_name() }}</span>
-                                @endif
-                                
-                        </span>
-                        @endif
-
-                        <span class="mt-10 mt-md-20 font-16 font-weight-500">{{ trans('public.in') }}
-                            <a href="{{ $post->category->getUrl() }}">{{ $post->category->title }}</a>
-                        </span>
-                        <span class="mt-10 mt-md-20 font-16 font-weight-500">{{ dateTimeFormat($post->created_at, 'j M Y') }}</span>
+                    <div class="post-date">
+                        <span class="mt-15 d-block font-16">{{ dateTimeFormat($post->created_at, 'j M Y') }}</span>
                     </div>
-
                 </div>
             </div>
         </div>
     </section>
+    <section class="mt-50 mb-50 lms-blog blog-single-post">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-9 col-md-9">
+                    <div class="post-show pb-70 pr-50">
 
-    <section class="container mt-10 mt-md-40 lms-blog">
-        <div class="row">
-            <div class="col-12 col-lg-12">
-                <div class="post-show pb-70">
+                        {!! nl2br($post->content) !!}
+                    </div>
 
-                    {!! nl2br($post->content) !!}
+                    {{-- post Comments --}}
+                    @if($post->enable_comment)
+                        @include('web.default.includes.comments',[
+                                'comments' => $post->comments,
+                                'inputName' => 'blog_id',
+                                'inputValue' => $post->id
+                            ])
+                    @endif
+                    {{-- ./ post Comments --}}
+
+                    <div class="single-post-block">
+                        <div class="post-inner">
+                            <ul class="numbers-list">
+                                <li><span>Why everybody needs a brand</span></li>
+                                <li><span>Find yor propostion, personality and purpose</span></li>
+                                <li><span>Freelancing tips: How you can usebrand propostion</span></li>
+                                <li><span>Useful resources for your Freelancing business</span></li>
+                                <li><span>Create a brand with value</span></li>
+                            </ul>
+                        </div>
+                    </div>
+
                 </div>
-
-                {{-- post Comments --}}
-                @if($post->enable_comment)
-                    @include('web.default.includes.comments',[
-                            'comments' => $post->comments,
-                            'inputName' => 'blog_id',
-                            'inputValue' => $post->id
-                        ])
-                @endif
-                {{-- ./ post Comments --}}
-
+                @if( !empty( $headings_array ) )
+					<div class="col-12 col-lg-3 col-md-3">
+						<div class="blog-sidebar">
+						   <h2 class="mb-20">Content</h2>
+							<div class="single-post-nav mb-30">
+								<nav>
+									<ul>
+										@php $counter = 1; @endphp
+										@foreach( $headings_array as $heading_id => $heading_text)
+											<li><a href="#{{$heading_id}}" class="{{($counter == 1)? 'current' : ''}}">{{$heading_text}}</a></li>
+											@php $counter++; @endphp
+										@endforeach
+									</ul>
+								</nav>
+							</div>
+                            <div class="share-links">
+                                <h2 class="mb-20">Share Article</h2>
+                                <ul>
+                                    <li><a href="#"><img src="/assets/default/svgs/instagram-blog.svg"  height="150" width="150" alt="instagram"></a></li>
+                                    <li><a href="#"><img src="/assets/default/svgs/linkedin-blog.svg"  height="2500" width="2500" alt="linkedin"></a></li>
+                                    <li><a href="#"><img src="/assets/default/svgs/tiktok-blog.svg"  height="150" width="150" alt="tiktok"></a></li>
+                                </ul>
+                            </div>
+						</div>
+					</div>
+				@endif
             </div>
         </div>
     </section>

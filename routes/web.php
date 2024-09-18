@@ -362,7 +362,7 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
         Route::get('/{subject}' , 'LearningJourneyController@subject');
     });
 
-    Route::get('/classes' , 'ClassesController@index');
+    //Route::get('/classes' , 'ClassesController@index');
 
     Route::get('/reward-courses' , 'RewardCoursesController@index');
 
@@ -577,7 +577,7 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
         Route::post('/update_reading' , 'BooksController@update_reading');
     });
 
-    Route::group(['prefix' => 'books_shelf'] , function () {
+    Route::group(['prefix' => 'books-shelf'] , function () {
         Route::get('/' , 'BooksController@books_shelf');
     });
     Route::group(['prefix' => 'book-shelf'] , function () {
@@ -656,14 +656,14 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
         Route::get('/{quiz_slug}' , 'IndependentExamsController@start');
     });
 
-    Route::group(['prefix' => 'national-curriculum'] , function () {
+    Route::group(['prefix' => 'national-curriculum_bk'] , function () {
         Route::get('/' , 'NationalCurriculumController@index');
         Route::get('/curriculum_by_subject' , 'NationalCurriculumController@curriculum_by_subject');
 		Route::get('/subjects_by_category', 'NationalCurriculumController@subjects_by_category');
         Route::get('/subjects_by_category_frontend', 'NationalCurriculumController@subjects_by_category_frontend');
     });
 
-    Route::group(['prefix' => 'weekly-planner'] , function () {
+    Route::group(['prefix' => 'weekly-planner_bk'] , function () {
         Route::get('/' , 'WeeklyPlannerController@index');
         Route::get('/weekly_planner_by_subject' , 'WeeklyPlannerController@weekly_planner_by_subject');
     });

@@ -56,6 +56,7 @@ class LoginController extends Controller
 
         $data = [
             'pageTitle' => $pageTitle,
+            'page_title' => $pageTitle,
             'pageDescription' => $pageDescription,
             'pageRobot' => $pageRobot,
         ];

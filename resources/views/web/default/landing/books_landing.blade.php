@@ -15,26 +15,27 @@
 @endpush
 
 @section('content')
-<section class="position-relative job-singup-sub-header gallery-sub-header pb-80" style="min-height: 620px;">
+<section class="position-relative job-singup-sub-header gallery-sub-header pb-80" style="min-height: 680px;">
     <div class="container h-100">
       <div class="row h-100">
         <div class="col-12 col-md-12 col-lg-7">
-          <h1 itemprop="title" class="font-72 font-weight-bold">Unlock Amazing Adventures: Dive into the World of<span class="text-scribble">Books!!</span>
+          <h1 itemprop="title" class="font-72 font-weight-bold">Dive into the World of <span class="text-scribble">Books!</span>
           </h1>
-          <strong class="d-block font-36">Discover Rurera Bookshelf: Read Anywhere, Anytime!</strong>
+          <strong class="d-block font-36">Read Anywhere, Anytime!</strong>
           <p itemprop="description" class="lms-subtitle font-19 font-weight-normal pt-20">Rurera boosts reading skills with fun books, cool rewards, and personalized challenges. Watch your child's love for reading grow every day!</p>
-          <ul class="mt-40 mb-30 p-0 row">
+          <!-- <ul class="mt-40 mb-30 p-0 row">
             <li class="mb-10 font-19 col-lg-6 col-md-6 col-12">Track Your Reading Progress</li>
             <li class="mb-10 font-19 col-lg-6 col-md-6 col-12">Estimate Your Reading Time</li>
             <li class="mb-10 font-19 col-lg-6 col-md-6 col-12">Engage in Fun Reading Activities & Quizzes</li>
             <li class="mb-10 font-19 col-lg-6 col-md-6 col-12">Challenge Yourself with Fun Quizzes for Every Chapter & Book!</li>
             <li class="mb-10 font-19 col-lg-6 col-md-6 col-12">Find What You Need with Easy Search & Navigation</li>
             <li class="mb-10 font-19 col-lg-6 col-md-6 col-12">Earn Badges for Your Reading Achievements</li>
-          </ul>
-          <div class="d-flex align-items-center">
+          </ul> -->
+          <a href="/pricing" class="try-rurera-btn justify-content-center bg-primary text-white register-btn">Try Rurera for free</a>
+          <!-- <div class="d-flex align-items-center mt-30">
             <a href="#" data-toggle="modal" data-target="#exampleModal" class="book-btn justify-content-center bg-primary text-white">Start Reading</a>
             <a href="#" data-toggle="modal" data-target="#exampleModal" class="book-btn justify-content-center ml-15">Continue Reading</a>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -168,7 +169,67 @@
       </div>
     </div>
   </section>
-  <section class="lms-books-listing p-0" style="background-color: #ffff;">
+  <section class="pb-80">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="db-categories">
+            <div class="row justify-content-center align-items-center">
+              <div class="col-12 col-lg-2 col-md-4 col-sm-3">
+                <div class="cat-card text-center">
+                  <a href="#">
+                    <img src="/assets/default/svgs/headphone2.svg" height="800" width="800" alt="Phonics image">
+                    <h5>Phonics</h5>
+                  </a>
+                </div>
+              </div>
+              <div class="col-12 col-lg-2 col-md-4 col-sm-3">
+                <div class="cat-card text-center">
+                  <a href="#">
+                    <img src="/assets/default/svgs/telescope.svg" height="800" width="800" alt="Sight Words image">
+                    <h5>Sight Words</h5>
+                  </a>
+                </div>
+              </div>
+              <div class="col-12 col-lg-2 col-md-4 col-sm-3">
+                <div class="cat-card text-center">
+                  <a href="#">
+                    <img src="/assets/default/svgs/open-book.svg" height="800" width="800" alt="Spelling image">
+                    <h5>Spelling</h5>
+                  </a>
+                </div>
+              </div>
+              <div class="col-12 col-lg-2 col-md-4 col-sm-3">
+                <div class="cat-card text-center">
+                  <a href="#">
+                    <img src="/assets/default/svgs/cat-light-bulb.svg" height="150" width="150" alt="Comprehension image">
+                    <h5>Comprehension</h5>
+                  </a>
+                </div>
+              </div>
+              <div class="col-12 col-lg-2 col-md-4 col-sm-3">
+                <div class="cat-card text-center">
+                  <a href="#">
+                    <img src="/assets/default/svgs/loupe-search.svg" height="800" width="800" alt="Gramar image">
+                    <h5>Gramar & <br> Punctuation</h5>
+                  </a>
+                </div>
+              </div>
+              <div class="col-12 col-lg-2 col-md-4 col-sm-3">
+                <div class="cat-card text-center">
+                  <a href="#">
+                    <img src="/assets/default/svgs/bookshelf2.svg" height="150" width="150" alt="Reading image">
+                    <h5>Reading</h5>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- <section class="lms-books-listing p-0" style="background-color: #ffff;">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
@@ -248,8 +309,8 @@
         </div>
       </div>
     </div>
-  </section>
-  <section class="lms-blog lms-blog-grid mx-w-100 pt-80 pb-50 mb-80" style="background-color:#7679ee;">
+  </section> -->
+  <section class="lms-blog lms-blog-grid books-blog mx-w-100 pt-80 pb-50 mb-80" style="background-color:#7679ee;">
     <div class="container">
       <div class="row">
         <div class="col-12 col-lg-12">
@@ -264,11 +325,12 @@
               <div class="mb-40">
                 <div class="blog-grid-card pb-0">
                   <div class="blog-grid-detail pr-0">
-                    <div class="blog-grid-image">
+                    <div class="blog-grid-image lazyload-img">
+                      <img src="/assets/default/img/buller-img.png" class="img-sm" alt="How Online Courses Benefit KS1 and KS2 Students" title="How Online Courses Benefit KS1 and KS2 Students" width="100%" height="100%" itemprop="image" loading="eager">
                       <img src="../assets/default/img/bookchoose-img1.png" width="370" height="250" class="img-cover" loading="eager" alt="#">
                     </div>
                     <h3 itemprop="title" class="blog-grid-title mt-15 text-dark-charcoal px-20">
-                      <a itemprop="url" href="https://rurera.chimpstudio.co.uk/activity">Enjoy Every E-Book Adventure:</a>
+                      <a itemprop="url" href="#">Enjoy Every E-Book Adventure:</a>
                     </h3>
                     <div itemprop="description" class="mt-5 blog-grid-desc px-20 pb-20">Rurera lets you access books in various digital. This feature ensures that you can read your ebooks on any device, making reading convenient.</div>
                   </div>
@@ -279,11 +341,12 @@
               <div class="mb-40">
                 <div class="blog-grid-card pb-0">
                   <div class="blog-grid-detail pr-0">
-                    <div class="blog-grid-image">
+                    <div class="blog-grid-image lazyload-img">
+                      <img src="/assets/default/img/buller-img.png" class="img-sm" alt="Uncover Your Progress:" title="Uncover Your Progress:" width="100%" height="100%" itemprop="image" loading="eager">
                       <img src="../assets/default/img/bookchoose-img2.png" width="370" height="250" loading="eager" class="img-cover" alt="#">
                     </div>
                     <h3 itemprop="title" class="blog-grid-title mt-15 text-dark-charcoal px-20">
-                      <a itemprop="url" href="https://rurera.chimpstudio.co.uk/register">Uncover Your Progress:</a>
+                      <a itemprop="url" href="/register">Uncover Your Progress:</a>
                     </h3>
                     <div itemprop="description" class="mt-5 blog-grid-desc px-20 pb-20">Monitors how much you’ve read, offering detailed insights into your reading habits and growth. It helps you understand your progress and set goals for better reading.</div>
                   </div>
@@ -294,13 +357,63 @@
               <div class="mb-40">
                 <div class="blog-grid-card pb-0">
                   <div class="blog-grid-detail pr-0">
-                    <div class="blog-grid-image">
+                    <div class="blog-grid-image lazyload-img">
+                      <img src="/assets/default/img/buller-img.png" class="img-sm" alt="Personalized Learning Pathways:" title="Personalized Learning Pathways:" width="100%" height="100%" itemprop="image" loading="eager">
                       <img src="../assets/default/img/bookchoose-img3.png" width="370" height="250" loading="eager" class="img-cover" alt="#">
                     </div>
                     <h3 itemprop="title" class="blog-grid-title mt-15 text-dark-charcoal px-20">
-                      <a itemprop="url" href="https://rurera.chimpstudio.co.uk/rewards">Personalized Learning Pathways:</a>
+                      <a itemprop="url" href="#">Personalized Learning Pathways:</a>
                     </h3>
                     <div itemprop="description" class="mt-5 blog-grid-desc px-20 pb-20">With Rurera, educators can easily tailor literacy development for each student, regardless of age or skill level. Enjoy targeted support and easy differentiation to boost every student’s progress.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-4 col-lg-4">
+              <div class="mb-40">
+                <div class="blog-grid-card pb-0">
+                  <div class="blog-grid-detail pr-0">
+                    <div class="blog-grid-image lazyload-img">
+                      <img src="/assets/default/img/buller-img.png" class="img-sm" alt="Awesome Rewards as You Read:" title="Awesome Rewards as You Read:" width="100%" height="100%" itemprop="image" loading="eager">
+                      <img src="../assets/default/img/bookchoose-img1.png" width="370" height="250" class="img-cover" loading="eager" alt="#">
+                    </div>
+                    <h3 itemprop="title" class="blog-grid-title mt-15 text-dark-charcoal px-20">
+                      <a itemprop="url" href="#">Awesome Rewards as You Read:</a>
+                    </h3>
+                    <div itemprop="description" class="mt-5 blog-grid-desc px-20 pb-20">Keep reading to earn Coin Points, which can be exchanged for your favorite toys. The more you read, the more points you earn, leading to even more exciting rewards!</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-4 col-lg-4">
+              <div class="mb-40">
+                <div class="blog-grid-card pb-0">
+                  <div class="blog-grid-detail pr-0">
+                    <div class="blog-grid-image lazyload-img">
+                      <img src="/assets/default/img/buller-img.png" class="img-sm" alt="Effortless Student Engagement:" title="Effortless Student Engagement:" width="100%" height="100%" itemprop="image" loading="eager">
+                      <img src="../assets/default/img/bookchoose-img2.png" width="370" height="250" loading="eager" class="img-cover" alt="#">
+                    </div>
+                    <h3 itemprop="title" class="blog-grid-title mt-15 text-dark-charcoal px-20">
+                      <a itemprop="url" href="/register">Effortless Student Engagement:</a>
+                    </h3>
+                    <div itemprop="description" class="mt-5 blog-grid-desc px-20 pb-20">Rurera’s built-in rewards system motivates students by recognizing their achievements. As they learn more, they earn rewards, keeping them excited and engaged with their learning journey.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-4 col-lg-4">
+              <div class="mb-40">
+                <div class="blog-grid-card pb-0">
+                  <div class="blog-grid-detail pr-0">
+                    <div class="blog-grid-image lazyload-img">
+                      <img src="/assets/default/img/buller-img.png" class="img-sm" alt="Reporting Made Easy:" title="Reporting Made Easy:" width="100%" height="100%" itemprop="image" loading="eager">
+                      <img src="../assets/default/img/bookchoose-img3.png" width="370" height="250" loading="eager" class="img-cover" alt="#">
+                    </div>
+                    <h3 itemprop="title" class="blog-grid-title mt-15 text-dark-charcoal px-20">
+                      <a itemprop="url" href="/rewards">Reporting Made Easy:</a>
+                    </h3>
+                    <div itemprop="description" class="mt-5 blog-grid-desc px-20 pb-20">Rurera simplifies task assignments, personalized learning, and reporting. The platform helps teachers efficiently manage literacy across all subjects, saving time and supporting effective instruction.</div>
                   </div>
                 </div>
               </div>
@@ -316,7 +429,7 @@
 		</div>
     <div id="accordion">
       <div class="card">
-        <div class="card-header" id="heading">
+        <div class="card-header active" id="heading">
           <button class="btn font-18 font-weight-bold btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">How does Rurera’s bookshelf work?</button>
         </div>
         <div id="collapseOne" class="collapse show" aria-labelledby="heading" data-parent="#accordion">
@@ -397,105 +510,32 @@
       </div>
     </div>
   </div>
-  <section class="my-50 lms-blog mx-w-100 mt-30 mb-60 pt-50">
-    <div class="container">
-      <div class="row">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-          <div class="section-title text-center mb-50">
-            <h2 itemprop="title" class="font-40 mb-10 text-dark-charcoal">Blog</h2>
-            <p itemprop="description">Get to know more about latest news, resources and much more.</p>
-          </div>
-        </div>
-        <div class="col-12 col-lg-12">
-          <div class="row">
-            <div class="col-12 col-md-4 col-lg-3">
-              <div class="blog-grid-card rurera-grid" itemscope="" itemtype="https://schema.org/Blog">
-                <div class="blog-grid-detail">
-                  <span class="badge created-at d-flex align-items-center">
-                    <i data-feather="calendar" width="20" height="20" class="mr-5"></i>
-                    <span itemprop="datePublished" content="2023-04-05T08:00:00+08:00">13 Jun 2023</span>
-                  </span>
-                  <h3 class="blog-grid-title mt-10" itemprop="name">
-                    <a itemprop="url" href="/blog/How-Online-Courses-Benefit-KS1-and-KS2-Students">How Online Courses Benefit KS1 and KS2 Students</a>
-                  </h3>
-                  <div class="mt-10 blog-grid-desc" itemprop="description">In today's digital era, offering unique benefits and...</div>
-                  <ul class="blog-tags">
-                    <li itemprop="name">Learning</li>
-                    <li itemprop="name">Online learning</li>
-                  </ul>
+  
+  @foreach($homeSections as $homeSection)
+    @if($homeSection->name == \App\Models\HomeSection::$blog and !empty($blog) and !$blog->isEmpty())
+           <section class="home-sections container">
+               <div class="d-flex justify-content-between">
+                   <div class="section-title">
+                       <h2 class="mt-0 mb-10 font-40">{{ trans('home.blog') }}</h2>
+                       <p class="section-hint">Uncover the Latest News and Trends!</p>
+                   </div>
+                   <a href="/blog" class="btn btn-border-white">{{ trans('home.all_blog') }}</a>
+               </div>
+               <div class="row mt-35">
+                   @foreach($blog as $post)
+                       <div class="col-12 col-md-4 col-lg-4 mt-20 mt-lg-0">
+                           @include('web.default.blog.rurera-grid-list',['post' =>$post])
+                       </div>
+                   @endforeach
+
+               </div>
+               <div class="d-flex align-items-center justify-content-end pt-50">
+                    <a href="/pricing" class="try-rurera-btn btn-primary font-16 text-dark-blue register-btn py-15 px-30">Try Rurera for free</a>
                 </div>
-                <div class="blog-grid-image">
-                  <img src="/store/1/default_images/blogs/blog-3.png" class="img-cover" alt="#" width="270" height="270" itemprop="image" loading="eager">
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-md-4 col-lg-3">
-              <div class="blog-grid-card rurera-grid" itemscope="" itemtype="https://schema.org/Blog">
-                <div class="blog-grid-detail">
-                  <span class="badge created-at d-flex align-items-center">
-                    <i data-feather="calendar" width="20" height="20" class="mr-5"></i>
-                    <span itemprop="datePublished" content="2023-04-05T08:00:00+08:00">28 Apr 2023</span>
-                  </span>
-                  <h3 class="blog-grid-title mt-10" itemprop="name">
-                    <a itemprop="url" href="/blog/Preparing-for-Success-Online-Courses-for-Year-5-Students">Online Courses for Year 5 Students</a>
-                  </h3>
-                  <div class="mt-10 blog-grid-desc" itemprop="description">Online courses are becoming increasingly. students have had...</div>
-                  <ul class="blog-tags">
-                    <li itemprop="name">Preparing for Success</li>
-                  </ul>
-                </div>
-                <div class="blog-grid-image">
-                  <img src="/store/1/default_images/blogs/blog-19.png" class="img-cover" alt="#" width="270" height="270" itemprop="image" loading="eager">
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-md-4 col-lg-3">
-              <div class="blog-grid-card rurera-grid" itemscope="" itemtype="https://schema.org/Blog">
-                <div class="blog-grid-detail">
-                  <span class="badge created-at d-flex align-items-center">
-                    <i data-feather="calendar" width="20" height="20" class="mr-5"></i>
-                    <span itemprop="datePublished" content="2023-04-05T08:00:00+08:00">13 Jun 2023</span>
-                  </span>
-                  <h3 class="blog-grid-title mt-10" itemprop="name">
-                    <a itemprop="url" href="/blog/Engaging-Students-through-Interactive-Technologies">Engaging Students through Interactive Technologies</a>
-                  </h3>
-                  <div class="mt-10 blog-grid-desc" itemprop="description">In recent years, the field of education has witnessed a significant transformation...</div>
-                  <ul class="blog-tags">
-                    <li itemprop="name">Engaging</li>
-                    <li itemprop="name">Interactive</li>
-                  </ul>
-                </div>
-                <div class="blog-grid-image">
-                  <img src="/store/1/default_images/blogs/blog-38.png" class="img-cover" alt="#" width="270" height="270" itemprop="image" loading="eager">
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-md-4 col-lg-3">
-              <div class="blog-grid-card rurera-grid" itemscope="" itemtype="https://schema.org/Blog">
-                <div class="blog-grid-detail">
-                  <span class="badge created-at d-flex align-items-center">
-                    <i data-feather="calendar" width="20" height="20" class="mr-5"></i>
-                    <span itemprop="datePublished" content="2023-04-05T08:00:00+08:00">28 Apr 2023</span>
-                  </span>
-                  <h3 class="blog-grid-title mt-10" itemprop="name">
-                    <a itemprop="url" href="/blog/INTERACTIVE-LEARNING-MADE-FUN-ENGAGING-QUIZ-FORMATS-FOR-KS1-AND-KS2">Engaging Quiz Formats For Ks1 And Ks2</a>
-                  </h3>
-                  <div class="mt-10 blog-grid-desc" itemprop="description">Learning doesn't have to be boring. In fact, it should be fun and engaging...</div>
-                  <ul class="blog-tags">
-                    <li itemprop="name">Student</li>
-                    <li itemprop="name">Lifelong Learning</li>
-                  </ul>
-                </div>
-                <div class="blog-grid-image">
-                  <img src="/store/1/default_images/blogs/blog-18.png" class="img-cover" alt="#" width="270" height="270" itemprop="image" loading="eager">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+           </section>
+       @endif
+    @endforeach
+	
   
   
   @php
@@ -555,7 +595,7 @@
             <h2 itemprop="title" class="mb-20 text-white font-40">Find Your Next Book to Read!</h2>
             <p class="text-white font-19" itemprop="description"> In the digital realm, students have discovered the convenience and accessibility of online book reading, <br> allowing them to explore a vast library of resources anytime and anywhere. </p>
             <div class="lms-btn-group mt-30 justify-content-center">
-              <a itemprop="url" href="https://rurera.chimpstudio.co.uk/register" class="lms-btn rounded-pill text-white border-white">Get Started</a>
+              <a itemprop="url" href="/pricing" class="lms-btn rounded-pill border-white bg-white">Try Rurera for free</a>
             </div>
           </div>
         </div>

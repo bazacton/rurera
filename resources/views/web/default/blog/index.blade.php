@@ -1,4 +1,9 @@
+
 @extends(getTemplate().'.layouts.app')
+
+@push('styles_top')
+<link rel="stylesheet" href="/assets/default/css/blog.min.css">
+@endpush
 
 @section('content')
 <section class="blog-sub-header lms-call-to-action position-relative page-sub-header pt-70 pb-70">

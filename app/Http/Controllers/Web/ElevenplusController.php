@@ -22,6 +22,7 @@ class ElevenplusController extends Controller
 		$QuestionsAttemptController = new QuestionsAttemptController();
 		$data = [
 			'pageTitle'                  => $page->title,
+			'page_title'                  => $page->page_title,
 			'pageDescription'            => $page->seo_description,
 			'sats'                       => $sats,
 			'QuestionsAttemptController' => $QuestionsAttemptController

@@ -102,12 +102,13 @@ Dashboard Right Sidebar Pages Style Start
 .user-profile-icons .dropdown-menu:before {content: ""; position: absolute; top: -8px; right: 30px; height: 15px; width: 15px; border-top: 1px solid #ddd; border-left: 1px solid#ddd; transform: rotate(45deg);}
 .user-profile-icons .dropdown-menu:before {background-color: #fff; top: -6px; box-shadow: none; border: 0; }
 .user-profile-icons .dropdown-menu {border: 1px solid #ddd; box-shadow: none; right: -15px; transition: none; margin: 0; padding: 10px 15px;}
+.user-profile-icons .dropdown-menu .dropdown-header {text-align: center;}
 .user-profile-icons .dropdown:hover .dropdown-menu {margin-top: 5px;}
 .user-profile-icons ul .menu-button-mobile,
 .user-profile-icons ul .sidebar-logo-mobile{display: none;}
 .user-coins-menu .dropdown-header {display: flex; align-items: center; padding: 0; flex-wrap: wrap; gap: 15px; }
 .user-coins-menu .dropdown-header img {width: 60px; height: 60px; }
-.user-coins-menu .coins-text {width: calc(100% - 75px); font-weight: 700; color: #343434; font-size: 18px; line-height: normal; }
+.user-coins-menu .coins-text {width: calc(100% - 75px); font-weight: 700; color: #343434; font-size: 18px; line-height: normal; text-align: left;}
 .user-coins-menu .coins-text span {display: flex; font-weight: 400; font-size: 15px; color: #999; position: relative; align-items: flex-start; line-height: normal; gap: 5px; padding-top: 5px; flex-direction: column;}
 .user-coins-menu .coins-text span a {font-weight: 500; color: var(--primary); text-decoration: underline;}
 .getting-start li .start-item {display: flex; align-items: center; flex-wrap: wrap; gap: 10px;}
@@ -177,7 +178,7 @@ Dashboard Right Sidebar Pages Style Start
 /*Sidebar Student-list Style Start*/
 .parent-panel .sidebar-students-list .card {
     gap: 15px;
-    background-color: #ddd;
+    background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 20px;
@@ -994,7 +995,7 @@ Assignments Table Style Start
     background-color: #fff
 }
 
-.panel-sidebar .sidebar-menu .sidenav-item a {
+.panel-sidebar .sidebar-menu .sidenav-item .nav-sub-title {
     text-transform: uppercase;
     font-weight: 600;
 }
@@ -1049,7 +1050,16 @@ Assignments Table Style Start
 }
 
 .notification-card:hover button {
-    color: #fff
+    color: #fff;
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+    background-size: 1rem 1rem;
+}
+.notification-card button {
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
 }
 
 .panel-sidebar .container {
@@ -1242,7 +1252,7 @@ Assignments Table Style Start
 
     .panel-sidebar .sidebar-menu {
         height: calc(100% - 70px) !important;
-        padding-left: 15px;
+        padding-left: 20px;
         padding-right: 15px;
         padding-bottom: 0;
     }
@@ -1281,19 +1291,17 @@ Assignments Table Style Start
 .panel-sidebar .sidebar-menu .sidenav-item.sidenav-item-active .cls-3 {
     fill: #ffab00 !important;
 }
-
 .panel-sidebar .sidebar-menu .sidenav-item.sidenav-item-active .sidenav-notification-icon .cls-1,
 .panel-sidebar .sidebar-menu .sidenav-item.sidenav-item-active .sidenav-notification-icon .cls-3 {
     fill: none !important;
     stroke: #ffab00 !important
 }
-
 .panel-sidebar .sidebar-menu .sidenav-item .sidenav-item-icon {
     width: 25px;
     height: 25px;
     margin-bottom: 0;
+    margin-right: 12px !important;
 }
-
 .panel-sidebar .sidebar-menu .sidenav-item .sidenav-item-icon .cls-3,
 .panel-sidebar .sidebar-menu .sidenav-item .sidenav-item-icon.assign-fill svg,
 .panel-sidebar .sidebar-menu .sidenav-item .sidenav-item-icon.assign-fill svg * {
@@ -1589,14 +1597,14 @@ tbody tr:hover {
     width: calc(100% - 21px);
 }
 
-body .panel-sidebar .sidebar-menu::-webkit-scrollbar {
+/* body .panel-sidebar .sidebar-menu::-webkit-scrollbar {
     display: none;
-}
+} 
 
 body .panel-sidebar .sidebar-menu {
     -ms-overflow-style: none;
     scrollbar-width: none;
-}
+} */
 /* Question Inactivity Modal Style Start */
 .modal.question_inactivity_modal {padding-left: 0 !important;}
 .question_inactivity_modal .modal-dialog,
@@ -2555,7 +2563,7 @@ Timestable Pages Style Start
 .panel-subheader {background: url(/assets/default/img/subheader-bg1.png) no-repeat right bottom #ebf3fe; background-position: 95% 100%; padding: 20px 20px; border-radius: 5px; margin: 0 0 25px; position: relative;}
 .panel-subheader h2 { margin: 0 0 5px;}
 .panel-stats {background-color: #ebf3fe; padding: 25px 20px; border-radius: 5px; margin: 0 0 30px; position: relative; overflow: hidden;}
-.panel-stats .course-icon {position: absolute; right: 25px; bottom: 0; width: 230px; height: 118px; z-index: 0;}
+.panel-stats .course-icon {position: absolute; right: 25px; bottom: 0; max-width: 230px; height: 118px; z-index: 0;}
 .stats-list {position: relative; z-index: 1;}
 .panel-stats .course-icon img {height: 100%; object-fit: cover; width: 100%; border-radius: 0;}
 .list-box {display: inline-block;}
@@ -2634,10 +2642,20 @@ Timestable Pages Style Start
 .summary-btns a:hover {background-color:var(--primary); color: #fff;}
 .timestables-modes .spell-levels h5 {margin: 0 0 10px;}
 .treasure-mission-layout h3 {margin: 0 0 15px;}
+a.db-back-btn {
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+}
+.db-back-btn:before {
+    font-size: 22px;
+    vertical-align: middle;
+}
 .timestables-back-btn,
 .login-back-btn {margin: 0 0 10px; display: inline-block; position: relative;color: var(--primary); }
 .timestables-back-btn:before,
-.login-back-btn:before {content: "\2190"; margin-right: 5px;}
+.login-back-btn:before, .db-back-btn:before {content: "\2190"; margin-right: 5px; display: inline-block; color: var(--primary); font-weight: 700;}
 .timestables-retry-stage {background-color: #f8f9fa; box-shadow: inset 0 1px 0 hsla(0, 0%, 100%, .15), 0 3px 1px rgba(52, 52, 52, .075); padding: 10px 15px 10px 35px; display: inline-block; line-height: normal; border-radius: 5px; font-weight: 500; margin-right: 10px; position: relative;}
 .timestables-retry-stage:before {background: url(/assets/default/svgs/retry.svg) left center no-repeat; position: absolute; left: 15px; top: 50%; content: ""; height: 12px; width: 12px; background-size: 100%; margin-top: -6px;}
 .timestables-retry-stage:hover {background-color: var(--primary); color: #fff; }
@@ -2663,7 +2681,7 @@ Timestable Pages Style Start
 .lms-performace-table>li.lms-performace-head div:first-child {width: 48%;text-align: left;}
 .lms-performace-table>li.lms-performace-head div {padding: 22px 15px;width: 15%;text-align: center;}
 .lms-performace-table>li.lms-performace-head div span {text-transform: uppercase;font-size: 15px;font-weight: 700;color: #878787;}
-.lms-performace-table>li.lms-performace-des .sr-no {border-right: 1px dashed #ddd;width: 6%;}
+.lms-performace-table>li.lms-performace-des .sr-no {border-right: 1px dashed #ddd; /*width: 6%;*/}
 .lms-performace-table>li.lms-performace-des div {display: table-cell;padding: 22px 10px;white-space: nowrap;text-align: center;}
 .lms-performace-table>li.lms-performace-des div span {font-size: 15px;color: #878787;margin: 0;font-weight: 500;margin: 0; white-space: break-spaces;}
 .lms-performace-table>li.lms-performace-des {padding: 0;border: 1px dashed #ddd;border-bottom: 0;}
@@ -2684,25 +2702,25 @@ Timestable Pages Style Start
 .lms-performace-section .element-title h5 {text-transform: uppercase;color: #183152;font-size: 18px;font-weight: bold;}
 .lms-performace-table>li.lms-performace-des:last-child {border-bottom: 1px dashed #c0c0c0;}
 .lms-performace-table>li.lms-performace-head div span.coin-icon svg {width: 24px;height: 24px;}
-.lms-performace-table>li.lms-performace-head div:last-child {width: 7%;}
+/* .lms-performace-table>li.lms-performace-head div:last-child {width: 7%;} */
 .lms-performace-table figure img {width: 50px;height: 50px;border-radius: 100%;}
 .lms-performace-table figure {margin-right: 15px;}
 .leaderboard>li.lms-performace-head div:nth-child(2) {width: 55%;text-align: left;}
-.leaderboard>li.lms-performace-des .sr-no,
+/* .leaderboard>li.lms-performace-des .sr-no, */
 .leaderboard>li.lms-performace-head div:first-child {width: 8%;}
 .leaderboard>li.lms-performace-des .score-des {padding-left: 20px;flex-wrap: wrap; width: 55%;}
 .leaderboard>li.lms-performace-des .score-des span {width: calc(100% - 65px);}
-.leaderboard>li.lms-performace-head.leaderboard-title div:first-child {width: 12%;}
+/* .leaderboard>li.lms-performace-head.leaderboard-title div:first-child {width: 12%;} */
 .leaderboard>li.lms-performace-head.leaderboard-title div:nth-child(3),
 .leaderboard>li.lms-performace-des.leaderboard-des div:nth-child(3){width:25%;}
-.leaderboard>li.lms-performace-head.leaderboard-title div:nth-child(4),
-.leaderboard>li.lms-performace-des.leaderboard-des div:nth-child(4){width: 20%;}
+/* .leaderboard>li.lms-performace-head.leaderboard-title div:nth-child(4),
+.leaderboard>li.lms-performace-des.leaderboard-des div:nth-child(4){width: 20%;} */
 .leaderboard>li.lms-performace-head.leaderboard-title div:first-child h5{color: #878787;}
-.leaderboard>li.lms-performace-head.leaderboard-title div:nth-child(2) {width: 30%;text-align: left;}
-.leaderboard>li.lms-performace-des.leaderboard-des .sr-no {width: 12%;}
-.leaderboard>li.lms-performace-des.leaderboard-des .score-des {padding-left: 20px;flex-wrap: wrap;width: 30%;}
-.leaderboard>li.lms-performace-des.leaderboard-des .coin-earn,
-.lms-performace-table>li.lms-performace-head.leaderboard-title div:last-child{width: 16%;text-align: left;}
+/*.leaderboard>li.lms-performace-head.leaderboard-title div:nth-child(2) {width: 30%;text-align: left;}
+ .leaderboard>li.lms-performace-des.leaderboard-des .sr-no {width: 12%;} */
+.leaderboard>li.lms-performace-des.leaderboard-des .score-des {padding-left: 20px;flex-wrap: wrap;/*width: 30%;*/}
+/* .leaderboard>li.lms-performace-des.leaderboard-des .coin-earn,
+.lms-performace-table>li.lms-performace-head.leaderboard-title div:last-child{width: 16%;text-align: left;} */
 .leaderboard>li.lms-performace-des.leaderboard-des .coin-earn > .badge-btn{width: auto; padding: 0;}
 .school-table .simple-table thead {background-color: #fff; border-bottom: 1px solid #ddd; border-top: 1px solid #ddd;}
 .school-table .simple-table td {padding: 15px 20px; font-size: 15px; font-weight: 500; color: #878787; border-top: 1px solid #ddd;}
@@ -2728,6 +2746,7 @@ Timestable Pages Style Start
 .lms-performace-table>li.lms-performace-des .icon-table-2 {color: #c7c7c7;}
 .leaderboard-tab .nav-tabs {border-bottom: 0;justify-content: end;}
 .lms-performace-head.leaderboard-title h2, .lms-performace-head.leaderboard-title h5{color: #878787; font-weight: 500;}
+.lms-performace-head.leaderboard-title h2 {text-align: left !important;}
 .leaderboard-tab .nav-tabs .nav-link{border:0;border-radius: 0;background: transparent;border-bottom: 2px solid transparent;padding:0; font-size: 14px;color: #878787;}
 .leaderboard-tab .nav-tabs .nav-link.active {background: transparent;border-color: var(--primary);color:var(--primary);}
 .leaderboard-tab .nav-tabs .nav-item{margin:0 0 10px 20px;}
@@ -2735,15 +2754,15 @@ Timestable Pages Style Start
 .leaderboard-sub-header .btn-primary{ background-color: var(--primary);border-color: var(--primary); box-shadow: none;}
 .leaderboard-sub-header .btn-outline-primary {color: var(--primary);border-color:var(--primary);}
 .leaderboard-sub-header .btn-outline-primary:hover{color:#fff; border-color: transparent;background-color: var(--primary);}
-.panel-content .leaderboard>li.lms-performace-des .sr-no, 
+/* .panel-content .leaderboard>li.lms-performace-des .sr-no, 
 .panel-content .leaderboard>li.lms-performace-head div:first-child, 
-.panel-content .leaderboard>li.lms-performace-head div:first-child{width: 10%;}
+.panel-content .leaderboard>li.lms-performace-head div:first-child{width: 10%;} */
 .panel-content .lms-performace-table>li.lms-performace-head div,
 .panel-content .lms-performace-table>li.lms-performace-des .level-up, 
 .panel-content .lms-performace-table>li.lms-performace-des .practised, 
 .panel-content .lms-performace-table>li.lms-performace-des .time-sepen{width: 25%;}
-.panel-content .lms-performace-table>li.lms-performace-head div:last-child,
-.panel-content .lms-performace-table>li.lms-performace-des .coin-earn {width: 20%;}
+/* .panel-content .lms-performace-table>li.lms-performace-head div:last-child,
+.panel-content .lms-performace-table>li.lms-performace-des .coin-earn {width: 20%;} */
 .panel-content .lms-performace-table>li.lms-performace-head {border-top: 1px solid #ddd; border-bottom: 1px solid #ddd;}
 .panel-content .lms-performace-table>li.lms-performace-des .sr-no {border-right: 0;}
 .panel-content .lms-performace-table>li.lms-performace-des {border: 0; border-bottom: 1px solid #ddd;}
@@ -3316,10 +3335,23 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .edit-profile-controls button {background-color: inherit; border: 1px solid #ddd; padding: 8px 20px; min-width: 96px; border-radius: 5px;}
 .edit-profile-controls .save-btn {background-color: var(--primary); color: #fff; border-color: var(--primary); margin-left: 10px; background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent); background-size: 1rem 1rem;}
 .edit-profile-body {max-width: 32rem; margin: 0 auto;}
-.edit-profile-image .profile-image {text-align: center;}
 .edit-element-title h6 span {color: #94a3b8; line-height: normal;}
+.edit-profile-image .profile-image figure {
+    gap: 25px;
+}
+.edit-profile-image .profile-image-btn .img-type {
+    color: #606262;
+    cursor: text;
+}
+.edit-profile-image .profile-image-btn span {
+    background-color: #f1f1f1;
+    display: inline-block;
+    max-width: fit-content;
+    padding: 12px 15px;
+    border-radius: 5px;
+}
 .profile-image img {border-radius: 100%; height: 96px; width: 96px; object-fit: cover;}
-.edit-profile-image .cancel-btn {border: 1px solid #e2e8f0; border-radius: 100%;color: #334155; position: absolute;right: -5px; bottom: 5px; height: 32px; width: 32px;}
+.edit-profile-image .profile-image-btn {gap: 10px;}
 .edit-profile .form-group .icon-box img {position: absolute; top: 50%;left: 10px; margin-top: -9px; height: 18px; width: 18px;filter: invert(73%) sepia(10%) saturate(638%) hue-rotate(175deg) brightness(88%) contrast(82%);}
 .edit-profile .form-group .input-field input[type="text"],
 .edit-profile .select-field select{border: 1px solid #ddd; font-size: 16px; height: 40px; padding: 0 0 0 35px; border-radius: 5px; width: 100%; max-width: 380px;}
@@ -3543,7 +3575,6 @@ address .info-list-label {color: #64748b;}
 .search-books ul li {padding: 0 15px;}
 .lms-books-listing {padding: 70px 0 35px;}
 .panel-content .lms-books-listing {background-color: inherit;}
-.lms-books-listing .listing-card {margin-bottom: 35px;}
 .panel-content .lms-books-listing .listing-card {border-bottom: 1px solid #ddd; padding: 0 0 25px; margin-bottom: 20px; position: relative;}
 .lms-books-listing .listing-card .img-holder {height: 100%;}
 .lms-books-listing .listing-card figure {position: relative; overflow: hidden; border-radius: 5px; text-align: center; height: 100%;display: flex;align-items: center;}
@@ -4208,7 +4239,7 @@ Lms Product Card Style Start
 .product-card .product-card-body .product-price-box .off {font-size: 14px; font-weight: 400; line-height: 1.29; color: #818894; text-decoration: line-through; }
 .product-card .product-card-body .product-title {font-weight: bold !important; text-overflow: ellipsis; min-height: 87px; /* height: 48px; overflow: hidden; */ }
 .product-card .product-icon {color: var(--secondary); }
-.product-show-image-card {background-color: #f2f2f2; height: 460px; border-radius: 15px; }
+.product-show-image-card {height: 460px; border-radius: 15px; }
 .product-card .cart-button {display: flex; width: 100%; align-items: center; justify-content: center; border: 3px solid var(--primary); padding: .5rem 2rem; color: var(--primary); font-size: 16px; line-height: 1.5; background-color: #fff; position: relative;}
 .product-card .cart-button .bt-button {display: block; position: relative; width: 100%; z-index: 2; color: var(--primary); font-weight: 500;}
 .product-card .cart-button:hover .bt-button {color: #fff; }
@@ -4357,7 +4388,7 @@ Word-List Page Style Start
 .spells-data-list .table tbody td:first-child {width: 20px;}
 .spells-data-list .table tbody td{text-align: left;}
 .spells-data-list .table thead tr th {padding-left: 15px; text-align: left;}
-.elevenplus-block .table thead th:nth-child(2) {padding-left: 0;}
+/* .elevenplus-block .table thead th:nth-child(2) {padding-left: 0;} */
 .spell-question-area .left-content {position: relative; overflow: hidden;}
 .spell-levels .progress-star {height: 20px; width: 20px; border-radius: 100%; text-align: center; display: inline-flex; align-items: center; justify-content: center; position: absolute; padding: 0; margin: 4px 0 0 8px;}
 .progress-star img {max-width: 100%; width: 10px; height: 10px; object-fit: contain;}
@@ -4476,3 +4507,19 @@ body .spell-question-area .question-label span {text-align: center;}
 /*****************************
 Word-List Page Style End
 *****************************/
+/*School Zone Style start*/
+.userthumb,
+.student-block {background-color: #fff; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; padding: 5px; margin-bottom: 30px; }
+.userthumb img,
+.student-block img {max-width: 100%; border-radius: 8px; }
+.userthumb .userthumb-text,
+.student-block-text {padding: 25px 10px; position: relative;}
+.userthumb .userthumb-text span,
+.student-block-text span {margin-top: 2px; line-height: normal; color: #999;}
+.student-block-text .user-year-info {color: var(--primary); position: absolute; right: 10px; padding-top: 2px;}
+.student-block-text .user-name {color: #343434; padding-right: 50px; word-wrap: break-word;}
+.student-block-text .student-rank span {display: block; margin-bottom: 10px;}
+.student-rank span img {width: 18px; height: 18px; vertical-align: middle; margin-left: 5px;}
+.student-block-text .student-rank {margin-top: 10px;}
+.student-block-text .student-rank span:last-child {margin-bottom: 0;}
+/*School Zone Style end*/

@@ -29,9 +29,12 @@ class BlogCategoriesController extends Controller
         $this->validate($request, [
             'title' => 'required|string|unique:blog_categories',
         ]);
+		
+		$slug = ($request->get('slug') != '')? strtolower($request->get('slug')) : BlogCategory::makeSlug(strtolower($request->get('title')));
 
         BlogCategory::create([
-            'title' => $request->get('title')
+            'title' => $request->get('title'),
+            'slug' => $slug
         ]);
 
         return redirect(getAdminPanelUrl().'/blog/categories');
@@ -58,11 +61,15 @@ class BlogCategoriesController extends Controller
         $this->validate($request, [
             'title' => 'required',
         ]);
+		
+		
+		$slug = ($request->get('slug') != '')? strtolower($request->get('slug')) : BlogCategory::makeSlug(strtolower($request->get('title')));
 
         $editCategory = BlogCategory::findOrFail($category_id);
 
         $editCategory->update([
-            'title' => $request->get('title')
+            'title' => $request->get('title'),
+            'slug' => $slug
         ]);
 
         return redirect(getAdminPanelUrl().'/blog/categories');

@@ -8,6 +8,7 @@ use App\Models\Books;
 use App\Models\Page;
 use App\Models\Product;
 use App\Models\Blog;
+use App\Models\HomeSection;
 use App\Models\Quiz;
 use App\Models\Subscribe;
 use App\Models\Webinar;
@@ -34,7 +35,7 @@ class PagesController extends Controller
         //DB::enableQueryLog();
         $page = Page::where('link', $link)->where('status', 'publish')->first();
         if( isset( $_GET['sitemap'] ) && $_GET['sitemap'] = 'generate'){
-            $all_pages = Page::where('status', 'publish')->get();
+            $all_pages = Page::where('status', 'publish')->where('include_xml', 1)->get();
             if( !empty( $all_pages )){
                 foreach( $all_pages as $pageData){
 
@@ -119,6 +120,7 @@ class PagesController extends Controller
             $data = [
                 'pageTitle'       => $page->title,
                 'pageDescription' => $page->seo_description,
+                'page_title'       => $page->page_title,
                 'pageRobot'       => $page->robot ? 'index, follow, all' : 'NOODP, nofollow, noindex',
                 'page'            => $page
             ];
@@ -136,17 +138,33 @@ class PagesController extends Controller
             } elseif ($page->id == 17) {
                 return view('web.default.pages.faqs', $data);
             } elseif ($page->id == 77) {
+				
+				$homeSections = HomeSection::orderBy('order', 'asc')->get();
+				$selectedSectionsName = $homeSections->pluck('name')->toArray();
+				
+				if (in_array(HomeSection::$blog, $selectedSectionsName)) {
+				$blog = Blog::where('status', 'publish')
+						->with(['category', 'author' => function ($query) {
+							$query->select('id', 'full_name');
+						}])->orderBy('updated_at', 'desc')
+						->withCount('comments')
+						->orderBy('created_at', 'desc')
+						->limit(3)
+						->get();
+				}
+				$data['homeSections'] = $homeSections;
+				$data['blog'] = $blog ?? [];
                 return view('web.default.pages.contact2', $data);
             }elseif ($page->id == 133) {
 
 
                 $all_pages = Page::where('status', 'publish')->get();
 
-                $all_courses = Webinar::where('status', 'active')->get();
+                $all_courses = array();//Webinar::where('status', 'active')->get();
 
 
-                $all_books = Books::get();
-                $all_products = Product::where('products.status', Product::$active)->get();
+                $all_books = array();//Books::get();
+                $all_products = array();//Product::where('products.status', Product::$active)->get();
                 $all_blog_posts = Blog::where('status', 'publish')->get();
 
 
@@ -175,6 +193,7 @@ class PagesController extends Controller
                 $QuestionsAttemptController = new QuestionsAttemptController();
                 $data = [
                     'pageTitle'                  => $page->title,
+					'page_title'       				=> $page->page_title,
                     'pageDescription'            => $page->seo_description,
                     'sats'                       => $sats,
                     'QuestionsAttemptController' => $QuestionsAttemptController
@@ -185,6 +204,7 @@ class PagesController extends Controller
 
                 $data = [
                     'pageTitle'                  => $page->title,
+					'page_title'       => $page->page_title,
                     'pageDescription'            => $page->seo_description,
                 ];
                 return view('web.default.landing.rewards_landing', $data);

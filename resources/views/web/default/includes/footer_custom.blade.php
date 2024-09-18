@@ -20,8 +20,6 @@
 									<li itemprop="blog"><a itemprop="url" href="/blog">Blog</a></li>
 									<li itemprop="careers"><a itemprop="url" href="/careers">Careers</a></li>
 									<li itemprop="testimonials"><a itemprop="url" href="/testimonials">Testimonials</a></li>
-									<li itemprop="site-map"><a itemprop="url" href="/site-map">Site Map</a></li>
-									<li itemprop="faq"><a itemprop="url" href="/faqs">Faqs</a></li>
 								</ul>
 							</div>
 						</div>
@@ -33,11 +31,10 @@
 								<ul>
 									<li itemprop="Courses"><a itemprop="url" href="/keystage1">KS1 Courses</a></li>
 									<li itemprop="Courses"><a itemprop="url" href="/keystage2">KS2 Courses</a></li>
-									<li itemprop="Sats Preparation"><a itemprop="url" href="/sats/sats_landing">Sats Preparation</a></li>
 									<li itemprop="11+ Exams"><a itemprop="url" href="/11-plus">11+ Exams</a></li>
-									<li itemprop="TimeTables"><a itemprop="url" href="/timestables/landing">TimeTables</a></li>
-									<li itemprop="Books Reading"><a itemprop="url" href="/book-shelf">Books Reading</a></li>
-									<li itemprop="Spells/Vocabulary"><a itemprop="url" href="/classes?sort=newest">Spells/Vocabulary</a></li>
+									<li itemprop="TimeTables"><a itemprop="url" href="/timestables">TimeTables</a></li>
+									<li itemprop="Books Reading"><a itemprop="url" href="/books-shelf">Books Reading</a></li>
+									<li itemprop="Spells/Vocabulary"><a itemprop="url" href="/spelling">Spells/Vocabulary</a></li>
 								</ul>
 							</div>
 						</div>
@@ -60,13 +57,10 @@
 				</div>
 			</div>
 			<div class="col-12 col-lg-4"><div class="footer-logo-wrapper"><div class="footer-dots-img"><figure>
-				<img src="/assets/default/svgs/footer-dots.svg" alt=""></figure></div><div class="footer-logo-box">
-				<a href="#"><img src="/store/1/logo.png" alt=""><span>Schedule Consultation</span></a></div></div>
+				<img src="/assets/default/svgs/footer-dots.svg" width="502" height="502" alt="footer dots image"></figure></div><div class="footer-logo-box">
+				<a href="#"><img src="/store/1/logo.png" width="185" height="38" alt="footer logo image"><span>Schedule Consultation</span></a></div></div>
 			</div>
 		</div>
 	</div>
 </section>
 
-
-<script src="/assets/default/vendors/feather-icons/dist/feather.min.js"></script>
-<script>feather.replace();</script>

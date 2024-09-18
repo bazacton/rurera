@@ -17,7 +17,7 @@
 
 <section class="content-section">
     <section class="pt-10">
-        <a href="/spells">Back to List</a>
+        <a href="/spells" class="db-back-btn">Back to List</a>
         <div class="container">
 
             <div class="row pt-15 pb-70">

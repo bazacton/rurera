@@ -177,6 +177,7 @@ class SatsController extends Controller
 
         $data = [
             'pageTitle'       => $page->title,
+            'page_title' 	  => $page->page_title,
             'pageDescription' => $page->seo_description,
             'pageRobot'       => $page->robot ? 'index, follow, all' : 'NOODP, nofollow, noindex',
             //'pageTitle'       => 'KS1, KS2 SATs practice papers, assessments & Tests | Rurera',

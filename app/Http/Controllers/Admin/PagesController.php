@@ -43,10 +43,11 @@ class PagesController extends Controller
         $this->validate($request, [
             'locale' => 'required',
             'name' => 'required',
+            'title' => 'required|min:50|max:60',
+            'page_title' => 'required|min:50|max:60',
             //'link' => 'required|unique:pages,link',
             'link' => 'required',
-            'title' => 'required',
-            'seo_description' => 'nullable|string|max:255',
+            'seo_description' => 'nullable|string|min:150|max:160',
             'content' => 'required',
         ]);
 
@@ -77,6 +78,7 @@ class PagesController extends Controller
             'title' => $data['title'],
             'seo_description' => $data['seo_description'] ?? null,
             'content' => $data['content'],
+			'page_title' => isset( $data['page_title'] )? $data['page_title'] : '',
         ]);
 
         return redirect(getAdminPanelUrl().'/pages');
@@ -112,8 +114,9 @@ class PagesController extends Controller
             'name' => 'required',
             //'link' => 'required|unique:pages,link,' . $page->id,
             'link' => 'required',
-            'title' => 'required',
-            'seo_description' => 'nullable|string|max:255',
+            'title' => 'required|min:50|max:60',
+            'page_title' => 'required|min:50|max:60',
+            'seo_description' => 'nullable|string|min:150|max:160',
             'content' => 'required',
         ]);
 
@@ -144,6 +147,7 @@ class PagesController extends Controller
             'title' => $data['title'],
             'seo_description' => $data['seo_description'] ?? null,
             'content' => $data['content'],
+			'page_title' => isset( $data['page_title'] )? $data['page_title'] : '',
         ]);
 
         removeContentLocale();

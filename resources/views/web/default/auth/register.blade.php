@@ -1,9 +1,9 @@
 @extends(getTemplate().'.layouts.app')
-<style>
-    body{background-color: #fafafa !important;}
-</style>
 @push('styles_top')
     <link rel="stylesheet" href="/assets/default/vendors/select2/select2.min.css">
+	<style>
+		body{background-color: #fafafa !important;}
+	</style>
 @endpush
 
 @section('content')
@@ -16,7 +16,7 @@
     <div class="container">
         <div class="text-center mb-30 mt-50">
             <a href="/" class="login-logo d-inline-flex justify-content-center align-items-center">
-                <img src="/assets/default/img/sidebar/logo.svg">
+                <img src="/assets/default/img/sidebar/logo.svg" class="img-cover" alt="Rurera Logo" title="Rurera Logo" width="68" height="67" itemprop="image" loading="eager">
                 <span class="logo-text font-30 font-weight-bold ml-10">Rurera</span>
             </a>
         </div>
@@ -83,7 +83,7 @@
                         <div class="custom-control custom-checkbox">
                             <input type="checkbox" name="term" value="1" {{ (!empty(old('term')) and old('term') == '1') ? 'checked' : '' }} class="custom-control-input @error('term') is-invalid @enderror" id="term">
                             <label class="custom-control-label font-16" for="term">{{ trans('auth.i_agree_with') }}
-                                <a href="pages/terms" target="_blank" class="text-secondary font-weight-bold font-16">{{ trans('auth.terms_and_rules') }}</a>
+                                <a href="/terms-and-conditions" target="_blank" class="text-secondary font-weight-bold font-16">{{ trans('auth.terms_and_rules') }}</a>
                             </label>
 
                             @error('term')

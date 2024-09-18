@@ -16,6 +16,7 @@ Route::group([], function () {
 	Route::group(['prefix' => '/learn'], function () {
         Route::get('/', ['uses' => 'LearnController@index']);
 		Route::get('/{year_slug}/{subject_slug}', ['uses' => 'LearnController@subject_data']);
+		Route::get('/{year_slug}/{subject_slug}/{sub_chapter_slug}', ['uses' => 'LearnController@start']);
     });
 	
 	Route::group(['prefix' => '/menu'], function () {
@@ -31,7 +32,7 @@ Route::group([], function () {
         Route::get('/', ['uses' => 'SpellsController@index']);
     });
 	
-	 $years = ['year-1', 'year-2', 'year-3', 'year-4', 'year-5', 'year-6', 'year-7'];
+	$years = ['year-1', 'year-2', 'year-3', 'year-4', 'year-5', 'year-6', 'year-7'];
 	 
 	
 	

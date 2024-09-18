@@ -26,8 +26,7 @@ class QuestionsBankController extends Controller {
         $question = QuizzesQuestion::where('id', $id)->first();
 		$QuestionsAttemptController = new QuestionsAttemptController();
 		
-		//$question_layout = $QuestionsAttemptController->get_question_layout($question);
-		//pre($question_layout);
+		$question_layout = $QuestionsAttemptController->get_question_layout($question);
         $quiz = Quiz::find($question->quiz_id);
 		
 		$layout_elements = json_decode($question->layout_elements);

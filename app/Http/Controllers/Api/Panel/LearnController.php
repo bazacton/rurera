@@ -3,9 +3,17 @@
 namespace App\Http\Controllers\Api\Panel;
 
 use App\Http\Controllers\Api\Controller;
+use App\Http\Controllers\Panel\QuizController;
 use App\User;
 use App\Models\Category;
 use App\Models\Webinar;
+
+
+use App\Models\SubChapters;
+use App\Models\WebinarChapterItem;
+use App\Models\Quiz;
+use App\Models\QuizzesQuestion;
+
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Route;
@@ -102,12 +110,97 @@ class LearnController extends Controller
 			}
 		}
 		
+		
 		$response = array(
 			'listData' => $data_array,
 			'searchFilters' => [],
 		);
         return apiResponse2(1, 'retrieved', trans('api.public.retrieved'), $response);
 	}
+	
+	public function start(Request $request, $category_slug, $slug, $sub_chapter_slug)
+    {
+		
+		$SubChapters = SubChapters::where('sub_chapter_slug', $sub_chapter_slug)
+                    ->first();
+
+
+        $chapterItem = WebinarChapterItem::where('type', 'quiz')
+            ->where('parent_id', $SubChapters->id)
+            ->first();
+			
+
+        $id = isset($chapterItem->item_id) ? $chapterItem->item_id : 0;
+		
+		
+        $quiz = Quiz::find($id);
+		
+		
+		$data_array = array();
+		
+		$QuizController = new QuizController();
+		$quiz_response = $QuizController->get_learn_quiz_data($quiz, 'easy', 'no', [], 'yes', '', 0);
+		$questions_list_data = isset( $quiz_response['questions_list_data'] )? $quiz_response['questions_list_data'] : array();
+		
+		$section_id = 0;
+		$question_serial = 1;
+		if( !empty( $questions_list_data ) ){
+			foreach( $questions_list_data as $questionResultObj){
+				$data_array[$section_id] = array(
+					'question_serial' => $question_serial,
+					'coins' => 1,
+					'game_time' => 25,
+					'attempt_question_id' => $questionResultObj->id,
+					'difficulty_level' => $questionResultObj->difficulty_level,
+					'question_elements' => array(),
+					'solution' => array(),
+					'glossary' => array(),
+					'is_review_required' => false,
+				);
+				
+				
+				$layout_elements	= isset( $questionResultObj->layout_elements )? json_decode($questionResultObj->layout_elements): array();
+				usort($layout_elements, function($a, $b) {
+					return $a->_seq <=> $b->_seq;
+				});
+				$layout_elements = $layout_elements;
+				
+				$data_array[$section_id]['question_elements'] = array();
+				
+				if( !empty( $layout_elements ) ){
+					foreach( $layout_elements as $elementObj){
+						unset($elementObj->elements_data);
+						unset($elementObj->resize);
+						unset($elementObj->height);
+						if( isset( $elementObj->content ) ){
+							$elementObj->content = strip_tags($elementObj->content);
+						}
+						unset($elementObj->elements_data);
+						$data_array[$section_id]['question_elements'][] = $elementObj;
+					}
+				}
+				
+				
+				$question_serial++;
+				$section_id++;
+			}
+		}
+		
+		
+		$response = array(
+			'questions' => $data_array,
+			'settings' => array(
+				'target_score' => 80,
+			)
+		);
+		
+		return apiResponse2(1, 'retrieved', trans('api.public.retrieved'), $response);
+		
+		//pre($id);
+
+		
+	}
+	
 }
 
 

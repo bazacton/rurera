@@ -1,12 +1,14 @@
 @extends(getTemplate().'.layouts.app')
+@push('styles_top')
 <style>
     body{background-color: #fafafa !important;}
 </style>
+@endpush
 @section('content')
     <div class="container">
         <div class="text-center mb-30 mt-50">
             <a href="/" class="login-logo d-inline-flex justify-content-center align-items-center">
-                <img src="/assets/default/img/sidebar/logo.svg">
+                <img src="/assets/default/img/sidebar/logo.svg" class="img-cover" alt="Rurera Logo" title="Rurera Logo" width="68" height="67" itemprop="image" loading="eager">
                 <span class="logo-text font-30 font-weight-bold ml-10">Rurera</span>
             </a>
         </div>

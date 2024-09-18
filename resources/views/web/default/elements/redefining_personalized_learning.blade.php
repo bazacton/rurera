@@ -1,25 +1,27 @@
 @php
 $items = isset( $items )? $items : array();
+$heading = isset( $heading )? $heading : "Unlock Success with Rurera's Key Features";
+$description = isset( $description )? $description : "Rurera provides powerful resources that align with student's specific interests and learning goals.";
 @endphp
 <section class="pt-80">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="section-title mb-50 text-center">
-                        <h2 class="mb-10 font-40">Unlock Success with Rurera's Key Features</h2>
-                        <p class="font-16 text-gray">Rurera provides powerful resources that align with student's specific interests and learning goals.</p>
+                        <h2 class="mb-10 font-40">{{$heading}}</h2>
+                        <p class="font-16 font-weight-500" style="color: #000;">{{$description}}</p>
                     </div>
                 </div>
                 @if( in_array(10, $items))
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="feature-grid text-center mb-40" itemprop="feature learning course">
                         <figure class="mb-20">
-                            <a href="{{url('/')}}/national-curriculum" itemprop="url">
-                                <img src="../assets/default/img/national-curriculum.jpg" alt="feature image" height="143" width="276">
+                            <a href="#" itemprop="url">
+                                <img src="../assets/default/img/national-curriculum.webp" alt="feature image" height="143" width="276">
                             </a>
                         </figure>
                         <h3 class="mb-5 font-20 font-weight-bold" itemprop="title">
-                            <a target="_blank" href="{{url('/')}}/national-curriculum" itemprop="url" class="text-dark-charcoal">National Curriculum</a>
+                            <a target="_blank" href="#" itemprop="url" class="text-dark-charcoal">National Curriculum</a>
                         </h3>
                         <p itemprop="description">If offer Skill plans, Courses Topics and Test preparations as per defined curricula.</p>
                     </div>
@@ -30,7 +32,7 @@ $items = isset( $items )? $items : array();
                     <div class="feature-grid text-center mb-40" itemprop="feature learning course">
                         <figure class="mb-20">
                             <a href="{{url('/')}}/11-plus" itemprop="url">
-                                <img src="../assets/default/img/entrance-exams.jpg" alt="feature image" height="143" width="276">
+                                <img src="../assets/default/img/entrance-exams.webp" alt="feature image" height="143" width="276">
                             </a>
                         </figure>
                         <h3 class="mb-5 font-20 font-weight-bold" itemprop="title">
@@ -45,7 +47,7 @@ $items = isset( $items )? $items : array();
                     <div class="feature-grid text-center mb-40" itemprop="feature learning course">
                         <figure class="mb-20">
                             <a href="{{url('/')}}/sats-preparation" itemprop="url">
-                                <img src="../assets/default/img/sats-home-feature.jpg" alt="feature image" height="143" width="276">
+                                <img src="../assets/default/img/sats-home-feature.webp" alt="feature image" height="143" width="276">
                             </a>
                         </figure>
                         <h3 class="mb-5 font-20 font-weight-bold" itemprop="title">
@@ -60,7 +62,7 @@ $items = isset( $items )? $items : array();
                     <div class="feature-grid text-center mb-40" itemprop="feature learning course">
                         <figure class="mb-20">
                             <a href="{{url('/')}}/timestables-practice" itemprop="url">
-                                <img src="../assets/default/img/timetables-feature.jpg" alt="feature image" height="143" width="276">
+                                <img src="../assets/default/img/timetables-feature.webp" alt="feature image" height="143" width="276">
                             </a>
                         </figure>
                         <h3 class="mb-5 font-20 font-weight-bold" itemprop="title">
@@ -75,7 +77,7 @@ $items = isset( $items )? $items : array();
                     <div class="feature-grid text-center mb-40" itemprop="feature learning course">
                         <figure class="mb-20">
                             <a href="{{url('/')}}/book-shelf" itemprop="url">
-                                <img src="../assets/default/img/book-shelf-feature.jpg" alt="feature image" height="143" width="276">
+                                <img src="../assets/default/img/book-shelf-feature.webp" alt="feature image" height="143" width="276">
                             </a>
                         </figure>
                         <h3 class="mb-5 font-20 font-weight-bold" itemprop="title">
@@ -89,12 +91,12 @@ $items = isset( $items )? $items : array();
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="feature-grid text-center mb-40" itemprop="feature learning course">
                         <figure class="mb-20">
-                            <a href="{{url('/')}}/features" itemprop="url">
-                                <img src="../assets/default/img/teacher-empowerment-feature.jpg" alt="feature image" height="143" width="276">
+                            <a href="#" itemprop="url">
+                                <img src="../assets/default/img/teacher-empowerment-feature.webp" alt="feature image" height="143" width="276">
                             </a>
                         </figure>
                         <h3 class="mb-5 font-20 font-weight-bold" itemprop="title">
-                            <a target="_blank" href="{{url('/')}}/features" itemprop="url" class="text-dark-charcoal">Teacher Empowerment Tools</a>
+                            <a target="_blank" href="#" itemprop="url" class="text-dark-charcoal">Teacher Empowerment Tools</a>
                         </h3>
                         <p itemprop="description">Immediate feedback and assessment tools allow teachers to monitor student progress and identify areas that require improvement.</p>
                     </div>
@@ -105,7 +107,7 @@ $items = isset( $items )? $items : array();
                     <div class="feature-grid text-center mb-40" itemprop="feature learning course">
                         <figure class="mb-20">
                             <a href="{{url('/')}}/register" itemprop="url">
-                                <img src="../assets/default/img/rewards-features.jpg" alt="feature image" height="143" width="276">
+                                <img src="../assets/default/img/rewards-features.webp" alt="feature image" height="143" width="276">
                             </a>
                         </figure>
                         <h3 class="mb-5 font-20 font-weight-bold" itemprop="title">
@@ -120,7 +122,7 @@ $items = isset( $items )? $items : array();
                     <div class="feature-grid text-center mb-40" itemprop="feature learning course">
                         <figure class="mb-20">
                             <a href="{{url('/')}}/register" itemprop="url">
-                                <img src="../assets/default/img/quick-assesments.jpg" alt="feature image" height="143" width="276">
+                                <img src="../assets/default/img/quick-assesments.webp" alt="feature image" height="143" width="276">
                             </a>
                         </figure>
                         <h3 class="mb-5 font-20 font-weight-bold" itemprop="title">
@@ -135,7 +137,7 @@ $items = isset( $items )? $items : array();
                     <div class="feature-grid text-center mb-40" itemprop="feature learning course">
                         <figure class="mb-20">
                             <a href="{{url('/')}}/register" itemprop="url">
-                                <img src="../assets/default/img/feature-automated-marking.jpg" alt="feature image" height="143" width="276">
+                                <img src="../assets/default/img/feature-automated-marking.webp" alt="feature image" height="143" width="276">
                             </a>
                         </figure>
                         <h3 class="mb-5 font-20 font-weight-bold" itemprop="title">
@@ -150,7 +152,7 @@ $items = isset( $items )? $items : array();
                     <div class="feature-grid text-center mb-40" itemprop="feature learning course">
                         <figure class="mb-20">
                             <a href="{{url('/')}}/register" itemprop="url">
-                                <img src="../assets/default/img/performance-monitering.jpg" alt="feature image" height="143" width="276">
+                                <img src="../assets/default/img/performance-monitering.webp" alt="feature image" height="143" width="276">
                             </a>
                         </figure>
                         <h3 class="mb-5 font-20 font-weight-bold" itemprop="title">
@@ -165,7 +167,7 @@ $items = isset( $items )? $items : array();
                     <div class="feature-grid text-center mb-40" itemprop="feature learning course">
                         <figure class="mb-20">
                             <a href="{{url('/')}}/register" itemprop="url">
-                                <img src="../assets/default/img/insights-feature.jpg" alt="feature image" height="143" width="276">
+                                <img src="../assets/default/img/insights-feature.webp" alt="feature image" height="143" width="276">
                             </a>
                         </figure>
                         <h3 class="mb-5 font-20 font-weight-bold" itemprop="title">
@@ -180,7 +182,7 @@ $items = isset( $items )? $items : array();
                     <div class="feature-grid text-center mb-40" itemprop="feature learning course">
                         <figure class="mb-20">
                             <a href="{{url('/')}}/contact-us" itemprop="url">
-                                <img src="../assets/default/img/protection-feature.jpg" alt="feature image" height="143" width="276">
+                                <img src="../assets/default/img/protection-feature.webp" alt="feature image" height="143" width="276">
                             </a>
                         </figure>
                         <h3 class="mb-5 font-20 font-weight-bold" itemprop="title">
@@ -195,12 +197,12 @@ $items = isset( $items )? $items : array();
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="feature-grid text-center mb-40" itemprop="feature learning course">
                         <figure class="mb-20" class="mb-20">
-                            <a href="{{url('/')}}/classes" itemprop="url">
+                            <a href="#" itemprop="url">
                                 <img src="../assets/default/img/ks1-year1-feature.jpg" alt="feature image" height="143" width="276">
                             </a>
                         </figure>
                         <h3 class="mb-5 font-20 font-weight-bold" itemprop="title">
-                            <a target="_blank" href="{{url('/')}}/classes" itemprop="url" class="text-dark-charcoal">KS1, KS2 Courses</a>
+                            <a target="_blank" href="#" itemprop="url" class="text-dark-charcoal">KS1, KS2 Courses</a>
                         </h3>
                         <p itemprop="description">Explore wide range of kS1, KS2 courses, Tests, practices, assessments, resources and much more.</p>
                     </div>
@@ -212,12 +214,12 @@ $items = isset( $items )? $items : array();
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="feature-grid text-center mb-40" itemprop="feature learning course">
                         <figure class="mb-20">
-                            <a href="{{url('/')}}/analytics" itemprop="url">
+                            <a href="#" itemprop="url">
                                 <img src="../assets/default/img/analytics-feature.jpg" alt="feature image" height="143" width="276">
                             </a>
                         </figure>
                         <h3 class="mb-5 font-20 font-weight-bold" itemprop="title">
-                            <a target="_blank" href="{{url('/')}}/panel/analytics" itemprop="url" class="text-dark-charcoal">Analytics</a>
+                            <a target="_blank" href="#" itemprop="url" class="text-dark-charcoal">Analytics</a>
                         </h3>
                         <p itemprop="description">It provides complete insights and data analysis of Total scores, Total attempts, Earned Scores and Earned Coins.</p>
                     </div>
@@ -244,12 +246,12 @@ $items = isset( $items )? $items : array();
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="feature-grid text-center mb-40" itemprop="feature learning course">
                         <figure class="mb-20">
-                            <a href="{{url('/')}}/weekly-planner" itemprop="url">
+                            <a href="#" itemprop="url">
                                 <img src="../assets/default/img/skill-plans-feature.jpg" alt="feature image" height="143" width="276">
                             </a>
                         </figure>
                         <h3 class="mb-5 font-20 font-weight-bold" itemprop="title">
-                            <a target="_blank" href="{{url('/')}}/weekly-planner" itemprop="url" class="text-dark-charcoal">Skills Plan</a>
+                            <a target="_blank" href="#" itemprop="url" class="text-dark-charcoal">Skills Plan</a>
                         </h3>
                         <p itemprop="description">This involves setting goals, identifying the skills you want to acquire or improve, and planning to achieve those goals weekly or monthly.</p>
                     </div>
@@ -259,12 +261,12 @@ $items = isset( $items )? $items : array();
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="feature-grid text-center mb-40" itemprop="feature learning course">
                         <figure class="mb-20">
-                            <a href="{{url('/')}}/classes?sort=newest" itemprop="url">
+                            <a href="{{url('/')}}/pricing" itemprop="url">
                                 <img src="../assets/default/img/advance-learning-feature.jpg" alt="feature image" height="143" width="276">
                             </a>
                         </figure>
                         <h3 class="mb-5 font-20 font-weight-bold" itemprop="title">
-                            <a target="_blank" href="{{url('/')}}/classes?sort=newest" itemprop="url" class="text-dark-charcoal">Advance Learning</a>
+                            <a target="_blank" href="{{url('/')}}/pricing" itemprop="url" class="text-dark-charcoal">Advance Learning</a>
                         </h3>
                         <p itemprop="description">Rurera empowers students through courses, interactive books, exams practices and rewarding experiences.</p>
                     </div>
@@ -283,6 +285,21 @@ $items = isset( $items )? $items : array();
                             <a target="_blank" href="{{url('/')}}/products" itemprop="url" class="text-dark-charcoal">Rewards Store</a>
                         </h3>
                         <p itemprop="description">Students can redeem coin points and exchange trending toys with every practice via Rurera toy store.</p>
+                    </div>
+                </div>
+				@endif
+				@if( in_array(19, $items))
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                    <div class="feature-grid text-center mb-40" itemprop="feature learning course">
+                        <figure class="mb-20">
+                            <a href="{{url('/')}}/products" itemprop="url">
+                                <img src="../assets/default/img/gamified-learning.png" alt="feature image" height="143" width="276">
+                            </a>
+                        </figure>
+                        <h3 class="mb-5 font-20 font-weight-bold" itemprop="title">
+                            <a target="_blank" href="{{url('/')}}/products" itemprop="url" class="text-dark-charcoal">Gamified Learning</a>
+                        </h3>
+                        <p itemprop="description">Make learning exciting with Rurera’s gamified approach, where vocabulary and spelling practice becomes a fun adventure.</p>
                     </div>
                 </div>
 				@endif

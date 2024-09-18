@@ -20,6 +20,15 @@ Lms Responsive Style Start
     .education-icon-box {margin-left: -60px;}
 }
 
+@media (min-width: 1200px) {
+    .lms-privacypolicy-content {max-width: 970px; margin: 0 auto;}
+}
+@media (max-width: 1199px) {
+    .key-stage-section .row > .col-12:has(.lms-key-stage-table) {overflow: hidden; overflow-x: scroll;}
+    .lms-key-stage-table {width: 1199px;}
+    .key-stage-section {width: 100%; overflow: hidden;}
+}
+
 @media (min-width:993px) {
     .lms-performace-table>li.lms-performace-head div {white-space: nowrap;}
 }
@@ -27,25 +36,16 @@ Lms Responsive Style Start
 
     .gallery-sub-header .masonry-grid-gallery {width: 50%; padding-right: 25px;}
     .gallery-sub-header .container > .row > [class*="col-"] {padding-right: 70px;}
-}
-
-@media screen and (min-width: 992px) and (max-width: 1600px) {
-    .navbar-nav .educator-menu {position: relative;}
-    nav.top-navbar .login-btn, nav .register-btn {white-space: nowrap; font-size: 12px !important;}
-    .lms-mega-menu {width: 100%;}
-    .navbar-nav .has-mega-menu:hover .nav-link:after {bottom: -23px;}
-    .about-sub-header .choose-sats .sats-box {width: 24%;}
-    .noticeboard-item > div {flex-wrap: wrap; gap: 10px;}
-    /* .dashboard-cards-holder >.row > [class*="col-"] {flex: 0 0 50%; max-width: 50%;} */
     body .panel-sidebar,
-    .panel-page-section .panel-sidebar {width: 100px; z-index: 1;}
+    .panel-page-section .panel-sidebar {width: 100px; z-index: 1; padding-left: 10px !important; padding-right: 10px !important;}
     .panel-content {padding-left: 110px;}
     .panel-sidebar .sidebar-menu .sidenav-item .sidenav-item-icon {margin-right: 0 !important;}
     .panel-sidebar .sidebar-menu .sidenav-item .nav-sub-title {
         position: absolute;
-        left: 100%;
+        bottom: 100%;
+        left: 50%;
         background-color: #000;
-        font-size: 14px !important;
+        font-size: 12px !important;
         color: #fff;
         text-transform: capitalize;
         white-space: nowrap;
@@ -56,29 +56,72 @@ Lms Responsive Style Start
         -ms-transition: all 0.3s ease-out;
         -o-transition: all 0.3s ease-out;
         transition: all 0.3s ease-out;
-        margin-left: 10px;
+        margin-top: 10px;
         visibility: hidden;
         opacity: 0;
+        transform: translateX(-50%);
     }
     .panel-sidebar .sidebar-menu .sidenav-item:hover .nav-sub-title{
         visibility: visible;
         opacity: 1;
-        margin-left: 0;
+        margin-top: 0;
     }
-    body .panel-sidebar .sidebar-menu {
+    /* body .panel-sidebar .sidebar-menu {
         overflow: visible;
+    } */
+    .sidebar-menu-holder {
+        height: 100vh;
+    }
+    .panel-sidebar .sidebar-menu {
+        padding-bottom: 15px;
+        padding-left: 10px;
+    }
+    /* ===== Scrollbar CSS ===== */
+
+    .panel-sidebar .sidebar-menu::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    .panel-sidebar .sidebar-menu::-webkit-scrollbar-track {
+        background: #fff;
+    }
+
+    .panel-sidebar .sidebar-menu::-webkit-scrollbar-thumb {
+        background-color: #f4f4f4;
+        border-radius: 0;
+        border: 0;
     }
     .panel-sidebar .sidebar-menu .sidenav-item .nav-sub-title:before {
         position: absolute;
-        left: -5px;
-        top: 50%;
-        height: 10px;
-        width: 10px;
+        left: 50%;
+        bottom: -7px;
+        height: 8px;
+        width: 8px;
         content: "";
         background-color: #000;
-        margin: -5px 0 0 0;
-        transform: rotate(45deg);
+        margin: 0;
+        transform: rotate(45deg) translateX(-50%);
     }
+    .panel-sidebar .sidebar-menu .sidenav-item:first-child .nav-sub-title {
+        bottom: auto;
+        top: 100%;
+        z-index: 1;
+    }
+    .panel-sidebar .sidebar-menu .sidenav-item:first-child .nav-sub-title:before {
+        top: -1px;
+        bottom: auto;
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1600px) {
+    .navbar-nav .educator-menu {position: relative;}
+    nav.top-navbar .login-btn, nav .register-btn {white-space: nowrap; font-size: 14px !important;}
+    .lms-mega-menu {width: 100%;}
+    .navbar-nav .has-mega-menu:hover .nav-link:after {bottom: -23px;}
+    .about-sub-header .choose-sats .sats-box {width: 24%;}
+    .noticeboard-item > div {flex-wrap: wrap; gap: 10px;}
+    /* .dashboard-cards-holder >.row > [class*="col-"] {flex: 0 0 50%; max-width: 50%;} */
+    
     .panel-content > .container > .row > [class*="col-"]:first-child {padding-right: 15px;}
     .panel-content > .container > .row > [class*="col-"]:last-child {padding-left: 15px;}
     .panel-content .panel-content-holder {max-width: calc(100% - 370px);}
@@ -102,6 +145,95 @@ Lms Responsive Style Start
     .school-zone-students [class*="col-"] {flex: 0 0 50%;max-width: 50%;}
     .quiz-topbar [class*="col-"] {width: 100%; flex: 0 0 100%;max-width: 100%;}
     .quiz-topbar .close-btn-holder {position: absolute;top: -44px;right: 15px;}
+}
+@media (min-width:991px) {
+    .top-navbar .top-contact-box {border-bottom: 0 !important;}
+    .menu-category>ul>li {background-color: #f1f1f1; padding: 12px 25px 12px 15px;}
+    .navbar-expand-lg .navbar-nav {-ms-flex-direction: row; flex-direction: row;}
+}
+@media (max-width:991px) {
+    .top-navbar {height: auto;}
+    .navbar {padding: 0 15px;}
+    .navbar .navbar-order {order: 3;}
+    .navbar .navbar-order:first-child {order: 2;}
+    .navbar .navbar-order:nth-child(2) {order: 1;}
+    .navbar .navbar-order .nav-notify-cart-dropdown svg {width: 14px !important; height: 14px !important;}
+    .navbar .navbar-order .nav-notify-cart-dropdown .dropdown .badge {width: 16px !important; height: 16px !important; font-size: .7rem;}
+    .navbar .navbar-toggle-content {position: fixed; top: 110%; right: 0; left: 0; width: 100%; height: 100%; z-index: 501; display: block !important; background-color: #fff; transition: top .4s cubic-bezier(.43, .83, .54, 1.02), opacity .4s linear; border-radius: 0; padding: 20px;}
+    .navbar .navbar-toggle-content.show {top: 0;}
+    .navbar .navbar-nav>li {width: 100%; padding: 8px 0;}
+    .navbar .navbar-nav>li .nav-link {text-align: left;}
+    .navbar1, .navbar {padding: 0 15px; box-shadow: 0 1px 0 1px rgba(0,0,0,0.04);}
+    .navbar1 .navbar-order,
+    .navbar .navbar-order {order: 3}
+    .navbar1 .navbar-order:first-child,
+    .navbar .navbar-order:first-child {order: 1; margin-left: 0 !important;}
+    .navbar1 .navbar-order:nth-child(2),
+    .navbar .navbar-order:nth-child(2) {order: 1; margin-left: auto; margin-right: 10px;}
+    .navbar1 .dropdown,
+    .navbar .dropdown {order: 3;}
+    .navbar1 .navbar-order .nav-notify-cart-dropdown svg {width: 14px !important; height: 14px !important}
+    .navbar1 .navbar-order .nav-notify-cart-dropdown .dropdown .badge {width: 16px !important; height: 16px !important; font-size: .7rem;}
+    .navbar1 .navbar-toggle-content {position: fixed; top: 0; right: 100%; width: 100%; height: 100%; z-index: 501; display: flex !important; flex-direction: column; background-color: #fff; transition: right .4s cubic-bezier(.43, .83, .54, 1.02), opacity .4s linear; border-radius: 0; padding: 20px 0 0; overflow: hidden; overflow-y: auto;}
+    .navbar1 .navbar-toggle-content.show {top: 0; right: 0; margin-right: 0 !important;}
+    .navbar1 .navbar-nav>li {width: 100%; padding: 0;}
+    .navbar1 .navbar-nav>li .nav-link {text-align: left;padding: 10px 20px;}
+    .mobile-logo {display: block; border-bottom: 1px solid rgba(0,0,0,0.1); padding: 0 5px 18px; margin: 0 0 10px;}
+    .mobile-logo img {max-width: 150px; object-fit: contain;}
+    .navbar-brand {margin-right: 0;}
+    .navbar-brand img {height: auto !important;}
+    .menu-category>ul>li {flex-direction: column;}
+    .menu-category>ul>li .cat-dropdown-menu {width: 100%; position: relative; box-shadow: none; top: 10px; display: none;}
+    .menu-category>ul>li .cat-dropdown-menu>li .sub-menu {position: relative; left: 0 !important; top: 4px; width: 100%; box-shadow: none; display: none;}
+    .menu-category>ul>li .cat-dropdown-menu:after {display: none;}
+    .menu-category>ul>li.xs-categories-toggle.show-items .cat-dropdown-menu,
+    .menu-category>ul>li.xs-categories-toggle.show-items .cat-dropdown-menu .show-sub-menu .sub-menu {display: block; opacity: 1 !important; visibility: visible !important; top: 0 !important;}
+    .login-container {margin: 60px 0 70px;}
+    .reward-program-section .reward-program-section-hero-card {height: auto;}
+    .reward-program-section .reward-program-section-hero-card .reward-program-section-hero {position: relative; top: 0; left: 0; height: auto;}
+    .testimonials-container .left-gradient-box {width: 100px; height: 100px;}
+    .testimonials-container .right-gradient-box {width: 95px; height: 95px;}
+    .testimonials-container .bottom-gradient-box {width: 150px; height: 150px;}
+    .shadow-effect {padding: 20px 10px;}
+    .customers-testimonials .item {padding: 0 15px;}
+    .slider-container,
+    .slider-container.slider-hero-section2 {padding: 60px 0 100px;}
+    .slider-container .slider-content .slide-hint {font-size: 14px;}
+    .slider-container .slider-content h1 {font-size: 30px;}
+    .slider-container .slider-content.hero-section2 h1 {font-size: 30px;}
+    .swiper-pagination {bottom: unset}
+    .swiper-pagination.features-swiper-pagination {bottom: -20px}
+    .feature-slider .feature-slider-body .card-title {font-size: 16px}
+    .home-sections.home-sections-swiper {margin-top: 50px;}
+    .home-sections .section-title {font-size: 18px;}
+    .home-sections .section-hint {font-size: 14px;}
+    .subscribes-container .left-gradient-box {width: 80px; height: 80px;}
+    .subscribes-container .right-gradient-box {width: 75px; height: 75px;}
+    .subscribes-container .bottom-gradient-box {width: 150px; height: 150px;}
+    .home-video-container {padding-top: 94px;}
+    .home-video-container .home-video-play-button {width: 75px; height: 75px;}
+    .home-video-container .home-video-play-button .feather-play {width: 25px; height: 25px;}
+    .contact-map {height: 500px; top: -230px; margin-bottom: -230px;}
+    .course-cover-container.not-active-special-offer {height: 350px;}
+    .special-offer-card .offer-percent-box {width: 70px; height: 70px; transform: translate(-50%, 50%); box-shadow: 0 2px 15px 0 rgba(67, 212, 119, .29);}
+    .special-offer-card .offer-percent-box .percent {font-size: 20px;}
+    .special-offer-card .offer-percent-box .off {font-size: 14px;}
+    .course-content-section:not(.has-progress-bar).course,
+    .course-content-section:not(.has-progress-bar).text_lesson {top: -215px; margin-bottom: -215px;}
+    .course-content-btns {font-size: 10px !important; padding-right: 10px !important; padding-left: 10px !important; height: 30px !important;}
+    .add-time-sheet { padding-bottom: 200px; }
+    .add-time-sheet .clock-box {top: 0; }
+    .clockpicker-popover {left: 50% !important; transform: translate(-50%) !important;}
+    .user-reward-badges.badges-lg img {width: 60px; height: 60px;}
+    .user-profile-info {top: -50px; margin-bottom: -50px;}
+    .user-profile-avatar {width: 120px; min-width: 120px; max-width: 120px; height: 120px;}
+    .forum-hero-section {padding-bottom: 25px; padding-top: 25px;}
+    .forum-hero-section .forum-hero-section__image {position: relative; width: 100%; max-width: 100%; height: auto; margin-top: 25px;}
+    .forum-recommended-topics-section {margin-top: 45px;}
+    .table-responsive {overflow-x: auto;}
+    .webinar-form .table-responsive {overflow: auto;}
+    .webinar-progress .progress-item {border-left: 0; padding: 0; margin: 5px 0;}
+    .webinar-progress .progress-item:first-child {margin-top: 0;}
 }
 @media screen and (min-width: 992px) and (max-width: 1199px) {
     .lms-explanation .lms-radio-btn-group li {width: 48%;}
@@ -135,7 +267,7 @@ Lms Responsive Style Start
 
 @media screen and (max-width: 992px) {
     .navbar-expand-lg .navbar-toggler,
-    .navbar1 .navbar-toggler {display: block;}
+    .navbar1 .navbar-toggler {display: block; font-size: 15px; color: #000; font-weight: 600;}
     .navbar-expand-lg .navbar-nav {flex-direction: column; margin-bottom: 20px;}
     .navbar-nav .nav-item:hover .sidenav-dropdown {top: 0;}
     .lms-mega-menu {display: none;}
@@ -277,7 +409,7 @@ Lms Responsive Style Start
     .panel-right-sidebar .coin-counts img{width: 28px; height: 28px; margin-right: 0; margin-top: 0;}
     body .sidebar-logo img {max-width: 30px;}
     .sidebar-logo .sidebar-logo-text {display: none;}
-    .navbar-toggler-icon {width: 1.6em;height: 1.5em;}
+    .navbar-toggler-icon {width: 1.6em;height: 1.5em; margin-left: 10px;}
     .user-profile-icons .dropdown-menu-right {left: 0; right: auto;}
     .panel-right-sidebar [class*="col-"] {display: none;}
     .panel-right-sidebar [class*="col-"]:has(.user-profile-icons) {display: block;}
@@ -397,7 +529,7 @@ Lms Responsive Style Start
     .categories-element-title h2.font-40 {font-size: 1.8rem !important;}
     .section-title.section-inner-title h2 {font-size: 1.2rem !important;}
     .blog-grid-card .blog-grid-detail .blog-grid-title {font-size: 1.4rem; min-height: auto;}
-    .home-banner .choose-sats .sats-box {margin-bottom: 80px;}
+    .home-banner .choose-sats .sats-box {margin-bottom: 80px; margin-top: 20px;}
     .lms-search-services img {max-width: 100%;}
     .job-singup-sub-header h1 br {display: none;}
     .find-instructor-section figure img,
@@ -453,6 +585,11 @@ Lms Responsive Style Start
 @media screen and (min-width: 767px) and (max-width: 992px) {
     .quiz-topbar .close-btn-holder {position: absolute; top: -40px; right: 15px;}
     .products-top-header .banner-holder {right: 215px;}
+}
+
+@media (min-width:767px) {
+    .navbar-shopping-cart {max-height: 370px;}
+    .navbar-notification-card {max-height: 360px;}
 }
 
 @media screen and (max-width: 767px) {
@@ -550,8 +687,6 @@ Lms Responsive Style Start
     .chart-filters,
     .chart-filters ul {flex-wrap: wrap; border: 0;}
     .spells-quiz-info ul {justify-content: flex-start; gap: 0;}
-    /*.spells-quiz-info {position: relative; margin-bottom: 30px;}
-    .spells-quiz-info ul li {border-left: 0; border-bottom: 1px solid #bac3ca; width: 100%; } */
     .spells-quiz-from button {margin-top: 0; min-width: auto; padding: 10 20px;}
     .spells .dataTable td a,
     .spells .dataTable thead tr th {font-size: 14px;}
@@ -566,7 +701,6 @@ Lms Responsive Style Start
     body .prev-next-controls .question-submit-btn {position: relative;}
     body .prev-next-controls {gap: 5px; flex-wrap: wrap;}
     body .prev-next-controls a {margin-right: 0;}
-    /* body .prev-next-controls .question-submit-btn {flex: 0 0 100%;margin-top: 10px;} */
     body .question-review-required {top: -40px;}
     .lms-sorting-fields {overflow: hidden; overflow-x: auto;}
     body .match-question .stems li,
@@ -591,8 +725,6 @@ Lms Responsive Style Start
     .db-form-tabs .nav-tabs .nav-link.active {border: 0;}
     .navbar-nav .has-mega-menu:hover .nav-link:after {bottom: -6px;}
     .lms-nav-tabs.nav-tabs .nav-link {font-size: 14px; padding-left: 1rem; padding-right: 1rem;}
-    /*.lms-testimonial-slider .swiper-button-next, 
-    .lms-testimonial-slider .swiper-button-prev {top: 25%;}*/
     .exame-listing .exame-holder .exame-list:after {right: 12px;}
     .questions-block {padding-top: 0;}
     .questions-block-numbers a {padding: 20px 8px;}
@@ -732,6 +864,9 @@ Lms Responsive Style Start
     .chart-filters .form-group {width: 50%; padding-left: 8px;}
     .tests-list {gap: 15px;}
     .tests-list-holder {position: relative;}
+    .tests-list.school-zone-list {visibility: visible; opacity: 1; position: initial; padding: 0; box-shadow: none; flex-direction: row; margin: 0; gap: 5px;}
+    .tests-list.school-zone-list li {flex-basis: auto; text-align: center; width: auto; gap: 5px; justify-content: center; border: 1px dashed #ddd;}
+    .tests-list.school-zone-list li.active {box-shadow: 0 -4px 0 0 #1b85fd inset; border-color: var(--primary); border-style: solid;}
     .listing-search .filters-list {margin-bottom: 15px;}
     .timestables-modes .tests-list {visibility: visible; opacity: 1; position: initial; flex-direction: row; padding: 0; box-shadow: none; margin: 0;}
     .timestables-modes .tests-list li {flex-direction: column; width: auto; flex-basis: auto; border: 1px dashed #ddd; min-height: 100px; align-items: center; justify-content: center;}
@@ -880,6 +1015,90 @@ Lms Responsive Style Start
     .lms-column-section .lms-text-holder .row.align-items-center {flex-direction: column; gap: 25px; text-align: center;}
     .lms-column-section .lms-text-holder .row.align-items-center .lms-btn {margin-left: 0 !important;}
     .lms-column-section .lms-text-holder .lms-btn-group {justify-content: center;}
+    .cart-banner {padding: 50px 0;}
+    .user-profile-avatar {width: 90px; min-width: 90px; max-width: 90px; height: 90px;}
+    .instructor-finder-wizard {margin-left: 0 !important; margin-right: 0 !important;}
+    .instructor-finder .instructor-finder-card .off-badge {top: 10px;}
+    .instructor-finder .instructor-finder-card .instructor-finder-card-right-side {border-top: 1px solid #f1f1f1; border-left: 0; }
+    .cookie-security-dialog {width: 100%; left: 0; bottom: 0; border-radius: 15px 15px 0 0 !important;}
+    .mobile-app-section {padding-bottom: 0; padding-top: 0;}
+    .mobile-app-section .mobile-app-section__image .mobile-app-section__image-hero .mobile-app-section__dots {top: 93px;}
+    .mobile-app-section .mobile-app-section__image {position: relative; width: 100%; margin-top: 30px; background-position: 50%;}
+    .mobile-app-section .mobile-app-section__image .bubble-one {left: 0;}
+    .mobile-app-section .mobile-app-section__image .bubble-three,
+    .mobile-app-section .mobile-app-section__image .bubble-two {right: 0;}
+    .mobile-app-section .mobile-app__buttons {margin-right: 0; width: 100%; margin-bottom: 15px; justify-content: start;}
+    .course-private-content {padding: 80px 0; margin: 30px 0;}
+    .file-video-loading,
+    .my-video-dimensions {height: 180px !important;}
+    .course-private-content .course-private-content-icon {width: 170px; height: 170px;}
+    .webinar-card.webinar-list {flex-direction: column;}
+    .webinar-card.webinar-list .image-box {width: 100% !important; height: 54vw !important; border-radius: 10px 10px 0 0;}
+    .webinar-card.webinar-list .image-box img {border-radius: 10px 10px 0 0;}
+    .webinar-card.webinar-list .webinar-card-body {padding: 12px;}
+    .webinar-card.webinar-list-cart .image-box {height: 25vw !important;}
+    .contact-us-head {padding-top: 60px;}
+    .subscribes-container .bottom-gradient-box {width: 50px; height: 50px;}
+    .contact-map {height: 360px; top: -100px; margin-bottom: -80px;}
+    .trending-card .trending-image {padding: 25px;}
+    .trending-card .trending-image .icon {width: 60px; height: 60px;}
+    .home-video-mask {height: 100%;}
+    .home-video-container {background-size: contain; border-radius: 0;}
+    .subscribes-container .left-gradient-box {width: 40px; height: 40px;}
+    .subscribes-container .right-gradient-box {width: 30px; height: 30px;}
+    .swiper-pagination .swiper-pagination-bullet {width: 15px; height: 15px; margin-right: 10px;}
+    .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active:after {width: 8px; height: 8px}
+    .gradient-box {border-radius: 10px;}
+    .customers-testimonials.owl-carousel .owl-dots .owl-dot span {width: 15px; height: 15px;}
+    .find-instructor-section .find-instructor-section-hero {max-width: 85%; object-fit: cover; margin: 0 auto; display: block;}
+    .footer .widget.widget-links {margin-bottom: 25px;}
+    .find-instructor-section .example-instructor-card {right: -5px;}
+    .testimonials-container .bottom-gradient-box {width: 50px; height: 50px;}
+    .testimonials-container .right-gradient-box {width: 30px; height: 30px;}
+    .testimonials-container .left-gradient-box {width: 40px; height: 40px;}
+    .navbar-notification-action {height: 72px;}
+    .top-navbar .dropdown .dropdown-menu {height: 462px; overflow: hidden !important; overflow-y: auto !important;}
+    .top-navbar .dropdown .dropdown-menu.show {top: 0 !important; transform: none !important; margin-top: 0;}
+    .top-navbar .dropdown .dropdown-menu:after {display: none;}
+    .navbar-shopping-cart .navbar-cart-actions {height: 240px;}
+    .navbar-shopping-cart .navbar-cart-total {padding-top: 20px;}
+    .no-result .no-result-logo {width: 175px;height: 175px;}
+    .no-result .no-result-logo img {width: 175px; max-width: 175px;}
+    .no-result.default-no-result br {display: none;}
+    .activities-container img {width: 44px;height: 44px;}
+    .custom-pagination li {margin-right: 8px;width: 40px;height: 40px;}
+    .custom-pagination li a {font-size: 14px;}
+    .lms-curriculums {margin: 0;}
+    .list-description {margin: 0 0 15px;}
+    .curriculums-list p br {display: none;}
+    .pages-sub-header.lms-course-banner {padding: 50px 0 40px;margin: 0 0 50px;}
+    .curriculums-head:before,
+    .curriculums-head:after {width: 300px;}
+    .lms-element-nav ul {margin: 0 -10px;}
+    .lms-element-nav li {padding: 0 10px 10px;}
+    .footer .footer-subscribe {height: auto;}
+    .footer-dots-img img {
+        width: 200px;
+        height: 200px;
+    }
+    .footer-logo-box a {
+        padding: 0;
+        flex-direction: row;
+        gap: 10px;
+    }
+    .footer-logo-box a span {
+        margin-top: 0;
+        font-size: 12px;
+        padding: 8px 10px;
+        white-space: nowrap;
+        font-weight: 500;
+    }
+    .footer-logo-box a img {
+        max-width: 150px;
+        object-fit: cover;
+        border-radius: 3px;
+        height: 100%;
+    }
 }
 
 @media screen and (max-width: 640px) {
@@ -1020,6 +1239,12 @@ Lms Responsive Style Start
     .blog-grid-card .blog-grid-image img {width: 100%;height: auto;}
     .blog-grid-card .blog-grid-detail~.blog-grid-image {width: 100%;}
     .lms-client-list .lms-client-logo {padding: 10px 15px;}
+    .learning-page .lms-side-menu-left .sidebar-logo {display: inline-flex; padding: 10px; height: 50px;}
+    .learning-page .lms-side-menu-left {display: flex; align-items: center;}
+    .blog-grid-card {flex-wrap: wrap;}
+    .blog-grid-card .blog-grid-detail {padding: 0 0 20px 0;}
+    .blog-grid-card .blog-grid-image img {width: 100%;}
+    .blog-grid-card .blog-grid-image {width: 100%; overflow: hidden;}
     .footer [class*="col-"] {max-width: 100%; flex: 0 0 100%;}
     .sats-listing-card {text-align: center;}
     .login-password input[type="password"] {margin-bottom: 10px !important;}
@@ -1127,6 +1352,23 @@ Lms Responsive Style Start
     .stats-list ul {flex-direction: column;}
     .stats-list ul li {padding: 0 0 0 15px; margin-left: 0;}
     .finish-steps .row {flex-direction: column;}
+    .profile-info-box {flex-direction: column; position: relative;}
+    .profile-info-box:not(.product-show__profile-info-box) {top: -60px; margin-bottom: -60px;}
+    .profile-info-box .user-details {flex-direction: column; width: 100%; text-align: center;}
+    .profile-info-box .user-details .stars-card {justify-content: center;}
+    .profile-info-box .user-actions {flex-direction: row !important; margin-top: 15px; width: 100%; justify-content: center;}
+    .profile-info-box .user-actions button.btn-border-white {margin-top: 0 !important; margin-left: 10px; border-radius: 5px !important;}
+    .reward-program-section .font-16,
+    .newsletter-inner .font-16, .testimonials-card .font-16 {
+        font-size: 1rem !important;
+    }
+    .example-reward-card .font-12 {
+        font-size: 14px;
+    }
+    .newsletter-inner .text-white, .testimonials-card p {
+        color: #000 !important;
+    }
+    .reward-program-section .btn-outline-primary {color: #000; border-color: #000;}
 }
 @media screen and (max-width: 480px) {
     .lms-count-field .lms-text-holder {flex-direction: column;}

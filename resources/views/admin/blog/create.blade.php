@@ -82,6 +82,18 @@
                                         </div>
 
                                         <div class="form-group">
+                                            <label>Post URL</label>
+                                            <input type="text" name="slug"
+                                                   class="form-control  @error('slug') is-invalid @enderror"
+                                                   value="{{ !empty($post) ? $post->slug : old('slug') }}"
+                                                   placeholder="Post URL"/>
+                                            @error('slug')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
                                             <label>{{ trans('/admin/main.category') }}</label>
                                             <select class="form-control @error('category_id') is-invalid @enderror" name="category_id">
                                                 <option {{ !empty($trend) ? '' : 'selected' }} disabled>{{ trans('admin/main.choose_category') }}</option>

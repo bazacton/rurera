@@ -399,11 +399,108 @@ class QuizController extends Controller
                 $query->where('status', 'active');
             },
         ])->first();
-
-        $QuestionsAttemptController = new QuestionsAttemptController();
-
-        $questions_list_data_array = $QuestionsAttemptController->getQuizQuestionsList($quiz, $quiz_level, $learning_journey, 0, $question_ids, $is_new, $test_type);
 		
+        if ($quiz) {
+			$quiz_response = $this->get_learn_quiz_data($quiz, $quiz_level, $learning_journey, $question_ids, $is_new, $test_type, $journey_item_id);
+			$questions_list = isset( $quiz_response['questions_list'] )? $quiz_response['questions_list']  : array();
+			$resultLogObj = isset( $quiz_response['resultLogObj'] )? $quiz_response['resultLogObj']  : array();
+			$attemptLogObj = isset( $quiz_response['attemptLogObj'] )? $quiz_response['attemptLogObj']  : array();
+			$question = isset( $quiz_response['question'] )? $quiz_response['question']  : array();
+			$questions_layout = isset( $quiz_response['questions_layout'] )? $quiz_response['questions_layout']  : 0;
+			$first_question_id = isset( $quiz_response['first_question_id'] )? $quiz_response['first_question_id']  : 0;
+			$question_no = isset( $quiz_response['question_no'] )? $quiz_response['question_no']  : 0;
+			$prev_question = isset( $quiz_response['prev_question'] )? $quiz_response['prev_question']  : 0;
+			$next_question = isset( $quiz_response['next_question'] )? $quiz_response['next_question']  : 0;
+			$question_points = isset( $quiz_response['question_points'] )? $quiz_response['question_points']  : 0;
+			$newQuestionResult = isset( $quiz_response['newQuestionResult'] )? $quiz_response['newQuestionResult']  : array();
+			$questions_status_array = isset( $quiz_response['questions_status_array'] )? $quiz_response['questions_status_array']  : array();
+			$actual_question_ids = isset( $quiz_response['actual_question_ids'] )? $quiz_response['actual_question_ids']  : array();
+			$total_points = isset( $quiz_response['total_points'] )? $quiz_response['total_points']  : 0;
+
+
+
+            $question = rurera_encode($question);
+
+			$QuestionsAttemptController = new QuestionsAttemptController();
+            $questions_status_array = $QuestionsAttemptController->questions_status_array($resultLogObj, $questions_list);
+			
+			
+			if ($quiz->quiz_type == 'vocabulary') {
+				$questions_list_array = json_decode($resultLogObj->questions_list);
+				QuizzResultQuestions::whereNotIn('id', $questions_list_array)->where('quiz_result_id', $resultLogObj->id)->where('status','waiting')->delete();
+			}
+			
+			//pre($questions_status_array, false);
+			//pre($actual_question_ids, false);
+			//pre($questions_list);
+			
+			
+			
+			
+            $data = [
+                'pageTitle'              => trans('quiz.quiz_start'),
+                'questions_list'         => $questions_list,
+                'quiz'                   => $quiz,
+                'quizQuestions'          => $quiz->quizQuestions,
+                'attempt_count'          => $resultLogObj->count() + 1,
+                'newQuizStart'           => $resultLogObj,
+                'quizAttempt'            => $attemptLogObj,
+                'question'               => $question,
+                'questions_layout'       => $questions_layout,
+                'first_question_id'      => $first_question_id,
+                'question_no'            => $question_no,
+                'prev_question'          => $prev_question,
+                'next_question'          => $next_question,
+                'question_points'        => $question_points,
+                'newQuestionResult'      => $newQuestionResult,
+                'questions_status_array' => $questions_status_array,
+                'active_question_id'     => $resultLogObj->active_question_id,
+                'actual_question_ids'   => $actual_question_ids,
+				'total_points' 			=> isset( $total_points )? $total_points : 0,
+                'test_type'   => $test_type,
+				'total_time_consumed' => isset( $resultLogObj->total_time_consumed )? $resultLogObj->total_time_consumed : 0,
+            ];
+			
+			//pre($data);
+
+            if ($quiz->quiz_type == 'sats') {
+                $data['duration_type'] = 'total_practice';
+                $data['practice_time'] = $quiz->time;
+                $data['time_interval'] = 0;
+            }
+			
+			if ($quiz->quiz_type == '11plus') {
+                $data['duration_type'] = 'total_practice';
+                $data['practice_time'] = $quiz->time;
+                $data['time_interval'] = 0;
+            }
+
+            if ($quiz->quiz_type == 'vocabulary' && $quiz_level != 'easy') {	
+                $data['duration_type'] = isset( $duration_type)? $duration_type : '';
+                $data['practice_time'] = isset( $time_interval )? $time_interval : '';
+                $data['time_interval'] = isset( $time_interval )? $time_interval : '';
+            }
+
+            $start_layout_file = get_quiz_start_layout_file($quiz);
+			
+            return view(getTemplate() . '.panel.quizzes.'.$start_layout_file, $data);
+            /*if ($resultLogObj->quiz_result_type == 'practice') {
+                return view(getTemplate() . '.panel.quizzes.practice_start', $data);
+            } else {
+                return view(getTemplate() . '.panel.quizzes.start', $data);
+            }*/
+        }
+        abort(404);
+    }
+	
+	
+	public function get_learn_quiz_data($quiz, $quiz_level, $learning_journey, $question_ids, $is_new, $test_type, $journey_item_id = 0){
+		$user = getUser();
+		$QuestionsAttemptController = new QuestionsAttemptController();
+
+		$response = array();
+        $questions_list_data_array = $QuestionsAttemptController->getQuizQuestionsList($quiz, $quiz_level, $learning_journey, 0, $question_ids, $is_new, $test_type);
+		$no_of_questions = $total_points = 0;
         $questions_list = isset($questions_list_data_array['questions_list']) ? $questions_list_data_array['questions_list'] : array();
         $other_data = isset($questions_list_data_array['other_data']) ? $questions_list_data_array['other_data'] : '';
         $quiz_breakdown = isset($questions_list_data_array['quiz_breakdown']) ? $questions_list_data_array['quiz_breakdown'] : '';
@@ -494,7 +591,7 @@ class QuizController extends Controller
             $questions_array = $exclude_array = array();
             //$exclude_array[] = $questionObj->id;
             //$questions_array[] = $questionObj;
-            $questions_layout = $results_questions_array = array();
+            $questions_layout = $results_questions_array = $questions_list_data = array();
             $active_question_id = $first_question_id = 0;
             $actual_question_ids = array();
 
@@ -809,84 +906,32 @@ class QuizController extends Controller
 						$question_response_layout .= $QuestionsAttemptController->get_question_result_layout($resultQuestionID, false);
 					}
                     $questions_layout[$resultQuestionID] = $question_response_layout;//rurera_encode(stripslashes($question_response_layout));
+                    $questions_list_data[$resultQuestionID] = isset( $resultsQuestionsData['newQuestionResult'] )? $resultsQuestionsData['newQuestionResult'] : array();
                     $questionDisplayCounter++;
                 }
             }
-
-
-            $question = $questions_array;
-
-
-            $question = rurera_encode($question);
-
-
-            $questions_status_array = $QuestionsAttemptController->questions_status_array($resultLogObj, $questions_list);
 			
 			
-			if ($quiz->quiz_type == 'vocabulary') {
-				$questions_list_array = json_decode($resultLogObj->questions_list);
-				QuizzResultQuestions::whereNotIn('id', $questions_list_array)->where('quiz_result_id', $resultLogObj->id)->where('status','waiting')->delete();
-			}
-			
-			//pre($questions_status_array, false);
-			//pre($actual_question_ids, false);
-			//pre($questions_list);
-			
-            $data = [
-                'pageTitle'              => trans('quiz.quiz_start'),
-                'questions_list'         => $questions_list,
-                'quiz'                   => $quiz,
-                'quizQuestions'          => $quiz->quizQuestions,
-                'attempt_count'          => $resultLogObj->count() + 1,
-                'newQuizStart'           => $resultLogObj,
-                'quizAttempt'            => $attemptLogObj,
-                'question'               => $question,
-                'questions_layout'       => $questions_layout,
-                'first_question_id'      => $first_question_id,
-                'question_no'            => $question_no,
-                'prev_question'          => $prev_question,
-                'next_question'          => $next_question,
-                'question_points'        => $question_points,
-                'newQuestionResult'      => $newQuestionResult,
-                'questions_status_array' => $questions_status_array,
-                'active_question_id'     => $resultLogObj->active_question_id,
-                'actual_question_ids'   => $actual_question_ids,
-				'total_points' 			=> isset( $total_points )? $total_points : 0,
-                'test_type'   => $test_type,
-				'total_time_consumed' => isset( $resultLogObj->total_time_consumed )? $resultLogObj->total_time_consumed : 0,
-            ];
-			
-			//pre($data);
-
-            if ($quiz->quiz_type == 'sats') {
-                $data['duration_type'] = 'total_practice';
-                $data['practice_time'] = $quiz->time;
-                $data['time_interval'] = 0;
-            }
-			
-			if ($quiz->quiz_type == '11plus') {
-                $data['duration_type'] = 'total_practice';
-                $data['practice_time'] = $quiz->time;
-                $data['time_interval'] = 0;
-            }
-
-            if ($quiz->quiz_type == 'vocabulary' && $quiz_level != 'easy') {	
-                $data['duration_type'] = isset( $duration_type)? $duration_type : '';
-                $data['practice_time'] = isset( $time_interval )? $time_interval : '';
-                $data['time_interval'] = isset( $time_interval )? $time_interval : '';
-            }
-
-            $start_layout_file = get_quiz_start_layout_file($quiz);
-			
-            return view(getTemplate() . '.panel.quizzes.'.$start_layout_file, $data);
-            /*if ($resultLogObj->quiz_result_type == 'practice') {
-                return view(getTemplate() . '.panel.quizzes.practice_start', $data);
-            } else {
-                return view(getTemplate() . '.panel.quizzes.start', $data);
-            }*/
-        }
-        abort(404);
-    }
+			$response = array(
+				'questions_list' => $questions_list,
+				'resultLogObj' => $resultLogObj,
+				'attemptLogObj' => $attemptLogObj,
+				'question' => $questions_array,
+				'questions_layout' => $questions_layout,
+				'questions_list_data' => $questions_list_data,
+				'first_question_id' => $first_question_id,
+				'question_no' => $question_no,
+				'prev_question' => $prev_question,
+				'next_question' => $next_question,
+				'question_points' => $question_points,
+				'newQuestionResult' => $newQuestionResult,
+				'questions_status_array' => $questions_list,
+				'actual_question_ids' => $actual_question_ids,
+				'total_points' => $total_points,
+			);
+		}
+		return $response;
+	}
 
 
     /*

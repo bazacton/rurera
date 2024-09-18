@@ -35,6 +35,7 @@ class PricingController extends Controller
         $subscribes = Subscribe::all();
         $data = [
             'pageTitle'                  => isset( $page->title )? $page->title : '',
+            'page_title'                  => isset( $page->page_title )? $page->page_title : '',
             'pageDescription'            => isset( $page->seo_description )? $page->seo_description : '',
             'pageRobot'                  => isset( $page->robot ) ? 'index, follow, all' : 'NOODP, nofollow, noindex',
             'subscribes'                  => $subscribes ?? [],

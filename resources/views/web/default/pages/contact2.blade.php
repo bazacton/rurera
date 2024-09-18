@@ -28,7 +28,7 @@
                             <div class="services-card-body">
                                 <figure><img src="../assets/default/img/support.jpg" alt="support" title="support"  width="100%" height="auto" itemprop="image"  loading="eager"></figure>
                                 <div class="services-text mt-0">
-                                    <h2 itemprop="title" class="font-20 mb-15 text-dark-charcoal"><a href="{{url('/')}}/support-page">24/7 Support</a></h2>
+                                    <h2 itemprop="title" class="font-20 mb-15 text-dark-charcoal"><a href="{{url('/')}}/pricing">24/7 Support</a></h2>
                                     <p itemprop="description">Experience Uninterrupted 24/7 Support in whole UK</p>
                                 </div>
                             </div>
@@ -39,7 +39,7 @@
                             <div class="services-card-body">
                                 <figure><img src="../assets/default/img/knowledge.jpg" alt="knowledge" title="knowledge"  width="100%" height="auto" itemprop="image"  loading="eager"></figure>
                                 <div class="services-text mt-0">
-                                    <h2 itemprop="title" class="font-20 mb-15 text-dark-charcoal"><a href="{{url('/')}}/support-page">Knowledge Base</a></h2>
+                                    <h2 itemprop="title" class="font-20 mb-15 text-dark-charcoal"><a href="{{url('/')}}/pricing">Knowledge Base</a></h2>
                                     <p itemprop="description">your key resource for resolving doubts and getting instant guidance.</p>
                                 </div>
                             </div>
@@ -285,105 +285,28 @@
                 </div>
             </div>
         </section>
-        <section class="my-50 lms-blog mx-w-100 mt-30 mb-60 pt-50">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                        <div class="section-title text-center mb-50">
-                            <h2 itemprop="title" class="font-40 mb-10 text-dark-charcoal">Resources </h2>
-                            <p itemprop="description">Get to know more about latest news, resources and much more.</p>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-12">
-                        <div class="row">
-                            <div class="col-12 col-md-4 col-lg-3">
-                                <div class="blog-grid-card rurera-grid" itemscope="" itemtype="https://schema.org/NewsArticle">
-                                    <div class="blog-grid-detail">
-                                        <span class="badge created-at d-flex align-items-center">
-                                        <i data-feather="calendar" width="20" height="20" class="mr-5"></i>
-                                        <span itemprop="datePublished" content="2023-04-05T08:00:00+08:00">13 Jun 2023</span>
-                                        </span>
-                                        <h2 class="blog-grid-title mt-10" itemprop="title">
-                                            <a itemprop="url" href="/blog/How-Online-Courses-Benefit-KS1-and-KS2-Students">How Online Courses Benefit KS1 and KS2 Students</a>
-                                        </h2>
-                                        <div class="mt-10 blog-grid-desc" itemprop="description">In today's digital era, offering unique benefits and...</div>
-                                        <ul class="blog-tags">
-                                            <li itemprop="name">Learning</li>
-                                            <li itemprop="name">Online learning</li>
-                                        </ul>
-                                    </div>
-                                    <div class="blog-grid-image">
-                                        <img src="/store/1/default_images/blogs/blog-3.png" class="img-cover" alt="How Online Courses Benefit KS1 and KS2 Students" title="How Online Courses Benefit KS1 and KS2 Students" width="100%" height="auto" itemprop="image" loading="eager">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-4 col-lg-3">
-                                <div class="blog-grid-card rurera-grid" itemscope="" itemtype="https://schema.org/NewsArticle">
-                                    <div class="blog-grid-detail">
-                                        <span class="badge created-at d-flex align-items-center">
-                                        <i data-feather="calendar" width="20" height="20" class="mr-5"></i>
-                                        <span itemprop="datePublished" content="2023-04-05T08:00:00+08:00">28 Apr 2023</span>
-                                        </span>
-                                        <h2 class="blog-grid-title mt-10" itemprop="title">
-                                            <a itemprop="url" href="/blog/Preparing-for-Success-Online-Courses-for-Year-5-Students">Online Courses for Year 5 Students</a>
-                                        </h2>
-                                        <div class="mt-10 blog-grid-desc" itemprop="description">Online courses are becoming increasingly. students have had...</div>
-                                        <ul class="blog-tags">
-                                            <li itemprop="name">Preparing for Success</li>
-                                        </ul>
-                                    </div>
-                                    <div class="blog-grid-image">
-                                        <img src="/store/1/default_images/blogs/blog-19.png" class="img-cover" alt="Preparing for Success: Online Courses for Year 5 Students" title="Preparing for Success: Online Courses for Year 5 Students" width="100%" height="auto" itemprop="image" loading="eager">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-4 col-lg-3">
-                                <div class="blog-grid-card rurera-grid" itemscope="" itemtype="https://schema.org/NewsArticle">
-                                    <div class="blog-grid-detail">
-                                        <span class="badge created-at d-flex align-items-center">
-                                        <i data-feather="calendar" width="20" height="20" class="mr-5"></i>
-                                        <span itemprop="datePublished" content="2023-04-05T08:00:00+08:00">13 Jun 2023</span>
-                                        </span>
-                                        <h2 class="blog-grid-title mt-10" itemprop="title">
-                                            <a itemprop="url" href="/blog/Engaging-Students-through-Interactive-Technologies">Engaging Students through Interactive Technologies</a>
-                                        </h2>
-                                        <div class="mt-10 blog-grid-desc" itemprop="description">In recent years, the field of education has witnessed a significant transformation...</div>
-                                        <ul class="blog-tags">
-                                            <li itemprop="name">Engaging</li>
-                                            <li itemprop="name">Interactive</li>
-                                        </ul>
-                                    </div>
-                                    <div class="blog-grid-image">
-                                        <img src="/store/1/default_images/blogs/blog-38.png" class="img-cover" alt="Engaging Students through Interactive Technologies" title="Engaging Students through Interactive Technologies" width="100%" height="auto" itemprop="image" loading="eager">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-4 col-lg-3">
-                                <div class="blog-grid-card rurera-grid" itemscope="" itemtype="https://schema.org/NewsArticle">
-                                    <div class="blog-grid-detail">
-                                        <span class="badge created-at d-flex align-items-center">
-                                        <i data-feather="calendar" width="20" height="20" class="mr-5"></i>
-                                        <span itemprop="datePublished" content="2023-04-05T08:00:00+08:00">28 Apr 2023</span>
-                                        </span>
-                                        <h2 class="blog-grid-title mt-10" itemprop="title">
-                                            <a itemprop="url" href="/blog/INTERACTIVE-LEARNING-MADE-FUN-ENGAGING-QUIZ-FORMATS-FOR-KS1-AND-KS2">Engaging Quiz Formats For Ks1 And Ks2</a>
-                                        </h2>
-                                        <div class="mt-10 blog-grid-desc" itemprop="description">Learning doesn't have to be boring. In fact, it should be fun and engaging...</div>
-                                        <ul class="blog-tags">
-                                            <li itemprop="name">Student</li>
-                                            <li itemprop="name">Lifelong Learning</li>
-                                        </ul>
-                                    </div>
-                                    <div class="blog-grid-image">
-                                        <img src="/store/1/default_images/blogs/blog-18.png" class="img-cover" alt="Interactive Learning Made Fun: Engaging Quiz Formats For Ks1 And Ks2" title="Interactive Learning Made Fun: Engaging Quiz Formats For Ks1 And Ks2" width="100%" height="auto" itemprop="image" loading="eager">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+		
+		@foreach($homeSections as $homeSection)
+		@if($homeSection->name == \App\Models\HomeSection::$blog and !empty($blog) and !$blog->isEmpty())
+			   <section class="home-sections container">
+				   <div class="d-flex justify-content-between">
+					   <div class="section-title">
+						   <h2 class="mt-0 mb-10 font-40">Resources</h2>
+						   <p class="section-hint">Get to know more about latest news, resources and much more.</p>
+					   </div>
+					   <a href="/blog" class="btn btn-border-white">{{ trans('home.all_blog') }}</a>
+				   </div>
+				   <div class="row mt-35">
+					   @foreach($blog as $post)
+						   <div class="col-12 col-md-4 col-lg-4 mt-20 mt-lg-0">
+							   @include('web.default.blog.rurera-grid-list',['post' =>$post])
+						   </div>
+					   @endforeach
+
+				   </div>
+			   </section>
+		   @endif
+		@endforeach
 
         <section class="lms-column-section lms-text-section py-70 mx-w-100" style="background-color: var(--primary);">
             <div class="container">

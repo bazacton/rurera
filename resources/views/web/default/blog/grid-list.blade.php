@@ -1,11 +1,11 @@
-<div class="blog-grid-card"  itemscope itemtype="https://schema.org/NewsArticle">
+<div class="rurera-blog blog-medium"  itemscope itemtype="https://schema.org/NewsArticle">
     <div class="blog-grid-detail">
         <span class="badge created-at d-flex align-items-center">
             <i data-feather="calendar" width="20" height="20" class="mr-5"></i>
             <span  itemprop="datePublished" content="2023-04-05T08:00:00+08:00">{{ dateTimeFormat($post->created_at, 'j M Y') }}</span>
         </span>
 
-        <h2 class="blog-grid-title mt-10" itemprop="name">
+        <h2 class="blog-grid-title mt-10" itemprop="headline">
             <a itemprop="url" href="{{ $post->getUrl() }}">{{ $post->title }}</a>
         </h2>
         <div class="mt-20 blog-grid-desc" itemprop="description">{!! truncate(strip_tags($post->description), 200) !!}</div>
@@ -21,7 +21,7 @@
     </div>
     <div class="blog-grid-image lazyload-img">
         <img src="/assets/default/img/buller-img.png" class="img-sm" alt="{{ $post->title }}" title="{{ $post->title }}" width="100%" height="100%" itemprop="image" loading="eager">
-        <img src="{{ $post->image }}" class="img-cover img-lg" alt="{{ $post->title }}" title="{{ $post->title }}" width="100%" height="auto" itemprop="image" loading="eager">
+        <img src="{{ $post->image }}" class="img-cover img-lg" alt="{{ $post->title }}" title="{{ $post->title }}" width="100%" height="100%" itemprop="image" loading="eager">
     </div>
 
 </div>

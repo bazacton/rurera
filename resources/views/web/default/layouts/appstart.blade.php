@@ -10,7 +10,7 @@ $rand_no = rand(99,9999);
 
 <head>
     @include('web.default.includes.metas')
-    <title>{{ $pageTitle ?? '' }}{{ !empty($generalSettings['site_name']) ? (' | '.$generalSettings['site_name']) : '' }}</title>
+    <title>{{ $page_title ?? '' }}{{ !empty($generalSettings['site_name']) ? (' | '.$generalSettings['site_name']) : '' }}</title>
 
     <!-- General CSS File -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -24,11 +24,12 @@ $rand_no = rand(99,9999);
     <link rel="stylesheet" href="/assets/default/vendors/sweetalert2/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="/assets/default/vendors/toast/jquery.toast.min.css">
     <link rel="stylesheet" href="/assets/default/vendors/simplebar/simplebar.css">
-	<link rel="stylesheet" href="/assets/default/css/common.css?ver={{$rand_no}}">
-    <link rel="stylesheet" href="/assets/default/css/app.css?ver={{$rand_no}}">
+	<link rel="stylesheet" href="/assets/default/css/common.min.css?ver={{$rand_no}}">
+    <link rel="stylesheet" href="/assets/default/css/app.min.css?ver={{$rand_no}}">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="/assets/vendors/jquerygrowl/jquery.growl.css">
+    <link rel="stylesheet" href="/assets/default/css/responsive.min.css">
 
 
     @if($isRtl)

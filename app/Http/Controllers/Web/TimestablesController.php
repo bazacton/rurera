@@ -57,7 +57,6 @@ class TimestablesController extends Controller
         //$DailyQuestsController->questCompletionCheck($QuizzesResult);
 
 
-        $page = Page::where('link', '/timestables-practice')->where('status', 'publish')->first();
         $childs = array();
         if (auth()->check() && auth()->user()->isParent()) {
             $childs = User::where('role_id', 1)
@@ -67,9 +66,9 @@ class TimestablesController extends Controller
                 ->get();
         }
         $data = [
-            'pageTitle'       => $page->title,
-            'pageDescription' => $page->seo_description,
-            'pageRobot'       => $page->robot ? 'index, follow, all' : 'NOODP, nofollow, noindex',
+            'pageTitle'       => 'Timestables Practice',
+            'pageDescription' => 'Timestables Practice',
+            'pageRobot'       => 'index, follow, all',
             'childs'          => $childs,
             //'pageTitle' => 'Multiplication Practices and challenges to Master TimesTables and win rewards | Rurera',
         ];
@@ -81,6 +80,7 @@ class TimestablesController extends Controller
         $page = Page::where('link', '/timestables')->where('status', 'publish')->first();
         $data = [
             'pageTitle'       => $page->title,
+            'page_title'       => $page->page_title,
             'pageDescription' => $page->seo_description,
             'pageRobot'       => $page->robot ? 'index, follow, all' : 'NOODP, nofollow, noindex',
             //'pageTitle'       => 'Multiplication Practices and challenges to Master TimesTables and win rewards | Rurera',

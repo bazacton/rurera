@@ -71,10 +71,10 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-title text-center mb-50">
-                        <h1 itemprop="title" class="text-white font-40">
+                        <h2 itemprop="title" class="text-white font-40">
                             See What Awaits You with<br />
                             Learning and Practice!
-                        </h1>
+                        </h2>
                     </div>
                 </div>
                 <div class="col-8 reward-holder mx-auto">
@@ -270,7 +270,7 @@
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="section-title text-left mb-50">
-                        <h1 itemprop="title" class="font-40">Redeem Rewards Like a Pro!</h1>
+                        <h2 itemprop="title" class="font-40">Redeem Rewards Like a Pro!</h2>
                         <h2 class="mt-10">Experience Unmatched Excitement with Every Win!</h2>
                     </div>
                 </div>
@@ -328,9 +328,6 @@
                                 </div>
                             </div>
                         </div>
-						<div class="d-flex align-items-center">
-							<a href="/" class="btn-primary rounded-pill">Try For Free </a>
-						</div>
                     </div>
                 </div>
             </div>
@@ -345,13 +342,22 @@
             </div>
         </div>
     </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-9 mx-auto">
+                <div class="d-flex align-items-center" style="margin-left: 45px;">
+                    <a href="{{url('/')}}/pricing" class="try-rurera-btn justify-content-center bg-primary text-white register-btn">Try Rurera for free</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 <section class="categories-section mt-90 pt-70 pb-50" style="background-color: #f60;">
     <div class="container">
         <div class="row">
             <div class="col-12">
                 <div class="section-title text-center mb-50">
-                    <h1 itemprop="title" class="text-white font-40">Rewards Toys Categories</h1>
+                    <h2 itemprop="title" class="text-white font-40">Rewards Toys Categories</h2>
                     <h2 itemprop="description" class="mt-10 text-white">
                         With continuous learning and improvement, students boost their chances to win exciting and playful toys!
                     </h2>
@@ -365,7 +371,7 @@
                                 <figure><img src="../assets/default/img/design-tool-1.png" alt="category image" title="category image" width="100%" height="auto" itemprop="image" loading="eager" /></figure>
                             </div>
                             <div class="text-holder">
-                                <h3 itemprop="title" class="post-title text-white"><a href="https://rurera.com/products" class="text-white">Design Tools</a></h3>
+                                <h3 itemprop="title" class="post-title text-white"><a href="/pricing" class="text-white">Design Tools</a></h3>
                             </div>
                         </div>
                     </li>
@@ -375,7 +381,7 @@
                                 <figure><img src="../assets/default/img/science-tool.png" alt="category image" title="category image" width="100%" height="auto" itemprop="image" loading="eager" /></figure>
                             </div>
                             <div class="text-holder">
-                                <h3 itemprop="title" class="post-title text-white"><a href="https://rurera.com/products" class="text-white">Science Tools</a></h3>
+                                <h3 itemprop="title" class="post-title text-white"><a href="/pricing" class="text-white">Science Tools</a></h3>
                             </div>
                         </div>
                     </li>
@@ -385,7 +391,7 @@
                                 <figure><img src="../assets/default/img/ebook.png" alt="category image" title="category image" width="100%" height="auto" itemprop="image" loading="eager" /></figure>
                             </div>
                             <div class="text-holder">
-                                <h3 itemprop="title" class="post-title text-white"><a href="https://rurera.com/products" class="text-white">e-book</a></h3>
+                                <h3 itemprop="title" class="post-title text-white"><a href="/pricing" class="text-white">e-book</a></h3>
                             </div>
                         </div>
                     </li>
@@ -395,7 +401,7 @@
                                 <figure><img src="../assets/default/img/music.png" alt="category image" title="category image" width="100%" height="auto" itemprop="image" loading="eager" /></figure>
                             </div>
                             <div class="text-holder">
-                                <h3 itemprop="title" class="post-title text-white"><a href="https://rurera.com/products" class="text-white">Musical Instruments</a></h3>
+                                <h3 itemprop="title" class="post-title text-white"><a href="/pricing" class="text-white">Musical Instruments</a></h3>
                             </div>
                         </div>
                     </li>
@@ -405,7 +411,7 @@
                                 <figure><img src="../assets/default/img/book.png" alt="category image" title="category image" width="100%" height="auto" itemprop="image" loading="eager" /></figure>
                             </div>
                             <div class="text-holder">
-                                <h3 itemprop="title" class="post-title text-white"><a href="https://rurera.com/products" class="text-white">Books</a></h3>
+                                <h3 itemprop="title" class="post-title text-white"><a href="/pricing" class="text-white">Books</a></h3>
                             </div>
                         </div>
                     </li>
@@ -415,7 +421,7 @@
                                 <figure><img src="../assets/default/img/toddler.png" alt="category image" title="category image" width="100%" height="auto" itemprop="image" loading="eager" /></figure>
                             </div>
                             <div class="text-holder">
-                                <h3 itemprop="title" class="post-title text-white"><a href="https://rurera.com/products" class="text-white">Baby and Toddler</a></h3>
+                                <h3 itemprop="title" class="post-title text-white"><a href="/pricing" class="text-white">Baby and Toddler</a></h3>
                             </div>
                         </div>
                     </li>
@@ -429,7 +435,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="section-title text-center mb-50">
-                    <h1 class="mt-0 mb-10 font-40">FAQ's for happy little minds</h1>
+                    <h2 class="mt-0 mb-10 font-40">FAQ's for happy little minds</h2>
                     <h2 itemprop="description" class="mt-10">
                         Have questions about rewards or redemption options? We're here to help!
                     </h2>
@@ -440,9 +446,9 @@
                     <div class="lms-faqs mx-w-100 mt-0" itemprop="mainEntity" itemtype="https://schema.org/Question">
                         <div id="accordion">
                             <div itemprop="mainEntity" itemtype="https://schema.org/Question" class="card">
-                                <div class="card-header" id="headingon11">
+                                <div class="card-header active" id="headingon11">
                                     <h3 itemprop="name" class="mb-0">
-                                        <button class="btn btn-link font-20 font-weight-normal collapse" data-toggle="collapse" data-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
+                                        <button class="btn btn-link font-20 font-weight-normal" data-toggle="collapse" data-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
                                             How do I earn coin points on Rurera?
                                         </button>
                                     </h3>

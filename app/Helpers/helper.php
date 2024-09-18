@@ -2460,6 +2460,11 @@ function toolbar_tools()
             'icon'  => 'fas fa-code',
             'type'  => 'other'
         ),
+		'inner_dropdown'               => array(
+            'title' => esc_html__('HTML', 'rureraform'),
+            'icon'  => 'fas fa-code',
+            'type'  => 'other'
+        ),
         'multichoice_template'  => array(
             'title' => esc_html__('SUM Q', 'rureraform'),
             'icon'  => 'fa fa-plus',
@@ -6437,6 +6442,195 @@ function element_properties_meta($chapters)
                 'type'      => 'logic-rules',
                 'visible'   => array('logic-enable' => array('on'))
             ),
+        ),
+		
+		'inner_dropdown' => array(
+            'basic'    => array(
+                'type'  => 'tab',
+                'value' => 'basic',
+                'label' => esc_html__('Basic', 'rureraform')
+            ),
+
+            'score'         => array(
+                'value' => '',
+                'label' => esc_html__('Score', 'rureraform'),
+                'type'  => 'number'
+            ),
+            'field_id'      => array(
+                'value' => '',
+                'label' => esc_html__('Field_id', 'rureraform'),
+                'type'  => 'hidden'
+            ),
+            'label'    => array(
+                'value'   => esc_html__('Match', 'rureraform'),
+                'label'   => esc_html__('Label', 'rureraform'),
+                'tooltip' => esc_html__('This is the label of the field.', 'rureraform'),
+                'type'    => 'text'
+            ),
+            'no_of_options'    => array(
+                'value'   => 1,
+                'label'   => esc_html__('No of Options', 'rureraform'),
+                'type'    => 'number'
+            ),
+            
+            'content'       => array(
+                'value'   => esc_html__('Default HTML Content.', 'rureraform') . '',
+                'label'   => esc_html__('HTML', 'rureraform'),
+                'tooltip' => esc_html__('This is the content of HTML.', 'rureraform'),
+                'type'    => 'textarea'
+            ),
+            'inner_options1'  => array(
+                'multi-select' => 'off',
+                'option_id' => 1,
+                'values'       => array(
+                    array(
+                        'value' => '1',
+                        'label' => 'Option 1',
+                        'image' => ''
+                    ),
+                ),
+                'label'        => '<div class="content_options">[DROPDOWN id="1"]</div>',
+                'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'rureraform'),
+                'type'         => 'options_label_minimal'
+            ),
+            'inner_options2'  => array(
+                'multi-select' => 'off',
+                'option_id' => 2,
+                'values'       => array(
+                    array(
+                        'value' => '1',
+                        'label' => 'Option 1',
+                        'image' => ''
+                    ),
+                ),
+                'label'        => '<div class="content_options">[DROPDOWN id="2"]</div>',
+                'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'rureraform'),
+                'type'         => 'options_label_minimal'
+            ),
+            'inner_options3'  => array(
+                'multi-select' => 'off',
+                'option_id' => 3,
+                'values'       => array(
+                    array(
+                        'value' => '1',
+                        'label' => 'Option 1',
+                        'image' => ''
+                    ),
+                ),
+                'label'        => '<div class="content_options">[DROPDOWN id="3"]</div>',
+                'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'rureraform'),
+                'type'         => 'options_label_minimal'
+            ),
+            'inner_options4'  => array(
+                'multi-select' => 'off',
+                'option_id' => 4,
+                'values'       => array(
+                    array(
+                        'value' => '1',
+                        'label' => 'Option 1',
+                        'image' => ''
+                    ),
+                ),
+                'label'        => '<div class="content_options">[DROPDOWN id="4"]</div>',
+                'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'rureraform'),
+                'type'         => 'options_label_minimal'
+            ),
+            'inner_options5'  => array(
+                'multi-select' => 'off',
+                'option_id' => 5,
+                'values'       => array(
+                    array(
+                        'value' => '1',
+                        'label' => 'Option 1',
+                        'image' => ''
+                    ),
+                ),
+                'label'        => '<div class="content_options">[DROPDOWN id="5"]</div>',
+                'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'rureraform'),
+                'type'         => 'options_label_minimal'
+            ),
+			
+            'description'        => array(
+                'value'   => '',
+                'label'   => esc_html__('Description', 'rureraform'),
+                'tooltip' => esc_html__('This description appears below the field.', 'rureraform'),
+                'type'    => 'text'
+            ),
+            'style'              => array(
+                'type'  => 'tab',
+                'value' => 'style',
+                'label' => esc_html__('Style', 'rureraform')
+            ),
+            'image_size'    => array(
+                'value'   => '',
+                'label'   => esc_html__('Image Size', 'rureraform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'image_small' => esc_html__('Small', 'rureraform'),
+                        'image_medium' => esc_html__('Medium', 'rureraform'),
+                        'image_large' => esc_html__('Large', 'rureraform'),
+                    )
+            ),
+            'template_style'     => array(
+                'value'   => 'rurera-in-row',
+                'label'   => esc_html__('Template Style', 'rureraform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'rurera-in-row' => esc_html__('Row', 'rureraform'),
+                        'rurera-in-cols' => esc_html__('Columns', 'rureraform'),
+                    )
+            ),
+
+            'template_alignment' => array(
+                'value'   => 'image-right',
+                'label'   => esc_html__('Image Alignment (Optional)', 'rureraform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'image-right' => esc_html__('Right', 'rureraform'),
+                        'image-top'   => esc_html__('Top', 'rureraform'),
+                    )
+            ),
+            'list_style'         => array(
+                'value'   => 'none',
+                'label'   => esc_html__('Bullet list Style', 'rureraform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        ''                    => esc_html__('None', 'rureraform'),
+                        'alphabet-list-style' => esc_html__('English Alphabet', 'rureraform'),
+                        'numeric-list-style'  => esc_html__('Numbers', 'rureraform'),
+                    )
+            ),
+
+
+            'description-style' => array(
+                'value'   => array(
+                    'position' => '',
+                    'align'    => ''
+                ),
+                'caption' => array(
+                    'position' => esc_html__('Position', 'rureraform'),
+                    'align'    => esc_html__('Align', 'rureraform')
+                ),
+                'label'   => esc_html__('Description style', 'rureraform'),
+                'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'rureraform'),
+                'type'    => 'description-style'
+            ),
+
+            'elements_data' => array(
+                'value'   => '',
+                'label'   => '',
+                'tooltip' => '',
+                'type'    => 'elements_data'
+            ),
+
         ),
         'html'               => array(
             'basic'         => array(

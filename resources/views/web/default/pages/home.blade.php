@@ -3,7 +3,7 @@
 @push('styles_top')
 <link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
 <style>
-    .home-banner {background: url(../assets/default/img/home-banner.jpg) 0 0 /cover no-repeat; min-height: 650px;}
+    .home-banner {background: url(../assets/default/img/home-banner.webp) 0 0 /cover no-repeat; min-height: 650px;}
     .home-categories-section {background-color: #f27530;}
     .choose-sats-section {background-color: #7679ee;}
     .reward-program-section {background-color: #fffcee;}
@@ -27,26 +27,26 @@
                         <div class="row">
                             <div class="col-12 col-lg-4 col-md-6">
                                 <div class="sats-box justify-content: center">
-                                    <img src="/store/1/default_images/home_sections_banners/dialogue.png" alt="practice papers">
+                                    <img src="/store/1/default_images/home_sections_banners/dialogue.webp" height="300" width="300" alt="practice papers">
                                     <span class="mb-10" style="color: #3d358b;">Practice papers</span>
                                     <p>Ace every exam with tailored practice papers for KS1, KS2, SATs, 11 Plus, and more.</p>
-                                    <a href="{{url('/')}}/register">Learn more</a>
+                                    <!-- <a href="{{url('/')}}/register">Learn more</a> -->
                                 </div>
                             </div>
                             <div class="col-12 col-lg-4 col-md-6">
                                 <div class="sats-box justify-content: center">
-                                    <img src="/store/1/default_images/home_sections_banners/cactus.png" alt="questions">
+                                    <img src="/store/1/default_images/home_sections_banners/cactus.webp" width="300" height="300" alt="cactus image">
                                     <span class="mb-10" style="color: #f18700;">Interactive questions</span>
                                     <p>Conquer exams with 5,000+ interactive questions designed for success.</p>
-                                    <a href="{{url('/')}}/register">Learn more</a>
+                                    <!-- <a href="{{url('/')}}/register">Learn more</a> -->
                                 </div>
                             </div>
                             <div class="col-12 col-lg-4 col-md-6">
                                 <div class="sats-box justify-content: center">
-                                    <img src="/store/1/default_images/home_sections_banners/rocket-ship.png" alt="help">
+                                    <img src="/store/1/default_images/home_sections_banners/rocket-ship.webp" width="280" height="280" alt="rocket-ship image">
                                     <span class="mb-10" style="color: #7679ee;">Strong Foundation</span>
                                     <p>Build a powerful foundation that shapes every aspect of future success.</p>
-                                    <a href="{{url('/')}}/register">Learn more</a>
+                                    <!-- <a href="{{url('/')}}/register">Learn more</a> -->
                                 </div>
                             </div>
                         </div>
@@ -54,57 +54,20 @@
                 </div>
                 <div class="col-12">
                     <div class="d-flex align-items-center justify-content-center mt-80">
-                        <a href="/pricing" class="btn-primary text-dark-blue font-16 register-btn py-15 px-30">Try Rurera for free</a>
+                        <a href="/pricing" class="try-rurera-btn btn-primary text-dark-blue font-16 register-btn py-15 px-30">Try Rurera for free</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- <section class="py-40 home-categories-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="mx-auto rurera-home-categories">
-                        <div class="row">
-                            <div class="col-12 col-lg-3 col-md-4">
-                                <div class="d-flex align-items-center justify-content-sm-center">
-                                    <span class="mr-15"> <img src="../assets/default/svgs/exam-full-white.svg" alt="globe svg" title="book svg" width="100%" height="auto" itemprop="image" loading="eager" style="width: 45px; height: 45px;">
-                                    </span>
-                                    <span class="text-white font-24 font-weight-500 d-inline-flex flex-column line-height-1">5000+ <small class="pt-5 font-16">Quiz practices</small></span>
-                                </div>
-                            </div>
-                            <div class="col-12 col-lg-3 col-md-4">
-                                <div class="d-flex align-items-center justify-content-sm-center">
-                                    <span class="mr-15"> <img src="../assets/default/svgs/book-opend-white.svg" alt="globe svg" title="book svg" width="100%" height="auto" itemprop="image" loading="eager" style="width: 45px; height: 45px;"> </span>
-                                    <span class="text-white font-24 font-weight-500 d-inline-flex flex-column line-height-1">100+ <small class="pt-5 font-16">Books</small></span>
-                                </div>
-                            </div>
-                            <div class="col-12 col-lg-3 col-md-4">
-                                <div class="d-flex align-items-center justify-content-sm-center">
-                                    <span class="mr-15"> <img src="../assets/default/svgs/globe-sm.svg" alt="globe svg" title="globe svg" width="100%" height="auto" itemprop="image" loading="eager" style="width: 45px; height: 45px;"> </span>
-                                    <span class="text-white font-24 font-weight-500 d-inline-flex flex-column line-height-1">60+ <small class="pt-5 font-16">Cities</small></span>
-                                </div>
-                            </div>
-                            <div class="col-12 col-lg-3 col-md-4">
-                                <div class="d-flex align-items-center justify-content-sm-center">
-                                    <span class="mr-15"> <img src="../assets/default/svgs/study-full-white.svg" alt="book svg" title="book svg" width="100%" height="auto" itemprop="image" loading="eager" style="width: 45px; height: 45px;"> </span>
-                                    <span class="text-white font-24 font-weight-500 d-inline-flex flex-column line-height-1">5000+ <small class="pt-5 font-16">Questions</small></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
+    
     {{do_shortcode('redefining_personalized_learning', array('items' => array(2,3,5,6,7,8,9,10,11,15,16,17)))}}
     <section class="choose-sats choose-sats-section pt-80 pb-90 mt-50">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="section-title text-center mb-50">
-                        <h2 class="mt-0 mb-10 text-white font-40">How Rurera Support Enhances Success</h2>
-                        <p class="text-white font-16">We fuse outstanding educational content with real-world quiz experience to generate effective results and excel in exams.</p>
+                        <h2 class="mt-0 mb-0 text-white font-40">How Rurera Support Enhances Success</h2>
                     </div>
                 </div>
                 <div class="col-12 col-lg-3 col-md-6">
@@ -145,22 +108,25 @@
                     <div class="row align-items-center">
                         <div class="col-12 col-lg-6">
                             <div class="position-relative reward-program-section-hero-card"> 
-                                <img src="/store/1/default_images/home_sections_banners/club_points_banner.png" class="reward-program-section-hero" alt="Win Club Points" height="390" width="570">
+                                <img src="/store/1/default_images/home_sections_banners/club_points_banner.webp" class="reward-program-section-hero" alt="You earned 50 points!" height="390" width="570">
                                 <div class="example-reward-card bg-white rounded-sm shadow-lg p-5 p-md-15 d-flex align-items-center">
                                     <div class="example-reward-card-medal"> 
-                                        <img src="/assets/default/img/rewards/medal.png" height="56" width="56" class="img-cover rounded-circle" alt="medal"> 
+                                        <img src="/assets/default/img/rewards/medal.webp" height="100" width="100" class="img-cover rounded-circle" alt="medal"> 
                                     </div>
-                                    <div class="flex-grow-1 ml-15"> <span class="font-16 font-weight-bold text-secondary d-block">You earned 50 points!</span> <span class="text-gray font-12 font-weight-500">for completing the course...</span> </div>
+                                    <div class="flex-grow-1 ml-15"> 
+                                        <span class="font-16 font-weight-bold text-secondary d-block">You earned 50 points!</span> 
+                                        <span class="font-12 font-weight-500" style="color: #000;">for completing the course...</span> 
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-12 col-lg-6 mt-20 mb-40 mt-lg-0 mb-lg-0">
                             <div class="column-text">
                                 <h2 class="font-40 text-dark">Unlock Coin Bonuses!</h2>
-                                <p class="font-16 text-gray mt-10">Start practicing now and unlock a world of exciting toys! As you learn and progress, earn coin points that boost your chances of winning amazing rewards. Dive into the fun and collect your coins today!</p>
+                                <p class="font-16 mt-10" style="color: #000;">Start practicing now and unlock a world of exciting toys! As you learn and progress, earn coin points that boost your chances of winning amazing rewards. Dive into the fun and collect your coins today!</p>
                                 <div class="mt-35 d-flex align-items-center"> 
-                                    <a href="{{url('/')}}/rewards" class="btn btn-primary">Rewards</a> 
-                                    <a href="{{url('/')}}/products" class="btn btn-outline-primary ml-15">Rewards Store</a> 
+                                    <a href="{{url('/')}}/rewards" class="btn btn-outline-primary font-16 font-weight-500">Rewards</a> 
+                                    <a href="{{url('/')}}/pricing" class="btn btn-outline-primary font-16 font-weight-500 ml-25">Rewards Store</a> 
                                 </div>
                             </div>
                         </div>
@@ -175,7 +141,6 @@
                 <div class="col-12">
                     <div class="section-title text-center mb-0">
                         <h2 class="mt-0 mb-10 font-40">Hear from Those Who Believe in Us!</h2>
-                        <!-- <p class="font-16 text-gray">What our customers say about us</p> -->
                     </div>
                 </div>
                 <div class="col-12">
@@ -185,11 +150,11 @@
                                 <div class="testimonials-card position-relative py-15 py-lg-30 px-10 px-lg-20 rounded-sm shadow bg-white text-center mt-80">
                                     <div class="d-flex flex-column align-items-center">
                                         <div class="testimonials-user-avatar"> 
-                                            <img src="/store/923/avatar/testimonial-grid1.png" alt="James Turner" class="img-cover rounded-circle" height="80" width="80"> 
+                                            <img src="/store/923/avatar/testimonial-grid1.webp" alt="James Turner" class="img-cover rounded-circle" height="350" width="350"> 
                                         </div>
                                         <span class="font-20 font-weight-bold text-secondary mt-30 d-block">Natalie Turner</span> <span class="d-block font-16 text-gray"></span>
                                     </div>
-                                    <p class="mt-10 text-gray font-16">Rurera has been a lifesaver for me in high school. I used to get all F's, but now I have all B's and even a C. My grades have significantly improved, thanks to Rurera.</p>
+                                    <p class="mt-10 font-16">Rurera has been a lifesaver for me in high school. I used to get all F's, but now I have all B's and even a C. My grades have significantly improved, thanks to Rurera.</p>
                                     <div class="bottom-gradient"></div>
                                 </div>
                             </div>
@@ -197,11 +162,11 @@
                                 <div class="testimonials-card position-relative py-15 py-lg-30 px-10 px-lg-20 rounded-sm shadow bg-white text-center mt-80">
                                     <div class="d-flex flex-column align-items-center">
                                         <div class="testimonials-user-avatar"> 
-                                            <img src="/store/923/avatar/617a4f9983fe5.png" alt="James Turner" class="img-cover rounded-circle" height="80" width="80"> 
+                                            <img src="/store/923/avatar/617a4f9983fe5.webp" alt="James Turner" class="img-cover rounded-circle" height="350" width="350"> 
                                         </div>
                                         <span class="font-20 font-weight-bold text-secondary mt-30 d-block">Liam Reed</span> <span class="d-block font-16 text-gray"></span>
                                     </div>
-                                    <p class="mt-10 text-gray font-16">Thanks to Rurera, my grades have gone up, and I enjoy practicing with the platform. I used to dislike learning, but now I have a thirst for knowledge and want to learn more.</p>
+                                    <p class="mt-10 font-16">Thanks to Rurera, my grades have gone up, and I enjoy practicing with the platform. I used to dislike learning, but now I have a thirst for knowledge and want to learn more.</p>
                                     <div class="bottom-gradient"></div>
                                 </div>
                             </div>
@@ -209,11 +174,11 @@
                                 <div class="testimonials-card position-relative py-15 py-lg-30 px-10 px-lg-20 rounded-sm shadow bg-white text-center mt-80">
                                     <div class="d-flex flex-column align-items-center">
                                         <div class="testimonials-user-avatar"> 
-                                            <img src="/store/923/avatar/testimonial-grid3.png" alt="James Turner" class="img-cover rounded-circle" height="80" width="80"> 
+                                            <img src="/store/923/avatar/testimonial-grid3.webp" alt="James Turner" class="img-cover rounded-circle" height="350" width="350"> 
                                         </div>
                                         <span class="font-20 font-weight-bold text-secondary mt-30 d-block">Michael Foster</span> <span class="d-block font-16 text-gray"></span>
                                     </div>
-                                    <p class="mt-10 text-gray font-16">It allows students to work on their own levels and at their own pace. I also love that I can see what they are doing when they are doing it, provide feedback or help in real time.</p>
+                                    <p class="mt-10 font-16">It allows students to work on their own levels and at their own pace. I also love that I can see what they are doing when they are doing it, provide feedback or help in real time.</p>
                                     <div class="bottom-gradient"></div>
                                 </div>
                             </div>
@@ -242,8 +207,8 @@
                    @endforeach
 
                </div>
-               <div class="d-flex align-items-center justify-content-center pt-50">
-                    <a href="/pricing" class="btn-primary font-16 text-dark-blue register-btn py-15 px-30">Try Rurera for free</a>
+               <div class="d-flex align-items-center justify-content-end pt-50">
+                    <a href="/pricing" class="try-rurera-btn btn-primary font-16 text-dark-blue register-btn py-15 px-30">Try Rurera for free</a>
                 </div>
            </section>
        @endif
@@ -255,11 +220,13 @@
                     <div class="newsletter-inner">
                         <div class="row">
                             <div class="col-12 col-lg-8 col-md-8">
-                                <h2 itemprop="title" class="mb-10 text-white font-40">Kickstart your Exams Prep today!</h2>
-                                <p itemprop="description" class="mb-0 text-white font-16"> Let us help you achieve the score you deserve and unlock doors to your future academic success. </p>
+                                <h2 itemprop="title" class="mb-10 text-dark font-40">Kickstart your Exams Prep today!</h2>
+                                <p itemprop="description" class="mb-0 text-dark font-16"> Let us help you achieve the score you deserve and unlock doors to your future academic success. </p>
                             </div>
                             <div class="col-12 col-lg-4 col-md-4">
-                                <div class="form-field position-relative text-right"> <button class="rounded-pill rounded bg-white"> <a href="{{url('/')}}/pricing" style="color:var(--gray-dark);">Try Rurera for free</a> </button> </div>
+                                <div class="form-field position-relative text-right"> 
+                                    <button class="rounded-pill rounded bg-white"> <a href="{{url('/')}}/pricing" style="color:var(--gray-dark);">Try Rurera for free</a> </button> 
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -274,7 +241,5 @@
 @endsection
 
 @push('scripts_bottom')
-<script src="/assets/default/vendors/masonry/masonry.pkgd.min.js"></script>
 <script src="/assets/default/vendors/swiper/swiper-bundle.min.js"></script>
-<script src="/assets/default/vendors/parallax/parallax.min.js"></script>
 @endpush

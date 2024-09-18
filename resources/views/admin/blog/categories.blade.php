@@ -86,6 +86,19 @@
                                                         </div>
                                                         @enderror
                                                     </div>
+													
+													<div class="form-group">
+														<label>Category Slug</label>
+														<input type="text" name="slug"
+															   class="form-control  @error('slug') is-invalid @enderror"
+															   value="{{ !empty($editCategory) ? $editCategory->slug : old('slug') }}"
+															   placeholder="Category Slug"/>	
+														@error('slug')
+														<div class="invalid-feedback">
+															{{ $message }}
+														</div>
+														@enderror
+													</div>
 
                                                     <button type="submit" class="btn btn-success">{{ trans('admin/main.save_change') }}</button>
                                                 </form>

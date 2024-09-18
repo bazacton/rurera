@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class BlogCategory extends Model
 {
@@ -27,6 +28,11 @@ class BlogCategory extends Model
                 'source' => 'title'
             ]
         ];
+    }
+
+    public static function makeSlug($title)
+    {
+        return SlugService::createSlug(self::class, 'slug', $title);
     }
 
     public function blog()

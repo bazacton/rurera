@@ -143,16 +143,16 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="section-title text-center mb-50">
-                    <h2 itemprop="title">Courses Faq's</h2>
+                <div class="section-title text-center mb-30">
+                    <h2 itemprop="title" class="font-40">Frequently asked questions</h2>
                 </div>
             </div>
-            <div class="col-12 col-lg-8 col-md-8 mx-auto">
+            <div class="col-12 col-lg-12 col-md-12 mx-auto">
             <div class="lms-faqs mx-w-100 mt-0">
                 <div id="accordion">
                     <div class="card">
                         <div class="card-header" id="headingonsix">
-                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapsesix" aria-expanded="true" aria-controls="collapsesix" itemprop="collapse button">What is the difference between KS1 and KS2?</button>
+                            <button class="btn btn-link font-18 font-weight-bold" data-toggle="collapse" data-target="#collapsesix" aria-expanded="true" aria-controls="collapsesix" itemprop="collapse button">What is the difference between KS1 and KS2?</button>
                         </div>
                         <div id="collapsesix" class="collapse show" aria-labelledby="headingsix" data-parent="#accordion">
                             <div class="card-body">
@@ -162,7 +162,7 @@
                     </div>
                     <div class="card">
                         <div class="card-header" id="headingTwo">
-                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" itemprop="collapse button">What subjects are typically covered in KS1 and KS2 courses?</button>
+                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" itemprop="collapse button">What subjects are typically covered in KS1 and KS2 courses?</button>
                         </div>
                         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                             <div class="card-body">
@@ -172,7 +172,7 @@
                     </div>
                     <div class="card">
                         <div class="card-header" id="headingseven">
-                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseseven" aria-expanded="false" aria-controls="collapseseven" itemprop="collapse button">How are KS1 and KS2 courses taught?</button>
+                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapseseven" aria-expanded="false" aria-controls="collapseseven" itemprop="collapse button">How are KS1 and KS2 courses taught?</button>
                         </div>
                         <div id="collapseseven" class="collapse" aria-labelledby="headingseven" data-parent="#accordion">
                             <div class="card-body">
@@ -182,7 +182,7 @@
                     </div>
                     <div class="card">
                         <div class="card-header" id="heading8">
-                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8" itemprop="collapse button">How long do KS1 and KS2 courses last?</button>
+                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8" itemprop="collapse button">How long do KS1 and KS2 courses last?</button>
                         </div>
                         <div id="collapse8" class="collapse" aria-labelledby="heading8" data-parent="#accordion">
                             <div class="card-body"></div>
@@ -193,7 +193,7 @@
                     </div>
                     <div class="card">
                         <div class="card-header" id="heading9">
-                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse9" aria-expanded="false" aria-controls="collapse9" itemprop="collapse button">Can parents support KS1 and KS2 learning at home?</button>
+                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse9" aria-expanded="false" aria-controls="collapse9" itemprop="collapse button">Can parents support KS1 and KS2 learning at home?</button>
                         </div>
                         <div id="collapse9" class="collapse" aria-labelledby="heading9" data-parent="#accordion">
                             <div class="card-body">
@@ -207,7 +207,7 @@
         </div>
     </div>
 </section>
-<section class="lms-column-section lms-text-section mx-w-100 py-70 mt-70 mb-10" style="background-color: #7679ee;">
+<section class="lms-column-section lms-text-section mx-w-100 py-70 mt-70" style="background-color: #7679ee;">
     <div class="container">
        <div class="row">
           <div class="col-12">

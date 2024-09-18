@@ -19,7 +19,8 @@ class Page extends Model implements TranslatableContract
     public $translatedAttributes = [
         'title',
         'seo_description',
-        'content'
+        'content',
+		'page_title',
     ];
 
     protected static function boot()

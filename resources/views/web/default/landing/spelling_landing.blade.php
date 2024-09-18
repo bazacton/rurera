@@ -27,26 +27,26 @@
         <div class="container h-100">
             <div class="row h-100">
                 <div class="col-12 col-md-12 col-lg-6">
-                    <h1 class="font-72 font-weight-bold">Mastering <span class="text-scribble mr-10">SATs</span> with confidence.</h1>
-                    <h2 class="mb-15 font-30">Maximize Your Performance: Boost your sats scores.
+                    <h1 class="font-72 font-weight-bold">Inspiring <span class="text-scribble mr-10">Kids</span> to Love Words and Spelling!</h1>
+                    <h2 class="mb-15 font-30">Discover a fun and simple way to Master English spelling!
                     </h2>
                     <p class="font-19">
-                        Don't leave your SAT performance to chance! Join us to unlock your full potential and excel on the SATs. Transform your test preparation with our expert guidance and resources—achieve the scores you’ve always dreamed of!
+                        We help kids build a strong foundation in spelling and vocabulary with engaging, interactive lessons based on British English. Our fun approach makes learning spelling and word usage enjoyable and effective.
 
                     </p>
                     <ul class="mb-0 p-0">
                         <li class="mb-10 font-19">
-                            <img src="../assets/default/svgs/mobile.svg" width="25" height="25" alt="#">Top Performance: Engaging Quizzes & Assessments
+                            <img src="../assets/default/svgs/mobile.svg" width="25" height="25" alt="#">Curriculum Word Lists: According to Curriculum word sets.
                         </li>
                         <li class="mb-10 font-19">
-                            <img src="../assets/default/svgs/preparation.svg" width="25" height="25" alt="#">Comprehensive Exam Prep: Tools & Strategies
+                            <img src="../assets/default/svgs/preparation.svg" width="25" height="25" alt="#">Spelling Quizzes: Fun and interactive quizzes.
 
                         </li>
                         <li class="mb-10 font-19">
-                            <img src="../assets/default/svgs/graphic-design.svg" width="25" height="25" alt="#">Score Guarantee: Achieve Your Best
+                            <img src="../assets/default/svgs/graphic-design.svg" width="25" height="25" alt="#">Win Rewards: Earn rewards for milestones.
                         </li>
                         <li class="font-19">
-                            <img src="../assets/default/svgs/book-opend.svg" width="25" height="25" alt="#">Proven Resources: 100% Success Results
+                            <img src="../assets/default/svgs/book-opend.svg" width="25" height="25" alt="#">Progress Tracking: Easy monitoring.
                         </li>
                     </ul>
                     <a href="/pricing" class="try-rurera-btn justify-content-center bg-primary text-white register-btn">Try Rurera for free</a>
@@ -269,12 +269,10 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-title text-center mb-50">
-                        <h2 class="mt-0 mb-10 text-white font-40">Master the SATs with Rurera
+                        <h2 class="mt-0 mb-10 text-white font-40">Improve your Spelling and Vocabulary with Rurera
                         </h2>
                         <p class="text-white font-19">
-                            Work through a variety of SATs practice and SATs quizzes questions to improve your skills
-                            and become familiar with the <br />
-                            types of questions you'll encounter on the SATs exam.
+                            See how Rurera helps you master spelling and vocabulary with easy-to-use tools and personalized support.
                         </p>
                     </div>
                 </div>
@@ -297,9 +295,9 @@
                                     </div>
                                     <div class="process-card-body">
                                         <div class="text-holder">
-                                            <h3 class="post-title text-white">Learn &amp; Understand</h3>
+                                            <h3 class="post-title text-white">Custom Word Lists</h3>
                                             <p class="mt-15 text-white">
-                                                Build a solid foundation with SATs quizzes, tests, and assessments, and get instant feedback.
+                                                Use personalized lists to focus on the words you need to learn.
                                             </p>
                                         </div>
                                     </div>
@@ -312,9 +310,9 @@
                                     </div>
                                     <div class="process-card-body">
                                         <div class="text-holder">
-                                            <h3 class="post-title text-white"> Practice Tests</h3>
+                                            <h3 class="post-title text-white"> Fun Learning Quizzes</h3>
                                             <p class="mt-15 text-white">
-                                                Sharpen your skills with targeted practice tests to strengthen weak areas and boost your scores.
+                                                Enjoy interactive activities that make spelling and vocabulary practice exciting.
                                             </p>
                                         </div>
                                     </div>
@@ -327,9 +325,9 @@
                                     </div>
                                     <div class="process-card-body">
                                         <div class="text-holder">
-                                            <h3 class="post-title text-white">Track progress</h3>
+                                            <h3 class="post-title text-white">Easy Progress Tracking</h3>
                                             <p class="mt-15 text-white">
-                                                Monitor your improvement and pinpoint areas for further development.
+                                                See how you’re improving with simple reports and feedback.
                                             </p>
                                         </div>
                                     </div>
@@ -341,217 +339,7 @@
             </div>
         </div>
     </section>
-    <section class="key-stage-section mt-50">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-title text-left mb-40">
-                        <h2 class="mb-15 font-40">
-                            Endless SATs Resources, Endless Practice Opportunities
-
-                        </h2>
-                        <p class="font-19 text-gray">
-                            With consistent effort and top-tier SATs resources, boost your performance on exam day.
-
-                        </p>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="element-title has-bg">
-                        <h2 class="text-white m-0">Key Stage 1 & Key Stage 2</h2>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <ul class="lms-key-stage-table bg-table mt-30">
-                        <li class="lms-key-stage-head">
-                            <div class="lms-key-stage keystage-title border-none"></div>
-                            <div class="lms-key-stage">
-                                <h3>English - Reading</h3>
-                            </div>
-                            <div class="lms-key-stage">
-                                <h3>English - SPaG</h3>
-                            </div>
-                            <div class="lms-key-stage">
-                                <h3>Math - Arithmetic</h3>
-                            </div>
-                            <div class="lms-key-stage">
-                                <h3>Math - Reasoning</h3>
-                            </div>
-                        </li>
-                        <li class="lms-key-stage-des">
-                            <div class="lms-key-stage text-center"><strong>2022</strong></div>
-                            <div class="lms-key-stage">
-                                <div class="lms-img-holder">
-                                    <div class="lms-img"><img src="../assets/default/img/reading-img1.webp" width="65" height="92" alt="#" />
-                                    </div>
-                                    <div class="lms-img"><img src="../assets/default/img/reading-img3.webp" width="65" height="92" alt="#" />
-                                    </div>
-                                    <div class="lms-img"><img src="../assets/default/img/reading-img2.webp" width="65" height="92" alt="#" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="lms-key-stage">
-                                <div class="lms-img-holder">
-                                    <div class="lms-img"><img src="../assets/default/img/reading-img1.webp" width="65" height="92" alt="#" />
-                                    </div>
-                                    <div class="lms-img"><img src="../assets/default/img/reading-img2.webp" width="65" height="92" alt="#" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="lms-key-stage">
-                                <div class="lms-img-holder">
-                                    <div class="lms-img">
-                                        <img src="../assets/default/img/reading-img8.webp" width="65" height="92" alt="#" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="lms-key-stage">
-                                <div class="lms-img-holder">
-                                    <div class="lms-img">
-                                        <img src="../assets/default/img/reading-img8.webp" width="65" height="92" alt="#" />
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="lms-key-stage-des">
-                            <div class="lms-key-stage text-center"><strong>2019</strong></div>
-                            <div class="lms-key-stage">
-                                <div class="lms-img-holder">
-                                    <div class="lms-img"><img src="../assets/default/img/reading-img1.webp" width="65" height="92" alt="#" />
-                                    </div>
-                                    <div class="lms-img"><img src="../assets/default/img/reading-img3.webp" width="65" height="92" alt="#" />
-                                    </div>
-                                    <div class="lms-img"><img src="../assets/default/img/reading-img2.webp" width="65" height="92" alt="#" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="lms-key-stage">
-                                <div class="lms-img-holder">
-                                    <div class="lms-img"><img src="../assets/default/img/reading-img1.webp" width="65" height="92" alt="#" />
-                                    </div>
-                                    <div class="lms-img"><img src="../assets/default/img/reading-img2.webp" width="65" height="92" alt="#" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="lms-key-stage">
-                                <div class="lms-img-holder">
-                                    <div class="lms-img"><img src="../assets/default/img/reading-img8.webp" width="65" height="92" alt="#" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="lms-key-stage">
-                                <div class="lms-img-holder">
-                                    <div class="lms-img"><img src="../assets/default/img/reading-img8.webp" width="65" height="92" alt="#" />
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="lms-key-stage-des">
-                            <div class="lms-key-stage text-center"><strong>2018</strong></div>
-                            <div class="lms-key-stage">
-                                <div class="lms-img-holder">
-                                    <div class="lms-img"><img src="../assets/default/img/reading-img1.webp" width="65" height="92" alt="#" />
-                                    </div>
-                                    <div class="lms-img"><img src="../assets/default/img/reading-img3.webp" width="65" height="92" alt="#" />
-                                    </div>
-                                    <div class="lms-img"><img src="../assets/default/img/reading-img2.webp" width="65" height="92" alt="#" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="lms-key-stage">
-                                <div class="lms-img-holder">
-                                    <div class="lms-img"><img src="../assets/default/img/reading-img1.webp" width="65" height="92" alt="#" />
-                                    </div>
-                                    <div class="lms-img"><img src="../assets/default/img/reading-img2.webp" width="65" height="92" alt="#" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="lms-key-stage">
-                                <div class="lms-img-holder">
-                                    <div class="lms-img"><img src="../assets/default/img/reading-img8.webp" width="65" height="92" alt="#" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="lms-key-stage">
-                                <div class="lms-img-holder">
-                                    <div class="lms-img">
-                                        <img src="../assets/default/img/reading-img8.webp" width="65" height="92" alt="#" />
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="lms-key-stage-des">
-                            <div class="lms-key-stage text-center"><strong>2017</strong></div>
-                            <div class="lms-key-stage">
-                                <div class="lms-img-holder">
-                                    <div class="lms-img"><img src="../assets/default/img/reading-img1.webp" width="65" height="92" alt="#" />
-                                    </div>
-                                    <div class="lms-img"><img src="../assets/default/img/reading-img3.webp" width="65" height="92" alt="#" />
-                                    </div>
-                                    <div class="lms-img"><img src="../assets/default/img/reading-img2.webp" width="65" height="92" alt="#" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="lms-key-stage">
-                                <div class="lms-img-holder">
-                                    <div class="lms-img"><img src="../assets/default/img/reading-img1.webp" width="65" height="92" alt="#" />
-                                    </div>
-                                    <div class="lms-img"><img src="../assets/default/img/reading-img2.webp" width="65" height="92" alt="#" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="lms-key-stage">
-                                <div class="lms-img-holder">
-                                    <div class="lms-img"><img src="../assets/default/img/reading-img8.webp" width="65" height="92" alt="#" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="lms-key-stage">
-                                <div class="lms-img-holder">
-                                    <div class="lms-img"><img src="../assets/default/img/reading-img8.webp" width="65" height="92" alt="#" />
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="lms-key-stage-des">
-                            <div class="lms-key-stage text-center"><strong>2016</strong></div>
-                            <div class="lms-key-stage">
-                                <div class="lms-img-holder">
-                                    <div class="lms-img"><img src="../assets/default/img/reading-img1.webp" width="65" height="92" alt="#" />
-                                    </div>
-                                    <div class="lms-img"><img src="../assets/default/img/reading-img3.webp" width="65" height="92" alt="#" />
-                                    </div>
-                                    <div class="lms-img"><img src="../assets/default/img/reading-img2.webp" width="65" height="92" alt="#" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="lms-key-stage">
-                                <div class="lms-img-holder">
-                                    <div class="lms-img"><img src="../assets/default/img/reading-img1.webp" width="65" height="92" alt="#" />
-                                    </div>
-                                    <div class="lms-img"><img src="../assets/default/img/reading-img2.webp" width="65" height="92" alt="#" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="lms-key-stage">
-                                <div class="lms-img-holder">
-                                    <div class="lms-img"><img src="../assets/default/img/reading-img8.webp" width="65" height="92" alt="#" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="lms-key-stage">
-                                <div class="lms-img-holder">
-                                    <div class="lms-img"><img src="../assets/default/img/reading-img8.webp" width="65" height="92" alt="#" />
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="lms-column-section lms-text-section exploring-curriculum mx-w-100 mt-80 mb-80 pt-70 pb-70 pr-30 pl-30">
+    <section class="lms-column-section lms-text-section exploring-curriculum mx-w-100 mt-0 mb-80 pt-70 pb-70 pr-30 pl-30">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
@@ -561,9 +349,9 @@
                                 <span class="icon-svg mr-15">
                                     <img src="../assets/default/svgs/bulb-white.svg" height="35" width="35" alt="#">
                                 </span>
-                                Kickstart your SATs Exam Prep Today.
+                                Boost Your Spelling and Vocabulary Skills Today!
                             </h4>
-                            <p class="font-16 text-white"> Let us help you achieve the score you deserve and unlock <br>doors to your future academic success.</p>
+                            <p class="font-16 text-white"> Unlock the power of words with our engaging resources. Build essential skills to excel and open doors to your future achievements.</p>
                         </div>
                         <div class="lms-btn-group justify-content-center">
                             <a href="{{url('/')}}/register-as" class="lms-btn rounded-pill text-white border-white">Try for free</a>
@@ -577,21 +365,19 @@
         <div class="row align-items-center">
             <div class="col-12">
                 <div class="section-title text-center mb-50">
-                    <h2 class="mt-0 mb-10 font-40"> Conquer the SATs with Confidence
+                    <h2 class="mt-0 mb-10 font-40"> Rurera’s Features for Mastering Vocabulary and Spelling!
                     </h2>
                     <p class="font-19 text-gray">
-                        Rurera offer the capability to track their onscreen and practiced time activity well remaining
-                        on system and <br />
-                        can analyze the performance against each topic.
+                        Find fun and impactful ways to enhance your vocabulary and spelling skills with Rurera’s top features!
                     </p>
                 </div>
             </div>
             <div class="col-12 col-lg-6">
                 <div class="">
                     <div class="section-title section-inner-title">
-                        <h2 class="font-40 text-dark">KS1 & KS2 SATs Practice</h2>
+                        <h2 class="font-40 text-dark">Curriculum Based Word Lists</h2>
                         <p class="font-16 text-gray mt-10">
-                            Practice online with past KS1 and KS2 SATs papers. Skip the hassle of creating tests and start improving today!
+                            Explore Rurera’s Word Directory, a comprehensive collection of vocabulary designed to enhance spelling skills. With words organized from A-Z, suffix, prefix, learning becomes simple and effective.
 
                         </p>
                     </div>
@@ -622,10 +408,10 @@
             <div class="col-12 col-lg-6">
                 <div class="">
                     <div class="section-title section-inner-title">
-                        <h2 class="font-40 text-dark">Ace SATs with Quizzes & Assessments!
+                        <h2 class="font-40 text-dark">Play and Learn Quizzes
                         </h2>
                         <p class="font-16 text-gray mt-10">
-                            SATs quizzes and assessments cover key subjects like English, Maths, Science, and Computing. Enhance English reading skills and foster a love for books. Support Design and Technology learning. Ideal for effective SATs exam practice.
+                            With Rurera’s Play and Learn Quizzes, kids can enjoy fun, interactive challenges that help them strengthen vocabulary and spelling skills while having a great time learning.
 
                         </p>
                     </div>
@@ -642,9 +428,9 @@
             <div class="col-12 col-lg-6">
                 <div class="">
                     <div class="section-title section-inner-title">
-                        <h2 class="font-40 text-dark">Track Individual Progress with Ease</h2>
+                        <h2 class="font-40 text-dark">Audio Pronunciations</h2>
                         <p class="font-16 text-gray mt-10">
-                            Rurera provides a user-friendly platform for teachers to analyze performance trends, both individually and in groups, ensuring effective SATs exam preparation.
+                            Improve pronunciation and listening skills with Rurera’s Audio Pronunciations. Hear words spoken clearly, and master phonemic awareness by learning the correct sounds, helping kids grasp the building blocks of language more effectively.
 
                         </p>
                     </div>
@@ -675,8 +461,8 @@
             <div class="col-12 col-lg-6">
                 <div>
                     <div class="section-title section-inner-title">
-                        <h2 class="font-40 text-dark"> Effortlessly Track Practice</h2>
-                        <p class="font-16 text-gray mt-10">Rurera lets you monitor SATs exam practice time, track activity logs, and analyze performance for each test all in one place.</p>
+                        <h2 class="font-40 text-dark"> Spelling Bee Practices</h2>
+                        <p class="font-16 text-gray mt-10">Get ready for spelling success with Rurera’s Spelling Bee practice. Test your skills with challenging words and timed quizzes to boost your spelling confidence and performance.</p>
                     </div>
                     <!-- <div class="mt-35 d-flex align-items-center btn-holder">
                         <a href="{{url('/')}}/pricing" class="btn btn-primary">Track performance</a>
@@ -691,9 +477,9 @@
             <div class="col-12 col-lg-6">
                 <div class="">
                     <div class="section-title section-inner-title">
-                        <h2 class="font-40 text-dark">Enhance Learning with SATs Papers</h2>
+                        <h2 class="font-40 text-dark">Progress Rewards</h2>
                         <p class="font-16 text-gray mt-10">
-                            Explore a wide range of SATs papers and resources to master fundamental concepts and boost your problem-solving skills for the SATs exam.
+                            Celebrate your achievements with Rurera’s Progress Rewards. Earn rewards as you hit milestones and make improvements, keeping motivation high and recognizing your hard work along the way.
 
                         </p>
                     </div>
@@ -718,232 +504,9 @@
             </div>
         </div>
     </section>
-    <section class="choose-sats choose-sats-section py-80 mt-90">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-12">
-                    <div class="section-title text-center mb-50">
-                        <h2 class="mt-0 mb-10 text-white font-40">About SATs Exam</h2>
-                        <p class="font-19 text-white">
-                            With engaging learning experiences, proven SATs resources, and SATs practice, you'll be <br />well-prepared to achieve your best scores
-                            on the SATs exam.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-6 col-md-6">
-                    <div class="row">
-                        <div class="col-12 col-lg-3 col-md-6">
-                            <div class="sats-box border-white has-bg">
-                                <img src="../assets/default/svgs/exam-multiple-white.svg" width="50" height="50" alt="#" />
-                                <h3 class="text-white">100+ SATs practices</h3>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-3 col-md-6">
-                            <div class="sats-box border-white has-bg">
-                                <img src="../assets/default/svgs/lessons-white.svg" width="50" height="50" alt="#" />
-                                <span class="text-white">SATs Resources</span>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-3 col-md-6">
-                            <div class="sats-box border-white has-bg">
-                                <img src="../assets/default/svgs/impact-white.svg" width="50" height="50" alt="#" />
-                                <span class="text-white">SATs Assesments</span>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-3 col-md-6">
-                            <div class="sats-box border-white has-bg">
-                                <img src="../assets/default/svgs/sav-time-white.svg" width="50" height="50" alt="#" />
-                                <span class="text-white">SATs Quizzes</span>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-3 col-md-6">
-                            <div class="sats-box border-white has-bg">
-                                <img src="../assets/default/svgs/study-white.svg" width="50" height="50" alt="#" />
-                                <span class="text-white">SATs Tests</span>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-3 col-md-6">
-                            <div class="sats-box border-white has-bg">
-                                <img src="../assets/default/svgs/flexibility-white.svg" width="50" height="50" alt="#" />
-                                <span class="text-white">SATs papers</span>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-3 col-md-6">
-                            <div class="sats-box border-white has-bg">
-                                <img src="../assets/default/svgs/logic-white.svg" width="50" height="50" alt="#" />
-                                <span class="text-white">SATs exam</span>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-3 col-md-6">
-                            <div class="sats-box border-white has-bg">
-                                <img src="../assets/default/svgs/support-white.svg" width="50" height="50" alt="#" />
-                                <span class="text-white">Friendly support</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-6 col-md-6">
-                    <div class="section-title">
-                        <h2 class="font-36 text-white">
-                            Ignite Your Path to Success with 100+ SATs practices
-                        </h2>
-                        <p class="font-19 mb-0 mt-10 text-white">
-                            Work through a variety of SATs exam practice questions to improve your skills
-                            and become familiar with the types of questions you'll encounter on
-                            the SATs exam.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-
-
-    <section class="pt-80">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-title mb-50 text-center">
-                        <h2 class="mb-10 font-40">Personalized SATs Prep with Rurera</h2>
-                        <p class="font-16 text-gray">Empower your child’s learning journey with tailored resources and assessments that meet their unique needs.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                    <div class="feature-grid text-center mb-40" itemprop="feature learning course">
-                        <figure class="mb-20" class="mb-20">
-
-                            <img src="../assets/default/img/ks1-year1-feature.jpg" alt="feature image" height="143" width="276">
-
-                        </figure>
-                        <h3 class="mb-5 font-20 font-weight-bold" itemprop="title">
-                            <span class="text-dark-charcoal">Key to Effective Learning</span>
-                        </h3>
-                        <p itemprop="description"> Build knowledge through SATs quizzes, SATs tests and SATs assessments with immediate feedback.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                    <div class="feature-grid text-center mb-40" itemprop="feature learning course">
-                        <figure class="mb-20">
-
-                            <img src="../assets/default/img/entrance-exams.jpg" alt="feature image" height="143" width="276">
-
-                        </figure>
-                        <h3 class="mb-5 font-20 font-weight-bold" itemprop="title">
-                            <span class="text-dark-charcoal">SATs 100s online Assessments</span>
-                        </h3>
-                        <p itemprop="description">Unlock 100+ Online Assessments for High Achievers .Students can take SATs quizzes and SATs assessments to test their knowledge.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                    <div class="feature-grid text-center mb-40" itemprop="feature learning course">
-                        <figure class="mb-20">
-
-                            <img src="../assets/default/img/analytics-feature.jpg" alt="feature image" height="143" width="276">
-
-                        </figure>
-                        <h3 class="mb-5 font-20 font-weight-bold" itemprop="title">
-                            <span class="text-dark-charcoal">Past SATs Papers</span>
-                        </h3>
-                        <p itemprop="description"> Discover wide range of SATs Papers and SATs resources to improve your learning process and explore the fundamental concepts of SATs exam practice for advanced problem-solving.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                    <div class="feature-grid text-center mb-40" itemprop="feature learning course">
-                        <figure class="mb-20">
-
-                            <img src="../assets/default/img/quick-assesments.jpg" alt="feature image" height="143" width="276">
-
-                        </figure>
-                        <h3 class="mb-5 font-20 font-weight-bold" itemprop="title">
-                            <span class="text-dark-charcoal">Learn, Play & Win</span>
-                        </h3>
-                        <p itemprop="description">Knowledge leads to winning toys, Improve your skills, and earn rewards through continuous learning and engagement.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                    <div class="feature-grid text-center mb-40" itemprop="feature learning course">
-                        <figure class="mb-20">
-
-                            <img src="../assets/default/img/insights-feature.jpg" alt="feature image" height="143" width="276">
-
-                        </figure>
-                        <h3 class="mb-5 font-20 font-weight-bold" itemprop="title">
-                            <span class="text-dark-charcoal">Student Engagement</span>
-                        </h3>
-                        <p itemprop="description"> Engage students by offering interactive challenges, online test practices, and entrance exam preparation, all while rewarding their efforts with popular toys and collectibles.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                    <div class="feature-grid text-center mb-40" itemprop="feature learning course">
-                        <figure class="mb-20">
-
-                            <img src="../assets/default/img/sats-home-feature.jpg" alt="feature image" height="143" width="276">
-
-                        </figure>
-                        <h3 class="mb-5 font-20 font-weight-bold" itemprop="title">
-                            <span class="text-dark-charcoal">Activity Monitoring</span>
-                        </h3>
-                        <p itemprop="description">Keep track of your SATs practice time and gain valuable insights by analyzing your performance with detailed activity logs. These logs help you understand your strengths and areas for improvement.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                    <div class="feature-grid text-center mb-40" itemprop="feature learning course">
-                        <figure class="mb-20">
-
-                            <img src="../assets/default/img/feature-automated-marking.jpg" alt="feature image" height="143" width="276">
-
-                        </figure>
-                        <h3 class="mb-5 font-20 font-weight-bold" itemprop="title">
-                            <span class="text-dark-charcoal">Parental Insights</span>
-                        </h3>
-                        <p itemprop="description"> Track your child’s progress and support their achievements with valuable insights into their learning journey.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                    <div class="feature-grid text-center mb-40" itemprop="feature learning course">
-                        <figure class="mb-20">
-
-                            <img src="../assets/default/img/book-shelf-feature.jpg" alt="feature image" height="143" width="276">
-
-                        </figure>
-                        <h3 class="mb-5 font-20 font-weight-bold" itemprop="title">
-                            <span class="text-dark-charcoal">Interactive Learning</span>
-                        </h3>
-                        <p itemprop="description">Dive into a world of learning with online books, interactive multiplication practice, and a variety of educational activities. These resources make studying engaging and help reinforce essential skills.
-
-
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                    <div class="feature-grid text-center mb-40" itemprop="feature learning course">
-                        <figure class="mb-20">
-
-                            <img src="../assets/default/img/timetables-feature.jpg" alt="feature image" height="143" width="276">
-
-                        </figure>
-                        <h3 class="mb-5 font-20 font-weight-bold" itemprop="title">
-                            <span class="text-dark-charcoal">Adaptive Assessments</span>
-                        </h3>
-                        <p itemprop="description">Receive instant feedback on your assessments, and enjoy personalized learning paths tailored to your unique needs. These quick and adaptive tests help you stay on track, ensuring efficient progress and growth in your studies.
-                        </p>
-                    </div>
-                </div>
-
-
-
-            </div>
-        </div>
-    </section>
-
+	{{do_shortcode('redefining_personalized_learning', array('heading' => "Achieve Success with Rurera’s Key Features.", 'description' => "Rurera provides powerful resources that align with student’s specific interests and learning goals.", 'items' => array(10,6,15,17,19)))}}
+    
 
     <section class="lms-column-section lms-accordion-section w-100 pb-60 pt-60" style="background-color: #f6f0ea; max-width: 100%;">
         <div class="container">
@@ -1098,35 +661,16 @@
                     <div class="mt-0">
                         <div class="lms-faqs mx-w-100 mt-0">
                             <div id="accordion">
-                                @if( !empty( $faq_items ))
-
-                                @foreach( $faq_items as $itemData)
                                 <div class="card">
                                     <div class="card-header" id="headingonsix">
                                         <h3 class="mb-0">
-                                            <button class="btn btn-link font-18 font-weight-bold" data-toggle="collapse" data-target="#collapsesix" aria-expanded="true" aria-controls="collapsesix">{{isset( $itemData['title'])? $itemData['title'] : '' }}</button>
+                                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapsesix" aria-expanded="true" aria-controls="collapsesix">What types of vocabulary resources does Rurera provide?</button>
                                         </h3>
                                     </div>
                                     <div id="collapsesix" class="collapse" aria-labelledby="headingsix"
                                         data-parent="#accordion">
                                         <div class="card-body">
-                                            <p>{{isset( $itemData['description'])? $itemData['description'] : '' }}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                @endforeach
-
-                                @else
-                                <div class="card">
-                                    <div class="card-header" id="headingonsix">
-                                        <h3 class="mb-0">
-                                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapsesix" aria-expanded="true" aria-controls="collapsesix">What are SATs?</button>
-                                        </h3>
-                                    </div>
-                                    <div id="collapsesix" class="collapse" aria-labelledby="headingsix"
-                                        data-parent="#accordion">
-                                        <div class="card-body">
-                                            <p>SATs (Standard Assessment Tests) are exams administered to primary school children in England to evaluate their academic progress and the quality of education at their schools. These tests are taken at the end of Key Stage 1 (Years 1–2) and Key Stage 2 (Years 3–6). <br>In Key Stage 2, SATs focus on English and mathematics, but do not include science. </p>
+                                            <p>Rurera offers a comprehensive curriculum based Word Directory, custom word lists, and sets to expand your child’s word knowledge. These resources are tailored to meet individual learning needs and interests.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -1134,57 +678,39 @@
                                     <div class="card-header" id="headingTwo">
                                         <h3 class="mb-0"><button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse"
                                                 data-target="#collapseTwo" aria-expanded="false"
-                                                aria-controls="collapseTwo"> When are SATs taken?</button></h3>
+                                                aria-controls="collapseTwo"> What is the importance of vocabulary in language learning?</button></h3>
                                     </div>
                                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
                                         data-parent="#accordion">
                                         <div class="card-body">
                                             <p>
-                                                The Year 6 SATs in 2025 will take place between <strong>12th May-15th May:</strong>
-
+                                                Vocabulary is crucial for effective communication and understanding. A strong vocabulary enhances reading comprehension, writing ability, and overall language skills.
                                             </p>
-                                            <ul>
-                                                <li> <strong> Monday:</strong> English paper 1 and English paper 2</li>
-                                                <li><strong>Tuesday: </strong> English paper 3</li>
-                                                <li><strong>Wednesday: </strong> Maths paper 1 and maths paper 2</li>
-                                                <li> <strong>Thursday:</strong> Maths paper 3</li>
-                                            </ul>
-
-
-
-
-
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card">
                                     <div class="card-header" id="headingseven">
                                         <h3 class="mb-0">
-                                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapseseven" aria-expanded="false" aria-controls="collapseseven"> What subjects are covered in SATs?</button>
+                                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapseseven" aria-expanded="false" aria-controls="collapseseven"> What are some common strategies for memorizing spelling words?</button>
                                         </h3>
                                     </div>
                                     <div id="collapseseven" class="collapse" aria-labelledby="headingseven" data-parent="#accordion">
                                         <div class="card-body">
-                                            <p> Year 6 SATs assess the topics taught on the Key Stage 2 national curriculum for English and maths.
-
+                                            <p> Strategies include breaking words into smaller parts, using mnemonic devices, practicing writing words repeatedly, and employing visual aids. Engaging in regular review and practice helps reinforce spelling.
                                             </p>
-                                            <ul>
-                                                <li><strong>English:</strong>reading, spelling, vocabulary, grammar and punctuation</li>
-                                                <li><strong>Maths:</strong>number, data, geometry, algebra, measurement, ratio and proportion</li>
-                                            </ul>
-                                            <p>There are 6 papers in total – 3 for English (grammar and punctuation, spelling, and reading), and 3 for maths (2 reasoning papers and an arithmetic paper)</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card">
                                     <div class="card-header" id="heading8">
                                         <h3 class="mb-0">
-                                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8">Are SATs mandatory?</button>
+                                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8">What are some effective methods for teaching vocabulary?</button>
                                         </h3>
                                     </div>
                                     <div id="collapse8" class="collapse" aria-labelledby="heading8" data-parent="#accordion">
                                         <div class="card-body">
-                                            <p>SATs play a crucial role in providing teachers and parents with an understanding of children's strengths and areas that need improvement. The results help teachers identify which students may require additional support as they transition from primary to secondary school. <br> Additionally, the government uses these results to assess the quality of education in schools nationwide.
+                                            <p>Effective methods include using flashcards, reading diverse texts, playing word games, and incorporating new words into daily conversations. Creating thematic word lists and practicing in context can also help build vocabulary.
                                             </p>
                                         </div>
                                     </div>
@@ -1192,25 +718,25 @@
                                 <div class="card">
                                     <div class="card-header" id="heading9">
                                         <h3 class="mb-0">
-                                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse9" aria-expanded="false" aria-controls="collapse9">How are SATs scored?
+                                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse9" aria-expanded="false" aria-controls="collapse9">How do the Play and Learn Quizzes work?
                                             </button>
                                         </h3>
                                     </div>
                                     <div id="collapse9" class="collapse" aria-labelledby="heading9" data-parent="#accordion">
                                         <div class="card-body">
-                                            <p>SATs are scored using scaled scores: A score of 100 represents the expected standard. Scores above 100 indicate higher performance, and below 100 indicate a need for improvement. <br> <strong>Total score is 120</strong></p>
+                                            <p>Our Play and Learn Quizzes turn vocabulary and spelling practice into engaging games. Kids complete interactive challenges that reinforce their learning in a fun and motivating way.</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card">
                                     <div class="card-header" id="heading10">
                                         <h3 class="mb-0">
-                                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse10" aria-expanded="false" aria-controls="collapse10">Is Rurera mapped to the national curriculum?</button>
+                                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse10" aria-expanded="false" aria-controls="collapse10">How can Progress Rewards benefit my child?</button>
                                         </h3>
                                     </div>
                                     <div id="collapse10" class="collapse" aria-labelledby="heading10" data-parent="#accordion">
                                         <div class="card-body">
-                                            <p>Yes. Our content is created by teachers and grounded in the Key Stage 2 national curriculum in England. Rurera covers all the core topics in English, maths and science for Years 3–6 (ages 7–11).
+                                            <p>Progress Rewards provide tangible recognition for your child’s achievements. Earning  rewards for milestones and improvements helps keep them motivated and engaged in their learning journey.
                                             </p>
                                         </div>
                                     </div>
@@ -1218,13 +744,13 @@
                                 <div class="card">
                                     <div class="card-header" id="heading11">
                                         <h3 class="mb-0">
-                                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse11" aria-expanded="false" aria-controls="collapse11">How does Rurera keep my child motivated? </button>
+                                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse11" aria-expanded="false" aria-controls="collapse11">Why should I choose Rurera for my child’s vocabulary and spelling practice?</button>
                                         </h3>
                                     </div>
                                     <div id="collapse11" class="collapse" aria-labelledby="heading11" data-parent="#accordion">
                                         <div class="card-body">
                                             <p>
-                                                Along with exciting features like coins to collect and worlds to explore, our algorithm is busy working in the background. Rurera constantly adjusts the difficulty level to match your child's learning style and pace, ensuring they stay challenged without losing motivation. <br>There are plenty of interactive resources to help your child deepen their understanding of each topic, such as helpsheets.
+                                                Rurera stands out with its engaging features, personalized learning tools, and a fun, interactive approach. We provide a comprehensive platform that makes vocabulary and spelling practice both effective and enjoyable for kids.
                                             </p>
                                         </div>
                                     </div>
@@ -1232,13 +758,13 @@
                                 <div class="card">
                                     <div class="card-header" id="heading12">
                                         <h3 class="mb-0">
-                                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse12" aria-expanded="false" aria-controls="collapse12">What support does Rurera offer?</button>
+                                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse12" aria-expanded="false" aria-controls="collapse12">How can I find new vocabulary words to learn on Rurera? </button>
                                         </h3>
                                     </div>
                                     <div id="collapse12" class="collapse" aria-labelledby="heading12" data-parent="#accordion">
                                         <div class="card-body">
                                             <p>
-                                                No other platform combines adaptive learning, teacher-crafted content, and expert guidance all in one package! We're available to assist you by phone or email whenever you need support.
+                                                Explore Rurera’s word lists, daily vocabulary features, and spelling bee vocabulary sets to discover new words to learn.
                                             </p>
                                         </div>
                                     </div>
@@ -1246,21 +772,18 @@
                                 <div class="card">
                                     <div class="card-header" id="heading13">
                                         <h3 class="mb-0">
-                                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse13" aria-expanded="false" aria-controls="collapse13">Do I need to help my child use Rurera?
+                                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse13" aria-expanded="false" aria-controls="collapse13">How often should I practice spelling on Rurera to improve?
                                             </button>
                                         </h3>
                                     </div>
                                     <div id="collapse13" class="collapse" aria-labelledby="heading13" data-parent="#accordion">
                                         <div class="card-body">
-                                            <p>Not at all – we've crafted Rurera to be enjoyable and simple for your child to use independently. With helpsheets, they can build new knowledge and gain confidence in learning on their own.
+                                            <p>For the best results, practice regularly aim for a few times a week. Consistent practice helps reinforce your spelling skills and improve over time.
 
                                             </p>
                                         </div>
                                     </div>
                                 </div>
-
-                                @endif
-
                             </div>
                         </div>
                     </div>
@@ -1643,10 +1166,9 @@
                     <div class="newsletter-inner">
                         <div class="row">
                             <div class="col-12 col-lg-8 col-md-8">
-                                <h2 itemprop="title" class="mb-10 text-white font-40">Kickstart your SATs Exam Prep today</h2>
+                                <h2 itemprop="title" class="mb-10 text-white font-40">Boost Your Spelling and Vocabulary Skills Today!</h2>
                                 <p itemprop="description" class="mb-0 text-white font-16">
-                                    Let us help you achieve the score you deserve and unlock <br />
-                                    doors to your future academic success.
+                                    Unlock the power of words with our engaging resources. Build essential skills to excel and open doors to your future achievements.
                                 </p>
                             </div>
                             <div class="col-12 col-lg-4 col-md-4">

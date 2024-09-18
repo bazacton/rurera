@@ -231,7 +231,7 @@
                         <p itemprop="description" class="font-16">Find the resources you need to enhance and learn to accomplish success.</p>
                     </div>
                     <div class="lms-btn-group justify-content-center">
-                      <a href="{{url('/')}}/classes?sort=newest" class="lms-btn rounded-pill">Explore More</a>
+                      <a href="{{url('/')}}/pricing" class="lms-btn rounded-pill">Explore More</a>
                     </div>
                 </div>
             </div>

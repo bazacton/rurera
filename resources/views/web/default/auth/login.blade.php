@@ -1,5 +1,9 @@
 @extends(getTemplate().'.layouts.app')
 @php $rand_no = rand(99,9999); @endphp
+@if( isset($_GET['email'] ) && $_GET['email'] == 'true')
+    <script>window.opener.postMessage('You already have an account with us. Please <a href="/login">Login</a> to access.', window.location.origin);window.close();</script>
+@endif
+@push('styles_top')
 <style>
     body{background-color: #fafafa !important;}
     .login_pin {
@@ -22,14 +26,12 @@
         -webkit-text-security: disc;
     }
 </style>
-@if( isset($_GET['email'] ) && $_GET['email'] == 'true')
-    <script>window.opener.postMessage('You already have an account with us. Please <a href="/login">Login</a> to access.', window.location.origin);window.close();</script>
-@endif
+@endpush
 @section('content')
     <div class="container d-flex flex-column justify-content-center align-items-center">
         <div class="text-center mb-30 mt-50">
             <a href="/" class="login-logo d-inline-flex justify-content-center align-items-center">
-                <img src="/assets/default/img/sidebar/logo.svg">
+                <img src="/assets/default/img/sidebar/logo.svg" class="img-cover" alt="Rurera Logo" title="Rurera Logo" width="68" height="67" itemprop="image" loading="eager">
                 <span class="logo-text font-30 font-weight-bold ml-10">Rurera</span>
             </a>
         </div>

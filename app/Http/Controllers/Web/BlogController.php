@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
+use App\Models\Page;
 use App\Models\BlogCategory;
 use App\Models\Translation\BlogTranslation;
 use Illuminate\Http\Request;
+use DOMDocument;
 
 class BlogController extends Controller
 {
@@ -19,6 +21,13 @@ class BlogController extends Controller
         $pageTitle = !empty($seoSettings['title']) ? $seoSettings['title'] : trans('home.blog');
         $pageDescription = !empty($seoSettings['description']) ? $seoSettings['description'] : trans('home.blog');
         $pageRobot = getPageRobot('blog');
+		
+		
+		$requestData = array(
+			'getPathInfo' => '/blog',
+			'fullUrl' => url('/').'/blog',
+		);
+		putSitemap($requestData);
 
         $blogCategories = BlogCategory::all();
 
@@ -55,11 +64,12 @@ class BlogController extends Controller
             ->paginate(35);
 
         $popularPosts = $this->getPopularPosts();
-
+		$page = Page::where('link', '/blog')->where('status', 'publish')->first();
         $data = [
-            'pageTitle' => $pageTitle,
-            'pageDescription' => 'Explore a wide range of topics, including courses, sats, books, rewards and more. Stay updated with the latest trends, tips, and strategies.',
-            'pageRobot' => $pageRobot,
+            'pageTitle'                  => isset( $page->title )? $page->title : '',
+            'page_title'                  => isset( $page->page_title )? $page->page_title : '',
+            'pageDescription'            => isset( $page->seo_description )? $page->seo_description : '',
+            'pageRobot'                  => isset( $page->robot ) ? 'index, follow, all' : 'NOODP, nofollow, noindex',
             'blog' => $blog,
             'blogCount' => $blogCount,
             'blogCategories' => $blogCategories,
@@ -104,16 +114,29 @@ class BlogController extends Controller
 
                 $blogCategories = BlogCategory::all();
                 $popularPosts = $this->getPopularPosts();
+				
+				$requestData = array(
+					'getPathInfo' => '/blog/'.$slug,
+					'fullUrl' => url('/').'/blog/'.$slug,
+				);
+				putSitemap($requestData);
 
                 $pageRobot = getPageRobot('blog');
+				
+				
+				$result = $this->addRandomIdToH3($post->content);
+				$post->content = isset( $result['content'] )? $result['content'] : '';
+				$headings_array = isset( $result['headings_array'] )? $result['headings_array'] : array();
 
                 $data = [
                     'pageTitle' => $post->title,
+                    'page_title' => $post->title,
                     'pageDescription' => $post->meta_description,
                     'blogCategories' => $blogCategories,
                     'popularPosts' => $popularPosts,
                     'pageRobot' => $pageRobot,
-                    'post' => $post
+                    'post' => $post,
+                    'headings_array' => $headings_array
                 ];
 
                 return view(getTemplate() . '.blog.show', $data);
@@ -135,4 +158,35 @@ class BlogController extends Controller
             ->limit(5)
             ->get();
     }
+	
+	public function addRandomIdToH3($content) {
+		// Load the HTML content into a DOMDocument
+		$dom = new DOMDocument();
+		// Suppress errors due to malformed HTML
+		@$dom->loadHTML($content);
+
+		// Get all h3 elements
+		$h3Tags = $dom->getElementsByTagName('h3');
+		$headings_array = [];
+
+		// Loop through each h3 tag
+		foreach ($h3Tags as $h3) {
+			// Generate a random number for the ID
+			$randomId = 'rurera-heading-' . rand(1000, 9999);
+
+			// Set the ID attribute to the h3 element
+			$h3->setAttribute('id', $randomId);
+
+			// Store the h3 text with the random ID as the index
+			$headings_array[$randomId] = $h3->nodeValue;
+		}
+
+		// Save the updated HTML content
+		$updatedContent = $dom->saveHTML();
+
+		return [
+			'content' => $updatedContent,
+			'headings_array' => $headings_array
+		];
+	}
 }

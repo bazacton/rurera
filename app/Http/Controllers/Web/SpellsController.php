@@ -20,8 +20,12 @@ class SpellsController extends Controller
 	
 	public function landing(Request $request)
 	{
+		$page = Page::where('link', '/spelling')->where('status', 'publish')->first();
 		$data = [
-			'pageTitle' => 'Spelling',
+			'pageTitle'       => $page->title,
+            'page_title'       => $page->page_title,
+            'pageDescription' => $page->seo_description,
+            'pageRobot'       => $page->robot ? 'index, follow, all' : 'NOODP, nofollow, noindex',
 		];
 		return view('web.default.landing.spelling_landing', $data);
 
@@ -53,7 +57,7 @@ class SpellsController extends Controller
 		
 
         //$QuestionsAttemptController->after_attempt_complete(6);
-        $page = Page::where('link', '/spells')->where('status', 'publish')->first();
+        //$page = Page::where('link', '/spells')->where('status', 'publish')->first();
         //pre(auth()->user()->vocabulary_achieved_levels);
 
 
@@ -101,9 +105,9 @@ class SpellsController extends Controller
 
         if (!empty($spellsData)) {
             $data = [
-                'pageTitle'                  => $page->title,
-                'pageDescription'            => $page->seo_description,
-                'pageRobot'                  => $page->robot ? 'index, follow, all' : 'NOODP, nofollow, noindex',
+                'pageTitle'                  => 'Spells',
+                'pageDescription'            => 'Spells',
+                'pageRobot'                  => 'NOODP, nofollow, noindex',
                 'data'                       => $spellsData,
                 'QuestionsAttemptController' => $QuestionsAttemptController,
                 'user_mastered_words'        => $mastered_words,

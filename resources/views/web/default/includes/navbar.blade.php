@@ -30,22 +30,22 @@ $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : ar
                href="{{url('/')}}/" itemprop="url">
                 @if(!empty($generalSettings['logo']))
                 <img src="{{ $generalSettings['logo'] }}" class="img-cover" alt="Rurera Logo" title="Rurera Logo"
-                     width="100%" height="auto" itemprop="image" loading="eager">
+                     width="185" height="38" itemprop="image" loading="eager">
                 @endif
             </a>
 
-            <button class="navbar-toggler navbar-order" type="button" id="navbarToggle">
-                <span class="navbar-toggler-icon"></span>
+            <button class="navbar-toggler navbar-order" type="button" aria-label="navbar toggler" id="navbarToggle">
+            Menu <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="mx-lg-30 d-none d-lg-flex flex-grow-1 navbar-toggle-content " id="navbarContent">
                 <a class="mobile-logo"
                        href="{{url('/')}}/" itemprop="url">
-                    <img src="{{ $generalSettings['logo'] }}" alt="Rurera Logo" title="Rurera Logo"
-                                                 width="100%" height="auto" itemprop="image" loading="eager">
+                    <img src="{{ $generalSettings['logo'] }}" alt="Rurera Logo" title="Rurera Logo" width="185" height="38" itemprop="image" loading="eager">
                     </a>
                 <div class="navbar-toggle-header text-right d-lg-none">
                     <button class="btn-transparent" id="navbarClose">
+                        Close
                         <i data-feather="x" width="32" height="32"></i>
                     </button>
                 </div>
@@ -75,19 +75,16 @@ $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : ar
                         @if( (!isset( $navbarPage['is_other_panel'] ) || $navbarPage['is_other_panel'] != 1) && $is_panel == false)
                             @php $is_menu_show = false; @endphp
                         @endif
-
-
-
                     @if( $is_menu_show == false)
                         @php continue; @endphp
                     @endif
+					@php $active_class = ('/'.request()->segment(count(request()->segments())) == $navbarPage['link'])? 'current-page' : ''; @endphp
 
 
                     <li class="nav-item {{ (isset( $navbarPage['menu_classes']) && $navbarPage['menu_classes'] != '')
                             ?$navbarPage['menu_classes'] : '' }}{{ (isset( $navbarPage['is_mega_menu']) && $navbarPage['is_mega_menu'] == 1)
-                            ?' has-mega-menu' : '' }}">
+                            ?' has-mega-menu' : '' }} {{$active_class}}">
                         <a class="nav-link" href="{{ $navbarPage['link'] }}">{{ $navbarPage['title'] }}</a>
-
                         @if( (isset( $navbarPage['title']) && $navbarPage['title'] == 'Courses') &&
                         !empty($course_navigation))
                         <div class="lms-mega-menu">
@@ -201,7 +198,6 @@ $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : ar
                                         @endforeach
                                     </div>
                                 </div>
-
                                 @else
                                 @if( isset( $navbarPage['submenu'] ) && $navbarPage['submenu'] != '' && (!isset(
                                 $navbarPage['is_mega_menu'] ) || $navbarPage['is_mega_menu'] != 1))
@@ -220,15 +216,12 @@ $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : ar
                     </li>
                     @endforeach
                     @endif
-
-
                 </ul>
                 <div class="mobile-login-reg-buttons">
                     <a class="mobile-login-btn" href="/login">Log in</a>
                     <a class="mobile-register-btn" href="/register-as">Try for free</a>
                 </div>
             </div>
-
             @if(isset( $authUser ))
                 @include('web.default.includes.notification-dropdown')
             @endif
@@ -240,20 +233,11 @@ $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : ar
                     </strong>
                 </div>
             @endif
-
-
-
             <div class="nav-icons-or-start-live navbar-order">
                 <div class="xs-w-100 d-flex align-items-center justify-content-between">
                     @if(!empty($authUser))
-                    <!-- <div class="d-flex">
-                        <div class="border-left mx-5 mx-lg-15"></div>
-                    </div> -->
                     @endif
-
                     @if(!empty($authUser))
-
-
                     <div class="dropdown">
                         <a href="#!" class="navbar-user d-flex align-items-center dropdown-toggle" type="button"
                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
@@ -262,7 +246,6 @@ $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : ar
                                  alt="{{ $authUser->get_full_name() }}" width="100%" height="auto" itemprop="image"
                                  alt="rounded circle" loading="eager" title="rounded circle">
                         </a>
-
                         <div class="dropdown-menu user-profile-dropdown" aria-labelledby="dropdownMenuButton">
                             <div class="dropdown-item user-nav-detail">
                                 <img src="{{ $authUser->getAvatar() }}" class="rounded-circle" alt="{{ $authUser->get_full_name() }}" width="100%" height="auto" itemprop="image"
@@ -274,12 +257,9 @@ $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : ar
                             <div class="d-md-none border-bottom mb-20 pb-10 text-right">
                                 <i class="close-dropdown" data-feather="x" width="32" height="32" class="mr-10"></i>
                             </div>
-
-
                             @if( !empty( $profile_navs ) )
                             <div class="user-nav-list">
                             @foreach( $profile_navs as $profile_nav)
-
                             <a class="dropdown-item " href="/panel/switch_user/{{$profile_nav['id']}}">
                                 <img src="{{ $profile_nav->getAvatar() }}" class="rounded-circle" alt="{{ $profile_nav['full_name'] }}" width="100%" height="auto" itemprop="image"
                                  alt="rounded circle" loading="eager" title="rounded circle">
@@ -287,11 +267,9 @@ $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : ar
                                 <span class="font-16 text-dark-blue user-list-name">{{ $full_name }}</span>
                                 <span class="font-16 text-dark-blue user-list-email">{{ $profile_nav['email'] }}</span>
                             </a>
-
                             @endforeach
                             </div>
                             @endif
-
                             <a class="dropdown-item nav-logout" href="/logout">
                                 <img src="/assets/default/img/icons/sidebar/logout.svg" height="auto" itemprop="image"
                                      width="25" alt="nav-icon" title="nav-icon" loading="eager">
@@ -306,13 +284,8 @@ $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : ar
                     </div>
                     @endif
                 </div>
-
             </div>
         </div>
     </div>
 </nav>
-
-@push('scripts_bottom')
-<script src="/assets/default/js/parts/navbar.min.js"></script>
-@endpush
 @endif

@@ -2384,10 +2384,10 @@ a.bg-dark:focus,
 a.bg-dark:hover,
 button.bg-dark:focus,
 button.bg-dark:hover {background-color: #1b1b1b !important;}
-a.bg-white:focus,
+/* a.bg-white:focus,
 a.bg-white:hover,
 button.bg-white:focus,
-button.bg-white:hover {background-color: #e6e6e6 !important;}
+button.bg-white:hover {background-color: #e6e6e6 !important;} */
 .bg-gray {background-color: #818894 !important;}
 a.bg-gray:focus,
 a.bg-gray:hover,

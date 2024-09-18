@@ -10,16 +10,15 @@
 
 <head>
     @include('web.default.includes.metas')
-    <title>{{ $pageTitle ?? '' }}{{ !empty($generalSettings['site_name']) ? (' | '.$generalSettings['site_name']) : '' }}</title>
+    <title>{{ $page_title ?? '' }}{{ !empty($generalSettings['site_name']) ? (' | '.$generalSettings['site_name']) : '' }}</title>
 
     <!-- General CSS File -->
-    <link rel="stylesheet" href="/assets/default/vendors/sweetalert2/dist/sweetalert2.min.css">
-    <link rel="stylesheet" href="/assets/default/vendors/toast/jquery.toast.min.css">
-    <link rel="stylesheet" href="/assets/default/vendors/simplebar/simplebar.css">
     <link rel="stylesheet" href="/assets/admin/vendor/bootstrap/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/assets/default/css/common.css?ver={{$rand_no}}">
-    <link rel="stylesheet" href="/assets/default/css/app.css?ver={{$rand_no}}">
+    <link rel="stylesheet" href="/assets/default/css/common.min.css?ver={{$rand_no}}">
+    <link rel="stylesheet" href="/assets/default/css/app.min.css?ver={{$rand_no}}">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/assets/default/css/responsive.min.css">
+
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
@@ -40,10 +39,6 @@
         {!! getThemeColorsSettings() !!}
     </style>
 
-
-    @if(!empty($generalSettings['preloading']) and $generalSettings['preloading'] == '1')
-        @include('admin.includes.preloading')
-    @endif
 </head>
 
 <body class="menu-closed @if($isRtl) rtl @endif">
@@ -72,13 +67,6 @@
     @include('web.default.includes.advertise_modal.index')
 </div>
 <!-- Template JS File -->
-<script src="/assets/default/js/app.js"></script>
-<script src="/assets/default/vendors/feather-icons/dist/feather.min.js"></script>
-<script src="/assets/default/vendors/moment.min.js"></script>
-<script src="/assets/default/vendors/sweetalert2/dist/sweetalert2.min.js"></script>
-<script src="/assets/admin/vendor/bootstrap/bootstrap.min.js"></script>
-<script src="/assets/default/vendors/toast/jquery.toast.min.js"></script>
-<script type="text/javascript" src="/assets/default/vendors/simplebar/simplebar.min.js"></script>
 
 @if(empty($justMobileApp) and checkShowCookieSecurityDialog())
     @include('web.default.includes.cookie-security')
@@ -121,29 +109,14 @@
 
 <script src="/assets/default/js/parts/main.min.js?ver={{$rand_no}}"></script>
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YZCMFMHVM0"></script>
 <script>
-    @if(session()->has('registration_package_limited'))
-    (function () {
-        "use strict";
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-        handleLimitedAccountModal('{!! session()->get('registration_package_limited') !!}')
-    })(jQuery)
-
-    {{ session()->forget('registration_package_limited') }}
-    @endif
-
-    {!! !empty(getCustomCssAndJs('js')) ? getCustomCssAndJs('js') : '' !!}
+  gtag('config', 'G-YZCMFMHVM0');
 </script>
-
-<script type="text/javascript">
-  window._mfq = window._mfq || [];
-  (function() {
-    var mf = document.createElement("script");
-    mf.type = "text/javascript"; mf.defer = true;
-    mf.src = "//cdn.mouseflow.com/projects/b545a93a-901f-443b-9f07-429206fd8fde.js";
-    document.getElementsByTagName("head")[0].appendChild(mf);
-  })();
-</script>
-
 </body>
 </html>

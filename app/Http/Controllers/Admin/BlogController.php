@@ -98,12 +98,15 @@ class BlogController extends Controller
             'image' => 'required|string',
             'description' => 'required|string',
             'content' => 'required|string',
+            'slug' => 'unique:blog,slug',
         ]);
+		
+		$slug = (isset( $data['slug'] ) && $data['slug'] != '')? strtolower($data['slug']) : Blog::makeSlug(strtolower($data['title']));
 
         $data = $request->all();
 
         $blog = Blog::create([
-            'slug' => Blog::makeSlug($data['title']),
+            'slug' => $slug,
             'category_id' => $data['category_id'],
             'author_id' => !empty($data['author_id']) ? $data['author_id'] : auth()->id(),
             'image' => $data['image'],
@@ -125,6 +128,7 @@ class BlogController extends Controller
                 'description' => $data['description'],
                 'meta_description' => $data['meta_description'],
                 'content' => $data['content'],
+                'page_title' => isset( $data['page_title'] )? $data['page_title'] : '',
             ]);
 
             if ($blog->status == 'publish' and $blog->author_id != auth()->id()) {
@@ -170,10 +174,14 @@ class BlogController extends Controller
             'content' => 'required|string',
         ]);
 
+		
+		
         $data = $request->all();
         $post = Blog::findOrFail($post_id);
+		$slug = (isset( $data['slug'] ) && $data['slug'] != '')? strtolower($data['slug']) : Blog::makeSlug(strtolower($data['title']));
 
         $post->update([
+            'slug' => $slug,
             'category_id' => $data['category_id'],
             'author_id' => !empty($data['author_id']) ? $data['author_id'] : $post->author_id,
             'image' => $data['image'],
@@ -194,6 +202,7 @@ class BlogController extends Controller
             'description' => $data['description'],
             'meta_description' => $data['meta_description'],
             'content' => $data['content'],
+			'page_title' => isset( $data['page_title'] )? $data['page_title'] : '',
         ]);
 
         removeContentLocale();

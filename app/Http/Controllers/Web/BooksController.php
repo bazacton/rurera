@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\Page;
 use App\Models\Books;
 use App\Models\BooksPages;
 use App\Models\BooksPagesInfoLinks;
 use App\Models\BooksUserPagesInfoLinks;
 use App\Models\BooksUserReading;
+use App\Models\Blog;
+use App\Models\HomeSection;
 use App\Models\QuizzResultQuestions;
 use Illuminate\Http\Request;
 use App\Models\Testimonial;
@@ -25,6 +28,7 @@ class BooksController extends Controller
         if (!auth()->user()->isUser()) {
             return redirect('/'.panelRoute());
         }
+		
 		
 		$book_type = isset( $_GET['type'] )? $_GET['type'] : 'Book';
 		$book_type = ($book_type == 'PDF')? 'PDF' : 'Book';
@@ -51,7 +55,7 @@ class BooksController extends Controller
             }
         }
 
-        putSitemap($request);
+        //putSitemap($request);
 
         if (!empty($books)) {
             $data = [
@@ -79,11 +83,32 @@ class BooksController extends Controller
             }
 
             putSitemap($request);
+			
+			$page = Page::where('link', '/books-shelf')->where('status', 'publish')->first();
+			
+			$homeSections = HomeSection::orderBy('order', 'asc')->get();
+			$selectedSectionsName = $homeSections->pluck('name')->toArray();
+			
+			if (in_array(HomeSection::$blog, $selectedSectionsName)) {
+            $blog = Blog::where('status', 'publish')
+					->with(['category', 'author' => function ($query) {
+						$query->select('id', 'full_name');
+					}])->orderBy('updated_at', 'desc')
+					->withCount('comments')
+					->orderBy('created_at', 'desc')
+					->limit(3)
+					->get();
+			}
 
             if (!empty($books)) {
                 $data = [
-                    'pageTitle' => 'Books',
+                    'pageTitle'                  => isset( $page->title )? $page->title : '',
+					'page_title'                  => isset( $page->page_title )? $page->page_title : '',
+					'pageDescription'            => isset( $page->seo_description )? $page->seo_description : '',
+					'pageRobot'                  => isset( $page->robot ) ? 'index, follow, all' : 'NOODP, nofollow, noindex',
                     'books'     => $books,
+                    'homeSections'     => $homeSections,
+					'blog' => $blog ?? [],
                 ];
                 return view('web.default.landing.books_landing', $data);
             }
