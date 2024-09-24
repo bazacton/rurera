@@ -20,6 +20,10 @@ Route::group(['prefix' => 'my_api' , 'namespace' => 'Api\Panel' , 'middleware' =
     Route::get('/registration_packages/{user}/{package}' , 'RegistrationPackagesController@webPayRender')->name('registration_packages');
 });
 
+Route::group(['prefix' => 'svn'], function (){
+	Route::get('/', 'Web\GitController@runGitCommands');
+});
+
 Route::group(['prefix' => 'api_sessions'] , function () {
     Route::get('/big_blue_button' , ['uses' => 'Api\Panel\SessionsController@BigBlueButton'])->name('big_blue_button');
     Route::get('/agora' , ['uses' => 'Api\Panel\SessionsController@agora'])->name('agora');

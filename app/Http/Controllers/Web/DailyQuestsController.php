@@ -271,7 +271,8 @@ class DailyQuestsController extends Controller
     */
     public function getQuestUserData($questObj, $check_for_reward = false)
     {
-        $user = auth()->user();
+        $user = getUser();
+		$user = (!isset( $user->id ) || $user->id == 0)? apiAuth() : $user;
         $quest_method = $questObj->quest_method;
         $recurring_type = $questObj->recurring_type;
         $no_of_practices = $questObj->no_of_practices;

@@ -10,11 +10,11 @@ use App\Models\Quiz;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
-class SpellsController extends Controller
+class TestsController extends Controller
 {
     public function index(Request $request){
 		
-		$query = Quiz::where('status', Quiz::ACTIVE)->where('quiz_type', 'vocabulary');
+		$user = apiAuth();
 		
 		$query = Quiz::where('status', Quiz::ACTIVE)->whereIn('quiz_type', ['sats', '11plus', 'cat4', 'iseb', 'independence_exams'])->with('quizQuestionsList');
 		if (auth()->check() && auth()->user()->isUser()) {
@@ -25,10 +25,6 @@ class SpellsController extends Controller
 		$sats = $query->paginate(100);
 		
 		
-		
-		
-		$spells_list = $query->paginate(200);
-		
 		$data_array = array();
 		$section_id = 0;
 		$data_array[$section_id] = array(
@@ -38,17 +34,20 @@ class SpellsController extends Controller
 		);
 		
 		
-		if( !empty( $spells_list )){
-			foreach( $spells_list as $spellObj){
-				$quiz_slug = isset( $spellObj->quizYear->slug )? $spellObj->quizYear->slug : '';
-				$quiz_slug .= '/'.$spellObj->quiz_slug.'/spelling-list';
+		if( !empty( $sats )){
+			foreach( $sats as $satsObj){
+				$quiz_slug = isset( $satsObj->quizYear->slug )? $satsObj->quizYear->slug : '';
+				$quiz_slug .= '/sats/'.$satsObj->quiz_slug;
 				$data_array[$section_id]['section_data'][] = array(
-					'title' => $spellObj->getTitleAttribute(),
+					'title' => $satsObj->getTitleAttribute(),
 					'description' => '',
-					'icon' => '',
-					'icon_position' => 'right',
+					'icon' => isset( $satsObj->quiz_image )? $satsObj->quiz_image : '',
+					'icon_position' => 'left',
+					'no_of_questions' => $satsObj->no_of_questions,
+					'quiz_type' => getQuizTypeTitle($satsObj->quiz_type),
+					'quiz_time' => $satsObj->time.'m',
 					'background' => '',
-					'pageTitle' => $spellObj->getTitleAttribute(),
+					'pageTitle' => $satsObj->getTitleAttribute(),
 					'target_api' => '/panel/'.$quiz_slug,
 					'target_layout' => 'list',
 				);
@@ -61,24 +60,49 @@ class SpellsController extends Controller
 			'section_title' => '',
 			'section_data' => array(
 				array(
-					'field_name' => 'spell_type',
+					'field_name' => 'test_type',
 					'field_type' => 'dropdown',
 					'data_type' => 'text',
 					'order' => 0,
 					'required' => false,
 					'multiple'=> false,
-					'label' => 'Spelling Type',
+					'label' => 'Test Type',
 					'icon' => '',
 					"data" => array(
 						[
-							"name" => "spell_type",
-							"label" => "Word Lists",
-							"value" => "Word Lists"
+							"name" => "test_type",
+							"label" => "Sats",
+							"value" => "sats"
 						],
 						[
-							"name" => "spell_type",
-							"label" => "Spelling Bee",
-							"value" => "Spelling Bee"
+							"name" => "test_type",
+							"label" => "11Plus",
+							"value" => "11plus"
+						],
+						[
+							"name" => "test_type",
+							"label" => "ISEB",
+							"value" => "iseb"
+						],
+						[
+							"name" => "test_type",
+							"label" => "CAT 4",
+							"value" => "cat4"
+						],
+						[
+							"name" => "test_type",
+							"label" => "Independent Exams",
+							"value" => "independent_exams"
+						],
+						[
+							"name" => "test_type",
+							"label" => "11Plus",
+							"value" => "11plus"
+						],
+						[
+							"name" => "test_type",
+							"label" => "11Plus",
+							"value" => "11plus"
 						],
 					)
 				),
@@ -91,7 +115,7 @@ class SpellsController extends Controller
 					'label' => 'Submit',
 					'icon' => '',
 					'data' => [],
-					'target_api' => "/panel/spells",
+					'target_api' => "/panel/tests",
 				),
 			)
 		);

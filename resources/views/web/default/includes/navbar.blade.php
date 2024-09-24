@@ -51,37 +51,15 @@ $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : ar
                 </div>
 
                 <ul class="navbar-nav mr-auto d-flex align-items-center">
-                    @if(!empty($authUser))
-                    @endif
-
                     @if(!empty($navbarPages) and count($navbarPages))
                     @foreach($navbarPages as $navbarPage)
                         @php $is_menu_show = true; $is_panel = false; @endphp
-
-
-                        @if(isset( $authUser ) && $authUser->isUser())
-                            @php $is_panel = true; @endphp
-                            @if( !isset( $navbarPage['is_student_panel'] ) || $navbarPage['is_student_panel'] != 1)
-                                @php $is_menu_show = false; @endphp
-                            @endif
-                        @endif
-                    @if(isset( $authUser ) && $authUser->isParent())
-                        @php $is_panel = true; @endphp
-                        @if( !isset( $navbarPage['is_parent_panel'] ) || $navbarPage['is_parent_panel'] != 1)
-                            @php $is_menu_show = false; @endphp
-                        @endif
-                    @endif
-
-                        @if( (!isset( $navbarPage['is_other_panel'] ) || $navbarPage['is_other_panel'] != 1) && $is_panel == false)
-                            @php $is_menu_show = false; @endphp
-                        @endif
-                    @if( $is_menu_show == false)
-                        @php continue; @endphp
-                    @endif
-					@php $active_class = ('/'.request()->segment(count(request()->segments())) == $navbarPage['link'])? 'current-page' : ''; @endphp
-
-
-                    <li class="nav-item {{ (isset( $navbarPage['menu_classes']) && $navbarPage['menu_classes'] != '')
+                        @if(isset( $authUser ) && $authUser->isUser()) @php $is_panel = true; @endphp @if( !isset( $navbarPage['is_student_panel'] ) || $navbarPage['is_student_panel'] != 1) @php $is_menu_show = false; @endphp @endif @endif
+						@if(isset( $authUser ) && $authUser->isParent()) @php $is_panel = true; @endphp @if( !isset( $navbarPage['is_parent_panel'] ) || $navbarPage['is_parent_panel'] != 1) @php $is_menu_show = false; @endphp @endif @endif
+                        @if( (!isset( $navbarPage['is_other_panel'] ) || $navbarPage['is_other_panel'] != 1) && $is_panel == false) @php $is_menu_show = false; @endphp @endif
+						@if( $is_menu_show == false) @php continue; @endphp @endif
+						@php $active_class = ('/'.request()->segment(count(request()->segments())) == $navbarPage['link'])? 'current-page' : ''; @endphp
+						<li class="nav-item {{ (isset( $navbarPage['menu_classes']) && $navbarPage['menu_classes'] != '')
                             ?$navbarPage['menu_classes'] : '' }}{{ (isset( $navbarPage['is_mega_menu']) && $navbarPage['is_mega_menu'] == 1)
                             ?' has-mega-menu' : '' }} {{$active_class}}">
                         <a class="nav-link" href="{{ $navbarPage['link'] }}">{{ $navbarPage['title'] }}</a>
@@ -100,7 +78,6 @@ $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : ar
                                     </style>
                                     @endif
 
-
                                     <li>
                                         <a href="#{{$navigation_slug}}" data-category_color="{{$nagivation_data['color']}}"
                                            class="{{ ($count == 1)? 'active' : ''}}" id="{{$navigation_slug}}-tab"
@@ -117,13 +94,10 @@ $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : ar
                             <div class="mega-menu-body tab-content">
                                 @php $count = 1; @endphp
                                 @foreach($course_navigation as $navigation_slug => $nagivation_data)
-
-
                                 <div class="tab-pane fade {{ ($count == 1)? 'show active' : ''}}"
                                      id="{{$navigation_slug}}" role="tabpanel"
                                      aria-labelledby="{{$navigation_slug}}-tab">
                                     <div class="row">
-
                                         @if( (isset( $nagivation_data['menu_data'] ) && $nagivation_data['menu_data'] !=
                                         ''))
                                         <div class="col-12 col-lg-3 col-md-4">
@@ -207,11 +181,7 @@ $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : ar
                                     </ul>
                                 </div>
                                 @endif
-
-                                @if( isset( $navbarPage['is_mega_menu'] ) && $navbarPage['is_mega_menu'] == 1)
-                                {!! $navbarPage['submenu'] !!}
-                                @endif
-
+                                @if( isset( $navbarPage['is_mega_menu'] ) && $navbarPage['is_mega_menu'] == 1) {!! $navbarPage['submenu'] !!} @endif
                                 @endif
                     </li>
                     @endforeach

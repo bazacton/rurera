@@ -496,6 +496,7 @@ class QuizController extends Controller
 	
 	public function get_learn_quiz_data($quiz, $quiz_level, $learning_journey, $question_ids, $is_new, $test_type, $journey_item_id = 0){
 		$user = getUser();
+		$user = (!isset( $user->id ) || $user->id == 0)? apiAuth() : $user;
 		$QuestionsAttemptController = new QuestionsAttemptController();
 
 		$response = array();

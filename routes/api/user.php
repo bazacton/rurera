@@ -26,7 +26,22 @@ Route::group([], function () {
 	
 	Route::group(['prefix' => '/timestables'], function () {
         Route::get('/', ['uses' => 'TimestablesController@index']);
+        Route::get('/freedom_mode', ['uses' => 'TimestablesController@freedom_mode']);
+        Route::get('/freedom_mode/play', ['uses' => 'TimestablesController@freedom_mode_play']);
     });
+	
+	Route::group(['prefix' => '/books'], function () {
+        Route::get('/', ['uses' => 'BooksController@index']);
+    });
+	
+	Route::group(['prefix' => '/tests'], function () {
+        Route::get('/', ['uses' => 'TestsController@index']);
+    });
+	
+	Route::group(['prefix' => '/quests'], function () {
+        Route::get('/', ['uses' => 'QuestsController@index']);
+    });
+	
 	
 	Route::group(['prefix' => '/spells'], function () {
         Route::get('/', ['uses' => 'SpellsController@index']);

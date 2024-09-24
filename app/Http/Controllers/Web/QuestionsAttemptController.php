@@ -133,6 +133,7 @@ class QuestionsAttemptController extends Controller
     public function nextQuestion($quizAttempt, $exclude_array = array(), $jump_question_id = 0, $attempted_questions = false, $questions_list = array(), $QuizzesResult = array(), $question_id = 0, $question_count = 0, $failed_check = false)
     {
         $user = getUser();
+		$user = (!isset( $user->id ) || $user->id == 0)? apiAuth() : $user;
         $questionAttemptAllowed = false;
 
 		$check_question_failed = 0;
@@ -3353,8 +3354,11 @@ class QuestionsAttemptController extends Controller
 
 		$total_no_of_questions = 15;
         $user = getUser();
-		$course_subject_data = json_decode($user->course_subject_data);
-		$course_subject_data = isset( $course_subject_data->{$quiz->id} )? (array) $course_subject_data->{$quiz->id} : array();
+		$user = (!isset( $user->id ) || $user->id == 0)? apiAuth() : $user;
+		$course_subject_data = isset( $user->course_subject_data )? json_decode($user->course_subject_data) : array();
+		if( !empty( $course_subject_data )){
+			$course_subject_data = isset( $course_subject_data->{$quiz->id} )? (array) $course_subject_data->{$quiz->id} : array();
+		}
 		
 		
         $newQuizStart = QuizzesResult::where('parent_type_id', $quiz->id)->where('quiz_result_type', 'practice')->where('user_id', $user->id)->where('status', 'waiting')->first();
@@ -3362,15 +3366,18 @@ class QuestionsAttemptController extends Controller
         $other_data = array();
         $quiz_settings = json_decode($quiz->quiz_settings);
         $quiz_breakdown = $quiz->quiz_settings;
-        if( isset( $newQuizStart->id) && !empty( $result_questions )){
+         if( isset( $newQuizStart->id) && !empty( $result_questions )){
             $other_data = json_decode($newQuizStart->other_data);
-            $questions_list = QuizzResultQuestions::whereIn('id', json_decode($newQuizStart->questions_list))->pluck('question_id')->toArray();
-            return array(
-                'questions_list' => $questions_list,
-                'other_data'     => $newQuizStart->other_data,
-                'quiz_breakdown' => $quiz_breakdown,
-                'QuizzesResultID' => $newQuizStart->id,
-            );
+            $questions_list_old = QuizzResultQuestions::whereIn('id', json_decode($newQuizStart->questions_list))->where('quiz_result_type', 'practice')->pluck('question_id')->toArray();
+            if( !empty( $questions_list_old )){
+                $questions_list = $questions_list_old;
+                return array(
+                    'questions_list' => $questions_list,
+                    'other_data'     => $newQuizStart->other_data,
+                    'quiz_breakdown' => $quiz_breakdown,
+                    'QuizzesResultID' => $newQuizStart->id,
+                );
+            }
         }
 		if( isset( $newQuizStart->id) && empty( $result_questions )){
 			$newQuizStart->delete();
@@ -3944,6 +3951,14 @@ class QuestionsAttemptController extends Controller
 							}
 						$response .= '</select>';
 					}
+					return $response;
+				}, $content);
+				
+				
+				$content = preg_replace_callback('/\[INPUTFIELD id="(\d+)"\]/', function($matches) use ($elementObj) {
+					$id = isset( $matches[1] )? $matches[1] : 0;
+					$property = 'inner_options' . $id;
+					$response = '<span class="input-holder"><span class="input-label" contenteditable="false"></span><input type="text" data-field_type="text" class="editor-field input-simple" data-id="'.$id.'" id="field-'.$id.'"> </span>';
 					return $response;
 				}, $content);
 

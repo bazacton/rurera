@@ -105,5 +105,249 @@ class TimestablesController extends Controller
         
         return apiResponse2(1, 'retrieved', trans('api.public.retrieved'), $response);
     }
+	
+	/*
+	* Freedom Mode
+	*/
+	
+	public function freedom_mode(Request $request){
+		
+		$form_fields = [];
+		$user = apiAuth();
+		
+		$locked_tables = json_decode($user->locked_tables);
+        $locked_tables = is_array($locked_tables)? $locked_tables : (array) $locked_tables;
+		
+		$data_array = array();
+		$section_id = 0;
+		$data_array[$section_id] = array(
+			'section_id' => $section_id,
+			'section_title' => '',
+			'section_data' => array(),
+		);
+		
+		$tables_array = array(2,3,4,5,6,7,8,9,10,11,12,13,14,15,16);
+		
+		$table_data = array();
+		
+		foreach( $tables_array as $table_no){
+			$is_locked = in_array( $table_no, $locked_tables)? 'yes' : 'no';
+			$table_data[]	= array(
+				"key" => $table_no,
+				"value" => $table_no,
+				"is_disabled" => $is_locked,
+			);
+		}
+		
+		
+		 
+		
+		$data_array[$section_id]['section_data'] = array(
+			array(
+				"field_name" => "question_type",
+				"field_type" => "choice",
+				"element_layout" => "block",
+				"label" => "Select Arithmetic Operations",
+				"hint" => "",
+				"order" => 0,
+				"required" => true,
+				"multiple" => false,
+				"value" => "multiplication",
+				"icon" => "",
+				"data" => array(
+					array(
+						"key" => "multiplication_division",
+						"value" => "Multiplication and Division",
+					),
+					array(
+						"key" => "multiplication",
+						"value" => "Multiplication only",
+					),
+					array(
+						"key" => "division",
+						"value" => "Division only",
+					),
+				)
+			),
+			array(
+				"field_name" => "no_of_questions",
+				"field_type" => "choice",
+				"element_layout" => "block",
+				"order" => 1,
+				"required" => true,
+				"multiple" => false,
+				"label" => "No of Questions",
+				"hint" => "",
+				"value" => "20",
+				"icon" => "",
+				"data" => array(
+					array(
+						"key" => "10",
+						"value" => "10 Questions",
+					),
+					array(
+						"key" => "20",
+						"value" => "20 Questions",
+					),
+					array(
+						"key" => "30",
+						"value" => "30 Questions",
+					),
+				)
+			),
+			array(
+				"field_name" => "question_values",
+				"field_type" => "choice",
+				"element_layout" => "tables_selection",
+				"label" => "Select Tables",
+				"hint" => "",
+				"order" => 2,
+				"required" => true,
+				"multiple" => true,
+				"value" => [2,4],
+				"icon" => "",
+				"data" => $table_data
+			),
+			
+			array(
+				'field_name' => 'submit',
+				'field_type' => 'button',
+				'element_layout' => 'submit',
+				'order' => 3,
+				'required' => false,
+				'label' => 'Play',
+				'icon' => '',
+				'data' => '',
+				'target_api_type' => "POST",
+				'target_api' => "/panel/timestables/freedom_mode/play",
+			),
+		);
+		
+		$response = array(
+			'form' => $data_array,
+		);
+		
+        
+        return apiResponse2(1, 'retrieved', trans('api.public.retrieved'), $response);
+    }
+	
+	/*
+	* Freedom Mode Play
+	*/
+	
+	public function freedom_mode_play(Request $request){
+		
+		$form_fields = [];
+		$user = apiAuth();
+		
+		$locked_tables = json_decode($user->locked_tables);
+        $locked_tables = is_array($locked_tables)? $locked_tables : (array) $locked_tables;
+		
+		$data_array = array();
+		$section_id = 0;
+		$data_array[$section_id] = array(
+			'section_id' => $section_id,
+			'section_title' => 'Select Arithmetic Operations',
+			'section_data' => array(),
+		);
+		
+		$tables_array = array(2,3,4,5,6,7,8,9,10,11,12,13,14,15,16);
+		
+		$table_data = array();
+		
+		foreach( $tables_array as $table_no){
+			$is_locked = in_array( $table_no, $locked_tables)? 'yes' : 'no';
+			$table_data[]	= array(
+				"key" => $table_no,
+				"value" => $table_no,
+				"is_disabled" => $is_locked,
+			);
+		}
+		
+		
+		 
+		
+		$data_array[$section_id]['section_data'] = array(
+			array(
+				"field_name" => "question_type",
+				"field_type" => "choice",
+				"element_layout" => "block",
+				"order" => 0,
+				"required" => true,
+				"multiple" => false,
+				"value" => "multiplication",
+				"icon" => "",
+				"data" => array(
+					array(
+						"key" => "multiplication_division",
+						"value" => "Multiplication and Division",
+					),
+					array(
+						"key" => "multiplication",
+						"value" => "Multiplication only",
+					),
+					array(
+						"key" => "division",
+						"value" => "Division only",
+					),
+				)
+			),
+			array(
+				"field_name" => "no_of_questions",
+				"field_type" => "choice",
+				"element_layout" => "block",
+				"order" => 1,
+				"required" => true,
+				"multiple" => false,
+				"value" => "20",
+				"icon" => "",
+				"data" => array(
+					array(
+						"key" => "10",
+						"value" => "10 Questions",
+					),
+					array(
+						"key" => "20",
+						"value" => "20 Questions",
+					),
+					array(
+						"key" => "30",
+						"value" => "30 Questions",
+					),
+				)
+			),
+			array(
+				"field_name" => "question_values",
+				"field_type" => "choice",
+				"element_layout" => "tables_selection",
+				"order" => 2,
+				"required" => true,
+				"multiple" => true,
+				"value" => [2,4],
+				"icon" => "",
+				"data" => $table_data
+			),
+			
+			array(
+				'field_name' => 'submit',
+				'field_type' => 'button',
+				'element_layout' => 'submit',
+				'order' => 3,
+				'required' => false,
+				'label' => 'Play',
+				'icon' => '',
+				'data' => '',
+				'target_api_type' => "POST",
+				'target_api' => "/panel/timestables/freedom_mode/play",
+			),
+		);
+		
+		$response = array(
+			'form' => $data_array,
+		);
+		
+        
+        return apiResponse2(1, 'retrieved', trans('api.public.retrieved'), $response);
+    }
 
  }

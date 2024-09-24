@@ -2458,10 +2458,11 @@ function toolbar_tools()
         'html'               => array(
             'title' => esc_html__('HTML', 'rureraform'),
             'icon'  => 'fas fa-code',
+            'classes' => 'rurera-hide',	
             'type'  => 'other'
         ),
 		'inner_dropdown'               => array(
-            'title' => esc_html__('HTML', 'rureraform'),
+            'title' => esc_html__('Inner Dropdown / Input', 'rureraform'),
             'icon'  => 'fas fa-code',
             'type'  => 'other'
         ),
@@ -5746,21 +5747,21 @@ function element_properties_meta($chapters)
                 'tooltip' => esc_html__('This is the label of the field.', 'rureraform'),
                 'type'    => 'text'
             ),
-            'options' => array(
+            'sortable_options' => array(
                 'multi-select' => 'on',
                 'values'       => array(
                     array(
-                        'value' => '1',
+                        'correct_order' => '1',
                         'label' => 'Option 1',
                         'image' => ''
                     ),
                     array(
-                        'value' => '2',
+                        'correct_order' => '2',
                         'label' => 'Option 2',
                         'image' => ''
                     ),
                     array(
-                        'value' => '3',
+                        'correct_order' => '3',
                         'label' => 'Option 3',
                         'image' => ''
                     ),
@@ -6470,13 +6471,35 @@ function element_properties_meta($chapters)
             'no_of_options'    => array(
                 'value'   => 1,
                 'label'   => esc_html__('No of Options', 'rureraform'),
-                'type'    => 'number'
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        '1' => esc_html__('1', 'rureraform'),
+                        '2' => esc_html__('2', 'rureraform'),
+                        '3' => esc_html__('3', 'rureraform'),
+                        '4' => esc_html__('4', 'rureraform'),
+                        '5' => esc_html__('5', 'rureraform'),
+                    )
+            ),
+			
+            'no_of_fields'    => array(
+                'value'   => 1,
+                'label'   => esc_html__('No of Fields', 'rureraform'),
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        '1' => esc_html__('1', 'rureraform'),
+                        '2' => esc_html__('2', 'rureraform'),
+                        '3' => esc_html__('3', 'rureraform'),
+                        '4' => esc_html__('4', 'rureraform'),
+                        '5' => esc_html__('5', 'rureraform'),
+                    )
             ),
             
             'content'       => array(
-                'value'   => esc_html__('Default HTML Content.', 'rureraform') . '',
-                'label'   => esc_html__('HTML', 'rureraform'),
-                'tooltip' => esc_html__('This is the content of HTML.', 'rureraform'),
+                'value'   => esc_html__('Default Text Content.', 'rureraform') . '',
+                'label'   => esc_html__('Text', 'rureraform'),
+                'tooltip' => esc_html__('This is the content of Text.', 'rureraform'),
                 'type'    => 'textarea'
             ),
             'inner_options1'  => array(
@@ -6550,78 +6573,39 @@ function element_properties_meta($chapters)
                 'type'         => 'options_label_minimal'
             ),
 			
-            'description'        => array(
-                'value'   => '',
-                'label'   => esc_html__('Description', 'rureraform'),
-                'tooltip' => esc_html__('This description appears below the field.', 'rureraform'),
-                'type'    => 'text'
+			'inner_field1'  => array(
+                'field_option_id' => 1,
+				'value'   => esc_html__('Correct Answer', 'rureraform'),
+                'label'        => '<div class="content_options">[INPUTFIELD id="1"]</div>',
+                'type'    => 'inner_text_field'
             ),
-            'style'              => array(
-                'type'  => 'tab',
-                'value' => 'style',
-                'label' => esc_html__('Style', 'rureraform')
+			
+			'inner_field2'  => array(
+                'field_option_id' => 2,
+				'value'   => esc_html__('Correct Answer', 'rureraform'),
+                'label'        => '<div class="content_options">[INPUTFIELD id="2"]</div>',
+                'type'    => 'inner_text_field'
             ),
-            'image_size'    => array(
-                'value'   => '',
-                'label'   => esc_html__('Image Size', 'rureraform'),
-                '',
-                'type'    => 'select',
-                'options' =>
-                    array(
-                        'image_small' => esc_html__('Small', 'rureraform'),
-                        'image_medium' => esc_html__('Medium', 'rureraform'),
-                        'image_large' => esc_html__('Large', 'rureraform'),
-                    )
+			
+			'inner_field3'  => array(
+                'field_option_id' => 3,
+				'value'   => esc_html__('Correct Answer', 'rureraform'),
+                'label'        => '<div class="content_options">[INPUTFIELD id="3"]</div>',
+                'type'    => 'inner_text_field'
             ),
-            'template_style'     => array(
-                'value'   => 'rurera-in-row',
-                'label'   => esc_html__('Template Style', 'rureraform'),
-                '',
-                'type'    => 'select',
-                'options' =>
-                    array(
-                        'rurera-in-row' => esc_html__('Row', 'rureraform'),
-                        'rurera-in-cols' => esc_html__('Columns', 'rureraform'),
-                    )
+			
+			'inner_field4'  => array(
+                'field_option_id' => 4,
+				'value'   => esc_html__('Correct Answer', 'rureraform'),
+                'label'        => '<div class="content_options">[INPUTFIELD id="4"]</div>',
+                'type'    => 'inner_text_field'
             ),
-
-            'template_alignment' => array(
-                'value'   => 'image-right',
-                'label'   => esc_html__('Image Alignment (Optional)', 'rureraform'),
-                '',
-                'type'    => 'select',
-                'options' =>
-                    array(
-                        'image-right' => esc_html__('Right', 'rureraform'),
-                        'image-top'   => esc_html__('Top', 'rureraform'),
-                    )
-            ),
-            'list_style'         => array(
-                'value'   => 'none',
-                'label'   => esc_html__('Bullet list Style', 'rureraform'),
-                '',
-                'type'    => 'select',
-                'options' =>
-                    array(
-                        ''                    => esc_html__('None', 'rureraform'),
-                        'alphabet-list-style' => esc_html__('English Alphabet', 'rureraform'),
-                        'numeric-list-style'  => esc_html__('Numbers', 'rureraform'),
-                    )
-            ),
-
-
-            'description-style' => array(
-                'value'   => array(
-                    'position' => '',
-                    'align'    => ''
-                ),
-                'caption' => array(
-                    'position' => esc_html__('Position', 'rureraform'),
-                    'align'    => esc_html__('Align', 'rureraform')
-                ),
-                'label'   => esc_html__('Description style', 'rureraform'),
-                'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'rureraform'),
-                'type'    => 'description-style'
+			
+			'inner_field5'  => array(
+                'field_option_id' => 5,
+				'value'   => esc_html__('Correct Answer', 'rureraform'),
+                'label'        => '<div class="content_options">[INPUTFIELD id="5"]</div>',
+                'type'    => 'inner_text_field'
             ),
 
             'elements_data' => array(

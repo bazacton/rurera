@@ -120,7 +120,7 @@ class LearnController extends Controller
 	
 	public function start(Request $request, $category_slug, $slug, $sub_chapter_slug)
     {
-		
+		$user = apiAuth();
 		$SubChapters = SubChapters::where('sub_chapter_slug', $sub_chapter_slug)
                     ->first();
 
@@ -141,7 +141,6 @@ class LearnController extends Controller
 		$QuizController = new QuizController();
 		$quiz_response = $QuizController->get_learn_quiz_data($quiz, 'easy', 'no', [], 'yes', '', 0);
 		$questions_list_data = isset( $quiz_response['questions_list_data'] )? $quiz_response['questions_list_data'] : array();
-		
 		$section_id = 0;
 		$question_serial = 1;
 		if( !empty( $questions_list_data ) ){
@@ -169,6 +168,14 @@ class LearnController extends Controller
 				
 				if( !empty( $layout_elements ) ){
 					foreach( $layout_elements as $elementObj){
+						
+						$elementObj->type = ($elementObj->type == 'question_label_true_false')? 'question_label' : $elementObj->type;
+						$elementObj->type = ($elementObj->type == 'question_label_multichoice_template')? 'question_label' : $elementObj->type;
+						$elementObj->type = ($elementObj->type == 'question_label_sequence_template')? 'question_label' : $elementObj->type;
+						$elementObj->type = ($elementObj->type == 'question_label_select_template')? 'question_label' : $elementObj->type;
+						$elementObj->type = ($elementObj->type == 'question_label_matching_template')? 'question_label' : $elementObj->type;
+						$elementObj->type = ($elementObj->type == 'question_label_paragraph')? 'paragraph_quiz' : $elementObj->type;
+						$elementObj->type = ($elementObj->type == 'paragraph_multichoice_template')? 'paragraph_quiz' : $elementObj->type;
 						unset($elementObj->elements_data);
 						unset($elementObj->resize);
 						unset($elementObj->height);
