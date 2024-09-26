@@ -62,5 +62,39 @@
 			</div>
 		</div>
 	</div>
+	<div class="footer-bottom pt-50">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="footer-nav-holder pt-50">
+						<div class="row">
+							<div class="col-12 col-md-12 col-lg-12">
+								<div class="footer-nav-box">
+									<div class="footer-navs">
+										<ul>
+											<li><a href="/privacy" class="active">Privacy</a></li>
+											<li><a href="/cookies">Cookie Policy</a></li>
+											<li><a href="/terms-and-conditions">Terms & Condition</a></li>
+											<li><a href="/terms-of-policy">Terms of Policy</a></li>
+											<li><a href="/acceptable-use">Acceptable Use Policy</a></li>
+											<li><a href="/contact-us">Contact us</a></li>
+
+										</ul>
+									</div>
+									<div class="footer-social-links">
+										<ul>
+											<li><a href="https://www.facebook.com/profile.php?id=61564277975339"><img src="/assets/default/svgs/facebook-svgrepo-com.svg" alt="facebook icon" width="50" height="50"></a></li>
+											<li><a href="https://www.instagram.com/rurera.official/gi"><img src="/assets/default/svgs/instagram-svgrepo-com.svg" alt="facebook icon" width="50" height="50"></a></li>
+										</ul>
+									</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
 

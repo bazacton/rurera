@@ -19,6 +19,9 @@ Route::group([], function () {
 		Route::get('/{year_slug}/{subject_slug}/{sub_chapter_slug}', ['uses' => 'LearnController@start']);
     });
 	
+	
+	Route::get('/{year_slug}/{spell_slug}/spelling-list', ['uses' => 'SpellsController@spelling_list']);
+	
 	Route::group(['prefix' => '/menu'], function () {
 		Route::get('/', ['uses' => 'CommonController@menu']);
 
@@ -27,7 +30,13 @@ Route::group([], function () {
 	Route::group(['prefix' => '/timestables'], function () {
         Route::get('/', ['uses' => 'TimestablesController@index']);
         Route::get('/freedom_mode', ['uses' => 'TimestablesController@freedom_mode']);
-        Route::get('/freedom_mode/play', ['uses' => 'TimestablesController@freedom_mode_play']);
+        Route::post('/freedom_mode/play', ['uses' => 'TimestablesController@freedom_mode_play']);
+		
+		//Powerup Mode
+        Route::get('/powerup_mode', ['uses' => 'TimestablesController@powerup_mode']);
+        Route::post('/powerup_mode/play', ['uses' => 'TimestablesController@powerup_mode_play']);
+		
+        Route::post('/submit_timestables', ['uses' => 'TimestablesController@submit_timestables']);
     });
 	
 	Route::group(['prefix' => '/books'], function () {

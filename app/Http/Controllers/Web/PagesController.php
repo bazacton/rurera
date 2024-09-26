@@ -283,4 +283,19 @@ class PagesController extends Controller
     return $all_links;
     //echo "Crawled {$href}";
     }
+	
+	public function tutoring_landing()
+    {
+        $page = Page::where('link', '/tutoring')->where('status', 'publish')->first();
+
+        $data = [
+            'pageTitle'       => $page->title,
+            'page_title' 	  => $page->page_title,
+            'pageDescription' => $page->seo_description,
+            'pageRobot'       => $page->robot ? 'index, follow, all' : 'NOODP, nofollow, noindex',
+        ];
+        return view('web.default.landing.tutoring_landing', $data);
+
+        abort(404);
+    }
 }

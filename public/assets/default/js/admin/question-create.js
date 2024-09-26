@@ -217,6 +217,7 @@ function rureraform_save(_object, question_status) {
     var difficulty_level = $("[name=difficulty_level]").val();
     var reference_type = $("[name=reference_type]").val();
     var review_required = ($('[name=review_required]').prop('checked')) ? 1 : 0;
+    var developer_review_required = ($('[name=developer_review_required]').prop('checked')) ? 1 : 0;
     var glossary_ids = $("#glossary_ids").val();
 
     var new_glossaries = $(".new_glossaries")
@@ -265,6 +266,7 @@ function rureraform_save(_object, question_status) {
         "difficulty_level": difficulty_level,
         "reference_type" : reference_type,
         "review_required": review_required,
+        "developer_review_required": developer_review_required,
         "action": "rureraform-form-save",
         "form-id": jQuery("#rureraform-id").val(),
         "form-options": rureraform_encode64(JSON.stringify(rureraform_form_options)),

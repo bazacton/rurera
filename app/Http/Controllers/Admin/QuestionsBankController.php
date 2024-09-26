@@ -2476,6 +2476,7 @@ class QuestionsBankController extends Controller
             'example_question'          => isset($_POST['example_question']) && !empty($_POST['example_question']) ? $_POST['example_question'] : 0,
             'reference_type'            => isset($_POST['reference_type']) && !empty($_POST['reference_type']) ? $_POST['reference_type'] : 'Course',
 			'question_levels' 			=> json_encode($question_levels),
+            'developer_review_required'           => isset($questionData['developer_review_required']) ? $questionData['developer_review_required'] : 0 ,
         ]);
 		
 		if( $sub_chapter_quiz_id > 0){
@@ -2668,6 +2669,7 @@ class QuestionsBankController extends Controller
             'example_question'            => isset($questionData['example_question']) && !empty($questionData['example_question']) ? $questionData['example_question'] : 0,
             'reference_type'            => isset($questionData['reference_type']) && !empty($questionData['reference_type']) ? $questionData['reference_type'] : 'Course',
             'question_levels'            => $question_levels,
+            'developer_review_required'           => isset($questionData['developer_review_required']) ? $questionData['developer_review_required'] : 0 ,
         ]);
 
         if (!empty($quizQuestion)) {

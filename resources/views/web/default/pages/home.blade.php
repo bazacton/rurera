@@ -3,7 +3,7 @@
 @push('styles_top')
 <link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
 <style>
-    .home-banner {background: url(../assets/default/img/home-banner.webp) 0 0 /cover no-repeat; min-height: 650px;}
+    .home-banner {background-color: #596bfd; min-height: 650px;}
     .home-categories-section {background-color: #f27530;}
     .choose-sats-section {background-color: #7679ee;}
     .reward-program-section {background-color: #fffcee;}
@@ -12,6 +12,23 @@
     .yellow-filter {filter: brightness(0) saturate(100%) invert(82%) sepia(51%) saturate(5470%) hue-rotate(9deg) brightness(108%) contrast(99%);}
     .orange-filter {filter: brightness(0) saturate(100%) invert(46%) sepia(70%) saturate(3496%) hue-rotate(359deg) brightness(96%) contrast(98%);}
     .blue-light-filter {filter: brightness(0) saturate(100%) invert(43%) sepia(68%) saturate(2203%) hue-rotate(219deg) brightness(104%) contrast(87%);}
+    #change {
+        position: relative;
+        white-space: nowrap;
+        }
+    #change .new {
+        position: absolute;
+        user-select: none;
+        left: 0px;
+        bottom: 0.9em;
+        opacity: 0;
+        }
+
+        #change .old {
+        display: inline-block;
+        position: relative;
+        top: 0px;
+        }
 </style>
 @endpush
 
@@ -20,9 +37,10 @@
     <section class="home-banner slider-hero-section position-relative pt-100 pb-100">
         <div class="container user-select-none">
             <div class="row slider-content align-items-center hero-section2 flex-column-reverse flex-md-row">
-                <div class="col-12 col-md-12 col-lg-10 text-center mx-auto">
-                    <h1 class="font-72 font-weight-bold text-dark-charcoal">Master, Excel & Conquer with <span class="text-scribble">Rurera</span></h1>
-                    <p class="font-19 pt-15 text-gray">Rurera is a transformative learning platform featuring a subscription model that delivers over 10,000 practice exercises for Key Stage 1 and Key Stage 2, along with resources for Times Tables, Books, SATs, and 11+ exams, empowering success.</p>
+                <div class="col-12 col-md-12 col-lg-12 text-center mx-auto">
+                    <h1 class="top-text font-72 font-weight-bold text-white">One Stop for Fun Learning</h1>
+                    <h1 class="font-50 font-weight-bold text-white"><span id="change"><span class="old">Exam Prep 11 Plus , CAT-4 . ISEB</span></span> </h1>
+                    <p class="font-19 pt-15 text-white pb-30">Rurera is a transformative learning platform featuring a subscription model that delivers over 10,000 practice exercises for Key Stage 1 and Key Stage 2, along with resources for Times Tables, Books, SATs, and 11+ exams, empowering success.</p>
                     <div class="choose-sats mt-90">
                         <div class="row">
                             <div class="col-12 col-lg-4 col-md-6">
@@ -101,6 +119,32 @@
             </div>
         </div>
     </section>
+    <section class="parent-account-section" style="background-color: #0065ff;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12 col-lg-7 col-md-7">
+                    <div class="section-title mb-50">
+                        <h2 class="font-40 text-white">Parent account</h2>
+                        <p class="font-16 font-weight-500 text-white">We make it easy to be involved in your child’s learning
+                            Ability to assign activities</p>
+                    </div>
+                    <ul>
+                        <li><span class="font-18">Real-Time diagnostics</span></li>
+                        <li><span class="font-18">Track Child’s Learning</span></li>
+                        <li><span class="font-18">Assign Goals for your Child</span></li>
+                        <li><span class="font-18">Regular Notifications on Activities.</span></li>
+                        <li><span class="font-18">learning controls</span></li>
+                        <li><span class="font-18">Easy to Manage Sibling Accounts</span></li>
+                    </ul>
+                </div>
+                <div class="col-12 col-lg-5 col-md-5">
+                    <div class="imb-box">
+                        <img src="/assets/default/img/banner-home.webp" width="548" height="570" alt="banner-home image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <section class="home-sections home-sections-swiper container position-relative mt-90">
         <div class="row">
             <div class="col-12">
@@ -135,7 +179,7 @@
             </div>
         </div>
     </section>
-    <section class="testimonials-container pt-80">
+    <section class="testimonials-container pt-80 pb-80">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -189,57 +233,110 @@
             </div>
         </div>
     </section>
-    @foreach($homeSections as $homeSection)
-    @if($homeSection->name == \App\Models\HomeSection::$blog and !empty($blog) and !$blog->isEmpty())
-           <section class="home-sections container">
-               <div class="d-flex justify-content-between">
-                   <div class="section-title">
-                       <h2 class="mt-0 mb-10 font-40">{{ trans('home.blog') }}</h2>
-                       <p class="section-hint">Uncover the Latest News and Trends!</p>
-                   </div>
-                   <a href="/blog" class="btn btn-border-white">{{ trans('home.all_blog') }}</a>
-               </div>
-               <div class="row mt-35">
-                   @foreach($blog as $post)
-                       <div class="col-12 col-md-4 col-lg-4 mt-20 mt-lg-0">
-                           @include('web.default.blog.rurera-grid-list',['post' =>$post])
-                       </div>
-                   @endforeach
-
-               </div>
-               <div class="d-flex align-items-center justify-content-end pt-50">
-                    <a href="/pricing" class="try-rurera-btn btn-primary font-16 text-dark-blue register-btn py-15 px-30">Try Rurera for free</a>
-                </div>
-           </section>
-       @endif
-    @endforeach
-    <section class="lms-newsletter mt-90 py-70">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="newsletter-inner">
-                        <div class="row">
-                            <div class="col-12 col-lg-8 col-md-8">
-                                <h2 itemprop="title" class="mb-10 text-dark font-40">Kickstart your Exams Prep today!</h2>
-                                <p itemprop="description" class="mb-0 text-dark font-16"> Let us help you achieve the score you deserve and unlock doors to your future academic success. </p>
-                            </div>
-                            <div class="col-12 col-lg-4 col-md-4">
-                                <div class="form-field position-relative text-right"> 
-                                    <button class="rounded-pill rounded bg-white"> <a href="{{url('/')}}/pricing" style="color:var(--gray-dark);">Try Rurera for free</a> </button> 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
 </section>
 
 @endsection
 
 @push('scripts_bottom')
 <script src="/assets/default/vendors/swiper/swiper-bundle.min.js"></script>
+<script>
+    function setupWordChange(timeout, animationTimeout = 300) {
+    const container = document.getElementById("change");
+    const oldText = container.querySelector(".old");
+
+    const headlines = [
+        oldText.innerText,
+        "Times table Practice Games",
+        "SATs Revision Practice papers",
+    ];
+
+    const newText = document.createElement("span");
+    newText.setAttribute("aria-hidden", "true");
+    newText.className = "new";
+    newText.innerText = headlines[1];
+    container.insertBefore(newText, container.firstChild);
+
+    const maxMargin = 0.9;
+
+    // The last time the animation was started
+    let lastChange = Date.now();
+    // The index of the current headline
+    let currentHeadline = 0;
+    // Whether the DOM needs to be updated after the animation
+    let needsUpdate = true;
+
+    const changeFrame = () =>
+        window.requestAnimationFrame(() => {
+        const delta = Date.now() - lastChange;
+
+        // Less time than the animation duration has passed
+        if (delta < animationTimeout) {
+            needsUpdate = true;
+
+            // Ratio for where in the animation we are
+            const ratio = Math.min(delta / animationTimeout, 1);
+            
+            // Measure both text boxes
+            const targetWidth = newText.scrollWidth;
+            const oldWidth = oldText.scrollWidth;
+            const difference = targetWidth - oldWidth;
+
+            // Make room for the new text
+            const halfWidth = `${(difference * ratio) / 2}px`;
+            oldText.style.marginLeft = halfWidth;
+            oldText.style.marginRight = halfWidth;
+
+            // Fade the new text in
+            oldText.style.opacity = 1 - ratio;
+            newText.style.opacity = ratio;
+
+            // Center the new text over the old one
+            newText.style.left = `${(difference * (ratio - 1)) / 2}px`;
+
+            // Move the new text in
+            newText.style.bottom = `${maxMargin * (1 - ratio)}em`;
+            oldText.style.top = `${maxMargin * ratio}em`;
+
+            changeFrame();
+            return;
+        } else if (needsUpdate) {
+            // Update the text
+            oldText.innerHTML = headlines[(currentHeadline + 1) % headlines.length];
+            newText.innerHTML =
+            headlines[(currentHeadline + 2) % headlines.length];
+            needsUpdate = false;
+        }
+
+        // Reset spacing around word on the line
+        oldText.style.marginLeft = "0px";
+        oldText.style.marginRight = "0px";
+
+        // Reset opacities
+        oldText.style.opacity = 1;
+        newText.style.opacity = 0;
+
+        // Update container positions
+        oldText.style.top = "0px";
+        newText.style.bottom = `${maxMargin}em`;
+        newText.style.left = "0px";
+
+        if (delta > timeout) {
+            lastChange = Date.now();
+            currentHeadline = (currentHeadline + 1) % headlines.length;
+        }
+
+        changeFrame();
+        });
+
+    setTimeout(() => {
+        lastChange = Date.now();
+        changeFrame();
+    }, timeout);
+    }
+
+    // Play the animation
+    document.addEventListener("DOMContentLoaded", () => {
+    setupWordChange(2000);
+    });
+</script>
 @endpush

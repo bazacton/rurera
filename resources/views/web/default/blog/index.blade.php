@@ -40,12 +40,87 @@
         </div>
     </section>
 
+    <section class="lms-categories-section pt-70">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-3 col-md-4 col-sm-6">
+                    <div class="categories-grid" style="background-color: #abf9ae;">
+                        <div class="categories-detail">
+                            <h2 class="categories-title" itemprop="headline">
+                                <span>For</span>
+                                <a itemprop="url" href="/blog">Writers</a>
+                            </h2>
+                            <p>Publish your story your way with a complete set of tools</p>
+                            <div class="categories-tags">
+                                <a href="#">Visual Editor</a>
+                                <a href="">Paywall System</a>
+                                <a href="#">Pay Writer</a>
+                                <a href="#">Pay-To-Submit</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3 col-md-4 col-sm-6">
+                    <div class="categories-grid" style="background-color: #69e3fa;">
+                        <div class="categories-detail">
+                            <h2 class="categories-title" itemprop="headline">
+                                <span>For</span>
+                                <a itemprop="url" href="/blog">Agencies</a>
+                            </h2>
+                            <p>Accelerate your project development to the next level.</p>
+                            <div class="categories-tags">
+                                <a href="#">Visual Editor</a>
+                                <a href="">Paywall System</a>
+                                <a href="#">Pay Writer</a>
+                                <a href="#">Pay-To-Submit</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3 col-md-4 col-sm-6">
+                    <div class="categories-grid" style="background-color: #a7a5f9;">
+                        <div class="categories-detail">
+                            <h2 class="categories-title" itemprop="headline">
+                                <span>For</span>
+                                <a itemprop="url" href="/blog">Marketers</a>
+                            </h2>
+                            <p>Generate Leads & conversion the themes to the customers</p>
+                            <div class="categories-tags">
+                                <a href="#">Visual Editor</a>
+                                <a href="">Paywall System</a>
+                                <a href="#">Pay Writer</a>
+                                <a href="#">Pay-To-Submit</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3 col-md-4 col-sm-6">
+                    <div class="categories-grid" style="background-color: #fbdb62;">
+                        <div class="categories-detail">
+                            <h2 class="categories-title" itemprop="headline">
+                                <span>For</span>
+                                <a itemprop="url" href="/blog">Creators</a>
+                            </h2>
+                            <p>Make content Convert Traffic with personalize website.</p>
+                            <div class="categories-tags">
+                                <a href="#">Visual Editor</a>
+                                <a href="">Paywall System</a>
+                                <a href="#">Pay Writer</a>
+                                <a href="#">Pay-To-Submit</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="container mt-10 mt-md-10 lms-blog">
         <div class="row">
             <div class="col-12 col-lg-12">
                 <div class="row">
                     @foreach($blog as $post)
-                        <div class="col-12 col-md-12 col-lg-12">
+                        <div class="col-12 col-md-4 col-lg-4 col-sm-6">
                             <div class="mt-30">
                                 @include('web.default.blog.grid-list',['post' => $post])
                             </div>

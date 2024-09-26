@@ -43,6 +43,7 @@ class QuestionsAttemptController extends Controller
     public function createResultLog($params)
     {
         $user = getUser();
+		$user = (!isset( $user->id ) || $user->id == 0)? apiAuth() : $user;
 
         $parent_type_id = isset($params['parent_type_id']) ? $params['parent_type_id'] : 0;
         $quiz_result_type = isset($params['quiz_result_type']) ? $params['quiz_result_type'] : 0;
@@ -108,6 +109,7 @@ class QuestionsAttemptController extends Controller
     public function createAttemptLog($newQuizStart)
     {
         $user = getUser();
+		$user = (!isset( $user->id ) || $user->id == 0)? apiAuth() : $user;
         $quizAttempt = QuizzAttempts::create([
             'quiz_result_id' => $newQuizStart->id,
             'user_id'        => $user->id,
@@ -403,6 +405,7 @@ class QuestionsAttemptController extends Controller
     public function validation(Request $request)
     {
         $user = getUser();
+		$user = (!isset( $user->id ) || $user->id == 0)? apiAuth() : $user;
         $question_id = $request->get('question_id');
         $qresult_id = $request->get('qresult_id');
         $qattempt_id = $request->get('qattempt_id');
@@ -1126,6 +1129,7 @@ class QuestionsAttemptController extends Controller
 	public function spell_questions_layout_update($questions_list, $attemptLogObj, $resultLogObj, $new_question_id, $newQuestionsArray)
     {
 		$user = getUser();
+		$user = (!isset( $user->id ) || $user->id == 0)? apiAuth() : $user;
         $exclude_array = $questions_layout = $results_questions_array = array();
         $QuestionsAttemptController = new QuestionsAttemptController();
 		$quiz_level = 'easy';
@@ -1675,6 +1679,7 @@ class QuestionsAttemptController extends Controller
     public function get_result_data($parent_id, $q_result_id = 0, $parent_type = 'id')
     {
         $user = getUser();
+		$user = (!isset( $user->id ) || $user->id == 0)? apiAuth() : $user;
         if (!isset($user->id)) {
             return array();
         }
@@ -1782,6 +1787,7 @@ class QuestionsAttemptController extends Controller
     public function jump_question(Request $request)
     {
         $user = getUser();
+		$user = (!isset( $user->id ) || $user->id == 0)? apiAuth() : $user;
         $question_id = $request->get('question_id');
         $qattempt_id = $request->get('qattempt_id');
         $attemptLogObj = QuizzAttempts::find($qattempt_id);
@@ -2007,6 +2013,7 @@ class QuestionsAttemptController extends Controller
 
         //$user = auth()->user();
         $user = getUser();
+		$user = (!isset( $user->id ) || $user->id == 0)? apiAuth() : $user;
 		
         $QuizzAttempts = QuizzAttempts::find($attempt_id);
 
@@ -2517,6 +2524,7 @@ class QuestionsAttemptController extends Controller
         $label_class = ($resultQuestionObj->status == 'incorrect') ? 'wrong' : 'correct';
 
         $user = getUser();
+		$user = (!isset( $user->id ) || $user->id == 0)? apiAuth() : $user;
         $full_name = isset($user->id) ? $user->get_full_name() : 'Guest';
         if (!empty($correct_answers)) {
             foreach ($correct_answers as $field_id => $correct_answer_array) {
@@ -2657,6 +2665,7 @@ class QuestionsAttemptController extends Controller
         $label_class = 'correct';
 
         $user = getUser();
+		$user = (!isset( $user->id ) || $user->id == 0)? apiAuth() : $user;
         $full_name = isset($user->id) ? $user->get_full_name() : 'Guest';
         if (!empty($correct_answers)) {
             foreach ($correct_answers as $field_id => $correct_answer_array) {
@@ -2713,6 +2722,7 @@ class QuestionsAttemptController extends Controller
     public function prepare_result_array($resultData)
     {
         $user = getUser();
+		$user = (!isset( $user->id ) || $user->id == 0)? apiAuth() : $user;
         $resultsData = isset($resultData->resultsData) ? $resultData->resultsData : array();
         $response_data = array();
         if (!empty($resultsData)) {
@@ -2821,6 +2831,7 @@ class QuestionsAttemptController extends Controller
     {
         if( $user_id == 0) {
             $user = getUser();
+			$user = (!isset( $user->id ) || $user->id == 0)? apiAuth() : $user;
             $user_id = $user->id;
         }
         $user_id = is_array( $user_id )? $user_id : array($user_id);
@@ -2833,6 +2844,7 @@ class QuestionsAttemptController extends Controller
 
         if( $user_id == 0) {
            $user = getUser();
+		   $user = (!isset( $user->id ) || $user->id == 0)? apiAuth() : $user;
            $user_id = $user->id;
        }
 
@@ -3075,6 +3087,7 @@ class QuestionsAttemptController extends Controller
     public function after_attempt_complete($resultLogObj)
     {
         $user = getUser();
+		$user = (!isset( $user->id ) || $user->id == 0)? apiAuth() : $user;
         $quiz_result_type = $resultLogObj->quiz_result_type;
 
         /*
@@ -3207,6 +3220,7 @@ class QuestionsAttemptController extends Controller
     public function get_percetange_corrct_answer($resultLogObj)
     {
         $user = getUser();
+		$user = (!isset( $user->id ) || $user->id == 0)? apiAuth() : $user;
         $total_questions = $resultLogObj->total_questions;
 		$correct_percentage = 0;
 		if( $total_questions > 0){
@@ -3304,6 +3318,7 @@ class QuestionsAttemptController extends Controller
     {
 
 		$user = getUser();
+		$user = (!isset( $user->id ) || $user->id == 0)? apiAuth() : $user;
         $newQuizStart = QuizzesResult::where('parent_type_id', $quiz->id)->where('user_id', $user->id)->where('status', 'waiting')->first();
         if( isset( $newQuizStart->id)){
             $other_data = json_decode($newQuizStart->other_data);
@@ -3453,6 +3468,7 @@ class QuestionsAttemptController extends Controller
 
 		$total_no_of_questions = 5;
         $user = getUser();
+		$user = (!isset( $user->id ) || $user->id == 0)? apiAuth() : $user;
         $newQuizStart = QuizzesResult::where('parent_type_id', $quiz->id)->where('quiz_result_type', 'practice')->where('user_id', $user->id)->where('status', 'waiting')->first();
 		$result_questions = isset( $newQuizStart->questions_list)? json_decode($newQuizStart->questions_list) : array();
         $other_data = array();
@@ -3546,6 +3562,7 @@ class QuestionsAttemptController extends Controller
     {
 
         $user = getUser();
+		$user = (!isset( $user->id ) || $user->id == 0)? apiAuth() : $user;
         $newQuizStart = QuizzesResult::where('parent_type_id', $quiz->id)->where('quiz_result_type', 'learning_journey')->where('user_id', $user->id)->where('status', 'waiting')->first();
 		$result_questions = isset( $newQuizStart->questions_list)? json_decode($newQuizStart->questions_list) : array();
         $other_data = array();
@@ -3642,6 +3659,7 @@ class QuestionsAttemptController extends Controller
     {
 
         $user = getUser();
+		$user = (!isset( $user->id ) || $user->id == 0)? apiAuth() : $user;
         $newQuizStart = QuizzesResult::where('parent_type_id', $quiz->id)->where('quiz_result_type', 'assignment')->where('user_id', $user->id)->where('status', 'waiting')->first();
         if( isset( $newQuizStart->id)){
             $other_data = json_decode($newQuizStart->other_data);
@@ -3669,6 +3687,7 @@ class QuestionsAttemptController extends Controller
     public function get_vocabulary_questions_list($quiz, $questions_list, $quiz_level, $assignment_id = 0, $is_new = 'no', $test_type = '')
     {
 		$user = getUser();
+		$user = (!isset( $user->id ) || $user->id == 0)? apiAuth() : $user;
 		$parent_type_id = ($assignment_id > 0)? $assignment_id : $quiz->id;
 		$newQuizStart = QuizzesResult::where('parent_type_id', $parent_type_id)->where('quiz_level', $quiz_level)->where('user_id', $user->id)->where('status', 'waiting')->first();
 		if( $is_new == 'yes'){
@@ -3703,7 +3722,7 @@ class QuestionsAttemptController extends Controller
 
     public function resultTimestablesAverage($result_id){
         $user = getUser();
-        $user = User::find($user->id);
+		$user = (!isset( $user->id ) || $user->id == 0)? apiAuth() : $user;
 
         $timestables_data = json_decode($user->timestables_data);
         $timestables_data = is_array($timestables_data) ? $timestables_data : $this->convertToArrayRecursive($timestables_data);

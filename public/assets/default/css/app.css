@@ -88,7 +88,7 @@ Main Header Style Start
 .navbar .navbar-categories-dropdown .dropdown-toggle:after {display: none;}
 .navbar .navbar-categories-dropdown .dropdown-menu {top: 10px;}
 .navbar .nav-item .nav-link,
-.navbar li .nav-link {font-size: 14px; text-align: center; color: #171347; padding: 10px 20px; transition: all 0.3s;}
+.navbar li .nav-link {font-size: 17px; text-align: center; color: #1328cb; padding: 10px 20px; transition: all 0.3s;}
 /*Nav bar 1 style start*/
 .navbar1 {padding: 10px 20px; position: relative; height: auto; background-color: #fff; border-bottom: 1px solid #eaeaea; z-index: 1055;}
 .navbar1 .navbar-nav{width: 100%;}
@@ -100,9 +100,11 @@ Main Header Style Start
 .navbar1 .navbar-categories-dropdown .dropdown-toggle:after {display: none;}
 .navbar1 .navbar-categories-dropdown .dropdown-menu {top: 10px;}
 .navbar1 .nav-item .nav-link,
-.navbar1 li .nav-link {font-size: 16px; text-align: center; color: #171347; padding: 10px 20px; transition: all 0.3s;}
-.register-btn {background: var(--category-color); color: #fff; border-radius: 4px;}
+.navbar1 li .nav-link {font-size: 17px; text-align: center; color: #1328cb; padding: 10px 20px; transition: all 0.3s;}
+.register-btn {background: var(--primary); color: #fff; border-radius: 4px;}
 .register-btn:hover {color: #fff;}
+nav ul {margin-left: 0;}
+nav li {list-style: none;}
 /*Nav bar 1 style End*/
 
 /*Mega Menu style Start*/
@@ -155,7 +157,6 @@ Main Header Style Start
 .home-courses-block .topic-list li {margin-bottom: 8px;}
 .home-courses-block .topic-list li a {font-weight: 500;}
 /*Mega Menu style End*/
-.navbar-brand {width: 170px; height: 50px;}
 .menu-category>ul>li {position: relative; border-radius: 10px; font-weight: 500; color: var(--secondary)}
 .menu-category>ul>li a {font-size: 14px; color: #171347; font-weight: 500; transition: all .3s;}
 .menu-category>ul>li a:hover {color: var(--primary);}
@@ -276,6 +277,7 @@ Home Choose Sats Style Start
 .choose-sats .sats-box h3 {display: block; text-align: center; font-weight: 700;}
 .choose-sats .row .row [class*="col-"] {padding: 0 5px 10px;}
 .choose-sats .row .row {margin: 0 -5px;}
+.choose-sats li {list-style: none;}
 /********************************
 Home Choose Sats Style End
 *********************************/
@@ -488,17 +490,16 @@ keystage2 Page Style Start
 .lms-counter-card.counter-yellow-bg {background: #f6b801; width: 175px; margin: auto; box-shadow: none; transform: rotate(-50deg); height: 175px; padding:36px 29px 20px 15px; text-align: center;}
 .lms-counter-card.counter-purple-bg:before {content: ""; position: absolute;left: 80px;top: -74px;width: 300px;height: 150px;border-top: 5px dashed #cac8cc;border-radius: 100%;}
 .lms-counter-card.counter-yellow-bg:after {content: "";position: absolute;right: -101px;bottom: -152px;width: 230px;height: 150px;border-bottom: 5px dashed #cac8cc;transform: rotate(60deg);border-radius: 100%;}
-.counter-holder .svg-shapes-bottom {position: absolute; left: 69px;bottom: -12px;transform: rotate(-52deg);}
+.counter-holder .svg-shapes-bottom {position: absolute; left: 66px;bottom: -12px;transform: rotate(-52deg);}
 .lms-counter-card.counter-purple-bg .plus-icons,
 .lms-counter-card.counter-orange-bg .plus-icons{margin-left: 5px;}
-.counter-holder .svg-shapes-bottom svg path,
-.counter-holder .svg-shapes-top svg path{fill: #cac8cc;}
-.counter-holder .svg-shapes-top svg,
-.counter-holder .svg-shapes-bottom svg{width: 40px; height: 40px;}
+.counter-holder .svg-shapes-top img,
+.counter-holder .svg-shapes-bottom img {width: 40px; height: 40px; object-fit: contain;}
 .counter-holder .svg-shapes-top {position: absolute;right: -121px;top: -36px;transform: rotate(45deg);}
 .lms-counter-card.counter-yellow-bg .plus-icons {position: absolute;right: 29px;top: 90px;transform: rotate(45deg);}
 /*Counter Card Style End*/
 .circle-icon-list img {width: 35px; height: 35px; background-color: #fff; border-radius: 100%;position: absolute;left: 0;top: 0;}
+.circle-icon-list li {list-style: none;}
 /********************************
 keystage2 Page Style End
 *********************************/
@@ -508,10 +509,12 @@ Sats Preparation Page Style Start
 *********************************/
 
 /*process Section Style Start*/
+.lms-search-services.parent-account-section .container > .row {min-height: auto;}
 .lms-search-services .services-card {text-align: center;margin-bottom: 50px;padding: 0 20px 0;margin-bottom: 30px;border-radius: 8px;transition: -webkit-filter .2s ease-in-out;transition: filter .2s ease-in-out;transition: filter .2s ease-in-out, -webkit-filter .2s ease-in-out;color: #333;z-index: 99;position: relative;}
 .lms-search-services {margin: 0 0 20px;}
+.lms-search-services li {list-style: none;}
 .process-holder{overflow: hidden; padding-bottom: 15px;}
-.process-list li { width: 25%;text-align: center;position: relative;}
+.process-list li { width: 25%;text-align: center;position: relative; list-style: none;}
 .process-list li a {color: #999;text-decoration: none;outline: none;text-transform: capitalize;font-size: 16px;line-height: 22px; display: inline-flex;position: relative;}
 .process-list li a:before {content: ""; position: absolute;left: 9px;bottom: -38px;width: 25px;height: 25px;background:#fff;border: 2px solid #0272b6;border-radius: 100%; z-index: 3;}
 .process-list {position: relative;padding-bottom: 25px}
@@ -746,18 +749,6 @@ Sats Preparation Page Style End
 .popular-post .popular-post-image {width: 110px; min-width: 110px; height: 75px;}
 .popular-post .popular-post-content {height: 75px; }
 
-/*Blog Detail Style Start*/
-.post-show p {color: #818894; margin-top: 15px;}
-.post-show img {border-radius: 15px; max-width: 100% !important;}
-.blog-single-post .post-show p {margin-top: 0;}
-.blog-sidebar {position: -webkit-sticky; position: sticky; top: 15px;}
-.single-post-nav ul {display: flex; flex-direction: column; gap: 15px;}
-.single-post-nav a {display: block; background-color: #fff; color: #333; font-size: 15px; font-weight: 500;}
-.single-post-nav a.current {
-  color: var(--secondary);
-}
-.blog-single-post .entry-content > br:first-child {display: none;}
-/*Blog Detail Style End*/
 .contact-info-modal .contact-avatar {width: 100px; max-width: 100px; height: 100px; border-radius: 50%;}
 .contact-info-modal .contact-avatar img {border-radius: 50%; }
 .contact-us-head {padding-top: 120px;}
@@ -952,7 +943,7 @@ Sats Preparation Page Style End
 .subscribe-plan p {color: #555;}
 .subscribe-plan:hover {top: -15px;}
 .subscribe-plan .plan-icon {width: 120px; height: 120px; }
-.subscribe-plan .plan-feature li {position: relative; padding-left: 30px;}
+.subscribe-plan .plan-feature li {position: relative; padding-left: 30px; list-style: none;}
 .subscribe-plan .plan-feature li:after {content: "\2713"; position: absolute;left: 0;top: 0;width: 20px;height: 20px;border-radius: 3px;color: #333;font-size: 12px;border: 1px solid #edeef1; text-align: center;line-height: 18px;background-color: rgba(243, 244, 245, 0.5);}
 .subscribe-plan .plan-feature li.subscribe-no:after {content: "\00D7"; color: #f77a7a; font-size: 18px;}
 .subscribe-plan button.btn {height: 38px; color: #7668e3; border-radius: 5px; background-color: #e9e7fd; border: 0; margin-top: auto !important;}
@@ -1288,8 +1279,8 @@ Sats Preparation Page Style End
 .btn-primary:not(:disabled):not(.disabled):active {color: #fff; background-color: var(--primary-hover); border-color: var(--primary-border-hover); box-shadow: var(--primary-btn-shadow-hover); transition: all .3s;}
 .btn-primary.disabled,
 .btn-primary:disabled {color: var(--primary-btn-color); background-color: var(--primary); border-color: var(--primary-border);}
-.btn-outline-primary {color: var(--category-color); border-color: var(--primary);}
-.btn-outline-primary:hover {color: var(--category-color); background-color: var(--primary); border-color: var(--primary);}
+.btn-outline-primary {color: var(--primary); border-color: var(--primary);}
+.btn-outline-primary:hover {color: #fff; background-color: var(--primary); border-color: var(--primary);}
 .bg-secondary {background-color: var(--secondary) !important;}
 .text-secondary {color: var(--secondary) !important;}
 .badge-circle-secondary,
@@ -1778,7 +1769,7 @@ Lms FAQS Style Start
 .lms-faqs .nav-tabs li:last-child a {border-top-right-radius: 8px; border-bottom-right-radius: 8px;}
 .lms-faqs .nav-tabs .nav-link.active {color: var(--primary); background-color:#eaeaea99;}
 .lms-faqs .nav-tabs li {margin: 0 1px; flex: 1 1;}
-.lms-faqs .card {background-color: inherit; border: 0; border-radius: 0; border-bottom: 1px solid #e0dfdf; margin: 0 0 10px; padding: 0 0 10px;}
+.lms-faqs .card {background-color: inherit; border: 0; border-radius: 0; border-bottom: 1px solid #e0dfdf; margin: 0 0 15px; padding: 0 0 15px;}
 .lms-faqs .card .card-header {background-color: inherit; padding: 0; border: 0;}
 .lms-faqs .card .card-header .btn-link {height: auto; padding: 0 35px 0 0; display: block; width: 100%; text-align: left; position: relative; transition: none;}
 .lms-faqs .card .card-header .btn-link h3 {font-weight: normal; color: inherit; font-size: inherit; }
@@ -2166,7 +2157,7 @@ Lms SignUp Page Style Start
 .gallery-sub-header .simple .masonry-grid  figure {margin-bottom: 10px;}
 .gallery-sub-header .simple .masonry-grid .row {margin: 0 -5px;column-count: 5;}
 .gallery-sub-header .simple .masonry-grid [class*="col-"] {padding: 0 5px;}
-.job-singup-sub-header li {font-weight: 500; position: relative; padding-left: 30px;}
+.job-singup-sub-header li {font-weight: 500; position: relative; padding-left: 30px; list-style: none;}
 .container .masonry-grid-gallery.simple {width: 100%; position: initial;}
 .job-singup-sub-header li:before {content: ''; position: absolute; left: 0; top: 50%; height: 20px; width: 20px; margin-top: -10px; background: url(/assets/default/svgs/arrow-right.svg) no-repeat left center; background-size: 100%;}
 .job-singup-sub-header li img {max-width: 25px;margin: 0 15px 0 0; display: none;}
@@ -2276,6 +2267,18 @@ Header Navbar Dropdown Style Start
 .navbar-nav .nav-item .sidenav-dropdown {position: absolute; left: 0; top: 38px; width: auto; background: #f8f8f8; padding: 10px 20px 20px; box-shadow: 0 3px 3px 1px rgba(0, 0, 0, .1); border-radius: 0; transition: all 0.3s; z-index: 99; opacity: 0; visibility: hidden;}
 .navbar-nav .nav-item.book_shelf .sidenav-dropdown {position: absolute; left: 0; top: 38px; width: auto; background: #f3ce03; padding: 10px 20px 20px; box-shadow: 0 3px 3px 1px rgba(0, 0, 0, .1); border-radius: 0; transition: all 0.3s; z-index: 99; opacity: 0; visibility: hidden;}
 .navbar-nav .nav-item:hover .sidenav-dropdown {opacity: 1; visibility: visible; top: 100%;}
+.navbar-nav .nav-item .sidenav-dropdown:before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: -7px;
+    height: 13px;
+    width: 13px;
+    margin-left: -7px;
+    transform: rotate(45deg);
+    background-color: #f8f8f8;
+    z-index: -1;
+}
 .navbar-nav .nav-item .sidenav-dropdown li a {font-size: 14px; text-align: center; color: #171347; display: block; margin-bottom: 20px; padding-left: 10px; position: relative; text-align: left; white-space: nowrap;}
 .navbar-nav .nav-item:hover .sidenav-dropdown li:last-child a {margin-bottom: 0;}
 .navbar-nav .nav-item .nav-link:hover {color: #171347;}
@@ -2284,10 +2287,9 @@ Header Navbar Dropdown Style Start
 .navbar-nav .nav-item.book_shelf:hover .nav-link {background: #f3ce03; font-weight: bold; box-shadow: 0 -2px 2px 1px rgba(0, 0, 0, .1);}
 .navbar-nav .educator-menu {position: absolute; right: 0; border-right: 1px solid #eaeaea;}
 .top-navbar .navbar-toggle-content {margin-right: 20px !important;}
-.top-navbar .login-btn {border: 1px solid var(--category-color); padding: 7px 15px !important; border-radius: 3px; font-weight: 500;color: var(--category-color);}
-.top-navbar .login-btn:hover {background-color: var(--category-color); color: #fff;}
-.top-navbar .register-btn {border: 1px solid var(--category-color); padding: 7px 15px !important;}
-.top-navbar .register-btn:hover {background-color: #fff; color: var(--category-color);}
+.top-navbar .login-btn {border: 1px solid var(--primary); padding: 7px 15px !important; border-radius: 3px; font-weight: 500;color: var(--primary);}
+.top-navbar .register-btn {border: 1px solid var(--primary); padding: 7px 15px !important;}
+.top-navbar .register-btn:hover {background-color: #fff; color: var(--primary);}
 .top-navbar .navbar-order .ml-md-50 {margin-left: 0 !important;}
 .navbar-nav .educator-menu .nav-link {padding: 2px 20px;}
 .navbar-nav .nav-item:has(.sidenav-dropdown) > a {position: relative;}
@@ -2355,6 +2357,7 @@ body{overflow-x: hidden;}
 .testimonial-card .lms-rating-star {margin: 0 0 10px;}
 .testimonial-card .author-name span {font-size: 15px; color: var(--primary);font-weight: 500;margin: 0;}
 .testimonial-tabs { background: #F5F5F4;justify-content: center;border: 0; display: flex; align-items: center;gap: 15px;}
+.testimonial-tabs li {list-style: none;}
 .testimonial-tabs li a{color: var(--primary);border-color:var(--primary);}
 .testimonial-tabs li.active a{box-shadow: 0 0 0 0 #271d67;transform: scale(1);animation: pulse-purple 2s infinite; background-color: var(--primary); color: #fff;}
 .testimonial-tabs li a{border:1px solid #e4e4e2;border-radius:50px;width:100%;font-size:16px;color:#000;font-weight:500;padding:5px 20px;transition:background .2s,border-color .2s,color .2s;display:flex;align-items:center;justify-content:center; transition:0.4s ease-in-out;}
@@ -2459,8 +2462,8 @@ body{overflow-x: hidden;}
 .lms-accordion-modern.accordion .card .lms-img-holder {position: absolute; left: 390px; opacity: 0; -webkit-transition: 1s ease-in-out 0s; -moz-transition: 1s ease-in-out 0s; -o-transition: 1s ease-in-out 0s; transition: 1s ease-in-out 0s; visibility: hidden; top: 20px; padding-top: 0; top: 50%; transform: translateY(-50%);}
 /* Lms Feature Card Style Start */
 .lms-feature-card {display: flex; margin-bottom: 40px; padding-right: 50px;}
-.lms-feature-card figure .svg-icon {width: 60px; height: 60px; display: block; text-align: center; line-height: 72px; border-radius: 10px; transform: rotate(-4deg); margin-right: 20px;}
-.lms-feature-card figure .svg-icon svg {width: 24px; height: 24px; color: #fff; fill: #fff;}
+.lms-feature-card figure .svg-icon {width: 60px; height: 60px; display: block; text-align: center; line-height: 60px; border-radius: 10px; transform: rotate(-4deg); margin-right: 20px;}
+.lms-feature-card figure .svg-icon img {width: 24px; height: 24px; vertical-align: middle; filter: invert(100%) sepia(100%) saturate(4%) hue-rotate(256deg) brightness(107%) contrast(100%);}
 .lms-features-section,
 .lms-text-section,
 .lms-accordion-section,
@@ -2656,7 +2659,7 @@ Lms FAQS New Elements Style End
   Exame Listing Style Start
 *************************************/
 .exame-listing .exame-holder{display: flex; flex-wrap: wrap;background: #fff;border-radius: 10px;}
-.exame-listing .exame-holder .exame-list {padding: 15px;border-bottom: 1px solid #edecef; position: relative; width: 50%;}
+.exame-listing .exame-holder .exame-list {padding: 15px;border-bottom: 1px solid #edecef; position: relative; width: 50%; list-style: none;}
 .exame-listing .exame-holder .exame-list .icon-savg svg { width: 35px;height: 35px;}
 .exame-listing .exame-holder .exame-list .icon-savg {display: flex;}
 .exame-listing .exame-holder .exame-list .img-holder~.text-holder {margin-left: 20px;}
@@ -3100,6 +3103,7 @@ span.review-label {line-height: normal;}
 .marquee-list .card-body {padding: 0;}
 .marquee-list ul {display: flex; flex-wrap: nowrap; justify-content: center; gap: 20px; white-space: nowrap;}
 .marquee-inner-wrapper .marquee-list-holder ul {-webkit-animation: marquee 60s linear infinite forwards; animation: marquee 60s linear infinite forwards;}
+.marquee-list-holder li {list-style: none;}
 .marquee-inner-wrapper-v2 .marquee-list-holder ul {-webkit-animation: marquee2 60s linear infinite forwards; animation: marquee2 60s linear infinite forwards;}
 .marquee-list ul:hover {-webkit-animation-play-state: paused; animation-play-state: paused;}
 .marquee-card {white-space: normal;}
@@ -3178,6 +3182,14 @@ span.review-label {line-height: normal;}
 .listing-card .read-btn:hover:before,
 .book-btn:hover:before,
 .try-rurera-btn:hover:before {border-radius: 0; transform: translateY(0) scaleY(1);}
+
+.home-banner .try-rurera-btn {    color: var(--primary);
+  border-color: rgb(0 0 0 / .2);
+  background-color: #fff;
+}
+.home-banner .try-rurera-btn:hover {
+  color: #fff;
+}
 .listing-card .read-btn:hover .btn-icon svg g {fill:#fff;}
 .listing-card .read-btn .btn-icon {display: inline-block; width: 22px; height: 18px; line-height: normal; margin-right: 12px; margin-top: 0;}
 .listing-card .read-btn .btn-icon svg {max-width: 100%;}
@@ -3202,11 +3214,259 @@ span.review-label {line-height: normal;}
 .lazyload-img.loaded .img-sm {display: none;}
 
 /*********************************
+Parent Account Style Start
+**********************************/
+.parent-account-section .container > .row {
+  min-height: 452px;
+}
+.parent-account-section .imb-box img {
+  height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+section.parent-account-section {
+  position: relative;
+  min-height: 452px;
+  margin-top: 80px;
+  background-color: var(--primary) !important;
+}
+.parent-account-section ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.parent-account-section ul li {
+  list-style: none;
+  color: #fff;
+  position: relative;
+  font-weight: 500;
+  padding: 0 0 0 30px;
+}
+.parent-account-section ul li:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 16px;
+  width: 16px;
+  background-color: orange;
+  border-radius: 100%;
+  margin-top: -8px;
+}
+/*********************************
+Parent Account Style End
+**********************************/
+
+/*********************************
+Tutoring Features Style Start
+**********************************/
+.tutoring-features-section {
+  background-color: #f7f7f7;
+}
+.feature-card {
+    background-color: #f7f7f7;
+    text-align: center;
+    padding: 0 30px 30px;
+}
+.tutoring-features-holder .row {
+  margin: 0;
+}
+.tutoring-features-holder [class*="col-"] {
+  padding: 0;
+}
+.feature-card .icon-box {
+  height: 60px;
+  width: 60px;
+  background-color: #fff;
+  margin: 0 auto 20px;
+  border-radius: 100%;
+  padding: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.feature-card .icon-box img {
+  max-width: 100%;
+}
+/*Tutoring Accordian Style Start*/
+.tutoring-works .lms-accordion-modern.accordion {
+  padding: 0;
+  background-color: inherit;
+}
+.tutoring-works .lms-accordion-modern.accordion .card {
+  margin-left: 0;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  box-shadow: none;
+  background-color: #fff;
+  border: 0 !important;;
+}
+.tutoring-works .lms-accordion-modern.accordion .card.active {
+  max-width: 450px;
+}
+.tutoring-works .lms-accordion-modern.accordion .btn span {
+  height: 30px;
+  width: 30px;
+  line-height: 30px;
+  color: var(--primary);
+  font-size: 14px;
+  font-weight: 500;
+  background-color: #d6e5fd;
+}
+.tutoring-works .lms-accordion-modern.accordion .btn {
+  color: #000;
+  border: 0;
+}
+.tutoring-works .lms-accordion-modern.accordion .card .lms-img-holder {
+  left: 450px;
+  background-color: #fff;
+  padding: 20px;
+  width: calc(100% - 600px);
+  height: 100%;
+  border-radius: 10px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+.tutoring-works .lms-accordion-modern.accordion .card .lms-img-holder img {
+  height: 100%;
+}
+/*Tutoring Accordian Style End*/
+
+/*Tutoring Plans Style Start*/
+.plan-top-title {
+  display: block;
+  text-align: center;
+  background-color: var(--primary);
+  color: #fff;
+  font-weight: 500;
+  padding: 8px 10px;
+}
+.tutoring-plans .subscribe-plan {
+  border-radius: 10px !important;
+  overflow: hidden;
+  border: 0;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+.tutoring-plans .subscribe-title {
+  padding: 25px 20px 10px;
+}
+.tutoring-plans .subscribe-title h3 {
+  margin-bottom: 20px;
+}
+.tutoring-plans .subscribe-price {
+  padding: 0 20px;
+}
+.tutoring-plans .subscribe-price input {
+  position: absolute;
+  height: 0;
+  width: 0;
+  opacity: 0;
+}
+.tutoring-plans .subscribe-price label {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px 15px 15px 60px;
+  position: relative;
+  margin-bottom: 0;
+  width: 100%;
+}
+.tutoring-plans .subscribe-price label:before {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  margin-top: -10px;
+  height: 20px;
+  width: 20px;
+  border: 1px solid #999;
+  content: "";
+  border-radius: 100%;
+}
+.tutoring-plans .subscribe-price input:checked ~ label:before {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+.tutoring-plans .subscribe-price input[type="radio"]:checked ~ label:before {
+  background-color: inherit;
+  box-shadow: 0 0 0 5px inset var(--primary);
+  border-color: transparent;
+}
+.tutoring-plans .subscribe-price:has(input[type="checkbox"]) label:after {
+  content: "\2713";
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  height: 20px;
+  width: 20px;
+  text-align: center;
+  margin-top: -10px;
+  line-height: 20px;
+  color: #fff;
+  opacity: 0;
+  font-size: 14px;
+}
+.tutoring-plans .subscribe-price:has(input[type="checkbox"]) input:checked ~ label:after {
+  opacity: 1;
+}
+.tutoring-plans .subscribe-price label .plan-price {
+  color: #333;
+  font-size: 12px;
+  font-weight: 400;
+  margin-bottom: 5px;
+  display: block;
+}
+.subscribe-plan .subscribe-price .best-option {
+  display: block;
+  text-align: center;
+  background-color: var(--primary);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 6px;
+  margin: 0 0 10px;
+  font-size: 14px;
+  font-weight: 400;
+}
+.tutoring-plans .subscribe-price.best-price label {
+  background-color: #eff7fa;
+  box-shadow: 0 0 0 2px var(--primary);
+  border: 0;
+}
+.plan-btn-holder {
+  padding: 0 20px 30px;
+}
+.tutoring-plans .subscribe-plan button.btn {
+  padding: 15px 10px;
+  height: auto;
+  font-weight: 400;
+  border-radius: 50px;
+}
+.tutoring-plans .subscribe-plan .subscribe-price small {
+  vertical-align: bottom;
+  font-size: 16px;
+}
+.tutoring-plans .subscribe-plan .subscribe-price .plan-prices {
+  color: var(--secondary);
+  padding-top: 0;
+}
+.tutoring-plans .plan-feature {
+  min-height: 113px;
+}
+.tutoring-plans .subscribe-plan:hover:not(.current-plan) button.btn {
+  background-color: var(--primary);
+}
+/*Tutoring Plans Style End*/
+/*********************************
+Tutoring Features Style End
+**********************************/
+
+/*********************************
 Lms Footer Style Start
 **********************************/
 .footer {position: relative; padding-top: 30px;}
 .footer .footer-subscribe {position: relative; top: -100px; height: 200px; background-image: url(/assets/default/img/footer/pattern.png); background-color: var(--primary); border-radius: 15px; padding: 25px;}
-.footer-dots-img img {width: 100%;}
+.footer-dots-img img {width: 100%; height: 100%; object-fit: contain;}
 .footer-dots-img {transition-property: transform, opacity; transition-timing-function: cubic-bezier(0,.33,.07,1.03); transition-duration: 1s;}
 .footer-logo-wrapper {position: relative; margin-left: 80px;}
 .footer-logo-box {background-color: #000; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
@@ -3276,7 +3536,59 @@ footer.footer-home {padding-top: 70px;}
 .footer.footer-home .footer-logo {width: 150px;}
 .footer.footer-home .footer-copyright {border-top: 1px solid #f1f1f1; padding-bottom: 20px; margin-top: 30px;}
 /* Footer Home Style End */
-
+.footer-bottom .footer-text {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.footer-bottom .footer-text img {
+  height: 30px;
+  width: 30px;
+  object-fit: contain;
+}
+.footer-bottom .footer-text p {
+  color: #fff;
+}
+.footer-bottom .footer-text p a {
+  color: var(--primary);
+}
+.footer-bottom .footer-nav-box {
+  display: flex;
+  justify-content: space-between;
+}
+.footer-bottom .footer-nav-box ul {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.footer-bottom .footer-nav-box li {
+  list-style: none;
+  line-height: normal;
+}
+.footer-navs a {
+  color: #fff;
+}
+.footer-bottom .footer-social-links ul {
+  gap: 10px;
+}
+.footer-social-links img {
+  filter: invert(100%) sepia(1%) saturate(7500%) hue-rotate(239deg) brightness(101%) contrast(101%);
+  height: 26px;
+  width: 26px;
+  object-fit: contain;
+}
+.footer-nav-holder > .row {
+  align-items: center;
+}
+.footer-navs {
+  display: flex;
+  align-items: center;
+  padding-right: 15px;
+}
+.footer-bottom .footer-nav-holder {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
 /*********************************
 Lms Footer Style End
 **********************************/

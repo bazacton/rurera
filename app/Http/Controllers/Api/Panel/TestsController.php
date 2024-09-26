@@ -41,7 +41,7 @@ class TestsController extends Controller
 				$data_array[$section_id]['section_data'][] = array(
 					'title' => $satsObj->getTitleAttribute(),
 					'description' => '',
-					'icon' => isset( $satsObj->quiz_image )? $satsObj->quiz_image : '',
+					'icon' => isset( $satsObj->quiz_image )? url('/').$satsObj->quiz_image : '',
 					'icon_position' => 'left',
 					'no_of_questions' => $satsObj->no_of_questions,
 					'quiz_type' => getQuizTypeTitle($satsObj->quiz_type),

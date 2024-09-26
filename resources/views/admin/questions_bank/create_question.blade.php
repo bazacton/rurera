@@ -814,7 +814,7 @@ $rand_id = rand(999,99999);
 															$reference_type = isset( $reference_type )? $reference_type : '';
 															
 															@endphp
-															<div class="col-lg-6 col-md-6 col-12">
+															<div class="col-lg-6 col-md-6 col-12 rurera-hide">
 																<div class="form-group">
 																	<label class="input-label">Question Type</label>
 																	<select name="question_type" class="custom-select ">
@@ -831,7 +831,7 @@ $rand_id = rand(999,99999);
 																</div>
 															</div>
 
-															<div class="col-lg-12 col-md-12 col-12">
+															<div class="col-lg-6 col-md-6 col-12">
 																<div class="form-group">
 																	<label class="input-label">Difficulty Level</label>
 																	<select name="difficulty_level" class="custom-select ">
@@ -851,7 +851,7 @@ $rand_id = rand(999,99999);
                                                     </div>
 
 													
-													<div class="col-lg-6 col-md-6 col-12">
+													<div class="col-lg-12 col-md-12 col-12">
                                                         <div class="form-group">
                                                             <label class="input-label">Reference Type</label>
                                                             <select name="reference_type" class="custom-select ">
@@ -865,7 +865,7 @@ $rand_id = rand(999,99999);
                                                         </div>
                                                     </div>
 													
-                                                    <div class="col-lg-6 col-md-6 col-12">
+                                                    <div class="col-lg-6 col-md-6 col-12 rurera-hide">
                                                         <div class="form-group">
                                                             <label class="input-label">Example Question</label>
                                                             <select name="example_question" id="example_question" data-search-option="questions_ids"
@@ -875,10 +875,10 @@ $rand_id = rand(999,99999);
 
                                                     
 
-                                                    <div class="col-lg-6 col-md-6 col-12">
+                                                    <div class="col-lg-6 col-md-6 col-12 rurera-hide">
                                                         <div class="form-group">
                                                             <label class="input-label">Correct Answer Score</label>
-                                                            <input type="text" value="{{ isset( $question_score)? $question_score : old('title') }}"
+                                                            <input type="text" value="1"
                                                                    name="question_score"
                                                                    class="form-control @error('title')  is-invalid @enderror"
                                                                    placeholder=""/>
@@ -890,7 +890,7 @@ $rand_id = rand(999,99999);
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-lg-6 col-md-6 col-12">
+                                                    <div class="col-lg-6 col-md-6 col-12 rurera-hide">
                                                         <div class="form-group">
                                                             <label class="input-label">Average Time</label>
                                                             <input type="text" value="{{ isset( $question_average_time)? $question_score : old('question_average_time') }}"
@@ -925,6 +925,43 @@ $rand_id = rand(999,99999);
 															</div>
 															@enderror
 															<span>5 tags maximum, user letters  and numbers only</span>
+														</div>
+													</div>
+													
+													
+													
+													<div class="col-lg-6 col-md-6 col-12">
+														<div class="form-group custom-switches-stacked">
+															<label class="custom-switch pl-0">
+																<input type="hidden" name="review_required" value="disable">
+																<input type="checkbox"
+																		   name="review_required"
+																		   id="review_required" value="1" {{ (isset( $questionObj->review_required ) && $questionObj->review_required
+																	== '1') ?
+																	'checked="checked"' : ''
+																	}} class="custom-switch-input"/>
+																	<span class="custom-switch-indicator"></span>
+																	<label class="custom-switch-description mb-0 cursor-pointer"
+																		   for="review_required">Teacher Review Required</label>
+															</label>
+														</div>
+													</div>
+													
+													
+													<div class="col-lg-6 col-md-6 col-12">
+														<div class="form-group custom-switches-stacked">
+															<label class="custom-switch pl-0">
+																<input type="hidden" name="developer_review_required" value="disable">
+																<input type="checkbox"
+																		   name="developer_review_required"
+																		   id="developer_review_required" value="1" {{ (isset( $questionObj->developer_review_required ) && $questionObj->developer_review_required
+																	== '1') ?
+																	'checked="checked"' : ''
+																	}} class="custom-switch-input"/>
+																	<span class="custom-switch-indicator"></span>
+																	<label class="custom-switch-description mb-0 cursor-pointer"
+																		   for="developer_review_required">Developer Review Required</label>
+															</label>
 														</div>
 													</div>
 
@@ -964,7 +1001,7 @@ $rand_id = rand(999,99999);
                                                 <a href="javascript:;" class="add-glossary-modal">Add New Glossary</a>
                                             </div>
                                         </div>
-                                        <div class="col-12 col-md-12">
+                                        <div class="col-12 col-md-12 rurera-hide">
                                             <div class="form-group">
                                                 <label class="input-label">Question Example</label>
                                                 <textarea class="note-codable summernote" id="question_example"
@@ -990,22 +1027,7 @@ $rand_id = rand(999,99999);
                             <div class="col-12 col-md-12">
                                 <div class="row">
 
-                                    <div class="col-12">
-                                        <div class="form-group custom-switches-stacked">
-                                            <label class="custom-switch pl-0">
-                                                <input type="hidden" name="review_required" value="disable">
-                                                <input type="checkbox"
-                                                           name="review_required"
-                                                           id="review_required" value="1" {{ (isset( $questionObj->review_required ) && $questionObj->review_required
-                                                    == '1') ?
-                                                    'checked="checked"' : ''
-                                                    }} class="custom-switch-input"/>
-                                                    <span class="custom-switch-indicator"></span>
-                                                    <label class="custom-switch-description mb-0 cursor-pointer"
-                                                           for="review_required">Review Required</label>
-                                            </label>
-                                        </div>
-                                    </div>
+                                    
 									@php $question_status = isset( $questionObj->question_status )? $questionObj->question_status : ''; @endphp
 									@if(auth()->user()->isReviewer())
 									@if($question_status == 'Submit for review' ||

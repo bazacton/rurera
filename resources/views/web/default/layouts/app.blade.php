@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="{{ app()->getLocale() }}" itemscope itemtype="https://schema.org/FAQPage">
 
 @php
     $rtlLanguages = !empty($generalSettings['rtl_languages']) ? $generalSettings['rtl_languages'] : [];
@@ -107,6 +107,7 @@
 @stack('styles_bottom')
 @stack('scripts_bottom')
 
+<script src="/assets/default/js/parts/navbar.min.js?ver={{$rand_no}}"></script>
 <script src="/assets/default/js/parts/main.min.js?ver={{$rand_no}}"></script>
 
 <!-- Google tag (gtag.js) -->

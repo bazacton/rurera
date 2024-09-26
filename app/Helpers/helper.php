@@ -9832,3 +9832,25 @@ function getLevelByPercentage($topic_student_percentage){
 	$level = ($topic_student_percentage > 75)? 'Exceptional' : $level;
 	return $level;
 }
+
+function getCorrectTimestables($from_value, $to_value, $type){
+	switch ($type) {
+		case 'x': // Handle multiplication
+			$correct_answer = $from_value * $to_value;
+			break;
+		case '+': // Handle addition
+			$correct_answer = $from_value + $to_value;
+			break;
+		case '-': // Handle subtraction
+			$correct_answer = $from_value - $to_value;
+			break;
+		case '/': // Handle division
+		case '÷':
+			$correct_answer = $from_value / $to_value;
+			break;
+		default:
+			$correct_answer = null; // Default case for invalid operator
+			break;
+	}
+	return $correct_answer;
+}

@@ -44,7 +44,7 @@ class CommonController extends Controller
 				'activeColor' => '#FF0000',
 				'pageTitle' => 'Learn',
 				'target_api' => '/panel/learn',
-				'target_layout' => 'list',
+				'target_layout' => 'learn_list',
 			),
 			array(
 				'title' => 'Timestables',
@@ -54,7 +54,7 @@ class CommonController extends Controller
 				'activeColor' => '#FF0000',
 				'pageTitle' => 'Timestables',
 				'target_api' => '/panel/timestables',
-				'target_layout' => 'list2',
+				'target_layout' => 'timestables_list',
 			),
 			array(
 				'title' => 'Word Lists',
@@ -64,7 +64,7 @@ class CommonController extends Controller
 				'activeColor' => '#FF0000',
 				'pageTitle' => 'Word Lists',
 				'target_api' => '/panel/spells',
-				'target_layout' => 'list3',
+				'target_layout' => 'spelling_list',
 			),
 			array(
 				'title' => 'Books',
@@ -74,7 +74,7 @@ class CommonController extends Controller
 				'activeColor' => '#FF0000',
 				'pageTitle' => 'Books',
 				'target_api' => '/panel/books',
-				'target_layout' => 'list',
+				'target_layout' => 'books_list',
 			),
 			array(
 				'title' => 'Test',
@@ -83,8 +83,8 @@ class CommonController extends Controller
 				'color' => '#FFFFFF',
 				'activeColor' => '#FF0000',
 				'pageTitle' => 'Test',
-				'target_api' => '/panel/test',
-				'target_layout' => 'list',
+				'target_api' => '/panel/tests',
+				'target_layout' => 'tests_list',
 			),
 			array(
 				'title' => 'Quests',
@@ -94,7 +94,7 @@ class CommonController extends Controller
 				'activeColor' => '#FF0000',
 				'pageTitle' => 'Quests',
 				'target_api' => '/panel/quests',
-				'target_layout' => 'list',
+				'target_layout' => 'quest_list',
 			),
 			array(
 				'title' => 'Games',
@@ -104,7 +104,7 @@ class CommonController extends Controller
 				'activeColor' => '#FF0000',
 				'pageTitle' => 'Games',
 				'target_api' => '/panel/games',
-				'target_layout' => 'list',
+				'target_layout' => 'games_list',
 			),
 			array(
 				'title' => 'Shop',
@@ -114,7 +114,7 @@ class CommonController extends Controller
 				'activeColor' => '#FF0000',
 				'pageTitle' => 'Shop',
 				'target_api' => '/panel/shop',
-				'target_layout' => 'list',
+				'target_layout' => 'shop_list',
 			),
 			array(
 				'title' => 'Analytics',

@@ -135,13 +135,13 @@ class TimestablesController extends Controller
             $tables_types[] = '÷';
         }
         $total_questions = $no_of_questions;
-        $marks = 5;
+        $marks = 1;
 
 
         $questions_list = $already_exists = array();
 
 
-        $max_questions = 10;
+        $max_questions = 12;
         $current_question_max = 2;
         $questions_no_array = [];
         while ($current_question_max <= $max_questions) {
@@ -172,7 +172,7 @@ class TimestablesController extends Controller
 
                 $last_value = ($questions_no_dynamic) * $table_no;
                 $from_value = ($type == '÷') ? $last_value : $table_no;
-                $limit = 10;
+                $limit = 12;
                 $min = 2;
                 $min = ($type == '÷') ? 1 : $min;
                 $limit = ($type == '÷') ? ($table_no * $limit) : $limit;

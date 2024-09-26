@@ -36,7 +36,7 @@ class QuestsController extends Controller
 				$data_array[$section_id]['section_data'][] = array(
 					'title' => $questObj->title,
 					'description' => '',
-					'icon' => $quest_icon,
+					'icon' => url('/').$quest_icon,
 					'icon_position' => 'left',
 					'completion_percentage' => isset( $questUserData['completion_percentage'] )? $questUserData['completion_percentage'].'%' : '0%',
 					'completion_label' => isset( $questUserData['quest_bar_label'] )? $questUserData['quest_bar_label'] : '',

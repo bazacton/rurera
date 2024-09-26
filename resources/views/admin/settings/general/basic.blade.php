@@ -42,7 +42,6 @@
                     <label class="input-label d-block">{{ trans('admin/main.register_method') }}</label>
                     <select name="value[register_method]" class="form-control">
                         <option value="email" @if(!empty($itemValue) and !empty($itemValue['register_method']) and $itemValue['register_method'] == 'email') selected @endif>{{ trans('admin/main.email') }}</option>
-                        <option>{{ trans('admin/main.sms') }} (Paid Plugin)</option>
                     </select>
                 </div>
 
@@ -173,7 +172,6 @@
                         <span class="custom-switch-indicator"></span>
                         <label class="custom-switch-description mb-0 cursor-pointer" for="contentTranslate">{{ trans('update.multi_language_content') }}</label>
                     </label>
-                    <div class="text-muted text-small mt-1">Paid Plugin</div>
                 </div>
 
                 <div class="form-group custom-switches-stacked">

@@ -2,6 +2,12 @@
     font-family: 'main-font-family';
     font-style: normal;
     font-weight: 400;
+
+
+
+
+
+
     font-display: swap;
     src: url(/store/1/fonts/CeraRoundPro-Regular.woff2) format('woff2');
   }@font-face {
@@ -18594,7 +18600,7 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .have-question-card .media-holder img {border-radius: 20px; max-width: 500px; width: 100%; object-fit: contain;}
 .have-question-card .text-box > span {color: #999; }
 .have-question-card .contact-info {border-top: 1px solid #77777f; padding-top: 50px; margin-top: 80px; }
-.have-question-card .contact-info .contact-btn {background-color: #1c1c24; border-radius: 5px; color: #fff; padding: 18px 36px; display: inline-block; line-height: normal; margin-right: 15px; font-weight: 500;}
+.have-question-card .contact-info .contact-btn {background-color: #2121d9; border-radius: 5px; color: #fff; padding: 18px 36px; display: inline-block; line-height: normal; margin-right: 15px; font-weight: 500;}
 .have-question-card .contact-info span {color: #333; font-weight: 500; }
 .have-question-card .media-holder .attachment-img {position: absolute; right: 40px; top: -40px; max-width: none; width: 120px; transform: rotateY(180deg);}
 

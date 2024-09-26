@@ -48,7 +48,6 @@
                         <span class="custom-switch-indicator"></span>
                         <label class="custom-switch-description mb-0 cursor-pointer" for="contentTranslate">{{ trans('update.agora_live_streaming') }}</label>
                     </label>
-                    <div class="text-muted text-small mt-1">Paid Plugin</div>
                 </div>
 
                 <div class="form-group custom-switches-stacked">
@@ -57,7 +56,6 @@
                         <span class="custom-switch-indicator"></span>
                         <label class="custom-switch-description mb-0 cursor-pointer" for="contentTranslate">{{ trans('update.agora_chat') }}</label>
                     </label>
-                    <div class="text-muted text-small mt-1">Paid Plugin</div>
                 </div>
                     {{--
                                         <div class="form-group custom-switches-stacked">
@@ -76,7 +74,6 @@
                         <span class="custom-switch-indicator"></span>
                         <label class="custom-switch-description mb-0 cursor-pointer" for="contentTranslate">{{ trans('update.agora_in_free_courses') }}</label>
                     </label>
-                    <div class="text-muted text-small mt-1">Paid Plugin</div>
                 </div>
 
                 <div class="form-group custom-switches-stacked">
@@ -85,7 +82,6 @@
                         <span class="custom-switch-indicator"></span>
                         <label class="custom-switch-description mb-0 cursor-pointer" for="contentTranslate">{{ trans('update.agora_for_meeting') }}</label>
                     </label>
-                    <div class="text-muted text-small mt-1">Paid Plugin</div>
                 </div>
 
 
@@ -115,7 +111,6 @@
                         <span class="custom-switch-indicator"></span>
                         <label class="custom-switch-description mb-0 cursor-pointer" for="contentTranslate">{{ trans('update.interactive_feature_toggle') }}</label>
                     </label>
-                    <div class="text-muted text-small mt-1">Paid Plugin</div>
                 </div>
 
                 </div>
@@ -151,7 +146,6 @@
                         <span class="custom-switch-indicator"></span>
                         <label class="custom-switch-description mb-0 cursor-pointer" for="contentTranslate">{{ trans('admin/main.active') }}</label>
                     </label>
-                    <div class="text-muted text-small mt-1">Paid Plugin</div>
                 </div>
 
                 </div>
@@ -166,7 +160,6 @@
                         <span class="custom-switch-indicator"></span>
                         <label class="custom-switch-description mb-0 cursor-pointer" for="contentTranslate">{{ trans('admin/main.active') }}</label>
                     </label>
-                    <div class="text-muted text-small mt-1">Paid Plugin</div>
                 </div>
 
                 </div>
@@ -180,7 +173,6 @@
                         <span class="custom-switch-indicator"></span>
                         <label class="custom-switch-description mb-0 cursor-pointer" for="contentTranslate">{{ trans('admin/main.active') }}</label>
                     </label>
-                    <div class="text-muted text-small mt-1">Paid Plugin</div>
                 </div>
 
 
@@ -190,7 +182,6 @@
                         <span class="custom-switch-indicator"></span>
                         <label class="custom-switch-description mb-0 cursor-pointer" for="contentTranslate">{{ trans('update.disable_view_content_after_user_register') }}</label>
                     </label>
-                    <div class="text-muted text-small mt-1">Paid Plugin</div>
                 </div>
 
                 </div>
@@ -204,7 +195,6 @@
                         <span class="custom-switch-indicator"></span>
                         <label class="custom-switch-description mb-0 cursor-pointer" for="contentTranslate">{{ trans('admin/main.active') }}</label>
                     </label>
-                    <div class="text-muted text-small mt-1">Paid Plugin</div>
                 </div>
 
 
@@ -219,7 +209,6 @@
                         <span class="custom-switch-indicator"></span>
                         <label class="custom-switch-description mb-0 cursor-pointer" for="contentTranslate">{{ trans('admin/main.active') }}</label>
                     </label>
-                    <div class="text-muted text-small mt-1">Paid Plugin</div>
                 </div>
 
                 </div>
@@ -401,7 +390,6 @@
                         <span class="custom-switch-indicator"></span>
                         <label class="custom-switch-description mb-0 cursor-pointer" for="contentTranslate">{{ trans('update.cashback_active') }}</label>
                     </label>
-                    <div class="text-muted text-small mt-1">Paid Plugin</div>
                 </div>
 
                 <div class="form-group mt-3 custom-switches-stacked">
@@ -410,7 +398,6 @@
                         <span class="custom-switch-indicator"></span>
                         <label class="custom-switch-description mb-0 cursor-pointer" for="contentTranslate">{{ trans('update.display_cashback_notice_in_the_product_page') }}</label>
                     </label>
-                    <div class="text-muted text-small mt-1">Paid Plugin</div>
                 </div>
 
                 <div class="form-group mt-3 custom-switches-stacked">
@@ -419,7 +406,6 @@
                         <span class="custom-switch-indicator"></span>
                         <label class="custom-switch-description mb-0 cursor-pointer" for="contentTranslate">{{ trans('update.display_minimum_amount_cashback_notices') }}</label>
                     </label>
-                    <div class="text-muted text-small mt-1">Paid Plugin</div>
                 </div>
                    
                
@@ -491,7 +477,6 @@
                         <span class="custom-switch-indicator"></span>
                         <label class="custom-switch-description mb-0 cursor-pointer" for="contentTranslate">{{ trans('admin/main.active') }}</label>
                     </label>
-                    <div class="text-muted text-small mt-1">Paid Plugin</div>
                 </div>
 
                 </div>
@@ -505,7 +490,6 @@
                         <span class="custom-switch-indicator"></span>
                         <label class="custom-switch-description mb-0 cursor-pointer" for="contentTranslate">{{ trans('admin/main.active') }}</label>
                     </label>
-                    <div class="text-muted text-small mt-1">Paid Plugin</div>
                 </div>
 
                 </div>

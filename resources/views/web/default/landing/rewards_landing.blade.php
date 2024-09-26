@@ -16,28 +16,26 @@
         <div class="row align-items-center job-singup-sub-header">
             <div class="col-12 col-md-12 col-lg-6">
                 <h1 itemprop="title" class="font-72 font-weight-bold">
-                    Unlock Knowledge<span class="text-scribble ml-10">, Win Prizes!</span>
+                    Learn, Play, and Win <span class="text-scribble">Rewards!</span>
                 </h1>
-				<h2 class="mt-30">
-					Learn and earn your way to amazing toys! Master lessons to increase your chances of winning fantastic rewards. Join our fun and rewarding learning adventure today!
-				</h2>
-                <ul class="mb-30 p-0">
+				
+                <p class="mt-30">Join our fun learning adventure to master lessons and earn amazing toys and Amazon gift cards!</p>
+                <ul class="mb-30 p-0 mt-30">
                         <li class="mb-10 font-19">
-                            <b>Master Lessons:</b> Get closer to rewards with each lesson!
+                            Master your Lessons
                         </li>
                         <li class="mb-10 font-19">
-                            <b>Earn Rewards:</b> Win fantastic toys with your achievements.
+                            Earn Great Rewards
                         </li>
                         <li class="mb-10 font-19">
-                            <b>Celebrate Success:</b> Enjoy recognition for your hard work.
+                            Celebrate your Success
                         </li>
                         <li class="font-19">
-                            <b>Have Fun Learning:</b> Dive into a playful learning experience!
+                            Have Fun Learning 
                         </li>
                     </ul>
                     <div class="d-flex align-items-center">
-                        <a href="/" class="btn-primary rounded-pill">Rewards Store</a>
-                        
+                        <a href="https://rurera.com/pricing" class="mt-0 bg-primary justify-content-center register-btn text-white try-rurera-btn">Try Rurera for free</a>
                     </div>
             </div>
             <div class="col-12 col-lg-6 text-right">
@@ -72,8 +70,7 @@
                 <div class="col-12">
                     <div class="section-title text-center mb-50">
                         <h2 itemprop="title" class="text-white font-40">
-                            See What Awaits You with<br />
-                            Learning and Practice!
+                            See What Awaits You with Learning and Practice!
                         </h2>
                     </div>
                 </div>
@@ -112,20 +109,20 @@
                                         </svg>
                                     </figure>
                                 </div>
-                                <div class="text-holder"><p itemprop="description">Practice and Read to Earn Coins Instantly with Rurera!</p></div>
+                                <div class="text-holder"><p itemprop="description">Practice and read to earn coins instantly with Rurera</p></div>
                             </div>
                         </div>
                         <div class="col-12 col-sm-12 col-md-5 col-lg-3">
                             <div class="reward-box d-flex align-items-center justify-content-center">
                                 <div class="text-holder text-center">
-                                    <p itemprop="description">Redeem Coins with</p>
+                                    <p itemprop="description">Redeem coins with one click!</p>
                                     <strong class="mt-10 font-30 font-weight-bold" itemprop="sub title">One Click!</strong>
                                 </div>
                             </div>
                         </div>
                         <div class="col-12 col-sm-12 col-md-5 col-lg-3">
                             <div class="reward-box d-flex align-items-center justify-content-center">
-                                <div class="text-holder text-center"><strong itemprop="sub title" class="font-19 font-weight-bold">Trade Your Coins for Toys!</strong></div>
+                                <div class="text-holder text-center"><strong itemprop="sub title" class="font-19 font-weight-bold">Trade your coins for toys</strong></div>
                             </div>
                         </div>
                         <div class="col-12 col-sm-12 col-md-7 col-lg-9">
@@ -165,7 +162,7 @@
                                         </svg>
                                     </figure>
                                 </div>
-                                <div class="text-holder"><p itemprop="description">Easily and Flexibly Use Your Earned Coin Points!</p></div>
+                                <div class="text-holder"><p itemprop="description">Easily and flexibly use your earned coin points</p></div>
                             </div>
                         </div>
                         <div class="col-12 col-sm-12 col-md-12 col-lg-6">
@@ -206,7 +203,7 @@
                                         </svg>
                                     </figure>
                                 </div>
-                                <div class="text-holder ml-5"><p itemprop="description">Keep Reading and Earn Your Favorite Toys with Every Progress!</p></div>
+                                <div class="text-holder ml-5"><p itemprop="description">Read and earn your favorite toys with each win.</p></div>
                             </div>
                         </div>
                         <div class="col-12 col-sm-12 col-md-12 col-lg-6">
@@ -246,7 +243,7 @@
                                         </svg>
                                     </figure>
                                 </div>
-                                <div class="text-holder ml-5"><p itemprop="description">Track All Your Rewards and Coin Points in One Place!</p></div>
+                                <div class="text-holder ml-5"><p itemprop="description">Track all your rewards and coin points in one place</p></div>
                             </div>
                         </div>
                     </div>
@@ -270,8 +267,8 @@
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="section-title text-left mb-50">
-                        <h2 itemprop="title" class="font-40">Redeem Rewards Like a Pro!</h2>
-                        <h2 class="mt-10">Experience Unmatched Excitement with Every Win!</h2>
+                        <h2 itemprop="title" class="font-40">Redeem Rewards Like a Pro! 🎉</h2>
+                        <h2 class="mt-10">Experience the thrill of victory with every win and feel excitement like never before!</h2>
                     </div>
                 </div>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-9 mx-auto">
@@ -281,7 +278,10 @@
                                 <div class="process-card-body d-flex align-items-center justify-content-between">
                                     <div class="text-holder mr-30">
                                         <h2 itemprop="title" class="post-title">Step 1:</h2>
-                                        <p itemprop="description" class="mt-15">Begin by engaging with quizzes, SATs, and reading books to start earning valuable coin points.</p>
+                                        <p itemprop="description" class="mt-15">Embark on your journey by conquering quizzes,
+                                        goals, mastering times tables, and diving into books.
+                                        Start earning valuable coin points along the way!
+                                        </p>
                                     </div>
                                     <div class="img-holder">
                                         <figure><img src="../assets/default/img/redeemstep-1.jpg" alt="redeemstep image" title="redeemstep image" width="420" height="auto" itemprop="image" loading="eager" /></figure>
@@ -297,7 +297,10 @@
                                     </div>
                                     <div class="text-holder ml-30">
                                         <h2 itemprop="title" class="post-title">Step 2:</h2>
-                                        <p itemprop="description" class="mt-15">Collect enough coin points through your activities and prepare for an exciting redemption process!</p>
+                                        <p itemprop="description" class="mt-15">Gather enough coin points through your activities
+                                        and get ready for an exciting redemption journey! 
+                                        It's time to turn your hard work into amazing rewards!
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -307,7 +310,10 @@
                                 <div class="process-card-body d-flex align-items-center justify-content-between">
                                     <div class="text-holder mr-30">
                                         <h2 itemprop="title" class="post-title">Step 3:</h2>
-                                        <p itemprop="description" class="mt-15">Redeem your accumulated coin points to select and purchase your favorite toys directly from our store.</p>
+                                        <p itemprop="description" class="mt-15">Use your hard-earned coin points to choose 
+                                        & purchase your favorite toys straight from our store! 
+                                        It’s a chance to celebrate your wins with the toys you love!
+                                        </p>
                                     </div>
                                     <div class="img-holder">
                                         <figure><img src="../assets/default/img/redeemstep-3.jpg" alt="redeemstep image" title="redeemstep image" width="420" height="auto" itemprop="image" loading="eager" /></figure>
@@ -323,7 +329,10 @@
                                     </div>
                                     <div class="text-holder ml-30">
                                         <h2 itemprop="title" class="post-title">Step 4:</h2>
-                                        <p itemprop="description" class="mt-15">Enjoy your rewards with no additional payments required—just pure fun with your new toys!</p>
+                                        <p itemprop="description" class="mt-15">Dive into rewards with no additional payments
+                                        just pure joy as you play with your exciting new toys.
+                                        Enjoy the thrill of learning and celebrating your achievements!
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -357,10 +366,10 @@
         <div class="row">
             <div class="col-12">
                 <div class="section-title text-center mb-50">
-                    <h2 itemprop="title" class="text-white font-40">Rewards Toys Categories</h2>
-                    <h2 itemprop="description" class="mt-10 text-white">
-                        With continuous learning and improvement, students boost their chances to win exciting and playful toys!
-                    </h2>
+                    <h2 itemprop="title" class="text-white font-40">Rewards Categories</h2>
+                    <p itemprop="description" class="mt-10 text-white">
+                        Earn these amazing rewards as you embark on your learning journey with Rurera! The more you learn, the more you can win!
+                    </p>
                 </div>
             </div>
             <div class="col-12">
@@ -435,143 +444,151 @@
         <div class="row">
             <div class="col-12">
                 <div class="section-title text-center mb-50">
-                    <h2 class="mt-0 mb-10 font-40">FAQ's for happy little minds</h2>
-                    <h2 itemprop="description" class="mt-10">
-                        Have questions about rewards or redemption options? We're here to help!
-                    </h2>
+                    <h2 class="mt-0 mb-10 font-40">Frequently Asked Questions</h2>
                 </div>
             </div>
-            <div class="col-12 col-md-8 col-lg-8 mx-auto">
+            <div class="col-12 mx-auto">
                 <div class="mt-0">
-                    <div class="lms-faqs mx-w-100 mt-0" itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <div class="lms-faqs mx-w-100 mt-0">
                         <div id="accordion">
-                            <div itemprop="mainEntity" itemtype="https://schema.org/Question" class="card">
-                                <div class="card-header active" id="headingon11">
+                            <div class="card">
+                                <div class="card-header active" id="headingon11" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
                                     <h3 itemprop="name" class="mb-0">
-                                        <button class="btn btn-link font-20 font-weight-normal" data-toggle="collapse" data-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                            How do I earn coin points on Rurera?
+                                        <button class="btn btn-link font-18 font-weight-bold" data-toggle="collapse" data-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
+                                            What are the ways I can earn coin points on Rurera?
                                         </button>
                                     </h3>
                                 </div>
                                 <div id="collapse11" class="collapse show" aria-labelledby="heading11" data-parent="#accordion">
-                                    <div itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" class="card-body pb-0">
-                                        <p itemprop="text" class="mb-15">You can earn coin points by actively participating in various activities on our platform, such as practicing quizzes, completing SATs, and reading books. Each activity contributes to your coin points balance based on its difficulty and completion level.</p>
+                                    <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" class="card-body pb-0">
+                                        <p itemprop="text" class="mb-15">You can earn coin points by actively participating in various activities on our platform, such as practicing quizzes, completing goals, and reading books. Each activity contributes to your coin points balance based on its difficulty and completion level.</p>
                                     </div>
                                 </div>
                             </div>
-                            <div itemprop="mainEntity" itemtype="https://schema.org/Question" class="card">
+                            <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="card">
                                 <div class="card-header" id="headingon12">
                                     <h3 itemprop="name" class="mb-0">
-                                        <button class="btn btn-link font-20 font-weight-normal collapsed" data-toggle="collapse" data-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                            Where can I view my current coin points balance?
+                                        <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
+                                            Where can I check my current coin points balance?
                                         </button>
                                     </h3>
                                 </div>
                                 <div id="collapse12" class="collapse" aria-labelledby="heading12" data-parent="#accordion">
-                                    <div itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" class="card-body pb-0"><p itemprop="text" class="mb-15">To check your coin points balance, log in to your Rurera account and navigate to the Rewards section in your dashboard. Your current balance will be displayed there, along with a history of your recent earning and redemption activities.</p></div>
+                                    <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" class="card-body pb-0">
+                                        <p itemprop="text" class="mb-15">To check your coin points balance, log in to your Rurera account and navigate to the Rewards section in your dashboard. Your current balance will be displayed there, along with a history of your recent earning and redemption activities.</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div itemprop="mainEntity" itemtype="https://schema.org/Question" class="card">
+                            <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="card">
                                 <div class="card-header" id="heading">
                                     <h3 itemprop="name" class="mb-0">
-                                        <button class="btn btn-link font-20 font-weight-normal collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                             How many coin points are required to redeem specific toys?
                                         </button>
                                     </h3>
                                 </div>
                                 <div id="collapseOne" class="collapse" aria-labelledby="heading" data-parent="#accordion">
-                                    <div itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" class="card-body pb-0">
+                                    <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" class="card-body pb-0">
                                         <p itemprop="text" class="mb-15">The number of coin points needed for each toy varies. You can find detailed information on the point requirements for each toy by visiting the Rewards Store section of our platform, where the points needed for each item are clearly listed.</p>
                                     </div>
                                 </div>
                             </div>
-                            <div itemprop="mainEntity" itemtype="https://schema.org/Question" class="card">
+                            <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="card">
                                 <div class="card-header" id="headingThree">
                                     <h3 itemprop="name" class="mb-0">
-                                        <button class="btn btn-link font-20 font-weight-normal collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                            What is the process for redeeming my coin points for toys?
+                                        <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                             What is the process for redeeming my coin points for toys?
                                         </button>
                                     </h3>
                                 </div>
                                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                                    <div itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" class="card-body pb-0">
+                                    <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" class="card-body pb-0">
                                         <p itemprop="text" class="mb-15">To redeem your coin points, go to the Rewards Store, select the toy you wish to purchase, and follow the on-screen instructions. You will be prompted to confirm your redemption and your toy will be added to your order. Ensure you have sufficient points before initiating the redemption.</p>
                                     </div>
                                 </div>
                             </div>
-                            <div itemprop="mainEntity" itemtype="https://schema.org/Question" class="card">
+                            <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="card">
                                 <div class="card-header" id="headingfive">
                                     <h3 itemprop="name" class="mb-0">
-                                        <button class="btn btn-link font-20 font-weight-normal collapsed" data-toggle="collapse" data-target="#collapsefive" aria-expanded="false" aria-controls="collapsefive">
+                                        <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapsefive" aria-expanded="false" aria-controls="collapsefive">
                                             Are there any limits on the number of toys I can redeem?
                                         </button>
                                     </h3>
                                 </div>
                                 <div id="collapsefive" class="collapse" aria-labelledby="headingfive" data-parent="#accordion">
-                                    <div itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" class="card-body pb-0">
+                                    <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" class="card-body pb-0">
                                         <p itemprop="text" class="mb-15">There may be limits on the number of toys you can redeem depending on availability and your coin points balance. Each toy may also have a limit on how many can be redeemed per account or per month. Please check the Rewards Store for specific details and availability.</p>
                                     </div>
                                 </div>
                             </div>
-                            <div itemprop="mainEntity" itemtype="https://schema.org/Question" class="card">
+                            <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="card">
                                 <div class="card-header" id="headingsix">
                                     <h3 itemprop="name" class="mb-0">
-                                        <button class="btn btn-link font-20 font-weight-normal collapsed" data-toggle="collapse" data-target="#collapsesix" aria-expanded="false" aria-controls="collapsesix">
-                                            Can I use my coin points to receive cash or other non-toy items?
+                                        <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapsesix" aria-expanded="false" aria-controls="collapsesix">
+                                        Can I use my coin points to receive cash or other non-toy items?
                                         </button>
                                     </h3>
                                 </div>
                                 <div id="collapsesix" class="collapse" aria-labelledby="headingsix" data-parent="#accordion">
-                                    <div itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" class="card-body pb-0"><p itemprop="text" class="mb-15">Coin points can only be redeemed for toys and rewards available in the Rurera Rewards Store. They cannot be exchanged for cash or any other non-toy items.</p></div>
+                                    <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" class="card-body pb-0">
+                                        <p itemprop="text" class="mb-15">Coin points are exclusively for redeeming toys and rewards offered in the Rurera Rewards Store. They cannot be converted into cash or used for any non-toy items, ensuring the points are spent on the fun and educational rewards available on the platform.</p>
+                                    </div>
                                 </div>
                             </div>
-							
-							<div itemprop="mainEntity" itemtype="https://schema.org/Question" class="card">
+							<div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="card">
                                 <div class="card-header" id="headingsix">
                                     <h3 itemprop="name" class="mb-0">
-                                        <button class="btn btn-link font-20 font-weight-normal collapsed" data-toggle="collapse" data-target="#collapse7" aria-expanded="false" aria-controls="collapsesix">
+                                        <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse7" aria-expanded="false" aria-controls="collapsesix">
                                             What should I do if I don’t have enough coin points to redeem a toy?
                                         </button>
                                     </h3>
                                 </div>
                                 <div id="collapse7" class="collapse" aria-labelledby="headingsix" data-parent="#accordion">
-                                    <div itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" class="card-body pb-0"><p itemprop="text" class="mb-15">If you don’t have enough coin points to redeem the toy you want, you will need to continue engaging with quizzes, SATs, and reading to earn more points. Once you have accumulated the required amount, you can return to the Rewards Store to complete your redemption.</p></div>
+                                    <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" class="card-body pb-0">
+                                        <p itemprop="text" class="mb-15">If you don’t have enough coin points to redeem the toy you want, you will need to continue engaging with quizzes, SATs, and reading to earn more points. Once you have accumulated the required amount, you can return to the Rewards Store to complete your redemption.</p>
+                                    </div>
                                 </div>
                             </div>
-							<div itemprop="mainEntity" itemtype="https://schema.org/Question" class="card">
+							<div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="card">
                                 <div class="card-header" id="headingsix">
                                     <h3 itemprop="name" class="mb-0">
-                                        <button class="btn btn-link font-20 font-weight-normal collapsed" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapsesix">
-                                            Is it possible to transfer my coin points to another Rurera account?
+                                        <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapsesix">
+                                        Can I transfer my coin points to another Rurera account?
                                         </button>
                                     </h3>
                                 </div>
                                 <div id="collapse8" class="collapse" aria-labelledby="headingsix" data-parent="#accordion">
-                                    <div itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" class="card-body pb-0"><p itemprop="text" class="mb-15">Coin points are tied to your individual account and cannot be transferred to another account. They can only be used for redemption within your own account.</p></div>
+                                    <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" class="card-body pb-0">
+                                        <p itemprop="text" class="mb-15">Coin points are linked to your personal account and are not transferable to other accounts. They are exclusively for use within your own account, where you can redeem them for rewards.</p>
+                                    </div>
                                 </div>
                             </div>
-							<div itemprop="mainEntity" itemtype="https://schema.org/Question" class="card">
+							<div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="card">
                                 <div class="card-header" id="headingsix">
                                     <h3 itemprop="name" class="mb-0">
-                                        <button class="btn btn-link font-20 font-weight-normal collapsed" data-toggle="collapse" data-target="#collapse9" aria-expanded="false" aria-controls="collapsesix">
-                                            How can I get support if I encounter issues with my rewards or redemption?
+                                        <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse9" aria-expanded="false" aria-controls="collapsesix">
+                                        How can I get support if I encounter issues with my rewards or redemption?
                                         </button>
                                     </h3>
                                 </div>
                                 <div id="collapse9" class="collapse" aria-labelledby="headingsix" data-parent="#accordion">
-                                    <div itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" class="card-body pb-0"><p itemprop="text" class="mb-15">If you experience any issues with your rewards or redemption, you can contact our support team through the "Contact Us" section on the website or app. Provide detailed information about your issue, and our team will assist you as quickly as possible.</p></div>
+                                    <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" class="card-body pb-0">
+                                        <p itemprop="text" class="mb-15">If you experience any issues with your rewards or redemption, you can contact our support team through the "Contact Us" section on the website or app. Provide detailed information about your issue, and our team will assist you as quickly as possible.</p>
+                                    </div>
                                 </div>
                             </div>
-							<div itemprop="mainEntity" itemtype="https://schema.org/Question" class="card">
+							<div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="card">
                                 <div class="card-header" id="headingsix">
                                     <h3 itemprop="name" class="mb-0">
-                                        <button class="btn btn-link font-20 font-weight-normal collapsed" data-toggle="collapse" data-target="#collapse10" aria-expanded="false" aria-controls="collapsesix">
-                                            What should I do if my toy hasn’t arrived after redemption?
+                                        <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse10" aria-expanded="false" aria-controls="collapsesix">
+                                        What should I do if my toy hasn’t arrived after redemption?
                                         </button>
                                     </h3>
                                 </div>
                                 <div id="collapse10" class="collapse" aria-labelledby="headingsix" data-parent="#accordion">
-                                    <div itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" class="card-body pb-0"><p itemprop="text" class="mb-15">If your toy hasn’t arrived within the expected timeframe after redemption, please reach out to our support team with your redemption details and order number. We will investigate the issue and ensure that you receive your toy promptly.</p></div>
+                                    <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" class="card-body pb-0">
+                                        <p itemprop="text" class="mb-15">If your toy hasn’t arrived within the expected timeframe after redemption, please reach out to our support team with your redemption details. We will investigate the issue and ensure that you receive your toy promptly.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -638,9 +655,8 @@
                 <div class="banner-holder">
                     <div class="text-holder">
                         <h2 itemprop="title" class="text-white font-30">
-                            Our rewards are designed to deliver instant<br />
-                            gratification and ensure you see the impact of<br />
-                            your practice in real time.
+                            Our rewards bring you excitement,<br >
+                             letting you see the results of practice in real time!
                         </h2>
                     </div>
                 </div>

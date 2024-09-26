@@ -150,6 +150,7 @@ class LearnController extends Controller
 					'coins' => 1,
 					'game_time' => 25,
 					'attempt_question_id' => $questionResultObj->id,
+					'question_id' => $questionResultObj->question_id,
 					'difficulty_level' => $questionResultObj->difficulty_level,
 					'question_elements' => array(),
 					'solution' => array(),

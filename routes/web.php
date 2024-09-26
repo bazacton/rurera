@@ -266,9 +266,10 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
 
     Route::group(['middleware' => 'web.auth'] , function () {
 
-        Route::group(['prefix' => 'laravel-filemanager'] , function () {
-            \UniSharp\LaravelFilemanager\Lfm::routes();
-        });
+		Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'ensureFolderExists']], function () {
+			\UniSharp\LaravelFilemanager\Lfm::routes();
+		});
+
 
 
 
@@ -608,6 +609,10 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
 
     Route::group(['prefix' => 'sats-preparation'] , function () {
         Route::get('/' , 'SatsController@sats_landing');
+    });
+	
+	Route::group(['prefix' => 'tutoring'] , function () {
+        Route::get('/' , 'PagesController@tutoring_landing');
     });
 
     Route::group(['prefix' => 'spelling'] , function () {

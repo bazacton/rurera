@@ -51,7 +51,7 @@ class BooksController extends Controller
 						$data_array[$section_id]['section_data'][] = array(
 							'title' => $bookObj->book_title,
 							'description' => '',
-							'icon' => $bookObj->cover_image,
+							'icon' => ($bookObj->cover_image != '')? url('/').$bookObj->cover_image : '',
 							'icon_position' => '',
 							'background' => '',
 							'reading_level' => $bookObj->reading_level,

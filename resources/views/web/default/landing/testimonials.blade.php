@@ -10,13 +10,11 @@
     <div class="row h-100 align-items-center text-left">
       <div class="col-12 col-md-12 col-lg-9">
         <p itemprop="sub title" class="lms-subtitle">How we've helped others</p>
-        <h1 itemprop="title" class="font-72 font-weight-bold">Hear It from Our <span class="text-scribble ml-10">Clients</span></h1>
+        <h1 itemprop="title" class="font-72 font-weight-bold">
+          Stories of Trust and <span class="text-scribble">Triumph!</span>
+        </h1>
         <p itemprop="description" class="font-19">
-          Welcome to our testimonial page! Here, you will find a collection of
-          heartfelt testimonials and feedback from our student, teachers and parents who have
-          experienced Rurera services. These testimonials serve as a
-          testament to the quality of our offerings and the satisfaction of
-          those who have chosen to trust us.
+          Rurera has earned the trust of parents, educators, and students by delivering personalized, engaging, and effective learning. From SATs prep to fun rewards, discover why so many confidently choose Rurera to enhance their learning journeys.
         </p>
       </div>
     </div>
@@ -91,9 +89,9 @@
         <div class="col-12">
           <div class="lms-text-section">
             <div class="lms-text-holder text-center">
-              <small itemprop="best work">Deliver your best work with</small><b>Rurera</b>
+              <small itemprop="best work">Shape your success story with </small><b>Rurera</b>
               <p itemprop="description" class="mt-10">
-                Find all you need to set learners up for success Journey!
+                Discover everything you need to guide learners toward success!
               </p>
               <div class="lms-btn-group mt-30">
                 <a href="{{url('/')}}/register" class="lms-btn rounded-pill"
@@ -125,10 +123,9 @@
     <div class="row align-items-center">
       <div class="col-12 col-lg-12 mb-50">
         <div class="element-title text-center">
-          <h2 itemprop="title"  class="font-weight-bold mb-15">What people are saying</h2>
+          <h2 itemprop="title"  class="font-weight-bold mb-15">Trusted by Many, Loved by All</h2>
           <p itemprop="description"  class="text-center mb-10">
-            Read about how learners are excelling with Rurera. Figure out
-            thoughts<br />of students, teachers, and parents...
+            Hear heartfelt stories from students, teachers, <br> and parents about their experiences.
           </p>
         </div>
       </div>
@@ -227,11 +224,11 @@
                                         </g>
                                     </g>
                                 </svg>
-                            </span>Expand your knowledge and grow your learning experience</h3>
-                        <p itemprop="description" class="font-16">Find the resources you need to enhance and learn to accomplish success.</p>
+                            </span>Step into Success—Join the Rurera Family Today!</h3>
+                        <p itemprop="description" class="font-16">Be part of a thriving community where learners excel—experience the support and inspiration that can transform your journey today!</p>
                     </div>
                     <div class="lms-btn-group justify-content-center">
-                      <a href="{{url('/')}}/pricing" class="lms-btn rounded-pill">Explore More</a>
+                      <a href="{{url('/')}}/pricing" class="lms-btn rounded-pill">Get Started</a>
                     </div>
                 </div>
             </div>
@@ -244,13 +241,9 @@
       <div class="col-12 mb-20">
         <h2 itemprop="title"
           class="font-weight-bold text-center w-100 mb-10 font-40 pt-0 text-dark-charcoal"
-          style="text-align:center;padding-top:20px"
-        >
-          Learn Why millions Love us ?
-        </h2>
+          style="text-align:center;padding-top:20px">Discover What Makes Rurera Loved!</h2>
         <p itemprop="description" class="mb-25 text-center">
-          Read about how learners are excelling with Rurera. Figure out
-          thoughts<br />of students, teachers, and parents...
+          Read heartfelt testimonials from our community and see how Rurera has <br > transformed their learning experiences.
         </p>
       </div>
       <div class="col-12">

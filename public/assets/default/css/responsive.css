@@ -137,7 +137,6 @@ Lms Responsive Style Start
     .job-singup-sub-header h1 {font-size: 3rem !important;}
     .job-singup-sub-header h2 {font-size: 1.5rem !important;}
     .navbar1 {padding-left: 0; padding-right: 0;}
-    .navbar-light .navbar-brand {max-width: 185px; min-width: 150px;}
 }
 @media screen and (min-width: 992px) and (max-width: 1300px) {
     .stats-list ul li {border-left: 0;width: 100%;padding: 0 0 15px;margin: 0 0 15px;text-align: left;border-bottom: 1px solid rgba(0, 0, 0, 0.1);}
@@ -163,13 +162,13 @@ Lms Responsive Style Start
     .navbar .navbar-toggle-content.show {top: 0;}
     .navbar .navbar-nav>li {width: 100%; padding: 8px 0;}
     .navbar .navbar-nav>li .nav-link {text-align: left;}
-    .navbar1, .navbar {padding: 0 15px; box-shadow: 0 1px 0 1px rgba(0,0,0,0.04);}
+    .navbar1, .navbar {padding: 15px 20px; box-shadow: 0 1px 0 1px rgba(0,0,0,0.04);}
     .navbar1 .navbar-order,
     .navbar .navbar-order {order: 3}
     .navbar1 .navbar-order:first-child,
     .navbar .navbar-order:first-child {order: 1; margin-left: 0 !important;}
     .navbar1 .navbar-order:nth-child(2),
-    .navbar .navbar-order:nth-child(2) {order: 1; margin-left: auto; margin-right: 10px;}
+    .navbar .navbar-order:nth-child(2) {order: 1; margin-left: auto;}
     .navbar1 .dropdown,
     .navbar .dropdown {order: 3;}
     .navbar1 .navbar-order .nav-notify-cart-dropdown svg {width: 14px !important; height: 14px !important}
@@ -178,8 +177,8 @@ Lms Responsive Style Start
     .navbar1 .navbar-toggle-content.show {top: 0; right: 0; margin-right: 0 !important;}
     .navbar1 .navbar-nav>li {width: 100%; padding: 0;}
     .navbar1 .navbar-nav>li .nav-link {text-align: left;padding: 10px 20px;}
-    .mobile-logo {display: block; border-bottom: 1px solid rgba(0,0,0,0.1); padding: 0 5px 18px; margin: 0 0 10px;}
-    .mobile-logo img {max-width: 150px; object-fit: contain;}
+    .mobile-logo {display: block; border-bottom: 1px solid rgba(0,0,0,0.1); padding: 0 5px 18px 20px; margin: 0 0 10px;}
+    .mobile-logo img {object-fit: contain; max-width: 89px; max-height: 21px;}
     .navbar-brand {margin-right: 0;}
     .navbar-brand img {height: auto !important;}
     .menu-category>ul>li {flex-direction: column;}
@@ -357,7 +356,7 @@ Lms Responsive Style Start
     .navbar-nav .nav-item:has(.lms-mega-menu) > .nav-link.collapsed:before {border-bottom: 1px solid #ccc; border-top: 0; transform: rotate(-45deg);}
     .navbar-nav .nav-item:has(.sidenav-dropdown) > a:after {border-top: 0 !important; border-left: 0 !important; margin-top: -4px; right: 20px; transform: rotate(45deg) !important;}    
     .navbar-nav .nav-item .sidenav-dropdown {position: relative; opacity: 1; visibility: visible; display: none; width: 90%; left: 20px; top: 0; transition: none; padding: 10px 0 5px 20px; background-color: inherit; box-shadow: none;}
-    .navbar-toggle-header {position: absolute; right: 15px; top: 20px; z-index: 1;}
+    .navbar-toggle-header {position: absolute; right: 20px; top: 20px; z-index: 1; font-weight: 500;}
     .navbar-toggle-header svg {height: 25px; width: 25px;}
     .navbar-nav .has-mega-menu .lms-mega-menu.menu-open {display: block; opacity: 1; visibility: visible; z-index: 2; position: relative; top: 0; margin-top: 0;}
     .topic-list li a {padding-left: 10px;}
@@ -473,7 +472,8 @@ Lms Responsive Style Start
     .section-title {text-align: center !important;}
     .panel-content .section-title.text-left,
     .newsletter-inner .section-title,
-    .home-sections:has(.blog-grid-card) .section-title {text-align: left !important;}
+    .home-sections:has(.blog-grid-card) .section-title,
+    .parent-account-section .section-title {text-align: left !important;}
     .marquee-sec .section-title {padding: 0 15px;}
     .instructor-img-first .row {flex-direction: column-reverse;}
     .instructor-img-first .img-holder {margin-top: 30px;}
@@ -485,13 +485,43 @@ Lms Responsive Style Start
     .gallery-sub-header .masonry-grid-gallery {display: none;}
     .footer-dots-img {transform: none !important; margin-top: 30px;}
     .footer-dots-img img {width: 70%; object-fit: contain; display: block; margin: 0 auto;}
-    .process-step-number {display: block; position: absolute; left: 15px; margin-top: 2px; color: #fff; height: 100%;}
+    .process-step-number {
+        display: inline-block;
+        position: relative;
+        left: 0;
+        color: #fff;}
     .lms-search-services .process-holder {display: none;}
-    .process-card-holder [class*="col-"] {flex: 0 0 100%; max-width: 100%; margin-bottom: 15px;}
-    .process-card {text-align: left !important; padding-left: 80px;}
+    .process-card-holder [class*="col-"] {flex: 0 0 100%; max-width: 100%;}
+    .process-card {
+        text-align: left !important;
+        padding-left: 60px;
+        overflow: hidden;
+        height: 100%;
+        margin-bottom: 0 !important;
+    }
     .reward-process .process-card {padding-left: 0;}
-    .process-step-number:before {background-color: #fff; position: absolute; left: 50%; bottom: 0; content: ""; height: calc(100% - 40px); width: 6px; margin-left: -3px;}
-    .process-step-number:after {position: absolute; position: absolute; left: 50%; top: 30px; height: 25px; width: 25px; background: #e66f51; border: 2px solid #ffffff; border-radius: 100%; content: ""; margin-left: -13px;}
+    .process-step-number:before {
+        background-color: #fff;
+        position: absolute;
+        left: -30px;
+        top: 100%;
+        content: "";
+        height: 9999px;
+        width: 6px;
+        margin-left: 0;
+    }
+    .process-step-number:after {
+        position: absolute;
+        left: -40px;
+        top: 0;
+        height: 25px;
+        width: 25px;
+        background: #e66f51;
+        border: 2px solid #fff;
+        border-radius: 100%;
+        content: "";
+        margin-left: 0;
+    }
     .has-no-bg .process-step-number {color: var(--primary); }
     .has-no-bg .process-step-number:before,
     .has-no-bg .process-step-number:after {background-image: radial-gradient(circle, #0272b6, #0272b6, #0272b6, #0272b6, #ffffff);}
@@ -501,7 +531,7 @@ Lms Responsive Style Start
     .custom-footer .widget-links a, 
     .custom-footer .widget-location a {text-decoration: underline; font-size: 16px;}
     .widget.widget-links, .widget.widget-location,
-    .footer-newsletter {border-bottom: 1px solid var(--primary); margin-bottom: 20px;}
+    .footer-newsletter {margin-bottom: 20px;}
     .widget.widget-links h2, .widget.widget-location h2,
     .footer-newsletter h2 {margin-bottom: 20px; }
     .widget.widget-location .widget-title,
@@ -572,6 +602,7 @@ Lms Responsive Style Start
         top: 50%;
         transform: translateY(-50%);
     }
+    .home-banner #change {white-space: inherit;}
 }
 
 @media screen and (min-width: 767px) and (max-width: 1600px) {
@@ -1098,6 +1129,12 @@ Lms Responsive Style Start
         object-fit: cover;
         border-radius: 3px;
         height: 100%;
+    }
+    .parent-account-section {
+        padding: 50px 25px;
+    }
+    .parent-account-section .imb-box {
+        margin-top: 50px;
     }
 }
 

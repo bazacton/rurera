@@ -133,53 +133,7 @@
             </div>
         </div>
     </section>
-    <section class="lms-results-revenue pt-50">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-lg-12">
-                    <div class="element-title text-center mb-40">
-                        <h2 itemprop="title" class="font-40 text-dark-charcoal mb-0">Real-life results and revenue</h2>
-                        <p class="font-16">See how companies like yours have smashed their sales success goals</p>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-12 col-md-12 mx-auto">
-                    <div class="row">
-                        <div class="col-12 col-lg-12">
-                            <div class="results-revenue-card">
-                                <div class="results-info"><strong class="font-72">$2.5M</strong><span class="font-20 font-weight-bold">Generated sales</span></div>
-                                <div class="text-box">
-                                    <p class="font-30 font-weight-500">
-                                        Using Lumi CRM is one of the best decisions we've<br />
-                                        ever made. we've seen our annual revenue explode.<br />
-                                        and the outlook just keeps getting sunnier.
-                                    </p>
-                                    <a href="#" class="author-info">
-                                        <img src="/assets/default/img/stats-thumb.png" alt="pricing-thumb" />
-                                        <span class="font-18 font-weight-500">Nellie Foster<em class="font-16 d-block">Founder &amp; CEO, Foster Business Strategies</em></span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-12">
-                            <div class="results-revenue-card">
-                                <div class="results-info"><strong class="font-72">45%</strong><span class="font-20 font-weight-bold">Growth revenue</span></div>
-                                <div class="text-box">
-                                    <p class="font-30 font-weight-500">
-                                        Lumi is created for sales people. It’s the kind of<br />
-                                        software that just works. I don’t have to try to make<br />
-                                        it work. It already does. It’s just perfect.
-                                    </p>
-                                    <a href="#" class="author-info">
-                                        <img src="/assets/default/img/pricing-thumb.jpg" alt="pricing-thumb" /><span class="font-18 font-weight-500">Lawrence Gibbs<em class="font-16 d-block">Digital Marketing Director</em></span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  
     <section class="lms-have-question pt-100 pb-100 mt-50" style="background-color: #f3f6ff;">
         <div class="container">
             <div class="row">
@@ -193,7 +147,7 @@
                             <h2 class="font-40 mb-20 font-weight-500">Got Questions? Our team is here to help reach out and let us assist you!</h2>
                             <span>Need help? Rurera's customer support team is here to assist with subscriptions, features, or technical issues. Contact us for quick and friendly support to ensure you get the most from your Rurera experience.</span>
                             </div>
-                            <div class="contact-info"><a href="#" class="contact-btn">Contact Us</a><span>Or call +12 3456 7890</span></div>
+                            <div class="contact-info"><a href="#" class="contact-btn">Contact Us</a></div>
                         </div>
                     </div>
                 </div>

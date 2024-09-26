@@ -54,7 +54,6 @@
                         <span class="custom-switch-indicator"></span>
                         <label class="custom-switch-description mb-0 cursor-pointer" for="contentTranslate">{{ trans('update.enable_multi_currency') }}</label>
                     </label>
-                    <div class="text-muted text-small mt-1">Paid Plugin</div>
                 </div>
 
                 <section class="js-multi-currency-section mt-3 {{ (!empty($itemValue) and !empty($itemValue['multi_currency'])) ? : "d-none" }}">

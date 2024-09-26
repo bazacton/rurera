@@ -29,6 +29,7 @@ class DailyQuestsController extends Controller
             return redirect('/'.panelRoute());
         }
         $user = auth()->user();
+		$user = (!isset( $user->id ) || $user->id == 0)? apiAuth() : $user;
 
         $quests = $user->getUserQuests();
         $page = Page::where('link', '/quests')->where('status', 'publish')->first();
@@ -128,6 +129,7 @@ class DailyQuestsController extends Controller
     {
 
         $user = auth()->user();
+		$user = (!isset( $user->id ) || $user->id == 0)? apiAuth() : $user;
         //$quests = DailyQuests::where('quest_topic_type', $QuizzesResult->quiz_result_type)->where('timestables_mode', $QuizzesResult->attempt_mode)->where('status', 'active')->get();
 
 
@@ -195,6 +197,7 @@ class DailyQuestsController extends Controller
     {
 
         $user = auth()->user();
+		$user = (!isset( $user->id ) || $user->id == 0)? apiAuth() : $user;
         //$quests = DailyQuests::where('quest_topic_type', $QuizzesResult->quiz_result_type)->where('timestables_mode', $QuizzesResult->attempt_mode)->where('status', 'active')->get();
 
 

@@ -5,14 +5,8 @@
 <style>
     .time-tables-sub-header {
         background-color: #333399;
-        /* background-image: linear-gradient(transparent 11px, rgba(255, 255, 255, 0.2) 12px, transparent 12px), linear-gradient(90deg, transparent 11px, rgba(255, 255, 255, 0.2) 12px, transparent 12px); 
-        background-size: 100% 12px, 12px 100%; */
     }
-
     .lms-column-section {
-        /* background: radial-gradient(rgba(0, 0, 0, 0.1) 2px, transparent 3px), radial-gradient(rgba(0, 0, 0, 0.1) 2px, transparent 3px), #7679ee; 
-        background-position: 0 0, 20px 20px; 
-        background-size: 40px 40px; */
         background-color: #7679ee;
     }
 </style>
@@ -321,7 +315,6 @@
         </div>
     </section>
 
-
     <section class="lms-column-section lms-accordion-section w-100 pb-60 pt-60" style="background-color: #f6f0ea; max-width: 100%;">
         <div class="container">
             <div class="row">
@@ -331,8 +324,8 @@
                     </div>
                 </div>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                    <div itemscope="" itemtype="https://schema.org/accordion" class="accordion lms-accordion-modern" id="accordion-modern">
-                        <div class="card active">
+                    <div itemprop="mainEntity" itemtype="https://schema.org/Question" class="accordion lms-accordion-modern" id="accordion-modern">
+                        <div class="card active" itemprop="mainEntity" itemtype="https://schema.org/Question">
                             <div class="card-header" id="heading-1">
                                 <button itemprop="button" class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse-1" aria-expanded="false" aria-controls="collapse-1">
                                     <span itemprop="size">#1</span>Adaptive Assessments Testing
@@ -350,7 +343,7 @@
                                 <figure><img class="w-100" src="../assets/default/img/adpative-assessment.jpg" alt="company sats" title="company sats" width="100%" height="auto" itemprop="image" loading="eager" /></figure>
                             </div>
                         </div>
-                        <div class="card">
+                        <div class="card" itemprop="mainEntity" itemtype="https://schema.org/Question">
                             <div class="card-header" id="heading-2">
                                 <button itemprop="button" class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse-2" aria-expanded="false" aria-controls="collapse-2">
                                     <span itemprop="size">#2</span>Quick Results via automated marking
@@ -367,7 +360,7 @@
                                 <figure><img class="w-100" src="../assets/default/img/company-quiz.jpg" alt="company performance" title="company performance" width="100%" height="auto" itemprop="image" loading="eager" /></figure>
                             </div>
                         </div>
-                        <div class="card">
+                        <div class="card" itemprop="mainEntity" itemtype="https://schema.org/Question">
                             <div class="card-header" id="heading-3">
                                 <button itemprop="button" class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse-3" aria-expanded="false" aria-controls="collapse-3">
                                     <span itemprop="size">#3</span>Diverse Question Formats
@@ -384,7 +377,7 @@
                                 <figure><img class="w-100" src="../assets/default/img/all-in-1-platform.jpg" alt="company rewards" title="company rewards" width="100%" height="auto" itemprop="image" loading="eager" /></figure>
                             </div>
                         </div>
-                        <div class="card">
+                        <div class="card" itemprop="mainEntity" itemtype="https://schema.org/Question">
                             <div class="card-header" id="heading-4">
                                 <button itemprop="button" class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse-4" aria-expanded="false" aria-controls="collapse-4">
                                     <span itemprop="size">#4</span>Timely Reporting
@@ -399,7 +392,7 @@
                                 <figure><img class="w-100" src="../assets/default/img/company-sats.jpg" alt="company insights" title="company insights" width="100%" height="auto" itemprop="image" loading="eager" /></figure>
                             </div>
                         </div>
-                        <div class="card">
+                        <div class="card" itemprop="mainEntity" itemtype="https://schema.org/Question">
                             <div class="card-header" id="heading-5">
                                 <button itemprop="button" class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse-5" aria-expanded="false" aria-controls="collapse-5">
                                     <span itemprop="size">#5</span>Breakthrough insights at every level
@@ -417,7 +410,7 @@
                                 <figure><img class="w-100" src="../assets/default/img/company-insights.jpg" alt="company quiz" title="company quiz" width="100%" height="auto" itemprop="image" loading="eager" /></figure>
                             </div>
                         </div>
-                        <div class="card">
+                        <div class="card" itemprop="mainEntity" itemtype="https://schema.org/Question">
                             <div class="card-header" id="heading-6">
                                 <button itemprop="button" class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse-6" aria-expanded="true" aria-controls="collapse-6">
                                     <span itemprop="size">#6</span>Students Engagement
@@ -435,7 +428,7 @@
                                 <figure><img class="w-100" src="../assets/default/img/company-performance.jpg" alt="company curriculum" width="100%" height="auto" title="company curriculum" itemprop="image" loading="eager" /></figure>
                             </div>
                         </div>
-                        <div class="card">
+                        <div class="card" itemprop="mainEntity" itemtype="https://schema.org/Question">
                             <div class="card-header" id="heading-6">
                                 <button itemprop="button" class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse-7" aria-expanded="true" aria-controls="collapse-7">
                                     <span itemprop="size">#7</span>Reward points
@@ -463,7 +456,7 @@
     </section>
 
     @php $faq_items = isset( $faq_items )? $faq_items : array();@endphp
-    <section class="py-70" style="background-color: #fff">
+    <section class="py-100" style="background-color: #fff">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -473,12 +466,12 @@
                 </div>
                 <div class="col-12 col-lg-12 col-md-12 mx-auto">
                     <div class="mt-0">
-                        <div class="lms-faqs mx-w-100 mt-0">
+                        <div class="lms-faqs mx-w-100 mt-0" itemprop="mainEntity" itemtype="https://schema.org/Question">
                             <div id="accordion">
                                 @if( !empty( $faq_items ))
 
                                 @foreach( $faq_items as $itemData)
-                                <div class="card">
+                                <div class="card" itemprop="mainEntity" itemtype="https://schema.org/Question">
                                     <div class="card-header" id="headingonsix">
                                         <h3 class="mb-0">
                                             <button class="btn btn-link font-18 font-weight-bold" data-toggle="collapse" data-target="#collapsesix" aria-expanded="true" aria-controls="collapsesix">{{isset( $itemData['title'])? $itemData['title'] : '' }}</button>
@@ -494,7 +487,7 @@
                                 @endforeach
 
                                 @else
-                                <div class="card">
+                                <div class="card" itemprop="mainEntity" itemtype="https://schema.org/Question">
                                     <div class="card-header" id="headingonsix">
                                         <h3 class="mb-0">
                                             <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapsesix" aria-expanded="true" aria-controls="collapsesix"> What are times tables?</button>
@@ -507,11 +500,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card">
+                                <div class="card" itemprop="mainEntity" itemtype="https://schema.org/Question">
                                     <div class="card-header" id="headingTwo">
                                         <h3 class="mb-0"><button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse"
                                                 data-target="#collapseTwo" aria-expanded="false"
-                                                aria-controls="collapseTwo">Why are they important?</button></h3>
+                                                aria-controls="collapseTwo">Why are learning times tables important?</button></h3>
                                     </div>
                                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
                                         data-parent="#accordion">
@@ -521,10 +514,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card">
+                                <div class="card" itemprop="mainEntity" itemtype="https://schema.org/Question">
                                     <div class="card-header" id="headingseven">
                                         <h3 class="mb-0">
-                                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapseseven" aria-expanded="false" aria-controls="collapseseven">When should kids start learning?</button>
+                                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapseseven" aria-expanded="false" aria-controls="collapseseven">When should kids start learning times tables?</button>
                                         </h3>
                                     </div>
                                     <div id="collapseseven" class="collapse" aria-labelledby="headingseven" data-parent="#accordion">
@@ -533,10 +526,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card">
+                                <div class="card" itemprop="mainEntity" itemtype="https://schema.org/Question">
                                     <div class="card-header" id="heading8">
                                         <h3 class="mb-0">
-                                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8"> How to memorize effectively? </button>
+                                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8">How to effectively memorize times tables?</button>
                                         </h3>
                                     </div>
                                     <div id="collapse8" class="collapse" aria-labelledby="heading8" data-parent="#accordion">
@@ -545,10 +538,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card">
+                                <div class="card" itemprop="mainEntity" itemtype="https://schema.org/Question">
                                     <div class="card-header" id="heading9">
                                         <h3 class="mb-0">
-                                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse9" aria-expanded="false" aria-controls="collapse9">How will Rurera help in learning times tables?</button>
+                                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse9" aria-expanded="false" aria-controls="collapse9">What if my child struggles in learning times tables?</button>
                                         </h3>
                                     </div>
                                     <div id="collapse9" class="collapse" aria-labelledby="heading9" data-parent="#accordion">
@@ -558,10 +551,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card">
+                                <div class="card" itemprop="mainEntity" itemtype="https://schema.org/Question">
                                     <div class="card-header" id="heading10">
                                         <h3 class="mb-0">
-                                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse10" aria-expanded="false" aria-controls="collapse10">What if my child struggles?</button>
+                                            <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse10" aria-expanded="false" aria-controls="collapse10">Are there any tricks to learning times tables?</button>
                                         </h3>
                                     </div>
                                     <div id="collapse10" class="collapse" aria-labelledby="heading10" data-parent="#accordion">
@@ -570,7 +563,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card">
+                                <div class="card" itemprop="mainEntity" itemtype="https://schema.org/Question">
                                     <div class="card-header" id="heading11">
                                         <h3 class="mb-0">
                                             <button class="btn btn-link font-18 font-weight-bold collapsed" data-toggle="collapse" data-target="#collapse11" aria-expanded="false" aria-controls="collapse11">Are there tricks to learning?</button>
@@ -592,319 +585,29 @@
             </div>
         </div>
     </section>
-    <section class="marquee-sec py-70" style="background-color: #fbfbfb;">
-        <div class="section-title text-center mb-50">
-            <h2 class="mb-10 font-40">They<span class="text-primary">love</span>Able Pro, Now your turn ðŸ˜</h2>
-            <div class="reviews-holder mt-15">
-                <span class="reviews-lable">
-                    <span class="icon-box"><img src="/assets/default/svgs/star-white.svg" alt="" /></span>Trustpilot
-                </span>
-                <span class="reviews-star d-block">
-                    <span class="icon-box"><img src="/assets/default/svgs/star-white.svg" alt="" /></span><span class="icon-box"><img src="/assets/default/svgs/star-white.svg" alt="" /></span>
-                    <span class="icon-box"><img src="/assets/default/svgs/star-white.svg" alt="" /></span><span class="icon-box"><img src="/assets/default/svgs/star-white.svg" alt="" /></span>
-                    <span class="icon-box"><img src="/assets/default/svgs/star-white.svg" alt="" /></span>
-                </span>
-                <div class="reviews-info">
-                    <span class="reviews-score">Trustscore<em>4.8</em></span><a href="#" class="reviews-number"><em>322</em>Trustscore</a>
+    <section class="parent-account-section mt-0" style="background-color: #0065ff;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12 col-lg-7 col-md-7">
+                    <div class="section-title mb-50">
+                        <h2 class="font-40 text-white">Parent account</h2>
+                        <p class="font-16 font-weight-500 text-white">We make it easy to be involved in your child’s learning
+                            Ability to assign activities</p>
+                    </div>
+                    <ul>
+                        <li><span class="font-18">Real-Time diagnostics</span></li>
+                        <li><span class="font-18">Track Child’s Learning</span></li>
+                        <li><span class="font-18">Assign Goals for your Child</span></li>
+                        <li><span class="font-18">Regular Notifications on Activities.</span></li>
+                        <li><span class="font-18">learning controls</span></li>
+                        <li><span class="font-18">Easy to Manage Sibling Accounts</span></li>
+                    </ul>
                 </div>
-            </div>
-        </div>
-        <div class="marquee-list marquee-inner-wrapper">
-            <div class="marquee-list-holder marquee__inner_animation marquee-right-to-left mb-20">
-                <ul>
-                    <li>
-                        <div class="marquee-card">
-                            <div class="card-body">
-                                <div class="card-content">
-                                    <a href="#">
-                                        <span class="card-media"><img src="/avatar/svgA16395287444009177.png" alt="" /></span>
-                                        <span class="card-text">
-                                            <span class="car-discription">â€œAmazing template for fast develop.ðŸ’Žâ€œ</span><span class="author-name">devbar -<span>Customizability</span></span>
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="marquee-card">
-                            <div class="card-body">
-                                <div class="card-content">
-                                    <a href="#">
-                                        <span class="card-media"><img src="/avatar/svgA16395287444009177.png" alt="" /></span>
-                                        <span class="card-text">
-                                            <span class="car-discription">â€œCode quality is amazing. Design is astonishing. very easy to customize..ðŸ˜â€œ</span><span class="author-name">shahabblouch -<span>Code Quality</span></span>
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="marquee-card">
-                            <div class="card-body">
-                                <div class="card-content">
-                                    <a href="#">
-                                        <span class="card-media"><img src="/avatar/svgA16395287444009177.png" alt="" /></span>
-                                        <span class="card-text">
-                                            <span class="car-discription">â€œThis has been one of my favorite admin dashboards to use. ðŸ˜â€œ</span><span class="author-name">htmhell -<span>Design Quality</span></span>
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="marquee-card">
-                            <div class="card-body">
-                                <div class="card-content">
-                                    <a href="#">
-                                        <span class="card-media"><img src="/avatar/svgA16395287444009177.png" alt="" /></span>
-                                        <span class="card-text">
-                                            <span class="car-discription">â€œExcellent support, if we need any modification, they are doing immediatelyâ€œ</span><span class="author-name">hemchandkodali -<span>Customer Support</span></span>
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="marquee-card">
-                            <div class="card-body">
-                                <div class="card-content">
-                                    <a href="#">
-                                        <span class="card-media"><img src="/avatar/svgA16395287444009177.png" alt="" /></span>
-                                        <span class="card-text">
-                                            <span class="car-discription">â€œFor developers like me, this is the total package! ðŸ˜ â€œ</span><span class="author-name">sumaranjum -<span>Feature Availability</span></span>
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="marquee-card">
-                            <div class="card-body">
-                                <div class="card-content">
-                                    <a href="#">
-                                        <span class="card-media"><img src="/avatar/svgA16395287444009177.png" alt="" /></span>
-                                        <span class="card-text">
-                                            <span class="car-discription">â€œI love the looks of Able Pro 7.0. I really like the colors you guys have chosen for this theme. It looks really nice.. ðŸ’Žâ€œ</span>
-                                            <span class="author-name">ritelogic -<span>Other</span></span>
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="marquee-card">
-                            <div class="card-body">
-                                <div class="card-content">
-                                    <a href="#">
-                                        <span class="card-media"><img src="/avatar/svgA16395287444009177.png" alt="" /></span>
-                                        <span class="card-text">
-                                            <span class="car-discription">â€œThe author is very nice and solved my problem inmediately ðŸ˜ â€œ</span><span class="author-name">richitela -<span>Customer Support</span></span>
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="marquee-card">
-                            <div class="card-body">
-                                <div class="card-content">
-                                    <a href="#">
-                                        <span class="card-media"><img src="/avatar/svgA16395287444009177.png" alt="" /></span>
-                                        <span class="card-text">
-                                            <span class="car-discription">â€œVery universal admin templateâ€œ</span><span class="author-name">Genstiade -<span>Feature Availability</span></span>
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="marquee-card">
-                            <div class="card-body">
-                                <div class="card-content">
-                                    <a href="#">
-                                        <span class="card-media"><img src="/avatar/svgA16395287444009177.png" alt="" /></span>
-                                        <span class="card-text">
-                                            <span class="car-discription">â€œI have it running on a medium size site that is geared towards. My customers love the design and speed in which pages load.â€œ</span>
-                                            <span class="author-name">RizzoFrank -<span>Design Quality</span></span>
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="marquee-card">
-                            <div class="card-body">
-                                <div class="card-content">
-                                    <a href="#">
-                                        <span class="card-media"><img src="/avatar/svgA16395287444009177.png" alt="" /></span>
-                                        <span class="card-text">
-                                            <span class="car-discription">â€œAn amazing template. Very good design, good quality code and also very good customer support. ðŸ’Žâ€œ</span>
-                                            <span class="author-name">hemchandkodali -<span>Customer Support</span></span>
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="marquee-list marquee-inner-wrapper-v2">
-            <div class="marquee-list-holder marquee__inner_animation marquee-left-to-right">
-                <ul>
-                    <li>
-                        <div class="marquee-card">
-                            <div class="card-body">
-                                <div class="card-content">
-                                    <a href="#">
-                                        <span class="card-media"><img src="/avatar/svgA16395287444009177.png" alt="" /></span>
-                                        <span class="card-text">
-                                            <span class="car-discription">â€œPerfect for my need. Elegant look n feel with blazing fast code. ðŸ’Žâ€œ</span><span class="author-name">ThemeShakers -<span>Feature Availability</span></span>
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="marquee-card">
-                            <div class="card-body">
-                                <div class="card-content">
-                                    <a href="#">
-                                        <span class="card-media"><img src="/avatar/svgA16395287444009177.png" alt="" /></span>
-                                        <span class="card-text">
-                                            <span class="car-discription">â€œExcellent template! It's also very well organized and easy to find our way..â€œ</span><span class="author-name">Danlec -<span>Code Quality</span></span>
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="marquee-card">
-                            <div class="card-body">
-                                <div class="card-content">
-                                    <a href="#">
-                                        <span class="card-media"><img src="/avatar/svgA16395287444009177.png" alt="" /></span>
-                                        <span class="card-text">
-                                            <span class="car-discription">â€œTheir Team is great and working great always. when you need help...â€œ</span><span class="author-name">manojkumarhr -<span>Customer Support</span></span>
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="marquee-card">
-                            <div class="card-body">
-                                <div class="card-content">
-                                    <a href="#">
-                                        <span class="card-media"><img src="/avatar/svgA16395287444009177.png" alt="" /></span>
-                                        <span class="card-text">
-                                            <span class="car-discription">â€œWonderful theme, full of features, with ton of addons.â€œ</span><span class="author-name">momennoor -<span>Design Quality</span></span>
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="marquee-card">
-                            <div class="card-body">
-                                <div class="card-content">
-                                    <a href="#">
-                                        <span class="card-media"><img src="/avatar/svgA16395287444009177.png" alt="" /></span>
-                                        <span class="card-text">
-                                            <span class="car-discription">â€œAn excellent theme. It contains everything you need to open complex projects. ðŸ˜ â€œ</span><span class="author-name">Vihtora -<span>Other</span></span>
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="marquee-card">
-                            <div class="card-body">
-                                <div class="card-content">
-                                    <a href="#">
-                                        <span class="card-media"><img src="/avatar/svgA16395287444009177.png" alt="" /></span>
-                                        <span class="card-text">
-                                            <span class="car-discription">â€œExcellent template. Very complete. ðŸ’Žâ€œ</span><span class="author-name">mundodascasas -<span>Code Quality</span></span>
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="marquee-card">
-                            <div class="card-body">
-                                <div class="card-content">
-                                    <a href="#">
-                                        <span class="card-media"><img src="/avatar/svgA16395287444009177.png" alt="" /></span>
-                                        <span class="card-text">
-                                            <span class="car-discription">â€œIt serves my all purposes well and one thing it was great because i didn't require designer at all.â€œ</span>
-                                            <span class="author-name">amit1134 -<span>Code Quality</span></span>
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="marquee-card">
-                            <div class="card-body">
-                                <div class="card-content">
-                                    <a href="#">
-                                        <span class="card-media"><img src="/avatar/svgA16395287444009177.png" alt="" /></span>
-                                        <span class="card-text">
-                                            <span class="car-discription">â€œI highly recommend Able pro admin template and team phoenixcoded item. It was best purchase on themeforest for me.â€œ</span>
-                                            <span class="author-name">vishalmg -<span>Flexibility</span></span>
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="marquee-card">
-                            <div class="card-body">
-                                <div class="card-content">
-                                    <a href="#">
-                                        <span class="card-media"><img src="/avatar/svgA16395287444009177.png" alt="" /></span>
-                                        <span class="card-text">
-                                            <span class="car-discription">â€œ5 stars are for the excellent support, that is brilliant! The design is very cool and...!â€œ</span><span class="author-name">ab69aho -<span>Code Quality</span></span>
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="marquee-card">
-                            <div class="card-body">
-                                <div class="card-content">
-                                    <a href="#">
-                                        <span class="card-media"><img src="/avatar/svgA16395287444009177.png" alt="" /></span>
-                                        <span class="card-text">
-                                            <span class="car-discription">â€œAn amazing template. Very good design, good quality code and also very good customer support. ðŸ’Žâ€œ</span>
-                                            <span class="author-name">hemchandkodali -<span>Customer Support</span></span>
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+                <div class="col-12 col-lg-5 col-md-5">
+                    <div class="imb-box">
+                        <img src="/assets/default/img/banner-home.webp" width="548" height="570" alt="banner-home image">
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -955,46 +658,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <section class="lms-column-section lms-text-section py-70 mx-w-100" style="background-color: #f27530;">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="lms-text-holder d-flex flex-column justify-content-center text-center">
-                        <div class="row align-items-center">
-                            <div class="col-12 col-lg-12 col-md-12">
-                                <h2 itemprop="title" class="mb-20 text-white font-40">Looking to discover Magic of Multiplication tables?</h2>
-                                <p itemprop="description" class="mb-0 text-white font-weight-normal font-24">Practice your times tables now.</p>
-                                <div class="lms-btn-group mt-30 justify-content-center">
-                                    <a itemprop="url" href="{{url('/')}}/register" class="lms-btn rounded-pill text-white border-white">Join Rurera today</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
 </section>
 

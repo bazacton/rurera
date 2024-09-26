@@ -10,13 +10,11 @@
     <div class="row h-100 align-items-center text-left">
       <div class="col-12 col-md-12 col-lg-9">
         <p itemprop="sub title" class="lms-subtitle">How we've helped others</p>
-        <h1 itemprop="title" class="font-72 font-weight-bold">Hear It from Our <span class="text-scribble ml-10">Clients</span></h1>
+        <h1 itemprop="title" class="font-72 font-weight-bold">
+          Stories of Trust and <span class="text-scribble ml-10">Triumph!</span>
+        </h1>
         <p itemprop="description" class="font-19">
-          Welcome to our testimonial page! Here, you will find a collection of
-          heartfelt testimonials and feedback from our student, teachers and parents who have
-          experienced Rurera services. These testimonials serve as a
-          testament to the quality of our offerings and the satisfaction of
-          those who have chosen to trust us.
+          Rurera has earned the trust of parents, educators, and students by delivering personalized, engaging, and effective learning. From SATs prep to fun rewards, discover why so many confidently choose Rurera to enhance their learning journeys.
         </p>
       </div>
     </div>
@@ -125,7 +123,7 @@
     <div class="row align-items-center">
       <div class="col-12 col-lg-12 mb-50">
         <div class="element-title text-center">
-          <h2 itemprop="title"  class="font-weight-bold mb-15">What people are saying</h2>
+          <h2 itemprop="title"  class="font-weight-bold mb-15">What people are saying2222</h2>
           <p itemprop="description"  class="text-center mb-10">
             Read about how learners are excelling with Rurera. Figure out
             thoughts<br />of students, teachers, and parents...
