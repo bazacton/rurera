@@ -403,6 +403,9 @@ class QuizController extends Controller
         if ($quiz) {
 			$quiz_response = $this->get_learn_quiz_data($quiz, $quiz_level, $learning_journey, $question_ids, $is_new, $test_type, $journey_item_id);
 			$questions_list = isset( $quiz_response['questions_list'] )? $quiz_response['questions_list']  : array();
+            if( empty( $questions_list ) ){
+                return view(getTemplate() . '.quizzes.unauthorized');
+            }
 			$resultLogObj = isset( $quiz_response['resultLogObj'] )? $quiz_response['resultLogObj']  : array();
 			$attemptLogObj = isset( $quiz_response['attemptLogObj'] )? $quiz_response['attemptLogObj']  : array();
 			$question = isset( $quiz_response['question'] )? $quiz_response['question']  : array();

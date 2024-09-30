@@ -2722,7 +2722,7 @@ class QuestionsBankController extends Controller
 		
 		$subChapterObj = SubChapters::find($quistionObj->sub_chapter_id);
 		$sub_chapter_quiz_id = isset( $subChapterObj->quizData->item_id )? $subChapterObj->quizData->item_id : 0;
-		
+		$hide_question = isset($questionData['hide_question']) ? $questionData['hide_question'] : 0;
 		if( $sub_chapter_quiz_id > 0){
 			
 			$list_counts = QuizzesQuestionsList::where('question_id', $quistionObj->id)->where('quiz_id',$sub_chapter_quiz_id)->count();
@@ -2730,12 +2730,16 @@ class QuestionsBankController extends Controller
 				QuizzesQuestionsList::create([
 					'quiz_id'     => $sub_chapter_quiz_id,
 					'question_id' => $quistionObj->id,
-					'status'      => 'active',
+					'status'      => ($hide_question == 1)? 'inactive' : 'active',
 					'sort_order'  => 0,
 					'created_by'  => $user->id,
 					'created_at'  => time()
 				]);
-			}
+			}else{
+                QuizzesQuestionsList::where('question_id', $quistionObj->id)->where('quiz_id',$sub_chapter_quiz_id)->update([
+                    'status'      => ($hide_question == 1)? 'inactive' : 'active',
+                ]);
+            }
 		}
 		
 		
