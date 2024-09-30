@@ -31,7 +31,7 @@ class SubChapters extends Model
 
     public function questions_list()
     {
-        return $this->hasMany('App\Models\QuizzesQuestion', 'sub_chapter_id', 'id');
+        return $this->hasMany('App\Models\QuizzesQuestion', 'sub_chapter_id', 'id')->where('hide_question', 0);
     }
 
     public function quizData()

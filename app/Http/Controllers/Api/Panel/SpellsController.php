@@ -164,6 +164,7 @@ class SpellsController extends Controller
                     foreach( $phonics_array as $phonic_data){
 						$phonics_data[] = array(
 							'letter' => isset( $phonic_data['letter'] )? $phonic_data['letter'] : '',
+                            'letter_pronounce' => isset( $phonic_data['word'] )? '/'.$phonic_data['word'].'/' : '',
 							'audio' => isset( $phonic_data['sound'] )? url('/').'/phonics/'.$phonic_data['sound'] : '',
 						);
 						
@@ -173,6 +174,7 @@ class SpellsController extends Controller
                 $words_list[] = array(
                     'audio_text'      => $audio_text,
                     'audio_sentense'  => $audio_sentense,
+                    'defination' => $audio_defination,
                     'audio_file'      => url('/').$audio_file,
                     'word_audio_file' => url('/').$word_audio_file,
                     'phonics'      => $phonics_data,

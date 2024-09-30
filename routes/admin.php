@@ -473,7 +473,7 @@ Route::group([
             Route::get('/create_sections_auto', 'QuestionsBankController@create_sections_auto')->name('adminCreateSectionsAuto');
             Route::post('/store_sections_auto', 'QuestionsBankController@store_sections_auto');
 
-            Route::get('/{id}/edit', 'QuestionsBankController@edit');
+            Route::get('/{id}/edit', 'QuestionsBankController@edit')->name('adminEditQuestion');
             Route::get('/{id}/log', 'QuestionsBankController@log');
             Route::get('/{id}/delete', 'QuestionsBankController@delete');
             Route::get('/{id}/duplicate', 'QuestionsBankController@duplicate');

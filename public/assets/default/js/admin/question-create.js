@@ -218,6 +218,7 @@ function rureraform_save(_object, question_status) {
     var reference_type = $("[name=reference_type]").val();
     var review_required = ($('[name=review_required]').prop('checked')) ? 1 : 0;
     var developer_review_required = ($('[name=developer_review_required]').prop('checked')) ? 1 : 0;
+    var hide_question = ($('[name=hide_question]').prop('checked')) ? 1 : 0;
     var glossary_ids = $("#glossary_ids").val();
 
     var new_glossaries = $(".new_glossaries")
@@ -267,6 +268,7 @@ function rureraform_save(_object, question_status) {
         "reference_type" : reference_type,
         "review_required": review_required,
         "developer_review_required": developer_review_required,
+        "hide_question": hide_question,
         "action": "rureraform-form-save",
         "form-id": jQuery("#rureraform-id").val(),
         "form-options": rureraform_encode64(JSON.stringify(rureraform_form_options)),
@@ -1624,6 +1626,7 @@ function _rureraform_properties_prepare(_object) {
                     break;
 
                 case 'sortable-options':
+
                     options = "";
                     for (var j = 0; j < properties[key].length; j++) {
                         selected = "";
@@ -1633,9 +1636,9 @@ function _rureraform_properties_prepare(_object) {
 						if(DataIsEmpty(properties[key][j]["label"])){
 							continue;
 						}
-                        options += "<div class='rureraform-properties-options-item" + selected + "'><div class='rureraform-properties-options-table'><div class='rureraform-image-url'><input class='rureraform-properties-options-image' type='text' value='" + rureraform_escape_html(properties[key][j]["image"]) + "' placeholder='Upload Image'><span><i class='far fa-image'></i></span></div><div><input class='rureraform-properties-options-label' type='text' value='" + rureraform_escape_html(properties[key][j]["label"]) + "' placeholder='Label'></div><div><input class='rureraform-properties-options-value' type='text' value='" + rureraform_escape_html(properties[key][j]["value"]) + "' placeholder='Value'></div><div><span onclick='return rureraform_properties_options_new(this);' title='Add the option after this one'><i class='fas fa-plus'></i></span><span onclick='return rureraform_properties_options_copy(this);' title='Duplicate the option'><i class='far fa-copy'></i></span><span onclick='return rureraform_properties_options_delete(this);' title='Delete the option'><i class='fas fa-trash-alt'></i></span><span title='Move the option'><i class='fas fa-arrows-alt rureraform-properties-options-item-handler'></i></span></div></div></div>";
+                        options += "<div class='rureraform-properties-options-item" + selected + "'><div class='rureraform-properties-options-table'><div class='rureraform-image-url'><div class='input-group-prepend'><button type='button' class='input-group-text admin-file-manager' data-input='image-" + key + "-" + j + "' data-preview='holder'><i class='fa fa-upload'></i></button></div><input class='rureraform-properties-options-image' type='text' id='image-" + key + "-" + j + "' value='" + rureraform_escape_html(properties[key][j]["image"]) + "' placeholder='Upload Image'><span><i class='far fa-image'></i></span></div><div><input class='rureraform-properties-options-label' type='text' value='" + rureraform_escape_html(properties[key][j]["label"]) + "' placeholder='Label'></div><div><input class='rureraform-properties-options-correct_order' type='text' value='" + rureraform_escape_html(properties[key][j]["correct_order"]) + "' placeholder='Correct Order'></div><div><span onclick='return rureraform_properties_options_new(this);' title='Add the option after this one'><i class='fas fa-plus'></i></span><span onclick='return rureraform_properties_options_copy(this);' title='Duplicate the option'><i class='far fa-copy'></i></span><span onclick='return rureraform_properties_options_delete(this);' title='Delete the option'><i class='fas fa-trash-alt'></i></span><span title='Move the option'><i class='fas fa-arrows-alt rureraform-properties-options-item-handler'></i></span></div></div></div>";
                     }
-                    html += "<div class='rureraform-properties-item' data-id='" + key + "'><div class='rureraform-properties-label'><label>" + rureraform_meta[type][key]['label'] + "</label></div><div class='rureraform-properties-tooltip'>" + tooltip_html + "</div><div class='rureraform-properties-content rureraform-properties-image-options-table'><div class='rureraform-properties-options-table-header'><div>Image</div><div>Label</div><div>Correct Order</div><div></div></div><div class='rureraform-properties-options-box'><div class='rureraform-properties-options-container' data-multi='" + (properties.type == "radio" ? "off" : "on") + "'>" + options + "</div></div><div class='rureraform-properties-options-table-footer'><a class='rureraform-admin-button rureraform-admin-button-gray rureraform-admin-button-small' href='#' onclick='return rureraform_properties_options_new(null);'><i class='fas fa-plus'></i><label>Add option</label></a></div></div></div>";
+                    html += "<div class='rureraform-properties-item' data-id='" + key + "'><div class='rureraform-properties-label'><label>" + rureraform_meta[type][key]['label'] + "</label></div><div class='rureraform-properties-tooltip'>" + tooltip_html + "</div><div class='rureraform-properties-content rureraform-properties-image-options-table'><div class='rureraform-properties-options-table-header'><div>Image</div><div>Label</div><div>Correct Order</div><div></div></div><div class='rureraform-properties-options-box'><div class='rureraform-properties-options-container' data-multi='" + (properties.type == "radio" ? "off" : "on") + "'>" + options + "</div></div><div class='rureraform-properties-options-table-footer'><a class='rureraform-admin-button rureraform-admin-button-gray rureraform-admin-button-small' href='#' onclick='return rureraform_properties_options_new(null, $(this), \"sortable\");'><i class='fas fa-plus'></i><label>Add option</label></a></div></div></div>";
                     break;
 
                 case 'matrix-columns-options':
@@ -1877,7 +1880,7 @@ function _rureraform_properties_prepare(_object) {
                 ['style', ['style']],
                 ['font', ['bold', 'underline']],
                 //['fontname', ['fontname']],
-                ['color', ['color']],
+                //['color', ['color']],
                 ['para', ['paragraph', 'ul', 'ol']],
                 ['table', ['table']],
                 //['insert', ['link', 'picture', 'video']],
@@ -3153,7 +3156,9 @@ function rureraform_properties_options_new(_object, thisObj = null, options_type
             option = rureraform_properties_options_markings_item_get("", "", false);
         }else if(options_type == 'only_repeater'){
             option = rureraform_properties_repeater_field_item_get("", "", false);
-        } else {
+        }else if(options_type == 'sortable'){
+            option = rureraform_properties_sortable_options_label_item_get("", "", false);
+        }  else {
             option = rureraform_properties_options_item_get("", "", false);
         }
         if( thisObj != null){
@@ -3222,6 +3227,16 @@ function rureraform_properties_options_label_item_get(_label, _selected) {
     if (_selected)
         selected = " rureraform-properties-options-item-default";
     html = "<div class='rureraform-properties-options-item" + selected + "'><div class='rureraform-properties-options-table'><div><input class='rureraform-properties-options-label' type='text' value='" + rureraform_escape_html(_label) + "' placeholder='Label'></div><div><span onclick='return rureraform_properties_options_default(this);' title='Set the option as a default value'><i class='fas fa-check'></i></span><span onclick='return rureraform_properties_options_new(this);' title='Add the option after this one'><i class='fas fa-plus'></i></span><span onclick='return rureraform_properties_options_copy(this);' title='Duplicate the option'><i class='far fa-copy'></i></span><span onclick='return rureraform_properties_options_delete(this);' title='Delete the option'><i class='fas fa-trash-alt'></i></span><span title='Move the option'><i class='fas fa-arrows-alt rureraform-properties-options-item-handler'></i></span></div></div></div>";
+    return html;
+}
+
+function rureraform_properties_sortable_options_label_item_get(_label, _selected) {
+    var html, selected = "";
+    var key = 'options';
+    var j = Math.floor((Math.random() * 99999) + 1);
+    if (_selected)
+        selected = " rureraform-properties-options-item-default";
+    html = "<div class='rureraform-properties-options-item" + selected + "'><div class='rureraform-properties-options-table'><div class='rureraform-image-url'><div class='input-group-prepend'><button type='button' class='input-group-text admin-file-manager' data-input='image-" + key + "-" + j + "' data-preview='holder'><i class='fa fa-upload'></i></button></div><input class='rureraform-properties-options-image' id='image-" + key + "-" + j + "' type='text' value='' placeholder='Upload Image'><span><i class='far fa-image'></i></span></div><div><input class='rureraform-properties-options-label' type='text' value='" + rureraform_escape_html(_label) + "' placeholder='Label'></div><div><input class='rureraform-properties-options-correct_order' type='text' value='" + rureraform_escape_html(_label) + "' placeholder='Correct Order'></div><div><span onclick='return rureraform_properties_options_copy(this);' title='Duplicate the option'><i class='far fa-copy'></i></span><span onclick='return rureraform_properties_options_delete(this);' title='Delete the option'><i class='fas fa-trash-alt'></i></span><span title='Move the option'><i class='fas fa-arrows-alt rureraform-properties-options-item-handler'></i></span></div></div></div>";
     return html;
 }
 

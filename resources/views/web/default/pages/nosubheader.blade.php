@@ -1,7 +1,7 @@
 @extends(getTemplate().'.layouts.app')
 
 @push('styles_top')
-@if($page->id == 11 || $page->id == 50 || $page->id == 15 || $page->id == 72 || $page->id == 94 || $page->id == 96 || $page->id == 115 || $page->id == 148 || $page->id == 147)
+@if($page->id == 131 || $page->id == 11 || $page->id == 50 || $page->id == 15 || $page->id == 72 || $page->id == 94 || $page->id == 96 || $page->id == 115 || $page->id == 148 || $page->id == 147)
         <link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
         <link rel="stylesheet" href="/assets/default/vendors/scroll-animation/animate.css">
     @endif
@@ -28,7 +28,7 @@
 @endsection
 
 @push('scripts_bottom')
-@if($page->id == 11 || $page->id == 50 || $page->id == 15 || $page->id == 72 || $page->id == 87 || $page->id == 39 || $page->id == 94 || $page->id == 96 || $page->id == 115 || $page->id == 148 || $page->id == 147 || $page->id == 149)
+@if($page->id == 131 || $page->id == 11 || $page->id == 50 || $page->id == 15 || $page->id == 72 || $page->id == 87 || $page->id == 39 || $page->id == 94 || $page->id == 96 || $page->id == 115 || $page->id == 148 || $page->id == 147 || $page->id == 149)
                         <script src="/assets/default/vendors/masonry/masonry.pkgd.min.js"></script>
                         <script src="/assets/default/vendors/swiper/swiper-bundle.min.js"></script>
                         <script src="/assets/default/vendors/scroll-animation/wow.js"></script>

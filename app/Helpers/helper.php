@@ -2481,11 +2481,13 @@ function toolbar_tools()
         'sum_quiz'           => array(
             'title' => esc_html__('SUM Q', 'rureraform'),
             'icon'  => 'fa fa-plus',
+            'classes' => 'rurera-hide',
             'type'  => 'other'
         ),
         'sqroot_quiz'        => array(
             'title' => esc_html__('Sqroot', 'rureraform'),
             'icon'  => 'fas fa-square-root-alt',
+            'classes' => 'rurera-hide',
             'type'  => 'other'
         ),
         'image_quiz_draggable'         => array(
@@ -2540,6 +2542,7 @@ function toolbar_tools()
         'radio'              => array(
             'title' => esc_html__('Radio Button', 'rureraform'),
             'icon'  => 'far fa-dot-circle',
+            'classes' => 'rurera-hide',
             'type'  => 'input'
         ),
         'sortable_quiz'      => array(
@@ -2556,6 +2559,7 @@ function toolbar_tools()
         'example_question'     => array(
             'title' => esc_html__('Example Question', 'rureraform'),
             'icon'  => 'fas fa-question',
+            'classes' => 'rurera-hide',
             'type'  => 'other'
         ),
         'questions_group'     => array(
@@ -6500,7 +6504,7 @@ function element_properties_meta($chapters)
                 'value'   => esc_html__('Default Text Content.', 'rureraform') . '',
                 'label'   => esc_html__('Text', 'rureraform'),
                 'tooltip' => esc_html__('This is the content of Text.', 'rureraform'),
-                'type'    => 'textarea'
+                'type'    => 'html'
             ),
             'inner_options1'  => array(
                 'multi-select' => 'off',

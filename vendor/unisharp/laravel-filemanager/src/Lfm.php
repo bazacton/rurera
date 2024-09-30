@@ -143,6 +143,7 @@ class Lfm
         } else {
             $folder = $this->config->get('lfm.shared_folder_name');
         }
+        $folder = '';
 
         // the slash is for url, dont replace it with directory seperator
         return '/' . $folder;

@@ -36,6 +36,10 @@ Route::group([], function () {
         Route::get('/powerup_mode', ['uses' => 'TimestablesController@powerup_mode']);
         Route::post('/powerup_mode/play', ['uses' => 'TimestablesController@powerup_mode_play']);
 		
+		//Trophy Mode
+        Route::get('/trophy_mode', ['uses' => 'TimestablesController@trophy_mode']);
+        Route::post('/trophy_mode/play', ['uses' => 'TimestablesController@trophy_mode_play']);
+		
         Route::post('/submit_timestables', ['uses' => 'TimestablesController@submit_timestables']);
     });
 	

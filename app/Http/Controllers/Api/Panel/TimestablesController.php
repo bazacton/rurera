@@ -30,6 +30,7 @@ class TimestablesController extends Controller
 		$data_array[$section_id] = array(
 			'section_id' => $section_id,
 			'section_title' => '',
+            'section_description' => '',
 			'section_data' => array(),
 		);
 		
@@ -133,6 +134,7 @@ class TimestablesController extends Controller
 		$data_array[$section_id] = array(
 			'section_id' => $section_id,
 			'section_title' => '',
+            'section_description' => '',
 			'section_data' => array(),
 		);
 		
@@ -220,7 +222,6 @@ class TimestablesController extends Controller
 				'field_name' => 'submit',
 				'field_type' => 'button',
 				'element_layout' => 'submit',
-				'order' => 3,
 				'required' => false,
 				'label' => 'Play',
 				'icon' => '',
@@ -409,6 +410,7 @@ class TimestablesController extends Controller
 		$data_array[$section_id] = array(
 			'section_id' => $section_id,
 			'section_title' => '',
+            'section_description' => '',
 			'section_data' => array(),
 		);
 		
@@ -494,7 +496,6 @@ class TimestablesController extends Controller
 				'field_name' => 'submit',
 				'field_type' => 'button',
 				'element_layout' => 'submit',
-				'order' => 3,
 				'required' => false,
 				'label' => 'Play',
 				'icon' => '',
@@ -527,33 +528,302 @@ class TimestablesController extends Controller
 			'api_data' => json_encode($request->all()),
 			'updated_at' => time(),
 		]);
-		$question_type = $request->get('question_type');
-		$no_of_questions = $request->get('no_of_questions');
-		$tables_numbers = $request->get('question_values');
-		$tables_numbers = is_array( $tables_numbers )? $tables_numbers : json_decode($tables_numbers);
 		
-		$attempt_options = array(
-            'question_type' => $question_type,
-            'no_of_questions' => $no_of_questions,
-            'question_values' => $tables_numbers,
+		
+		$practice_level = $request->get('practice_level');
+		$practice_time = $request->get('practice_time');
+		$WebTimestablesController = new \App\Http\Controllers\Web\TimestablesController();
+
+        $times_tables_data = $WebTimestablesController->user_times_tables_data_single_user(array($user->id), 'x');
+        $tables_last_data = isset($times_tables_data['tables_last_data']) ? $times_tables_data['tables_last_data'] : array();
+        $timestables_attempted_result = $WebTimestablesController->get_timestables_attempted_result($tables_last_data);
+        $tables_numbers = isset($timestables_attempted_result['tables_array']) ? $timestables_attempted_result['tables_array'] : array();
+        $incorrect_array = isset($timestables_attempted_result['incorrect_array']) ? $timestables_attempted_result['incorrect_array'] : array();
+        $excess_time_array = isset($timestables_attempted_result['excess_time_array']) ? $timestables_attempted_result['excess_time_array'] : array();
+        $not_attempted_array = isset($timestables_attempted_result['not_attempted_array']) ? $timestables_attempted_result['not_attempted_array'] : array();
+        $improvement_required_array = isset($timestables_attempted_result['improvement_required_array']) ? $timestables_attempted_result['improvement_required_array'] : array();
+
+        $user_timestables_no = isset( $user->timestables_no )? json_decode($user->timestables_no) : array();
+        $tables_numbers = array(
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
         );
-		
-		
-		
-		$tables_types = [];
 
-        if ($question_type == 'multiplication' || $question_type == 'multiplication_division') {
-            $tables_types[] = 'x';
-        }
-        if ($question_type == 'division' || $question_type == 'multiplication_division') {
-            $tables_types[] = '÷';
-        }
+		$tables_numbers = get_powerup_tables($tables_numbers, $practice_level);
+        $tables_numbers = empty($user_timestables_no)? $tables_numbers : $user_timestables_no;
+
+        $question_type = 'multiplication';
+        $practice_time_seconds = ($practice_time * 60);
+        $no_of_questions = ($practice_time_seconds * 2);
+        //$practice_time_seconds = 10;
+
+        $tables_types = [];
+        $tables_types[] = 'x';
+
         $total_questions = $no_of_questions;
-        $marks = 1;
+        $marks = 5;
 
 
-        $questions_list = $already_exists = array();
+        $questions_list = $already_exists = $questions_array_list = array();
 
+        if (!empty($improvement_required_array)) {
+            foreach ($improvement_required_array as $required_data_key => $required_data_array) {
+                if (!empty($required_data_array)) {
+                    foreach ($required_data_array as $required_data_from => $required_data_to) {
+                        $questions_array_list[] = (object)array(
+                            'from'     => $required_data_from,
+                            'to'       => $required_data_to,
+                            'type'     => 'x',
+                            'table_no' => $required_data_from,
+                            'marks'    => $marks,
+                        );
+                    }
+                }
+
+            }
+        }
+
+
+
+        $max_questions = 12;
+        $current_question_max = 2;
+        $questions_no_array = [];
+        while ($current_question_max <= $max_questions) {
+            $questions_no_array[$current_question_max] = $current_question_max;
+            $current_question_max++;
+        }
+
+        //pre($questions_no_array);
+
+        $questions_no_array_fixed = $questions_no_array;
+
+        $questions_count = 1;
+        if ($total_questions > 0) {
+            while ($questions_count <= $total_questions) {
+                if( empty( $tables_numbers ) ){
+                    continue;
+                }
+                $table_no = isset($tables_numbers[array_rand($tables_numbers)]) ? $tables_numbers[array_rand($tables_numbers)] : 0;
+                $type = isset($tables_types[array_rand($tables_types)]) ? $tables_types[array_rand($tables_types)] : 0;
+                if (empty($questions_no_array)) {
+                    $questions_no_array = $questions_no_array_fixed;
+                }
+                $questions_no_array = array_values($questions_no_array);
+                shuffle($questions_no_array);
+                $dynamic_min = array_keys($questions_no_array, min($questions_no_array))[0];
+                $dynamic_max = array_keys($questions_no_array, max($questions_no_array))[0];
+                $dynamic_no = rand($dynamic_min, $dynamic_max);
+                $questions_no_dynamic = isset($questions_no_array[$dynamic_no]) ? $questions_no_array[$dynamic_no] : 0;
+                if (isset($questions_no_array[$dynamic_no])) {
+                    unset($questions_no_array[$dynamic_no]);
+                    $questions_no_array = array_values($questions_no_array);
+                }
+
+                $last_value = ($questions_no_dynamic) * $table_no;
+                $from_value = ($type == '÷') ? $last_value : $table_no;
+                $limit = 12;
+                $min = 2;
+                $min = ($type == '÷') ? 1 : $min;
+                $limit = ($type == '÷') ? ($table_no * $limit) : $limit;
+                //$to_value = rand($min, $limit);
+                $to_value = ($type == '÷') ? $table_no : $questions_no_dynamic;
+
+
+                $questions_array_list[] = (object)array(
+                    'from'     => $from_value,
+                    'to'       => $to_value,
+                    'type'     => $type,
+                    'table_no' => $table_no,
+                    'marks'    => $marks,
+                );
+                $questions_count++;
+            }
+
+            shuffle($questions_array_list);
+
+
+            $question_show_count = 0;
+
+            while ($question_show_count < $no_of_questions) {
+                if ($question_show_count < 20) {
+                    $questions_list[] = (object)isset($questions_array_list[$question_show_count]) ? $questions_array_list[$question_show_count] : array();
+                } else {
+                    $question_counter = rand(2, 19);
+                    $questions_list[] = (object)isset($questions_array_list[$question_counter]) ? $questions_array_list[$question_counter] : array();
+                }
+                $question_show_count++;
+
+            }
+
+            $QuizzesResult = QuizzesResult::create([
+                'user_id'          => $user->id,
+                'results'          => json_encode($questions_list),
+                'user_grade'       => 0,
+                'status'           => 'waiting',
+                'created_at'       => time(),
+                'quiz_result_type' => 'timestables',
+                'no_of_attempts'   => 100,
+                'other_data'       => json_encode($questions_list),
+                'user_ip'          => getUserIP(),
+                'attempt_mode'     => 'powerup_mode',
+            ]);
+
+            $QuizzAttempts = QuizzAttempts::create([
+                'quiz_result_id' => $QuizzesResult->id,
+                'user_id'        => $user->id,
+                'start_grade'    => $QuizzesResult->user_grade,
+                'end_grade'      => 0,
+                'created_at'     => time(),
+                'attempt_type'   => $QuizzesResult->quiz_result_type,
+                'user_ip'        => getUserIP(),
+            ]);
+            $attempt_log_id = createAttemptLog($QuizzAttempts->id, 'Session Started', 'started');
+        }
+		
+		$section_id = 0;
+		$data_array[$section_id] = array(
+			'section_id' => $section_id,
+			'result_id' => $QuizzesResult->id,
+			'attempt_id' => $QuizzAttempts->id,
+			'time_type' => 'countdown',
+			'time_start' => $practice_time_seconds,
+			'time_limit' => 0,
+			'questions' => $questions_list,
+			'target_api_type' => "POST",
+			'target_api' => "/panel/timestables/submit_timestables",
+		);
+		
+		$response = $data_array;
+		
+        
+        return apiResponse2(1, 'retrieved', trans('api.public.retrieved'), $response);
+    }
+	
+	
+	/*
+	* Trophy Mode
+	*/
+	
+	public function trophy_mode(Request $request){
+		
+		$form_fields = [];
+		$user = apiAuth();
+		
+		$locked_tables = json_decode($user->locked_tables);
+        $locked_tables = is_array($locked_tables)? $locked_tables : (array) $locked_tables;
+		
+		$data_array = array();
+		$section_id = 0;
+		$data_array[$section_id] = array(
+			'section_id' => $section_id,
+			'section_title' => 'Select Practice Time',
+			'section_description' => 'It will be one minute, try to answer the maximum questions.',
+			'section_data' => array(),
+		);
+		$results_data = QuizzesResult::where('user_id', $user->id)->where('quiz_result_type', 'timestables')->where('attempt_mode', 'trophy_mode')->orderBy('created_at', 'desc')->where('status', '!=', 'waiting')->limit(10)->get();
+		
+		$tables_array = array(2,3,4,5,6,7,8,9,10,11,12,13,14,15,16);
+		
+		$table_data = array();
+		
+		foreach( $tables_array as $table_no){
+			$is_locked = in_array( $table_no, $locked_tables)? 'yes' : 'no';
+			$table_data[]	= array(
+				"key" => $table_no,
+				"value" => $table_no,
+				"is_disabled" => $is_locked,
+			);
+		}
+		
+		$data_array[$section_id]['section_data'] = array(
+			array(
+				'field_name' => 'submit',
+				'field_type' => 'button',
+				'element_layout' => 'submit',
+				'required' => false,
+				'label' => 'Play',
+				'icon' => '',
+				'data' => '',
+				'target_api_type' => "POST",
+				'target_api' => "/panel/timestables/trophy_mode/play",
+			),
+		);
+		
+		$response = array(
+			'badges' => array(
+				'Explorer',
+				'Junior',
+				'Smarty',
+				'Brainy',
+				'Genius',
+				'Creative',
+				'Champion',
+				'Mastery',
+				'Majesty',
+				'Expert',
+				'Maestro',
+			),
+			'user_badge' => isset( $user->trophy_badge )? $user->trophy_badge : '',
+			'user_atttempts' => $results_data->count(),
+			'form' => $data_array,
+		);
+		
+		       
+        return apiResponse2(1, 'retrieved', trans('api.public.retrieved'), $response);
+    }
+	
+	/*
+	* Trophy Mode Play
+	*/
+	
+	public function trophy_mode_play(Request $request){
+		
+		$form_fields = [];
+		$user = apiAuth();
+		
+		ApiCalls::create([
+			'api_name' => 'trophy_mode_play',
+			'api_data' => json_encode($request->all()),
+			'updated_at' => time(),
+		]);
+		
+		
+		$tables_numbers = array(
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+        );
+
+        $question_type = 'multiplication';
+        $no_of_questions = 120;
+        $practice_time = 1;
+        $practice_time_seconds = ($practice_time * 60);
+
+        $tables_types = [];
+        $tables_types[] = 'x';
+
+        $total_questions = $no_of_questions;
+        $marks = 5;
+
+
+        $questions_list = $already_exists = $questions_array_list = array();
 
         $max_questions = 12;
         $current_question_max = 2;
@@ -600,13 +870,12 @@ class TimestablesController extends Controller
                     'type'     => $type,
                     'table_no' => $table_no,
                     'marks'    => $marks,
-					'game_time' => gameTime('timestables'),
-                    'correct_answer'    => getCorrectTimestables($from_value, $to_value, $type),
                 );
                 $questions_count++;
             }
 
             shuffle($questions_array_list);
+
 
             $question_show_count = 0;
 
@@ -621,6 +890,7 @@ class TimestablesController extends Controller
 
             }
 
+
             $QuizzesResult = QuizzesResult::create([
                 'user_id'          => $user->id,
                 'results'          => json_encode($questions_list),
@@ -631,8 +901,7 @@ class TimestablesController extends Controller
                 'no_of_attempts'   => 100,
                 'other_data'       => json_encode($questions_list),
                 'user_ip'          => getUserIP(),
-                'attempt_mode'     => 'freedom_mode',
-                'attempt_options' => json_encode($attempt_options),
+                'attempt_mode'     => 'trophy_mode',
             ]);
 
             $QuizzAttempts = QuizzAttempts::create([
@@ -652,8 +921,8 @@ class TimestablesController extends Controller
 			'section_id' => $section_id,
 			'result_id' => $QuizzesResult->id,
 			'attempt_id' => $QuizzAttempts->id,
-			'time_type' => 'timer',
-			'time_start' => 0,
+			'time_type' => 'countdown',
+			'time_start' => $practice_time_seconds,
 			'time_limit' => 0,
 			'questions' => $questions_list,
 			'target_api_type' => "POST",
@@ -665,7 +934,6 @@ class TimestablesController extends Controller
         
         return apiResponse2(1, 'retrieved', trans('api.public.retrieved'), $response);
     }
-	
 	
 	/*
 	* Timestables Submit

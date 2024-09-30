@@ -7,6 +7,20 @@
  * @author   Taylor Otwell <taylor@laravel.com>
  */
 
+// Define the request URI and the domain root
+$requestUri = $_SERVER['REQUEST_URI'];
+$domain = 'https://rurera.com';
+
+// Check if the request URI contains '/public/' and does not end with a file extension
+if (preg_match('/\/public\/(?!.*\.(js|css|jpg|jpeg|png|gif|svg|woff|woff2|ttf|ico)$)/', $requestUri)) {
+    // Remove '/public/' from the request URI
+    $newUri = str_replace('/public/', '/', $requestUri);
+    
+    // Redirect with 301 status
+    header("Location: $domain$newUri", true, 301);
+    exit();
+}
+
 define('LARAVEL_START', microtime(true));
 
 /*

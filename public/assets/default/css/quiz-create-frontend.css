@@ -2220,32 +2220,6 @@
 .rureraform-header-save>span:hover {
 	background: #169F85;
 }
-/*
-.rureraform-canvas-items {
-	white-space: nowrap;
-	height: auto;
-	margin: 0;
-	padding: 0;
-	float: right;
-}
-.rureraform-canvas-items>li {
-	display: inline-block;
-}
-.rureraform-canvas-light {
-	background: #f8f8f8 url(images/builder-bg-light-2.png) 0 0 repeat;
-}
-.rureraform-canvas-dark {
-	background: #404040 url(images/builder-bg-dark-2.png) 0 0 repeat;
-}
-.rureraform-canvas-items>li>span {
-	display: block;
-	width: 32px;
-	height: 32px;
-	border: 1px solid #d4d4d4;
-	border-radius: 3px;
-	overflow: hidden;
-}
-*/
 .rureraform-toolbar {
 	background: #fff;
 	border-bottom: 1px solid #d4d4d4;
@@ -2254,7 +2228,6 @@
 }
 .rureraform-toolbar-list {
 	white-space: nowrap;
-	/*overflow: hidden;*/
 	height: auto;
 	margin: 0;
 	padding: 0;
@@ -2353,7 +2326,6 @@
 }
 .rureraform-toolbar-tooltip {
 	font-size: 14px !important;
-/*	text-transform: uppercase;*/
 	z-index: 99999 !important;
 }
 .rureraform-pages-bar {
@@ -2439,12 +2411,10 @@
 	border-bottom: 3px solid #169F85;
 }
 .rureraform-pages-bar-items>li.rureraform-pages-bar-item-helper span,
-/*.rureraform-pages-bar-items>li.rureraform-pages-bar-item-active span,*/
 .rureraform-pages-bar-items>li:hover span {
 	width: 56px;
 }
 .rureraform-pages-bar-items>li.rureraform-pages-bar-item-helper.rureraform-pages-bar-item-confirmation span,
-/*.rureraform-pages-bar-items>li.rureraform-pages-bar-item-active.rureraform-pages-bar-item-confirmation span,*/
 .rureraform-pages-bar-items>li.rureraform-pages-bar-item-confirmation:hover span {
 	width: 32px;
 }
@@ -2968,9 +2938,6 @@ div.rureraform-element-checkbox-container div.rureraform-element-cover {
 	line-height: 34px;
 	vertical-align: top;
 }
-.rureraform-using-details {
-	/*padding: 10px 20px;*/
-}
 .rureraform-using-details table {
 	width: 100%;
 	border-collapse: collapse;
@@ -3029,9 +2996,6 @@ div.rureraform-element-checkbox-container div.rureraform-element-cover {
 .rureraform-using-details table td ol li span {
 	font-style: normal;
 }
-.rureraform-stylemanager-details {
-	/*padding: 10px 20px;*/
-}
 .rureraform-stylemanager-buttons {
 	margin: 30px 10px 10px 10px;
 	text-align: right;
@@ -3069,9 +3033,6 @@ div.rureraform-element-checkbox-container div.rureraform-element-cover {
 .rureraform-settings table em {
 	font-size: 13px;
 	color: #A0A0A0;
-}
-.rureraform-settings table tr {
-
 }
 .rureraform-settings table td,
 .rureraform-settings table th {
@@ -3888,8 +3849,6 @@ select.rureraform-block-form-value {
 	text-align: center;
 	margin-top: 60px;
 }
-.rureraform-field-analytics-columns {
-}
 .rureraform-field-analytics-columns>div {
 	float: left;
 	box-sizing: border-box;
@@ -4209,7 +4168,6 @@ STYLE
   margin-right: .1em;
   padding-top: 1px;
   display: inline-block;
-  /* font-size: 15px; */
 }
 .lms-root-block .lms-sqrt-stem:after {
     content: "c";

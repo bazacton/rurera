@@ -27,11 +27,14 @@ use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use Elasticsearch;
+use UniSharp\LaravelFilemanager\Middlewares\CreateDefaultFolder;
+use Illuminate\Support\Facades\Cache;
 
 class QuestionsBankController extends Controller
 {
 
     public $replace_able_text = array();
+    public static $mediaFolder = '';
     function getDirContents($dir, &$results = array()) {
         $files = scandir($dir);
 
@@ -170,25 +173,49 @@ class QuestionsBankController extends Controller
         $user = auth()->user();
         $this->authorize('admin_questions_bank_create');
 
-        $data = [
-            'pageTitle' => trans('quiz.new_question') ,
-        ];
-        $glossary = Glossary::where('status' , 'active')->orWhere('created_by' , $user->id)
-            ->get();
 
-        $categories = Category::where('parent_id' , null)
-            ->with('subCategories')
-            ->get();
 
-        $chapters_list = get_chapters_list();
 
-        $data['chapters'] = $chapters_list;
-        $data['glossary'] = $glossary;
-        $data['user'] = $user;
-        $data['categories'] = $categories;
-		
 
-        return view('admin.questions_bank.create_question' , $data);
+
+
+        $quizQuestion = QuizzesQuestion::create([
+            'quiz_id'                   => 0,
+            'creator_id'                => $user->id,
+            'grade'                     => '',
+            'question_year'             => 0,
+            'question_score'            => 0,
+            'question_average_time'     => 0,
+            'question_difficulty_level' => 'Emerging',
+            'question_template_type'    => '',
+            'chapter_id'                => 0,
+            'question_title'            => '',
+            'question_layout'           => '',
+            'question_solve'            => '',
+            'glossary_ids'              => '',
+            'elements_data'             => '',
+            'layout_elements'           => '',
+            'category_id'               => 0,
+            'course_id'                 => 0,
+            'sub_chapter_id'            => 0,
+            'type'                      => 'descriptive',
+            'created_at'                => time(),
+            'question_status'           => 'Draft',
+            'comments_for_reviewer'     => '',
+            'search_tags'               => '',
+            'review_required'           => 0,
+            'question_example'          => '',
+            'question_type'             => '',
+        ]);
+
+        QuizzesQuestionTranslation::updateOrCreate([
+            'quizzes_question_id' => $quizQuestion->id,
+            'locale'              => 'en',
+        ], [
+            'title'   => 'DRAFT',
+            'correct' => '',
+        ]);
+        return redirect()->route('adminEditQuestion' , ['id' => $quizQuestion->id]);
     }
 
     /*
@@ -2477,6 +2504,8 @@ class QuestionsBankController extends Controller
             'reference_type'            => isset($_POST['reference_type']) && !empty($_POST['reference_type']) ? $_POST['reference_type'] : 'Course',
 			'question_levels' 			=> json_encode($question_levels),
             'developer_review_required'           => isset($questionData['developer_review_required']) ? $questionData['developer_review_required'] : 0 ,
+            'hide_question'           => isset($questionData['hide_question']) ? $questionData['hide_question'] : 0 ,
+
         ]);
 		
 		if( $sub_chapter_quiz_id > 0){
@@ -2636,8 +2665,7 @@ class QuestionsBankController extends Controller
 		$category_id = isset( $questionData['category_id'] )? $questionData['category_id'] : array();
 		$question_levels = get_question_levels($category_id, $difficulty_level);
 		$category_id = json_encode($category_id);
-		
-		
+
 		
         $quiz = Quiz::find($quiz_id);
         $quizQuestion = $quistionObj->update([
@@ -2670,6 +2698,7 @@ class QuestionsBankController extends Controller
             'reference_type'            => isset($questionData['reference_type']) && !empty($questionData['reference_type']) ? $questionData['reference_type'] : 'Course',
             'question_levels'            => $question_levels,
             'developer_review_required'           => isset($questionData['developer_review_required']) ? $questionData['developer_review_required'] : 0 ,
+            'hide_question'           => isset($questionData['hide_question']) ? $questionData['hide_question'] : 0 ,
         ]);
 
         if (!empty($quizQuestion)) {
@@ -2816,6 +2845,8 @@ class QuestionsBankController extends Controller
     {
         $user = auth()->user();
         $this->authorize('admin_questions_bank_edit');
+        Cache::put('mediaFolder', $id);
+
 
         $question = QuizzesQuestion::findOrFail($id);
 

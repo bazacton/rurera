@@ -28,7 +28,9 @@ $has_image_class = ($hasImage == 1)? 'lms-radio-img' : '';
 				</div>
             </div>
         </div>
-        <label class="rureraform-description"></label>
+        @if( isset( $elementObj->description ) && $elementObj->description != '')
+            <label class="rureraform-description">{{$elementObj->description}}</label>
+        @endif
     </div>
     <div class="rureraform-element-cover"></div>
 </div>

@@ -173,7 +173,7 @@
 
                     <div class="grid-item col-lg-3 col-md-4 col-sm-4">
                         <div class="img-holder">
-                            <figure>
+                            <figure> 
                                 <a href="{{url('/')}}/register">
                                     <img src="/store/1/default_images/sats-header/ks1-16.png" width="140" height="45" alt="#" class="rounded">
                                 </a>

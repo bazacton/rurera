@@ -741,7 +741,9 @@ $rand_id = rand(999,99999);
 																		@enderror
 																	</div>
 																</div>
-																@php $categories_ids = isset( $questionObj->category_id )? json_decode($questionObj->category_id) : array(); @endphp
+																@php $categories_ids = isset( $questionObj->category_id )? json_decode($questionObj->category_id) : array();
+                                                                $categories_ids = is_array( $categories_ids )? $categories_ids : array($categories_ids);
+                                                                @endphp
 															 
                                                             <div class="col-lg-6 col-md-6 col-12">
                                                                 <div class="form-group">
@@ -933,7 +935,7 @@ $rand_id = rand(999,99999);
 													<div class="col-lg-6 col-md-6 col-12">
 														<div class="form-group custom-switches-stacked">
 															<label class="custom-switch pl-0">
-																<input type="hidden" name="review_required" value="disable">
+																<input type="hidden" name="review_required_field" value="disable">
 																<input type="checkbox"
 																		   name="review_required"
 																		   id="review_required" value="1" {{ (isset( $questionObj->review_required ) && $questionObj->review_required
@@ -951,7 +953,7 @@ $rand_id = rand(999,99999);
 													<div class="col-lg-6 col-md-6 col-12">
 														<div class="form-group custom-switches-stacked">
 															<label class="custom-switch pl-0">
-																<input type="hidden" name="developer_review_required" value="disable">
+																<input type="hidden" name="developer_review_required_field" value="disable">
 																<input type="checkbox"
 																		   name="developer_review_required"
 																		   id="developer_review_required" value="1" {{ (isset( $questionObj->developer_review_required ) && $questionObj->developer_review_required
@@ -964,6 +966,24 @@ $rand_id = rand(999,99999);
 															</label>
 														</div>
 													</div>
+													
+													
+                                                    <div class="col-lg-6 col-md-6 col-12">
+                                                        <div class="form-group custom-switches-stacked">
+                                                            <label class="custom-switch pl-0">
+                                                                <input type="hidden" name="hide_question_field" value="disable">
+                                                                <input type="checkbox"
+                                                                           name="hide_question"
+                                                                           id="hide_question" value="1" {{ (isset( $questionObj->hide_question ) && $questionObj->hide_question
+                                                                    == '1') ?
+                                                                    'checked="checked"' : ''
+                                                                    }} class="custom-switch-input"/>
+                                                                    <span class="custom-switch-indicator"></span>
+                                                                    <label class="custom-switch-description mb-0 cursor-pointer"
+                                                                           for="hide_question">Hide Question</label>
+                                                            </label>
+                                                        </div>
+                                                    </div>
 
 
 

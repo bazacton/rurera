@@ -1378,7 +1378,6 @@ Assignments Table Style Start
     padding: 0 20px;
     border-bottom: 1px solid rgba(0, 0, 0, .1)
 }
-
 .panel-sidebar .sidebar-menu .sidenav-item .sidenav-item-collapse li:before {
     content: "";
     position: absolute;
@@ -1392,17 +1391,14 @@ Assignments Table Style Start
     border-radius: 50px;
     transform: translate(-50%, -50%)
 }
-
 .rtl .panel-sidebar .sidebar-menu .sidenav-item .sidenav-item-collapse li:before {
     left: auto;
     right: -33px
 }
-
 .panel-sidebar .sidebar-menu .sidenav-item .sidenav-item-collapse li.active a {
     font-weight: 700;
     color: var(--primary)
 }
-
 .panel-sidebar .sidebar-menu .sidenav-item .sidenav-item-collapse li a {
     font-size: 14px;
     font-weight: 400;
@@ -1411,25 +1407,20 @@ Assignments Table Style Start
     padding: 5px 0 12px;
     display: inline-block
 }
-
 .panel-sidebar .sidebar-menu .sidenav-item .sidenav-item-collapse li:first-child a {
     padding-top: 0
 }
-
 .panel-sidebar .sidebar-menu .sidenav-item .sidenav-item-collapse li:last-child a {
     padding-bottom: 0
 }
-
 .panel-sidebar .sidebar-create-class {
     position: relative;
     padding-top: 35px
 }
-
 .panel-sidebar .sidebar-create-class .sidebar-create-class-btn {
     position: relative;
     height: 110px
 }
-
 .panel-sidebar .sidebar-create-class .sidebar-create-class-btn img {
     position: absolute;
     top: 0;
@@ -1438,38 +1429,32 @@ Assignments Table Style Start
     z-index: 5;
     height: 140px
 }
-
 .xs-panel-nav {
     top: 50px;
     width: 100%;
     border-bottom: 1px solid #f1f1f1;
     z-index: 481
 }
-
 .xs-panel-nav .user-avatar {
     width: 55px;
     height: 55px;
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, .16);
     border-radius: 50px
 }
-
 .xs-panel-nav .sidebar-toggler {
     font-size: .8rem;
     color: rgba(52, 52, 52, .5);
     border: 1px solid rgba(52, 52, 52, .1) !important
 }
-
 .webinar-icon {
     color: #171347
 }
-
 .region-map {
     height: 400px;
     border-radius: 15px;
     z-index: 10;
     position: relative
 }
-
 .region-map .marker {
     position: absolute;
     margin: auto;
@@ -1479,11 +1464,9 @@ Assignments Table Style Start
     z-index: 500;
     transition: .2s cubic-bezier(.47, 0, .75, .72)
 }
-
 .region-map .marker.dragging {
     transform: scale(.8) translateY(12px)
 }
-
 .available-meetings {
     margin-right: 20px;
     padding: 15px 30px;
@@ -1492,11 +1475,9 @@ Assignments Table Style Start
     color: var(--primary);
     font-size: .875rem
 }
-
 .available-meetings:last-child {
     margin-right: 0
 }
-
 .reward-gift-img {
     width: 180px
 }
@@ -1529,31 +1510,26 @@ Assignments Table Style Start
     border: 5px solid var(--primary);
     border-radius: 50%
 }
-
 .leaderboard-others-avatar {
     width: 39px;
     height: 39px;
     border-radius: 50%
 }
-
 .exchange-points-modal-img {
     min-width: 114px;
     width: 114px;
     max-width: 114px;
     height: 114px
 }
-
 .product-images-input-group input {
     border-radius: 0 !important
 }
-
 .product-images-input-group .add-btn,
 .product-images-input-group .remove-btn {
     height: 40px;
     max-height: 40px;
     border-radius: 0 5px 5px 0
 }
-
 .panel-sidebar-store-sales-circle-badge {
     width: 20px;
     height: 20px;
@@ -1564,47 +1540,31 @@ Assignments Table Style Start
     color: #fff;
     background-color: #f63c3c
 }
-
 .panel-remove-bookmark-btn {
     width: 32px;
     height: 32px;
     border: 0;
     background-color: rgba(246, 60, 60, .3)
 }
-
 #panel_app .nav-icons-or-start-live .nav-notify-cart-dropdown {
     display: flex !important
 }
-
 #panel_app .nav-icons-or-start-live .nav-start-a-live-btn {
     display: none !important
 }
-
 .table th {
     font-weight: 500
 }
-
 tbody tr,
 tbody tr:hover {
     transition: .3s
 }
-
 tbody tr:hover {
     background-color: var(--panel-bg) !important;
 }
-
 .notification-card .badge-circle-danger~div {
     width: calc(100% - 21px);
 }
-
-/* body .panel-sidebar .sidebar-menu::-webkit-scrollbar {
-    display: none;
-} 
-
-body .panel-sidebar .sidebar-menu {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-} */
 /* Question Inactivity Modal Style Start */
 .modal.question_inactivity_modal {padding-left: 0 !important;}
 .question_inactivity_modal .modal-dialog,
@@ -1762,19 +1722,7 @@ body .range-slider_thumb {background-color: #fff;}
     }
 }
 /*Lms Card Style End*/
-/* Lms Font End Display Style */
-.lms-quiz-section .quiz-topbar {background-color: inherit; border-bottom: 1px solid #999;}
-.lms-quiz-section .quiz-topbar .quiz-pagination li a,
-.lms-quiz-section .quiz-topbar .timer-number,
-.timer-number, .lms-quiz-section .quiz-topbar p,
-.learning-page .quiz-topbar p{color: #333;}
-.question-layout-block form.question-fields .questions-nav-controls {border-top: 2px dashed #ddd; padding: 15px}
-.type-sats .question-layout-block form.question-fields {background-color: inherit; border: 0; padding: 0; border-radius: 0; margin-bottom: 0;}
-.question-layout-block form.question-fields .questions-nav-controls .review-btn {left: 0;}
-.flipbook-quiz .difficulty-level {padding-left: 80px;}
-body.quiz-open .flipbook-quiz {transform: translateX(-10%) translateZ(0);}
-body .lms-quiz-section .flipbook-quiz {width: 800px;}
-/* Lms Font End Display End */
+
 .filter-mobile-btn {display: none;}
 /* Vertical Keyboard Style Start */
 .rurera-virtual-keyboard {margin: 60px 0 30px;}
@@ -1890,16 +1838,11 @@ body .lms-quiz-section .flipbook-quiz {width: 800px;}
 .non-use strong {color: #787b84;}
 .non-use span {color: #787b84;}
 /*Alphabet List Style End*/
-
-body .learning-page .learning-content .learning-content-box {position: relative; z-index: 1;}
-body .learning-page.type-sats .learning-content .learning-content-box {border-color: transparent;}
-body .learning-page .learning-title {border-color: #ccc;}
 .lms-data-table h3 {margin: 0 0 15px; font-size: 20px;}
 .field_extra_small{width: 22% !important;}
 .field_small{width: 40% !important;}
 .field_medium {width: 75% !important;}
 .field_large {width: 100% !important;}
-/* .question-area-block {text-align: center; color: #fff; font-size: 24px;} */
 
 /* Learning New Style Start */
 .learning-start {background: url(/assets/default/img/learning-bg.png) no-repeat #f6fcff bottom; border: 1px solid var(--primary); background-size: contain; border-top-width: 9px; border-radius: 10px; padding: 50px 60px 0; text-align: center; overflow: hidden;}
@@ -4054,7 +3997,6 @@ Product Tabs Slider Style Start
 /**********************************
 Lms Setup Progress Style Start
 **********************************/
-
 .lms-setup-progress ul {margin: 0; padding: 0; }
 .lms-setup-progress ul li {list-style: none; line-height: normal;}
 .lms-setup-progress .step-number {justify-content: center; flex: 0 0 auto; box-sizing: border-box; width: 30px; height: 30px; border-radius: 100%; font-size: 15px;}
@@ -4237,7 +4179,7 @@ Lms Product Card Style Start
 .product-card .product-card-body .product-price-box .real {font-weight: 500; line-height: 1; color: #343434; pointer-events: none; display: flex; align-items: center;}
 .product-card .product-card-body .product-price-box .real svg {width: 16px; height: 16px; margin-right: 5px; color: var(--primary);}
 .product-card .product-card-body .product-price-box .off {font-size: 14px; font-weight: 400; line-height: 1.29; color: #818894; text-decoration: line-through; }
-.product-card .product-card-body .product-title {font-weight: bold !important; text-overflow: ellipsis; min-height: 87px; /* height: 48px; overflow: hidden; */ }
+.product-card .product-card-body .product-title {font-weight: bold !important; text-overflow: ellipsis; min-height: 87px;}
 .product-card .product-icon {color: var(--secondary); }
 .product-show-image-card {height: 460px; border-radius: 15px; }
 .product-card .cart-button {display: flex; width: 100%; align-items: center; justify-content: center; border: 3px solid var(--primary); padding: .5rem 2rem; color: var(--primary); font-size: 16px; line-height: 1.5; background-color: #fff; position: relative;}
@@ -4388,7 +4330,6 @@ Word-List Page Style Start
 .spells-data-list .table tbody td:first-child {width: 20px;}
 .spells-data-list .table tbody td{text-align: left;}
 .spells-data-list .table thead tr th {padding-left: 15px; text-align: left;}
-/* .elevenplus-block .table thead th:nth-child(2) {padding-left: 0;} */
 .spell-question-area .left-content {position: relative; overflow: hidden;}
 .spell-levels .progress-star {height: 20px; width: 20px; border-radius: 100%; text-align: center; display: inline-flex; align-items: center; justify-content: center; position: absolute; padding: 0; margin: 4px 0 0 8px;}
 .progress-star img {max-width: 100%; width: 10px; height: 10px; object-fit: contain;}

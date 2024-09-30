@@ -94,7 +94,7 @@ Lms Signs Style
 .alphabet-list-style .field-holder:before,
 .alphabet-list-style .form-field:before {content: counter(listStyle, lower-alpha); position: absolute; top: 50%; left: 10px; font-weight: 700; text-transform: uppercase; border: 1px solid #ddd; width: 24px; height: 24px; text-align: center; line-height: 24px; border-radius: 2px; color: #999; margin-top: -12px; z-index: 2; }
 .alphabet-list-style .form-field input[type="checkbox"] ~ label {padding-left: 45px;}
-
+/* numeric-list-style */
 .numeric-list-style {counter-reset: listStyle;}
 .numeric-list-style > .field-holder,
 .numeric-list-style > .form-field {counter-increment: listStyle; position: relative;}
@@ -136,6 +136,11 @@ Rurera Col Style
 /************************ 
 Lms Form Fields Style 
 ************************/
+.rurera-question-block .rureraform-form-input-medium .rureraform-element .rureraform-input {
+  height: auto;
+  line-height: normal;
+}
+.rurera-question-block .rureraform-col {padding-left: 0 !important; padding-right: 0 !important;}
 .rurera-hide {display: none;}
 .question-step {position: relative; }
 .question-step:has(.prev-next-controls){padding-bottom: 80px;}
@@ -148,11 +153,11 @@ Lms Form Fields Style
 .form-box { width: calc(100% - 120px); position: relative;}
 .rureraform-form-editor .form-box {width: 100%;}
 .form-field input[type="checkbox"] {position: absolute; left: 0; top: 0; opacity: 0;}
-.form-field label {background-color: #fff; border: 2px solid #ddd; border-bottom-width: 4px; border-radius: 8px; position: relative; cursor: pointer; padding: 15px; width: 100%; margin-bottom: 0; -webkit-transition: all 0.4s ease-in-out; transition: all 0.4s ease-in-out;}
+.form-field label {background-color: #fff; border: 2px solid #ddd; border-bottom-width: 4px; border-radius: 8px; position: relative; cursor: pointer; padding: 15px; width: 100%; margin-bottom: 0; -webkit-transition: all 0.4s ease-in-out; transition: all 0.4s ease-in-out; line-height: normal;}
 .lms-checkbox-img .form-field label {height: 100%;}
 .form-field input[type="checkbox"] ~ label {min-height: 52px; text-align: left;}
 .image-right .form-field input[type="checkbox"] ~ label {padding-right: 60px;}
-
+.form-field label
 .field-holder.correct, 
 .form-field.correct, 
 .form-field.correct label, 
@@ -533,7 +538,6 @@ Lms Quiz Wf Style Start
 .quiz-wf-radio-img.lms-radio-img .field-holder label span {position: absolute; margin: 5px 0 0 0; font-weight: 600; font-size: 16px; color: #000; top: 50%; transform: translateY(-50%);}
 .quiz-wf-radio-img.lms-radio-img .field-holder label span em {font-style: normal;}
 .quiz-wf-radio-img .lms-radio-select label:after {content: "\2713"; width: 20px; height: 20px; top: 20px; right: 5px; background-color: var(--secondary); border-color: var(--secondary); z-index: 1; border-radius: 100%; text-align: center; font-size: 12px; line-height: 20px; font-weight: 600; left: auto;}
-.mt-100 {margin-top: 100px !important;}
 .br-none .input-field,
 .br-none .field-holder {padding: 0; border: 0; height: auto;}
 .input-field, .field-holder {box-sizing: border-box; width: 100%; padding: 4px 16px; border: solid 1px #d1d1d1; border-radius: 6px; background-color: #fff; outline: 0;}
@@ -601,7 +605,6 @@ table.table td .input-holder input[type=number]::-webkit-outer-spin-button,
 .input-holder .input-label ~ input.input_line {min-height: auto; width: 100%;}
 .input-holder .input-label ~ input[type="number"].input-simple  {padding: 0 0 0 36px; text-align: left;}
 .input-holder .input-label.right ~ input[type="number"].input-simple {padding: 0 10px;}
- .input-holder .input-label.left ~ input[type="number"].input-simple {/*text-align: right;*/} 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {-webkit-appearance: none;}
 input[type=number] {-moz-appearance:textfield;}
@@ -663,14 +666,6 @@ input[type=number] {-moz-appearance:textfield;}
 .drag-box-inner .input-holder {position: absolute; bottom: 30px; left: 30px; background-color: #fff;}
 .drag-box-inner .input-holder.p-right {left: auto; right: 30px; margin: 0;}
 .drag-box-inner .input-holder span {min-height: 50px; line-height: 48px; padding: 0 15px; font-style: italic; font-size: 16px; font-weight: 700;}
-/* input.extra-small,
-.input-holder .input-label ~ input.input_line.extra-small {width: 30%;}
-input.small,
-.input-holder .input-label ~ input.input_line.small {width: 60%;}
-input.medium,
-.input-holder .input-label ~ input.input_line.medium {width: 90%;}
-input.large,
-.input-holder .input-label ~ input.input_line.large {width: 100%;} */
 
 .column-2 .input-holder .medium, 
 .column-3 .input-holder .medium,
@@ -768,6 +763,19 @@ Lms Quiz Wf Style End
 /************************************ 
  Quiz Read Info Style Start
 *************************************/
+/* Lms Font End Display Style */
+.lms-quiz-section .quiz-topbar {background-color: inherit; border-bottom: 1px solid #999;}
+.lms-quiz-section .quiz-topbar .quiz-pagination li a,
+.lms-quiz-section .quiz-topbar .timer-number,
+.timer-number, .lms-quiz-section .quiz-topbar p,
+.learning-page .quiz-topbar p{color: #333;}
+.question-layout-block form.question-fields .questions-nav-controls {border-top: 2px dashed #ddd; padding: 15px}
+.type-sats .question-layout-block form.question-fields {background-color: inherit; border: 0; padding: 0; border-radius: 0; margin-bottom: 0;}
+.question-layout-block form.question-fields .questions-nav-controls .review-btn {left: 0;}
+.flipbook-quiz .difficulty-level {padding-left: 80px;}
+body.quiz-open .flipbook-quiz {transform: translateX(-10%) translateZ(0);}
+body .lms-quiz-section .flipbook-quiz {width: 800px;}
+/* Lms Font End Display End */
 .quiz-show .read-quiz-info {left: 0;}
 .read-quiz-content {transition: all 0.2s ease-in-out;}
 .container-fluid.read-quiz-content {padding: 0; max-width: 100%; overflow-x: hidden;}
@@ -802,7 +810,9 @@ Lms Quiz Wf Style End
 .lms-quiz-section .question-area {position: relative;}
 .prev-next-controls {display: flex; align-items: center; justify-content: center; margin-top: 20px; position: relative; padding-left: 100px;}
 .prev-next-controls a {margin: 0 7px 0 0;}
-.prev-next-controls .review-btn {position: absolute; left: 100px;}
+.prev-next-controls .review-btn {position: absolute; left: 0;}
+.question-layout-block .prev-next-controls {position: fixed; width: 848px; bottom: -50px; background-color: #fff; padding-bottom: 30px; padding-top: 30px; min-height: 100px;}
+.question-layout-block .rurera-question-block {padding-bottom: 80px;}
 .review-btn,
 .prev-btn,
 .next-btn{display: inline-flex; align-items: center; border: 1px solid #eee; min-width: 135px; min-height: 45px; border-radius: 5px; justify-content: center; color: #000; text-transform: uppercase;}
@@ -946,17 +956,7 @@ span.Selectable:hover {text-decoration: underline;}
 .question-result-layout .earn-coins-icon {position: absolute; right: 20px; top: 20px; text-align: center; border-radius: 100%;}
 .question-result-layout .earn-coins-icon img {width: 45px; height: 45px; object-fit: contain;}
 .question-result-layout .droppable-characters {padding-top: 15px;}
-.finish-steps p {
-  background-color: #e8fde8;
-  display: inline-block;
-  vertical-align: middle;
-  line-height: normal;
-  color: #45d745;
-  padding: 5px 8px;
-  border: 1px solid;
-  border-radius: 3px;
-  margin-right: 10px;
-}
+.finish-steps p {background-color: #e8fde8; display: inline-block; vertical-align: middle; line-height: normal; color: #45d745; padding: 5px 8px; border: 1px solid; border-radius: 3px; margin-right: 10px;}
 .finish-steps .prev-next-controls {margin-top: 50px;}
 /* Question-Result-Layout Style End */
 .options img {max-width: 100%;}
@@ -1008,31 +1008,8 @@ span.Selectable:hover {text-decoration: underline;}
 .quiz-questions-bar-holder {width: calc(100% - 95px); display: inline-flex; vertical-align: middle; margin-right: -4px; align-items: center; position: relative; padding-left: 20px; }
 .quiz-questions-bar-holder .value-lable {position: absolute; left: 0; background-color: #333; color: #fff; height: 30px; width: 8px; margin-top: -15px; top: 50%; border-radius: 2px; font-size: 12px; line-height: 30px; text-align: center; font-weight: 500; letter-spacing: -1px; z-index: 1; margin-left: -30px;}
 .quiz-questions-bar-holder .value-lable span {position: absolute; top: -100%; left: 50%; background-color: #ebf7ff; line-height: normal; color: #333; padding: 3px 5px; border-radius: 20px; transform: translateX(-50%); font-size: 13px; letter-spacing: 0;}
-.quiz-questions-bar-holder .value-lable:before {content: attr(data-title);
-  background: #333;
-  position: absolute;
-  top: 100%;
-  padding: 5px 13px;
-  line-height: normal;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 5px;
-  letter-spacing: 0px;
-  opacity: 0;
-  visibility: hidden;
-  margin-top: 10px;}
-.quiz-questions-bar-holder .value-lable:after {position: absolute;
-  left: 50%;
-  top: 100%;
-  height: 8px;
-  width: 8px;
-  background-color: #333;
-  content: "";
-  transform: rotate(45deg);
-  margin-left: -4px;
-  opacity: 0;
-  visibility: hidden;
-  margin-top: 6px;}
+.quiz-questions-bar-holder .value-lable:before {content: attr(data-title); background: #333; position: absolute; top: 100%; padding: 5px 13px; line-height: normal; left: 50%; transform: translateX(-50%); border-radius: 5px; letter-spacing: 0px; opacity: 0; visibility: hidden; margin-top: 10px;}
+.quiz-questions-bar-holder .value-lable:after {position: absolute; left: 50%; top: 100%; height: 8px; width: 8px; background-color: #333; content: ""; transform: rotate(45deg); margin-left: -4px; opacity: 0; visibility: hidden; margin-top: 6px;}
 .quiz-questions-bar-holder .value-lable:hover:before,
 .quiz-questions-bar-holder .value-lable:hover:after {opacity: 1; visibility: visible;}
 .quiz-questions-bar-holder .bar-fill:after {position: absolute; content: attr(data-title); right: -10px; width: 30px; height: 30px; background-color: #51cd00; color: white; border-radius: 100%; top: 50%; margin-top: -15px; text-align: center; font-size: 12px; line-height: 30px; font-weight: 500; box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);}
@@ -1203,3 +1180,336 @@ label.lms-question-label.wrong span {
 .rureraform-properties-content .input-group-prepend ~ input[type="text"] {height: 42px; background-color: #fff; outline: none; padding: 0 50px;}
 .rureraform-properties-content .input-group-prepend ~ input[type="text"]:focus {border-color: #ddd;}
 /*quiz style from app.css end*/
+body .learning-page .learning-content .learning-content-box {position: relative; z-index: 1;}
+body .learning-page.type-sats .learning-content .learning-content-box {border-color: transparent;}
+body .learning-page .learning-title {border-color: #ccc;}
+
+/*********************************
+Quiz Front end file all css Start
+*********************************/
+/* Default Style*/
+.learning-page .learning-page-content {background-color: #fff; padding-left: 0 !important; padding-top: 0 !important; transition: all .3s ease;}
+.learning-page-tabs .tab-content .tab-pane {background-color: #fff; border: 1px solid #e1e2e4; border-radius: 10px;}
+.learning-page {overflow: hidden; padding-top: 100px;}
+.learning-page.type-practice.type-sats {background-color: #fff; padding-top: 10px;}
+.learning-page .learning-page {padding-top: 0;}
+.menu-closed .panel-sidebar ~ .learning-page-content {margin-left: 15px;}
+.panel-sidebar ~ .learning-page-content {margin-left: 254px; box-sizing: border-box;}
+.right-menu-closed .learning-page .learning-page-content {margin-right: 0;}
+.read-quiz-content .left-content {width: 100%; overflow: hidden; padding-right: 0;}
+.spell-question-area .question-layout-block form.question-fields {overflow: hidden;}
+.rureraform-inline.rureraform-container {position: relative; background-color: #fff; border-radius: 0 5px 5px 5px; height: calc(100vh - 100px); overflow: hidden; overflow-y: auto;}
+.rureraform-element .field-group {display: inline-flex; align-items: center;}
+.field-group p.text-field {margin: 0 5px 0 0; display: flex; align-items: center; max-width: 30%; width: 30%; justify-content: right; flex-wrap: wrap;}
+.field-group p.text-field span {font-size: 16px; color: #000;}
+.input-field.input-lg input[type="text"] {max-width: 80px;}
+.field-group input[type="text"] {height: 28px;font-size: 16px;color: #990000;text-align: left;padding: 1px;border: 1px solid #ccc;border-radius: 2px;}
+.field-group .marks {margin-left: 60px; font-size: 12px; color: #006600; letter-spacing: 1px;}
+.field-group .divide-numbers span { display: inline-block; vertical-align: middle; text-align: center;}
+.field-group .divider {height: 2px; background-color: #000; display: block; line-height: normal; margin: 2px 0;}
+.lms-quiz-section span .divide-numbers:has(.input_box) .input_box {margin: 0; width: 100% !important;}
+.lms-quiz-section span .divide-numbers:has(.input_box) .divider {margin-bottom: 10px; margin-top: 10px;}
+.field-group .input-group .divider {margin: 0;}
+.field-group .plus,
+.field-group .equal {font-weight: 700;}
+.input-field.input-md {display: flex; align-items: center; justify-content: flex-end;}
+.input-field.input-md input[type="text"] {width: 36px; height: 28px; border: 1px solid #ccc;}
+.input-field .input-group {flex-direction: column;}
+.field-group .actions-control {font-size: 16px; text-transform: capitalize; font-weight: 600; margin: 0; display: flex; align-items: center;}
+.field-group .action-btn {text-decoration: none; outline: none;}
+.field-group .actions-control span {margin-left: 10px; display: block; line-height: normal;}
+.rureraform-element-html h5 {font-family: Verdana;}
+.mr-5 {margin-right: 5px;}
+.mr-10{margin-right: 10px;}
+.mr-15{margin-right: 15px;}
+.mr-20{margin-right: 20px;}
+.ml-5 {margin-left: 5px;}
+.ml-10{margin-left: 10px;}
+.ml-15{margin-left: 15px;}
+.ml-20{margin-left: 20px;}
+/* Leform Pages Bar Style Start */
+.rureraform-form-editor{position:relative;margin-left:100px;}
+.rureraform-pages-bar{background-color: transparent; position: absolute; left: 320px; top: 62px; border: 0; width: 70px;}
+.rureraform-admin .rureraform-pages-bar {left: -69px; top: 144px;}
+.rureraform-pages-bar-items{width: 100%;}
+.rureraform-pages-bar-items>li{border-bottom-left-radius: 25px;border-top-left-radius: 25px;height: 60px;line-height:62px;border-top:0;min-width:100%;margin:0;padding: 0;text-align: center;}
+.rureraform-pages-bar-items>li:first-child{border-top:1px solid #d4d4d4;margin-top:1px;}
+.rureraform-pages-bar-items>li{-webkit-transition:all .5s linear;-moz-transition:all .5s linear;-ms-transition:all .5s linear;-o-transition:all .5s linear;transition:all .5s linear;background-color: hsla(0,0%,100%,.75);}
+.rureraform-pages-bar-items>li label{color:#172e50;font-size: 18px;-webkit-transition:all .5s ease-in-out;-moz-transition:all .5s ease-in-out;-ms-transition:all .5s ease-in-out;-o-transition:all .5s ease-in-out;transition:all .5s ease-in-out;}
+.rureraform-pages-bar-items>li span a, 
+.rureraform-pages-bar-items>li span a:visited{font-size: 1rem;}
+.rureraform-pages-bar-items>li span{-webkit-transition:all .5s ease-in-out;-moz-transition:all .5s ease-in-out;-ms-transition:all .5s ease-in-out;-o-transition:all .5s ease-in-out;transition:all .5s ease-in-out;line-height:60px;height:55px;}
+.rureraform-pages-bar-items>li:hover > label {padding-left: 3px;margin-right: 26px;}
+.rureraform-pages-bar-items>li:hover, .rureraform-pages-bar-items>li:hover span{background-color: #fff;}
+.rureraform-pages-bar-items>li.rureraform-pages-add:hover > label {margin: 0;padding-left: 0;}
+.rureraform-pages-bar-items>li.rureraform-pages-add label{font-size:1rem;line-height:1.6rem;padding:12px 0 0;margin:0;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.rureraform-pages-bar-items>li.rureraform-pages-add{height: 80px; line-height: 80px;}
+.rureraform-pages-bar-items>li.rureraform-pages-add label i{display: block;}
+.rureraform-pages-bar-items>li.rureraform-pages-bar-item-active, 
+.rureraform-pages-bar-items>li.rureraform-pages-bar-item-active.rureraform-pages-bar-item-confirmation{border-bottom:3px solid #169f85;margin-right:-1px;background:#fff;border-right:1px solid transparent;}
+/* Leform Pages Bar Style End */
+
+/* Green Form Fields Responsive Style */
+@media screen and (min-width:992px) and (max-width:1800px) {
+	.rureraform-pages-bar {left: 30px;}
+	.rureraform-inline.rureraform-container {margin-left: 100px !important; margin-right: 30px !important; max-width: 100% !important;}
+}
+@media screen and (max-width: 992px) {
+	.rureraform-pages-bar {position: fixed; left: 10px; top: 5px; border: 0; width: 100%;}
+	.rureraform-pages-bar-items {width: 100%; display: flex;}
+	.rureraform-pages-bar-items>li:first-child {border-top: 0; margin-top: 0;}
+	.rureraform-pages-bar-items>li {display: inline-flex; align-items: center; justify-content: center;padding: 0 20px; min-width: auto; border-radius: 0; margin-right: 2px;}
+	.rureraform-inline.rureraform-container {width: 100% !important; margin-left: 0 !important;}
+	.rureraform-form .rureraform-col-6,
+	.rureraform-form .rureraform-col-4 {width: 100%;}
+	.rureraform-form .rureraform-col-3,
+	.rureraform-form .rureraform-col-2 {width: 50%;}
+	.field-group p.text-field {max-width: 25%; width: 25%; justify-content: flex-start; padding-left: 30px;}
+	.rureraform-element-html h5 .ml-20 {margin: 15px 0 0; display: block;}
+	.rureraform-element-html h5 span {font-size: 15px;}
+    .rureraform-pages-bar-items>li label {font-size: 16px;}
+	.field-group p.text-field span {font-size: 14px;}
+}
+@media screen and (max-width: 480px) {
+    .rureraform-element .field-group {margin: 20px 0 0 0;}
+	.rureraform-form .rureraform-col-3,
+	.rureraform-form .rureraform-col-2 {width: 100%;}
+	.rureraform-form-2 .rureraform-element-34 div.rureraform-input .rureraform-imageselect+label {width: 48%;}
+    .field-group p.text-field {max-width: 36%; width: 36%; justify-content: flex-start;	padding: 0;}
+}
+/*Green Form Fields Style End*/
+
+/*Range-Slider Style*/
+.range-price {
+    text-align: center;
+    margin: 0 -7px 20px;
+    font-size: 50px;
+}
+.range-price strong {
+    font-weight: 500;
+    margin: 0 7px;
+}
+.range-price strong em {
+    font-size: 22px;
+    margin: 10px 0 0 2px;
+    line-height: normal;
+    display: inline-block;
+    font-style: normal;
+    vertical-align: middle;
+}
+.range-container {
+    position: relative;
+    max-width: 350px;
+    margin: 150px auto 0;
+}
+.range-container input[type='range'] {
+	background-color: transparent;
+    -webkit-appearance: none;
+	position: relative;
+	width: 350px;
+}
+.range-container input[type='range']:focus {
+    outline: none;
+}
+.range-container input[type='range'] + label {
+    position: absolute;
+	bottom: -20px;
+	left: 0;
+	transform: translateX(-50%);
+}
+input[type='range']::-webkit-slider-runnable-track {
+    background: transparent;
+    border-radius: 4px;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 115px;
+    width: 12px;
+    background: rgba(0,0,0,0.5);
+    border-radius: 8px;
+    border: 0;
+    margin-top: -18px;
+	margin-left: -10px;
+    position: relative;
+}
+input[type='range']::-moz-range-track {
+    background: transparent;
+    border-radius: 4px;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+input[type='range']::-ms-track {
+    background: transparent;
+    border-radius: 4px;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+.range-bar-holder {
+    background-color: #fff;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border: 5px solid #0b3a54;
+    width: 350px;
+    border-radius: 50px;
+    padding: 5px;
+    overflow: hidden;
+    display: flex;
+    align-items: stretch;
+    height: 78px;
+}
+.range-bar-holder .track-bar {
+    width: 20%;
+    height: 100%;
+    position: relative;
+}
+.range-bar-holder .track-bar:before {
+    content: "";
+    background-color: #fff;
+    width: 6px;
+    height: 100%;
+    position: absolute;
+    left: 50%;
+    margin-left: -3px;
+}
+.range-bar-holder .track-bar:first-child {
+    border-radius: 50px 0 0 50px;
+}
+.range-bar-holder .track-bar:last-child {
+    border-radius: 0 50px 50px 0;
+}
+.range-container.vertical {
+	min-height: 220px;
+}
+.range-container.vertical .range-box {
+	transform: rotate(-90deg);
+}
+.range-value-count {
+    text-align: center;
+}
+.range-value-count span {
+    color: #333;
+    font-size: 24px;
+    border: 1px solid #ccc;
+    min-width: 190px;
+    text-align: center;
+    border-radius: 50px;
+    min-height: 65px;
+    padding: 0 50px 0 30px;
+    font-weight: 500;
+    display: inline-block;
+    line-height: 65px;
+    margin: 0 0 30px;
+    position: relative;
+}
+.range-value-count span:after {
+    background: url(../img/quiz/coin-img.jpg) no-repeat center;
+    content: "";
+    position: absolute;
+    right: 28px;
+    top: 50%;
+    height: 46px;
+    width: 46px;
+    margin-top: -23px;
+}
+.range-container.vertical input[type='range'] + label {
+    transform: translateX(0) rotate(90deg);
+    margin-bottom: -25px;
+    color: #a4b96a;
+    padding-left: 35px;
+    height: auto;
+    font-size: 18px;
+    left: 148px;
+    line-height: 38px;
+}
+.range-container.vertical label:before {
+    background: url(../img/quiz/coin-img.jpg) no-repeat center;
+    background-size: 90%;
+    content: "";
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    left: 2px;
+    top: 4px;
+}
+.range-container.vertical input[type='range']::-webkit-slider-thumb {
+	margin-left: 0px;
+}
+.question-layout {
+    position: relative;
+}
+form .marks,
+.marks {
+    position: absolute;
+    right: -80px;
+    top: 50%;
+    margin-top: -12px;
+    font-size: 15px;
+    color: #74a16f;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+/*Lms Top Content Style */
+.learning-page .learning-page-tabs {
+    position: relative;
+}
+.lms-content-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 6px solid #efefef;
+    line-height: normal;
+    padding: 0;
+    margin: 0 0 30px;
+}
+.lms-content-header .header-left {
+    display: flex;
+    align-items: center;
+}
+.lms-content-header p {
+    color: #7b7b7b;
+}
+.lms-content-header p strong {
+    font-weight: 500;
+    display: block;
+    font-size: 18px;
+}
+.lms-content-header p span {
+    color: #1e26be;
+    font-size: 15px;
+    border-right: 1px solid;
+    line-height: normal;
+    display: inline-block;
+    padding: 0 8px 0 0;
+    margin: 0 4px 0 0;
+    font-weight: 500;
+}
+.lms-content-header p span:last-child {
+    border-right: 0;
+    padding-right: 0;
+    margin-right: 0;
+}
+.header-left .ribbon-images {
+    padding-left: 15px;
+}
+.header-left .ribbon-images img {
+    margin: 0 2px 0 0;
+    max-width: 23px;
+}
+.right-menu-closed .learning-page .learning-page-tabs {
+    min-width: 0px;
+    width: 0px;
+    overflow: hidden;
+    visibility: hidden;
+    opacity: 0;
+}
+.learning-page-tabs .tab-content {
+    background-color: #f6f7f9;
+    padding: 12px;
+}
+/*Lms Top Content Style End*/

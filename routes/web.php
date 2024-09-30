@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebhookController;
+use App\Http\Controllers\MediaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,8 @@ Route::group(['prefix' => 'my_api' , 'namespace' => 'Api\Panel' , 'middleware' =
     Route::get('/subscribe/{user}/{subscribe}' , 'SubscribesController@webPayRender')->name('subscribe');
     Route::get('/registration_packages/{user}/{package}' , 'RegistrationPackagesController@webPayRender')->name('registration_packages');
 });
+
+Route::get('/media/{path}', [MediaController::class, 'show'])->where('path', '.*')->middleware('web.auth');
 
 Route::group(['prefix' => 'svn'], function (){
 	Route::get('/', 'Web\GitController@runGitCommands');
@@ -266,7 +269,11 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
 
     Route::group(['middleware' => 'web.auth'] , function () {
 
-		Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'ensureFolderExists']], function () {
+		/*Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'ensureFolderExists']], function () {
+			\UniSharp\LaravelFilemanager\Lfm::routes();
+		});*/
+		
+		Route::group(['prefix' => 'laravel-filemanager'], function () {
 			\UniSharp\LaravelFilemanager\Lfm::routes();
 		});
 

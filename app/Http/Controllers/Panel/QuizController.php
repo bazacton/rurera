@@ -501,7 +501,7 @@ class QuizController extends Controller
 
 		$response = array();
         $questions_list_data_array = $QuestionsAttemptController->getQuizQuestionsList($quiz, $quiz_level, $learning_journey, 0, $question_ids, $is_new, $test_type);
-		$no_of_questions = $total_points = 0;
+        $no_of_questions = $total_points = 0;
         $questions_list = isset($questions_list_data_array['questions_list']) ? $questions_list_data_array['questions_list'] : array();
         $other_data = isset($questions_list_data_array['other_data']) ? $questions_list_data_array['other_data'] : '';
         $quiz_breakdown = isset($questions_list_data_array['quiz_breakdown']) ? $questions_list_data_array['quiz_breakdown'] : '';
@@ -1018,6 +1018,7 @@ class QuizController extends Controller
                         'class'                  => 'disable-div',
                         'layout_type'            => 'results',
                         'group_questions_layout' => $group_questions_layout,
+                        'QuestionsAttemptController' => $QuestionsAttemptController,
                     ])->render();
                 }
 
@@ -1129,6 +1130,7 @@ class QuizController extends Controller
             'coins_earned'          => $coins_earned,
             'incorrect_count' => $incorrect_count,
             'not_attempted_count' => $not_attempted_count,
+            'QuestionsAttemptController' => $QuestionsAttemptController,
         ];
         return view(getTemplate() . '.panel.quizzes.check_answers', $data);
     }

@@ -5,6 +5,9 @@ namespace UniSharp\LaravelFilemanager\Middlewares;
 use Closure;
 use UniSharp\LaravelFilemanager\Lfm;
 use UniSharp\LaravelFilemanager\LfmPath;
+use App\Http\Controllers\Admin\QuestionsBankController;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Config;
 
 class CreateDefaultFolder
 {
@@ -31,6 +34,12 @@ class CreateDefaultFolder
             return;
         }
 
-        $this->lfm->dir($this->helper->getRootFolder($type))->createFolder();
+        $mediaFolder = Cache::get('mediaFolder', QuestionsBankController::$mediaFolder);
+        if( $mediaFolder != '') {
+            Config::set('filesystems.disks.upload.root', public_path('media/' . $mediaFolder));
+            Config::set('filesystems.disks.upload.url', '/media/' . $mediaFolder);
+        }
+        $mediaFolder = ($mediaFolder != '')? $mediaFolder :$type;
+        $this->lfm->dir($this->helper->getRootFolder($mediaFolder))->createFolder();
     }
 }

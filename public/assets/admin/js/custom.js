@@ -30,7 +30,8 @@
 
     $('body').on('click', '.admin-file-manager', function (e) {
         e.preventDefault();
-        $(this).filemanager('file', {prefix: '/laravel-filemanager'})
+        $(this).filemanager('file', {prefix: '/laravel-filemanager'});
+        $(this).trigger('click');  // Manually trigger click after initialization
     });
 
     $('body').on('click', '.admin-file-view', function (e) {

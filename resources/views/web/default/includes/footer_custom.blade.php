@@ -82,7 +82,7 @@
 										</ul>
 									</div>
 									<div class="footer-social-links">
-										<ul>
+										<ul> 
 											<li><a href="https://www.facebook.com/profile.php?id=61564277975339"><img src="/assets/default/svgs/facebook-svgrepo-com.svg" alt="facebook icon" width="50" height="50"></a></li>
 											<li><a href="https://www.instagram.com/rurera.official/gi"><img src="/assets/default/svgs/instagram-svgrepo-com.svg" alt="facebook icon" width="50" height="50"></a></li>
 										</ul>

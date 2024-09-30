@@ -632,6 +632,7 @@ class TimestablesController extends Controller
     {
 
         $user = getUser();
+		$user = (!isset( $user->id ) || $user->id == 0)? apiAuth() : $user;
         $user_timestables_no = isset( $user->timestables_no )? json_decode($user->timestables_no) : array();
         $incorrect_array = $excess_time_array = $not_attempted_array = $tables_array = $improvement_required_array = array();
 
@@ -828,6 +829,7 @@ class TimestablesController extends Controller
         }*/
         $practice_level = $request->post('practice_level');
         $user = getUser();
+		$user = (!isset( $user->id ) || $user->id == 0)? apiAuth() : $user;
 
         $times_tables_data = $this->user_times_tables_data_single_user(array($user->id), 'x');
         $tables_last_data = isset($times_tables_data['tables_last_data']) ? $times_tables_data['tables_last_data'] : array();
@@ -857,9 +859,11 @@ class TimestablesController extends Controller
         $tables_numbers = empty($user_timestables_no)? $tables_numbers : $user_timestables_no;
 
         $question_type = 'multiplication';
-        $no_of_questions = 400;
         $practice_time = $request->post('practice_time');
         $practice_time_seconds = ($practice_time * 60);
+		
+		$no_of_questions = ($practice_time_seconds * 2);
+		
         //$practice_time_seconds = 10;
         //pre($practice_time_seconds);
 

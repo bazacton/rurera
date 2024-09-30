@@ -2705,7 +2705,10 @@ class QuestionsAttemptController extends Controller
      */
     public function questions_status_array($QuizzesResult, $questions_list)
     {
-        $questions_status_array = QuizzResultQuestions::where('quiz_result_id', $QuizzesResult->id)->whereIn('id', $questions_list)->pluck('status', 'id')->toArray();;
+        $questions_status_array = array();
+        if( isset( $QuizzesResult->id ) ) {
+            $questions_status_array = QuizzResultQuestions::where('quiz_result_id', $QuizzesResult->id)->whereIn('id', $questions_list)->pluck('status', 'id')->toArray();;
+        }
         return $questions_status_array;
     }
 	
@@ -3410,13 +3413,12 @@ class QuestionsAttemptController extends Controller
         ];
 
         $questions_list_ids = $questions_list;
-		//pre($questions_list_ids);
 
 
         $attempted_questions_list = QuizzResultQuestions::whereIn('question_id', $questions_list_ids)->where('parent_type_id', $quiz->id)->where('user_id', $user->id)->whereNotIn('status', array('waiting','not_attempted'))->pluck('question_id')->toArray();
 
 		$notattempted_questions_list = array_diff($questions_list_ids, $attempted_questions_list);
-		
+
 
         //working here
         //pre($notattempted_questions_list);
@@ -3438,16 +3440,34 @@ class QuestionsAttemptController extends Controller
 				$required_questions = ($total_no_of_questions - $attempted_questions);
 				$required_questions = ($required_questions - $new_questions);
 				
-				$difficulty_level_array = QuizzesQuestion::whereIn('id', $notattempted_questions_list)->where('question_difficulty_level', $difficulty_level_label)->inRandomOrder()->limit($required_questions)->pluck('id')->toArray();
-				$new_questions += count($difficulty_level_array);
+				$difficulty_level_array_sub = QuizzesQuestion::whereIn('id', $notattempted_questions_list)->where('question_difficulty_level', $difficulty_level_label)->inRandomOrder()->limit($required_questions)->pluck('id')->toArray();
+				$new_questions += count($difficulty_level_array_sub);
 				
-				 if (!empty($difficulty_level_array)) {
-					foreach ($difficulty_level_array as $questionID) {
+				 if (!empty($difficulty_level_array_sub)) {
+					foreach ($difficulty_level_array_sub as $questionID) {
 						$practice_breakdown[$difficulty_level_label][] = $questionID;
 						$questions_list[] = $questionID;
 					}
 				}
-				
+            }
+            if(count($questions_list) < $total_no_of_questions){
+                foreach ($difficulty_level_array as $difficulty_level_key => $difficulty_level_label) {
+                    if( count($questions_list) >= $total_no_of_questions){
+                        continue;
+                    }
+                    $required_questions = ($total_no_of_questions - $attempted_questions);
+                    $required_questions = ($required_questions - $new_questions);
+
+                    $difficulty_level_array_sub = QuizzesQuestion::whereIn('id', $attempted_questions_list)->where('question_difficulty_level', $difficulty_level_label)->inRandomOrder()->limit($required_questions)->pluck('id')->toArray();
+                    $new_questions += count($difficulty_level_array_sub);
+
+                     if (!empty($difficulty_level_array_sub)) {
+                        foreach ($difficulty_level_array_sub as $questionID) {
+                            $practice_breakdown[$difficulty_level_label][] = $questionID;
+                            $questions_list[] = $questionID;
+                        }
+                    }
+                }
             }
         }
 		//pre($practice_breakdown, false);
@@ -3877,6 +3897,7 @@ class QuestionsAttemptController extends Controller
 			}
 		}
 		$elments_array = array();
+        $question_layout .= view('web.default.question_layouts.question_top_layout', ['questionObj' => $questionObj])->render();
 		if( !empty( $layout_elements_array[1] ) ){
 			foreach( $layout_elements_array[1] as $parent_id => $layout_elements){
 				$id = isset( $layout_elements->id )? $layout_elements->id : 0;
@@ -3888,7 +3909,7 @@ class QuestionsAttemptController extends Controller
 				//pre($layout_elements);
 				while($counter < $_cols){
 					$element_id = $counter;
-					$elementObj = isset( $inner_elements[$counter] )?$inner_elements[$counter] : array();
+					$elementObj = isset( $inner_elements[$counter] )? $inner_elements[$counter] : array();
 					$element_width = isset( $layout_elements->{'widths-'.$counter} )? $layout_elements->{'widths-'.$counter} : 12;
 					//pre($elementObj, false);
 					$question_layout .= '<div class="rureraform-col rureraform-col-'.$element_width.'">';
