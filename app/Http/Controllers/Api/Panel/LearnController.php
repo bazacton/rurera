@@ -13,6 +13,7 @@ use App\Models\SubChapters;
 use App\Models\WebinarChapterItem;
 use App\Models\Quiz;
 use App\Models\QuizzesQuestion;
+use App\Models\ApiCalls;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -123,6 +124,9 @@ class LearnController extends Controller
 		$user = apiAuth();
 		$SubChapters = SubChapters::where('sub_chapter_slug', $sub_chapter_slug)
                     ->first();
+					
+		
+		
 
 
         $chapterItem = WebinarChapterItem::where('type', 'quiz')
@@ -140,6 +144,10 @@ class LearnController extends Controller
 		
 		$QuizController = new QuizController();
 		$quiz_response = $QuizController->get_learn_quiz_data($quiz, 'easy', 'no', [], 'yes', '', 0);
+		
+		
+		
+		
 		$questions_list_data = isset( $quiz_response['questions_list_data'] )? $quiz_response['questions_list_data'] : array();
 		$section_id = 0;
 		$question_serial = 1;
@@ -201,6 +209,16 @@ class LearnController extends Controller
 				'target_score' => 80,
 			)
 		);
+		
+		ApiCalls::create([
+			'user_id' => $user->id,	
+			'device_id' => $request->input('device_id', 0),	
+			'api_name' => 'learn_subject_quiz',
+			'api_data' => json_encode($request->all()),
+			'api_response' => json_encode($response),
+			'updated_at' => time(),
+		]);
+		
 		
 		return apiResponse2(1, 'retrieved', trans('api.public.retrieved'), $response);
 		

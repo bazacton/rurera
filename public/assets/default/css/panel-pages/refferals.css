@@ -1,0 +1,37 @@
+/*************************************
+Referrals Page | Student Panel Style Start
+Sub Pages Style
+**************************************/
+/* Referrals Style Start */
+.referrals {background-color: #ddd; padding: 20px;}
+.referral-card > h3 {margin: 0 0 15px; }
+.referral-card > p {margin: 0 0 25px;}
+.referral-form label {display: block; line-height: normal; margin-bottom: 8px; font-weight: 600; position: relative;}
+.referral-form label:after {content: "*"; display: inline-block; color: #b15a60; margin-left: 5px;}
+.referral-form {margin: 0 0 25px;}
+.referral-form .form-feild {display: flex; align-items: center; flex-wrap: wrap; gap: 15px; position: relative; }
+.referral-form input[type="text"] {border: 1px solid #505656; border-radius: 5px; height: 40px; width: calc(100% - 90px); padding: 0 15px; }
+.referral-form .form-feild button {background-color: #a6c7fc; border-radius: 5px; font-weight: 600; font-size: 18px; width: 75px; height: 40px; border: 0; color: rgba(255,255,255,0.9);}
+.referral-invites {margin: 0 0 30px;}
+.referrals .heading {display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; margin: 0 0 10px;}
+.referrals .heading a {color: #1d64e0; font-weight: 500;}
+.referral-invites ul {background-color: #f1f1f1; border-radius: 12px; padding: 20px; display: flex;align-items: flex-start; justify-content: space-between;}
+.referral-invites li {display: inline-flex; flex-direction: column; gap: 8px;}
+.referral-invites li strong {font-size: 19px; line-height: normal;}
+.referral-invites li span {line-height: normal;}
+.referral-payment p {background-color: #f1f1f1; border-radius: 12px; display: flex; flex-wrap: wrap; align-items: center; gap: 15px; margin-bottom: 0; padding: 20px;}
+.referral-payment .icon-box {width: 65px; }
+.referral-payment .icon-box img {max-width: 100%;}
+.referral-payment strong {font-size: 36px; line-height: normal; width: calc(100% - 80px);}
+.referral-payment strong em {display: block; font-weight: 500; font-style: normal; font-size: 20px;}
+.referral-card p br {display: none;}
+.referral-price-lists .row {margin-left: -10px; margin-right: -10px; }
+.referral-price-lists .row [class*="col-"] {padding-left: 10px; padding-right: 10px;}
+.referral-price-card span {line-height: normal;}
+.referral-text p {margin-bottom: 10px;}
+.referral-text a {background-color: var(--primary); padding: 8px 10px; border-radius: 3px; color: #fff; display: inline-block; line-height: normal;}
+.referral-link input.link-address {border: 0; background-color: #efefef; height: 36px; width: calc(100% - 100px); padding: 0 12px; border-radius: 3px; color: #6c7292;}
+/* Referrals Style End */
+/*************************************
+Referrals Page | Student Panel Style End
+**************************************/

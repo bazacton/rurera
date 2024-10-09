@@ -45,6 +45,10 @@ Route::group([], function () {
 	
 	Route::group(['prefix' => '/books'], function () {
         Route::get('/', ['uses' => 'BooksController@index']);
+		Route::get('/{book_slug}', ['uses' => 'BooksController@book_data']);
+		Route::post('/update_reading', ['uses' => 'BooksController@update_reading']);
+		Route::post('/update_info_reading', ['uses' => 'BooksController@update_info_reading']);
+		
     });
 	
 	Route::group(['prefix' => '/tests'], function () {

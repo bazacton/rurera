@@ -156,6 +156,7 @@ $target_score = 90;
                                             </div>
                                         </div>
                                     </div>
+{{-- Instruction landing Page --}}
                                     <div class="info-setting">
                                         <button class="info-btn">
                                             <img src="/assets/default/svgs/info-icon.svg" alt="#">
@@ -488,7 +489,6 @@ $target_score = 90;
     </div>
   </div>
 </div>
-
 <div class="modal fade review_submit1" id="review_submit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
    <div class="modal-dialog modal-dialog-centered">
        <div class="modal-content">
@@ -521,8 +521,6 @@ $target_score = 90;
    </div>
 </div>
 <a href="#" data-toggle="modal" class="hide review_submit_btn" data-target="#review_submit">modal button</a>
-
-
 <div class="modal fade question_inactivity_modal" id="question_inactivity_modal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 <div class="modal-dialog modal-dialog-centered" role="document">
   <div class="modal-content">
@@ -551,7 +549,6 @@ $target_score = 90;
   </div>
 </div>
 </div>
-
 <div class="modal fad quiz_reset_modal" id="quiz_reset_modal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 <div class="modal-dialog modal-dialog-centered" role="document">
   <div class="modal-content">

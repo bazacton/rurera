@@ -1,0 +1,112 @@
+
+/**********************
+Analytics Page | Student Panel Style Start
+Sub Pages Style
+************************/
+.analytics-header .header-text {display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; padding: 0 1.25rem .75rem;}
+.analytics-header .header-text > span {width: 33.333%; text-align: right;}
+.analytics-header .header-text > span:first-child {text-align: left;}
+.analytics-header .header-text > span:nth-child(2) {text-align: left;}
+#analyticsAccordion .card {border-radius: 0; border-left: 0; border-right: 0;}
+#analyticsAccordion .card .card-header {border-radius: 0; border-bottom: 0; font-weight: 600; display: flex; flex-wrap: wrap; justify-content: space-between;}
+#analyticsAccordion .card:nth-child(even) > .card-header {background-color: #fff;}
+#analyticsAccordion .card:nth-child(odd) .card-header {}
+#analyticsAccordion .card-body {border-top: 1px solid rgba(52, 52, 52, .125); padding-top: 30px;}
+#analyticsAccordion .card > .card-header {color: var(--primary); }
+#analyticsAccordion .card .card-body .card-footer {background-color: rgba(255,255,255,0.5); margin-bottom: 25px !important;}
+#analyticsAccordion .card .card-body .card-header {background-color: rgba(52, 52, 52, .03);}
+#analyticsAccordion .card .card-body .card-header h2 {font-size: 16px; font-weight: 600;}
+#analyticsAccordion .card .card-body .card-header a {color: #000;}
+#analyticsAccordion .card .card-body .card-header span a {color: var(--primary); position: relative; padding-right: 18px;}
+#analyticsAccordion .card .card-body .card-header span a:after {position: absolute; right: 0; top: 0; font-size: 16px; content: '\2192';}
+#analyticsAccordion .card-footer span {color: #999; font-size: 14px; font-weight: 500;}
+#analyticsAccordion .card-header > span {display: flex; align-items: center; gap: 8px; width: 32.555%; justify-content: flex-end; margin-right: 0 !important;}
+#analyticsAccordion .card-header > span:nth-child(2) {justify-content: flex-start; margin-left: -8px;}
+#analyticsAccordion .card-header > span:first-child {justify-content: flex-start;}
+#analyticsAccordion .card-header img {max-width: 25px; max-height: 20px; object-fit: contain;}
+#analyticsAccordion .card-header .analytics-cions-earned span {min-width: 35px;}
+.member-card-header {border-bottom: 0;padding: 0 0 25px;}
+.member-card-header .dropdown {margin-left: auto;}
+.member-card-header .btn, .member-card-header .db-members .profile-dropdown > a {background-color: var(--primary); box-shadow: none; border: 0; padding: 10px 20px; color: #fff; font-weight: 400; height: auto; border-radius: 20px;}
+.member-card-header .db-members .profile-dropdown a:after {display: none;}
+.member-card-header .db-members .profile-dropdown > a {position: relative; padding-right: 35px;}
+.member-card-header .db-members .profile-dropdown > a:before {content: ""; position: absolute; border: 2px solid #fff; height: 8px; width: 8px; border-top: 0; border-left: 0; -webkit-transform: rotate(45deg); -ms-transform: rotate(45deg); transform: rotate(45deg); top: 50%; margin-top: -5px; right: 18px;}
+.activities-container {padding: 0 !important;}
+.chart-filters .filters-list {margin-bottom: 20px;}
+.activities-container .chart-filters {padding: 15px 20px 0; border: 0;}
+.db-form-tabs .list-group-item h6 a {color: #334155; line-height: 22px; display: block;}
+.db-members .card .list-group-item small {display: block; line-height: normal;}
+.db-members .card .list-group-item .profile-dropdown {padding-top: 0; min-height: 38px; display: inline-flex; align-items: center; flex-direction: column;}
+.db-members .card .card-header button img,
+.member-card-header .btn img {width: 18px; height: 18px; filter: invert(100%) sepia(0%) saturate(7472%) hue-rotate(114deg) brightness(109%) contrast(97%); margin-right: 6px;}
+.db-members .card .list-group-item:nth-child(even) {background-color: #fff;}
+.chart-filters {display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; border-bottom: 2px solid #a2bad2; margin: 0 0 30px;}
+.chart-filters h3 {padding: 0 0 18px;}
+.chart-filters ul {display: inline-flex; align-items: center; gap: 20px; margin: 0;}
+.chart-filters li a {font-size: 15px; color: #66667e; display: block; line-height: normal; padding: 12px 14px; font-weight: 500; border-radius: 5px 5px 0 0;}
+.chart-filters .filter-icon {margin-right: 5px;}
+.analytics-type li a {border: 1px dashed #ddd; border-radius: 5px; text-align: center; padding: 15px 5px;}
+.chart-filters .analytics-type .active a {background-color: #fff; border-style: solid; box-shadow: 0 -4px 0 0 #1b85fd inset;}
+.chart-filters .analytics-type {width: 100%; margin: 0 0 15px; flex-wrap: wrap; gap: 10px;}
+.chart-filters .analytics-type li {width: 15.888%;}
+.analytics-type li a img {margin: 0 auto 10px; display: block; object-fit: contain; max-width: 100%; width: 30px;height: 30px;}
+.chart-filters > ul > li > a.active {background-color: rgba(0,0,0,0.1);color: #2c4a7e;}
+/*Lms Activity-Timeline Style Start*/
+.lms-activity-timeline {padding: 50px 0 30px; }
+.lms-activity-timeline .section-title {margin: 0 0 40px;}
+.lms-activity-timeline .section-title h2 {margin: 0; font-size: 32px; color: #363636; font-weight: 500;}
+.timeline-card {display: flex; flex-wrap: wrap; margin: 0 0 40px; }
+.timeline-card .img-holder {width: 62px;}
+.timeline-card .text-holder {width: 100%; padding: 0;}
+.timeline-card .img-holder~.text-holder {width: calc(100% - 62px); padding: 0 0 0 18px;}
+.timeline-card .img-holder img {max-width: 100%; border-radius: 5px;}
+.timeline-card h3 {font-size: 20px; text-transform: capitalize; margin: 0 0 6px;}
+.timeline-card h3 a {color: #0a96e6;}
+.timeline-card .activity-time {color: #72777a; font-weight: 500; display: block; line-height: normal; margin: 0 0 15px;}
+.activity-time strong {color: var(--secondary); margin-right: 5px;}
+.timeline-list {margin: 0; padding: 0;}
+.timeline-list li {display: flex; flex-wrap: wrap; margin: 0 0 35px; position: relative;}
+.timeline-list li:before {content: ""; background-color: #dddddd; position: absolute; left: 12px; top: 30px; height: 100%; width: 1px; z-index: 1;}
+.timeline-list li:last-child:after {content: ""; background-color: #b2b2b2; border-radius: 100%; position: absolute; left: 9px; top: 100%; height: 6px; width: 6px; margin-top: 25px; z-index: 2;}
+.timeline-icon {width: 26px;}
+.timeline-icon svg,
+.timeline-icon img {height: 26px; width: 26px;}
+.timeline-text {width: calc(100% - 26px); padding: 0 0 0 12px; transform: none; }
+.timeline-text p {margin-bottom: 8px; line-height: normal;}
+.timeline-text p strong {color: var(--secondary); text-transform: capitalize;}
+.timeline-text p a {text-decoration: underline;}
+.timeline-text .page-no {color: #5e5e5e; font-weight: 500; text-decoration: none;}
+.timeline-text .info-time {font-size: 15px; color: #b6b6b6; display: inline-block; position: relative; padding: 0 0 0 15px; margin-left: 15px;}
+.timeline-text img {display: inline-block; vertical-align: middle; height: 26px; width: 26px; border-radius: 100%; margin: 0 5px;}
+.timeline-text .info-time:before,
+.timeline-text > span:before {content: ""; background-color: #c5c5c5; position: absolute; left: 0; top: 50%; margin-top: -2px; height: 5px; width: 5px; border-radius: 100%;}
+.timeline-text > span:before {left: auto; right: -2px;}
+.lms-activity-timeline .element-title h2 {margin: 0; color: #757575; font-weight: 500; overflow: hidden; }
+.lms-activity-timeline .element-title {margin: 0 0 25px;}
+.lms-activity-timeline .element-title span {position: relative; display: inline-block; padding-right: 20px; margin-top: 0; color: #000;}
+.lms-activity-timeline .element-title span:before {content: ""; position: absolute; left: 100%; top: 50%; height: 1px; width: 99999px; border: 1px dashed #eeeeee;}
+.timeline-text > span {font-size: 14px; font-weight: 500; color: #858585; position: relative; padding-right: 15px; margin-right: 15px; display: inline-block;}
+.timeline-text > span:last-child {padding-right: 0;}
+.timeline-text > span:last-child:before {display: none;}
+.analytics-more_details a {color: var(--primary); text-decoration: underline;}
+/*Lms Activity-Timeline Style End*/
+/*analytics graph-data Style start*/
+.graph-data-ul li,
+.analytics-data-ul li {position: relative;}
+.graph-data-ul li .sub-dropdown,
+.analytics-data-ul li .sub-dropdown {flex-direction: column; position: absolute; top: 100%; right: 0; z-index: 1; background-color: #fff; min-width: 170px; align-items: flex-end; margin-top: -15px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); padding: 20px 15px 5px; gap: 0; border-radius: 0 0 5px 5px; transition: all .5s ease; visibility: hidden; opacity: 0; text-align: right;}
+.graph-data-ul li.has-child:hover .sub-dropdown,
+.analytics-data-ul li.has-child:hover .sub-dropdown {visibility: visible; opacity: 1; margin-top: 5px;}
+.graph-data-ul li .sub-dropdown a,
+.analytics-data-ul li .sub-dropdown a {padding-bottom: 15px;}
+.graph-data-ul li.has-child > a,
+.analytics-data-ul li.has-child > a {position: relative; padding-right: 14px;}
+.graph-data-ul li.has-child > a:after,
+.analytics-data-ul li.has-child > a:after {content: ""; height: 7px; width: 7px; border: 1px solid #0f1338; position: absolute; top: 50%; margin-top: -11px; right: 0; border-top-color: transparent; border-left-color: transparent; transform: rotate(45deg);}
+.chart-filters .analytics-data-ul a {padding-top: 0;}
+.form-control.child-analytics {background-color: inherit; border: 0; border-radius: 0; height: auto; padding: 0 5px; font-size: 15px; width: auto; display: inline-block;}
+/*analytics graph-data Style End*/
+
+/***************************
+Analytics Page | Student Panel Style End
+  ***************************/

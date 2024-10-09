@@ -22,9 +22,15 @@
     <link rel="stylesheet" href="/assets/default/css/panel.css?ver={{$rand_no}}">
     <link rel="stylesheet" href="/assets/vendors/jquerygrowl/jquery.growl.css">
     <link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
-    <link rel="stylesheet" href="/assets/default/css/responsive.css">
 
+	@if (isset( $cssFiles ) && !empty($cssFiles))
+        @foreach ($cssFiles as $cssFile)
+            <link rel="stylesheet" href="{{ asset($cssFile) }}">
+        @endforeach
+    @endif
+	
     @stack('styles_top')
+    <link rel="stylesheet" href="/assets/default/css/responsive.css">
     @stack('scripts_top')
 
     <style>
@@ -437,6 +443,7 @@
                                 </div>
                             @endif	
 							@endif	
+
 							
                         @if(!request()->is('panel') && !request()->is('panel/setting') && !request()->is('panel/rewards') && !request()->is('panel/marketing/affiliates') && !request()->is('panel/store/purchases') && !request()->is('panel/notifications') && !request()->is('panel/support/tickets'))
 							

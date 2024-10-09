@@ -45,6 +45,13 @@
 /* .lms-chapter-area .lms-chapter-ul {
     column-count: 3;
 } */
+.lms-chapter-area .lms-chapter-ul .lms-chapter-ul-outer {background-color: #fff; border: 2px solid #eee; border-radius: 10px; padding: 20px; margin-bottom: 25px;}
+.lms-chapter-area .lms-chapter-ul .element-title h2 {margin: 0 0 20px;}
+body .lms-chapter-area .lms-chapter-ul .lms-chapter-ul-outer>ul {-moz-column-count: 2; column-count: 2; gap: 15px; padding: 0; counter-reset: counter;}
+body .lms-chapter-area .lms-chapter-ul .lms-chapter-ul-outer>ul>li {-moz-column-break-inside: avoid; break-inside: avoid; margin-bottom: 14px; list-style: none;}
+.lms-chapter-area .lms-chapter-ul >li ul li:before {content: counter(counter); counter-increment: counter; position: absolute; left: 0; top: 0;}
+body .lms-chapter-area .lms-chapter-ul >li ul li a {vertical-align: top; padding-left: 18px; min-width: auto;}
+.lms-chapter-area .lms-chapter-ul >li ul li a img {width: 15px; height: 15px; object-fit: contain; vertical-align: middle; display: inline-block; margin-left: 5px;}
 .lms-chapter-area .lms-chapter-ul >li{margin-bottom:45px; break-inside: avoid;}
 .lms-chapter-area .lms-chapter-ul >li ul li {
     width: 100%;

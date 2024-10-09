@@ -272,7 +272,7 @@ $practice_time = 0;
 				<span class="icon-box d-block mb-15">
 					<img src="../assets/default/img/clock-modal-img.png" alt="">
 				</span>
-				<h3 class="font-24 font-weight-normal mb-10 pause-title">Need a Break?</h3>
+				<h3 class="font-24 font-weight-normal mb-10 pause-title">Are you sure?</h3>
 				<p class="mb-15 font-16 pause-description">
 					Practice tests do not let you go over time, though you can pause them and come back to them later.
 				</p>

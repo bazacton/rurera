@@ -510,14 +510,14 @@ class QuizController extends Controller
         $quiz_breakdown = isset($questions_list_data_array['quiz_breakdown']) ? $questions_list_data_array['quiz_breakdown'] : '';
         $QuizzesResultID = isset($questions_list_data_array['QuizzesResultID']) ? $questions_list_data_array['QuizzesResultID'] : 0;
 
-        if (auth()->guest()) {
+        /*if (auth()->guest()) {
             $total_attempted_questions = QuizzResultQuestions::where('quiz_result_type', $quiz->quiz_type)->where('status', '!=', 'waiting')->where('user_id', 0)->where('user_ip', getUserIP())->count();
             $total_questions_allowed = getGuestLimit($quiz->quiz_type);
             $no_of_questions = ($total_questions_allowed - $total_attempted_questions);
             if ($no_of_questions < 1) {
                 return view('web.default.quizzes.limit_reached');
             }
-        }
+        }*/
 
 
         if ($quiz->quiz_type == 'assignment') {

@@ -804,7 +804,7 @@ function _rureraform_properties_prepare(_object) {
                 case 'background-style':
                     temp = "";
                     temp += "<div class='rureraform-properties-line'>";
-                    temp += "<div class='rureraform-properties-content-two-third rureraform-image-url'><input type='text' name='rureraform-" + key + "-image' id='rureraform-" + key + "-image' value='" + rureraform_escape_html(properties[key + '-image']) + "' /><label>" + rureraform_escape_html(rureraform_meta[type][key]['caption']['image']) + "</label><span><i class='far fa-image'></i></span></div>";
+                    temp += "<div class='rureraform-properties-content-two-third rureraform-image-url rurera-image-depend'><input type='text' name='rureraform-" + key + "-image' id='rureraform-" + key + "-image' value='" + rureraform_escape_html(properties[key + '-image']) + "' /><label>" + rureraform_escape_html(rureraform_meta[type][key]['caption']['image']) + "</label><span><i class='far fa-image'></i></span></div>";
                     temp += "<div class='rureraform-properties-content-dime'><div class='rureraform-bar-selector'><input type='radio' value='auto' name='rureraform-" + key + "-size' id='rureraform-" + key + "-size-auto'" + (properties[key + '-size'] == "auto" ? " checked='checked'" : "") + "><label for='rureraform-" + key + "-size-auto'>Auto</label><input type='radio' value='contain' name='rureraform-" + key + "-size' id='rureraform-" + key + "-size-contain'" + (properties[key + '-size'] == "contain" ? " checked='checked'" : "") + "><label for='rureraform-" + key + "-size-contain'><i class='fas fa-compress-arrows-alt'></i></label><input type='radio' value='cover' name='rureraform-" + key + "-size' id='rureraform-" + key + "-size-cover'" + (properties[key + '-size'] == "cover" ? " checked='checked'" : "") + "><label for='rureraform-" + key + "-size-cover'><i class='fas fa-expand-arrows-alt'></i></label></div><label>" + rureraform_escape_html(rureraform_meta[type][key]['caption']['size']) + "</label></div>";
                     temp += "<div class='rureraform-properties-content-dime'><div class='rureraform-bar-selector'><input type='radio' value='left' name='rureraform-" + key + "-horizontal-position' id='rureraform-" + key + "-horizontal-position-left'" + (properties[key + '-horizontal-position'] == "left" ? " checked='checked'" : "") + "><label for='rureraform-" + key + "-horizontal-position-left'><i class='fas fa-arrow-left'></i></label><input type='radio' value='center' name='rureraform-" + key + "-horizontal-position' id='rureraform-" + key + "-horizontal-position-center'" + (properties[key + '-horizontal-position'] == "center" ? " checked='checked'" : "") + "><label for='rureraform-" + key + "-horizontal-position-center'><i class='far fa-dot-circle'></i></label><input type='radio' value='right' name='rureraform-" + key + "-horizontal-position' id='rureraform-" + key + "-horizontal-position-right'" + (properties[key + '-horizontal-position'] == "right" ? " checked='checked'" : "") + "><label for='rureraform-" + key + "-horizontal-position-right'><i class='fas fa-arrow-right'></i></label></div><label>" + rureraform_escape_html(rureraform_meta[type][key]['caption']['horizontal-position']) + "</label></div>";
                     temp += "<div class='rureraform-properties-content-dime'><div class='rureraform-bar-selector'><input type='radio' value='top' name='rureraform-" + key + "-vertical-position' id='rureraform-" + key + "-vertical-position-top'" + (properties[key + '-vertical-position'] == "top" ? " checked='checked'" : "") + "><label for='rureraform-" + key + "-vertical-position-top'><i class='fas fa-arrow-up'></i></label><input type='radio' value='middle' name='rureraform-" + key + "-vertical-position' id='rureraform-" + key + "-vertical-position-middle'" + (properties[key + '-vertical-position'] == "middle" ? " checked='checked'" : "") + "><label for='rureraform-" + key + "-vertical-position-middle'><i class='far fa-dot-circle'></i></label><input type='radio' value='bottom' name='rureraform-" + key + "-vertical-position' id='rureraform-" + key + "-vertical-position-bottom'" + (properties[key + '-vertical-position'] == "bottom" ? " checked='checked'" : "") + "><label for='rureraform-" + key + "-vertical-position-bottom'><i class='fas fa-arrow-down'></i></label></div><label>" + rureraform_escape_html(rureraform_meta[type][key]['caption']['vertical-position']) + "</label></div>";
@@ -1259,7 +1259,8 @@ function _rureraform_properties_prepare(_object) {
                         }
                     }
                     var field_class = (rureraform_meta[type][key]['class'] != undefined)? rureraform_meta[type][key]['class'] : '';
-                    html += "<div class='rureraform-properties-item' data-id='" + key + "'><div class='rureraform-properties-label'><label>" + rureraform_meta[type][key]['label'] + "</label></div><div class='rureraform-properties-tooltip'>" + tooltip_html + "</div><div class='rureraform-properties-content'><div class='rureraform-third'><select name='rureraform-" + key + "' id='rureraform-" + key + "' class='"+field_class+"'>" + options + "</select></div></div></div>";
+                    var wrapper_class = (rureraform_meta[type][key]['wrapper_class'] != undefined)? rureraform_meta[type][key]['wrapper_class'] : '';
+                    html += "<div class='rureraform-properties-item "+wrapper_class+"' data-id='" + key + "'><div class='rureraform-properties-label'><label>" + rureraform_meta[type][key]['label'] + "</label></div><div class='rureraform-properties-tooltip'>" + tooltip_html + "</div><div class='rureraform-properties-content'><div class='rureraform-third'><select name='rureraform-" + key + "' id='rureraform-" + key + "' class='"+field_class+"'>" + options + "</select></div></div></div>";
                     break;
                     
                 case 'ajax_select_new':
@@ -1602,6 +1603,7 @@ function _rureraform_properties_prepare(_object) {
 
                 case 'image-options':
                     options = "";
+                    var image_position = rureraform_form_elements[i]['image_position'];
                     var is_selected = "";
                     for (var j = 0; j < properties[key].length; j++) {
 
@@ -1620,9 +1622,9 @@ function _rureraform_properties_prepare(_object) {
 						if(DataIsEmpty(properties[key][j]["label"])){
 							continue;
 						}
-                        options += "<div class='rureraform-properties-options-item" + selected + "'><div class='rureraform-properties-options-table'><div><input class='rureraform-properties-options-label' type='text' value='" + rureraform_escape_html(properties[key][j]["label"]) + "' placeholder='Label'></div><div class='rureraform-image-url'><div class='input-group-prepend'><button type='button' class='input-group-text admin-file-manager' data-input='image-" + key + "-" + j + "' data-preview='holder'><i class='fa fa-upload'></i></button></div><input class='rureraform-properties-options-image' type='text' id='image-" + key + "-" + j + "' value='" + rureraform_escape_html(image_url) + "' placeholder='Upload Image'><span><i class='far fa-image'></i></span></div><div class='lms-hide'><input class='rureraform-properties-options-value' type='text' value='" + rureraform_escape_html(properties[key][j]["value"]) + "' placeholder='Value'></div><div><span onclick='return rureraform_properties_options_default(this);' title='Set the option as correct value'><i class='fas fa-check'></i></span><span onclick='return rureraform_properties_options_new(this);' title='Add the option after this one'><i class='fas fa-plus'></i></span><span onclick='return rureraform_properties_options_copy(this);' title='Duplicate the option'><i class='far fa-copy'></i></span><span onclick='return rureraform_properties_options_delete(this);' title='Delete the option'><i class='fas fa-trash-alt'></i></span><span title='Move the option'><i class='fas fa-arrows-alt rureraform-properties-options-item-handler'></i></span></div></div></div>";
+                        options += "<div class='rureraform-properties-options-item" + selected + "'><div class='rureraform-properties-options-table'><div><input class='rureraform-properties-options-label' type='text' value='" + rureraform_escape_html(properties[key][j]["label"]) + "' placeholder='Label'></div><div class='rureraform-image-url rurera-image-depend'><div class='input-group-prepend'><button type='button' class='input-group-text admin-file-manager' data-input='image-" + key + "-" + j + "' data-preview='holder'><i class='fa fa-upload'></i></button></div><input class='rureraform-properties-options-image' type='text' id='image-" + key + "-" + j + "' value='" + rureraform_escape_html(image_url) + "' placeholder='Upload Image'><span><i class='far fa-image'></i></span></div><div class='lms-hide'><input class='rureraform-properties-options-value' type='text' value='" + rureraform_escape_html(properties[key][j]["value"]) + "' placeholder='Value'></div><div><span onclick='return rureraform_properties_options_default(this);' title='Set the option as correct value'><i class='fas fa-check'></i></span><span onclick='return rureraform_properties_options_new(this);' title='Add the option after this one'><i class='fas fa-plus'></i></span><span onclick='return rureraform_properties_options_copy(this);' title='Duplicate the option'><i class='far fa-copy'></i></span><span onclick='return rureraform_properties_options_delete(this);' title='Delete the option'><i class='fas fa-trash-alt'></i></span><span title='Move the option'><i class='fas fa-arrows-alt rureraform-properties-options-item-handler'></i></span></div></div></div>";
                     }
-                    html += "<div class='rureraform-properties-item' data-id='" + key + "'><div class='rureraform-properties-label'><label>" + rureraform_meta[type][key]['label'] + "</label></div><div class='rureraform-properties-tooltip'>" + tooltip_html + "</div><div class='rureraform-properties-content rureraform-properties-image-options-table'><div class='rureraform-properties-options-table-header'><div>Label</div><div>Image</div><div class='lms-hide'>Value</div><div></div></div><div class='rureraform-properties-options-box'><div class='rureraform-properties-options-container' data-multi='" + (properties.type == "radio" ? "off" : "on") + "'>" + options + "</div></div><div class='rureraform-properties-options-table-footer'><a class='rureraform-admin-button rureraform-admin-button-gray rureraform-admin-button-small' href='#' onclick='return rureraform_properties_options_new(null);'><i class='fas fa-plus'></i><label>Add option</label></a></div></div></div>";
+                    html += "<div class='rureraform-properties-item' data-id='" + key + "'><div class='rureraform-properties-label'><label>" + rureraform_meta[type][key]['label'] + "</label></div><div class='rureraform-properties-tooltip'>" + tooltip_html + "</div><div class='rureraform-properties-content rureraform-properties-image-options-table'><div class='rureraform-properties-options-table-header'><div>Label</div><div class='rurera-image-depend'>Image</div><div class='lms-hide'>Value</div><div></div></div><div class='rureraform-properties-options-box'><div class='rureraform-properties-options-container' data-multi='" + (properties.type == "radio" ? "off" : "on") + "'>" + options + "</div></div><div class='rureraform-properties-options-table-footer'><a class='rureraform-admin-button rureraform-admin-button-gray rureraform-admin-button-small' href='#' onclick='return rureraform_properties_options_new(null);'><i class='fas fa-plus'></i><label>Add option</label></a></div></div></div>";
                     break;
 
                 case 'sortable-options':
@@ -1636,7 +1638,7 @@ function _rureraform_properties_prepare(_object) {
 						if(DataIsEmpty(properties[key][j]["label"])){
 							continue;
 						}
-                        options += "<div class='rureraform-properties-options-item" + selected + "'><div class='rureraform-properties-options-table'><div class='rureraform-image-url'><div class='input-group-prepend'><button type='button' class='input-group-text admin-file-manager' data-input='image-" + key + "-" + j + "' data-preview='holder'><i class='fa fa-upload'></i></button></div><input class='rureraform-properties-options-image' type='text' id='image-" + key + "-" + j + "' value='" + rureraform_escape_html(properties[key][j]["image"]) + "' placeholder='Upload Image'><span><i class='far fa-image'></i></span></div><div><input class='rureraform-properties-options-label' type='text' value='" + rureraform_escape_html(properties[key][j]["label"]) + "' placeholder='Label'></div><div><input class='rureraform-properties-options-correct_order' type='text' value='" + rureraform_escape_html(properties[key][j]["correct_order"]) + "' placeholder='Correct Order'></div><div><span onclick='return rureraform_properties_options_new(this);' title='Add the option after this one'><i class='fas fa-plus'></i></span><span onclick='return rureraform_properties_options_copy(this);' title='Duplicate the option'><i class='far fa-copy'></i></span><span onclick='return rureraform_properties_options_delete(this);' title='Delete the option'><i class='fas fa-trash-alt'></i></span><span title='Move the option'><i class='fas fa-arrows-alt rureraform-properties-options-item-handler'></i></span></div></div></div>";
+                        options += "<div class='rureraform-properties-options-item" + selected + "'><div class='rureraform-properties-options-table'><div class='rureraform-image-url rurera-image-depend'><div class='input-group-prepend'><button type='button' class='input-group-text admin-file-manager' data-input='image-" + key + "-" + j + "' data-preview='holder'><i class='fa fa-upload'></i></button></div><input class='rureraform-properties-options-image' type='text' id='image-" + key + "-" + j + "' value='" + rureraform_escape_html(properties[key][j]["image"]) + "' placeholder='Upload Image'><span><i class='far fa-image'></i></span></div><div><input class='rureraform-properties-options-label' type='text' value='" + rureraform_escape_html(properties[key][j]["label"]) + "' placeholder='Label'></div><div><input class='rureraform-properties-options-correct_order' type='text' value='" + rureraform_escape_html(properties[key][j]["correct_order"]) + "' placeholder='Correct Order'></div><div><span onclick='return rureraform_properties_options_new(this);' title='Add the option after this one'><i class='fas fa-plus'></i></span><span onclick='return rureraform_properties_options_copy(this);' title='Duplicate the option'><i class='far fa-copy'></i></span><span onclick='return rureraform_properties_options_delete(this);' title='Delete the option'><i class='fas fa-trash-alt'></i></span><span title='Move the option'><i class='fas fa-arrows-alt rureraform-properties-options-item-handler'></i></span></div></div></div>";
                     }
                     html += "<div class='rureraform-properties-item' data-id='" + key + "'><div class='rureraform-properties-label'><label>" + rureraform_meta[type][key]['label'] + "</label></div><div class='rureraform-properties-tooltip'>" + tooltip_html + "</div><div class='rureraform-properties-content rureraform-properties-image-options-table'><div class='rureraform-properties-options-table-header'><div>Image</div><div>Label</div><div>Correct Order</div><div></div></div><div class='rureraform-properties-options-box'><div class='rureraform-properties-options-container' data-multi='" + (properties.type == "radio" ? "off" : "on") + "'>" + options + "</div></div><div class='rureraform-properties-options-table-footer'><a class='rureraform-admin-button rureraform-admin-button-gray rureraform-admin-button-small' href='#' onclick='return rureraform_properties_options_new(null, $(this), \"sortable\");'><i class='fas fa-plus'></i><label>Add option</label></a></div></div></div>";
                     break;
@@ -1647,7 +1649,7 @@ function _rureraform_properties_prepare(_object) {
                         selected = "";
                         if (properties[key][j].hasOwnProperty("default") && properties[key][j]["default"] == "on")
                             selected = " rureraform-properties-options-item-default";
-                        options += "<div class='rureraform-properties-options-item" + selected + "'><div class='rureraform-properties-options-table'><div class='rureraform-image-url'><div class='input-group-prepend'><button type='button' class='input-group-text admin-file-manager' data-input='image-" + key + "-" + j + "' data-preview='holder'><i class='fa fa-upload'></i></button></div><input class='rureraform-properties-options-image' type='text' id='image-" + key + "-" + j + "' value='" + rureraform_escape_html(properties[key][j]["image"]) + "' placeholder='Upload Image'><span><i class='far fa-image'></i></span></div><div><input class='rureraform-properties-options-label' type='text' value='" + rureraform_escape_html(properties[key][j]["label"]) + "' placeholder='Label'></div><div><span onclick='return rureraform_properties_options_delete(this);' title='Delete the option'><i class='fas fa-trash-alt'></i></span><span onclick='return rureraform_properties_options_copy(this);' title='Duplicate the option'><i class='far fa-copy'></i></span><span title='Move the option'><i class='fas fa-arrows-alt rureraform-properties-options-item-handler'></i></span></div></div></div>";
+                        options += "<div class='rureraform-properties-options-item" + selected + "'><div class='rureraform-properties-options-table'><div class='rureraform-image-url rurera-image-depend'><div class='input-group-prepend'><button type='button' class='input-group-text admin-file-manager' data-input='image-" + key + "-" + j + "' data-preview='holder'><i class='fa fa-upload'></i></button></div><input class='rureraform-properties-options-image' type='text' id='image-" + key + "-" + j + "' value='" + rureraform_escape_html(properties[key][j]["image"]) + "' placeholder='Upload Image'><span><i class='far fa-image'></i></span></div><div><input class='rureraform-properties-options-label' type='text' value='" + rureraform_escape_html(properties[key][j]["label"]) + "' placeholder='Label'></div><div><span onclick='return rureraform_properties_options_delete(this);' title='Delete the option'><i class='fas fa-trash-alt'></i></span><span onclick='return rureraform_properties_options_copy(this);' title='Duplicate the option'><i class='far fa-copy'></i></span><span title='Move the option'><i class='fas fa-arrows-alt rureraform-properties-options-item-handler'></i></span></div></div></div>";
                     }
                     html += "<div class='rureraform-properties-item matrix-columns-" + key + "' data-id='" + key + "'><div class='rureraform-properties-label'><label>" + rureraform_meta[type][key]['label'] + "</label></div><div class='rureraform-properties-tooltip'>" + tooltip_html + "</div><div class='rureraform-properties-content rureraform-properties-image-options-table'><div class='rureraform-properties-options-table-header'><div>Label</div><div></div></div><div class='rureraform-properties-options-box'><div class='rureraform-properties-options-container' data-multi='" + (properties.type == "radio" ? "off" : "on") + "'>" + options + "</div></div><div class='rureraform-properties-options-table-footer'><a class='rureraform-admin-button rureraform-admin-button-gray rureraform-admin-button-small' href='#' onclick='return rureraform_properties_options_new(null, $(this), \"only_label_url\");'><i class='fas fa-plus'></i><label>Add option</label></a></div></div></div>";
                     break;
@@ -1660,7 +1662,7 @@ function _rureraform_properties_prepare(_object) {
                         selected = "";
                         if (properties[key][j].hasOwnProperty("default") && properties[key][j]["default"] == "on")
                             selected = " rureraform-properties-options-item-default";
-                        options += "<div class='rureraform-properties-options-item" + selected + "'><div class='rureraform-properties-options-table'><div class='rureraform-image-url'><div class='input-group-prepend'><button type='button' class='input-group-text admin-file-manager' data-input='image-" + key + "-" + j + "' data-preview='holder'><i class='fa fa-upload'></i></button></div><input class='rureraform-properties-options-image' type='text' id='image-" + key + "-" + j + "' value='" + rureraform_escape_html(properties[key][j]["image"]) + "' placeholder='Upload Image'><span><i class='far fa-image'></i></span></div><div><input class='rureraform-properties-options-label' type='text' value='" + rureraform_escape_html(properties[key][j]["label"]) + "' placeholder='Label'></div><div><select class='rureraform-properties-options-value' data-selected='" + selected_value + "'></option></select></div><div><span onclick='return rureraform_properties_options_delete(this);' title='Delete the option'><i class='fas fa-trash-alt'></i></span><span onclick='return rureraform_properties_options_copy(this);' title='Duplicate the option'><i class='far fa-copy'></i></span><span title='Move the option'><i class='fas fa-arrows-alt rureraform-properties-options-item-handler'></i></span></div></div></div>";
+                        options += "<div class='rureraform-properties-options-item" + selected + "'><div class='rureraform-properties-options-table'><div class='rureraform-image-url rurera-image-depend'><div class='input-group-prepend'><button type='button' class='input-group-text admin-file-manager' data-input='image-" + key + "-" + j + "' data-preview='holder'><i class='fa fa-upload'></i></button></div><input class='rureraform-properties-options-image' type='text' id='image-" + key + "-" + j + "' value='" + rureraform_escape_html(properties[key][j]["image"]) + "' placeholder='Upload Image'><span><i class='far fa-image'></i></span></div><div><input class='rureraform-properties-options-label' type='text' value='" + rureraform_escape_html(properties[key][j]["label"]) + "' placeholder='Label'></div><div><select class='rureraform-properties-options-value' data-selected='" + selected_value + "'></option></select></div><div><span onclick='return rureraform_properties_options_delete(this);' title='Delete the option'><i class='fas fa-trash-alt'></i></span><span onclick='return rureraform_properties_options_copy(this);' title='Duplicate the option'><i class='far fa-copy'></i></span><span title='Move the option'><i class='fas fa-arrows-alt rureraform-properties-options-item-handler'></i></span></div></div></div>";
                     }
                     html += "<div class='rureraform-properties-item matrix-columns-labels-" + key + "' data-id='" + key + "'><div class='rureraform-properties-label'><label>" + rureraform_meta[type][key]['label'] + "</label></div><div class='rureraform-properties-tooltip'>" + tooltip_html + "</div><div class='rureraform-properties-content rureraform-properties-image-options-table'><div class='rureraform-properties-options-table-header'><div>Label</div><div>Correct Answere</div><div></div></div><div class='rureraform-properties-options-box1'><div class='rureraform-properties-options-container-lebel' data-multi='" + (properties.type == "radio" ? "off" : "on") + "'>" + options + "</div></div><div class='rureraform-properties-options-table-footer'><a class='rureraform-admin-button rureraform-admin-button-gray rureraform-admin-button-small' href='#' onclick='return rureraform_properties_options_new(null, $(this), \"matrix_option\");'><i class='fas fa-plus'></i><label>Add option</label></a></div></div></div>";
                     break;
@@ -1824,16 +1826,20 @@ function _rureraform_properties_prepare(_object) {
     }
     jQuery("#rureraform-element-properties .rureraform-admin-popup-content-form").html(tab_html + html);
     render_matrix_columns_options();
-	if(jQuery('select[name="rureraform-no_of_options"]').val() > 0){
-		jQuery('select[name="rureraform-no_of_options"]').each(function () {
-			var no_of_options = $(this).val();
-			var thisBlock = $(this).closest('.rureraform-tab-content');
-			thisBlock.find('.rurera-dropdown-options').addClass('rurera-hide');
-			thisBlock.find('.rurera-dropdown-options').filter(function() {
-				return $(this).attr('data-option_id') <= no_of_options;
-			}).removeClass('rurera-hide');
-		});
+	if(jQuery('select[name="rureraform-have_images"]').length > 0){
+        have_images_function();
 	}
+
+    if(jQuery('select[name="rureraform-no_of_options"]').val() > 0){
+    		jQuery('select[name="rureraform-no_of_options"]').each(function () {
+    			var no_of_options = $(this).val();
+    			var thisBlock = $(this).closest('.rureraform-tab-content');
+    			thisBlock.find('.rurera-dropdown-options').addClass('rurera-hide');
+    			thisBlock.find('.rurera-dropdown-options').filter(function() {
+    				return $(this).attr('data-option_id') <= no_of_options;
+    			}).removeClass('rurera-hide');
+    		});
+    	}
 	
 	if(jQuery('select[name="rureraform-no_of_fields"]').val() > 0){
 		jQuery('select[name="rureraform-no_of_fields"]').each(function () {
@@ -3236,7 +3242,7 @@ function rureraform_properties_sortable_options_label_item_get(_label, _selected
     var j = Math.floor((Math.random() * 99999) + 1);
     if (_selected)
         selected = " rureraform-properties-options-item-default";
-    html = "<div class='rureraform-properties-options-item" + selected + "'><div class='rureraform-properties-options-table'><div class='rureraform-image-url'><div class='input-group-prepend'><button type='button' class='input-group-text admin-file-manager' data-input='image-" + key + "-" + j + "' data-preview='holder'><i class='fa fa-upload'></i></button></div><input class='rureraform-properties-options-image' id='image-" + key + "-" + j + "' type='text' value='' placeholder='Upload Image'><span><i class='far fa-image'></i></span></div><div><input class='rureraform-properties-options-label' type='text' value='" + rureraform_escape_html(_label) + "' placeholder='Label'></div><div><input class='rureraform-properties-options-correct_order' type='text' value='" + rureraform_escape_html(_label) + "' placeholder='Correct Order'></div><div><span onclick='return rureraform_properties_options_copy(this);' title='Duplicate the option'><i class='far fa-copy'></i></span><span onclick='return rureraform_properties_options_delete(this);' title='Delete the option'><i class='fas fa-trash-alt'></i></span><span title='Move the option'><i class='fas fa-arrows-alt rureraform-properties-options-item-handler'></i></span></div></div></div>";
+    html = "<div class='rureraform-properties-options-item" + selected + "'><div class='rureraform-properties-options-table'><div class='rureraform-image-url rurera-image-depend'><div class='input-group-prepend'><button type='button' class='input-group-text admin-file-manager' data-input='image-" + key + "-" + j + "' data-preview='holder'><i class='fa fa-upload'></i></button></div><input class='rureraform-properties-options-image' id='image-" + key + "-" + j + "' type='text' value='' placeholder='Upload Image'><span><i class='far fa-image'></i></span></div><div><input class='rureraform-properties-options-label' type='text' value='" + rureraform_escape_html(_label) + "' placeholder='Label'></div><div><input class='rureraform-properties-options-correct_order' type='text' value='" + rureraform_escape_html(_label) + "' placeholder='Correct Order'></div><div><span onclick='return rureraform_properties_options_copy(this);' title='Duplicate the option'><i class='far fa-copy'></i></span><span onclick='return rureraform_properties_options_delete(this);' title='Delete the option'><i class='fas fa-trash-alt'></i></span><span title='Move the option'><i class='fas fa-arrows-alt rureraform-properties-options-item-handler'></i></span></div></div></div>";
     return html;
 }
 
@@ -3246,7 +3252,7 @@ function rureraform_properties_options_label_url_item_get(_label, _selected) {
 	var j = Math.floor((Math.random() * 99999) + 1);
     if (_selected)
         selected = " rureraform-properties-options-item-default";
-    html = "<div class='rureraform-properties-options-item" + selected + "'><div class='rureraform-properties-options-table'><div class='rureraform-image-url'><div class='input-group-prepend'><button type='button' class='input-group-text admin-file-manager' data-input='image-" + key + "-" + j + "' data-preview='holder'><i class='fa fa-upload'></i></button></div><input class='rureraform-properties-options-image' id='image-" + key + "-" + j + "' type='text' value='' placeholder='Upload Image'><span><i class='far fa-image'></i></span></div><div><input class='rureraform-properties-options-label' type='text' value='" + rureraform_escape_html(_label) + "' placeholder='Label'></div><div><span onclick='return rureraform_properties_options_delete(this);' title='Delete the option'><i class='fas fa-trash-alt'></i></span><span onclick='return rureraform_properties_options_copy(this);' title='Duplicate the option'><i class='far fa-copy'></i></span><span title='Move the option'><i class='fas fa-arrows-alt rureraform-properties-options-item-handler'></i></span></div></div></div>";
+    html = "<div class='rureraform-properties-options-item" + selected + "'><div class='rureraform-properties-options-table'><div class='rureraform-image-url rurera-image-depend'><div class='input-group-prepend'><button type='button' class='input-group-text admin-file-manager' data-input='image-" + key + "-" + j + "' data-preview='holder'><i class='fa fa-upload'></i></button></div><input class='rureraform-properties-options-image' id='image-" + key + "-" + j + "' type='text' value='' placeholder='Upload Image'><span><i class='far fa-image'></i></span></div><div><input class='rureraform-properties-options-label' type='text' value='" + rureraform_escape_html(_label) + "' placeholder='Label'></div><div><span onclick='return rureraform_properties_options_delete(this);' title='Delete the option'><i class='fas fa-trash-alt'></i></span><span onclick='return rureraform_properties_options_copy(this);' title='Duplicate the option'><i class='far fa-copy'></i></span><span title='Move the option'><i class='fas fa-arrows-alt rureraform-properties-options-item-handler'></i></span></div></div></div>";
     return html;
 }
 
@@ -3256,7 +3262,7 @@ function rureraform_properties_options_matrix_item_get(_label, _selected) {
 	var j = Math.floor((Math.random() * 99999) + 1);
     if (_selected)
         selected = " rureraform-properties-options-item-default";
-    html = "<div class='rureraform-properties-options-item" + selected + "'><div class='rureraform-properties-options-table'><div class='rureraform-image-url'><div class='input-group-prepend'><button type='button' class='input-group-text admin-file-manager' data-input='image-" + key + "-" + j + "' data-preview='holder'><i class='fa fa-upload'></i></button></div><input class='rureraform-properties-options-image' id='image-" + key + "-" + j + "' type='text' value='' placeholder='Upload Image'><span><i class='far fa-image'></i></span></div><div><input class='rureraform-properties-options-label' type='text' value='" + rureraform_escape_html(_label) + "' placeholder='Label'></div><div><select class='rureraform-properties-options-value' data-selected=''></option></select></div><div><span onclick='return rureraform_properties_options_delete(this);' title='Delete the option'><i class='fas fa-trash-alt'></i></span><span onclick='return rureraform_properties_options_copy(this);' title='Duplicate the option'><i class='far fa-copy'></i></span><span title='Move the option'><i class='fas fa-arrows-alt rureraform-properties-options-item-handler'></i></span></div></div></div>";
+    html = "<div class='rureraform-properties-options-item" + selected + "'><div class='rureraform-properties-options-table'><div class='rureraform-image-url rurera-image-depend'><div class='input-group-prepend'><button type='button' class='input-group-text admin-file-manager' data-input='image-" + key + "-" + j + "' data-preview='holder'><i class='fa fa-upload'></i></button></div><input class='rureraform-properties-options-image' id='image-" + key + "-" + j + "' type='text' value='' placeholder='Upload Image'><span><i class='far fa-image'></i></span></div><div><input class='rureraform-properties-options-label' type='text' value='" + rureraform_escape_html(_label) + "' placeholder='Label'></div><div><select class='rureraform-properties-options-value' data-selected=''></option></select></div><div><span onclick='return rureraform_properties_options_delete(this);' title='Delete the option'><i class='fas fa-trash-alt'></i></span><span onclick='return rureraform_properties_options_copy(this);' title='Duplicate the option'><i class='far fa-copy'></i></span><span title='Move the option'><i class='fas fa-arrows-alt rureraform-properties-options-item-handler'></i></span></div></div></div>";
     return html;
 }
 
@@ -5628,6 +5634,7 @@ function _rureraform_build_children(_parent, _parent_col, image_styles = []) {
                     var random_id = Math.floor((Math.random() * 99999) + 1);
                     rureraform_form_elements[i]['field_id'] = random_id;
                     var image_size = rureraform_form_elements[i]['image_size'];
+                    var image_position = !DataIsEmpty(rureraform_form_elements[i]["image_position"])? rureraform_form_elements[i]["image_position"] : 'left';
                     var template_style = rureraform_form_elements[i]['template_style'];
                     var template_size = rureraform_form_elements[i]['template_size'];
                     var template_alignment = rureraform_form_elements[i]['template_alignment'];
@@ -5654,18 +5661,26 @@ function _rureraform_build_children(_parent, _parent_col, image_styles = []) {
                         var image_url = rureraform_form_elements[i]["options"][j]["image"];
 
                         var label_data = '';
+                        var image_data = '';
 						
 						
                         if (!DataIsEmpty(image_url)) {
-                            label_data += '<img src="' + rureraform_form_elements[i]["options"][j]["image"] + '" alt=""> ';
+                            image_data += '<img src="' + rureraform_form_elements[i]["options"][j]["image"] + '" alt=""> ';
                             var is_image = true;
                         }
 						//console.log('label++++'+rureraform_form_elements[i]["options"][j]["label"]);
 						if(DataIsEmpty(rureraform_form_elements[i]["options"][j]["label"])){
 							continue;
 						}
-						console.log('label++++'+rureraform_form_elements[i]["options"][j]["label"]);
+						
+						if( image_position == 'left' ){
+							label_data += image_data;
+						}
+						
                         label_data += rureraform_form_elements[i]["options"][j]["label"];
+						if( image_position == 'right' ){
+							label_data += image_data;
+						}
                         option = "<input class='editor-field rureraform-checkbox-" + properties["checkbox-size"] + "'  type='checkbox' data-field_id='" + random_id + "' name='field-" + random_id + "' id='field-" + random_id + "-" + j + "' value='" + rureraform_escape_html(rureraform_form_elements[i]["options"][j]["value"]) + "'" + selected + " /><label for='field-" + random_id + "-" + j + "'>" + label_data + "</label>";
                         options += "<div class='form-field rureraform-cr-container-" + properties["checkbox-size"] + " rureraform-cr-container-" + properties["checkbox-position"] + "'>\n\
 					" + option + "</div>";
@@ -9998,6 +10013,8 @@ $(document).on('keyup change paste checked', 'select[name="rureraform-no_of_opti
 	}).removeClass('rurera-hide');
 });
 
+
+
 $(document).on('keyup change paste checked', 'select[name="rureraform-no_of_fields"]', function () {
 	var no_of_fields = $(this).val();
 	var thisBlock = $(this).closest('.rureraform-tab-content');
@@ -10006,3 +10023,17 @@ $(document).on('keyup change paste checked', 'select[name="rureraform-no_of_fiel
 		return $(this).attr('data-field_option_id') <= no_of_fields;
 	}).removeClass('rurera-hide');
 });
+$(document).on('change', 'select[name="rureraform-have_images"]', function () {
+    have_images_function();
+});
+function have_images_function(){
+    jQuery('select[name="rureraform-have_images"]').each(function () {
+        var have_images = $(this).val();
+        var thisBlock = $(this).closest('.rureraform-tab-content');
+        if(have_images == 'no'){
+            thisBlock.find('.rurera-image-depend').addClass('rurera-hide');
+        }else {
+            thisBlock.find('.rurera-image-depend').removeClass('rurera-hide');
+        }
+    });
+}

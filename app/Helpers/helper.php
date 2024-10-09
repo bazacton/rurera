@@ -2463,7 +2463,8 @@ function toolbar_tools()
         ),
 		'inner_dropdown'               => array(
             'title' => esc_html__('Inner Dropdown / Input', 'rureraform'),
-            'icon'  => 'fas fa-code',
+            'icon'  => 'inner_dropdown.svg',
+            'icon_type'  => 'svg',
             'type'  => 'other'
         ),
         'multichoice_template'  => array(
@@ -2565,6 +2566,7 @@ function toolbar_tools()
         'questions_group'     => array(
             'title' => esc_html__('Questions Group', 'rureraform'),
             'icon'  => 'fas fa-object-group',
+            'classes' => 'rurera-hide',
             'type'  => 'other'
         ),
         'seperator'          => array(
@@ -2581,6 +2583,7 @@ function toolbar_tools()
         'matrix_quiz' => array(
             'title' => esc_html__('Matrix Quiz', 'rureraform'),
             'icon'  => 'fas fa-table',
+            'classes' => 'rurera-hide',
             'type'  => 'input'
         ),
         'draggable_quiz' => array(
@@ -5567,12 +5570,36 @@ function element_properties_meta($chapters)
                 'label' => esc_html__('Field_id', 'rureraform'),
                 'type'  => 'hidden'
             ),
+             
             'label'   => array(
                 'value'   => esc_html__('Mark two answers', 'rureraform'),
                 'label'   => esc_html__('Label', 'rureraform'),
                 'tooltip' => esc_html__('This is the label of the field.', 'rureraform'),
                 'type'    => 'text'
             ),
+             'have_images'     => array(
+                  'value'   => 'no',
+                  'label'   => esc_html__('Have Images', 'rureraform'),
+                  '',
+                  'type'    => 'select',
+                  'options' =>
+                      array(
+                          'no' => esc_html__('No', 'rureraform'),
+                          'yes' => esc_html__('Yes', 'rureraform'),
+                      )
+              ),
+             'image_position'     => array(
+                 'value'   => 'image-left',
+                 'label'   => esc_html__('Image Position', 'rureraform'),
+                 '',
+                 'type'    => 'select',
+                 'wrapper_class' => 'rurera-image-depend',
+                 'options' =>
+                     array(
+                         'left' => esc_html__('Left', 'rureraform'),
+                         'right' => esc_html__('Right', 'rureraform'),
+                     )
+             ),
             'options' => array(
                 'multi-select' => 'on',
                 'values'       => array(

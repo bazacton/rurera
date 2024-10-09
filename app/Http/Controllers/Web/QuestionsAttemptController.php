@@ -376,6 +376,33 @@ class QuestionsAttemptController extends Controller
                         $correct_answers[$field_key] = $question_correct;
                     }
 
+
+                    if ($question_type == 'inner_dropdown') {
+                        $question_correct_input = $question_correct  = array();
+                        $no_of_options = isset( $elementData->no_of_options )? $elementData->no_of_options : 0;
+                        $no_of_fields = isset( $elementData->no_of_fields )? $elementData->no_of_fields : 0;
+
+                        $option_counter = 1;
+                        while( $option_counter <= $no_of_options){
+
+                            $property = 'inner_options' . $option_counter;
+                            $options_array = isset($elementData->{$property}) ? $elementData->{$property} : array();
+                            if (!empty($options_array)) {
+                                foreach ($options_array as $optionData) {
+                                    if (isset($optionData->default) && $optionData->default == 'on') {
+                                        if( $optionData->value != '') {
+                                            $question_correct_input[] = $optionData->value;
+                                        }
+                                    }
+                                }
+                            }
+                            if( !empty( $question_correct_input ) ){
+                                $question_correct[$property] = $question_correct_input;
+                            }
+                            $option_counter++;
+                        }
+                    }
+
                     $data_field_type = isset($elementData->{'data-field_type'}) ? $elementData->{'data-field_type'} : '';
                     if ($data_field_type == 'select') {
                         $question_correct = array();
@@ -444,8 +471,8 @@ class QuestionsAttemptController extends Controller
 
 
         $questions_data = isset($question_data[0]) ? $question_data[0] : $question_data;
-		
 
+        //pre($questions_data);
 		$layout_after_question = 0;
 		
 
@@ -501,7 +528,6 @@ class QuestionsAttemptController extends Controller
                         $question_correct = is_array($question_correct) ? $question_correct : array($question_correct);
                         $question_user_input = $user_input;
                         $question_validate_response = $this->validate_correct_answere($current_question_obj, $question_correct, $question_type, $user_input, $sub_index);
-						
                         $is_question_correct = isset($question_validate_response['is_question_correct']) ? $question_validate_response['is_question_correct'] : true;
 
 						
@@ -518,10 +544,6 @@ class QuestionsAttemptController extends Controller
 						
                         $user_input = is_array($user_input) ? $user_input : array($user_input);
                         if ($is_question_correct == false) {
-
-							
-							
-
 
                             if ($sub_index != '') {
                                 $incorrect_array[$q_id][$sub_index]['correct'] = $question_correct;
@@ -1377,7 +1399,28 @@ class QuestionsAttemptController extends Controller
 
             $question_correct[] = $question_value;
             $is_question_correct = ($question_value != $user_input) ? false : $is_question_correct;
-        } else {
+        } else if ($question_type == 'inner_dropdown') {
+
+            if( !empty( $user_input ) ){
+                $question_correct = array();
+                foreach( $user_input as $option_key => $option_value){
+                   if( $is_question_correct == false){
+                       continue;
+                   }
+                   $question_input_correct = array();
+                   $options_array = isset( $current_question_obj->{$option_key} )? $current_question_obj->{$option_key} : array();
+                   if (!empty($options_array)) {
+                       foreach ($options_array as $optionData) {
+                           if (isset( $optionData->default ) && $optionData->default == 'on') {
+                               $question_input_correct[] = $optionData->value;
+                               $question_correct[$option_key][] = $optionData->value;
+                           }
+                       }
+                   }
+                    $is_question_correct = ($question_input_correct != array($option_value)) ? false : $is_question_correct;
+                }
+            }
+        }else {
 
             if ($question_type == 'paragraph') {
                 $user_input = strip_tags($user_input);
@@ -3373,6 +3416,7 @@ class QuestionsAttemptController extends Controller
 		$total_no_of_questions = 15;
         $user = getUser();
 		$user = (!isset( $user->id ) || $user->id == 0)? apiAuth() : $user;
+		//$user->update(['course_subject_data' => '']);
 		$course_subject_data = isset( $user->course_subject_data )? json_decode($user->course_subject_data) : array();
 		if( !empty( $course_subject_data )){
 			$course_subject_data = isset( $course_subject_data->{$quiz->id} )? (array) $course_subject_data->{$quiz->id} : array();
@@ -3432,7 +3476,7 @@ class QuestionsAttemptController extends Controller
             foreach ($difficulty_level_array as $difficulty_level_key => $difficulty_level_label) {
 				
 				
-				$attempted_questions = isset( $course_subject_data[$difficulty_level_label] )? $course_subject_data[$difficulty_level_label] : 0;
+				$attempted_questions = isset( $course_subject_data[$difficulty_level_label] )? count($course_subject_data[$difficulty_level_label]) : 0;
 				if( $attempted_questions >= $total_no_of_questions){
 					$attempted_questions = 0;
 					continue;
@@ -3929,7 +3973,8 @@ class QuestionsAttemptController extends Controller
 	public function get_question_element_layout($element_id, $elementObj, $questionObj){
 		$question_layout = '';
 		//pre($questionObj);
-		//pre($elementObj, false);
+		//pre($elementObj->type, false);
+        $element_unique_id = isset( $elementObj->field_id )? $elementObj->field_id : 0;
 		switch($elementObj->type) {
 			
 			case "question_label":
@@ -3943,49 +3988,50 @@ class QuestionsAttemptController extends Controller
 				
 			case "paragraph_quiz":
 			case "paragraph_multichoice_template":
-                $question_layout = view('web.default.question_layouts.paragraph_layout', ['element_id' => $element_id, 'elementObj' => $elementObj])->render();
+                $question_layout = view('web.default.question_layouts.paragraph_layout', ['element_unique_id' => $element_unique_id, 'element_id' => $element_id, 'elementObj' => $elementObj])->render();
 			break;
 			
 			case "html":
-                $question_layout = view('web.default.question_layouts.html_layout', ['element_id' => $element_id, 'elementObj' => $elementObj])->render();
+                $question_layout = view('web.default.question_layouts.html_layout', ['element_unique_id' => $element_unique_id, 'element_id' => $element_id, 'elementObj' => $elementObj])->render();
 			break;
 			
 
             case "checkbox":
-                $question_layout = view('web.default.question_layouts.checkbox_layout', ['element_id' => $element_id, 'elementObj' => $elementObj])->render();
+                $question_layout = view('web.default.question_layouts.checkbox_layout', ['element_unique_id' => $element_unique_id, 'element_id' => $element_id, 'elementObj' => $elementObj])->render();
 			break;
 			
             case "radio":
-                $question_layout = view('web.default.question_layouts.radio_layout', ['element_id' => $element_id, 'elementObj' => $elementObj])->render();
+                $question_layout = view('web.default.question_layouts.radio_layout', ['element_unique_id' => $element_unique_id, 'element_id' => $element_id, 'elementObj' => $elementObj])->render();
 			break;
 			
             case "truefalse_quiz":
-                $question_layout = view('web.default.question_layouts.truefalse_quiz_layout', ['element_id' => $element_id, 'elementObj' => $elementObj])->render();
+                $question_layout = view('web.default.question_layouts.truefalse_quiz_layout', ['element_unique_id' => $element_unique_id, 'element_id' => $element_id, 'elementObj' => $elementObj])->render();
 			break;
 			
             case "match_quiz":
-                $question_layout = view('web.default.question_layouts.match_quiz_layout', ['element_id' => $element_id, 'elementObj' => $elementObj])->render();
+                $question_layout = view('web.default.question_layouts.match_quiz_layout', ['element_unique_id' => $element_unique_id, 'element_id' => $element_id, 'elementObj' => $elementObj])->render();
 			break;
 			
             case "sortable_quiz":
-                $question_layout = view('web.default.question_layouts.sortable_quiz_layout', ['element_id' => $element_id, 'elementObj' => $elementObj])->render();
+                $question_layout = view('web.default.question_layouts.sortable_quiz_layout', ['element_unique_id' => $element_unique_id, 'element_id' => $element_id, 'elementObj' => $elementObj])->render();
 			break;
 			
             case "marking_quiz":
-                $question_layout = view('web.default.question_layouts.marking_quiz_layout', ['element_id' => $element_id, 'elementObj' => $elementObj])->render();
+                $question_layout = view('web.default.question_layouts.marking_quiz_layout', ['element_unique_id' => $element_unique_id, 'element_id' => $element_id, 'elementObj' => $elementObj])->render();
 			break;
 			
             case "inner_dropdown":
 				//pre($elementObj);
 				$content = $elementObj->content;
-				$content = preg_replace_callback('/\[DROPDOWN id="(\d+)"\]/', function($matches) use ($elementObj) {
+                //pre($elementObj);
+				$content = preg_replace_callback('/\[DROPDOWN id="(\d+)"\]/', function($matches) use ($elementObj, $element_unique_id) {
 					$id = isset( $matches[1] )? $matches[1] : 0;
 					$property = 'inner_options' . $id;
 					$inner_options = isset($elementObj->{$property}) ? $elementObj->{$property} : array();
 					// Generate replacement HTML for each dropdown
 					$response = '';
 					if( !empty( $inner_options )){
-						$response .= '<select id="dropdown-'.$id.'">';
+						$response .= '<select type="inner_dropdown" class="editor-field" id="dropdown-'.$id.'" data-identifier="'.$element_unique_id.'" name="field-'.$property.'">';
 							foreach( $inner_options as $optionData){
 								$response .= '<option value="'.$optionData->label.'">'.$optionData->label.'</option>';
 							}
@@ -4003,6 +4049,27 @@ class QuestionsAttemptController extends Controller
 				}, $content);
 
                 $question_layout = view('web.default.question_layouts.inner_dropdown_layout', ['element_id' => $element_id, 'elementObj' => $elementObj, 'content' => $content])->render();
+			break;
+			
+			case "audio_recording":
+                $question_layout = view('web.default.question_layouts.audio_recording_layout', ['element_unique_id' => $element_unique_id, 'element_id' => $element_id, 'elementObj' => $elementObj])->render();
+			break;
+			
+			case "audio_file":
+                $question_layout = view('web.default.question_layouts.audio_file_layout', ['element_unique_id' => $element_unique_id, 'element_id' => $element_id, 'elementObj' => $elementObj])->render();
+			break;
+			
+			case "insert_into_sentense":
+                $question_layout = view('web.default.question_layouts.insert_into_sentense_layout', ['element_unique_id' => $element_unique_id, 'element_id' => $element_id, 'elementObj' => $elementObj])->render();
+			break;
+			
+			case "attachment_quiz":
+                $question_layout = view('web.default.question_layouts.attachment_quiz_layout', ['element_unique_id' => $element_unique_id, 'element_id' => $element_id, 'elementObj' => $elementObj])->render();
+			break;
+			
+			case "image_quiz":
+				//pre($elementObj);
+                $question_layout = view('web.default.question_layouts.image_quiz_layout', ['element_unique_id' => $element_unique_id, 'element_id' => $element_id, 'elementObj' => $elementObj])->render();
 			break;
 			
 			

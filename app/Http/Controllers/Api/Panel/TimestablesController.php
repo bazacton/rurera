@@ -140,6 +140,7 @@ class TimestablesController extends Controller
 		
 		$tables_array = array(2,3,4,5,6,7,8,9,10,11,12,13,14,15,16);
 		
+		
 		$table_data = array();
 		
 		foreach( $tables_array as $table_no){
@@ -231,7 +232,12 @@ class TimestablesController extends Controller
 			),
 		);
 		
+		$tracks_array = array(url('/').'/audios/timestables-bg.mp3', url('/').'/audios/timestables-bg1.mp3', url('/').'/audios/timestables-bg2.mp3', url('/').'/audios/timestables-bg3.mp3');
+		$user_track = url('/').'/audios/timestables-bg.mp3';
+		
 		$response = array(
+			'tracks_array' => $tracks_array,
+			'user_track' => $user_track,
 			'message' =>  '<h1>Hello from JSON!</h1><p>This is a paragraph from JSON. <strong>Bold text</strong> and <em>italic text</em> are also supported.</p><h5 style="line-height: 2;"><span style="font-family: terminal, monaco, monospace;"><strong>apple</strong></span></h5>',
 			'form' => $data_array,
 		);
@@ -250,6 +256,8 @@ class TimestablesController extends Controller
 		$user = apiAuth();
 		
 		ApiCalls::create([
+			'user_id' => $user->id,	
+			'device_id' => $request->input('device_id', 0),	
 			'api_name' => 'freedom_mode_play',
 			'api_data' => json_encode($request->all()),
 			'updated_at' => time(),
@@ -377,6 +385,7 @@ class TimestablesController extends Controller
 		$section_id = 0;
 		$data_array[$section_id] = array(
 			'section_id' => $section_id,
+            'background_music' => url('/').'/audios/timestables-bg.mp3',
 			'result_id' => $QuizzesResult->id,
 			'attempt_id' => $QuizzAttempts->id,
 			'time_type' => 'timer',
@@ -505,7 +514,12 @@ class TimestablesController extends Controller
 			),
 		);
 		
+		$tracks_array = array(url('/').'/audios/timestables-bg.mp3', url('/').'/audios/timestables-bg1.mp3', url('/').'/audios/timestables-bg2.mp3', url('/').'/audios/timestables-bg3.mp3');
+		$user_track = url('/').'/audios/timestables-bg.mp3';
+		
 		$response = array(
+			'tracks_array' => $tracks_array,
+			'user_track' => $user_track,
 			'message' =>  '<h1>Hello from JSON!</h1><p>This is a paragraph from JSON. <strong>Bold text</strong> and <em>italic text</em> are also supported.</p><h5 style="line-height: 2;"><span style="font-family: terminal, monaco, monospace;"><strong>apple</strong></span></h5>',
 			'form' => $data_array,
 		);
@@ -524,6 +538,8 @@ class TimestablesController extends Controller
 		$user = apiAuth();
 		
 		ApiCalls::create([
+			'user_id' => $user->id,	
+			'device_id' => $request->input('device_id', 0),	
 			'api_name' => 'powerup_mode_play',
 			'api_data' => json_encode($request->all()),
 			'updated_at' => time(),
@@ -585,6 +601,8 @@ class TimestablesController extends Controller
                             'type'     => 'x',
                             'table_no' => $required_data_from,
                             'marks'    => $marks,
+                            'game_time' => gameTime('timestables'),
+                            'correct_answer'    => getCorrectTimestables($required_data_from, $required_data_to, 'x'),
                         );
                     }
                 }
@@ -628,6 +646,7 @@ class TimestablesController extends Controller
                     $questions_no_array = array_values($questions_no_array);
                 }
 
+                $type = 'x';
                 $last_value = ($questions_no_dynamic) * $table_no;
                 $from_value = ($type == '÷') ? $last_value : $table_no;
                 $limit = 12;
@@ -639,12 +658,14 @@ class TimestablesController extends Controller
 
 
                 $questions_array_list[] = (object)array(
-                    'from'     => $from_value,
-                    'to'       => $to_value,
-                    'type'     => $type,
-                    'table_no' => $table_no,
-                    'marks'    => $marks,
-                );
+                        'from'     => $from_value,
+                        'to'       => $to_value,
+                        'type'     => $type,
+                        'table_no' => $table_no,
+                        'marks'    => $marks,
+                        'game_time' => gameTime('timestables'),
+                        'correct_answer'    => getCorrectTimestables($from_value, $to_value, $type),
+                    );
                 $questions_count++;
             }
 
@@ -692,6 +713,7 @@ class TimestablesController extends Controller
 		$section_id = 0;
 		$data_array[$section_id] = array(
 			'section_id' => $section_id,
+            'background_music' => url('/').'/audios/timestables-bg.mp3',
 			'result_id' => $QuizzesResult->id,
 			'attempt_id' => $QuizzAttempts->id,
 			'time_type' => 'countdown',
@@ -758,7 +780,12 @@ class TimestablesController extends Controller
 			),
 		);
 		
+		$tracks_array = array(url('/').'/audios/timestables-bg.mp3', url('/').'/audios/timestables-bg1.mp3', url('/').'/audios/timestables-bg2.mp3', url('/').'/audios/timestables-bg3.mp3');
+		$user_track = url('/').'/audios/timestables-bg.mp3';
+		
 		$response = array(
+			'tracks_array' => $tracks_array,
+			'user_track' => $user_track,
 			'badges' => array(
 				'Explorer',
 				'Junior',
@@ -791,6 +818,8 @@ class TimestablesController extends Controller
 		$user = apiAuth();
 		
 		ApiCalls::create([
+			'user_id' => $user->id,	
+			'device_id' => $request->input('device_id', 0),	
 			'api_name' => 'trophy_mode_play',
 			'api_data' => json_encode($request->all()),
 			'updated_at' => time(),
@@ -863,13 +892,14 @@ class TimestablesController extends Controller
                 //$to_value = rand($min, $limit);
                 $to_value = ($type == '÷') ? $table_no : $questions_no_dynamic;
 
-
                 $questions_array_list[] = (object)array(
                     'from'     => $from_value,
                     'to'       => $to_value,
                     'type'     => $type,
                     'table_no' => $table_no,
                     'marks'    => $marks,
+                    'game_time' => gameTime('timestables'),
+                    'correct_answer'    => getCorrectTimestables($from_value, $to_value, $type),
                 );
                 $questions_count++;
             }
@@ -919,6 +949,7 @@ class TimestablesController extends Controller
 		$section_id = 0;
 		$data_array[$section_id] = array(
 			'section_id' => $section_id,
+            'background_music' => url('/').'/audios/timestables-bg.mp3',
 			'result_id' => $QuizzesResult->id,
 			'attempt_id' => $QuizzAttempts->id,
 			'time_type' => 'countdown',
@@ -951,6 +982,8 @@ class TimestablesController extends Controller
 		$QuestionsAttemptController = new QuestionsAttemptController();
 		
 		ApiCalls::create([
+			'user_id' => $user->id,	
+			'device_id' => $request->input('device_id', 0),	
 			'api_name' => 'submit_timestables',
 			'api_data' => json_encode($request->all()),
 			'updated_at' => time(),

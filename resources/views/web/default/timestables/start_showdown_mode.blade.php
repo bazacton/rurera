@@ -40,7 +40,7 @@ if( $duration_type == 'total_practice'){
 </audio>
 <div class="content-section">
 
-    <section class="lms-quiz-section1 justify-content-start">
+<section class="lms-quiz-section1 justify-content-start">
 
 
         <div class="container-fluid questions-data-block read-quiz-content"
@@ -332,10 +332,6 @@ if( $duration_type == 'total_practice'){
             $(this).closest('form').find('.editor-fields').val(current_field_value + current_value);
         }
     });
-
-
-
-
     $(document).on('submit', '.question-form', function (e) {
 
         var bypass_validation = $(this).closest('form').attr('data-bypass_validation');

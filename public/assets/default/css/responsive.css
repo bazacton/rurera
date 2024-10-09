@@ -36,6 +36,15 @@ Lms Responsive Style Start
 
     .gallery-sub-header .masonry-grid-gallery {width: 50%; padding-right: 25px;}
     .gallery-sub-header .container > .row > [class*="col-"] {padding-right: 70px;}
+}
+
+@media screen and (min-width: 992px) and (max-width: 1600px) {
+    .navbar-nav .educator-menu {position: relative;}
+    nav.top-navbar .login-btn, nav .register-btn {white-space: nowrap; font-size: 14px !important;}
+    .lms-mega-menu {width: 100%;}
+    .navbar-nav .has-mega-menu:hover .nav-link:after {bottom: -23px;}
+    .about-sub-header .choose-sats .sats-box {width: 24%;}
+    .noticeboard-item > div {flex-wrap: wrap; gap: 10px;}
     body .panel-sidebar,
     .panel-page-section .panel-sidebar {width: 100px; z-index: 1; padding-left: 10px !important; padding-right: 10px !important;}
     .panel-content {padding-left: 110px;}
@@ -111,16 +120,6 @@ Lms Responsive Style Start
         top: -1px;
         bottom: auto;
     }
-}
-
-@media screen and (min-width: 992px) and (max-width: 1600px) {
-    .navbar-nav .educator-menu {position: relative;}
-    nav.top-navbar .login-btn, nav .register-btn {white-space: nowrap; font-size: 14px !important;}
-    .lms-mega-menu {width: 100%;}
-    .navbar-nav .has-mega-menu:hover .nav-link:after {bottom: -23px;}
-    .about-sub-header .choose-sats .sats-box {width: 24%;}
-    .noticeboard-item > div {flex-wrap: wrap; gap: 10px;}
-    /* .dashboard-cards-holder >.row > [class*="col-"] {flex: 0 0 50%; max-width: 50%;} */
     
     .panel-content > .container > .row > [class*="col-"]:first-child {padding-right: 15px;}
     .panel-content > .container > .row > [class*="col-"]:last-child {padding-left: 15px;}
@@ -603,6 +602,7 @@ Lms Responsive Style Start
         transform: translateY(-50%);
     }
     .home-banner #change {white-space: inherit;}
+    .learning-page .learning-content {height: auto;}
 }
 
 @media screen and (min-width: 767px) and (max-width: 1600px) {
@@ -925,7 +925,8 @@ Lms Responsive Style Start
     .read-quiz-content .treasure-stage .horizontal-list {flex-wrap: wrap; gap: 25px; justify-content: center !important;}
     .read-quiz-content .treasure-stage .horizontal-list li {width: auto;}
     .rurera-list-btn {min-width: 120px;}
-    .input-holder, .lms-quiz-section .input-holder{width: 100% !important; margin-top: 5px; margin-bottom: 5px;}
+    .input-holder, .lms-quiz-section .input-holder{width: 100% !important; margin-top: 15px; margin-bottom: 15px;}
+    .question-result-layout .rureraform-element {padding-bottom: 15px;}
     .learning-page.type-vocabulary .question-layout-block {padding-top: 0;}
     body .learning-page.type-vocabulary .left-content {height: auto; min-height: auto;}
     body .radio-buttons .card-radio {width: 31%;}

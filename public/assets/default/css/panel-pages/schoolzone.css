@@ -1,0 +1,23 @@
+/*******************
+School Zone Page | Student Panel Style Start
+Sub Pages Style
+*********************/
+
+.userthumb,
+.student-block {background-color: #fff; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; padding: 5px; margin-bottom: 30px; }
+.userthumb img,
+.student-block img {max-width: 100%; border-radius: 8px; }
+.userthumb .userthumb-text,
+.student-block-text {padding: 25px 10px; position: relative;}
+.userthumb .userthumb-text span,
+.student-block-text span {margin-top: 2px; line-height: normal; color: #999;}
+.student-block-text .user-year-info {color: var(--primary); position: absolute; right: 10px; padding-top: 2px;}
+.student-block-text .user-name {color: #343434; padding-right: 50px; word-wrap: break-word;}
+.student-block-text .student-rank span {display: block; margin-bottom: 10px;}
+.student-rank span img {width: 18px; height: 18px; vertical-align: middle; margin-left: 5px;}
+.student-block-text .student-rank {margin-top: 10px;}
+.student-block-text .student-rank span:last-child {margin-bottom: 0;}
+
+/********************
+School Zone Page | Student Panel Style End
+********************/

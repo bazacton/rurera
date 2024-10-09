@@ -15,12 +15,17 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="section-title mb-30 text-center"><h2>Select Arithmetic Operations </h2></div>
+                <div class="section-title mb-30 text-center"><h2> Arithmetic Operations </h2></div>
             </div>
+          
             <div class="col-12 col-lg-12 mx-auto">
+               
                 <form action="/timestables-practice/freedom-mode/play" method="post">
                     {{ csrf_field() }}
                     <div class="questions-select-option">
+                        <div class="col-12">
+                            <div class="mb-20"><h4>Select Arithmetic Operations</h4></div>
+                        </div>
                         <ul class="mb-20 d-flex align-items-center">
                             <li>
                                 <input  type="radio" value="multiplication_division" id="multi-divi" name="question_type" />
@@ -42,6 +47,10 @@
                                 </label>
                             </li>
                         </ul>
+                        <div class="col-12">
+                            <div class="mb-20"><h4>No of Questions </h4></div>
+                        </div>
+
                         <ul class="mb-20 d-flex align-items-center">
                             <li>
                                 <input checked type="radio" id="ten-questions" value="10" name="no_of_questions" />
@@ -62,6 +71,9 @@
                                 </label>
                             </li>
                         </ul>
+                    </div>
+                    <div class="col-12">
+                        <div class="mb-20"><h4>Select Tables</h4></div>
                     </div>
                     <div class="questions-select-number">
                         <ul class="d-flex justify-content-center flex-wrap mb-30">

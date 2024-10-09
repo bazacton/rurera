@@ -708,7 +708,7 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
 
     //Route::group(['prefix' => 'timestables-practice' , 'middleware' => 'check_is_student'] , function () {
     Route::group(['prefix' => 'timestables-practice'] , function () {
-        Route::get('/' , 'TimestablesController@index');
+        Route::get('/' , 'TimestablesController@index')->middleware('inject.css:path/to/timestables_assignment.css,path/to/extra.css');
         Route::get('/freedom-mode' , 'TimestablesController@freedom_mode');
         Route::get('/powerup-mode' , 'TimestablesController@powerup_mode');
         Route::get('/trophy-mode' , 'TimestablesController@trophy_mode');
