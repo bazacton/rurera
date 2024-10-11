@@ -232,7 +232,12 @@ class TimestablesController extends Controller
 			),
 		);
 		
-		$tracks_array = array(url('/').'/audios/timestables-bg.mp3', url('/').'/audios/timestables-bg1.mp3', url('/').'/audios/timestables-bg2.mp3', url('/').'/audios/timestables-bg3.mp3');
+		$tracks_array = array(
+			url('/').'/audios/timestables-bg.mp3', 
+			url('/').'/audios/bauchamp.mp3', 
+			url('/').'/audios/orange-loops.mp3', 
+			url('/').'/audios/powerful-trap.mp3', 
+		);
 		$user_track = url('/').'/audios/timestables-bg.mp3';
 		
 		$response = array(
@@ -514,7 +519,12 @@ class TimestablesController extends Controller
 			),
 		);
 		
-		$tracks_array = array(url('/').'/audios/timestables-bg.mp3', url('/').'/audios/timestables-bg1.mp3', url('/').'/audios/timestables-bg2.mp3', url('/').'/audios/timestables-bg3.mp3');
+		$tracks_array = array(
+			url('/').'/audios/timestables-bg.mp3', 
+			url('/').'/audios/bauchamp.mp3', 
+			url('/').'/audios/orange-loops.mp3', 
+			url('/').'/audios/powerful-trap.mp3', 
+		);
 		$user_track = url('/').'/audios/timestables-bg.mp3';
 		
 		$response = array(
@@ -780,7 +790,12 @@ class TimestablesController extends Controller
 			),
 		);
 		
-		$tracks_array = array(url('/').'/audios/timestables-bg.mp3', url('/').'/audios/timestables-bg1.mp3', url('/').'/audios/timestables-bg2.mp3', url('/').'/audios/timestables-bg3.mp3');
+		$tracks_array = array(
+			url('/').'/audios/timestables-bg.mp3', 
+			url('/').'/audios/bauchamp.mp3', 
+			url('/').'/audios/orange-loops.mp3', 
+			url('/').'/audios/powerful-trap.mp3', 
+		);
 		$user_track = url('/').'/audios/timestables-bg.mp3';
 		
 		$response = array(

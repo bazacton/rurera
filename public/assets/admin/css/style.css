@@ -1433,3 +1433,48 @@ body .question-step:has(.prev-next-controls) {padding-bottom: 0; }
 #question_preview .prev-next-controls .review-btn {left: 0;}
 #question_preview .question-number-holder .question-number {line-height: normal;}
 .lms-quiz-create .lms-dashboard-card {box-shadow: none;}
+
+/*pages Book List Style Start*/
+.pages-list ul {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+.pages-list ul li {
+    box-shadow: 0 0 3px rgba(0,0,0,0.1);
+    padding: 15px 10px;
+    border-radius: 5px;
+    position: relative;
+    flex: 0 0 32.333%;
+    max-width: 0 0 32.333%;
+}
+.pages-list > ul > li > img {
+    height: 35px;
+    width: 35px;
+    object-fit: contain;
+}
+.pages-list .parent-remove {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: red;
+    border: 1px solid;
+    height: 30px;
+    width: 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    background-color: #ffe9e9;
+}
+.pages-list .parent-remove span {
+    margin: 0 !important;
+}
+.pages-list ul li input[type="text"] {
+    width: 35px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+/*pages Book List Style End*/

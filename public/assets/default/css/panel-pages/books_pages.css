@@ -98,6 +98,20 @@ Sub Pages Style
     .book-library-sub-header .ask-msg {display: none;}
     .lms-books-listing .listing-card .img-holder img {box-shadow: none;}
 }
+
+/*Books Sound Card Style Start*/
+.sound-card {background-color: #e7f5fe; padding: 30px 25px 10px; border-radius: 10px; box-shadow: 0 0 0 2px #fff inset; position: relative;}
+.selective-sound {position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background-color: #fff; box-shadow: 1px 1px 0 2px #333; padding: 3px 10px; line-height: normal; display: block; font-weight: 600; font-size: 22px;}
+.sound-box {display: flex; align-items: center; gap: 10px; margin-bottom: 20px;}
+.sound-box img {margin: 0; width: 20px; height: 20px; filter: invert(33%) sepia(80%) saturate(1010%) hue-rotate(172deg) brightness(92%) contrast(103%);}
+.sound-box .icon-box {height: 35px; width: 35px; border: 2px solid var(--secondary); border-radius: 100%; display: inline-flex; align-items: center; justify-content: center;}
+.sound-list h5 {margin-bottom: 15px;}
+.sound-list ol {display: flex; flex-direction: column; gap: 10px; padding-left: 30px;}
+.sound-list ol li {list-style: decimal;}
+.sound-list {margin-bottom: 25px;}
+.current-sound {font-weight: 600; font-size: 18px;}
+/*Books Sound Card Style End*/
+
 /*****************************
 Books Page | Student Panel Style End
 *****************************/

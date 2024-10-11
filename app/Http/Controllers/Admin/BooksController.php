@@ -12,6 +12,7 @@ use App\Models\QuizzesQuestion;
 use App\Models\Webinar;
 use App\Models\WebinarChapter;
 use App\Models\SubChapters;
+use App\Models\BooksPagesObjects;
 use App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -423,6 +424,7 @@ class BooksController extends Controller
         $data = $request->all();
         $locale = $request->get('locale', getDefaultLocale());
         $book_page_id = $id;
+		$pageObj = BooksPages::findOrFail($book_page_id);
 
         $rules = [
             'book_title' => 'required|max:255',
@@ -430,42 +432,48 @@ class BooksController extends Controller
 
         $field_ids_array = $questions_ids_array = array();
 
+		$sort_order_item = 0;
         if (!empty($data)) {
-            foreach ($data as $field_id => $dataObj) {
-                $field_ids_array[] = $field_id;
+            foreach ($data as $field_id => $objectData) {
+				
+				$objectData = (object) $objectData;
+				
+				$is_new = $objectData->is_new;
+				if( $is_new == 'yes'){
+					$BooksPagesObjects = BooksPagesObjects::create([
+						'book_id'	=> $pageObj->book_id,
+						'page_id'	=> $pageObj->id,
+						'item_type' 		=> $objectData->field_type,
+						'item_slug' 		=> $objectData->item_type,
+						'item_title' 		=> isset( $objectData->item_title )? $objectData->item_title : '',
+						'item_path' 		=> $objectData->item_path,
+						'field_style' 		=> $objectData->field_style,
+						'data_values' 		=> isset( $objectData->data_values )? json_encode($objectData->data_values) : '',
+						'status'			=> 'active',
+						'sort_order' 		=> $sort_order_item,
+						'created_by'		=> $user->id,
+						'created_at'		=> time(),
+					]);
+					$objects_array[] = $BooksPagesObjects->id;
+				}else{
+					$objects_array[] = $objectData->unique_id;
+					$BooksPagesObjects = BooksPagesObjects::find($objectData->unique_id)->update([
+						'book_id'	=> $pageObj->book_id,
+						'page_id'	=> $pageObj->id,
+						'item_type' 		=> $objectData->field_type,
+						'item_slug' 		=> $objectData->item_type,
+						'item_title' 		=> isset( $objectData->item_title )? $objectData->item_title : '',
+						'item_path' 		=> $objectData->item_path,
+						'field_style' 		=> $objectData->field_style,
+						'data_values' 		=> isset( $objectData->data_values )? json_encode($objectData->data_values) : '',
+						'status'			=> 'active',
+						'sort_order' 		=> $sort_order_item,
+						'created_by'		=> $user->id,
+						'created_at'		=> time(),
+					]);
+				}
 
-                $book_page_id = isset($dataObj['book_page_id']) ? $dataObj['book_page_id'] : '';
-                $field_type = isset($dataObj['field_type']) ? $dataObj['field_type'] : '';
-                $data_value = isset($dataObj['data_values']) ? $dataObj['data_values'] : array();
-                $bookPage = BooksPages::findOrFail($book_page_id);
-                $is_new = isset($dataObj['is_new']) ? $dataObj['is_new'] : 'yes';
-                $data_values = isset($dataObj['data_values']) ? stripslashes(json_encode($data_value,
-                    JSON_UNESCAPED_SLASHES)) : '';
-
-
-                $data_values = str_replace('""', '"', $data_values);
-
-                $update_array = array(
-                    'book_id'     => $bookPage->book_id,
-                    'page_id'     => isset($dataObj['book_page_id']) ? $dataObj['book_page_id'] : '',
-                    'info_title'  => isset($data_value['infobox_title']) ? $data_value['infobox_title'] : '',
-                    'info_type'   => isset($dataObj['field_type']) ? $dataObj['field_type'] : '',
-                    'data_values' => json_encode($data_value),
-                    'info_style'  => isset($dataObj['field_style']) ? $dataObj['field_style'] : '',
-                    'created_by'  => $user->id,
-                    'created_at'  => time(),
-                );
-
-
-                if ($is_new == 'yes') {
-                    $fieldObj = BooksPagesInfoLinks::create($update_array);
-                    $field_ids_array[] = $fieldObj->id;
-                } else {
-                    $fieldObj = BooksPagesInfoLinks::findOrFail($field_id);
-                    $fieldObj->update($update_array);
-                }
-
-                if ($field_type == 'quiz') {
+                /*if ($field_type == 'quiz') {
 
                     $data_values = json_decode($data_values);
                     $question_ids = isset($data_values->questions_ids) ? explode(',', $data_values->questions_ids) : array();
@@ -487,12 +495,13 @@ class BooksController extends Controller
                             $questions_ids_array[] = $BooksPagesQuestions->id;
                         }
                     }
-                }
+                }*/
+				
+				$sort_order_item++;
             }
         }
-
-        $book = BooksPagesInfoLinks::whereNotIn('id', $field_ids_array)->where('page_id', $book_page_id)->delete();
-        $book = BooksPagesQuestions::whereNotIn('id', $questions_ids_array)->where('page_id', $book_page_id)->delete();
+		
+		BooksPagesObjects::where('book_id', $pageObj->book_id)->where('page_id', $pageObj->id)->whereNotIn('id', $objects_array)->update(['status' => 'archived']);
 
         //$field_ids_array
         return response()->json([

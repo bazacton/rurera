@@ -678,6 +678,10 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
 		Route::get('/subjects_by_category', 'NationalCurriculumController@subjects_by_category');
         Route::get('/subjects_by_category_frontend', 'NationalCurriculumController@subjects_by_category_frontend');
     });
+	
+    Route::group(['prefix' => 'national-curriculum'] , function () {
+		Route::get('/subjects_by_category', 'NationalCurriculumController@subjects_by_category');
+    });
 
     Route::group(['prefix' => 'weekly-planner_bk'] , function () {
         Route::get('/' , 'WeeklyPlannerController@index');

@@ -119,13 +119,50 @@
     background-color: #ccc;
     border-radius: 100%;
 }
-
-
-.book-dropzone {
-    background-size: cover !important;
-    position: relative;
+.book-pages-navs {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 10px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    align-items: center;
 }
-
+.book-pages-navs .prev-page, .book-pages-navs .next-page {
+    border: 1px solid #ddd;
+    padding: 10px 20px;
+    display: inline-block;
+    line-height: normal;
+    border-radius: 5px;
+}
+.book-pages-navs .generate {
+    margin-right: auto;
+}
+body .editor-zone:has(.editor-controls-holder),
+body .editor-zone:has(.field-options.hide) {
+    padding-left: 0;
+}
+body .editor-zone:has(.field-options) {
+    padding-left: 369px;
+}
+.book-dropzone {
+    position: relative;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    /*width: 760px;*/
+	height:100%;
+    box-sizing: border-box;
+    background-size: cover !important;
+    overflow: hidden;
+}
+body .editor-controls-holder {
+    height: calc(100% - 60px);
+}
+.editor-zone .generate {
+    margin-top: 30px;
+}
+.editor-zone > br {
+    display: none;
+}
 .book-dropzone .stage-shapes{
     height:30px;
     width:140px;
@@ -166,11 +203,12 @@
 
 .editor-zone .field-options {
     position: absolute;
-    top: 0;
-    right: -430px;
-    padding: 10px;
-    background: #f1f1f1;
-    border: 1px solid #efefef;
-    height: 100%;
-    width: 408px;
+    left: 0;
+    right: auto;
+    min-width: 340px;
+    max-width: 340px;
+    height: calc(100% - 130px);
+    background-color: #f2f2f2;
+    padding: 30px 30px;
+    border-radius: 5px;
 }

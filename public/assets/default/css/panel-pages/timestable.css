@@ -502,6 +502,74 @@ a.db-back-btn {font-weight: 700; display: inline-flex; align-items: center; posi
 .panel-content .school-zone-data.leaderboard-data .leaderboard>li.lms-performace-des .sr-no { width: 25%; }
 .panel-content .school-zone-data.leaderboard-data .leaderboard>li.lms-performace-des .sr-no span { font-size: 16px; font-weight: 400; }
 /* Timestable Showdown Mode style End */
+/* Preferences Form Style Start */
+.preferences h5 {
+    margin-bottom: 15px;
+}
+.preferences h6 {
+    color: #999;
+    border-bottom: 1px solid #ccc;
+    padding: 0 0 8px;
+}
+.preferences-switch-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+.switch-lable {
+    font-size: 14px;
+    font-weight: 500;
+}
+.preferences-select select {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    color: #999;
+    height: 35px;
+    padding: 6px 10px;
+    text-transform: uppercase;
+    border-bottom-width: 3px;
+}
+.preferences-select {
+    margin: 0 0 15px;
+}
+.preferences-select select option {
+    color: #333;
+}
+.select-language {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.language-box {
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+.language-box input[type=radio] {
+    position: absolute;
+    height: 0;
+    width: 0;
+    opacity: 0;
+}
+.language-box label {
+    margin: 0;
+    box-shadow: 0 0 0 1px #ddd;
+    min-height: 80px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    font-size: 14px;
+    cursor: pointer;
+}
+.language-box input[type=radio]:checked + label {
+    box-shadow: 0 0 0 1px var(--primary);
+    background-color: rgb(39 50 94 / 2%);
+    color: var(--primary);
+}
+/* Preferences Form Style End */
 .hide {
     display: none !important;
 }

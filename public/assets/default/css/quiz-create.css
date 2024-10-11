@@ -91,6 +91,17 @@ div.rureraform-element-checkbox-container div.rureraform-element-cover {display:
 /* Image Draggable Style End */
 
 /* Image Static Style Start */
+/*Image Sizes Style Start*/
+.image-large img {max-width: 300px;	min-width: 300px; background-color: #fcfcfc;}
+.image-medium img {max-width: 200px;min-width: 200px;background-color: #fcfcfc;}
+.image-small img {max-width: 100px;	min-width: 100px; background-color: #fcfcfc;}
+/*Image Sizes Style End*/
+
+/*Image Alignments Style Start*/
+.image-left {text-align: left;display: flex;align-items: flex-start;justify-content: flex-start;}
+.image-right {text-align: right;display: flex;align-items: flex-end;justify-content: flex-end;}
+.image-center {text-align: center;display: flex;align-items: center;justify-content: center;}
+/*Image Alignments Style End*/
 /* Image Static Style End */
 
 /* Essay Textarea Field Style Start */
@@ -136,7 +147,7 @@ div.rureraform-element-checkbox-container div.rureraform-element-cover {display:
 /* Multi Response List Style Start */
 .form-box { width: calc(100% - 120px); position: relative;}
 .form-field input[type="checkbox"] {position: absolute; left: 0; top: 0; opacity: 0;}
-.form-field label {background-color: #fff; border: 2px solid #ddd; border-bottom-width: 4px; border-radius: 8px; position: relative; cursor: pointer; padding: 15px; width: 100%; margin-bottom: 0; -webkit-transition: all 0.4s ease-in-out; transition: all 0.4s ease-in-out; line-height: normal;}
+.form-field label {background-color: #fff; border: 2px solid #ddd; border-bottom-width: 4px; border-radius: 8px; position: relative; cursor: auto; padding: 15px; width: 100%; margin-bottom: 0; -webkit-transition: all 0.4s ease-in-out; transition: all 0.4s ease-in-out; line-height: normal;}
 .form-field input[type="checkbox"] ~ label {min-height: 52px; text-align: left;}
 .form-field input[type="checkbox"]:checked ~ label:after {opacity: 1; -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); }
 .form-field input[type="checkbox"]:checked ~ label,
@@ -170,7 +181,7 @@ div.rureraform-element-checkbox-container div.rureraform-element-cover {display:
 
 /* Sortable List Style Start */
 .lms-sorting-fields span {line-height: normal; display: block; font-size: 15px;}
-.lms-sorting-fields .field-holder {border: 2px solid #ddd; border-radius: 8px; border-bottom-width: 4px; padding:16px 15px; cursor: all-scroll; position: relative; height: auto; min-width: 130px; text-align: left;}
+.lms-sorting-fields .field-holder {background-color: #fff; border: 2px solid #ddd; border-radius: 8px; border-bottom-width: 4px; padding:16px 15px; cursor: all-scroll; position: relative; height: auto; min-width: 130px; text-align: left;}
 .lms-sorting-fields.multi-lines {flex-direction: column; align-items: flex-start; margin-left: 0; margin-right: 0;}
 .lms-sorting-fields.multi-lines .field-holder {margin: 0 0 10px; width: 100%; visibility: visible !important;}
 .lms-sorting-fields.multi-lines .field-holder:last-child {margin-bottom: 0;}
@@ -196,10 +207,7 @@ div.rureraform-element-checkbox-container div.rureraform-element-cover {display:
 .spells-quiz-from .question-label {margin-bottom: 20px;padding: 0 15px 10px;}
 .spells-quiz-from .question-label span {text-align: center; line-height: 31px;}
 .quiz-group .rureraform-column-label {margin-bottom: 15px;}
-.quiz-group .rureraform-column-label .rureraform-label {
-    margin: 0;
-	font-weight: 600;
-}
+.quiz-group .rureraform-column-label .rureraform-label {margin: 0; font-weight: 600;}
 .quiz-group .rureraform-column-label:has(label:empty) {display: none;}
 /* Question Label Style End */
 
@@ -219,6 +227,11 @@ span.Selectable.marking-selected {background: #fff716; cursor: pointer;}
 /* Highlight Word/Sentence Style End */
 
 /* Insert Into Sentence Style Start */
+.insert-options {
+    width: 100%;
+    display: inline-block;
+    margin: 0 0 30px;
+}
 /* Insert Into Sentence Style End */
 
 /* Match Style Start */
@@ -253,7 +266,7 @@ Lms Table Style
 Lms Table Style End
 **********************************/
 /*Field row style start*/
-.rurera-in-row {display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-start;}
+.rurera-in-row {display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-start; justify-content: flex-start;}
 .rurera-in-row .rurera-in-row {width: 100%;}
 .rurera-in-row .field-holder,
 .rurera-in-row .form-field {width: 31.555%;}
@@ -261,71 +274,22 @@ Lms Table Style End
 .spells-quiz-from .rurera-in-row .field-holder,
 .spells-quiz-from .rurera-in-row .form-field {width: 20%;}
 /*Field row style end*/
+
 /*Field col style start*/
 .rurera-in-cols {gap: 14px; display: flex; flex-wrap: wrap; flex-direction: column; }
 .rureraform-element .rureraform-col .rureraform-element {padding: 0;}
 /*Field col style end*/
 
-
 /***************************** 
 Questions Builder style End 
 ******************************/
 
-.lms-element-properties{width:100%;}
-.lms-quiz-create .rureraform, .rureraform-admin {font-size: 14px; font-family: arial;}
-.lms-quiz-create #uap-body .rureraform-admin {margin: 0;}
-.lms-quiz-create .rureraform-static {position: static !important; margin: 0; height: 100%; overflow: hidden}
-.lms-quiz-create .rureraform-tooltip-content {display: none;}
-.lms-quiz-create .rureraform-fa-noicon:before {content: "-";}
-.lms-quiz-create .rureraform-half {width: 50%;}
-.lms-quiz-create .rureraform-third {width: 33.3333% !important;}
-.lms-quiz-create .lms-element-properties .rureraform-third {width: 100% !important;}
-.lms-quiz-create .rureraform-240 {width: 240px;	min-width: 240px;}
-.lms-quiz-create .rureraform-red {color: #c00000;}
-.lms-quiz-create .rureraform-number {width: 100px !important; text-align: right;}
-.lms-quiz-create .rureraform-number input[type="text"]{text-align: right;}
-
-/* Dialog Popup - begin */
-.lms-quiz-create .rureraform-dialog-overlay {position: fixed !important; z-index: 99988; top: 0; left: 0; height: 100%;	width: 100%; background-position: center center; background: rgba(0,0,0,0.8); display: none;}
-.lms-quiz-create .rureraform-dialog {position: fixed !important; box-sizing: border-box; z-index: 99989; top: -3000px; left: 50%; width: 90%; height: 600px; background: #ffffff; transform:translate(-50%, -50%) scale(0); -webkit-transform:translate(-50%, -50%) scale(0); box-shadow: 3px 3px 20px -5px #000000; overflow: hidden; transition-property: transform; transition-timing-function: ease-in-out; transition-duration: 300ms;}
-.lms-quiz-create .rureraform-dialog * {box-sizing: border-box;}
-.lms-quiz-create .rureraform-dialog-inner {height: 600px; position: relative; box-sizing: border-box;}
-.lms-quiz-create .rureraform-dialog-title {box-sizing: border-box; height: 52px; line-height: 52px; padding: 0 0 0 20px; text-align: left; border-bottom: 1px solid #f0f0f0; background: #f8f8f8;}
-.lms-quiz-create .rureraform-dialog-title h3 {font-weight: normal; font-size: 20px; font-family: arial;	color: #202020; letter-spacing: 0;	text-transform: none; margin: 0 !important;	padding: 0 !important; line-height: inherit;}
-.lms-quiz-create .rureraform-dialog-title h3 i {margin-right: 0.5em;line-height: 52px;vertical-align: top;}
-.lms-quiz-create .rureraform-dialog-title h3 label {cursor: default;cursor: default;line-height: 52px;display: inline-block;vertical-align: top;}
-.lms-quiz-create .rureraform-dialog-title a {float: right; font-size: 20px; width: 52px; height: 52px; color: #202020; text-align: center; text-shadow: none !important; box-shadow: none !important; outline: none !important; border: none !important; margin: 0 0 0 20px !important; padding: 0 !important; transition-property: all; transition-timing-function: ease-in-out; transition-duration: 300ms; display: inline-flex; align-items: center; justify-content: center;}
-.lms-quiz-create .rureraform-dialog-title a:hover {color: #26B99A;}
-.lms-quiz-create .rureraform-dialog-content {height: 496px;	overflow-x: hidden;	overflow-y: auto;	background: #ffffff;position: relative;font-size: 15px;line-height: 1.475;}
-.lms-quiz-create .rureraform-dialog-content::-webkit-scrollbar {width: 5px;}
-.lms-quiz-create .rureraform-dialog-content::-webkit-scrollbar-track {box-shadow: inset 0 0 6px rgba(0,0,0,0.1);}
-.lms-quiz-create .rureraform-dialog-content::-webkit-scrollbar-thumb {background-color: #26B99A;}
-.lms-quiz-create .rureraform-dialog-content hr {margin: 0 30px;}
-.lms-quiz-create .rureraform-dialog-loading {position: absolute;background: #fff;top: 52px;left: 0;z-index: 99982; width: 100%;bottom: 0;right: 0;}
-.lms-quiz-create .rureraform-dialog-loading i {position: absolute;z-index: 99983;top: 50%;left: 50%;font-size: 24px;margin-top: -12px;margin-left: -12px;}
-.lms-quiz-create .rureraform-dialog-content-html {padding: 30px 50px;}
-.lms-quiz-create .rureraform-dialog-message {text-align: center;}
-.lms-quiz-create .rureraform-dialog-buttons {box-sizing: border-box; position: absolute; left: 0; right: 0; bottom: 0; height: auto; line-height: 48px; text-align: center; border-top: 1px solid #f0f0f0; padding: 12px 0;}
-.lms-quiz-create .rureraform-dialog-button {display: inline-block; line-height: 40px; height: 40px; min-width: 140px; margin: 0 5px 0 5px; font-size: 15px; font-weight: 400; text-align: center;	white-space: nowrap; vertical-align: middle; -ms-touch-action: manipulation; touch-action: manipulation; cursor: pointer; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;	user-select: none; background-image: none; border: 1px solid transparent; border-radius: 3px; transition-duration: .3s; -webkit-transition-duration: .3s; color: #fff; background: #26B99A; border: 1px solid #169F85; text-decoration: none; outline: none;	box-shadow: none; box-sizing: border-box; padding: 0 1em;}
-.lms-quiz-create .rureraform-dialog-button-cancel {color: #222; background: #d0d0d0; border: 1px solid #c0c0c0;}
-.lms-quiz-create .rureraform-dialog-button-disabled {opacity: 0.3; cursor: default !important;}
-.lms-quiz-create .rureraform-dialog-button:active {background-image: none; outline: 0; -webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,.125); box-shadow: inset 0 3px 5px rgba(0,0,0,.125); text-decoration: none; color: #fff; background: #169F85; background-image: none; outline: none; box-shadow: none; transform:translateY(2px);	-webkit-transform:translateY(2px);}
-.lms-quiz-create .rureraform-dialog-button:hover, .rureraform-dialog-button:focus {text-decoration: none; color: #fff;	background: #169F85; background-image: none; outline: none; box-shadow: none;}
-.lms-quiz-create .rureraform-dialog-button-cancel:active, .rureraform-dialog-button-cancel:hover, .rureraform-dialog-button-cancel:focus {color: #222;	background: #c0c0c0;}
-.lms-quiz-create .rureraform-dialog-button label {line-height: 38px; display: inline-block;	margin-left: 8px; vertical-align: top; margin-bottom: 0; font-weight: 400;}
-.lms-quiz-create .rureraform-dialog-button i {line-height: 38px; vertical-align: top;}
-/* Dialog Popup - end */
-
-/* Properies Popup begin */
-.lms-quiz-create .rureraform-admin-popup-overlay {position: fixed !important; z-index: 99980; top: 0;	left: 0; height: 100%; width: 100%; background-position: center center; background: rgba(0,0,0,0.8);	display: none;}
-.lms-quiz-create #rureraform-stylemanager-overlay {z-index: 99982;}
-.lms-quiz-create .rureraform-admin-create-overlay {position: fixed !important; z-index: 1001; top: 0; left: 0; bottom: 0;	right: 0;	height: 100%; width: 100%; background-position: center center; background: rgba(241,241,241,0.8); display: none; display: block;}
-.lms-quiz-create .rureraform-admin-create {position: fixed !important; box-sizing: border-box; z-index: 99981; top: 50%; left: 50%;	width: 480px; height: 190px; background: #ffffff; transform:translate(-50%, -50%);	-webkit-transform:translate(-50%, -50%); box-shadow: 3px 3px 20px -5px #000000; overflow: hidden; transition-property: transform; transition-timing-function: ease-in-out;	transition-duration: 300ms;}
-.lms-quiz-create .rureraform-admin-create-content {height: 200px; padding: 32px 32px; overflow-x: hidden; overflow-y: hidden; background: #ffffff;	position: relative;}
-.lms-quiz-create .rureraform-admin-create-content input, .rureraform-admin-create-content input:focus, 
-.rureraform-admin-create-content input:active {font-size: 16px;	font-weight: normal; border-radius: 3px; padding: 0 1.6em; line-height: 52px; border: 1px solid #CCC; border-spacing: 0; font-family: arial, verdana; box-sizing: border-box; box-shadow: none; margin: 0;	background: #FFF; height: 52px; min-width: 0; max-width: 100%; outline: none; width: 100%; text-align: center;}
+/****************************************** 
+Questions Builder Right Sidebar Style Start
+******************************************/
+/*Admin Popup Style Start*/
+.lms-quiz-create .rureraform-admin-popup-overlay {position: fixed !important; z-index: 99980; top: 0;	left: 0; height: 100%; width: 100%; background-position: center center; background: rgba(0,0,0,0.8);display: none;}
 .lms-quiz-create .rureraform-admin-popup {box-sizing: border-box; z-index: 99981; width: 100%; height: auto; background: #ffffff; display: none; overflow: hidden;}
-.lms-quiz-create #rureraform-stylemanager {z-index: 99983;}
 .lms-quiz-create .rureraform-admin-popup * {box-sizing: border-box;}
 .lms-quiz-create .rureraform-admin-popup-inner {height: auto; position: relative; box-sizing: border-box; border: 1px solid #ccc;}
 .lms-quiz-create .rureraform-admin-popup-title {box-sizing: border-box;	height: 52px; line-height: 52px; padding: 0 0 0 20px; text-align: left;	border-bottom: 1px solid #f0f0f0; background: #f8f8f8;}
@@ -348,15 +312,39 @@ Questions Builder style End
 .lms-quiz-create .rureraform-admin-popup-buttons {box-sizing: border-box; position: relative; left: 0; right: 0; bottom: 0; height: auto; line-height: 48px; padding-right: 8px; text-align: center; border-top: 1px solid #ccc; padding-top: 15px; background-color: #f7f7f7; padding-bottom: 15px;}
 .lms-quiz-create .rureraform-admin-popup-buttons .rureraform-admin-button label {margin-left: 0;}
 .lms-quiz-create .rureraform-admin-popup-content .rureraform-tabs {margin-left: -20px; margin-right: -20px;}
+/*Admin Popup Style Start*/
+
+/* Admin Popup Tabs Style Start */
+.rureraform-tabs {border-bottom: 1px solid #ccc;margin: 0;padding-top: 9px;padding-bottom: 0;padding-left: 20px;line-height: inherit;display: block !important;}
+.rureraform-tabs:after {content: "";display: table;	clear: both;}
+.rureraform-tab {float: left;border: 1px solid #ccc;border-bottom: none;margin-left: .5em;	padding: 0.3em 0.9em;border-radius: 5px 5px 0 0;font-size: 15px;font-weight: 700;line-height: 24px;background: #f8f8f8;color: #555;text-decoration: none !important;outline: none !important;box-shadow: none !important;transition-property: background;	transition-duration: .3s;-webkit-transition-duration: .3s;}
+.rureraform-tab:focus, .rureraform-tab:focus:active, .rureraform-tab:hover {background: #ffffff;color: #555;}
+.rureraform-tabs-main .rureraform-tab:focus, .rureraform-tabs-main .rureraform-tab:focus:active, 
+.rureraform-tabs-main .rureraform-tab:hover {background: #f1f1f1;color: #555;}
+.rureraform-tab-active, .rureraform-tab-active:focus, .rureraform-tab-active:focus:active, 
+.rureraform-tab-active:hover {border-bottom: 1px solid #ffffff;background: #ffffff;color: #555;}
+.rureraform-tabs-main .rureraform-tab-active, .rureraform-tabs-main .rureraform-tab-active:focus, 
+.rureraform-tabs-main .rureraform-tab-active:focus:active, 
+.rureraform-tabs-main .rureraform-tab-active:hover {border-bottom: 1px solid #f1f1f1;background: #f1f1f1;color: #555;}
+.rureraform-tab-active {margin-bottom: -1px;color: #444;}
+.rureraform-tab-active, .rureraform-tab:focus:active {box-shadow: none;}
+.rureraform-tab-content {display: none;position: relative;}
+/* Admin Popup Tabs Style End */
+/* Admin Popup properties Item Style Start */
 .lms-quiz-create .rureraform-properties-item {display: block; margin: 20px 0; width: 100%;}
-.lms-quiz-create .rureraform-properties-noitem {display: table;	margin: 20px 0;	width: 100%;}
+.lms-quiz-create .rureraform-properties-item .field-options {padding: 0;}
+.lms-quiz-create .rureraform-properties-item .field-options .text-field-options {padding: 10px;}
+.lms-quiz-create .rureraform-properties-item .quiz-form-control {margin-bottom: 10px;}
+.lms-quiz-create .rureraform-properties-item .quiz-form-control input[type=radio] {margin: 0 0 10px;}
+.lms-quiz-create .rureraform-properties-item .quiz-form-control label {width: 100%;}
+.lms-quiz-create .rureraform-properties-item .quiz-form-control input[type=radio]:checked + label input[type="text"] {border-color: green;}
 .lms-quiz-create .rureraform-properties-label {display: inline-block; font-size: 15px; /* vertical-align: top; */ padding: 0 8px 8px 0; min-width: auto;}
 .lms-quiz-create #rureraform-tab-style .rureraform-properties-label {min-width: auto;}
 .lms-quiz-create .rureraform-properties-label label {font-weight: 400; margin-bottom: 0;}
 .lms-quiz-create .rureraform-properties-tooltip {display: inline-block;	font-size: 18px;width: 2em;	min-width: 2em;	text-align: left; vertical-align: middle;}
-.lms-quiz-create .rureraform-tooltip {font-size: 14px !important; line-height: 1.3 !important; z-index: 99999 !important;}
-.lms-quiz-create .rureraform-tooltip pre {margin-bottom: 0 !important;}
-.lms-quiz-create div.rureraform-properties-line {display: table; vertical-align: top; position: relative; margin-bottom: 10px; padding-left: 0 !important;}
+.lms-quiz-create .rureraform-tooltip-content {display: none;}
+/* Admin Popup properties Item Style End */
+/* Admin Popup properties Content Style Start */
 .lms-quiz-create .rureraform-properties-content>div.rureraform-properties-line:last-of-type {margin-bottom: 0;}
 .lms-quiz-create .rureraform-properties-content,
 .lms-quiz-create .rureraform-properties-group {width: 100%; vertical-align: top; font-size: 14px;}
@@ -617,169 +605,11 @@ Questions Builder style End
 .rureraform-properties-attachment-table>div span:hover {color: #169F85;}
 .rureraform-properties-attachment-table>div input[type='text'], .rureraform-properties-attachment-table>div select {font-size: 14px !important;	padding: 0.6em 0.6em;}
 .rureraform-properties-attachment-table div.rureraform-media-id input[type='text'] {padding-right: 40px;}
-/* Properies Popup - end */
+/* Admin Popup properties Content Style End */
 
-/* Tabs - begin */
-.rureraform-tabs {border-bottom: 1px solid #ccc;margin: 0;padding-top: 9px;padding-bottom: 0;padding-left: 20px;line-height: inherit;display: block !important;}
-.rureraform-tabs:after {content: "";display: table;	clear: both;}
-.rureraform-tab {float: left;border: 1px solid #ccc;border-bottom: none;margin-left: .5em;	padding: 0.3em 0.9em;border-radius: 5px 5px 0 0;font-size: 15px;font-weight: 700;line-height: 24px;background: #f8f8f8;color: #555;text-decoration: none !important;outline: none !important;box-shadow: none !important;transition-property: background;	transition-duration: .3s;-webkit-transition-duration: .3s;}
-.rureraform-tab:focus, .rureraform-tab:focus:active, .rureraform-tab:hover {background: #ffffff;color: #555;}
-.rureraform-tabs-main .rureraform-tab:focus, .rureraform-tabs-main .rureraform-tab:focus:active, 
-.rureraform-tabs-main .rureraform-tab:hover {background: #f1f1f1;color: #555;}
-.rureraform-tab-active, .rureraform-tab-active:focus, .rureraform-tab-active:focus:active, 
-.rureraform-tab-active:hover {border-bottom: 1px solid #ffffff;background: #ffffff;color: #555;}
-.rureraform-tabs-main .rureraform-tab-active, .rureraform-tabs-main .rureraform-tab-active:focus, 
-.rureraform-tabs-main .rureraform-tab-active:focus:active, 
-.rureraform-tabs-main .rureraform-tab-active:hover {border-bottom: 1px solid #f1f1f1;background: #f1f1f1;color: #555;}
-.rureraform-tab-active {margin-bottom: -1px;color: #444;}
-.rureraform-tab-active, .rureraform-tab:focus:active {box-shadow: none;}
-.rureraform-tab-content {display: none;position: relative;}
-/* Tabs - end */
-
-.rureraform-badge {display: inline-block; padding: 0px 5px; margin: 0 0.5em;font-size: 11px;font-family: arial;	text-transform: uppercase;line-height: 1.6;	color: #FFFFFF;}
-.rureraform-badge-danger {background-color: #C02020;}
-.rureraform-badge-info {background-color: #5DB0BF;}
-.rureraform-badge-success {background-color: #208020;}
-#rureraform-import-form, #rureraform-import-style-form {display: none;}
-#rureraform-import-style-iframe {display: none;}
-#rureraform-preview-overlay {z-index: 100000;}
-#rureraform-preview {z-index: 100001;transition-property: transform, width;	transition-timing-function: ease-in-out;transition-duration: 300ms;}
-#rureraform-preview .rureraform-admin-popup-content {overflow-y: hidden;}
-#rureraform-preview-iframe {width: 100%;border: none;margin: 0;	display: block !important;}
-.rureraform-using-page li {margin-bottom: 10px;}
-.rureraform-error {background: #dd3d36 !important;	color: #FFF !important;}
-.rureraform-error a, .rureraform-error-plugins-list a {color: #FFF !important;	text-decoration: underline;}
-@-webkit-keyframes rureraform-error-animated {
-	0%, 50%, 100% {opacity: 1;}
-	25%, 75% {opacity: 0.5;}
-}
-@keyframes rureraform-error-animated {
-	0%, 50%, 100% {opacity: 1;}
-	25%, 75% {opacity: 0.5;}
-}
-.rureraform-error-animated {
-	-webkit-animation-duration: 3s;
-	animation-duration: 3s;
-	-webkit-animation-fill-mode: forwards;
-	animation-fill-mode: forwards;
-	-webkit-animation-name: rureraform-error-animated;
-	animation-name: rureraform-error-animated;
-	animation-iteration-count: 100;
-	animation-timing-function: ease-out;
-}
-
-/* Gutenberg Blocks - begin */
-.editor-block-list-item-rureraform-form .block-editor-block-icon {background: url(images/icon.png) 0 0 no-repeat;background-size: contain;}
-.rureraform-block-form {display: flex;flex-direction: row;padding: 20px;border: 2px dashed green;border-radius: 8px;}
-.rureraform-block-form-label-icon {display: flex;vertical-align: top;cursor: default;line-height: 36px;height: 36px;width: 40px;background: url(images/icon.png) 0 0 no-repeat;	background-size: contain;}
-.rureraform-block-form-label {vertical-align: top;line-height: 32px;display: flex;margin-top: 4px;font-size: 14px;margin: 4px 8px 0 8px;white-space: nowrap;}
-select.rureraform-block-form-value {vertical-align: top;line-height: 36px !important;display: flex;	width: 100%;font-size: 14px !important;height: 36px;}
-/* Gutenberg Blocks - end */
-
-/* Field Analytics - begin */
-.rureraform-field-analytics-noform {text-align: center;	margin-top: 60px;}
-.rureraform-field-analytics-columns>div {float: left;box-sizing: border-box;width: 49%;	padding: 10px;}
-.rureraform-field-analytics-chart-box {margin-bottom: 32px;}
-/* Field Analytics - end */
-
-/* Get Started - begin */
-.rureraform-gettingstarted-overlay {position: fixed; z-index: 1000000; top: 0px; left: 0px;	right: 0px;	bottom: 0px;height: 100%;width: 100%;background-position: center center;background: rgba(0,0,0,0.9);display: none;}
-.rureraform-gettingstarted-highlight {display: block;position: relative;z-index: 1000001;overflow: visible;}
-.rureraform-gettingstarted-highlight::after {content: ' '; position: absolute;z-index: 1000002;top: 0px;left: 0px;right: 0px;bottom: 0px;height: 100%;width: 100%;}
-.rureraform-gettingstarted-bubble {box-sizing: border-box;position: absolute;z-index: 1000003;line-height: 1.4;	text-align: center !important;display: none;}
-.rureraform-gettingstarted-bubble p {font-size: 18px;font-weight: 100;font-family: arial;color: #ffffff;padding: 0;margin: 0;text-align: left;	text-shadow: 1px 1px 2px rgba(0,0,0,0.8);}
-.rureraform-gettingstarted-bubble-bottom-left {background: transparent url(images/arrow-bottom-left.png) 0px 0px no-repeat;	padding: 50px 0 0 90px;left: 0;}
-.rureraform-gettingstarted-bubble-bottom-right {background: transparent url(images/arrow-bottom-right.png) 100% 0px no-repeat;padding: 50px 90px 0 0;right: 0;}
-.rureraform-gettingstarted-bubble-left {background: transparent url(images/arrow-left.png) 0px 0px no-repeat;padding: 30px 0 0 120px;left: 0;}
-.rureraform-gettingstarted-bubble span {font-size: 18px; font-weight: 100;font-family: arial;color: #ffffff;cursor: pointer;display: inline-block;	padding: 8px 30px;line-height: 1.4;	border: 2px solid #ffffff;border-radius: 5px;margin-top: 10px;transition-property: background, color;transition-duration: 0.3s;text-shadow: none;}
-.rureraform-gettingstarted-bubble span:hover {background: #ffffff;	color: #000000;text-shadow: none;}
-.rureraform-signature-view {background: transparent url(images/builder-bg-light-2.png) 0 0 repeat;max-width: 100%;}
-.rureraform-admin .ui-slider { position: relative; text-align: left; border-radius: 4px;}
-.rureraform-admin .ui-slider .ui-slider-handle { position: absolute; z-index: 2; width: 1.2em; height: 1.2em; cursor: default; border-radius: 4px;}
-.rureraform-admin .ui-slider .ui-slider-range { position: absolute; z-index: 1; font-size: .7em; display: block; border: 0; background-position: 0 0; }
-.rureraform-admin .ui-slider-horizontal { height: .8em; }
-.rureraform-admin .ui-slider-horizontal .ui-slider-handle { top: -.3em; margin-left: -.6em; }
-.rureraform-admin .ui-slider-horizontal .ui-slider-range { top: 0; height: 100%; }
-.rureraform-admin .ui-slider-horizontal .ui-slider-range-min { left: 0; }
-.rureraform-admin .ui-slider-horizontal .ui-slider-range-max { right: 0; }
-.rureraform-admin .ui-slider-vertical { width: .8em; height: 100px; }
-.rureraform-admin .ui-slider-vertical .ui-slider-handle { left: -.3em; margin-left: 0; margin-bottom: -.6em; }
-.rureraform-admin .ui-slider-vertical .ui-slider-range { left: 0; width: 100%; }
-.rureraform-admin .ui-slider-vertical .ui-slider-range-min { bottom: 0; }
-.rureraform-admin .ui-slider-vertical .ui-slider-range-max { top: 0; }
-.rureraform-number-icon:before {content: "42";font-size: 100%;font-family: verdana;}
-.rureraform-numspinner-minus,
-.rureraform-numspinner-plus {cursor: pointer;}
-.rureraform-numspinner-minus:before,
-.rureraform-numspinner-plus:before {font-size: 12px;}
-.rureraform-tile-icon:before {display: inline-block;content: "tile";font-size: 70%;font-family: verdana;border: 1px solid #444;border-radius: 3px;line-height: 1;padding: 0.1em 0.3em;vertical-align: middle;box-shadow: 0 0 1px 1px rgba(0,0,0,0.05);}
-.rureraform-email-validator-options {display: none;}
-.jqte{margin-bottom:0px;}
-.field-options {background: #d4e9da; padding: 10px; width: 100%; float: left;}
-.lms-quiz-create .rureraform-properties-item .field-options {padding: 0;}
-.lms-quiz-create .rureraform-properties-item .field-options .text-field-options {padding: 10px;}
-.lms-quiz-create .rureraform-properties-item .quiz-form-control {margin-bottom: 10px;}
-.lms-quiz-create .rureraform-properties-item .quiz-form-control input[type=radio] {margin: 0 0 10px;}
-.lms-quiz-create .repeater-fields .tools-div {position: absolute; right: 10px; top: 50%; display: inline-flex; align-items: center; transform:translateY(-50%); gap: 5px;}
-.lms-quiz-create .repeater-fields .tools-div span {margin-left: 0; width: 20px; height: 20px; text-align: center; display: inline-flex; align-items: center; justify-content: center;}
-.lms-quiz-create .repeater-fields .tools-div span:has(.fa-check) {margin-top: 2px;}
-.lms-quiz-create .repeater-fields .tools-div .remove-repeater-field {position: initial; margin: 0; color: #f04444;}
-.lms-quiz-create .rureraform-properties-item .quiz-form-control label {width: 100%;}
-.lms-quiz-create .repeater-fields .tools-div label {margin: 0; height: 100%; cursor: pointer; display: inline-flex; align-items: center; justify-content: center;}
-.lms-quiz-create .rureraform-properties-item .quiz-form-control input[type=radio]:checked + label input[type="text"] {border-color: green;}
-.rureraform-properties-content.rureraform-wysiwyg {display: block; clear:both;}
-.editor-add-field {cursor: pointer;}
-.quiz-form-control {width: 100%; float: left; position: relative;}
-.field-options-all{display:none;}
-.repeater-class {float: right; cursor: pointer; padding: 5px 10px 0 10px;}
-.remove-repeater-field {top: 12px; position: absolute; right: 16px;}
-.fields-layout-options{display:none;}
-.content-data{height: 150px; border: 1px solid #ccc; overflow: auto; padding: 10px !important;}
-.content-data input[type="text"],.content-data input[type="email"],
-.content-data input[type="password"].content-data, select,.content-data textarea{height: 30px; padding: 0px; cursor: pointer;}
-.content-data .field-group{display: inline-block !important; text-align: center; vertical-align: -1em; padding: 0 0.2em;}
-.content-data *[contenteditable="true"] {background-color: rgba(217, 245, 255,0.5);}
-.content-data *[contenteditable="true"]:empty {content: "c"; padding: 0 5px;}
-.hide{display:none}
-
-.lms-root-block,
-.lms-root-block .lms-root-block {display: -moz-inline-box; display: inline-block; padding: 2px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; white-space: nowrap;overflow: hidden;vertical-align: middle;}
-.lms-root-block {font-variant: normal; font-weight: normal; font-style: normal; font-size: 115%; line-height: 1; display: -moz-inline-box; display: inline-block;}
-.lms-root-block .lms-non-leaf,
-.lms-root-block .lms-scaled {display: -moz-inline-box; display: inline-block;}
-.lms-root-block * {font-size: inherit; line-height: inherit; margin: 0; padding: 0; border-color: black; -webkit-user-select: none; -moz-user-select: none; user-select: none; box-sizing: border-box;}
-.lms-root-block sup.lms-nthroot { font-size: 80%; vertical-align: 0.8em; margin-right: -0.6em; margin-left: .2em; min-width: .5em;}
-.lms-root-block .lms-sqrt-stem { border-top: 1px solid; margin-top: 1px; padding-left: .15em; padding-right: .2em; margin-right: .1em; padding-top: 1px; display: inline-block; font-size: 15px;}
-.lms-root-block .lms-sqrt-stem:after {content: "c"; visibility: hidden;}
-.lms-scaled.lms-sqrt-prefix {transform: scale(1, 0.95);}
-.divide-numbers {display: inline-block; font-size: 15px; color: #000;}
-.divide-numbers span {display: block; text-align: center; }
-.divide-numbers .divider {height: 2px; background-color: #000; display: block; line-height: normal; margin: 2px 0;}
-.lms-hide{display:none !important}
-.patterns-modal .modal {padding-right: 0 !important;}
-.patterns-modal .modal-dialog {width: 100%; max-width: 100%; margin: 0 auto;}
-.patterns-modal .modal-content {border-radius: 0;}
-.patterns-modal .modal-header {	background-color: #f2f3f5; align-items: center; padding: 10px 0 0;}
-.patterns-modal .modal-header h3 {margin: 0; padding: 15px 30px; color: #333;}
-.patterns-modal .modal-header span {display: block; font-size: 14px; font-weight: 400; color: #999; padding-top: 5px;}
-.patterns-modal .modal-header button.close {padding: 20px 22px; margin: 0; opacity: 1; outline: none;}
-.patterns-modal .modal-header button.close span {color: #333; font-size: 30px;}
-.patterns-modal .modal-body {padding: 30px 30px 0; background-color: #f2f3f5;}
-.patterns-modal .media-holder {background-color: #fff; box-shadow: 0 0 12px rgba(0,0,0,0.05); padding: 30px; margin: 0 0 30px; text-align: center; border-radius: 5px;cursor: pointer;position: relative;}
-.patterns-modal .media-holder:before{position: absolute; left: 0; top: 0; height: 100%; width: 100%; background-color: rgba(36, 134, 34, 0.05); content: ""; display:flex; color: var(--primary); align-items: center; justify-content: center;transition: all .5s;-webkit-transition: all .5s;-o-transition: all .5s;	opacity: 0;	visibility: hidden;	z-index: 1;	pointer-events: none;}
-.patterns-modal .media-holder:after { content: "+"; position: absolute; left: 50%; top: 50%; display: flex; align-items: center; justify-content: center; font-size: 48px; color: #fff; height: 80px; width: 80px; background-color: rgba(36, 134, 34, 0.6); border-radius: 100%; margin: -60px 0 0 -40px; opacity: 0; visibility: hidden; transition: all .8s; -webkit-transition: all .8s; -o-transition: all .8s;}
-.patterns-modal .media-holder:hover:before,
-.patterns-modal .media-holder:hover:after {opacity: 1;visibility: visible;}
-.patterns-modal .media-holder:hover:after {margin-top: -40px;}
-.patterns-modal .media-title {display: flex; align-items: center; justify-content: center; border-top: 1px solid #eee; margin: 30px 0 0; padding:25px 30px 0;}
-.patterns-modal .media-title h4 {margin: 0;	font-size: 1.25rem;}
-.patterns-modal .media-holder h4 a {font-weight: 600;color: #333;}
-.patterns-modal .media-holder figure {margin: 0;padding: 0;position: relative;}
-.patterns-modal .media-holder figure img {max-width: 100%;object-fit: contain;}
-.question-textarea.quiz-group {padding-top: 10px;}
-.rureraform-properties-content .note-editable .input-holder:has(input[type="text"]:focus) {border: 0; overflow: visible;}
-.rureraform-properties-content .note-editable input[type="text"],
-.note-editing-area .note-editable input.editor-field {height: 32px; box-shadow: none; border-color: transparent; border-radius: 8px; width: auto;}
+/****************************************** 
+Questions Builder Right Sidebar Style End
+******************************************/
 
 /**********************************
 Question Type Style Start 
@@ -828,7 +658,7 @@ scrollbar-gutter: stable both-edges;
     color: #adabab;
 }
 .rurera-question-block:has(.question-number-holder) .rureraform-elements {padding-left: 50px;}
-.question-layout .rureraform-col {padding:0 0 10px !important;}
+.question-layout .rureraform-col {padding:0 0 20px !important;}
 .rurera-question-block:has(.question-number-holder) .question-layout {
     display: inline-block;
     width: 100%;
@@ -837,6 +667,9 @@ scrollbar-gutter: stable both-edges;
 .question-layout .rureraform-element {
 	outline: 0 !important;
 	padding-top: 0;
+}
+.question-layout .rureraform-element:has(select) {
+	line-height: 56px;
 }
 .quiz-group ol li {
     margin-top: 15px;
@@ -1063,3 +896,76 @@ table.table td .input-holder input[type=number]::-webkit-outer-spin-button,
 /**********************************
 Question Type Style End 
 **********************************/
+
+/**************************************
+Questions Edit Page Fields style start
+**************************************/
+
+/*Fields Layout Options Style Start*/
+.fields-layout-options {display: none;}
+.quiz-form-control {width: 100%; float: left; position: relative;}
+.lms-quiz-create .rureraform-properties-item .field-options .text-field-options {padding: 10px;}
+.lms-quiz-create .rureraform-properties-item .quiz-form-control {margin-bottom: 10px;}
+.lms-quiz-create .rureraform-properties-item .quiz-form-control input[type=radio] {margin: 0 0 10px;}
+.lms-quiz-create .rureraform-properties-item .quiz-form-control label {width: 100%;}
+.lms-quiz-create .rureraform-properties-item .quiz-form-control input[type=radio]:checked + label input[type="text"] {border-color: green;}
+/*Fields Layout Options Style End*/
+
+/*Iframe Style Start*/
+#rureraform-import-form, #rureraform-import-style-form,
+#rureraform-import-style-iframe {display: none;}
+#rureraform-preview-iframe {width: 100%;border: none;margin: 0;	display: block !important;}
+/*Iframe Style End*/
+
+/* Form Fa-Selector Style Start */
+.rureraform-fa-selector-overlay {position: fixed !important;z-index: 99988;top: 0px;left: 0px;height: 100%;	width: 100%;background-position: center center;	background: rgba(0,0,0,0.8);display: none;}
+.rureraform-fa-selector {position: fixed !important;box-sizing: border-box;z-index: 99989;top: 50%;	left: 50%;width: 925px;height: 600px;background: #ffffff;transform:translate(-50%, -50%);-webkit-transform:translate(-50%, -50%);box-shadow: 3px 3px 20px -5px #000000;display: none;overflow: hidden;}
+.rureraform-fa-selector * {box-sizing: border-box;}
+.rureraform-fa-selector-inner {height: 600px;position: relative;box-sizing: border-box;}
+.rureraform-fa-selector-header {box-sizing: border-box;height: 72px;line-height: 72px;padding: 0 0 0 20px;text-align: left;border-bottom: 1px solid #ffffff;background: #ffffff;}
+.rureraform-fa-selector-header input[type="text"] {box-sizing: border-box;margin: 30px 0 0 10px;line-height: 32px;padding: 0;width: 50%;font-size: 16px;border-top: none;border-left: none;border-right: none;border-bottom: 2px solid #e0e0e0;outline: none;box-shadow: none;transition-duration: .3s;-webkit-transition-duration: .3s;}
+.rureraform-fa-selector-header input[type="text"]:focus {border-bottom: 2px solid #26B99A;}
+.rureraform-fa-selector-header a {display: block;float: right;font-size: 20px;width: 52px;height: 52px;line-height: 52px;color: #202020;text-align: center;text-shadow: none !important;box-shadow: none !important;outline: none !important;border: none !important;margin: 0 !important;padding: 0 !important;transition-property: all;transition-timing-function: ease-in-out;transition-duration: 300ms;}
+.rureraform-fa-selector-header a:hover {color: #26B99A;}
+.rureraform-fa-selector-content {height: 528px;padding: 10px 20px;overflow-x: hidden;overflow-y: scroll;background: #ffffff;}
+.rureraform-fa-selector-content::-webkit-scrollbar {width: 5px;}
+.rureraform-fa-selector-content::-webkit-scrollbar-track {box-shadow: inset 0 0 6px rgba(0,0,0,0.1);}
+.rureraform-fa-selector-content::-webkit-scrollbar-thumb {background-color: #26B99A;}
+.rureraform-fa-selector-content span {float: left;width: 40px;text-align: center;height: 40px;line-height: 40px;color: #000;opacity: 0.5;font-size: 20px;cursor: pointer;}
+.rureraform-fa-selector-content span:hover {transform: scale(1);-webkit-transform: scale(1.3);opacity: 1;border-radius: 3px;background: #444444;color: #ffffff;overflow: hidden;transition-property: transform;transition-timing-function: ease-in-out;transition-duration: 300ms;}
+/* Form Fa-Selector Style End */
+
+/* Dialog Fields Style Start*/
+.lms-quiz-create .rureraform-dialog-overlay {position: fixed !important; z-index: 99988; top: 0; left: 0; height: 100%;	width: 100%; background-position: center center; background: rgba(0,0,0,0.8); display: none;}
+.lms-quiz-create .rureraform-dialog {position: fixed !important; box-sizing: border-box; z-index: 99989; top: -3000px; left: 50%; width: 90%; height: 600px; background: #ffffff; transform:translate(-50%, -50%) scale(0); -webkit-transform:translate(-50%, -50%) scale(0); box-shadow: 3px 3px 20px -5px #000000; overflow: hidden; transition-property: transform; transition-timing-function: ease-in-out; transition-duration: 300ms;}
+.lms-quiz-create .rureraform-dialog * {box-sizing: border-box;}
+.lms-quiz-create .rureraform-dialog-inner {height: 600px; position: relative; box-sizing: border-box;}
+.lms-quiz-create .rureraform-dialog-title {box-sizing: border-box; height: 52px; line-height: 52px; padding: 0 0 0 20px; text-align: left; border-bottom: 1px solid #f0f0f0; background: #f8f8f8;}
+.lms-quiz-create .rureraform-dialog-title h3 {font-weight: normal; font-size: 20px; font-family: arial;	color: #202020; letter-spacing: 0;	text-transform: none; margin: 0 !important;	padding: 0 !important; line-height: inherit;}
+.lms-quiz-create .rureraform-dialog-title h3 i {margin-right: 0.5em;line-height: 52px;vertical-align: top;}
+.lms-quiz-create .rureraform-dialog-title h3 label {cursor: default;cursor: default;line-height: 52px;display: inline-block;vertical-align: top;}
+.lms-quiz-create .rureraform-dialog-title a {float: right; font-size: 20px; width: 52px; height: 52px; color: #202020; text-align: center; text-shadow: none !important; box-shadow: none !important; outline: none !important; border: none !important; margin: 0 0 0 20px !important; padding: 0 !important; transition-property: all; transition-timing-function: ease-in-out; transition-duration: 300ms; display: inline-flex; align-items: center; justify-content: center;}
+.lms-quiz-create .rureraform-dialog-title a:hover {color: #26B99A;}
+.lms-quiz-create .rureraform-dialog-content {height: 496px;	overflow-x: hidden;	overflow-y: auto;	background: #ffffff;position: relative;font-size: 15px;line-height: 1.475;}
+.lms-quiz-create .rureraform-dialog-content::-webkit-scrollbar {width: 5px;}
+.lms-quiz-create .rureraform-dialog-content::-webkit-scrollbar-track {box-shadow: inset 0 0 6px rgba(0,0,0,0.1);}
+.lms-quiz-create .rureraform-dialog-content::-webkit-scrollbar-thumb {background-color: #26B99A;}
+.lms-quiz-create .rureraform-dialog-content hr {margin: 0 30px;}
+.lms-quiz-create .rureraform-dialog-loading {position: absolute;background: #fff;top: 52px;left: 0;z-index: 99982; width: 100%;bottom: 0;right: 0;}
+.lms-quiz-create .rureraform-dialog-loading i {position: absolute;z-index: 99983;top: 50%;left: 50%;font-size: 24px;margin-top: -12px;margin-left: -12px;}
+.lms-quiz-create .rureraform-dialog-content-html {padding: 30px 50px;}
+.lms-quiz-create .rureraform-dialog-message {text-align: center;}
+.lms-quiz-create .rureraform-dialog-buttons {box-sizing: border-box; position: absolute; left: 0; right: 0; bottom: 0; height: auto; line-height: 48px; text-align: center; border-top: 1px solid #f0f0f0; padding: 12px 0;}
+.lms-quiz-create .rureraform-dialog-button {display: inline-block; line-height: 40px; height: 40px; min-width: 140px; margin: 0 5px 0 5px; font-size: 15px; font-weight: 400; text-align: center;	white-space: nowrap; vertical-align: middle; -ms-touch-action: manipulation; touch-action: manipulation; cursor: pointer; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;	user-select: none; background-image: none; border: 1px solid transparent; border-radius: 3px; transition-duration: .3s; -webkit-transition-duration: .3s; color: #fff; background: #26B99A; border: 1px solid #169F85; text-decoration: none; outline: none;	box-shadow: none; box-sizing: border-box; padding: 0 1em;}
+.lms-quiz-create .rureraform-dialog-button-cancel {color: #222; background: #d0d0d0; border: 1px solid #c0c0c0;}
+.lms-quiz-create .rureraform-dialog-button-disabled {opacity: 0.3; cursor: default !important;}
+.lms-quiz-create .rureraform-dialog-button:active {background-image: none; outline: 0; -webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,.125); box-shadow: inset 0 3px 5px rgba(0,0,0,.125); text-decoration: none; color: #fff; background: #169F85; background-image: none; outline: none; box-shadow: none; transform:translateY(2px);	-webkit-transform:translateY(2px);}
+.lms-quiz-create .rureraform-dialog-button:hover, .rureraform-dialog-button:focus {text-decoration: none; color: #fff;	background: #169F85; background-image: none; outline: none; box-shadow: none;}
+.lms-quiz-create .rureraform-dialog-button-cancel:active, .rureraform-dialog-button-cancel:hover, .rureraform-dialog-button-cancel:focus {color: #222;	background: #c0c0c0;}
+.lms-quiz-create .rureraform-dialog-button label {line-height: 38px; display: inline-block;	margin-left: 8px; vertical-align: top; margin-bottom: 0; font-weight: 400;}
+.lms-quiz-create .rureraform-dialog-button i {line-height: 38px; vertical-align: top;}
+/* Dialog Fields Style End*/
+
+/**************************************
+Questions Edit Page Fields style start
+**************************************/

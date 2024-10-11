@@ -7,23 +7,190 @@
 <link rel="stylesheet" href="/assets/vendors/summernote/summernote-bs4.min.css">
 <link rel="stylesheet" href="/assets/default/vendors/bootstrap-tagsinput/bootstrap-tagsinput.min.css">
 <link rel="stylesheet" href="/assets/admin/vendor/bootstrap-colorpicker/bootstrap-colorpicker.min.css">
-<style>
+ <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/smoothness/jquery-ui.css">
 
-    .hide-class {
-        display: none;
+<style type="text/css">
+
+:root {
+  --bg-color: #fff;
+  --line-color-1: #366;
+  --line-color-2: #a9a9a9;
+}
+
+*, *::before, *::after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+	.field_settings .ui-rotatable-handle, .field_settings .ui-resizable-handle, .field_settings .remove{
+		display:none !important;
+	}
+	
+	.field_settings.active {
+		opacity: 0.8;
+	}
+	
+	.field_settings.active .ui-rotatable-handle, .field_settings.active .ui-resizable-handle, .field_settings.active .remove{
+		display:block !important;
+	}
+	.editor-objects-list li.active{
+		background: #cbcbcb;
+	}
+
+    .no-border {
+        border: none;
     }
-
-    .questions-list ul li, .pages-list ul li {
-        background: #efefef;
-        margin-bottom: 10px;
-        padding: 5px 10px;
+	.ui-rotatable-handle {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .ui-rotatable-handle::before {
+            content: '\f111'; /* Font Awesome rotate icon */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: white;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .ui-rotatable-handle.ui-rotatable-handle-nw {
+            top: -10px;
+            left: -10px;
+        }
+        .ui-rotatable-handle.ui-rotatable-handle-se {
+            bottom: -10px;
+            right: -10px;
+        }
+	
+	.field-data svg{height:auto; width: 100%;}
+	
+	
+	/* .editor-controls {
+		position: absolute;
+		top: 0;
+		right: -300px;
+		width: 300px;
+	} */
+    .editor-objects {
+        background-color: #e9e9e9;
+        padding: 15px;
     }
-
-    .questions-list ul li a.parent-remove, .pages-list ul li a.parent-remove {
+	ul.editor-objects li {
+		display: inline-block;
+        vertical-align: top;
+        padding: 5px 5px;
+        width: 32%;
+	}
+	a.control-tool-item {
+		padding: 10px;
+        border: 1px solid #ccc;
+        display: block;
+        text-align: center;
+        border-radius: 3px;
+        background-color: #f5f5f5;
+	}
+	a.control-tool-item.active {
+		background: #fff;
+	}
+    .control-tool-item img {
+        height: 35px;
+        object-fit: contain;
+        width: 35px !important;
+    }
+	/* .editor-objects-block {
+		position: absolute;
+		top: 0;
+		right: -500px;
+		width: 170px;
+	} */
+	.editor-objects-list li {
+		padding: 5px 10px;
+		background: #efefef;
+		margin: 0 0 3px 0;
+	}
+    .editor-controls-holder {
+        position: absolute;
+        right: 0;
+        top: 0;
+        min-width: 340px;
+        max-width: 340px;
+        height: calc(100% - 30px);
+        background-color: #f2f2f2;
+        padding: 30px 30px;
+        border-radius: 5px;
+    }
+    .editor-parent-nav {
+        margin: 0 0 25px;
+    }
+    .editor-parent-nav .nav-link {
+        padding: 8px 30px;
+        border: 0;
+        background-color: #c3c3c3;
+        font-size: 16px;
+        font-weight: 600;
+        outline: none;
+        border-radius: 3px;
+        color: #666;
+        text-shadow: 0 1px 1px #fff;
+    }
+    .editor-parent-nav .nav-link.active {
+        background-color: var(--primary);
+        color: #fff;
+        text-shadow: none;
+    }
+    .editor-parent-nav ul {
+        gap: 8px 15px;
+    }
+    .editor-controls-holder .fade:not(.show) {
+        visibility: hidden;
+        height: 0;
+    }
+    .editor-controls .nav .nav-item .nav-link {
+        padding: 0 10px;
+        font-weight: 600;
+        color: #afafaf;
+        opacity: 1;
+    }
+    .editor-controls .nav .nav-item .nav-link.active {
+        background-color: inherit;
+        box-shadow: none;
+        color: var(--primary);
+    }
+    .editor-zone:has(.editor-controls-holder) {
+        padding: 0 369px 0 369px;
+        overflow: hidden;
+        width: 100% !important;
+    }
+    /* .editor-zone:has(.field-options.hide) {
+        padding-left: 0;
+    } */
+    .editor-objects-list li i {
+        display: inline-flex;
         float: right;
-        margin: 8px 0 0 0;
-        color: #ff0000;
+        padding: 6px 10px 6px;
+        color: #000;
+        font-size: 15px;
+        cursor: pointer;
     }
+	
+	
+	.graph-background {
+		background-color: var(--bg-color);
+		background-image: linear-gradient(var(--line-color-1) 1.5px, transparent 1.5px), linear-gradient(90deg, var(--line-color-1) 1.5px, transparent 1.5px), linear-gradient(var(--line-color-2) 1px, transparent 1px), linear-gradient(90deg, var(--line-color-2) 1px, transparent 1px) !important;
+		background-position: -1.5px -1.5px, -1.5px -1.5px, -1px -1px, -1px -1px !important;
+		background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px !important;
+	}
+
 </style>
 @endpush
 
@@ -31,7 +198,7 @@
 @section('content')
 <section class="section">
     <div class="section-header">
-        <h1>{{!empty($book) ?trans('/admin/main.edit'): trans('admin/main.new') }} Book</h1>
+        <h1>{{!empty($book) ? $book->book_title: trans('admin/main.new') }} Book</h1>
         <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="/admin/">{{ trans('admin/main.dashboard') }}</a>
             </div>
@@ -52,6 +219,9 @@
                             <ul class="nav nav-pills" id="myTab3" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="basic-settings" data-toggle="tab" href="#basic" role="tab" aria-controls="basic" aria-selected="true">Basic</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pages-settings" data-toggle="tab" href="#pages" role="tab" aria-controls="pages" aria-selected="true">Pages</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="editor-settings" data-toggle="tab" href="#editor" role="tab" aria-controls="editor" aria-selected="true">Editor</a>
@@ -387,40 +557,6 @@
 									<div class="practice-quiz-ajax-fields populated-data"></div>
                                 </div>
 
-
-                                        <div class="col-12 col-md-12 col-lg-12">
-                                            <div class="pages-list">
-                                                <ul>
-                                                    @foreach( $book->bookPages as $bookPage)
-                                                    @php $infoLinkArray = array(); @endphp
-
-                                                    @if(!empty($bookPage->PageInfoLinks))
-                                                    @foreach( $bookPage->PageInfoLinks as $pageInfoLink)
-                                                    @php
-                                                    if( !in_array( $pageInfoLink->info_type, array('text','highlighter'))){
-                                                    $infoLinkArray[$pageInfoLink->info_type] = $pageInfoLink->info_type;
-                                                    }
-                                                    @endphp
-                                                    @endforeach
-                                                    @endif
-
-                                                    <li data-id="{{$bookPage->id}}">
-                                                        <img src="/{{$bookPage->page_path}}" height="200" width="auto">
-                                                        <input type="text" name="book_pages_titles[]" value="{{$bookPage->page_title}}">
-                                                        <input type="hidden" name="book_pages[]" value="{{$bookPage->id}}">
-                                                        <a href="javascript:;" class="parent-remove"><span class="fas fa-trash"></span></a>
-                                                        @if( !empty( $infoLinkArray ))
-                                                        @foreach( $infoLinkArray as $infoLinkData)
-                                                        <img src="/assets/default/img/book-icons/{{$infoLinkData}}.png">
-                                                        @endforeach
-                                                        @endif
-
-                                                    </li>
-                                                    @endforeach
-                                                </ul>
-                                            </div>
-                                        </div>
-
                                         <div class="col-12 col-md-12 col-lg-12">
 
                                             <div class="form-group mt-15 ">
@@ -457,10 +593,75 @@
 
 
                                 </div>
+								
+								<div class="tab-pane mt-3 fade" id="pages" role="tabpanel" aria-labelledby="pages-settings">
 
+                                    <div class="row">
+										
+
+
+                                        <div class="col-12 col-md-12 col-lg-12">
+                                            <div class="pages-list">
+                                                <ul>
+                                                    @foreach( $book->bookPages as $bookPage)
+                                                    @php $infoLinkArray = array(); @endphp
+
+                                                    @if(!empty($bookPage->PageInfoLinks))
+                                                    @foreach( $bookPage->PageInfoLinks as $pageInfoLink)
+                                                    @php
+                                                    if( !in_array( $pageInfoLink->info_type, array('text','highlighter'))){
+                                                    $infoLinkArray[$pageInfoLink->info_type] = $pageInfoLink->info_type;
+                                                    }
+                                                    @endphp
+                                                    @endforeach
+                                                    @endif
+
+                                                    <li data-id="{{$bookPage->id}}">
+                                                        <img src="/{{$bookPage->page_path}}" height="200" width="auto">
+                                                        <input type="text" name="book_pages_titles[]" value="{{$bookPage->page_title}}">
+                                                        <input type="hidden" name="book_pages[]" value="{{$bookPage->id}}">
+                                                        <a href="javascript:;" class="parent-remove"><span class="fas fa-trash"></span></a>
+                                                        @if( !empty( $infoLinkArray ))
+                                                        @foreach( $infoLinkArray as $infoLinkData)
+                                                        <img src="/assets/default/img/book-icons/{{$infoLinkData}}.png">
+                                                        @endforeach
+                                                        @endif
+
+                                                    </li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="text-right mt-4">
+                                        <button class="btn btn-primary">{{ trans('admin/main.submit') }}</button>
+                                    </div>
+
+
+                                </div>
+
+								
                                 <div class="tab-pane mt-3 fade" id="editor" role="tabpanel" aria-labelledby="editor-settings">
-                                    <div class="editor-zone" style="position:relative;width: fit-content;">
-
+								
+									<div class="book-pages-navs">
+										<a href="javascript:;" class="next-page">
+											<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+												<path d="M4 .755l14.374 11.245-14.374 11.219.619.781 15.381-12-15.391-12-.609.755z"/>
+											</svg>
+										</a>
+										
+										<a href="javascript:;" class="prev-page">
+											<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+												<path d="M20 .755l-14.374 11.245 14.374 11.219-.619.781-15.381-12 15.391-12 .609.755z"/>
+											</svg>
+										</a>
+										<div class="generate"><a class="btn btn-primary" href="javascript:;">Save Page</a></div>
+									</div>
+								
+                                    <div class="editor-zone book-editor-zone" style="position:relative;width: fit-content;">
+										<div class="field-options"></div>
                                         @if( !empty($book->bookPages ) )
                                         @php $i = 1; @endphp
                                         @foreach( $book->bookPages as $bookPage)
@@ -468,25 +669,53 @@
                                              style="background:url('/{{$bookPage->page_path}}');"
                                              data-page_id="{{$bookPage->id}}">
                                             <img src="/{{$bookPage->page_path}}" style="visibility: hidden;" />
-
 											
 											
+											@php
+											
+												if( !empty( $bookPage->pageObjects->where('status', 'active') )){
+													foreach( $bookPage->pageObjects->where('status', 'active') as $bookPageItemObj){
+														$item_type = isset( $bookPageItemObj->item_type ) ?  $bookPageItemObj->item_type : '';
+														$item_path_folder = '';
+														$item_path_folder = ($item_type == 'infolink' )? 'infolinks' : $item_path_folder;
+														$item_path_folder = ($item_type == 'stage_objects' )? 'objects' : $item_path_folder;
+														$item_path_folder = ($item_type == 'misc' )? 'misc' : $item_path_folder;
+														$item_path_folder = ($item_type == 'topic' )? 'topics' : $item_path_folder;
+														
+														$data_attributes_array = isset( $bookPageItemObj->data_values )? json_decode($bookPageItemObj->data_values ) : array();
+														
+														$data_attributes = '';
+														
+														if( !empty( $data_attributes_array ) ){
+															foreach( $data_attributes_array as $data_attribute_key => $data_attribute_value){
+																$data_attributes .= 'data-'.$data_attribute_key.'="'.$data_attribute_value.'" ';
+															}
+														}
 
-                                            @if(!empty($bookPage->PageInfoLinks))
-                                            @foreach( $bookPage->PageInfoLinks as $pageInfoLink)
-                                            @include('admin.books.includes.'.$pageInfoLink->info_type,['pageInfoLink'=> $pageInfoLink])
-                                            @endforeach
-                                            @endif
+														
+														
+														$item_path = isset( $bookPageItemObj->item_path ) ?  $bookPageItemObj->item_path : '';
+														$item_path = 'assets/books-editor/'.$item_path_folder.'/'.$item_path;
+														$svgCode = getFileContent($item_path);
+														echo '<div style="'.$bookPageItemObj->field_style.'" data-is_new="no" data-item_title="'.$bookPageItemObj->item_title.'" data-unique_id="'.$bookPageItemObj->id.'" class="saved-item-class drop-item form-group draggablecl field_settings draggable_field_rand_'.$bookPageItemObj->id.'" data-id="rand_'.$bookPageItemObj->id.'" data-item_path="'.$bookPageItemObj->item_path.'" data-field_type="'.$bookPageItemObj->item_type.'" data-trigger_class="infobox-'.$bookPageItemObj->item_slug.'-fields" data-item_type="'.$bookPageItemObj->item_slug.'" data-paragraph_value="Test text here..." '.$data_attributes.'><div class="field-data">'.$svgCode.'</div><a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a></div>';
+														
+													}
+												}
+											
+											@endphp
 
 
                                         </div>
                                         @php $i++; @endphp
                                         @endforeach
+                                        @include('admin.books.includes.editor_controls', ['bookPage' => $bookPage, 'subChapters' => $subChapters, 'chapters_response' => $chapters_response, 'data_id' => $book->id])
 
-                                        @include('admin.books.includes.editor_controls', ['subChapters' => $subChapters, 'chapters_response' => $chapters_response])
                                         <br>
                                         <br>
-                                        <div class="generate"><a class="btn btn-primary" href="javascript:;">Save Page</a></div>
+										
+										
+										
+                                        
                                         @endif
                                     </div>
                                 </div>
@@ -504,11 +733,30 @@
 
 @push('scripts_bottom')
 <script src="/assets/default/vendors/sweetalert2/dist/sweetalert2.min.js"></script>
-<script src="/assets/admin/js/book-editor.js?ver={{$rand_id}}"></script>
+<script src="/assets/default/vendors/sortable/jquery-ui.min.js"></script>
+ <script src="https://www.jqueryscript.net/demo/CSS3-Rotatable-jQuery-UI/jquery.ui.rotatable.js"></script>
+<script src="/assets/default/js/admin/filters.min.js"></script>
 <script src="/assets/vendors/summernote/summernote-bs4.min.js"></script>
-<script src="/assets/default/vendors/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+<script src="/assets/admin/js/book-editor.js?ver={{$rand_id}}"></script>
 <script src="/assets/admin/vendor/bootstrap-colorpicker/bootstrap-colorpicker.min.js"></script>
 <script>
+
+
+$(document).ready(function () {
+		
+		$(".editor-objects-list").sortable();
+		//$('.saved-item-class').click();
+		
+		$(".editor-objects-list").sortable({
+			update: function(event, ui) {
+				sorting_render(); // Call your function here
+			}
+		});
+		
+        $('body').on('click', '.delete-parent-li', function (e) {
+            $(this).closest('li').remove();
+        });
+    });
 
 $('body').on('change', '.book_type_selection', function (e) {
 	var book_type = $(this).val();

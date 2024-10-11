@@ -180,3 +180,9 @@
     padding: 30px 30px;
     border-radius: 5px;
 }
+body .editor-zone:has(.editor-controls-holder) {
+    padding-left: 0;
+}
+.book-dropzone img {
+    max-width: 100%;
+}

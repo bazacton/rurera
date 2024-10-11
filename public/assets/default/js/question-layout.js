@@ -46,7 +46,6 @@ var totalInCorrectCount = 0;
 
 $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn", function (e) {
 //$(document).on('click', '.question-submit-btn', function (e) {
-	console.log('testinggeee');
     e.preventDefault();
 	if( $(this).hasClass('rurera-processing')){
 		return false;
@@ -78,6 +77,7 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
     question_submit_process = true;
     returnType = rurera_validation_process(thisForm);
 	
+	returnType = false;
 
     if( rurera_is_field(bypass_validation) && bypass_validation == 'yes' ){
         returnType = true;
@@ -137,7 +137,7 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
         $(this).removeClass('validate-error');
         var field_name = $(this).attr('name');
         var field_id = $(this).attr('id');
-        var field_identifier = field_id;	
+        var field_identifier = field_id;
         var field_identifier = field_identifier.replace(/field-/g, '');
         var field_type = $(this).attr('type');
         const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
@@ -1585,6 +1585,7 @@ function rurera_validation_process(form_name, error_dispaly_type = '') {
     form_name.find('.rurera-req-field:not(img), .editor-field:not(img), .editor-fields:not(img)').each(function (index_no) {
         is_visible = true;
         var thisObj = jQuery(this);
+		console.log('validation-start');
         index_no = rurera_is_field(index_no) ? index_no : 0;
         error_objects[index_no] = new Array();
         var visible_id = thisObj.data('visible');
@@ -1658,6 +1659,7 @@ function rurera_validation_process(form_name, error_dispaly_type = '') {
             }
         }
         if (has_empty[index_no] == false) {
+			console.log('everythingFine');
             thisObj.next('.chosen-container').removeClass('frontend-field-error');
             thisObj.next('.rurera-req-field').next('.pbwp-box').removeClass('frontend-field-error');
             thisObj.removeClass('frontend-field-error');
