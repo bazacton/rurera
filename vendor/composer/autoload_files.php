@@ -55,6 +55,7 @@ return array(
     '13906c19e3d8fcd1341b24ed4d51cf72' => $vendorDir . '/razorpay/razorpay/Deprecated.php',
     'bab4ed692c1fd3872849227e2a85791e' => $vendorDir . '/unicodeveloper/laravel-paystack/src/Support/helpers.php',
     'ef157334f1067da991ff8953983afdb3' => $baseDir . '/app/Helpers/helper.php',
+    'd0105e631019fdfd0c6174d207691764' => $baseDir . '/app/Helpers/generalHelper.php',
     '4f13870882ba98a29febd3484b169c28' => $baseDir . '/app/Mixins/Geo/Geo.php',
     'ce9f23974f257ce17476ce98e4930c99' => $baseDir . '/app/Helpers/ApiHelper.php',
 );

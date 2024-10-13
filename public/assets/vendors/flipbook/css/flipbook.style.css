@@ -48,10 +48,6 @@
     opacity: 1;
     visibility: visible;
   }
-  .flipbook-slide-menu,
-.flipbook-chapter,
-.flipbook-quiz,
-.flipbook-tags {display: none;}
 .flipbook-overlay {
     position: fixed;
     top: 0;

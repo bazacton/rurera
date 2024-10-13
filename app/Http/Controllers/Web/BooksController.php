@@ -191,90 +191,17 @@ class BooksController extends Controller
 						$svgCode = updateSvgDimensions($svgCode, '100%', '100%');
 						//pre($svgCode);
 						
-						// Use regex to capture the left and top values
-						//preg_match('/left:\s*([\d.]+)px;.*top:\s*([\d.]+)px;.*width:\s*([\d.]+)px;/', $field_style, $matches);
-						//preg_match('/left:\s*([\d.]+)px;.*top:\s*([\d.]+)px;.*width:\s*([\d.]+)px;(?:.*height:\s*([\d.]+)px;)?/', $field_style, $matches);
-						//preg_match('/left:\s*([\d.]+)px;.*top:\s*([\d.]+)px;.*(?:width:\s*([\d.]+)px;.*height:\s*([\d.]+)px;|height:\s*([\d.]+)px;.*width:\s*([\d.]+)px;)/', $field_style, $matches);
-						//preg_match('/left:\s*(?<left>[\d.]+)px;.*top:\s*(?<top>[\d.]+)px;.*(?:width:\s*(?<width>[\d.]+)px;.*height:\s*(?<height>[\d.]+)px;|height:\s*(?<height_alt>[\d.]+)px;.*width:\s*(?<width_alt>[\d.]+)px;)/', $field_style, $matches);
-						preg_match('/left:\s*(?<left>[\d.]+)px;.*top:\s*(?<top>[\d.]+)px;.*width:\s*(?<width>[\d.]+)px;(?:.*height:\s*(?<height>[\d.]+)px;)?/', $field_style, $matches);
-
-
-
-
-						if( $item_path_folder == 'misc'){
-							//pre($matches, false);
-						}
-
-
-						//pre($field_style, false);
-						//pre($matches, false);
-
-
-						if( $item_path_folder == 'misc'){
-							//pre($pageInfoLinks);
-						}
-
-
-
-
-						//pre($field_style, false);
-						//pre($matches, false);
-						if(count($matches) > 2) {
-							// Calculate x, y, width, and height as percentages
-							$x_percentage = ($matches['left'] / $rendered_width) * 100;
-							$y_percentage = ($matches['top'] / $rendered_height) * 100;
-							$match_width = isset( $matches['width'] )? $matches['width'] : '';
-							$match_width = (isset( $matches['width_alt'] ) && $match_width == '')? $matches['width_alt'] : $match_width;
-							$match_height = isset( $matches['height'] )? $matches['height'] : '';
-							$match_height = (isset( $matches['height_alt'] ) && $match_height == '')? $matches['height_alt'] : $match_height;
-							
-							$width_percentage = (42 / $rendered_width) * 100;
-							$height_percentage = 100;
-							if( $match_width != '' ){
-								$width_percentage = ($match_width / $rendered_width) * 100;
-							}
-							if( $match_height != '' ){
-								$height_percentage = ($match_height / $rendered_height) * 100;
-							}
-
-							$coordinates = [
-								'x' => round($x_percentage, 2),
-								'y' => round($y_percentage, 2),
-								'width' => round($width_percentage, 2),
-								'height' => ($height_percentage == 100)? 'auto' : round($height_percentage, 2),
-							];
-								//pre($coordinates, false);
-
-							// Replace the original left, top, width, and height values with percentages
-							$field_style = preg_replace(
-								[
-									'/left:\s*\d+(?:\.\d+)?px;/', // Match left with optional decimal
-									'/top:\s*\d+(?:\.\d+)?px;/',  // Match top with optional decimal
-									'/width:\s*\d+(?:\.\d+)?(?:px|%)?;/', // Match width with optional px or % unit
-									'/height:\s*\d+(?:\.\d+)?(?:px|%)?;/', // Match width with optional px or % unit
-								],
-								[
-									'left: ' . $coordinates['x'] . '%;', 
-									'top: ' . $coordinates['y'] . '%;', 
-									'width: ' . $coordinates['width'] . '%;', 
-									'height: ' . $coordinates['height'] . '%;', 
-								],
-								$field_style
-							);
-						}
-						if( $item_path_folder == 'misc'){
-							//pre($field_style);
-						}
+						
 						
 						//pre($field_style, false);
 
 						
 						$info_link_html .= '<style>';
-							if( $fill_color != ''){
-								$info_link_html .= '.book_page_object_' . $pageInfoLinks->id . ' svg rect {
-									fill: ' . $fill_color . ' !important;
-								}';
-							}
+						if( $fill_color != ''){
+							$info_link_html .= '.book_page_object_' . $pageInfoLinks->id . ' svg rect {
+								fill: ' . $fill_color . ' !important;
+							}';
+						}
 						$info_link_html .= '</style>';
 						
 						
@@ -309,10 +236,8 @@ class BooksController extends Controller
                                 break;
 
                             default:
-							//pre($pageInfoLinks);
 							
 								//$svgCode = '<img src="'.$item_path_img.'" style="width: -webkit-fill-available;">';
-								
                                 $info_link_html .= '<span class="book-info-link" data-id="' . $pageInfoLinks->id . '" data-type="' . $pageInfoLinks->item_slug . '">'.$svgCode.'</span>';
                                 break;
                         }
@@ -321,45 +246,6 @@ class BooksController extends Controller
 						//pre($info_link_html, false);
                     }
                 }
-				//pre('test');
-				
-                /*if (!empty($page_data->PageInfoLinks)) {
-                    foreach ($page_data->PageInfoLinks as $pageInfoLinks) {
-
-                        $data_values = isset($pageInfoLinks['data_values']) ? json_decode($pageInfoLinks['data_values']) : array();
-                        $info_link_html .= '<div class="info_link_div info_link_' . $pageInfoLinks['info_type'] . '" style="width: max-content;position:absolute;' . $pageInfoLinks['info_style'] . '">';
-                        switch ($pageInfoLinks['info_type']) {
-                            case "text":
-                                $info_link_html .= '<span style="' . $data_values->text_color . '">';
-                                $info_link_html .= isset($data_values->text_html) ? $data_values->text_html : '';
-                                $info_link_html .= '</span>';
-                                break;
-								
-								
-							case "topic":
-                                $info_link_html .= '<span>';
-                                $info_link_html .= isset($data_values->topic_title) ? $data_values->topic_title : '';
-                                $info_link_html .= '</span>';
-                                break;	
-								
-							case "map":
-                               $info_link_html .= '<span class="book-info-link" data-id="' . $pageInfoLinks['id'] . '" data-type="' . $pageInfoLinks['info_type'] . '"><img src="/assets/default/img/book-icons/' . $pageInfoLinks['info_type'] . '.svg" style="width: 800px !important;height: auto !important;"></span>';
-                                break;
-
-                            case "highlighter":
-                                $highlighter_size = isset( $data_values->highlighter_size )? $data_values->highlighter_size : 0;
-                                $info_link_html .= '<span style="position: absolute;opacity: 0.7;' . $highlighter_size . '; ' . $data_values->highlighter_background . '">';
-                                $info_link_html .= '</span>';
-                                break;
-
-                            default:
-                                $info_link_html .= '<span class="book-info-link" data-id="' . $pageInfoLinks['id'] . '" data-type="' . $pageInfoLinks['info_type'] . '"><img src="/assets/default/img/book-icons/' . $pageInfoLinks['info_type'] . '.png" style="width: 42px;height: auto;"></span>';
-                                break;
-                        }
-
-                        $info_link_html .= '</div>';
-                    }
-                }*/
                 $page_content[$page_data->id] = $info_link_html;
             }
         }

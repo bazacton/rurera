@@ -1,8 +1,9 @@
-@php $objects_list = getSvgFiles('assets/books-editor/objects/');
-$infolinks_list = getSvgFiles('assets/books-editor/infolinks/');
-$misc_list = getSvgFiles('assets/books-editor/misc/');
- @endphp
- 
+@php $objectsProperties = getObjectsProperty();
+$objects_list = isset( $objectsProperties['objects'])? $objectsProperties['objects'] :array();
+$infolinks_list = isset( $objectsProperties['infolinks'])? $objectsProperties['infolinks'] :array();
+$misc_list = isset( $objectsProperties['misc'])? $objectsProperties['misc'] :array();
+
+@endphp
  
 <div class="editor-controls-holder">
 	<div class="editor-parent-nav">
@@ -25,7 +26,7 @@ $misc_list = getSvgFiles('assets/books-editor/misc/');
 				<a class="nav-link" id="objects-tab{{$data_id}}" data-toggle="tab" href="#objects{{$data_id}}" role="tab" aria-controls="objects{{$data_id}}" aria-selected="true">Objects</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" id="misc-tab{{$data_id}}" data-toggle="tab" href="#misc{{$data_id}}" role="tab" aria-controls="misc{{$data_id}}" aria-selected="true">Miscellaneous</a>
+				<a class="nav-link" id="misc-tab{{$data_id}}" data-toggle="tab" href="#misc{{$data_id}}" role="tab" aria-controls="misc{{$data_id}}"	 aria-selected="true">Miscellaneous</a>
 			</li>
 		</ul>
 		
@@ -38,7 +39,7 @@ $misc_list = getSvgFiles('assets/books-editor/misc/');
 							$object_slug = isset( $infolinkObj['slug'] )? $infolinkObj['slug'] : '';
 							$object_title = isset( $infolinkObj['title'] )? $infolinkObj['title'] : '';
 							@endphp
-							<li>
+							<li data-type="{{$object_slug}}" data-rotate="{{isset( $infolinkObj['rotate'] )? $infolinkObj['rotate'] : true}}" data-drag="{{isset( $infolinkObj['drag'] )? $infolinkObj['drag'] : true}}" data-resize="{{isset( $infolinkObj['resize'] )? $infolinkObj['resize'] : true}}">
 								<a href="javascript:;" title="{{$object_title}}" class="control-tool-item"
 								data-drag_type="infolink" data-object_path="/assets/books-editor/infolinks/{{$object_path}}" data-item_path="{{$object_path}}" data-drag_object="{{$object_slug}}">
 									<img src="/assets/books-editor/infolinks/{{$object_path}}" style="width:42px">
@@ -57,7 +58,7 @@ $misc_list = getSvgFiles('assets/books-editor/misc/');
 							$object_slug = isset( $objectObj['slug'] )? $objectObj['slug'] : '';
 							$object_title = isset( $objectObj['title'] )? $objectObj['title'] : '';
 							@endphp
-							<li>
+							<li data-type="{{$object_slug}}" data-rotate="{{isset( $objectObj['rotate'] )? $objectObj['rotate'] : true}}" data-drag="{{isset( $objectObj['drag'] )? $objectObj['drag'] : true}}" data-resize="{{isset( $objectObj['resize'] )? $objectObj['resize'] : true}}">
 								<a href="javascript:;" title="{{$object_title}}" class="control-tool-item"
 								data-drag_type="stage_objects" data-object_path="/assets/admin/editor/objects/{{$object_path}}" data-item_path="{{$object_path}}" data-drag_object="{{$object_slug}}">
 									<img src="/assets/books-editor/objects/{{$object_path}}" style="width:65px">
@@ -75,7 +76,7 @@ $misc_list = getSvgFiles('assets/books-editor/misc/');
 							$object_slug = isset( $miscObj['slug'] )? $miscObj['slug'] : '';
 							$object_title = isset( $miscObj['title'] )? $miscObj['title'] : '';
 							@endphp
-							<li>
+							<li data-type="{{$object_slug}}" data-rotate="{{isset( $miscObj['rotate'] )? $miscObj['rotate'] : true}}" data-drag="{{isset( $miscObj['drag'] )? $miscObj['drag'] : true}}" data-resize="{{isset( $miscObj['resize'] )? $miscObj['resize'] : true}}">
 								<a href="javascript:;" title="{{$object_title}}" class="control-tool-item"
 								data-drag_type="misc" data-object_path="/assets/admin/editor/misc/{{$object_path}}" data-item_path="{{$object_path}}" data-drag_object="{{$object_slug}}">
 									<img src="/assets/books-editor/misc/{{$object_path}}" style="width:65px">
@@ -146,6 +147,7 @@ $misc_list = getSvgFiles('assets/books-editor/misc/');
 		@foreach( $infolinks_list as $infolinkObj)
 			@php 
 			$object_slug = isset( $infolinkObj['slug'] )? $infolinkObj['slug'] : '';
+			$is_resize = isset( $infolinkObj['resize'] )? $infolinkObj['resize'] : true;
 			@endphp
 			<div class="infobox-{{$object_slug}}-fields">
 			
@@ -192,28 +194,17 @@ $misc_list = getSvgFiles('assets/books-editor/misc/');
 				</div>
 				@endif
 				
-				<div class="option-field-item">
-					<label>Size (px)</label>
-					<div class="input-group">
-						<input type="number" name="info_width" class="form-control trigger_field"
-								   value="42" data-field_id="info_width" data-field_name="width"
-						   data-field_type="style" data-id="">
-							
-						</div>	   
-				</div>
-				<div class="option-field-item">
-					<label>Fill Color</label>
-					<div class="input-group">
-						<input type="text" name="background_color" class="form-control trigger_field colorpickerinput"
-								   value="#ffffff" data-field_id="fill_color" data-field_name="fill"
-						   data-field_type="svg_path_style" data-id="">
-							<div class="input-group-append">
-								<div class="input-group-text">
-									<i class="fas fa-fill-drip"></i>
-								</div>
-							</div>
-						</div>	   
-				</div>
+				@if( $is_resize == true)
+					<div class="option-field-item">
+						<label>Size (%)</label>
+						<div class="input-group">
+							<input type="number" name="info_width" class="form-control trigger_field"
+									   value="5" data-field_id="info_width" data-field_name="width"
+							   data-field_type="style" data-id="">
+								
+							</div>	   
+					</div>
+				@endif
 			</div>
 		@endforeach
 	@endif
@@ -226,10 +217,10 @@ $misc_list = getSvgFiles('assets/books-editor/misc/');
 			@endphp
 			<div class="infobox-{{$obj_slug}}-fields">
 				<div class="option-field-item">
-					<label>Size (px)</label>
+					<label>Size (%)</label>
 					<div class="input-group">
 						<input type="number" name="object_width" class="form-control trigger_field"
-								   value="180" data-field_id="object_width" data-field_name="width"
+								   value="5" data-field_id="object_width" data-field_name="width"
 						   data-field_type="style" data-id="">
 							
 						</div>	   
@@ -259,10 +250,10 @@ $misc_list = getSvgFiles('assets/books-editor/misc/');
 			@endphp
 			<div class="infobox-{{$obj_slug}}-fields">
 				<div class="option-field-item">
-					<label>Size (px)</label>
+					<label>Size (%)</label>
 					<div class="input-group">
 						<input type="number" name="object_width" class="form-control trigger_field"
-								   value="180" data-field_id="object_width" data-field_name="width"
+								   value="5" data-field_id="object_width" data-field_name="width"
 						   data-field_type="style" data-id="">
 							
 						</div>	   

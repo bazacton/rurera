@@ -195,7 +195,7 @@ div.rureraform-element-checkbox-container div.rureraform-element-cover {display:
 .lms-sorting-fields .match-question {position: initial !important; display: inline-block; width: 100% !important; height: auto !important;}
 .lms-sorting-fields .match-question.ui-sortable-placeholder {position: absolute !important;}
 .lms-sorting-fields .field-holder .sort-icon ~ label {padding-right: 40px;}
-.lms-sorting-fields {display: inline-block; width: 100%; overflow-x: auto;}
+.lms-sorting-fields {display: inline-block; width: 100%;}
 .question-textarea .table {overflow: hidden;}
 .lms-sorting-fields::-webkit-scrollbar {height: 5px}
 /* Sortable List Style End */
@@ -227,6 +227,9 @@ span.Selectable.marking-selected {background: #fff716; cursor: pointer;}
 /* Highlight Word/Sentence Style End */
 
 /* Insert Into Sentence Style Start */
+.insert-into-sentense-holder p {
+	word-wrap: break-word;
+}
 .insert-options {
     width: 100%;
     display: inline-block;

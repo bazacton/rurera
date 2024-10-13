@@ -430,7 +430,7 @@ class BooksController extends Controller
             'book_title' => 'required|max:255',
         ];
 
-        $field_ids_array = $questions_ids_array = array();
+        $field_ids_array = $questions_ids_array = $objects_array = array();
 
 		$sort_order_item = 0;
         if (!empty($data)) {

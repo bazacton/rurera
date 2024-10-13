@@ -154,8 +154,11 @@ body .editor-zone:has(.field-options) {
     background-size: cover !important;
     overflow: hidden;
 }
+.book-dropzone img {
+    max-width: 100%;
+}
 body .editor-controls-holder {
-    height: calc(100% - 60px);
+    height: 100%;
 }
 .editor-zone .generate {
     margin-top: 30px;
@@ -207,7 +210,7 @@ body .editor-controls-holder {
     right: auto;
     min-width: 340px;
     max-width: 340px;
-    height: calc(100% - 130px);
+    height: 100%;
     background-color: #f2f2f2;
     padding: 30px 30px;
     border-radius: 5px;

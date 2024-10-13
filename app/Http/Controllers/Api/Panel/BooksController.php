@@ -99,78 +99,53 @@ class BooksController extends Controller
             foreach ($bookObj->bookPages as $page_data) {
 				$page_info_links = array();
 				$page_path = $page_data->page_path;
-				if (!empty($page_data->PageInfoLinks)) {
-                    foreach ($page_data->PageInfoLinks as $pageInfoLinks) {
+				if (!empty($page_data->pageObjects->where('status', 'active'))) {
+                    foreach ($page_data->pageObjects->where('status', 'active') as $pageInfoLinks) {
 						$content = '';
-						$info_style = isset( $pageInfoLinks->info_style )? $pageInfoLinks->info_style : '';
-						$image_dimensions = getimagesize($page_path);
+						$info_style = isset( $pageInfoLinks->field_style )? $pageInfoLinks->field_style : '';
 						$coordinates = array('x' => 0, 'y' => 0);
-						
-						if ($image_dimensions) {
-							$image_width = $image_dimensions[0];  // Image width
-							$image_height = $image_dimensions[1]; // Image height
+						preg_match('/(?:left:\s*([\d\.]+)%;)?(?:.*top:\s*([\d\.]+)%;)?(?:.*width:\s*([\d\.]+)%;)?(?:.*height:\s*([\d\.]+)%;)?/', $info_style, $matches);
 
-							// Use regex to capture the left and top values
-							preg_match('/left:\s*(\d+)px;.*top:\s*(\d+)px;/', $info_style, $matches);
+						$left   = isset($matches[1]) ? $matches[1] : null;
+						$top    = isset($matches[2]) ? $matches[2] : null;
+						$width  = isset($matches[3]) ? $matches[3] : null;
+						$height = isset($matches[4]) ? $matches[4] : null;
 
-							if (count($matches) === 3) {
-								// Calculate x and y as percentages
-								$x_percentage = ($matches[1] / $image_width) * 100;
-								$y_percentage = ($matches[2] / $image_height) * 100;
 
-								$coordinates = [
-									'x' => round($x_percentage, 2),
-									'y' => round($y_percentage, 2),
-								];
-
-							}
-						}
-						
 						$info_link_data = array(
 							'info_id' => isset( $pageInfoLinks->id )? $pageInfoLinks->id : 0,
-							'info_type' => isset( $pageInfoLinks->info_type )? $pageInfoLinks->info_type : '',
-							'x' => isset( $coordinates['x'] )? $coordinates['x'] : 0,
-							'y' => isset( $coordinates['y'] )? $coordinates['y'] : 0,
+							'info_type' => isset( $pageInfoLinks->item_slug )? $pageInfoLinks->item_slug : '',
+							'x' => $left,
+							'y' => $top,
+							'height' => $height,
+							'width' => $width,
 						);
 						
 						$data_values = isset($pageInfoLinks->data_values) ? json_decode($pageInfoLinks->data_values) : array();
+						$item_type = isset( $pageInfoLinks->item_type )? $pageInfoLinks->item_type : '';
 						
-						switch ($pageInfoLinks->info_type) {
+						$item_path_folder = '';
+						$item_path_folder = ($item_type == 'infolink' )? 'infolinks' : $item_path_folder;
+						$item_path_folder = ($item_type == 'stage_objects' )? 'objects' : $item_path_folder;
+						$item_path_folder = ($item_type == 'misc' )? 'misc' : $item_path_folder;
+						$item_path = isset( $pageInfoLinks->item_path ) ?  $pageInfoLinks->item_path : '';
+						$item_path = 'assets/books-editor/'.$item_path_folder.'/'.$item_path;
+						$item_path_img = '/assets/books-editor/'.$item_path_folder.'/default/'.$pageInfoLinks->item_slug.'.svg';
+						$info_link_data['info_icon'] = url('/').'/'.$item_path;
+						
+						switch ($pageInfoLinks->item_slug) {
                             case "highlighter":
-								//pre($pageInfoLinks);
-								$highlighter_size = isset( $data_values->highlighter_size )? $data_values->highlighter_size : '';
-								$highlighter_background = isset( $data_values->highlighter_background )? $data_values->highlighter_background : '';
-								
-								preg_match('/width:\s*(\d+)px;.*height:\s*(\d+)px;/', $highlighter_size, $highliter_matches);
-								$highlighter_width = isset( $highliter_matches[1] )? $highliter_matches[1] : 0;
-								$highlighter_height = isset( $highliter_matches[2] )? $highliter_matches[2] : 0;
-								
-								$hex = '';
-								
-								if (preg_match('/rgb\((\d+),\s*(\d+),\s*(\d+)\)/', $highlighter_background, $background_matches)) {
-									$red = $background_matches[1];
-									$green = $background_matches[2];
-									$blue = $background_matches[3];
-
-									// Convert RGB to hex
-									$hex = sprintf("#%02x%02x%02x", $red, $green, $blue);
-								}
-								
-								$info_link_data['width'] = $highlighter_width;
-								$info_link_data['height'] = $highlighter_height;
-								$info_link_data['background_color'] = $hex;
+								$highlighter_background = isset( $data_values->fill_color )? $data_values->fill_color : '';
+								$info_link_data['background_color'] = $highlighter_background;
 								
                                 //$content = isset($data_values->infobox_value)? base64_decode(trim(stripslashes($data_values->infobox_value))) : '';
                                 break;
 
                             default:
-							
-								$info_link_data['info_icon'] = isset( $pageInfoLinks->info_type )? url('/').'/assets/default/img/book-icons/'.$pageInfoLinks->info_type.'.png' : '';
-							
-								$content = isset($data_values->infobox_value)? base64_decode(trim(stripslashes($data_values->infobox_value))) : '';
+								$content = isset($data_values->info_content)? $data_values->info_content : '';
 								
 								$info_link_data['info_data'] = array(
-									'title' => isset( $pageInfoLinks->info_title )? $pageInfoLinks->info_title : '',
+									'title' => isset( $pageInfoLinks->item_title )? $pageInfoLinks->item_title : '',
 									'content' => $content,
 								);
                                 //$content = '';

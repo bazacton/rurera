@@ -36,6 +36,15 @@ $(document).on('click', '.book-dropzone', function (e) {
     var attribute_type = $('.control-tool-item.active').attr('data-attribute_type');
     var attribute_value = $('.control-tool-item.active').attr('data-attribute_value');
     var item_title = $('.control-tool-item.active').attr('title');
+	var is_resize = $('.editor-objects li[data-type="'+drag_object+'"]').attr('data-resize');
+	var is_drag = $('.editor-objects li[data-type="'+drag_object+'"]').attr('data-drag');
+	var is_rotate = $('.editor-objects li[data-type="'+drag_object+'"]').attr('data-rotate');
+	
+	var elementWidth = $(this).width();
+    var elementHeight = $(this).height();
+	
+	var topPercentage = (e.offsetY / elementHeight) * 100;
+    var leftPercentage = (e.offsetX / elementWidth) * 100;
 	
 
     $('.control-tool-item').removeClass('active');
@@ -44,7 +53,7 @@ $(document).on('click', '.book-dropzone', function (e) {
 	
 
     if (drag_type == "text") {
-        var $el = $('<div style="left:' + e.offsetX + 'px; top:' + e.offsetY + 'px;" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-field_type="' + drag_type + '" data-trigger_class="p-fields" data-paragraph_value="Test text here..." data-color="#000000"><div class="field-data customizable-field data_style_field data_html_field" data-html_id="text_html" data-style_id="text_color" contenteditable="true">Test text here...</div>');
+        var $el = $('<div style="left:' + leftPercentage + '%; top:' + topPercentage + '%;" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-field_type="' + drag_type + '" data-trigger_class="p-fields" data-paragraph_value="Test text here..." data-color="#000000"><div class="field-data customizable-field data_style_field data_html_field" data-html_id="text_html" data-style_id="text_color" contenteditable="true">Test text here...</div>');
         //$el.append('<span class="field-handle fas fa-arrows-alt"></span><a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
         $el.append('<a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
         $el.append('</div>');
@@ -57,7 +66,7 @@ $(document).on('click', '.book-dropzone', function (e) {
 
     if (drag_type == "highlighter") {
 
-        var $el = $('<div style="left:' + e.offsetX + 'px; top:' + e.offsetY + 'px;" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-field_type="' + drag_type + '" data-trigger_class="highlighter-fields" data-background=""><div class="field-data"><div class="stage-shapes resizeable data_style_field" data-style_id="highlighter_size"><div class="customizable-field text-highlighter data_style_field" data-style_id="highlighter_background"></div></div></div>');
+        var $el = $('<div style="left:' + leftPercentage + '%; top:' + topPercentage + '%;" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-field_type="' + drag_type + '" data-trigger_class="highlighter-fields" data-background=""><div class="field-data"><div class="stage-shapes resizeable data_style_field" data-style_id="highlighter_size"><div class="customizable-field text-highlighter data_style_field" data-style_id="highlighter_background"></div></div></div>');
         //$el.append('<span class="field-handle fas fa-arrows-alt"></span><a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
         $el.append('<a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
         $el.append('</div>');
@@ -73,7 +82,7 @@ $(document).on('click', '.book-dropzone', function (e) {
 		
 		var svg_code = $(".svgs-data ."+drag_object+"_svg").html();
 
-        var $el = $('<div style="left:' + e.offsetX + 'px; top:' + e.offsetY + 'px; width:42px;" data-info_width="42" data-item_title="'+item_title+'" data-unique_id="'+unique_id+'" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-item_path="' + item_path + '" data-field_type="' + drag_type + '" data-trigger_class="infobox-'+drag_object+'-fields" data-item_type="'+drag_object+'" data-paragraph_value="Test text here..."><div class="field-data">'+svg_code+'</div>');
+        var $el = $('<div style="left:' + leftPercentage + '%; top:' + topPercentage + '%; width:5%;" data-info_width="5" data-item_title="'+item_title+'" data-unique_id="'+unique_id+'" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-item_path="' + item_path + '" data-field_type="' + drag_type + '" data-trigger_class="infobox-'+drag_object+'-fields" data-item_type="'+drag_object+'" data-paragraph_value="Test text here..."><div class="field-data">'+svg_code+'</div>');
         //$el.append('<span class="field-handle fas fa-arrows-alt"></span><a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
         $el.append('<a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
         $el.append('</div>');
@@ -84,7 +93,7 @@ $(document).on('click', '.book-dropzone', function (e) {
     }
 
     if (drag_type == "look_for_clues") {
-        var $el = $('<div style="left:' + e.offsetX + 'px; top:' + e.offsetY + 'px;" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-field_type="' + drag_type + '" data-trigger_class="infobox-look_for_clues-fields" data-paragraph_value="Test text here..."><div class="field-data"><img src="/assets/default/img/book-icons/look_for_clues.png"></div>');
+        var $el = $('<div style="left:' + leftPercentage + '%; top:' + topPercentage + '%;" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-field_type="' + drag_type + '" data-trigger_class="infobox-look_for_clues-fields" data-paragraph_value="Test text here..."><div class="field-data"><img src="/assets/default/img/book-icons/look_for_clues.png"></div>');
         //$el.append('<span class="field-handle fas fa-arrows-alt"></span><a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
         $el.append('<a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
         $el.append('</div>');
@@ -95,7 +104,7 @@ $(document).on('click', '.book-dropzone', function (e) {
     }
 
     if (drag_type == "picture_in_your_mind") {
-        var $el = $('<div style="left:' + e.offsetX + 'px; top:' + e.offsetY + 'px;" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-field_type="' + drag_type + '" data-trigger_class="infobox-picture_in_your_mind-fields" data-paragraph_value="Test text here..."><div class="field-data"><img src="/assets/default/img/book-icons/picture_in_your_mind.png"></div>');
+        var $el = $('<div style="left:' + leftPercentage + '%; top:' + topPercentage + '%;" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-field_type="' + drag_type + '" data-trigger_class="infobox-picture_in_your_mind-fields" data-paragraph_value="Test text here..."><div class="field-data"><img src="/assets/default/img/book-icons/picture_in_your_mind.png"></div>');
         //$el.append('<span class="field-handle fas fa-arrows-alt"></span><a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
         $el.append('<a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
         $el.append('</div>');
@@ -106,7 +115,7 @@ $(document).on('click', '.book-dropzone', function (e) {
     }
 
     if (drag_type == "try_do_it_yourself") {
-        var $el = $('<div style="left:' + e.offsetX + 'px; top:' + e.offsetY + 'px;" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-field_type="' + drag_type + '" data-trigger_class="infobox-try_do_it_yourself-fields" data-paragraph_value="Test text here..."><div class="field-data"><img src="/assets/default/img/book-icons/try_do_it_yourself.png"></div>');
+        var $el = $('<div style="left:' + leftPercentage + '%; top:' + topPercentage + '%;" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-field_type="' + drag_type + '" data-trigger_class="infobox-try_do_it_yourself-fields" data-paragraph_value="Test text here..."><div class="field-data"><img src="/assets/default/img/book-icons/try_do_it_yourself.png"></div>');
         //$el.append('<span class="field-handle fas fa-arrows-alt"></span><a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
         $el.append('<a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
         $el.append('</div>');
@@ -117,7 +126,7 @@ $(document).on('click', '.book-dropzone', function (e) {
     }
 
     if (drag_type == "think_and_remember") {
-        var $el = $('<div style="left:' + e.offsetX + 'px; top:' + e.offsetY + 'px;" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-field_type="' + drag_type + '" data-trigger_class="infobox-think_and_remember-fields" data-paragraph_value="Test text here..."><div class="field-data"><img src="/assets/default/img/book-icons/think_and_remember.png"></div>');
+        var $el = $('<div style="left:' + leftPercentage + '%; top:' + topPercentage + '%;" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-field_type="' + drag_type + '" data-trigger_class="infobox-think_and_remember-fields" data-paragraph_value="Test text here..."><div class="field-data"><img src="/assets/default/img/book-icons/think_and_remember.png"></div>');
         //$el.append('<span class="field-handle fas fa-arrows-alt"></span><a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
         $el.append('<a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
         $el.append('</div>');
@@ -128,7 +137,7 @@ $(document).on('click', '.book-dropzone', function (e) {
     }
 
     if (drag_type == "facts") {
-        var $el = $('<div style="left:' + e.offsetX + 'px; top:' + e.offsetY + 'px;" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-field_type="' + drag_type + '" data-trigger_class="infobox-facts-fields" data-paragraph_value="Test text here..."><div class="field-data"><img src="/assets/default/img/book-icons/facts.png"></div>');
+        var $el = $('<div style="left:' + leftPercentage + '%; top:' + topPercentage + '%;" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-field_type="' + drag_type + '" data-trigger_class="infobox-facts-fields" data-paragraph_value="Test text here..."><div class="field-data"><img src="/assets/default/img/book-icons/facts.png"></div>');
         //$el.append('<span class="field-handle fas fa-arrows-alt"></span><a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
         $el.append('<a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
         $el.append('</div>');
@@ -140,7 +149,7 @@ $(document).on('click', '.book-dropzone', function (e) {
 
     if (drag_type == "quiz") {
 
-        var $el = $('<div style="left:' + e.offsetX + 'px; top:' + e.offsetY + 'px;" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-field_type="' + drag_type + '" data-trigger_class="infobox-quiz-fields"><div class="field-data"><img src="/assets/default/img/book-icons/quiz.png"></div>');
+        var $el = $('<div style="left:' + leftPercentage + '%; top:' + topPercentage + '%;" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-field_type="' + drag_type + '" data-trigger_class="infobox-quiz-fields"><div class="field-data"><img src="/assets/default/img/book-icons/quiz.png"></div>');
         //$el.append('<span class="field-handle fas fa-arrows-alt"></span><a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
         $el.append('<a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
         $el.append('</div>');
@@ -152,7 +161,7 @@ $(document).on('click', '.book-dropzone', function (e) {
 
     if (drag_type == "topicsss") {
 
-        var $el = $('<div style="left:' + e.offsetX + 'px; top:' + e.offsetY + 'px;" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-field_type="' + drag_type + '" data-topic_title="" data-trigger_class="infobox-topic-fields"><div class="field-data"><img src="/assets/default/img/book-icons/quiz.png"></div>');
+        var $el = $('<div style="left:' + leftPercentage + '%; top:' + topPercentage + '%;" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-field_type="' + drag_type + '" data-topic_title="" data-trigger_class="infobox-topic-fields"><div class="field-data"><img src="/assets/default/img/book-icons/quiz.png"></div>');
         //$el.append('<span class="field-handle fas fa-arrows-alt"></span><a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
         $el.append('<a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
         $el.append('</div>');
@@ -164,7 +173,7 @@ $(document).on('click', '.book-dropzone', function (e) {
 
     if (drag_type == "map") {
 
-        var $el = $('<div style="left:' + e.offsetX + 'px; top:' + e.offsetY + 'px;" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-field_type="' + drag_type + '" data-topic_title="" data-trigger_class="infobox-map-fields"><div class="field-data"><img src="/assets/default/img/book-icons/map.svg" width="500"></div>');
+        var $el = $('<div style="left:' + leftPercentage + '%; top:' + topPercentage + '%;" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-field_type="' + drag_type + '" data-topic_title="" data-trigger_class="infobox-map-fields"><div class="field-data"><img src="/assets/default/img/book-icons/map.svg" width="500"></div>');
         //$el.append('<span class="field-handle fas fa-arrows-alt"></span><a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
         $el.append('<a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
         $el.append('</div>');
@@ -178,20 +187,67 @@ $(document).on('click', '.book-dropzone', function (e) {
     /*
     * Draggable
     */
-    $('.draggable_field_' + field_random_number)
-    .rotatable()
-    .draggable({
-        preventCollision: true,
-        containment: dropZonObj
-    })
-    .off('wheel'); // Unbinds all wheel events from this element
+	
+	$('.draggable_field_' + field_random_number)
+			.rotatable()
+			.draggable({
+				preventCollision: true,
+				containment: dropZonObj,
+				drag: function(event, ui) {
+					var parent = $(this).parent(); // Assuming dropZonObj is the container
+					var parentWidth = parent.width();
+					var parentHeight = parent.height();
 
-	$('.draggable_field_' + field_random_number).resizable({
-        resize: function(event, ui) {
-			$(".field-options").find('.trigger_field[data-field_name="width"]').val(ui.size.width);
-			$(".field-options").find('.trigger_field[data-field_name="width"]').change();
-        }
-    });
+					// Calculate the percentages
+					var leftPercent = (ui.position.left / parentWidth) * 100;
+					var topPercent = (ui.position.top / parentHeight) * 100;
+
+					// Set the CSS of the element with the percentages
+					$(this).css({
+						left: leftPercent + '%',
+						top: topPercent + '%'
+					});
+
+					// Prevent jQuery UI from overriding the percentage values with pixel values
+					ui.position.left = leftPercent + '%';
+					ui.position.top = topPercent + '%';
+				}
+			})
+		.off('wheel');
+	 // Unbinds all wheel events from this element
+
+	 if( is_drag != true){
+		$('.draggable_field_' + field_random_number).draggable("disable");
+	 }
+	 if( is_rotate != true){
+		$('.draggable_field_' + field_random_number).rotatable("disable");
+	 }
+	
+	
+	if( is_resize == true){
+		$('.draggable_field_' + field_random_number).resizable({
+			resize: function(event, ui) {
+				var parent = $(this).parent(); // Assuming dropZonObj is the container
+				var parentWidth = parent.width();
+				var parentHeight = parent.height();
+
+				// Calculate the width and height in percentages
+				var widthPercent = (ui.size.width / parentWidth) * 100;
+				var heightPercent = (ui.size.height / parentHeight) * 100;
+
+				// Set the CSS of the element with percentage values
+				$(this).css({
+					width: widthPercent + '%',
+					height: heightPercent + '%'
+				});
+
+				// Update the field options with the percentage values
+				$(".field-options").find('.trigger_field[data-field_name="width"]').val(widthPercent);
+				$(".field-options").find('.trigger_field[data-field_name="width"]').change();
+			}
+		});
+	}
+	
 	
 	$('.colorpickerinput').colorpicker({
 		format: 'hex',
@@ -456,14 +512,14 @@ function trigger_field_change(thisObj) {
     }
 	
 	if (field_type == 'style') {
-		$(".draggable_field_" + data_id).css(field_name,this_value);
+		$(".draggable_field_" + data_id).css(field_name,this_value+'%');
         //$(".draggable_field_" + data_id + ' .field-data').html(this_value);
     }
 	
 	if (field_type == 'page_style') {
 		var this_value_number = this_value;	
 		if( field_name == 'height'){
-			this_value = this_value+'px';	
+			this_value = this_value+'%';	
 		}
 		if( field_name == 'graph'){
 			if( this_value == 1){
@@ -480,7 +536,7 @@ function trigger_field_change(thisObj) {
 	
 	if (field_type == 'svg_style') {
 		if( field_name == 'width'){
-			this_value = this_value+'px';	
+			this_value = this_value+'%';	
 		}
 		$(".draggable_field_" + data_id).find('svg').css(field_name,this_value);
         //$(".draggable_field_" + data_id + ' .field-data').html(this_value);
@@ -524,6 +580,10 @@ jQuery(document).ready(function () {
     $('.book-dropzone .field_settings').each(function () {
         var dropZonObj = $(this).closest('.book-dropzone');
         var field_id = $(this).attr('data-id');
+		var item_type = $(this).attr('data-item_type');
+		var is_resize = $('.editor-objects li[data-type="'+item_type+'"]').attr('data-resize');
+		var is_drag = $('.editor-objects li[data-type="'+item_type+'"]').attr('data-drag');
+		var is_rotate = $('.editor-objects li[data-type="'+item_type+'"]').attr('data-rotate');
 		
 		
 		$(document).on('keydown', function(event) {
@@ -543,38 +603,83 @@ jQuery(document).ready(function () {
 				
 				switch(event.which) {
 					case 37: // Left arrow key
-						$activeElement.css('left', leftPos - 1 + 'px');
+						$activeElement.css('left', leftPos - 1 + '%');
 						break;
 						
 					case 39: // Right arrow key
-						$activeElement.css('left', leftPos + 1 + 'px');
+						$activeElement.css('left', leftPos + 1 + '%');
 						break;
 						
 					case 38: // Up arrow key
-						$activeElement.css('top', topPos - 1 + 'px');
+						$activeElement.css('top', topPos - 1 + '%');
 						break;
 						
 					case 40: // Down arrow key
-						$activeElement.css('top', topPos + 1 + 'px');	
+						$activeElement.css('top', topPos + 1 + '%');	
 						break;
 				}
 			}
 		});
-		
 		$('.draggable_field_' + field_id)
 			.rotatable()
 			.draggable({
 				preventCollision: true,
-				containment: dropZonObj
+				containment: dropZonObj,
+				drag: function(event, ui) {
+					var parent = $(this).parent(); // Assuming dropZonObj is the container
+					var parentWidth = parent.width();
+					var parentHeight = parent.height();
+
+					// Calculate the percentages
+					var leftPercent = (ui.position.left / parentWidth) * 100;
+					var topPercent = (ui.position.top / parentHeight) * 100;
+
+					// Set the CSS of the element with the percentages
+					$(this).css({
+						left: leftPercent + '%',
+						top: topPercent + '%'
+					});
+
+					// Prevent jQuery UI from overriding the percentage values with pixel values
+					ui.position.left = leftPercent + '%';
+					ui.position.top = topPercent + '%';
+				}
 			})
-			.off('wheel'); // Unbinds all wheel events from this element
+		.off('wheel');
+		
+		if( is_drag != true){
+			$('.draggable_field_' + field_id).draggable("disable");
+		}
+		if( is_rotate != true){
+			$('.draggable_field_' + field_id).rotatable("disable");
+		}
+		
+		
+		
+		if( is_resize == true){
 			$('.draggable_field_' + field_id).resizable({
 				resize: function(event, ui) {
-					$(".field-options").find('.trigger_field[data-field_name="width"]').val(ui.size.width);
+					var parent = $(this).parent(); // Assuming dropZonObj is the container
+					var parentWidth = parent.width();
+					var parentHeight = parent.height();
+
+					// Calculate the width and height in percentages
+					var widthPercent = (ui.size.width / parentWidth) * 100;
+					var heightPercent = (ui.size.height / parentHeight) * 100;
+
+					// Set the CSS of the element with percentage values
+					$(this).css({
+						width: widthPercent + '%',
+						height: heightPercent + '%'
+					});
+
+					// Update the field options with the percentage values
+					$(".field-options").find('.trigger_field[data-field_name="width"]').val(widthPercent);
 					$(".field-options").find('.trigger_field[data-field_name="width"]').change();
 				}
-
 			});
+		}
+		
 		
     });
 
@@ -764,7 +869,7 @@ function generate_stage_area(){
 			var field_style = field_position_top = field_position_left = '';
 			var field_position = fieldObj.position();
 			if (field_position != undefined && field_position != 'undefined') {
-				var field_style = 'style="top:' + field_position.top + 'px;left:' + field_position.left + 'px;position: absolute;width: max-content;"';
+				var field_style = 'style="top:' + field_position.top + '%;left:' + field_position.left + '%;position: absolute;width: max-content;"';
 				var field_position_top = field_position.top;
 				var field_position_left = field_position.left;
 			}

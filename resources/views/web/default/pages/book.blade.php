@@ -118,7 +118,7 @@
                             src:"/{{$bookPage->page_path}}",
         					thumb:"/{{$bookPage->page_path}}",
         					title:"{{$bookPage->page_title}}",
-        					htmlContent: '<div class="loadedDiv" data-page_id="{{$bookPage->id}}" data-time_lapsed="{{$read_time}}" data-start_time="0">{!! ($page_count == 1)? $page_content_data : $page_content_data !!}</div>'
+        					htmlContent: `<div class="loadedDiv" data-page_id="{{ $bookPage->id }}" data-time_lapsed="{{ $read_time }}" data-start_time="0">{!! $page_content_data !!}</div>`,
         				},
                     @php $page_count++; @endphp
                     @endforeach

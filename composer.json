@@ -102,6 +102,7 @@
         ],
         "files": [
             "app/Helpers/helper.php",
+            "app/Helpers/generalHelper.php",
             "app/Mixins/Geo/Geo.php",
             "app/Helpers/ApiHelper.php"
         ]
