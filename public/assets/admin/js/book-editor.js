@@ -36,9 +36,9 @@ $(document).on('click', '.book-dropzone', function (e) {
     var attribute_type = $('.control-tool-item.active').attr('data-attribute_type');
     var attribute_value = $('.control-tool-item.active').attr('data-attribute_value');
     var item_title = $('.control-tool-item.active').attr('title');
-	var is_resize = $('.editor-objects li[data-type="'+drag_object+'"]').attr('data-resize');
-	var is_drag = $('.editor-objects li[data-type="'+drag_object+'"]').attr('data-drag');
-	var is_rotate = $('.editor-objects li[data-type="'+drag_object+'"]').attr('data-rotate');
+	var is_resize = $('.editor-ul li[data-type="'+drag_object+'"]').attr('data-resize');
+	var is_drag = $('.editor-ul li[data-type="'+drag_object+'"]').attr('data-drag');
+	var is_rotate = $('.editor-ul li[data-type="'+drag_object+'"]').attr('data-rotate');
 	
 	var elementWidth = $(this).width();
     var elementHeight = $(this).height();
@@ -81,8 +81,18 @@ $(document).on('click', '.book-dropzone', function (e) {
 		
 		
 		var svg_code = $(".svgs-data ."+drag_object+"_svg").html();
+		var object_width = '5%';
+		var attribute_data = '';
+		var style_data = '';
+		if(drag_object == 'textinput'){
+			svg_code = 'Test Paragraph';
+			object_width = 'auto';
+			attribute_data += 'data-object_text="Test Paragraph"';
+			attribute_data += ' data-font-size="100"';
+			style_data += ' font-size:100%;';
+		}
 
-        var $el = $('<div style="left:' + leftPercentage + '%; top:' + topPercentage + '%; width:5%;" data-info_width="5" data-item_title="'+item_title+'" data-unique_id="'+unique_id+'" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-item_path="' + item_path + '" data-field_type="' + drag_type + '" data-trigger_class="infobox-'+drag_object+'-fields" data-item_type="'+drag_object+'" data-paragraph_value="Test text here..."><div class="field-data">'+svg_code+'</div>');
+        var $el = $('<div style="left:' + leftPercentage + '%; top:' + topPercentage + '%; width:'+object_width+'; '+style_data+'" '+attribute_data+' data-info_width="'+object_width+'" data-item_title="'+item_title+'" data-unique_id="'+unique_id+'" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-item_path="' + item_path + '" data-field_type="' + drag_type + '" data-trigger_class="infobox-'+drag_object+'-fields" data-item_type="'+drag_object+'" data-paragraph_value="Test text here..."><div class="field-data">'+svg_code+'</div>');
         //$el.append('<span class="field-handle fas fa-arrows-alt"></span><a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
         $el.append('<a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
         $el.append('</div>');
@@ -304,6 +314,7 @@ $(document).on('click', '.page_settings', function (e) {
         var field_id = $(this).data('field_id');
         var field_type = $(this).data('field_type');
         var field_value = fieldObj.attr('data-' + field_id);
+		
         if (field_type != 'image') {
 			
 			if( field_id == 'page_graph'){
@@ -329,7 +340,6 @@ $(document).on('click', '.field_settings', function (e) {
 	var item_title = fieldObj.attr('data-item_title');
 	var parent_field_id = field_id;
     var trigger_class = fieldObj.data('trigger_class');
-	console.log(trigger_class);
     $(".field-options").html('<h4 class="properties-title">'+item_title+' Properties</h4> '+$('.' + trigger_class).html());
 	
 	$('.field_settings').removeClass('active');
@@ -521,6 +531,7 @@ function trigger_field_change(thisObj) {
 		if( field_name == 'height'){
 			this_value = this_value+'%';	
 		}
+
 		if( field_name == 'graph'){
 			if( this_value == 1){
 				$(".page_settings.active").addClass('graph-background');
@@ -528,7 +539,12 @@ function trigger_field_change(thisObj) {
 				$(".page_settings.active").removeClass('graph-background');
 			}
 		}else{
+			console.log(field_name);
+			if(field_name == 'background'){
+				$(".page_settings.active").css(field_name,'url('+this_value+')');
+			}else{
 			$(".page_settings.active").css(field_name,this_value);
+			}
 		}
         //$(".draggable_field_" + data_id + ' .field-data').html(this_value);
 		$(".page_settings.active").attr('data-'+field_id, this_value_number);
@@ -581,9 +597,9 @@ jQuery(document).ready(function () {
         var dropZonObj = $(this).closest('.book-dropzone');
         var field_id = $(this).attr('data-id');
 		var item_type = $(this).attr('data-item_type');
-		var is_resize = $('.editor-objects li[data-type="'+item_type+'"]').attr('data-resize');
-		var is_drag = $('.editor-objects li[data-type="'+item_type+'"]').attr('data-drag');
-		var is_rotate = $('.editor-objects li[data-type="'+item_type+'"]').attr('data-rotate');
+		var is_resize = $('.editor-ul li[data-type="'+item_type+'"]').attr('data-resize');
+		var is_drag = $('.editor-ul li[data-type="'+item_type+'"]').attr('data-drag');
+		var is_rotate = $('.editor-ul li[data-type="'+item_type+'"]').attr('data-rotate');
 		
 		
 		$(document).on('keydown', function(event) {

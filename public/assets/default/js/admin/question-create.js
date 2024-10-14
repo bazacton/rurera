@@ -206,6 +206,9 @@ function rureraform_save(_object, question_status) {
 
     var question_title = $("[name=question_title]").val();
     var category_id = $("[name='category_id[]']").val();
+    var topics_parts = $("[name='topics_parts[]']:checked").map(function() {
+		return $(this).val();
+	}).get();
     var course_id = $("[name=course_id]").val();
     var chapter_id = $("[name=chapter_id]").val();
     var sub_chapter_id = $("[name=sub_chapter_id]").val();
@@ -256,6 +259,7 @@ function rureraform_save(_object, question_status) {
         "question_title": question_title,
         "search_tags": search_tags,
         "category_id": category_id,
+		"topics_parts" : topics_parts,
         "course_id": course_id,
         "chapter_id": chapter_id,
         "sub_chapter_id": sub_chapter_id,
@@ -3002,6 +3006,8 @@ function rureraform_properties_close() {
         });
     } else
         _rureraform_properties_close();
+	
+	$(".topic-parts-block").removeClass('rurera-hide');
     return false;
 }
 
@@ -9973,6 +9979,7 @@ $(document).on('click', '.question_glossary_submit_btn', function () {
     });
 });
 $(document).on('click', '.quiz-group', function () {
+	$(".topic-parts-block").addClass('rurera-hide');
     rureraform_properties_open($(this));
 });
 $(document).on('click', '.duplicate-element', function () {

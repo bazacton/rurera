@@ -2567,6 +2567,7 @@ class QuestionsBankController extends Controller
         $query = Webinar::query();
 
         $chapters_list = get_chapters_list();
+		
 
 
         $questions_array = $columns_array = $form_pages = $elements_data = $elements_array = array();
@@ -2699,6 +2700,7 @@ class QuestionsBankController extends Controller
             'question_levels'            => $question_levels,
             'developer_review_required'           => isset($questionData['developer_review_required']) ? $questionData['developer_review_required'] : 0 ,
             'hide_question'           => isset($questionData['hide_question']) ? $questionData['hide_question'] : 0 ,
+            'topics_parts'           => isset($questionData['topics_parts']) ? json_encode($questionData['topics_parts']) : '' ,
         ]);
 
         if (!empty($quizQuestion)) {

@@ -13,7 +13,7 @@ use App\Models\SubChapters;
 use App\Models\WebinarChapterItem;
 use Illuminate\Support\Facades\File;
 
-function getObjectsProperty($object_slug = ''){
+function getObjectsProperty_bk($object_slug = ''){
 	$default = array(
 		'resize' => true,
 		'rotate' => true,

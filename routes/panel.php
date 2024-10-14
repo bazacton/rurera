@@ -378,7 +378,7 @@ $parentTutorRoutes = function () {
     });
 
     Route::group(['prefix' => 'marketing'], function () {
-        Route::get('/affiliates', 'AffiliateController@affiliates');
+        Route::get('/affiliates', 'AffiliateController@affiliates')->middleware('inject.css:assets/default/css/panel-pages/refferals.css');
 
         /* Registration Bonus */
         Route::get('/registration_bonus', 'RegistrationBonusController@index');
@@ -426,7 +426,7 @@ $parentTutorRoutes = function () {
     });
 
     Route::group(['prefix' => 'analytics'], function () {
-        Route::get('/', 'AnalyticsController@index');
+        Route::get('/', 'AnalyticsController@index')->middleware('inject.css:assets/default/css/panel-pages/analytics.css');
         Route::get('/graph_data', 'AnalyticsController@graph_data');
         Route::get('/{type}', 'AnalyticsController@index');
         Route::get('/{type}/{id}', 'AnalyticsController@index');

@@ -665,9 +665,9 @@
                                         @if( !empty($book->bookPages ) )
                                         @php $i = 1; @endphp
                                         @foreach( $book->bookPages as $bookPage)
-                                        <div class="book-dropzone {{ ($i > 1)? 'hide' : 'active'}}"
+                                        <div class="book-dropzone page_settings {{ ($i > 1)? 'hide' : 'active'}}" data-trigger_class="page-settings-fields"
                                              style="background:url('/{{$bookPage->page_path}}');"
-                                             data-page_id="{{$bookPage->id}}">
+                                             data-page_id="{{$bookPage->id}}" data-page_background="/{{$bookPage->page_path}}">
                                             <img src="/{{$bookPage->page_path}}" style="visibility: hidden;" />
 											
 											

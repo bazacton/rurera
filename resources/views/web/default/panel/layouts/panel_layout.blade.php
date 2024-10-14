@@ -18,10 +18,14 @@
     <link rel="stylesheet" href="/assets/default/vendors/sweetalert2/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="/assets/default/vendors/toast/jquery.toast.min.css">
     <link rel="stylesheet" href="/assets/default/vendors/simplebar/simplebar.css">
+	<link rel="stylesheet" href="/assets/default/css/panel-pages/left-menu.css?ver={{$rand_no}}">
 	<link rel="stylesheet" href="/assets/default/css/common.css?ver={{$rand_no}}">
-    <link rel="stylesheet" href="/assets/default/css/panel.css?ver={{$rand_no}}">
     <link rel="stylesheet" href="/assets/vendors/jquerygrowl/jquery.growl.css">
     <link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
+
+	@if(auth()->check() && auth()->user()->isParent())
+		<link rel="stylesheet" href="/assets/default/css/panel-pages/parent.css?ver={{$rand_no}}">
+	@endif
 
 	@if (isset( $cssFiles ) && !empty($cssFiles))
         @foreach ($cssFiles as $cssFile)
@@ -152,32 +156,6 @@
                                     </ul>
                                 </div>
                                 @endif
-                            </div>
-                            <div class="col-12 col-lg-12">
-                                <div class="sound-card mb-30 mt-15 panel-border bg-white rounded-sm p-20">
-                                    <span class="selective-sound">very</span>
-                                    <div class="sound-box">
-                                        <span class="icon-box">
-                                            <img src="/assets/default/svgs/sound.svg" alt="sound svg image" height="800" width="800">
-                                        </span>
-                                        <span class="current-sound">very</span>
-                                    </div>
-                                    <div class="sound-list">
-                                        <h5>adjective</h5>
-                                        <ol>
-                                            <li>being actual or real</li>
-                                            <li>exact, precise</li>
-                                            <li>exactly suitable or necessary</li>
-                                        </ol>
-                                    </div>
-                                    <div class="sound-list">
-                                        <h5>adverb</h5>
-                                        <ol>
-                                            <li>in actual fact: truly</li>
-                                            <li>to a great degree: extremely</li>
-                                        </ol>
-                                    </div>
-                                </div>
                             </div>
 							
 							@if(auth()->user()->isUser())

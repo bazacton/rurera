@@ -32,7 +32,7 @@ $misc_list = isset( $objectsProperties['misc'])? $objectsProperties['misc'] :arr
 		
 		<div class="tab-content" id="myTabContent2">
 			<div class="tab-pane mt-3 fade  show active " id="infolinks{{$data_id}}" role="tabpanel" aria-labelledby="infolinks-tab{{$data_id}}">
-				<ul class="editor-objects">
+				<ul class="editor-objects editor-ul">
 					@if( !empty( $infolinks_list ) )
 						@foreach( $infolinks_list as $infolinkObj)
 							@php $object_path = isset( $infolinkObj['path'] )? $infolinkObj['path'] : ''; 
@@ -51,7 +51,7 @@ $misc_list = isset( $objectsProperties['misc'])? $objectsProperties['misc'] :arr
 				</ul>
 			</div>
 			<div class="tab-pane mt-3 fade" id="objects{{$data_id}}" role="tabpanel" aria-labelledby="objects-tab{{$data_id}}">
-					<ul class="editor-objects">
+					<ul class="editor-objects editor-ul">
 					@if( !empty( $objects_list ) )
 						@foreach( $objects_list as $objectObj)
 							@php $object_path = isset( $objectObj['path'] )? $objectObj['path'] : ''; 
@@ -69,7 +69,7 @@ $misc_list = isset( $objectsProperties['misc'])? $objectsProperties['misc'] :arr
 					</ul>
 			</div>
 			<div class="tab-pane mt-3 fade" id="misc{{$data_id}}" role="tabpanel" aria-labelledby="misc-tab{{$data_id}}">
-					<ul class="editor-misc">
+					<ul class="editor-misc editor-ul">
 					@if( !empty( $misc_list ) )
 						@foreach( $misc_list as $miscObj)
 							@php $object_path = isset( $miscObj['path'] )? $miscObj['path'] : ''; 
@@ -112,27 +112,13 @@ $misc_list = isset( $objectsProperties['misc'])? $objectsProperties['misc'] :arr
 		
 		<div class="page-settings-fields">
 			<div class="option-field-item">
-				<label>Background Color</label>
+				<label>Background Image</label>
 				<div class="input-group">
-					<input type="text" name="background_color" class="form-control trigger_field colorpickerinput"
-							   value="#ffffff" data-field_id="page_background" data-field_name="background"
-					   data-field_type="page_style" data-id="">
-						<div class="input-group-append">
-							<div class="input-group-text">
-								<i class="fas fa-fill-drip"></i>
-							</div>
-						</div>
-					</div>	   
-			</div>
-			<div class="option-field-item">
-				<label>Height</label>
-				<div class="input-group">
-					<input type="number" name="page_height" class="form-control trigger_field"
-							   value="800" data-field_id="page_height" data-field_name="height" min="800"
+					<input type="text" name="background_color" class="form-control trigger_field "
+							   value="" data-field_id="page_background" data-field_name="background"
 					   data-field_type="page_style" data-id="">
 					</div>	   
 			</div>
-			
 			<div class="option-field-item">
 				<label class="custom-switch pl-0">
 					<input type="hidden" name="page_graph" class="trigger_field" value="0" data-field_id="page_graph" data-field_name="graph" data-field_type="page_style" data-id="">
@@ -249,6 +235,7 @@ $misc_list = isset( $objectsProperties['misc'])? $objectsProperties['misc'] :arr
 			$svg_code = isset( $miscObj['svg_code'] )? $miscObj['svg_code'] : '';
 			@endphp
 			<div class="infobox-{{$obj_slug}}-fields">
+				@if( $obj_slug != 'textinput')
 				<div class="option-field-item">
 					<label>Size (%)</label>
 					<div class="input-group">
@@ -271,6 +258,40 @@ $misc_list = isset( $objectsProperties['misc'])? $objectsProperties['misc'] :arr
 							</div>
 						</div>	   
 				</div>
+				@endif
+				@if( $obj_slug == 'textinput')
+				<div class="option-field-item">
+					<label>Text</label>
+					<div class="input-group">
+						<input type="text" name="object_text" class="form-control trigger_field"
+								   value="Test Paragraph" data-field_id="object_text" data-field_name="textinput"
+						   data-field_type="text" data-id="">
+							
+						</div>	   
+				</div>
+				<div class="option-field-item">
+					<label>Font Size</label>
+					<div class="input-group">
+						<input type="number" name="font_size" class="form-control trigger_field"
+								   value="#ffffff" data-field_id="font-size" data-field_name="font-size"
+						   data-field_type="style" data-id="">
+						</div>	   
+				</div>
+				<div class="option-field-item">
+					<label>Fill Color</label>
+					<div class="input-group">
+						<input type="text" name="color" class="form-control trigger_field colorpickerinput"
+								   value="#ffffff" data-field_id="color" data-field_name="color"
+						   data-field_type="style" data-id="">
+							<div class="input-group-append">
+								<div class="input-group-text">
+									<i class="fas fa-fill-drip"></i>
+								</div>
+							</div>
+						</div>	   
+				</div>
+				@endif
+				
 			</div>
 		@endforeach
 	@endif
@@ -287,8 +308,16 @@ $misc_list = isset( $objectsProperties['misc'])? $objectsProperties['misc'] :arr
 		@foreach( $infolinks_list as $infolinkObj)
 			@php 
 			$object_slug = isset( $infolinkObj['slug'] )? $infolinkObj['slug'] : '';
+			$icon_type = isset( $infolinkObj['icon_type'] )? $infolinkObj['icon_type'] : 'svg';
 			$svg_code = isset( $infolinkObj['svg_code'] )? $infolinkObj['svg_code'] : '';
-			$svg_code = updateSvgDimensions($svg_code, '100%', '100%');
+			
+			if($icon_type == 'image'){
+				$object_path = isset( $infolinkObj['path'] )? $infolinkObj['path'] : ''; 
+				$svg_code = '<img src="/assets/books-editor/infolinks/'.$object_path.'" style="width: -webkit-fill-available;">';
+			}
+			else{
+				$svg_code = updateSvgDimensions($svg_code, '100%', '100%');
+			}
 			@endphp
 			<div class="{{$object_slug}}_svg">
 				{!! $svg_code !!}

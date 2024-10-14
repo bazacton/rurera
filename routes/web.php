@@ -142,7 +142,7 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
                      * Spelling Routes Ends
                      */
 
-                    Route::get('/{slug}' , 'WebinarController@course');
+                    Route::get('/{slug}' , 'WebinarController@course')->middleware('inject.css:assets/default/css/panel-pages/learn.css');
                     Route::get('/{slug}/learning-journey' , 'LearningJourneyController@index');
                     Route::get('/{slug}/file/{file_id}/download' , 'WebinarController@downloadFile');
                     Route::get('/{slug}/file/{file_id}/showHtml' , 'WebinarController@showHtmlFile');
@@ -328,7 +328,7 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
     });
 
     Route::group(['prefix' => 'users'] , function () {
-        Route::get('/{id}/profile' , 'UserController@profile');
+        Route::get('/{id}/profile' , 'UserController@profile')->middleware('inject.css:assets/default/css/panel-pages/profile.css');
         Route::post('/{id}/availableTimes' , 'UserController@availableTimes');
         Route::post('/{id}/send-message' , 'UserController@sendMessage');
     });
@@ -451,7 +451,7 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
     });
 
     Route::group(['prefix' => 'games'] , function () {
-        Route::get('/', 'GamesController@index');
+        Route::get('/', 'GamesController@index')->middleware('inject.css:assets/default/css/panel-pages/gamepage.css');
         Route::get('/word-scramble', 'GamesController@WordScramble');
     });
 
@@ -481,7 +481,7 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
     });
 
     Route::group(['prefix' => 'shop'] , function () {
-        Route::get('/' , 'ProductController@searchLists');
+        Route::get('/' , 'ProductController@searchLists')->middleware('inject.css:assets/default/css/panel-pages/schoolzone.css');
         Route::get('/{slug}' , 'ProductController@show');
         Route::post('/{slug}/points/apply' , 'ProductController@buyWithPoint');
 
@@ -583,7 +583,7 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
 
     Route::group(['prefix' => 'books'] , function () {
         Route::get('/' , 'BooksController@index');
-        Route::get('/{book_slug}' , 'BooksController@book');
+        Route::get('/{book_slug}' , 'BooksController@book')->middleware('inject.css:assets/default/css/panel-pages/books_pages.css');
         Route::get('/{book_slug}/activity' , 'BooksController@bookActivity');
         Route::get('/{info_id}/info_detail' , 'BooksController@info_detail');
         Route::post('/update_reading' , 'BooksController@update_reading');
@@ -604,14 +604,14 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
     });
 
     Route::group(['prefix' => 'tests'] , function () {
-        Route::get('/' , 'TestsController@index');
+        Route::get('/' , 'TestsController@index')->middleware('inject.css:assets/default/css/panel-pages/test-page.css');
         Route::get('/search_tests' , 'TestsController@search_tests');
         Route::get('/switch_user' , 'TestsController@switch_user');
 
     });
 
     Route::group(['prefix' => 'learn'] , function () {
-        Route::get('/' , 'LearnController@index');
+        Route::get('/' , 'LearnController@index')->middleware('inject.css:assets/default/css/panel-pages/learn.css');
     });
 
     Route::group(['prefix' => 'sats-preparation'] , function () {
@@ -633,7 +633,7 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
     });
 
     Route::group(['prefix' => 'spells'] , function () {
-       Route::get('/' , 'SpellsController@index');
+       Route::get('/' , 'SpellsController@index')->middleware('inject.css:assets/default/css/panel-pages/wordlist.css');
        Route::get('/{quiz_year}/{quiz_slug}/words-list' , 'SpellsController@words_list');
        Route::get('/words_list' , 'SpellsController@words_list');
        Route::get('/{quiz_year}/{quiz_slug}' , 'SpellsController@start');
@@ -712,13 +712,14 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
 
     //Route::group(['prefix' => 'timestables-practice' , 'middleware' => 'check_is_student'] , function () {
     Route::group(['prefix' => 'timestables-practice'] , function () {
-        Route::get('/' , 'TimestablesController@index')->middleware('inject.css:path/to/timestables_assignment.css,path/to/extra.css');
-        Route::get('/freedom-mode' , 'TimestablesController@freedom_mode');
-        Route::get('/powerup-mode' , 'TimestablesController@powerup_mode');
-        Route::get('/trophy-mode' , 'TimestablesController@trophy_mode');
-        Route::get('/treasure-mission' , 'TimestablesController@treasure_mission');
-        Route::get('/showdown-mode' , 'TimestablesController@showdown_mode');
-        Route::get('/heat-map' , 'TimestablesController@summary');
+        //Route::get('/' , 'TimestablesController@index')->middleware('inject.css:path/to/timestables_assignment.css,path/to/extra.css');
+		Route::get('/' , 'TimestablesController@index')->middleware('inject.css:assets/default/css/panel-pages/timestable.css');
+        Route::get('/freedom-mode' , 'TimestablesController@freedom_mode')->middleware('inject.css:assets/default/css/panel-pages/timestable.css');
+        Route::get('/powerup-mode' , 'TimestablesController@powerup_mode')->middleware('inject.css:assets/default/css/panel-pages/timestable.css');
+        Route::get('/trophy-mode' , 'TimestablesController@trophy_mode')->middleware('inject.css:assets/default/css/panel-pages/timestable.css');
+        Route::get('/treasure-mission' , 'TimestablesController@treasure_mission')->middleware('inject.css:assets/default/css/panel-pages/timestable.css');
+        Route::get('/showdown-mode' , 'TimestablesController@showdown_mode')->middleware('inject.css:assets/default/css/panel-pages/timestable.css');
+        Route::get('/heat-map' , 'TimestablesController@summary')->middleware('inject.css:assets/default/css/panel-pages/timestable.css');
 		
 		
 		Route::post('/freedom-mode/play' , 'TimestablesController@genearte');
@@ -731,11 +732,11 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
     });
 
     Route::group(['prefix' => 'school-zone'] , function () {
-        Route::get('/' , 'TimestablesController@school_zone_mode');
+        Route::get('/' , 'TimestablesController@school_zone_mode')->middleware('inject.css:assets/default/css/panel-pages/schoolzone.css');
     });
 
     Route::group(['prefix' => 'quests'] , function () {
-        Route::get('/' , 'DailyQuestsController@index');
+        Route::get('/' , 'DailyQuestsController@index')->middleware('inject.css:assets/default/css/panel-pages/quest_list.css');
 		Route::get('/{quest_id}/summary' , 'DailyQuestsController@summary');
     });
 

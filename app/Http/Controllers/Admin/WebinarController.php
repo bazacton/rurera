@@ -9,6 +9,7 @@ use App\Http\Controllers\Panel\WebinarStatisticController;
 use App\Mail\SendNotifications;
 use App\Models\BundleWebinar;
 use App\Models\Category;
+use App\Models\TopicParts;
 use App\Models\Faq;
 use App\Models\File;
 use App\Models\Gift;
@@ -1214,7 +1215,7 @@ class WebinarController extends Controller
         $course_id = $request->get('course_id');
         //$courses = Webinar::where('category_id',$category_id)->get();
 		
-		$category_ids = is_array( $category_ids )? $category_ids : $category_id;
+		$category_ids = is_array( $category_ids )? $category_ids : array($category_ids);
 		
 		
         $query = Webinar::query();
@@ -1306,6 +1307,36 @@ class WebinarController extends Controller
             foreach ($WebinarSubChapter as $WebinarSubChapterObj) {
                     $selected = ($selected_sub_chapter_id == $WebinarSubChapterObj->id)? 'selected' : '';
                     $response .= '<option value="' . $WebinarSubChapterObj->id . '" '.$selected.'>' . $WebinarSubChapterObj->sub_chapter_title . '</option>';
+            }
+        }
+
+        echo $response;
+        exit;
+
+    }
+
+    public function topic_parts_by_sub_chapter(Request $request)
+    {
+        $chapter_id = $request->get('chapter_id');
+        $sub_chapter_id = $request->get('sub_chapter_id');
+		$topics_parts = $request->get('topics_parts');
+		$topics_parts = json_decode($topics_parts);
+		$topics_parts = is_array( $topics_parts )? $topics_parts : array($topics_parts);
+
+        $TopicParts = TopicParts::where('chapter_id', $chapter_id)->where('sub_chapter_id', $sub_chapter_id)->get();
+
+        $response = '';
+        if (!empty($TopicParts)) {
+            foreach ($TopicParts as $TopicPartObj) {
+				$topic_part_data = isset( $TopicPartObj->topic_part_data )? json_decode($TopicPartObj->topic_part_data) : array();
+				if( !empty( $topic_part_data) ){
+					foreach( $topic_part_data as $topic_unique_id => $topicpartData){
+						$checked = in_array( $topic_unique_id, $topics_parts)? 'checked' : '';
+						$response .= '<div class="form-field rureraform-cr-container-medium">
+											<input class="rureraform-checkbox-medium" type="checkbox" name="topics_parts[]" id="topics_parts-'.$topic_unique_id.'" value="'.$topic_unique_id.'" '.$checked.'><label for="topics_parts-'.$topic_unique_id.'">'.$topicpartData.'</label>
+										</div>';
+					}
+				}
             }
         }
 

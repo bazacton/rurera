@@ -279,6 +279,7 @@ Route::group([
             Route::get('/courses_by_categories', 'WebinarController@courses_by_categories');
             Route::get('/chapters_by_course', 'WebinarController@chapters_by_course');
             Route::get('/sub_chapters_by_chapter', 'WebinarController@sub_chapters_by_chapter');
+			Route::get('/topic_parts_by_sub_chapter', 'WebinarController@topic_parts_by_sub_chapter');
             Route::get('/{id}/approve', 'WebinarController@approve');
             Route::get('/{id}/reject', 'WebinarController@reject');
             Route::get('/{id}/unpublish', 'WebinarController@unpublish');
@@ -533,6 +534,19 @@ Route::group([
             Route::post('/store', 'GlossaryController@store');
             Route::post('/{id}/store', 'GlossaryController@store');
             Route::post('/store_question_glossary', 'GlossaryController@store_question_glossary');
+        });
+		
+		/*
+         * Topics Parts
+         */
+        Route::group(['prefix' => 'topics_parts'], function () {
+            Route::get('/', 'TopicsParts@index');
+            Route::get('/create', 'TopicsParts@create');
+            Route::get('/{id}/edit', 'TopicsParts@edit')->name('adminEditTopicPart');
+            Route::get('/{id}/delete', 'TopicsParts@destroy');
+            Route::post('/store', 'TopicsParts@store');
+            Route::post('/{id}/store', 'TopicsParts@store');
+            Route::post('/store_question_glossary', 'TopicsParts@store_topic_part');
         });
 
         /*

@@ -13,6 +13,9 @@ use App\Models\SubChapters;
 use App\Models\WebinarChapterItem;
 use App\Models\Quiz;
 use App\Models\QuizzesQuestion;
+use App\Models\BooksPagesObjects;
+use App\Models\BooksUserPagesInfoLinks;
+
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -241,8 +244,8 @@ class BooksController extends Controller
     {
         $user = apiAuth();
         $info_id = $request->get('info_id');
-		$infoLinkData = BooksPagesInfoLinks::where('id', $info_id)->first();
-		$info_type = isset($infoLinkData->info_type) ? $infoLinkData->info_type : '';
+		$infoLinkData = BooksPagesObjects::where('id', $info_id)->first();
+		$info_type = isset($infoLinkData->item_type) ? $infoLinkData->item_type : '';
 		BooksUserPagesInfoLinks::create([
 			'user_id'           => $user->id,
 			'book_id'           => $infoLinkData->book_id,

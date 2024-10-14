@@ -203,6 +203,15 @@
                    </a>
                </li>
            @endcan()
+		   
+
+			<li class="{{ (request()->is('admin/topics_parts*')) ? 'active' : '' }}">
+				<a class="nav-link " href="{{ getAdminPanelUrl('/topics_parts') }}">
+					<i class="fas fa-file"></i>
+					<span>Topic parts</span>
+				</a>
+			</li>
+			
             @can('admin_certificate')
             <li class="nav-item {{ (request()->is('admin/custom_quiz')) ? 'active' : '' }}">
                 <a href="{{ getAdminPanelUrl('/custom_quiz') }}" class="nav-link">

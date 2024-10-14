@@ -671,7 +671,14 @@ $rand_id = rand(999,99999);
                                     </div>
                                     <div class="col-5 col-md-5">
                                         <div class="lms-element-properties">
-
+										
+											<div class="topic-parts-block">
+												<h3> Topics Parts </h3>
+												<div class="topic-parts-options"></div>
+											</div>
+										
+	
+										
                                             <div class="rureraform-admin-popup" id="rureraform-element-properties">
                                                 <div class="rureraform-admin-popup-inner">
                                                     <div class="rureraform-admin-popup-title">
@@ -803,7 +810,7 @@ $rand_id = rand(999,99999);
                                                             <div class="col-lg-6 col-md-6 col-12">
                                                                 <div class="form-group">
                                                                     <label class="input-label">Sub Topic</label>
-                                                                    <select id="chapter_id"
+                                                                    <select data-topics_parts="{{isset( $questionObj->topics_parts ) ? $questionObj->topics_parts : ''}}" id="chapter_id"
 																		class="form-control populate ajax-subchapter-dropdown"
 																		name="sub_chapter_id">
 																	<option value="">Please select year, subject, Topic</option>
@@ -1605,9 +1612,27 @@ $rand_id = rand(999,99999);
             data: {'chapter_id': chapter_id, 'sub_chapter_id': sub_chapter_id},
             success: function (return_data) {
                 $(".ajax-subchapter-dropdown").html(return_data);
+                $('.ajax-subchapter-dropdown').change();
             }
         });
     });
+	
+    $(document).on('change', '.ajax-subchapter-dropdown', function () {
+		var category_id = $(".ajax-category-courses").val();
+		var subject_id  = $(".ajax-courses-dropdown").val();
+		var chapter_id  = $(".ajax-chapter-dropdown").val();
+		var topics_parts = $(this).attr('data-topics_parts');
+        var sub_chapter_id = $(this).val();
+        $.ajax({
+            type: "GET",
+            url: '/admin/webinars/topic_parts_by_sub_chapter',
+            data: {'chapter_id': chapter_id, 'sub_chapter_id': sub_chapter_id, 'topics_parts': topics_parts},
+            success: function (return_data) {
+                $(".topic-parts-options").html(return_data);
+            }
+        });
+    });
+	
 
 
 
