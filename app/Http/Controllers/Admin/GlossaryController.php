@@ -112,9 +112,14 @@ class GlossaryController extends Controller {
     }
 
     private function filters($query, $request) {
-        $title = $request->get('title', null);
-        $status = $request->get('status', null);
-        $category_id = $request->get('category_id', '');
+        $title = get_filter_request('title', 'glossary_search'); 
+        $status = get_filter_request('status', 'glossary_search');
+		
+		$category_id = get_filter_request('category_id', 'glossary_search');
+        $subject_id = get_filter_request('subject_id', 'glossary_search'); 
+        $chapter_id = get_filter_request('chapter_id', 'glossary_search'); 
+        $sub_chapter_id = get_filter_request('sub_chapter_id', 'glossary_search');
+        $user_id = get_filter_request('user_id', 'glossary_search'); 
 
 
         if (!empty($title)) {
@@ -123,6 +128,22 @@ class GlossaryController extends Controller {
 
         if ($category_id != '') {
             $query->where('glossary.category_id', $category_id);
+        }
+
+        if ($subject_id != '') {
+            $query->where('glossary.subject_id', $subject_id);
+        }
+
+        if ($chapter_id != '') {
+            $query->where('glossary.chapter_id', $chapter_id);
+        }
+
+        if ($sub_chapter_id != '') {
+            $query->where('glossary.sub_chapter_id', $sub_chapter_id);
+        }
+
+        if ($user_id != '') {
+            $query->where('glossary.created_by', $user_id);
         }
 
 
@@ -169,6 +190,8 @@ class GlossaryController extends Controller {
                 'description' => isset($data['description']) ? $data['description'] : '',
                 'created_at' => time(),
                 'subject_id' => isset($data['subject_id']) ? $data['subject_id'] : 0,
+                'chapter_id' => isset($data['chapter_id']) ? $data['chapter_id'] : 0,
+                'sub_chapter_id' => isset($data['sub_chapter_id']) ? $data['sub_chapter_id'] : 0,
             ]);
         } else {
             $this->authorize('admin_glossary_create');
@@ -181,6 +204,8 @@ class GlossaryController extends Controller {
                 'created_at' => time(),
                 'created_by' => $user->id,
                 'subject_id' => isset($data['subject_id']) ? $data['subject_id'] : 0,
+                'chapter_id' => isset($data['chapter_id']) ? $data['chapter_id'] : 0,
+                'sub_chapter_id' => isset($data['sub_chapter_id']) ? $data['sub_chapter_id'] : 0,
             ]);
         }
 

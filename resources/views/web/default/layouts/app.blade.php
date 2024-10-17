@@ -28,11 +28,6 @@
         <link rel="stylesheet" href="/assets/default/css/rtl-app.css">
     @endif
 
-	@if (isset( $cssFiles ) && !empty($cssFiles))
-        @foreach ($cssFiles as $cssFile)
-            <link rel="stylesheet" href="{{ asset($cssFile) }}">
-        @endforeach
-    @endif
     @stack('styles_top')
     @stack('scripts_top')
 

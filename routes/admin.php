@@ -87,6 +87,8 @@ Route::group([
         Route::group(['prefix' => 'users'], function () {
             Route::get('/create', 'UserController@create');
             Route::post('/save_templates', 'UserController@saveTemplates');
+            Route::post('/pin_search', 'UserController@pin_search');
+			Route::post('/unpin_search', 'UserController@unpin_search');
 			Route::post('/remove_template', 'UserController@removeTemplates');
             Route::post('/store', 'UserController@store');
             Route::post('/search', 'UserController@search');
@@ -546,7 +548,7 @@ Route::group([
             Route::get('/{id}/delete', 'TopicsParts@destroy');
             Route::post('/store', 'TopicsParts@store');
             Route::post('/{id}/store', 'TopicsParts@store');
-            Route::post('/store_question_glossary', 'TopicsParts@store_topic_part');
+            Route::post('/store_question_parts', 'TopicsParts@store_question_parts');
         });
 
         /*
@@ -555,7 +557,7 @@ Route::group([
        Route::group(['prefix' => 'schools'], function () {
            Route::get('/', 'SchoolsController@index');
            Route::get('/create', 'SchoolsController@create');
-           Route::get('/{id}/edit', 'SchoolsController@edit')->name('adminEditGlossary');
+           Route::get('/{id}/edit', 'SchoolsController@edit')->name('adminEditSchool');
            Route::get('/{id}/delete', 'SchoolsController@destroy');
            Route::post('/store', 'SchoolsController@store');
            Route::post('/{id}/store', 'SchoolsController@store');

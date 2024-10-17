@@ -172,6 +172,19 @@
                 </div>
 
                 <div class="form-group">
+                    <label>Display Name</label>
+                    <input type="text" name="display_name"
+                           class="form-control  @error('display_name') is-invalid @enderror"
+                           value="{{ !empty($user) ? $user->display_name : old('display_name') }}"
+                           placeholder="Display Name"/>
+                    @error('display_name')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
+
+                <div class="form-group">
                     <label>Year</label>
                     <select data-default_id="{{isset( $user->id)? $user->year_id : 0}}"
                             class="form-control year_class_ajax_select @error('year_id') is-invalid @enderror"

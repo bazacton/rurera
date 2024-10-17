@@ -3424,6 +3424,7 @@ class QuestionsAttemptController extends Controller
 		
 		
         $newQuizStart = QuizzesResult::where('parent_type_id', $quiz->id)->where('quiz_result_type', 'practice')->where('user_id', $user->id)->where('status', 'waiting')->first();
+		$newQuizStart = (object) array();
 		$result_questions = isset( $newQuizStart->questions_list)? json_decode($newQuizStart->questions_list) : array();
         $other_data = array();
         $quiz_settings = json_decode($quiz->quiz_settings);
@@ -3972,7 +3973,7 @@ class QuestionsAttemptController extends Controller
 	*/
 	public function get_question_element_layout($element_id, $elementObj, $questionObj){
 		$question_layout = '';
-		//pre($questionObj);
+		//pre($elementObj);
 		//pre($elementObj->type, false);
         $element_unique_id = isset( $elementObj->field_id )? $elementObj->field_id : 0;
 		switch($elementObj->type) {
@@ -4020,7 +4021,7 @@ class QuestionsAttemptController extends Controller
                 $question_layout = view('web.default.question_layouts.marking_quiz_layout', ['element_unique_id' => $element_unique_id, 'element_id' => $element_id, 'elementObj' => $elementObj])->render();
 			break;
 			
-            case "inner_dropdown":
+            case "drop_and_text":
 				//pre($elementObj);
 				$content = $elementObj->content;
                 //pre($elementObj);
@@ -4070,6 +4071,18 @@ class QuestionsAttemptController extends Controller
 			case "image_quiz":
 				//pre($elementObj);
                 $question_layout = view('web.default.question_layouts.image_quiz_layout', ['element_unique_id' => $element_unique_id, 'element_id' => $element_id, 'elementObj' => $elementObj])->render();
+			break;
+			
+            case "draggable_question":
+				$content = $elementObj->content;
+				$content = preg_replace_callback('/\[DRAGAREA id="(\d+)"\]/', function($matches) use ($elementObj) {
+					$id = isset( $matches[1] )? $matches[1] : 0;
+					$property = 'inner_options' . $id;
+					$response = '<span class="input-holder"><span class="input-label" contenteditable="false"></span><input type="text" data-field_type="text" class="editor-field input-simple" data-id="'.$id.'" id="field-'.$id.'"> </span>';
+					return $response;
+				}, $content);
+			
+                $question_layout = view('web.default.question_layouts.draggable_quiz_layout', ['element_unique_id' => $element_unique_id, 'element_id' => $element_id,'content' => $content, 'elementObj' => $elementObj])->render();
 			break;
 			
 			

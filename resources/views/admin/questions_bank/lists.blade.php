@@ -96,18 +96,19 @@
 
         <section class="card">
             <div class="card-body">
-                <form action="/admin/questions_bank" method="get" class="row mb-0">
+                <form action="/admin/questions_bank" id="questions_search_form" method="get" class="row mb-0">
+				
                     <div class="col-md-3">
                         <div class="form-group">
                             <label class="input-label">Question ID</label>
                             <input type="text" class="form-control" name="question_id"
-                                   value="{{ request()->get('question_id') }}">
+                                   value="{{ get_filter_request('question_id', 'questions_search') }}">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label class="input-label">{{ trans('admin/main.search') }}</label>
-                            <input type="text" class="form-control" name="title" value="{{ request()->get('title') }}">
+                            <input type="text" class="form-control" name="title" value="{{ get_filter_request('title', 'questions_search') }}">
                         </div>
                     </div>
 
@@ -116,7 +117,7 @@
                             <label class="input-label">{{ trans('admin/main.start_date') }}</label>
                             <div class="input-group">
                                 <input type="date" id="fsdate" class="text-center form-control" name="from"
-                                       value="{{ request()->get('from') }}" placeholder="Start Date">
+                                       value="{{ get_filter_request('from', 'questions_search') }}" placeholder="Start Date">
                             </div>
                         </div>
                     </div>
@@ -126,71 +127,107 @@
                             <label class="input-label">{{ trans('admin/main.end_date') }}</label>
                             <div class="input-group">
                                 <input type="date" id="lsdate" class="text-center form-control" name="to"
-                                       value="{{ request()->get('to') }}" placeholder="End Date">
+                                       value="{{ get_filter_request('to', 'questions_search') }}" placeholder="End Date">
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-md-3 hide">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label class="input-label">{{trans('admin/main.category')}}</label>
-                            <select name="category_id" data-plugin-selectTwo
-                                    class="form-control populate ajax-category-courses">
+                            <select name="category_id" data-plugin-selectTwo class="form-control populate ajax-category-courses" data-course_id="{{get_filter_request('subject_id', 'questions_search')}}">
                                 <option value="">{{trans('admin/main.all_categories')}}</option>
                                 @foreach($categories as $category)
                                 @if(!empty($category->subCategories) and count($category->subCategories))
                                 <optgroup label="{{  $category->title }}">
                                     @foreach($category->subCategories as $subCategory)
-                                    <option value="{{ $subCategory->id }}" @if(request()->get('category_id') ==
-                                        $subCategory->id) selected="selected" @endif>{{ $subCategory->title }}
-                                    </option>
+                                    <option value="{{ $subCategory->id }}" @if(get_filter_request('category_id', 'questions_search') == $subCategory->id) selected="selected" @endif>{{ $subCategory->title }}</option>
                                     @endforeach
                                 </optgroup>
                                 @else
-                                <option value="{{ $category->id }}" @if(request()->get('category_id') == $category->id)
-                                    selected="selected" @endif>{{ $category->title }}
-                                </option>
+                                <option value="{{ $category->id }}" @if(get_filter_request('category_id', 'questions_search') == $category->id) selected="selected" @endif>{{ $category->title }}</option>
                                 @endif
                                 @endforeach
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-3 hide">
-                        <div class="form-group">
-                            <label class="input-label">Course</label>
-                            <select name="course_id" data-plugin-selectTwo
-                                    class="form-control populate ajax-courses-dropdown">
-                            </select>
-                        </div>
-                    </div>
+					
+					
+					
+					
 
-                    <div class="col-md-3 hide">
-                        <div class="form-group">
-                            <label class="input-label">Chapter</label>
-                            <select id="chapters" class="form-control populate ajax-chapter-dropdown" name="chapter_id">
-                            </select>
+					<div class="col-md-3">
+					<div class="form-group">
+						<label>Subjects</label>
+						<select data-return_type="option"
+								data-default_id="{{request()->get('subject_id')}}" data-chapter_id="{{get_filter_request('chapter_id', 'questions_search')}}"
+								class="ajax-courses-dropdown year_subjects form-control select2 @error('subject_id') is-invalid @enderror"
+								id="subject_id" name="subject_id">
+							<option disabled selected>Subject</option>
+						</select>
+						@error('subject_id')
+						<div class="invalid-feedback">
+							{{ $message }}
+						</div>
+						@enderror
+					</div>
+					</div>
+					
+					
+					<div class="col-md-3">
+					<div class="form-group">
+						<label class="input-label">Topic</label>
+						<select data-sub_chapter_id="{{get_filter_request('sub_chapter_id', 'questions_search')}}" id="chapter_id"
+								class="form-control populate ajax-chapter-dropdown @error('chapter_id') is-invalid @enderror"
+								name="chapter_id">
+							<option value="">Please select year, subject</option>
+						</select>
+						@error('chapter_id')
+						<div class="invalid-feedback">
+							{{ $message }}
+						</div>
+						@enderror
 
-                        </div>
-                    </div>
+					</div>
+					</div>
+					
+					
+					<div class="col-md-3">
+					<div class="form-group">
+						<label class="input-label">Sub Topic</label>
+						<select id="chapter_id"
+							class="form-control populate ajax-subchapter-dropdown @error('sub_chapter_id') is-invalid @enderror"
+							name="sub_chapter_id">
+						<option value="">Please select year, subject, Topic</option>
+					</select>
+					@error('sub_chapter_id')
+					<div class="invalid-feedback">
+						{{ $message }}
+					</div>
+					@enderror
+					
+
+					</div>
+					</div>
 
                     <div class="col-md-3">
                         <div class="form-group">
                             <label class="input-label">Difficulty Level</label>
                             <select name="difficulty_level" data-plugin-selectTwo class="form-control populate">
                                 <option value="">All Levels</option>
-                                <option value="Below" @if(request()->get('difficulty_level') == 'Below') selected
+                                <option value="Below" @if(get_filter_request('difficulty_level', 'questions_search') == 'Below') selected
                                     @endif>Below
                                 </option>
-                                <option value="Emerging" @if(request()->get('difficulty_level') == 'Emerging') selected
+                                <option value="Emerging" @if(get_filter_request('difficulty_level', 'questions_search') == 'Emerging') selected
                                     @endif>Emerging
                                 </option>
-                                <option value="Expected" @if(request()->get('difficulty_level') == 'Expected') selected
+                                <option value="Expected" @if(get_filter_request('difficulty_level', 'questions_search') == 'Expected') selected
                                     @endif>Expected
                                 </option>
-                                <option value="Exceeding" @if(request()->get('difficulty_level') == 'Exceeding')
+                                <option value="Exceeding" @if(get_filter_request('difficulty_level', 'questions_search') == 'Exceeding')
                                     selected @endif>Exceeding
                                 </option>
-                                <option value="Challenge" @if(request()->get('difficulty_level') == 'Challenge')
+                                <option value="Challenge" @if(get_filter_request('difficulty_level', 'questions_search') == 'Challenge')
                                     selected @endif>Challenge
                                 </option>
                             </select>
@@ -202,10 +239,10 @@
                             <label class="input-label">Teacher Review</label>
                             <select name="review_required" data-plugin-selectTwo class="form-control populate">
                                 <option value="">All</option>
-                                <option value="1" @if(request()->get('review_required') == '1') selected
+                                <option value="1" @if(get_filter_request('review_required', 'questions_search') == '1') selected
                                     @endif>Yes
                                 </option>
-                                <option value="0" @if(request()->get('review_required') == '0') selected
+                                <option value="0" @if(get_filter_request('review_required', 'questions_search') == '0') selected
                                     @endif>No
                                 </option>
 
@@ -218,28 +255,28 @@
                             <label class="input-label">{{ trans('admin/main.status') }}</label>
                             <select name="question_status" data-plugin-selectTwo class="form-control populate">
                                 <option value="">{{ trans('admin/main.all_status') }}</option>
-                                <option value="Draft" @if(request()->get('question_status') == 'Draft') selected
+                                <option value="Draft" @if(get_filter_request('question_status', 'questions_search') == 'Draft') selected
                                     @endif>Draft
                                 </option>
-                                <option value="Submit for review" @if(request()->get('question_status') == 'Submit for
+                                <option value="Submit for review" @if(get_filter_request('question_status', 'questions_search') == 'Submit for
                                     review') selected @endif>Submit for review
                                 </option>
-                                <option value="Hard reject" @if(request()->get('question_status') == 'Hard reject')
+                                <option value="Hard reject" @if(get_filter_request('question_status', 'questions_search') == 'Hard reject')
                                     selected @endif>Hard reject
                                 </option>
-                                <option value="Improvement required" @if(request()->get('question_status') ==
+                                <option value="Improvement required" @if(get_filter_request('question_status', 'questions_search') ==
                                     'Improvement required') selected @endif>Improvement required
                                 </option>
-                                <option value="On hold" @if(request()->get('question_status') == 'On hold') selected
+                                <option value="On hold" @if(get_filter_request('question_status', 'questions_search') == 'On hold') selected
                                     @endif>On hold
                                 </option>
-                                <option value="Accepted" @if(request()->get('question_status') == 'Accepted') selected
+                                <option value="Accepted" @if(get_filter_request('question_status', 'questions_search') == 'Accepted') selected
                                     @endif>Accepted
                                 </option>
-                                <option value="Offline" @if(request()->get('question_status') == 'Offline') selected
+                                <option value="Offline" @if(get_filter_request('question_status', 'questions_search') == 'Offline') selected
                                     @endif>Offline
                                 </option>
-                                <option value="Published" @if(request()->get('question_status') == 'Published') selected
+                                <option value="Published" @if(get_filter_request('question_status', 'questions_search') == 'Published') selected
                                     @endif>Published
                                 </option>
                             </select>
@@ -250,6 +287,10 @@
                         <button type="submit" class="btn btn-primary w-100">{{ trans('admin/main.show_results') }}
                         </button>
                     </div>
+					<div class="col-12 col-md-12">
+						<button type="button" class="btn btn-primary pin-search" data-search_type="questions_search" data-form_id="questions_search_form"><i class="fas fa-save"></i> Pin Search</button>
+						<button type="button" class="btn btn-danger unpin-search" data-search_type="questions_search" data-form_id="questions_search_form"><i class="fas fa-save"></i> Unpin Search</button>
+					</div>
                 </form>
             </div>
         </section>
@@ -400,28 +441,48 @@
 
 
     $(document).on('change', '.ajax-category-courses', function () {
-        var category_id = $(this).val();
-        $.ajax({
-            type: "GET",
-            url: '/admin/webinars/courses_by_categories',
-            data: {'category_id': category_id},
-            success: function (return_data) {
-                $(".ajax-courses-dropdown").html(return_data);
-            }
-        });
-    });
+			var category_id = $(this).val();
+			var course_id = $(this).attr('data-course_id');
+			$.ajax({
+				type: "GET",
+				url: '/admin/webinars/courses_by_categories',
+				data: {'category_id': category_id, 'course_id': course_id},
+				success: function (return_data) {
+					$(".ajax-courses-dropdown").html(return_data);
+					$(".ajax-chapter-dropdown").html('<option value="">Please select year, subject</option>');
+					$('.ajax-courses-dropdown').change();
+				}
+			});
+		});
 
-    $(document).on('change', '.ajax-courses-dropdown', function () {
-        var course_id = $(this).val();
-        $.ajax({
-            type: "GET",
-            url: '/admin/webinars/chapters_by_course',
-            data: {'course_id': course_id},
-            success: function (return_data) {
-                $(".ajax-chapter-dropdown").html(return_data);
-            }
-        });
-    });
+		$(document).on('change', '.ajax-courses-dropdown', function () {
+			var course_id = $(this).val();
+			var chapter_id = $(this).attr('data-chapter_id');
+
+			$.ajax({
+				type: "GET",
+				url: '/admin/webinars/chapters_by_course',
+				data: {'course_id': course_id, 'chapter_id': chapter_id},
+				success: function (return_data) {
+					$(".ajax-chapter-dropdown").html(return_data);
+					$('.ajax-chapter-dropdown').change();
+				}
+			});
+		});
+
+		$(document).on('change', '.ajax-chapter-dropdown', function () {
+			var chapter_id = $(this).val();
+			var sub_chapter_id = $(this).attr('data-sub_chapter_id');
+			$.ajax({
+				type: "GET",
+				url: '/admin/webinars/sub_chapters_by_chapter',
+				data: {'chapter_id': chapter_id, 'sub_chapter_id': sub_chapter_id},
+				success: function (return_data) {
+					$(".ajax-subchapter-dropdown").html(return_data);
+				}
+			});
+		});
+        $(".ajax-category-courses").change();
 </script>
 
 @endpush

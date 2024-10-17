@@ -19,322 +19,264 @@
 @php $schools = array(); $user = auth()->user();@endphp
 
 @section('content')
-<section class="member-card-header pb-50">
-    <div class="d-flex align-items-center justify-content-between flex-md-row">
-        <h1 class="section-title font-22">Students</h1>
-        <div class="dropdown">
-        <button type="button" class="btn btn-sm btn-primary subscription-modal {{($childs->count() == 0)? 'add-child-btn' : ''}}" data-type="child_register" data-id="0">
-            <img src="/assets/default/svgs/add-con.svg"> Add Student
-        </button>
-		<button type="button" class="btn btn-sm btn-primary link-student-modal" data-type="child_register" data-id="0">
-            <img src="/assets/default/svgs/add-con.svg"> Link Student
-        </button>
+<div class="dashboard-students-holder">
+    <section class="member-card-header pb-50">
+        <div class="d-flex align-items-center justify-content-between flex-md-row">
+            <h2 class="section-title font-36">Students</h2>
+            <div class="dropdown">
+            <button type="button" class="btn subscription-modal p-0 font-18 {{($childs->count() == 0)? 'add-child-btn' : ''}}" data-type="child_register" data-id="0">
+                <img src="/assets/default/img/student.png" width="64" height="64"> Add Student
+            </button>
+            <button type="button" class="btn link-student-modal p-0 font-18" data-type="child_register" data-id="0">
+                <img src="/assets/default/img/student.png" width="64" height="64"> Link Student
+            </button>
 
-    </div>
-    </div>
-</section>
+        </div>
+        </div>
+    </section>
 
-@if( $studentsRequests->count() > 0)
-<section class="dashboard mb-60">
+    @if( $studentsRequests->count() > 0)
+    <section class="dashboard mb-60">
 
-    <div class="db-form-tabs">
-        <div class="db-members">
-            <div class="row g-3 list-unstyled students-requests-list">
-			
-				@foreach( $studentsRequests as $studentsRequestObj)
-						<div class="col-12 col-lg-12 students-requests-list-item">
-							<div class="notification-card rounded-sm panel-shadow bg-white py-15 py-lg-20 px-15 px-lg-40 mt-20">
-								<div class="row align-items-center">
-									<div class="col-12 col-lg-3 mt-10 mt-lg-0 d-flex align-items-start">
-										<span class="notification-badge badge badge-circle-danger mr-5 mt-5 d-flex align-items-center justify-content-center"></span>
-										<div class="">
-											<h3 class="notification-title font-16 font-weight-bold text-dark-blue">{{$studentsRequestObj->student->get_full_name()}}</h3>
-											<span class="notification-time d-block font-12 text-gray mt-5">{{dateTimeFormat($studentsRequestObj->created_at, 'j M Y')}}</span>
-										</div>
-									</div>
-
-									<div class="col-12 col-lg-5 mt-10 mt-lg-0">
-										<span class="font-weight-500 text-gray font-16"><p>By granting them access, you are allowing the {{$studentsRequestObj->requestBy->get_full_name()}} to manage the {{$studentsRequestObj->student->get_full_name()}} account.</p></span>
-									</div>
-
-									<div class="col-12 col-lg-4 mt-10 mt-lg-0 text-right">
-										<button type="button" data-id="{{$studentsRequestObj->id}}" id="showNotificationMessage2261" data-request_type="approved" class="request-action-btn js-show-message btn btn-border-white approve-btn">Approve</button>
-										<button type="button" data-id="{{$studentsRequestObj->id}}" id="showNotificationMessage2261" data-request_type="rejected" class="request-action-btn js-show-message btn btn-border-white reject-btn">Reject</button>
-									</div>
-								</div>
-							</div>
-						</div>
-				@endforeach
-				
-			</div>
-		</div>
-	</div>
-</section>
-@endif
-<section class="dashboard">
-
-    <div class="db-form-tabs">
-        <div class="db-members">
-            <div class="row g-3 list-unstyled">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="list-group list-group-custom list-group-flush mb-0 totalChilds"
-                                 data-childs="{{$childs->count()}}">
-
-                                @if( !empty( $childs ) )
-                                @foreach($childs as $childLinkObj)
-                                @php $childObj = $childLinkObj->user; @endphp
-                                @php $is_cancelled = (isset( $childObj->userSubscriptions->subscribe ) && $childObj->userSubscriptions->is_cancelled == 1 )? 'cancelled-membership' : ''; 
-								$subscribe = isset( $childObj->userSubscriptions->subscribe)? $childObj->userSubscriptions->subscribe : (object) array();
-								$emoji_response = '';
-								$emojisArray = explode('icon', $childObj->login_emoji);
-									if( !empty( $emojisArray ) ){
-										$emoji_response .= '<div class="emoji-icons">';
-										foreach( $emojisArray as $emojiCode){
-											if( $emojiCode != ''){
-												$emoji_response .= '<a id="icon1" href="javascript:;" class="emoji-icon"><img src="/assets/default/svgs/emojis/icon'.$emojiCode.'.svg"></a>';
-											}
-										}
-										$emoji_response .= '</div>';
-									}
-								@endphp
-								
-
-                                <div class="list-group-item {{$is_cancelled}}">
-								
-								
-									<div class="package-data rurera-hide">
-									@if( isset( $subscribe->id))
-									<div class="col-lg-12 col-md-12 col-sm-12">
-										<div class="subscribe-plan active current-plan position-relative d-flex flex-column rounded-lg pb-25 pt-60 px-20 mb-30">
-											<span class="subscribe-icon mb-20"><img src="{{ $subscribe->icon }}" height="auto" width="auto" alt="Box image"/></span>
-											<div class="subscribe-title">
-												<h3 itemprop="title" class="font-24 font-weight-500">{{ $subscribe->title }}</h3>
-											</div>
-											<div class="d-flex align-items-start text-dark-charcoal mb-20 subscribe-price">
-												<span itemprop="price" class="font-36 line-height-1 packages-prices" data-package_price="{{$subscribe->price}}">{{ addCurrencyToPrice($subscribe->price) }}</span><span
-														class="yearly-price">{{ addCurrencyToPrice($subscribe->price) }} / month</span>
-											</div>
-											<button itemprop="button" type="submit" 
-													class="package-selection btn w-100 disabled-style disabled-div">Subscribed
-											</button>
-											<span class="plan-label d-block font-weight-500 pt-20">
-																				Suitable for:
-																			</span>
-											<ul class="mt-10 plan-feature">
-												<li class="mt-10">Grammar school entrance</li>
-												<li class="mt-10">Independent school entrance</li>
-											</ul>
-											<span class="plan-label d-block font-weight-500 pt-20">
-																				Subjects:
-																			</span>
-											<ul class="mt-10 plan-feature">
-												@php $is_available = ($subscribe->is_courses > 0)? '' : 'subscribe-no'; @endphp
-												<li class="mt-10 {{$is_available}}">English, Maths, Science , Computer</li>
-												<li class="mt-10 {{$is_available}}">Verbal reasoning, non-verbal reasoning</li>
-												@php $is_available = ($subscribe->is_timestables > 0)? '' : 'subscribe-no'; @endphp
-												<li class="mt-10 {{$is_available}}">Times Tables Practice</li>
-												@php $is_available = ($subscribe->is_vocabulary > 0)? '' : 'subscribe-no'; @endphp
-												<li class="mt-10 {{$is_available}}">Vocabulary</li>
-												@php $is_available = ($subscribe->is_bookshelf > 0)? '' : 'subscribe-no'; @endphp
-												<li class="mt-10 {{$is_available}}">Bookshelf</li>
-											</ul>
-											<span class="plan-label d-block font-weight-500 pt-20">
-																				Mock Tests Prep:
-																			</span>
-											<ul class="mt-10 plan-feature">
-												@php $is_available = ($subscribe->is_sats > 0)? '' : 'subscribe-no'; @endphp
-												<li class="mt-10 {{$is_available}}">SATs</li>
-												@php $is_available = ($subscribe->is_elevenplus > 0)? '' : 'subscribe-no'; @endphp
-												<li class="mt-10 {{$is_available}}">ISEB Common Pre-Tests</li>
-												<li class="mt-10 {{$is_available}}">GL 11+</li>
-												<li class="mt-10 {{$is_available}}">CAT4</li>
-											</ul>
-										</div>
-									</div>
-									@endif
-								</div>
-								<span class="emojis-response rurera-hide">{!! $emoji_response !!}</span>
-								<span class="pin-response rurera-hide">{{$childObj->login_pin}}</span>
-								
+        <div class="db-form-tabs">
+            <div class="db-members">
+                <div class="row g-3 list-unstyled students-requests-list">
+                
+                    @foreach( $studentsRequests as $studentsRequestObj)
+                            <div class="col-12 col-lg-12 students-requests-list-item">
+                                <div class="notification-card rounded-sm panel-shadow bg-white py-15 py-lg-20 px-15 px-lg-40 mt-20">
                                     <div class="row align-items-center">
-										<a href="/{{panelRoute()}}/students/{{$childObj->username}}" class="col-auto">
-                                            <h6 class="listing-title font-16 font-weight-500">Student</h6>
-                                            <img
-                                                        src="{{$childObj->getAvatar()}}"
-                                                        alt="{{$childObj->get_full_name()}}"
-                                                        class="avatar rounded-circle">
-										</a>
-
-										<a href="/{{panelRoute()}}/students/{{$childObj->username}}" class="col-auto  ms-2">
-												<h6 class="font-16 font-weight-normal">{{$childObj->get_full_name()}}</h6>
-												
-												<small class="text-muted">
-													{{isset($childObj->userYear->id )? $childObj->userYear->getTitleAttribute() : ''}} {{isset($childObj->userClass->title)? $childObj->userClass->title : ''}} {{isset( $childObj->userSection->title )? $childObj->userSection->title : ''}}
-												</small>
-										</a>
-                                        <div class="col-auto last-activity">
-                                            <h6 class="listing-title font-16 font-weight-500">Membership</h6>
-                                            <span class="font-16 d-block">
-                                                @php $package_id = 0;
-
-                                                @endphp
-                                                @if(isset( $childObj->userSubscriptions->subscribe ) )
-                                                @php $package_id = $childObj->userSubscriptions->subscribe->id;
-                                                @endphp
-                                                {{$childObj->userSubscriptions->subscribe->getTitleAttribute()}}
-                                                @php
-                                                $expiry_at = $childObj->userSubscriptions->expiry_at;
-                                                @endphp
-                                                @else
-                                                    @if(!isset( $childObj->userSubscriptions->subscribe ) )
-                                                        <a href="javascript:;" class="package-payment-btn subscription-modal" data-type="child_payment" data-id="{{$childObj->id}}">
-                                                            + Add Membership
-                                                        </a>
-                                                    @endif
-                                                @endif
-                                            </span>
+                                        <div class="col-12 col-lg-3 mt-10 mt-lg-0 d-flex align-items-start">
+                                            <span class="notification-badge badge badge-circle-danger mr-5 mt-5 d-flex align-items-center justify-content-center"></span>
+                                            <div class="">
+                                                <h3 class="notification-title font-16 font-weight-bold text-dark-blue">{{$studentsRequestObj->student->get_full_name()}}</h3>
+                                                <span class="notification-time d-block font-12 text-gray mt-5">{{dateTimeFormat($studentsRequestObj->created_at, 'j M Y')}}</span>
+                                            </div>
                                         </div>
-										<a href="/{{panelRoute()}}/students/{{$childObj->username}}" class="col-auto last-activity">
-                                            <h6 class="listing-title font-16 font-weight-500">School</h6>
-                                            <span class="font-16 d-block">
-                                                {{isset($childObj->userSchool->title)? $childObj->userSchool->title : '-'}}
-                                            </span>
-                                        </a>
 
-										<a href="/{{panelRoute()}}/students/{{$childObj->username}}" class="col-auto last-activity">
-                                            <h6 class="listing-title font-16 font-weight-500">Last Activity</h6>
-                                            <span class="font-16 d-block"><strong class="font-weight-normal d-block">{{ ($childObj->getLastActivity() != '')? dateTimeFormat($childObj->getLastActivity(), 'j M Y') : '' }}</strong>
-                                                {{ ($childObj->getLastActivity() != '')? 'Last Activity' : '' }}
-                                            </span>
-                                        </a>
-                                        <div class="col-auto ms-auto last-activity profile-dropdown">
-                                            <h6 class="listing-title font-16 font-weight-500">Action</h6>
-                                            <a href="javascript:;" class="font-16 font-weight-normal">
-                                                <span class="icon-box">
-                                                    <img src="/assets/default/svgs/dots-circle.svg" alt="">
+                                        <div class="col-12 col-lg-5 mt-10 mt-lg-0">
+                                            <span class="font-weight-500 text-gray font-16"><p>By granting them access, you are allowing the {{$studentsRequestObj->requestBy->get_full_name()}} to manage the {{$studentsRequestObj->student->get_full_name()}} account.</p></span>
+                                        </div>
+
+                                        <div class="col-12 col-lg-4 mt-10 mt-lg-0 text-right">
+                                            <button type="button" data-id="{{$studentsRequestObj->id}}" id="showNotificationMessage2261" data-request_type="approved" class="request-action-btn js-show-message btn btn-border-white approve-btn">Approve</button>
+                                            <button type="button" data-id="{{$studentsRequestObj->id}}" id="showNotificationMessage2261" data-request_type="rejected" class="request-action-btn js-show-message btn btn-border-white reject-btn">Reject</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    @endforeach
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    @endif
+    <section class="dashboard">
+
+        <div class="db-form-tabs">
+            <div class="db-members">
+                <div class="row g-3 list-unstyled">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="list-group list-group-custom list-group-flush mb-0 totalChilds"
+                                    data-childs="{{$childs->count()}}">
+
+                                    @if( !empty( $childs ) )
+                                    @foreach($childs as $childLinkObj)
+                                    @php $childObj = $childLinkObj->user; @endphp
+                                    @php $is_cancelled = (isset( $childObj->userSubscriptions->subscribe ) && $childObj->userSubscriptions->is_cancelled == 1 )? 'cancelled-membership' : ''; 
+                                    $subscribe = isset( $childObj->userSubscriptions->subscribe)? $childObj->userSubscriptions->subscribe : (object) array();
+                                    $emoji_response = '';
+                                    $emojisArray = explode('icon', $childObj->login_emoji);
+                                        if( !empty( $emojisArray ) ){
+                                            $emoji_response .= '<div class="emoji-icons">';
+                                            foreach( $emojisArray as $emojiCode){
+                                                if( $emojiCode != ''){
+                                                    $emoji_response .= '<a id="icon1" href="javascript:;" class="emoji-icon"><img src="/assets/default/svgs/emojis/icon'.$emojiCode.'.svg"></a>';
+                                                }
+                                            }
+                                            $emoji_response .= '</div>';
+                                        }
+                                    @endphp
+                                    
+
+                                    <div class="list-group-item {{$is_cancelled}}">
+                                    <span class="emojis-response rurera-hide">{!! $emoji_response !!}</span>
+                                    <span class="pin-response rurera-hide">{{$childObj->login_pin}}</span>
+                                    
+                                        <div class="row align-items-center">
+                                            <a href="/{{panelRoute()}}/students/{{$childObj->username}}" class="col-auto">
+                                                <h6 class="listing-title font-16 font-weight-500">Student</h6>
+                                                <img
+                                                            src="{{$childObj->getAvatar()}}"
+                                                            alt="{{$childObj->get_full_name()}}"
+                                                            class="avatar rounded-circle">
+                                            </a>
+
+                                            <a href="/{{panelRoute()}}/students/{{$childObj->username}}" class="col-auto  ms-2">
+                                                    <h6 class="font-16 font-weight-bold">{{$childObj->get_full_name()}}</h6>
+                                                    
+                                                    <small class="text-muted">
+                                                        {{isset($childObj->userYear->id )? $childObj->userYear->getTitleAttribute() : ''}} {{isset($childObj->userClass->title)? $childObj->userClass->title : ''}} {{isset( $childObj->userSection->title )? $childObj->userSection->title : ''}}
+                                                    </small>
+                                            </a>
+                                            <div class="col-auto last-activity">
+                                                <h6 class="listing-title font-16 font-weight-500">Membership</h6>
+                                                <span class="font-16 d-block">
+                                                    @php $package_id = 0;
+
+                                                    @endphp
+                                                    @if(isset( $childObj->userSubscriptions->subscribe ) )
+                                                    @php $package_id = $childObj->userSubscriptions->subscribe->id;
+                                                    @endphp
+                                                    {{$childObj->userSubscriptions->subscribe->getTitleAttribute()}}
+                                                    @php
+                                                    $expiry_at = $childObj->userSubscriptions->expiry_at;
+                                                    @endphp
+                                                    @else
+                                                        @if(!isset( $childObj->userSubscriptions->subscribe ) )
+                                                            <a href="javascript:;" class="package-payment-btn subscription-modal" data-type="child_payment" data-id="{{$childObj->id}}">
+                                                                + Add Membership
+                                                            </a>
+                                                        @endif
+                                                    @endif
+                                                </span>
+                                            </div>
+
+                                            <a href="/{{panelRoute()}}/students/{{$childObj->username}}" class="col-auto last-activity">
+                                                <h6 class="listing-title font-16 font-weight-500">Last Activity</h6>
+                                                <span class="font-16 d-block"><strong class="d-block">{{ ($childObj->getLastActivity() != '')? dateTimeFormat($childObj->getLastActivity(), 'j M Y') : '' }}</strong>
+                                                    {{ ($childObj->getLastActivity() != '')? 'Last Activity' : '' }}
                                                 </span>
                                             </a>
-                                            <ul>
-                                                <li><a href="/panel/switch_user/{{$childObj->id}}" class="switch-user-btn"><span class="icon-box"><img src="/assets/default/svgs/switch-user.svg" alt=""></span> Switch User</a></li>
-												<li><a href="javascript:;" data-toggle="modal" data-target="#class-connect-modal" class="connect-user-btn" data-user_id="{{$childObj->id}}"><span class="icon-box"><img src="/assets/default/svgs/link-file.svg" alt=""></span> Connect to Class</a></li>
-                                                @if(!isset( $childObj->userSubscriptions->subscribe ) )
-                                                <li>
-                                                    <a href="javascript:;" class="package-payment-btn switch-user-btn subscription-modal" data-type="child_payment" data-id="{{$childObj->id}}">
-                                                        <span class="icon-box"><img src="/assets/default/svgs/package.svg" alt=""></span> Add Package
-                                                    </a>
-                                                </li>
-                                                @else
-                                                <li>
-                                                    <a href="javascript:;" class="package-update-btn switch-user-btn subscription-modal" data-type="update_package" data-id="{{$childObj->id}}">
-                                                        <span class="icon-box"><img src="/assets/default/svgs/package.svg" alt=""></span> Update Package
-                                                    </a>
-                                                </li>
-                                                @endif                                             
-                                                <li><a href="/panel/students/print-card/{{$childObj->id}}" target="_blank"><span class="icon-box"><img src="/assets/default/svgs/printer-activity.svg" alt=""></span> Print Login Card <Profile></Profile></a></li>
-                                            </ul>
-                                        </div>
-                                    </div> <!--[ row end ]-->
-                                </div>
+                                            <div class="col-auto ms-auto last-activity profile-dropdown">
+                                                <h6 class="listing-title font-16 font-weight-500">Action</h6>
+                                                <a href="javascript:;" class="font-16 font-weight-normal">
+                                                    <span class="icon-box">
+                                                        <img src="/assets/default/svgs/dots-circle.svg" alt="">
+                                                    </span>
+                                                </a>
+                                                <ul>
+                                                    <li><a href="/panel/switch_user/{{$childObj->id}}" class="switch-user-btn"><span class="icon-box"><img src="/assets/default/svgs/switch-user.svg" alt=""></span> Switch User</a></li>
+                                                    <li><a href="javascript:;" data-toggle="modal" data-target="#class-connect-modal" class="connect-user-btn" data-user_id="{{$childObj->id}}"><span class="icon-box"><img src="/assets/default/svgs/link-file.svg" alt=""></span> Connect to Class</a></li>
+                                                    @if(!isset( $childObj->userSubscriptions->subscribe ) )
+                                                    <li>
+                                                        <a href="javascript:;" class="package-payment-btn switch-user-btn subscription-modal" data-type="child_payment" data-id="{{$childObj->id}}">
+                                                            <span class="icon-box"><img src="/assets/default/svgs/package.svg" alt=""></span> Add Package
+                                                        </a>
+                                                    </li>
+                                                    @else
+                                                    <li>
+                                                        <a href="javascript:;" class="package-update-btn switch-user-btn subscription-modal" data-type="update_package" data-id="{{$childObj->id}}">
+                                                            <span class="icon-box"><img src="/assets/default/svgs/package.svg" alt=""></span> Update Package
+                                                        </a>
+                                                    </li>
+                                                    @endif                                             
+                                                    <li><a href="/panel/students/print-card/{{$childObj->id}}" target="_blank"><span class="icon-box"><img src="/assets/default/svgs/printer-activity.svg" alt=""></span> Print Login Card <Profile></Profile></a></li>
+                                                </ul>
+                                            </div>
+                                        </div> <!--[ row end ]-->
+                                    </div>
 
-                                @endforeach
-                                @endif
+                                    @endforeach
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="modal fade choose-expiry-modal update-expiry-model" id="update-expiry-modal" tabindex="-1"
-         aria-labelledby="update-expiry-modalLabel" aria-hidden="true">
-
-
-        <form action="/panel/financial/update_subscribe_plan" method="post" class="w-100">
-            {{ csrf_field() }}
-
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <strong>Choose a plan</strong>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                    aria-hidden="true">×</span></button>
-                    </div>
-
-                    <div class="modal-body">
-                        <div class="col-12">
+        <div class="modal fade choose-expiry-modal update-expiry-model" id="update-expiry-modal" tabindex="-1"
+            aria-labelledby="update-expiry-modalLabel" aria-hidden="true">
 
 
-                            <div class="lms-form-wrapper mb-15">
+            <form action="/panel/financial/update_subscribe_plan" method="post" class="w-100">
+                {{ csrf_field() }}
 
-                                <div class="lms-choose-plan d-flex mb-30">
-                                    <div class="lms-choose-field">
-                                        <strong class="choose-title d-block mb-20 font-24">Choose a plan</strong>
-                                        <div class="lms-radio-select">
-                                            <ul class="lms-radio-btn-group d-inline-flex align-items-center">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <strong>Choose a plan</strong>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">×</span></button>
+                        </div>
 
-                                                @php
-                                                $payment_frequency = isset( $userObj->payment_frequency )?
-                                                $userObj->payment_frequency : 1; @endphp
-                                                <li>
-                                                    @php $checked = (isset( $payment_frequency) &&
-                                                    $payment_frequency == 1)? 'checked' : ''; @endphp
-                                                    <input type="radio" id="package_month" value="1" data-discount="0"
-                                                           name="subscribe_for_package" {{$checked}}/>
-                                                    <label class="lms-label" for="package_month">
-                                                        <span>01 month</span>
-                                                    </label>
-                                                </li>
-                                                <li>
-                                                    @php $checked = (isset( $payment_frequency) &&
-                                                    $payment_frequency == 3)? 'checked' : ''; @endphp
-                                                    <input type="radio" id="package_three_months" value="3"
-                                                           data-discount="5"
-                                                           name="subscribe_for_package" {{$checked}}/>
-                                                    <label class="lms-label" for="package_three_months">
-                                                        <span>03 month <span>(5%)</span> </span>
-                                                    </label>
-                                                </li>
-                                                <li>
-                                                    @php $checked = (isset( $payment_frequency) &&
-                                                    $payment_frequency == 6)? 'checked' : ''; @endphp
-                                                    <input type="radio" id="package_six_months" value="6"
-                                                           data-discount="10"
-                                                           name="subscribe_for_package" {{$checked}}/>
-                                                    <label class="lms-label" for="package_six_months">
-                                                        <span>06 month <span>(10%)</span> </span>
-                                                    </label>
-                                                </li>
-                                                <li>
-                                                    @php $checked = (isset( $payment_frequency) &&
-                                                    $payment_frequency == 12)? 'checked' : ''; @endphp
-                                                    <input type="radio" id="package_year" value="12" data-discount="20"
-                                                           name="subscribe_for_package" {{$checked}}/>
-                                                    <label class="lms-label" for="package_year">
-                                                        <span>whole year <span>(20%)</span></span>
-                                                    </label>
-                                                </li>
-                                            </ul>
+                        <div class="modal-body">
+                            <div class="col-12">
+
+
+                                <div class="lms-form-wrapper mb-15">
+
+                                    <div class="lms-choose-plan d-flex mb-30">
+                                        <div class="lms-choose-field">
+                                            <strong class="choose-title d-block mb-20 font-24">Choose a plan</strong>
+                                            <div class="lms-radio-select">
+                                                <ul class="lms-radio-btn-group d-inline-flex align-items-center">
+
+                                                    @php
+                                                    $payment_frequency = isset( $userObj->payment_frequency )?
+                                                    $userObj->payment_frequency : 1; @endphp
+                                                    <li>
+                                                        @php $checked = (isset( $payment_frequency) &&
+                                                        $payment_frequency == 1)? 'checked' : ''; @endphp
+                                                        <input type="radio" id="package_month" value="1" data-discount="0"
+                                                            name="subscribe_for_package" {{$checked}}/>
+                                                        <label class="lms-label" for="package_month">
+                                                            <span>01 month</span>
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        @php $checked = (isset( $payment_frequency) &&
+                                                        $payment_frequency == 3)? 'checked' : ''; @endphp
+                                                        <input type="radio" id="package_three_months" value="3"
+                                                            data-discount="5"
+                                                            name="subscribe_for_package" {{$checked}}/>
+                                                        <label class="lms-label" for="package_three_months">
+                                                            <span>03 month <span>(5%)</span> </span>
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        @php $checked = (isset( $payment_frequency) &&
+                                                        $payment_frequency == 6)? 'checked' : ''; @endphp
+                                                        <input type="radio" id="package_six_months" value="6"
+                                                            data-discount="10"
+                                                            name="subscribe_for_package" {{$checked}}/>
+                                                        <label class="lms-label" for="package_six_months">
+                                                            <span>06 month <span>(10%)</span> </span>
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        @php $checked = (isset( $payment_frequency) &&
+                                                        $payment_frequency == 12)? 'checked' : ''; @endphp
+                                                        <input type="radio" id="package_year" value="12" data-discount="20"
+                                                            name="subscribe_for_package" {{$checked}}/>
+                                                        <label class="lms-label" for="package_year">
+                                                            <span>whole year <span>(20%)</span></span>
+                                                        </label>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
+
+
+                                    <button type="submit" class="btn btn-primary btn-block mt-50">
+                                        Update
+                                    </button>
                                 </div>
-
-
-                                <button type="submit" class="btn btn-primary btn-block mt-50">
-                                    Update
-                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </form>
-    </div>
+            </form>
+        </div>
 
-</section>
-
+    </section>
+</div>
 <div class="modal fade" id="addChildModal" tabindex="-1" aria-labelledby="addChildModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -572,7 +514,6 @@
     </div>
 </div>
 
-
 <div class="child-hidden-block hide">
     <div class="child-item lms-choose-plan-selected">
         <div class="lms-jobs-form">
@@ -594,7 +535,6 @@
         </div>
     </div>
 </div>
-
 
 <div class="modal fade choose-plan-modal update-plan-model" id="update-plan-modal" tabindex="-1"
      aria-labelledby="update-plan-modalLabel" aria-hidden="true">
@@ -851,7 +791,6 @@
             </div>
     </div>
 </div>
-
 
 <div class="modal fade lms-choose-membership" id="subscriptionModal" tabindex="-1" aria-labelledby="subscriptionModalLabel" aria-hidden="true">
     <div class="modal-dialog">

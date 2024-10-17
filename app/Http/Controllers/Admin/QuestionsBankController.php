@@ -29,6 +29,8 @@ use Illuminate\Http\Request;
 use Elasticsearch;
 use UniSharp\LaravelFilemanager\Middlewares\CreateDefaultFolder;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\File;
+
 
 class QuestionsBankController extends Controller
 {
@@ -101,11 +103,11 @@ class QuestionsBankController extends Controller
             //$query->where('quizzes_questions.question_status', 'Submit for review');
         }
 
-        if (auth()->user()->isAuthor()) {
-            //$query->where('quizzes_questions.creator_id' , $user->id);
+        if (auth()->user()->isDataEntry()) {
+            $query->where('quizzes_questions.creator_id' , $user->id);
         }
 
-
+		$query = $this->filters($query , $request);
         $totalQuestions = deepClone($query)->count();
 
         $in_review = clone $query;
@@ -125,7 +127,7 @@ class QuestionsBankController extends Controller
         $hold_reject->whereIn('quizzes_questions.question_status' , array('On hold' , 'Hard reject'));
         $totalHoldReject = deepClone($hold_reject)->count();
 
-        $query = $this->filters($query , $request);
+        
 
 
         $questions = $query->with([
@@ -2263,22 +2265,20 @@ class QuestionsBankController extends Controller
 
     private function filters($query , $request)
     {
-        $from = $request->get('from' , null);
-        $to = $request->get('to' , null);
-        $title = $request->get('title' , null);
-        $sort = $request->get('sort' , null);
-        $teacher_ids = $request->get('teacher_ids' , null);
-        $webinar_ids = $request->get('webinar_ids' , null);
-        $question_status = $request->get('question_status' , null);
-        $difficulty_level = $request->get('difficulty_level' , null);
-        $review_required = $request->get('review_required' , null);
-        $question_id = $request->get('question_id' , null);
-
-
-
-        $category_id = $request->get('category_id' , '');
-        $course_id = $request->get('course_id' , '');
-        $chapter_id = $request->get('chapter_id' , '');
+        $from = get_filter_request('from', 'questions_search'); 
+        $to = get_filter_request('to', 'questions_search'); 
+        $title = get_filter_request('title', 'questions_search');
+        $sort = get_filter_request('sort', 'questions_search'); 
+        $teacher_ids = get_filter_request('teacher_ids', 'questions_search');
+        $webinar_ids = get_filter_request('webinar_ids', 'questions_search');
+        $question_status = get_filter_request('question_status', 'questions_search');
+        $difficulty_level = get_filter_request('difficulty_level', 'questions_search'); 
+        $review_required = get_filter_request('review_required', 'questions_search'); 
+        $question_id = get_filter_request('question_id', 'questions_search'); 
+        $category_id = get_filter_request('category_id', 'questions_search'); 
+        $course_id = get_filter_request('subject_id', 'questions_search'); 
+        $chapter_id = get_filter_request('chapter_id', 'questions_search'); 
+        $sub_chapter_id = get_filter_request('sub_chapter_id', 'questions_search'); 
 
 
         $query = fromAndToDateFilter($from , $to , $query , 'quizzes_questions.created_at');
@@ -2358,11 +2358,21 @@ class QuestionsBankController extends Controller
 
 
         if ($course_id != '') {
-            $query->where('quizzes.webinar_id' , $course_id);
+            $query->where('quizzes_questions.course_id' , $course_id);
         }
+		
+        if ($category_id != '') {
+			
+            $query->WhereJsonContains('quizzes_questions.category_id' , (string) $category_id);
+        }
+		
 
         if ($chapter_id != '') {
             $query->where('quizzes_questions.chapter_id' , $chapter_id);
+        }
+		
+        if ($sub_chapter_id != '') {
+            $query->where('quizzes_questions.sub_chapter_id' , $sub_chapter_id);
         }
 
         if ($review_required != '') {
@@ -2564,6 +2574,9 @@ class QuestionsBankController extends Controller
         $this->authorize('admin_questions_bank_create');
 
         $quistionObj = QuizzesQuestion::find($question_id);
+		
+		$prev_sub_chapter_id = $quistionObj->sub_chapter_id;
+		
         $query = Webinar::query();
 
         $chapters_list = get_chapters_list();
@@ -2669,6 +2682,7 @@ class QuestionsBankController extends Controller
 
 		
         $quiz = Quiz::find($quiz_id);
+
         $quizQuestion = $quistionObj->update([
             'quiz_id'                   => $quiz_id ,
             'grade'                     => '' ,
@@ -2721,7 +2735,16 @@ class QuestionsBankController extends Controller
                 'action_at'   => time()
             ]);
         }
+        
+        //pre('prev_sub_chapter_id==='.$prev_sub_chapter_id, false);
+        //pre('sub_chapter_id==='.$quistionObj->sub_chapter_id);
 		
+		if( $prev_sub_chapter_id != $quistionObj->sub_chapter_id){
+		    $PrevSubChapterObj = SubChapters::find($prev_sub_chapter_id);
+		    $prev_sub_chapter_quiz_id = isset( $PrevSubChapterObj->quizData->item_id )? $PrevSubChapterObj->quizData->item_id : 0;
+			QuizzesQuestionsList::where('question_id', $quistionObj->id)->where('quiz_id',$prev_sub_chapter_quiz_id)->delete();
+		}
+			
 		$subChapterObj = SubChapters::find($quistionObj->sub_chapter_id);
 		$sub_chapter_quiz_id = isset( $subChapterObj->quizData->item_id )? $subChapterObj->quizData->item_id : 0;
 		$hide_question = isset($questionData['hide_question']) ? $questionData['hide_question'] : 0;
@@ -2738,11 +2761,14 @@ class QuestionsBankController extends Controller
 					'created_at'  => time()
 				]);
 			}else{
-                QuizzesQuestionsList::where('question_id', $quistionObj->id)->where('quiz_id',$sub_chapter_quiz_id)->update([
-                    'status'      => ($hide_question == 1)? 'inactive' : 'active',
-                ]);
-            }
+				
+				QuizzesQuestionsList::where('question_id', $quistionObj->id)->where('quiz_id',$sub_chapter_quiz_id)->update([
+					'status'      => ($hide_question == 1)? 'inactive' : 'active',
+				]);
+			}
 		}
+		
+		
 		
 		
         $redirectUrl = '/admin/questions_bank/' . $question_id . '/edit';
@@ -3063,7 +3089,30 @@ class QuestionsBankController extends Controller
         $created_at = $questionObj->created_at;
 
         $time_passed = TimeDifference($created_at , time() , 'minutes');
+		
+		$folderPath = public_path('media/'.$questionObj->id);
 
+		if (File::exists($folderPath)) {
+			File::deleteDirectory($folderPath);
+		}
+		
+		
+		QuestionLogs::create([
+			'question_id' => $id ,
+			'action_type' => 'Deleted' ,
+			'action_role' => $user->role_name ,
+			'action_by'   => $user->id ,
+			'action_at'   => time()
+		]);
+		$questionObj->delete();
+		$toastData = [
+			'title'  => '' ,
+			'msg'    => 'Question deleted successfully!' ,
+			'status' => 'success'
+		];
+		return redirect()->back()->with(['toast' => $toastData]);
+
+		/*
         if ($user->id != $questionObj->creator_id || $time_passed > 20) {
 
             $toastData = [
@@ -3084,7 +3133,7 @@ class QuestionsBankController extends Controller
                 'question_status' => 'Deleted'
             ]);
             return redirect()->back();
-        }
+        }*/
     }
 
     public function question_status_submit(Request $request)

@@ -15,6 +15,7 @@ Blogs Style Start
 }
 .blog-medium .blog-grid-image {
     width: calc(100% - 83%);
+    background-color: #000;
 }
 .blog-medium .blog-grid-detail {
     padding: 0 20px 0 0;

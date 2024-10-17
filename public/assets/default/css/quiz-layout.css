@@ -88,6 +88,10 @@ body:has(.quiz-topbar) {
 .read-quiz-info ~ .read-quiz-content {max-width: inherit; padding-left: 33.555%; padding-right: 0; width: 100%; margin: 0; border: 0; position: absolute; top: 0;}
 .lms-quiz-section {position: relative; background: url(/assets/default/img/mountain.jpg) no-repeat; background-size: cover; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;}
 .type-sats .lms-quiz-section {height: 100%; background: none; align-items: flex-start; justify-content: flex-start;}
+.lms-quiz-section:has(.question-summary) {
+  height: auto;
+  background: none;
+}
 .read-text-controls {padding: 20px 20px 20px 0;}
 .read-text-controls a {margin-left: 8px; display: inline-block; vertical-align: middle;}
 .quiz-info-inner {height: calc(100% - 150px); overflow: hidden; overflow-y: auto; padding: 0 20px 0 0;}
@@ -106,6 +110,41 @@ body:has(.quiz-topbar) {
 .read-quiz-info .flipbook-nav .flipbook-menu-btn {padding: 0 !important; line-height: 60px; font-size: 44px !important; box-shadow: 0 0 0 2px rgba(255,255,255,0.8) inset;}
 .read-quiz-info .flipbook-nav .fa-angle-right:before {margin-left: 5px; line-height: normal;}
 .read-quiz-info .flipbook-nav .fa-angle-left:before {margin-right: 5px;}
+/*sats-summary style start*/
+.sats-summary {margin: 0 0 50px; background-color: #fff; border-radius: 10px; overflow: hidden; border: 1px solid #e2e8f0;}
+.chart-summary-fields .sats-summary {margin-bottom: 30px;}
+.sats-summary label {display: block; margin: 0 0 6px; line-height: normal; text-transform: uppercase; font-size: 14px;}
+.sats-summary [class*="col-"] {padding: 30px; border-left: 1px solid #e1e1e1; background-color: #fff; display: inline-flex; flex-wrap: wrap;}
+.sats-summary .row {margin: 0;}
+.sats-summary [class*="col-"]:first-child {border-left: 0;}
+.sats-summary .score {color: #666; font-size: 18px; line-height: normal; font-weight: 500;}
+.sats-summary .sats-summary-icon {margin-right: 12px; width: 22px;}
+.sats-summary .sats-summary-icon svg {width: 22px; height: 22px; display: inline-block;}
+.sats-summary .summary-text {width: calc(100% - 35px);}
+.chart-summary-fields .sats-summary [class*="col-"] {background-color: #f5f5f5; align-items: center;}
+.chart-summary-fields .sats-summary .sats-summary-icon {margin-right: 15px; width: 35px; height: 35px; text-align: center; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; padding: 0;}
+.chart-summary-fields .sats-summary .sats-summary-icon img {width: 19px; height: 19px;}
+.chart-summary-fields .sats-summary .sats-summary-icon svg {width: 20px; height: 20px;}
+.chart-summary-fields .sats-summary .summary-text {width: calc(100% - 50px); text-align: left;}
+.chart-summary-fields .sats-summary [class*="col-"].bitcoin-box {background-color: initial;}
+.chart-summary-fields .sats-summary .score {color: #0d173b; font-size: 16px;}
+.chart-summary-fields .sats-summary [class*="col-"].bg-none {background-color: inherit; padding: 20px 0;}
+.finish-steps .result-layout-summary .sats-summary [class*="col-"] {max-width: none; flex: 0 0 auto; width: auto; padding: 8px 15px;}
+.chart-filters .form-group:has(select) {margin-left: auto; display: inline-flex; align-items: center; gap: 10px; margin-bottom: 0; }
+.chart-filters .form-group:has(select) .input-label {margin-bottom: 0;}
+.filters-list {width: 100%;}
+.chart-wraper .sats-summary {border-radius: 0; border: 0; margin: 0 0 25px; padding: 0 0 25px; border-bottom: 1px solid #ededed;}
+.chart-wraper .chart-holder {background-color: #fff; padding: 0;}
+.chart-summary-fields {background-color: #fff; padding: 30px;}
+.chart-summary-fields h3 span {display: block; padding-top: 10px; line-height: normal;}
+.chart-summary-fields h3 img {width: 50px; height: 50px; object-fit: contain;}
+.finish-steps .row {justify-content: center;}
+.finish-steps .result-layout-summary .sats-summary {display: inline-flex; border-radius: 5px;}
+.finish-steps .summary-text label {display: inline-block; margin: 0; vertical-align: middle; text-transform: capitalize;}
+.finish-steps .summary-text .score {display: inline-block; vertical-align: middle; padding-left: 5px;}
+.finish-steps .sats-summary .sats-summary-icon {margin-right: 10px; width: 30px; height: 30px;}
+.finish-steps .chart-summary-fields .sats-summary .summary-text {width: calc(100% - 40px); text-align: left;}
+/*sats-summary style end*/ 
 /************************************ 
  Quiz Read Info Style End
 *************************************/
@@ -186,6 +225,7 @@ span.Selectable:hover {text-decoration: underline;}
 .chart-summary-fields.result-layout-summary span.icon-box img{height: 100px;}
 .result-layout-summary .sats-summary {border-radius: 0;}
 .sats-summary-icon {padding: 30px;}
+.sats-summary-icon svg, .sats-summary-icon img {height: 24px; width: 24px;}
 .summary-text .score-label {font-weight: bold; margin-top: 20px;}
 .summary-btns{ display: flex; justify-content: center; align-items: center; gap: 5rem; margin-top: 5rem;}
 .summary-btns .summary-btn {background-color: #596bfd; padding: 10px; border-radius: 6px; color: white;}
@@ -197,6 +237,15 @@ span.Selectable:hover {text-decoration: underline;}
 .question-result-layout .droppable-characters {padding-top: 15px;}
 .finish-steps p {background-color: #e8fde8; display: inline-block; vertical-align: middle; line-height: normal; color: #45d745; padding: 5px 8px; border: 1px solid; border-radius: 3px; margin-right: 10px;}
 .finish-steps .prev-next-controls {margin-top: 50px;}
+.status-in-words span,
+.lms-quiz-section .status-in-words span {font-size: 16px;position: relative;display: inline-flex;align-items: center;}
+.status-nub span {font-size: 16px;}
+.status-in-words {display: flex;align-items: center;gap: 50px;margin-bottom: 30px;}
+.status-in-words span:before {content: "";display: inline-block;vertical-align: middle;height: 18px;width: 18px;margin-right: 8px; box-shadow: 0 0 4px rgba(0,0,0,0.4) inset;}
+.status-in-words .st-wrong:before {background-color: #dc160b;}
+.status-in-words .st-slow:before {background-color: #e29312;}
+.status-in-words .st-ok:before {background-color: #c8d022;}
+.status-in-words .st-fast:before {background-color: #43d21d;}
 /* True False Style Start */
 .form-box.inline-fields .lms-radio-select {margin-bottom: 0;}
 .lms-radio-select label {margin: 0; border: 2px solid #ddd; border-bottom-width: 4px; min-height: 50px; display: inline-flex; align-items: center; border-radius: 8px; cursor: pointer; overflow: hidden; position: relative; z-index: 1; padding: 0 15px; -webkit-transition: all 0.2s ease-in-out;transition: all 0.2s ease-in-out;width: 100%;}

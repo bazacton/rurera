@@ -2,34 +2,6 @@
  Quests Page | Student Panel Style Start
 Sub Pages Style
 ********************/
-.quests-item {display: flex; align-items: center; flex-wrap: wrap; gap: 5px; width: 100%; }
-.quests-item .item-text {width: calc(100% - 85px); text-align: left;}
-.quests-list h3 {display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; margin: 0 0 25px; }
-.quests-item .item-text .levels-progress.horizontal {margin-top: 0; margin-right: -6px; display: inline-block; width: calc(100% - 68px); vertical-align: middle; position: relative;}
-.quests-item .item-text .levels-progress.horizontal .progress-box {min-width: auto; max-width: none; border-radius: 50px 0 0 50px;}
-.progress-icon {background-color: #e5e5e5; border-radius: 14px; display: inline-flex; align-items: center; justify-content: center; gap: 2px; font-size: 12px; font-weight: 500; margin-right: -4px; vertical-align: middle; padding: 6px 5px; width: 58px;}
-.quests-list .progress-icon {width: 70px;}
-.progress-icon img {height: 20px; width: 20px; object-fit: contain;}
-.quests-item .icon-box {margin-right: 10px; text-align: center; width: 52px;}
-.quests-item .icon-box img {max-width: 100%;}
-.quests-item .progress-numbers {position: absolute; top: 0; left: 50%; transform: translateX(-50%); font-size: 14px; }
-.quests-list li {margin-bottom: 35px;}
-.panel-right-sidebar h3 .view-all {color: var(--primary);}
-.quests-list li:last-child {margin-bottom: 15px;}
-.quests-item .item-text h5 {margin-bottom: 2px; }
-.quests-item .horizontal .progress-count {border-radius: 50px 0 0 50px;}
-.panel-content-holder .progress-icon.font-14 {font-size: 14px; margin-right: 0;width: 65px;}
-.panel-content-holder .quests-item .item-text .levels-progress.horizontal {width: calc(100% - 65px);}
-.panel-content-holder .quests-item .progress-numbers {font-size: 16px; line-height: 16px;}
-.panel-content-holder .quests-list li {border-bottom: 1px solid #ddd; padding: 0 0 25px; margin-bottom: 25px;}
-.panel-content-holder .quests-list li:last-child {padding: 0; border: 0; margin: 0;}
-.quests-list.quests-learning li {margin: 0 0 20px;border-radius: 8px;border: 1px solid #ddd;}
-.quests-list.quests-learning li:last-child {padding: 20px; border: 1px solid #ddd;}
-.quests-list.quests-learning li:has(.quests-control) .quests-item {width: 65%; gap: 20px; }
-.quests-control a {background-color: var(--primary); color: #fff; padding: 8px 35px; border-radius: 5px; font-weight: 500;}
-.quests-learning .quests-item .item-text .levels-progress.horizontal .progress-box {border-radius: 3px;}
-.panel-content-holder .quests-learning .progress-icon {width: auto; margin-left: -2px;}
-.panel-content-holder .quests-learning .progress-icon.circle {border-radius: 100%; height: 45px; width: 45px;}
 .quests-learning .progress-icon .check-icon {height: 35px; width: 35px;}
 .quests-learning .bg-success .progress-icon,
 .quests-learning .bg-success .progress-box {background-color: #4fbf5d;}
@@ -37,7 +9,6 @@ Sub Pages Style
 .quests-learning .bg-warning .progress-box {background-color: #ffca00;}
 .quests-learning .bg-danger .progress-icon,
 .quests-learning .bg-danger .progress-box {background-color: #ffebed;}
-.panel-content-holder .quests-item:has(.progress-icon.circle) .item-text .levels-progress.horizontal {width: calc(100% - 50px);}
 .edit-quest-modal .modal-dialog {max-width: 520px;}
 /************************
   Quests Page | Student Panel Style End

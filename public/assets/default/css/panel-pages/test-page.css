@@ -83,11 +83,6 @@ Sub Pages Style
 .sats-listing-card.medium table .total-tests {padding-bottom: 10px;}
 .sats-listing-card.medium .simple-table tbody:has(.total-tests) tr:nth-child(even) {background-color: inherit !important;}
 .sats-listing-card.medium .simple-table tbody:has(.total-tests) tr:nth-child(odd) {background-color: #fff !important;}
-.tests-list {width: 100%; display: flex; gap: 10px; padding: 0; flex-wrap: wrap;}
-.tests-list li {font-size: 15px; cursor: pointer; border: 1px dashed #ddd; margin-bottom: -1px; display: inline-flex; flex-direction: column; gap: 5px; justify-content: center; align-items: center; padding: 0 5px; min-height: 100px; border-radius: 5px; min-width: 110px;}
-.tests-list li.active {background-color: #fff; border-color: var(--primary); color: var(--primary); border-style: solid; box-shadow: 0 -4px 0 0 #1b85fd inset;}
-.tests-list.school-zone-list li {min-height: 60px;}
-.tests-list img {width: 30px; height: 30px; object-fit: contain; }
 
 .dataTables_wrapper .dataTables_paginate {display: -ms-flexbox; display: inline-flex; padding-left: 0; list-style: none; border-radius: 0.25rem; float: right;}
 .dataTables_wrapper .paginate_button {position: relative; display: block; padding: 0.5rem 0.75rem; margin-left: -1px; line-height: 1.25; color: #007bff !important; background-color: #fff; border: 1px solid #dee2e6; font-weight: 500;}
@@ -104,49 +99,7 @@ div.dataTables_wrapper div.dataTables_filter input[type="search"] {color: #49505
 .dataTables_wrapper .paginate_button.next {border-radius: 0 5px 5px 0;}
 .table tbody td .sub_label,
 .simple-table .sub_label {color: #666; font-size: 16px; font-weight: 400;}
-/* Categories Boxes Style Start */
-.container-fluid .col-12 .post-show {overflow: visible !important;}
-.container-fluid .container,
-.container .container {padding: 0;}
-.categories-wrapp {background: #f0f1f3; padding: 90px 0 60px 0;}
-.categories-boxes .categories-card {position: relative; overflow: hidden; text-align: center; border-radius: 10px; box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.1); transition: all 0.3s ease-in-out; margin-bottom: 30px;}
-.categories-card.active,
-.categories-card:hover {box-shadow: 0 4px 0px 2px #D3D3D3; transform: scaleX(1.1);}
-.categories-card.active .categories-icon,
-.categories-card:hover .categories-icon {background-color: #4986d9;}
-.categories-boxes .categories-icon {padding: 35px 35px; background: var(--primary); color: #fff; border-radius: 10px 10px 0 0; transition: all 0.3s ease-in-out; display: flex; align-items: center; justify-content: center; min-height: 126px;}
-.categories-boxes .categories-icon img{width: 100%; position: absolute; left: 50%; top: 50%; height: 100%; -o-object-fit: contain; object-fit: contain; transform: translate(-50%, -50%);}
-.categories-boxes .categories-icon {position: relative; }
-.categories-boxes .categories-icon svg {width: 64px; height: 56px;}
-.categories-boxes .categories-icon path {stroke: #fff;}
-.categories-boxes .categories-icon g,
-.categories-boxes .categories-icon svg.icon path{fill: #fff;}
-.categories-boxes .categories-title {padding: 20px 10px; font-size: 14px; text-transform: capitalize; color: var(--primary);}
-.categories-wrapp.bg-none {background-color: inherit;}
-.categories-card .topic-numbers {position: absolute; left: 8px; top: 8px; background-color: #b5b0f3; font-size: 10px; padding: 2px 5px; display: inline-block; border-radius: 0 6px; color: #fff; z-index: 1;}
-.categories-element-title {margin: 0 0 30px;}
-.categories-element-title h2,
-.post-show .categories-element-title h2 {overflow: hidden;}
-.categories-element-title p {margin: 5px 0 0; color: #000; }
-.categories-element-title span {position: relative; display: inline-block; padding-right: 20px; margin-top: 0; color: #000;}
-.subjects-heading {margin: 0 0 35px;}
-.categories-card.medium {display: flex; flex-wrap: wrap; border-bottom: 1px solid #ddd; box-shadow: none; border-radius: 0; align-items: center; padding:20px; margin: 0; transform: none;}
-.categories-card.medium:first-child {border-top: 1px solid #ddd;}
-.categories-card.medium .categories-icon,
-.quests-learning .quests-item .icon-box {min-height: 80px; border-radius: 14px; box-shadow: none; background: none !important; min-width: 70px; max-width: 70px; padding: 0;}
-.categories-card.medium .categories-icon svg {width: 40px; height: 40px;}
-.categories-card.medium .categories-text {width: calc(100% - 70px); padding-left: 25px; line-height: normal; position: relative;}
-.categories-card.medium .categories-text .categories-title {padding: 0; text-align: left; margin: 0 0 12px; }
-.categories-card.medium .categories-text .levels-progress.horizontal {position: relative; margin: 0 0 12px; width: 100%;}
-.categories-card.medium .categories-text .levels-progress.horizontal .progress-box {width: 100%; max-width: 100%; background-color: #e5e5e5; height: 14px; }
-.categories-card.medium .progress-numbers {position: absolute; right: 0; top: -30px; font-weight: 400; }
-.categories-card.medium .subject-info {display: block; text-align: left;}
-.categories-card.medium .learning-btn {position: absolute; right: 0; top: 50%; transform: translateY(-50%); font-weight: 600; text-transform: uppercase; color: #666;}
-.categories-card.medium:nth-child(even) {background-color: #fff;}
-.categories-card.medium:nth-child(odd) {background-color: inherit;}
-.db-categories .row{gap: 25px 0;}
-.db-categories img {max-width: 100%; width: 50px; height: 50px; object-fit: contain; margin-bottom: 20px;}
-/* Categories Boxes Style End */
+
 /* Count Number Boxes Style Start */
 .count-number-wrapp .section-title h2 {margin: 0 0 20px; font-size: 2.6rem; }
 .count-number-boxes li:first-child {padding-left: 15px; border-left: 0;}

@@ -23,144 +23,12 @@ Dashboard Right Sidebar Pages Style Start
 .top-navbar .dropdown-menu.user-profile-dropdown:after {display: none;}
 .top-navbar .dropdown-menu.user-profile-dropdown .user-nav-detail img {margin: 0 0 15px;}
 .top-navbar .dropdown-menu.user-profile-dropdown .user-nav-list,
-.dropdown-menu.user-profile-dropdown .user-nav-list {border: 0; padding: 15px 20px 15px !important; display: inline-block; text-align: left; border-bottom: 1px solid #f4f4f6; width: 100%;}
-.top-navbar .dropdown-menu.user-profile-dropdown .user-nav-list img,
-.dropdown-menu.user-profile-dropdown .user-nav-list img {height: 35px; width: 35px; margin-right: 15px; float: left; margin-top: 3px;}
-.top-navbar .dropdown-menu.user-profile-dropdown .user-nav-list .user-list-name {display: inline-block; font-size: 12px; font-weight: 500; margin: 0 0 2px;line-height: normal;}
-.top-navbar .dropdown-menu.user-profile-dropdown .user-nav-list .user-list-email,
-.panel-right-sidebar .dropdown-menu.user-profile-dropdown {min-width: 250px; top: 100% !important; bottom: auto; left: auto !important; right: -10px !important; text-align: center; transform: none !important;}
-.panel-right-sidebar .dropdown-menu.user-profile-dropdown {max-width: 250px;}
-.panel-right-sidebar .dropdown-menu.user-profile-dropdown .user-nav-list {padding: 0 !important; border: 0;}
-.panel-right-sidebar .dropdown-menu.user-profile-dropdown .user-nav-list .dropdown-item {padding: 0 20px !important; margin-bottom: 10px; display: flex; align-items: center; flex-direction: column;}
-.panel-right-sidebar .dropdown-menu.user-profile-dropdown .user-nav-list .dropdown-item .user-list-name {
-    color: var(--primary);
-    font-weight: 500;
-}
-.dropdown-menu.user-profile-dropdown .user-nav-list .user-list-email {line-height: normal; display: none;}
-.user-profile-icons .dropdown-menu:after, 
-.user-profile-icons .dropdown-menu:before {content: ""; position: absolute; top: -8px; right: 30px; height: 15px; width: 15px; border-top: 1px solid #ddd; border-left: 1px solid#ddd; transform: rotate(45deg);}
-.user-profile-icons .dropdown-menu:before {background-color: #fff; top: -6px; box-shadow: none; border: 0; }
-.user-profile-icons .dropdown-menu {border: 1px solid #ddd; box-shadow: none; right: -15px; transition: none; margin: 0; padding: 10px 15px;}
-.user-profile-icons .dropdown-menu .dropdown-header {text-align: center;}
-.user-profile-icons .dropdown:hover .dropdown-menu {margin-top: 5px;}
-.user-profile-icons ul .menu-button-mobile,
-.user-profile-icons ul .sidebar-logo-mobile{display: none;}
+
 .user-coins-menu .dropdown-header {display: flex; align-items: center; padding: 0; flex-wrap: wrap; gap: 15px; }
 .user-coins-menu .dropdown-header img {width: 60px; height: 60px; }
 .user-coins-menu .coins-text {width: calc(100% - 75px); font-weight: 700; color: #343434; font-size: 18px; line-height: normal; text-align: left;}
 .user-coins-menu .coins-text span {display: flex; font-weight: 400; font-size: 15px; color: #999; position: relative; align-items: flex-start; line-height: normal; gap: 5px; padding-top: 5px; flex-direction: column;}
 .user-coins-menu .coins-text span a {font-weight: 500; color: var(--primary); text-decoration: underline;}
-.getting-start li .start-item {display: flex; align-items: center; flex-wrap: wrap; gap: 10px;}
-.getting-start ul {display: flex; flex-direction: column; gap: 12px;}
-.getting-start .start-item h5 {font-weight: 500;}
-.panel-right-sidebar .getting-start .icon-box img {max-width: 20px;}
-.panel-right-sidebar .getting-start .levels-progress.horizontal {height: 4px; overflow: hidden; position: relative;}
-/* Store Stats Style Start */
-.store-stats ul {margin: 0; padding: 0; display: flex; flex-wrap: wrap; flex-direction: column; gap: 15px;}
-.store-stats ul li {margin-bottom: 5px;}
-.store-stats li .store-item {display: flex; align-items: center; flex-wrap: wrap; gap: 12px;}
-.store-stats li .store-item img {width: 35px;object-fit: contain;}
-.store-stats .item-label {font-weight: 700;}
-.store-stats .iteme-numbers {display: inline-flex; align-items: center; padding-top: 5px; width: 100%; color: #999; line-height: normal;}
-.store-stats .iteme-numbers em {font-style: normal; font-size: 14px;}
-.panel-right-sidebar .store-stats {position: relative; overflow: hidden;}
-.panel-right-sidebar .store-stats li .store-item img {position: absolute; right: -10px; bottom: -10px; width: 70px;}
-.panel-right-sidebar .store-stats li .store-item {gap: 0;}
-/* Store Stats Style End */
-
-/*Sidebar Student-list Style Start*/
-.parent-panel .sidebar-students-list .card {
-    gap: 15px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 20px;
-    height: 335px;
-    overflow: hidden;
-}
-.sidebar-students-list .card:has(.item-control) {
-    height: auto;
-    overflow: visible;
-}
-.sidebar-students-list .card .col-auto {
-    padding: 0 0 0 15px;
-}
-.sidebar-students-list .card .col-auto:empty {
-    display: none;
-}
-.sidebar-students-list .card .col-auto:has(h6) {
-    max-width: 130px;
-    padding-left: 10px;
-}
-.switch-user-btn .icon-box img {
-    height: 20px;
-    width: 20px;
-}
-.sidebar-students-list .switch-user-btn {
-    font-size: 12px;
-    display: inline-flex;
-    padding: 0 10px 0 0;
-    position: relative;
-    margin-left: auto;
-}
-.sidebar-students-list .switch-user-btn:before {
-    content: "Switch User";
-    position: absolute;
-    right: 100%;
-    top: 50%;
-    color: #fcfcfc;
-    background-color: #000;
-    white-space: nowrap;
-    padding: 4px 8px;
-    border-radius: 4px;
-    transform: translateY(-50%);
-    margin-right: 10px;
-    visibility: hidden;
-    opacity: 0;
-}
-.sidebar-students-list .switch-user-btn:after {
-    content: "";
-    position: absolute;
-    right: 100%;
-    top: 50%;
-    height: 8px;
-    width: 8px;
-    background-color: #000;
-    margin-top: -4px;
-    margin-right: 7px;
-    transform: rotate(45deg);
-    visibility: hidden;
-    opacity: 0;
-}
-.sidebar-students-list .switch-user-btn:hover:before,
-.sidebar-students-list .switch-user-btn:hover:after {
-    opacity: 1;
-    visibility: visible;
-}
-.switch-user-btn .icon-box {
-    display: inline-block;
-    width: 100%;
-    vertical-align: middle;
-    text-align: center;
-}
-.item-control {
-    text-align: center;
-}
-.item-control .showMore {
-display: block;
-font-size: 16px;
-font-weight: 700;
-color: #b2b2b2;
-text-decoration: none;
-}
-.item-control .showMore::after {
-content: "+ View More";
-}
-.item-control .showMore:hover {color: var(--primary);}
-.item-control .showMore.showLess::after {
-content: "- View Less";
-}
-/*Sidebar Student-list Style End*/
 
 /*************************************
 Dashboard Right Sidebar Page Style End
@@ -253,7 +121,7 @@ Assignments Table Style Start
 .db-form-tabs .billing-card .list-group-item img {border-radius: 3px; min-height: auto; max-height: inherit;}
 .db-form-tabs .db-security .list-group-item img {border-radius: 0; min-width: auto; background-color: inherit; min-height: auto; filter: invert(30%) sepia(20%) saturate(253%) hue-rotate(169deg) brightness(94%) contrast(91%);}
 .db-form-tabs .list-group-item .btn-white:hover {background-color: var(--primary);}
-.db-form-tabs h6 {color: #495057; font-size: 16px;}
+.db-form-tabs h6 {color: var(--primary); font-size: 16px;}
 .db-form-tabs .table thead th {border-bottom: 1px dashed #e9ecef; text-align:left; color: #343a40; text-transform: uppercase; font-size: 14px; font-weight: 700; border-left: 1px dashed #e9ecef; border-top: 1px dashed #e9ecef !important;}
 .db-form-tabs .table tbody td {border-bottom: 1px dashed #e9ecef; border-left: 1px dashed #e9ecef; text-align:left;}
 .db-form-tabs .table thead th:first-child,
@@ -293,14 +161,21 @@ Assignments Table Style Start
 .db-form-tabs .lms-faqs {border: 1px solid #e2e8f0;background-color: #fff;border-radius: 10px;padding: 30px;max-width: 700px;margin: 0;}
 .db-form-tabs .lms-faqs .card {padding: 0; background-color: inherit; box-shadow: none; border: 0;}
 .db-form-tabs .lms-faqs .card:last-child {margin-bottom: 0;}
-.db-members .card {background-color: inherit; box-shadow: none; border: 0; }
+.db-members .card {background-color: inherit; box-shadow: none; border: 0; margin: 0;
+    padding: 0;}
 .db-members .card .card-header {padding: 15px 20px !important; margin: 0; align-items: center; border-radius: 0; border-bottom: 1px solid #e2e8f0;}
-.db-members .card .card-body {padding: 0;}
-.db-members .card .list-group-item {background-color: inherit; border: 0; border-bottom: 1px solid #ddd; margin: 0; border-radius: 10px 10px 0 0; padding: 0; position: inherit;}
+.db-members .card .card-body {padding: 0; overflow: visible;}
+.db-members .card .list-group-item {background-color: inherit; border: 0; border-top: 1px solid #ddd; margin: 0; padding: 0; position: inherit; border-radius: 0;}
 .db-members .card .list-group-item .col-auto:first-child {padding-right: 0; padding-left: 40px; width: auto; min-width: auto;}
 .db-members .card .list-group-item .col-auto:first-child.col-lg-2 {flex: 0 0 25%; max-width: 25%;}
-.db-members .card .list-group-item .col-auto:last-child {padding-right: 40px;}
+.db-members .card .list-group-item .col-auto:last-child {padding-right: 45px; justify-content: center;}
 .db-members .card .list-group-item:last-child {border-radius: 0 0 10px 10px; border-bottom: 0;}
+.db-form-tabs .list-group-item h6 a {color: #334155; line-height: 22px; display: block;}
+.db-members .card .list-group-item small {display: block; line-height: normal; font-size: 16px;}
+.db-members .card .list-group-item .profile-dropdown {padding-top: 0; min-height: 38px; display: inline-flex; align-items: center; flex-direction: column;}
+.db-members .card .card-header button img {width: 18px; height: 18px; filter: invert(100%) sepia(0%) saturate(7472%) hue-rotate(114deg) brightness(109%) contrast(97%); margin-right: 6px;}
+.member-card-header .btn img {width: 22px; height: 22px;}
+.db-members .card .list-group-item:nth-child(even) {background-color: #fff;}
 .billing-card .list-group-item {padding: 0;}
 .db-notifications {max-width: 700px;}
 .db-notifications .card-body {padding: 0;}
@@ -310,10 +185,44 @@ Assignments Table Style Start
 .db-members .card .column-2 .list-group-item {max-width: 47.5%; width: 47.5%; margin-left: 15px;}
 .dashboard .lms-jobs-form {border: 0; }
 .panel-content .dashboard .lms-jobs-form .input-field:before {display: none;}
+.member-card-header {padding:50px 30px !important; border-bottom: 1px solid #ddd; margin-bottom: 80px; background-color: #fff; border-radius: 10px 10px 0 0;}
+.member-card-header .dropdown {margin-left: auto;}
+.member-card-header .db-members .profile-dropdown a:after {display: none;}
+.member-card-header .db-members .profile-dropdown > a {position: relative; padding-right: 35px;}
+.member-card-header .db-members .profile-dropdown > a:before {content: ""; position: absolute; border: 2px solid var(--primary); height: 8px; width: 8px; border-top: 0; border-left: 0; -webkit-transform: rotate(45deg); -ms-transform: rotate(45deg); transform: rotate(45deg); top: 50%; margin-top: -5px; right: 18px;}
+.member-card-header .db-members .profile-dropdown:hover > a:before {-webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.member-card-header .db-members .profile-dropdown:hover ul {
+    margin-top: 0;
+}
+.member-card-header h2 {
+    color: var(--primary);
+}
+.member-card-header .dropdown .btn,
+.member-card-header .db-members .profile-dropdown > a {
+    margin-left: 15px;
+    color: var(--primary);
+    height: auto;
+    font-weight: 500;
+}
+.member-card-header .dropdown .btn img {
+    filter: invert(44%) sepia(99%) saturate(269%) hue-rotate(190deg) brightness(90%) contrast(93%);
+    margin-right: 8px;
+}
 /*Dashboard members list style start*/
+.dashboard-students-holder {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+.dashboard-students-holder .db-form-tabs {margin-bottom: 0;}
 .db-members .card .card-header button,
 .db-members .list-group .rurera-tables-list,
 .db-members .list-group {gap: 0; background-color: #fff; border: 1px solid #ddd; border-radius: 10px; position: relative;}
+.db-members .list-group .rurera-tables-list {width: 100%; border: 0;}
+.db-members .list-group {width: 100%; border: 0; border-radius: 0;}
 .db-members .list-group:has(.rurera-tables-list) {background-color: inherit; border: 0;}
 .db-members .card .list-group-item .detail-btn {background-color: #e2e8f0; border: 0; padding: 10px 30px 10px 15px; border-radius: 3px; color: #64748b;}
 .db-members .list-group-item .profile-dropdown > a {border: 1px solid #ddd; border-radius: 100%; height: 36px; width: 36px; display: inline-flex; align-items: center; justify-content: center;}
@@ -321,6 +230,21 @@ Assignments Table Style Start
 .db-members .profile-dropdown > a .icon-box img {filter: invert(68%) sepia(19%) saturate(290%) hue-rotate(175deg) brightness(89%) contrast(101%);}
 .db-members .list-group-item .profile-dropdown > a:after {display: none;}
 .db-members .profile-dropdown ul {right: -5px; left: auto;}
+.member-card-header:hover .db-members .profile-dropdown ul {margin-top: 15px;}
+.profile-menu > ul > li .user-menu-text > a {font-weight: 600; font-size: 18px; display: block;}
+.profile-dropdown {position: relative; padding-top: 5px; display: inline-block;}
+.profile-dropdown ul {position: absolute; top: 100%; left: 0; background-color: #fff; min-width: 180px; padding: 15px; box-shadow: 0 0 3px rgba(0,0,0,0.1); border-radius: 8px; z-index: 1; opacity: 0; visibility: hidden; margin-top: -10px; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -ms-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out; transition: all 0.3s ease-out;}
+.profile-dropdown:hover ul {opacity: 1; visibility: visible; margin: 0;}
+.profile-dropdown .icon-box img[src$='.png'] {filter: none;}
+.profile-dropdown ul li {margin: 0 0 15px; padding-left: 0; }
+.profile-dropdown ul li:after {display: none;}
+.profile-dropdown ul li:last-child {margin-bottom: 0;}
+.profile-dropdown > a {font-weight: 600; color: var(--primary); position: relative;}
+.profile-dropdown > a:after {content: ""; position: absolute; right: -18px; top: 4px; height: 0; width: 0; border: 5px solid var(--primary); border-right-color: transparent; border-bottom-color: transparent; transform: rotate(-135deg); }
+.profile-dropdown ul li a {color: var(--primary); font-size: 15px; font-weight: 500; }
+.profile-dropdown .icon-box {height: 20px; width: 20px; display: inline-block; margin-right: 5px; }
+.profile-dropdown .icon-box img {max-width: 100%; border-radius: 0; border: 0; max-height: none; margin: 0; padding: 0; background-color: inherit; height: 20px; width: 20px; min-width: auto; min-height: auto; filter: invert(32%) sepia(96%) saturate(583%) hue-rotate(201deg) brightness(114%) contrast(110%);}
+.db-form-tabs .profile-dropdown ul li .connect-user-btn {padding: 0; border: 0; }
 .db-members .profile-dropdown:hover ul {margin-top: -12px;}
 .db-members .list-group-item .profile-dropdown > a:before {border: 1px solid #ddd; border-radius: 100%; content: ""; height: 42px; width: 42px; position: absolute; left: 50%; top: 50%; margin: -21px 0 0 -21px; transition-duration: .3s; transition-property: all; transition-timing-function: cubic-bezier(.4,0,.2,1); -webkit-transform: scale(0); -ms-transform: scale(0); transform: scale(0);}
 .db-members .profile-dropdown:hover > a:before {-webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1);}
@@ -332,14 +256,15 @@ Assignments Table Style Start
 .db-members .card .list-group-item .action-activity {display: inline-flex; align-items: center; position: relative;}
 .db-members .card .list-group-item .action-activity .listing-title { width: 100%; text-align: right; padding-right: 30px;}
 .db-members .card .list-group-item [class*="col-"]:has(small) {flex-direction: column; align-items: flex-start;}
-.db-members .card .list-group-item .listing-title {color: #94a3b8; position: absolute;top: -40px; text-transform: uppercase; pointer-events: none; display: none;}
+.db-members .card .list-group-item .listing-title {color:#000; position: absolute;top: -50px; text-transform: uppercase; pointer-events: none; display: none;}
 .db-members .card .list-group-item:first-child .listing-title {display: block;}
 .db-members .card .list-group-item .detail-btn {padding-right: 15px;}
 .db-members table {margin: 0;}
-.db-members:has(.no-record-found) .rurera-tabs-frontend {padding-bottom: 20px !important;}
-.db-members:has(.no-record-found) .list-group .rurera-tables-list {background-color: inherit; border: 0; }
+.db-members:has(.no-record-found) .list-group .rurera-tables-list {background-color: inherit; border: 0; width: 100%; padding: 0 30px;}
 .db-members .rurera-button-loader {background-color: initial; z-index: 3; height: auto; min-height: 125px; border-radius: 10px;}
 .db-members:has(.rurera-button-loader) .rurera-pagination {display: none;}
+a.last-activity span {color: #bfbfbf;}
+a.last-activity span strong {color: #343434;}
 /*Dashboard members list style end*/
 /*dashboard Card Style Start*/
 .lms-dashboard-card {box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, .03);}
@@ -385,6 +310,11 @@ Assignments Table Style Start
 /*dashboard Card Style End*/
 
 /*Dashboard Packages Style Start*/
+.panel-content {
+    padding: 30px 15px 30px 254px;
+    width: calc(100% - 254px);
+    width: 100%;
+}
 .plan-switch-holder {text-align: center; margin: 0 0 50px; display: inline-flex; align-items: flex-start; justify-content: center; flex-wrap: wrap; position: relative;}
 .plan-switch-option {display: flex; align-items: center; justify-content: center; gap: 0;}
 .lms-choose-membership .plan-switch-option {justify-content: flex-start; padding: 10px 0;}
@@ -424,22 +354,10 @@ Assignments Table Style Start
 .subscribe-plan .subscribe-title {text-align: center; margin: 0 0 10px;}
 .subscribe-plan .subscribe-title span {color: #807f85;}
 /*Dashboard Packages Style End*/
-.panel-content {padding: 30px 15px 30px 254px; width: calc(100% - 254px); width: 100%;}
+.panel-content {padding: 30px 15px 30px 15px; width: calc(100% - 254px); width: 100%;}
 @media (max-width:991px) {
     .panel-content {padding: 30px 15px 30px;}
 }
-/* dashboard-banner Start */
-.dashboard-banner-container {margin-top: 80px;}
-.dashboard-banner-container h2 {position: relative; z-index: 1;}
-.dashboard-banner-container .dashboard-banner {position: absolute; right: 0; bottom: 0; height: 340px;}
-.rtl .dashboard-banner-container .dashboard-banner {left: 0; right: auto}
-.unread-notification-lists {min-height: 120px}
-@media(max-width:1650px) {
-    .dashboard-banner-container .dashboard-banner {height: auto; width: 40%;}
-    .dashboard-banner-container {margin-top: 30px;}
-    .unread-notification-lists {min-height: auto;}
-}
-/* dashboard-banner End */
 
 /* Wizard-Steps Style Start */
 .lms-choose-membership .panel-header {background-color: #fff; border-bottom: 4px solid #e2e8f0; position: relative; padding: 10px 20px; display: flex; align-items: center;}
@@ -462,9 +380,9 @@ Assignments Table Style Start
 .lms-choose-membership:has(.wizard-steps) form {display: flex; flex-direction: column;}
 .progress-line {position: absolute; left: 0; bottom: -4px; height: 4px; border-radius: 50px; overflow: hidden; width: 100%; }
 .progress-line .progress-count {background-color: var(--primary); display: block; height: 100%; border-radius: 50px; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -ms-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out; transition: all 0.3s ease-out;}
-.db-members .rurera-tabs-frontend {gap: 30px;}
-.db-members .rurera-tabs-frontend li {color: #6c6b71; font-size: 15px; cursor: pointer; border-bottom: 3px solid transparent; padding-bottom: 10px;}
-.db-members .rurera-tabs-frontend li.active {border-bottom-color: var(--primary);}
+.db-members .rurera-tabs-frontend {border-bottom: 1px solid #ddd; margin-bottom: 75px;}
+.db-members .rurera-tabs-frontend li {color: #6c6b71; cursor: pointer; border-bottom: 3px solid transparent; padding: 10px 35px; text-transform: uppercase; font-weight: 500;}
+.db-members .rurera-tabs-frontend li.active {border-bottom-color: var(--primary); color: var(--primary);}
 .wizard-steps .sats-listing-card tbody tr td {border: 0; }
 .wizard-steps .sats-listing-card tbody tr {border-top: 1px solid #ececec;}
 .wizard-steps .tests-list { margin-top: 20px;}
@@ -518,33 +436,9 @@ Assignments Table Style Start
 .book-form .tests-list li img {height: 18px; width: 18px;}
 .book-form .tests-list li img.google-icon,
 .lms-choose-membership .social-login img.google-icon {height: 30px; width: 30px; margin-bottom: -10px; }
-.listing-card .read-btn, .book-btn, .try-rurera-btn {color: var(--primary); font-weight: 600; font-size: 16px; border: 1px solid var(--primary); padding: 15px 25px; border-radius: 8px; border-bottom-width: 5px; background-color: #fff; display: inline-flex; align-items: center; min-width: 206px; vertical-align: middle; position: relative; transform: translate3d(0px, 0%, 0px); overflow: hidden; transition: background 0.4s linear; text-align: center;}
-.listing-card .read-btn.bg-light-green{border-bottom-color: var(--light-green);}
-.listing-card .read-btn.bg-light-green::before{content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 50% 50% 0 0; transform: translateY(100%) scaleY(0.5); transition: all 0.6s ease; z-index: -1; background-color: #fff !important; color: var(--light-green);}
-.listing-card .read-btn.bg-light-green:hover::before,
-.listing-card .read-btn.bg-light-green:hover{color: var(--light-green);}
-.listing-card .read-btn:before,
-.book-btn:before,
-.try-rurera-btn:before {content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--primary); border-radius: 50% 50% 0 0; transform: translateY(100%) scaleY(0.5); transition: all 0.6s ease; z-index:-1;}
-.listing-card .read-btn:hover{color:#fff;background-color: var(--primary);border-color: rgba(0,0,0,0.4);}
-.book-btn:hover{color:#fff;}
-.listing-card .read-btn:hover:before,
-.book-btn:hover:before,
-.try-rurera-btn:hover:before {border-radius: 0; transform: translateY(0) scaleY(1);}
-.listing-card .read-btn:hover .btn-icon svg g {fill:#fff;}
-.listing-card .read-btn .btn-icon {display: inline-block; width: 22px; height: 18px; line-height: normal; margin-right: 12px; margin-top: 0;}
-.listing-card .read-btn .btn-icon svg {max-width: 100%;}
-.listing-card .read-btn .btn-icon svg g {fill: var(--primary);}
-.listing-card .read-btn.continue,
-.book-btn.bg-primary, .try-rurera-btn {color: #fff; border-color: rgba(0,0,0,0.4); background-color: var(--primary);}
-.listing-card .read-btn.continue:hover::before, .listing-card .read-btn.continue:hover{color: var(--primary);}
-.listing-card .read-btn.continue:hover .btn-icon svg g{fill:#fff;}
-.listing-card .read-btn.continue::before{background-color: #fff;}
-.listing-card .read-btn.continue .btn-icon svg g{fill: #fff;}
-.listing-card .read-btn.continue .btn-icon {display: none;}
-.listing-card .read-btn.read-again {background-color: #7e9500; color: #fff;}
-.listing-card .read-btn.read-again svg g {fill: #fff;}
-.listing-card .remove-btn {font-size: 18px; color: #ffbfbf; font-weight: 600; display: inline-block; vertical-align: middle; margin-right: 15px; position: absolute; left: -100px; top: 50%; transform: translateY(-50%);}
+.action-activity .remove-btn {background-color: #ffdfe3; height: 40px; width: 40px; text-align: center; border: 1px solid #d84356; display: inline-flex; align-items: center; justify-content: center; border-radius: 3px; margin-left: 10px;}
+.db-form-tabs .list-group-item .remove-btn img,
+.action-activity .remove-btn img {max-height: 18px;max-width: 18px;min-height: 18px;min-width: 18px;filter: invert(46%) sepia(74%) saturate(4289%) hue-rotate(328deg) brightness(89%) contrast(90%);}
 .gallery-slider {position: relative; }
 .gallery-slider ul {padding: 5px; }
 .gallery-slider li {display: inline-block; vertical-align: top; width: 8.333%; padding: 5px; }
@@ -621,7 +515,7 @@ Assignments Table Style Start
 .lms-choose-membership:not(.heatmap-select-option .select-field input[type=radio]:checked ~ label:before) .select-field input[type=radio]:checked ~ label:before {box-shadow: 0 0 0 5px #ddd inset; }
 .lms-choose-membership .form-group input[type="password"] {background-color: #fff; height: 48px; border: 1px solid #ddd; width: 100%; padding: 11px; border-radius: 6px;}
 .lms-choose-membership .form-group .btn-field {margin: 0; text-align: right; }
-.lms-choose-membership .form-group .btn-field button {background-color: var(--primary); width: auto; padding: 12px 30px; height: auto; margin: 0; line-height: normal; display: inline-block;}
+.lms-choose-membership .form-group .btn-field button {background-color: var(--primary); width: auto; padding: 12px 30px; height: auto; margin: 0; line-height: normal; display: inline-block; color: #fff; border: 0;}
 .lms-choose-membership .plan-switch {margin-top: -2px;}
 .regenerate-emoji, .regenerate-pin {line-height: 48px; box-shadow: none; border-radius: 5px;}
 .child-register-form input:-webkit-autofill,
@@ -724,3 +618,51 @@ body .flipbook-data {height: 68%; transform: scale(1.5); margin-top: 280px;}
 .lms-social-rating a {display: inline-block;}
 .lms-social-rating .rating-holder {display: inline-flex; flex-direction: column; gap: 30px;}
 /*Lms Choose Membership Model Style End*/
+
+/* Full  Menu For Parent Style Start */
+.parent-panel .panel-sidebar, .parent-panel .xs-panel-nav {
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    padding: 0 0 15px;
+    width: 100% !important;
+    position: relative !important;
+    height: auto;
+}
+.parent-panel .panel-sidebar > .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.parent-panel .sidebar-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-direction: row;
+}
+.parent-panel .panel-sidebar .sidebar-menu {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding-top: 0 !important;
+    padding: 0;
+    height: auto;
+    overflow: visible;
+}
+.parent-panel .panel-sidebar .sidebar-menu .sidenav-item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    position: relative;
+    padding: 0;
+}
+.parent-panel .sidebar-menu-holder .sidebar-logo {
+    display: none;
+}
+@media screen and (min-width: 992px) and (max-width: 1600px) {
+    .parent-panel .sidebar-menu-holder {
+        height: auto;
+    }
+}
+/* Full  Menu For Parent Style End */
+

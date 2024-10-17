@@ -14,11 +14,12 @@
 @endpush
 
 @section('content')
-<section class="member-card-header pb-20">
+<div class="dashboard-students-holder">
+<section class="member-card-header pb-20 mb-15">
     <div class="d-flex align-items-center justify-content-between flex-md-row">
-        <h1 class="section-title font-22">Set Work</h1>
+        <h2 class="section-title font-36">Set Work</h2>
         <div class="dropdown">
-        <a class="btn btn-sm btn-primary subscription-modal" href="/panel/set-work/create" data-type="child_register"><img src="/assets/default/svgs/add-con.svg"> Add Work
+        <a class="btn subscription-modal font-18 p-0" href="/panel/set-work/create" data-type="child_register"><img src="/assets/default/svgs/add-con.svg"> Add Work
         </a>
     </div>
     </div>
@@ -33,13 +34,13 @@
                     <div class="card pt-0">
                         <div class="card-body">
 
-                            <ul class="rurera-tabs-frontend set-work-ajax d-flex flex-wrap align-items-center pb-60">
-                                <li class="active font-weight-500 pb-10" data-type="active">Inprogress</li>
-                                <li class="font-weight-500 pb-10" data-type="completed">Completed</li>
-                                <li class="font-weight-500 pb-10" data-type="expired">Overdue</li>
+                            <ul class="rurera-tabs-frontend set-work-ajax d-flex flex-wrap align-items-center">
+                                <li class="active font-weight-bold font-18 pb-10" data-type="active">Inprogress</li>
+                                <li class="font-weight-bold font-18 pb-10" data-type="completed">Completed</li>
+                                <li class="font-weight-bold font-18 pb-10" data-type="expired">Overdue</li>
                             </ul>	
 
-                            <div class="list-group list-group-custom set-work-content list-group-flush totalChilds"
+                            <div class="list-group list-group-custom set-work-content list-group-flush totalChilds pt-0"
                                  data-childs="12">
                                 <div class="rurera-tables-list mb-30">
                                 @if( $assignments->count() > 0 )
@@ -73,6 +74,7 @@
     </div>
 
 </section>
+</div>
 
 
 

@@ -127,7 +127,7 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
                      * Spelling Routes Starts
                      */
                        Route::get('/spelling' , 'SpellsController@index');
-                       Route::get('/{quiz_slug}/spelling-list' , 'SpellsController@words_list');
+                       Route::get('/{quiz_slug}/spelling-list' , 'SpellsController@words_list')->middleware('inject.css:assets/default/css/panel-pages/wordlist.css');
                        Route::get('/{quiz_slug}/spelling/exercise/{quiz_level}' , 'SpellsController@start');
                        Route::get('/{quiz_slug}/spelling/exercise' , 'SpellsController@start');
 					   
@@ -481,12 +481,12 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
     });
 
     Route::group(['prefix' => 'shop'] , function () {
-        Route::get('/' , 'ProductController@searchLists')->middleware('inject.css:assets/default/css/panel-pages/schoolzone.css');
-        Route::get('/{slug}' , 'ProductController@show');
+        Route::get('/' , 'ProductController@searchLists')->middleware('inject.css:assets/default/css/panel-pages/shop.css');
+        Route::get('/{slug}' , 'ProductController@show')->middleware('inject.css:assets/default/css/panel-pages/shop.css');
         Route::post('/{slug}/points/apply' , 'ProductController@buyWithPoint');
 
         Route::group(['prefix' => 'reviews'] , function () {
-            Route::post('/store' , 'ProductReviewController@store');
+            Route::post('/store' , 'ProductReviewController@store')->middleware('inject.css:assets/default/css/panel-pages/shop.css');
             Route::post('/store-reply-comment' , 'ProductReviewController@storeReplyComment');
             Route::get('/{id}/delete' , 'ProductReviewController@destroy');
             Route::get('/{id}/delete-comment/{commentId}' , 'ProductReviewController@destroy');
@@ -582,10 +582,10 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
     });
 
     Route::group(['prefix' => 'books'] , function () {
-        Route::get('/' , 'BooksController@index');
+        Route::get('/' , 'BooksController@index')->middleware('inject.css:assets/default/css/panel-pages/books_pages.css');
         Route::get('/{book_slug}' , 'BooksController@book')->middleware('inject.css:assets/default/css/panel-pages/books_pages.css');
-        Route::get('/{book_slug}/activity' , 'BooksController@bookActivity');
-        Route::get('/{info_id}/info_detail' , 'BooksController@info_detail');
+        Route::get('/{book_slug}/activity' , 'BooksController@bookActivity')->middleware('inject.css:assets/default/css/panel-pages/books_pages.css');
+        Route::get('/{info_id}/info_detail' , 'BooksController@info_detail')->middleware('inject.css:assets/default/css/panel-pages/books_pages.css');
         Route::post('/update_reading' , 'BooksController@update_reading');
     });
 
@@ -634,8 +634,8 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
 
     Route::group(['prefix' => 'spells'] , function () {
        Route::get('/' , 'SpellsController@index')->middleware('inject.css:assets/default/css/panel-pages/wordlist.css');
-       Route::get('/{quiz_year}/{quiz_slug}/words-list' , 'SpellsController@words_list');
-       Route::get('/words_list' , 'SpellsController@words_list');
+       Route::get('/{quiz_year}/{quiz_slug}/words-list' , 'SpellsController@words_list')->middleware('inject.css:assets/default/css/panel-pages/wordlist.css');
+       Route::get('/words_list' , 'SpellsController@words_list')->middleware('inject.css:assets/default/css/panel-pages/wordlist.css');
        Route::get('/{quiz_year}/{quiz_slug}' , 'SpellsController@start');
         Route::get('/search' , 'SpellsController@search');
         Route::get('/words-data' , 'SpellsController@words_data');

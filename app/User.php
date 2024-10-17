@@ -3500,6 +3500,11 @@ class User extends Authenticatable
         return $this->role_name === Role::$author;
     }
 
+    public function isDataEntry()
+    {
+        return $this->role_name === Role::$dataEntry;
+    }
+
     public function isReviewer()
     {
         return $this->role_name === Role::$reviewer;

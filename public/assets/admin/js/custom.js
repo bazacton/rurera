@@ -557,18 +557,39 @@
             fontNames: [],
             toolbar: [
                 ['style', ['style']],
-                ['font', ['bold', 'underline', 'clear']],
-
-                ['color', ['color']],
-                ['para', ['ul', 'ol', 'paragraph']],
+                ['font', ['bold', 'underline']],
+                //['fontname', ['fontname']],
+                //['color', ['color']],
+                ['para', ['paragraph', 'ul', 'ol']],
                 ['table', ['table']],
-                ['insert', ['link', 'video']],
-                ['view', ['fullscreen', 'codeview', 'help']],
-                ['popovers', ['lfm']],
-                ['paperSize', ['paperSize']], // The Button
+                //['insert', ['link', 'picture', 'video']],
+                ['insert', ['link']],
+				['history', ['undo']],
+              //['view', ['fullscreen', 'codeview']],
             ],
             buttons: {
                 lfm: LFMButton
+            },
+			callbacks: {
+                onPaste: function (e) {
+                    e.preventDefault();
+
+                    var clipboardData = (e.originalEvent || e).clipboardData || window.clipboardData;
+                    var pastedData = clipboardData.getData('text/html') || clipboardData.getData('text/plain');
+
+                    // Create a temporary DOM element to parse the HTML
+                    var tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = pastedData;
+
+                    // Remove all inline styles from elements
+                    var elements = tempDiv.querySelectorAll('[style]');
+                    elements.forEach(function (element) {
+                        element.removeAttribute('style');
+                    });
+
+                    // Insert the cleaned content
+                    document.execCommand('insertHTML', false, tempDiv.innerHTML);
+                }
             }
         });
     }
@@ -1035,3 +1056,45 @@ function rurera_check_field_type(thisObj, alert_messages, has_empty) {
     }
     return has_empty;
 }
+
+$(document).on('click', '.pin-search', function () {
+	var form_id = $(this).attr('data-form_id');
+	var search_type = $(this).attr('data-search_type');
+	
+	var formFields = $('#'+form_id).find('input, select, textarea');
+	
+	var formData = {};
+	// Iterate over each form field
+	formFields.each(function() {
+		var name = $(this).attr('name');
+		var value = $(this).val();
+
+		if (name) {
+			formData[name] = value;	
+		}
+	});
+	var jsonFormData = JSON.stringify(formData);
+	
+	var form_data_encoded  = jsonFormData;
+	$.ajax({
+		type: "POST",
+		url: '/admin/users/pin_search',
+		data: {'seach_type': search_type, 'form_id': form_id, 'form_data_encoded': form_data_encoded},
+		success: function (return_data) {
+			console.log(return_data);
+		}
+	});
+});
+
+
+$(document).on('click', '.unpin-search', function () {
+	var search_type = $(this).attr('data-search_type');
+	$.ajax({
+		type: "POST",
+		url: '/admin/users/unpin_search',
+		data: {'seach_type': search_type},
+		success: function (return_data) {
+			location.reload();
+		}
+	});
+});

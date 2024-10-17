@@ -672,9 +672,13 @@
 											
 											
 											@php
+											if($i == 1){
+												$bookPageObj = $bookPage;
+											}
 											
 												if( !empty( $bookPage->pageObjects->where('status', 'active') )){
 													foreach( $bookPage->pageObjects->where('status', 'active') as $bookPageItemObj){
+														
 														$item_type = isset( $bookPageItemObj->item_type ) ?  $bookPageItemObj->item_type : '';
 														$item_path_folder = '';
 														$item_path_folder = ($item_type == 'infolink' )? 'infolinks' : $item_path_folder;
@@ -708,7 +712,7 @@
                                         </div>
                                         @php $i++; @endphp
                                         @endforeach
-                                        @include('admin.books.includes.editor_controls', ['bookPage' => $bookPage, 'subChapters' => $subChapters, 'chapters_response' => $chapters_response, 'data_id' => $book->id])
+                                        @include('admin.books.includes.editor_controls', ['bookPage' => $bookPageObj, 'subChapters' => $subChapters, 'chapters_response' => $chapters_response, 'data_id' => $book->id])
 
                                         <br>
                                         <br>

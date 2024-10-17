@@ -34,6 +34,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -618,6 +619,7 @@ class UserController extends Controller
                     'role_id' => $data['role_id'],
                     $username => $data[$username],
                     'email' => isset( $data['email'] )? $data['email'] : '',
+                    'display_name' => isset( $data['display_name'] )? $data['display_name'] : '',
                     'password' => User::generatePassword($data['password']),
                     'status' => $data['status'],
                     'affiliate' => $usersAffiliateStatus,
@@ -1014,6 +1016,7 @@ class UserController extends Controller
         $user->currency = $data['currency'] ?? null;
         $user->organ_id = !empty($data['organ_id']) ? $data['organ_id'] : null;
         $user->email = !empty($data['email']) ? $data['email'] : null;
+        $user->display_name = !empty($data['display_name']) ? $data['display_name'] : null;
         $user->mobile = !empty($data['mobile']) ? $data['mobile'] : null;
         $user->bio = !empty($data['bio']) ? $data['bio'] : null;
         $user->about = !empty($data['about']) ? $data['about'] : null;
@@ -1263,11 +1266,21 @@ class UserController extends Controller
         $term = $request->get('term');
         $option = $request->get('option');
 
-        $users = User::select('id', 'full_name as name')
+		if ($option === "display_name") {
+			$users = User::select('id', 'display_name as name')
+            //->where('role_name', Role::$user)
+            ->where(function ($query) use ($term) {
+                $query->where('display_name', 'like', '%' . $term . '%');
+            });
+		}else{
+			$users = User::select('id', 'full_name as name')
             //->where('role_name', Role::$user)
             ->where(function ($query) use ($term) {
                 $query->where('full_name', 'like', '%' . $term . '%');
             });
+		}
+
+        
 
         if ($option === "for_user_group") {
             $users->whereNotIn('id', GroupUser::all()->pluck('user_id'));
@@ -1558,15 +1571,34 @@ class UserController extends Controller
         return view('admin.users.teachers', $data);
     }
 	
+	public function pin_search(Request $request)
+    {
+        $userObj = auth()->user();
+		$seach_type = $request->input('seach_type');
+		$form_id = $request->input('form_id');
+		$form_data_encoded = $request->input('form_data_encoded');	
+		//$saved_search = Session::get($seach_type);
+		//$saved_search = json_decode( $form_data_encoded );
+		Session::put($seach_type, $form_data_encoded);
+	}
+	
+	public function unpin_search(Request $request)
+    {
+        $userObj = auth()->user();
+		$seach_type = $request->input('seach_type');
+		Session::put($seach_type, '');
+	}
+	
 	public function saveTemplates(Request $request)
     {
         $userObj = auth()->user();
 		$template_name = $request->input('template_name');
+		$template_type = $request->input('template_type');
 		$form_data_encoded = $request->input('form_data_encoded');
 		$saved_templates = $userObj->saved_templates;
 		$saved_templates = json_decode( $saved_templates );
 		$saved_templates = (array) $saved_templates;
-		$saved_templates[$template_name] = $form_data_encoded;
+		$saved_templates[$template_type][$template_name] = $form_data_encoded;
 		$userObj->update(['saved_templates' => json_encode($saved_templates)]);
 	}
 	
@@ -1574,11 +1606,15 @@ class UserController extends Controller
     {
         $userObj = auth()->user();
 		$template_name = $request->input('template_name');
+		$template_type = $request->input('template_type');
 		$saved_templates = $userObj->saved_templates;
 		$saved_templates = json_decode( $saved_templates );
 		$saved_templates = (array) $saved_templates;
-		if( isset( $saved_templates[$template_name] )){
-			unset( $saved_templates[$template_name] );
+		if( isset( $saved_templates[$template_type] )){
+			$saved_templates[$template_type] = (array) $saved_templates[$template_type];
+			if( isset( $saved_templates[$template_type][$template_name] )){
+				unset( $saved_templates[$template_type][$template_name] );
+			}
 		}
 		$userObj->update(['saved_templates' => json_encode($saved_templates)]);
 	}

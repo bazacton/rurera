@@ -5380,3 +5380,40 @@ p {line-height: 1.5;}
 #coverCropperContainer .cropit-image-input {display: none;}
 #coverCropperContainer div.buttons {text-align: left;margin: 5px 0 5px 15px;}
 .rtl #coverCropperContainer div.buttons {text-align: right;}
+.rurera-hide,
+.hide-sec {
+    display: none;
+}
+
+/*Rurera Tooltip Style Start*/
+.spell-levels li .dropdown-toggle:after,
+.dropup.rurera-tooltip .dropdown-toggle:after {display: none;}
+.rurera-tooltip {position: relative;}
+.lms-tooltip {background-color: var(--primary); border: 1px solid var(--primary); border-radius: 10px; position: absolute; padding: 20px; max-width: 295px; min-width: 295px; z-index: 2; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -ms-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out; transition: all 0.3s ease-out; text-align: left; opacity:0;}
+.lms-tooltip:before {background-color: var(--primary); content: ""; position: absolute; left: 50%; bottom: -7px; height: 15px; width: 15px; transform: translateX(-50%) rotate(45deg); }
+.lms-tooltip:after {background-color: var(--primary); content: ""; position: absolute; left: 50%; bottom: -8px; height: 15px; width: 15px; transform: translateX(-50%) rotate(45deg); z-index: -1;}
+.lms-tooltip span {display: block;}
+.lms-tooltip.show,
+.rurera-tooltip:focus .lms-tooltip {visibility: visible; opacity: 1; margin-bottom: 20px;}
+.lms-tooltip .tooltip-button {width: 100%; border: 0; background-color: #fff; color: var(--primary); font-size: 16px; text-transform: uppercase; font-weight: 600; height: 48px; border-radius: 10px; margin-top: 15px; box-shadow: 0 -4px 0 rgba(89, 107, 253, 0.1) inset;}
+.rurera-tooltip.dropup .dropdown-menu {opacity: 1; visibility: visible; display: none; transform: none; margin: 0 0 15px; transform: translateX(-50%) !important; left: 50% !important; top: auto !important; bottom: 100%;}
+.rurera-tooltip.dropup .lms-tooltip.dropdown-menu.show {display: block;}
+.rurera-tooltip.dropup .dropdown-menu[x-placement^=bottom] {top: 100% !important; bottom: auto; margin-top: 25px;}
+.rurera-tooltip.dropup .dropdown-menu[x-placement^=bottom]:before,
+.rurera-tooltip.dropup .dropdown-menu[x-placement^=bottom]:after {bottom: auto; top: -8px; }
+.tooltip-box {direction: ltr;}
+.tooltip-box h5 {font-weight: 400 !important; font-size: 16px !important;}
+.tooltip-box h5 .topic-title {font-weight: 700; font-size: 18px; display: block; margin: 0 0 5px;}
+.tooltip-btn {border-radius: 6px; font-weight: 500; min-height: 44px; line-height: 44px; text-transform: uppercase; border: 0; width: 100%; }
+.tooltip-btn.practice {background-color: #fff; box-shadow: 0 4px 0 #ccf2b7; color: #58c700; }
+.tooltip-btn.spell-test-btn {background-color: #58c700; box-shadow: 0 4px 0 #7adb44; color: #fff;}
+.tooltip-btn.legendary {background-color: #ffd800; box-shadow: 0 4px 0 #e7a506; color: #a96804;}
+.tooltip-hover {position: relative;}
+/*Rurera Tooltip Style End*/
+
+/* Rurera List Button Style Start */
+.rurera-list-controls {gap: 10px;}
+.rurera-list-btn {border: 2px solid #ddd; border-bottom-width: 4px; border-radius: 8px; display: inline-block; line-height: normal; padding: 10px 25px;white-space: nowrap;}
+.rurera-list-btn:hover {background-color: #f5f5f5;}
+.resume-test .rurera-list-btn:hover {color: var(--primary);}
+/* Rurera List Button Style End */

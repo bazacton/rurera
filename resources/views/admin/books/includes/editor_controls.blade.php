@@ -273,8 +273,32 @@ $misc_list = isset( $objectsProperties['misc'])? $objectsProperties['misc'] :arr
 					<label>Font Size</label>
 					<div class="input-group">
 						<input type="number" name="font_size" class="form-control trigger_field"
-								   value="#ffffff" data-field_id="font-size" data-field_name="font-size"
+								   value="" data-field_id="font-size" data-field_name="font-size"
 						   data-field_type="style" data-id="">
+						</div>	   
+				</div>
+				<div class="option-field-item">
+					<label>Font Family</label>
+					<div class="input-group">
+						<select name="font-family" class="form-control trigger_field" data-field_id="font-family" data-field_name="font-family"
+						   data-field_type="style" data-id="">
+							<option value="Arial">Arial</option>
+							<option value="Arial Black">Arial Black</option>
+							<option value="Comic Sans MS">Comic Sans MS</option>
+							<option value="Courier New">Courier New</option>
+							<option value="Georgia">Georgia</option>
+							<option value="Impact">Impact</option>
+							<option value="Times New Roman">Times New Roman</option>
+							<option value="Trebuchet MS">Trebuchet MS</option>
+							<option value="Verdana">Verdana</option>
+							<option value="Helvetica">Helvetica</option>
+							<option value="Tahoma">Tahoma</option>
+							<option value="Palatino">Palatino</option>
+							<option value="Garamond">Garamond</option>
+							<option value="Bookman">Bookman</option>
+							<option value="Lucida Sans">Lucida Sans</option>
+						</select>
+					
 						</div>	   
 				</div>
 				<div class="option-field-item">

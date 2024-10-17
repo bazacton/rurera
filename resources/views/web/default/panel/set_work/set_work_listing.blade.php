@@ -9,7 +9,7 @@
                     <div class="card pt-0">
                         <div class="card-body">
 
-                            <ul class="rurera-tabs-frontend set-work-ajax d-flex flex-wrap align-items-center pb-60">
+                            <ul class="rurera-tabs-frontend set-work-ajax d-flex flex-wrap align-items-center pb-0">
                                 <li class="active font-weight-500 pb-10" data-type="active">Inprogress</li>
                                 <li class="font-weight-500 pb-10" data-type="completed">Completed</li>
                                 <li class="font-weight-500 pb-10" data-type="expired">Overdue</li>

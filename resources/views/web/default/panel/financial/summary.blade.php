@@ -1,15 +1,15 @@
         <section>
-            <h2 class="section-title">{{ trans('financial.financial_documents') }}</h2>
+            <h2 class="section-title mb-30">{{ trans('financial.financial_documents') }}</h2>
 
-            <div class="panel-section-card py-20">
+            <div class="panel-section-card bg-white panel-border rounded-sm p-25">
                 <div class="row">
                     <div class="col-12">
-                        <div class="table-responsive transactions-table">
+                        <div class="table-responsive transactions-table pt-20">
                             <table class="table text-center custom-table">
                                 <thead>
                                 <tr>
-                                    <th class="font-16 font-weight-500">{{ trans('public.title') }}</th>
-                                    <th class="font-16 font-weight-500">Student</th>
+                                    <th class="font-16 font-weight-500 text-left">{{ trans('public.title') }}</th>
+                                    <th class="font-16 font-weight-500 text-left">Student</th>
                                     <th class="text-center font-16 font-weight-500">{{ trans('panel.amount') }} ({{ $currency }})</th>
                                     <th class="text-center font-16 font-weight-500">{{ trans('public.date') }}</th>
                                 </tr>

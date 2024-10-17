@@ -147,6 +147,50 @@ Sub Pages Style
 .sidebar-nav ul li a:before {background-color: #ccc; border-radius: 100%; position: absolute; left: -15px; top: 50%; content: ""; height: 6px; width: 6px; margin-top: -9px;}
 /* sidebar-nav on Learn page Subjects style end */
 
+/* Categories Boxes Style Start */
+.container-fluid .col-12 .post-show {overflow: visible !important;}
+.container-fluid .container,
+.container .container {padding: 0;}
+.categories-wrapp {background: #f0f1f3; padding: 90px 0 60px 0;}
+.categories-boxes .categories-card {position: relative; overflow: hidden; text-align: center; border-radius: 10px; box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.1); transition: all 0.3s ease-in-out; margin-bottom: 30px;}
+.categories-card.active,
+.categories-card:hover {box-shadow: 0 4px 0px 2px #D3D3D3; transform: scaleX(1.1);}
+.categories-card.active .categories-icon,
+.categories-card:hover .categories-icon {background-color: #4986d9;}
+.categories-boxes .categories-icon {padding: 35px 35px; background: var(--primary); color: #fff; border-radius: 10px 10px 0 0; transition: all 0.3s ease-in-out; display: flex; align-items: center; justify-content: center; min-height: 126px;}
+.categories-boxes .categories-icon img{width: 100%; position: absolute; left: 50%; top: 50%; height: 100%; -o-object-fit: contain; object-fit: contain; transform: translate(-50%, -50%);}
+.categories-boxes .categories-icon {position: relative; }
+.categories-boxes .categories-icon svg {width: 64px; height: 56px;}
+.categories-boxes .categories-icon path {stroke: #fff;}
+.categories-boxes .categories-icon g,
+.categories-boxes .categories-icon svg.icon path{fill: #fff;}
+.categories-boxes .categories-title {padding: 20px 10px; font-size: 14px; text-transform: capitalize; color: var(--primary);}
+.categories-wrapp.bg-none {background-color: inherit;}
+.categories-card .topic-numbers {position: absolute; left: 8px; top: 8px; background-color: #b5b0f3; font-size: 10px; padding: 2px 5px; display: inline-block; border-radius: 0 6px; color: #fff; z-index: 1;}
+.categories-element-title {margin: 0 0 30px;}
+.categories-element-title h2,
+.post-show .categories-element-title h2 {overflow: hidden;}
+.categories-element-title p {margin: 5px 0 0; color: #000; }
+.categories-element-title span {position: relative; display: inline-block; padding-right: 20px; margin-top: 0; color: #000;}
+.subjects-heading {margin: 0 0 35px;}
+.categories-card.medium {display: flex; flex-wrap: wrap; border-bottom: 1px solid #ddd; box-shadow: none; border-radius: 0; align-items: center; padding:20px; margin: 0; transform: none;}
+.categories-card.medium:first-child {border-top: 1px solid #ddd;}
+.categories-card.medium .categories-icon,
+.quests-learning .quests-item .icon-box {min-height: 80px; border-radius: 14px; box-shadow: none; background: none !important; min-width: 70px; max-width: 70px; padding: 0;}
+.categories-card.medium .categories-icon svg {width: 40px; height: 40px;}
+.categories-card.medium .categories-text {width: calc(100% - 70px); padding-left: 25px; line-height: normal; position: relative;}
+.categories-card.medium .categories-text .categories-title {padding: 0; text-align: left; margin: 0 0 12px; }
+.categories-card.medium .categories-text .levels-progress.horizontal {position: relative; margin: 0 0 12px; width: 100%;}
+.categories-card.medium .categories-text .levels-progress.horizontal .progress-box {width: 100%; max-width: 100%; background-color: #e5e5e5; height: 14px; }
+.categories-card.medium .progress-numbers {position: absolute; right: 0; top: -30px; font-weight: 400; }
+.categories-card.medium .subject-info {display: block; text-align: left;}
+.categories-card.medium .learning-btn {position: absolute; right: 0; top: 50%; transform: translateY(-50%); font-weight: 600; text-transform: uppercase; color: #666;}
+.categories-card.medium:nth-child(even) {background-color: #fff;}
+.categories-card.medium:nth-child(odd) {background-color: inherit;}
+.db-categories .row{gap: 25px 0;}
+.db-categories img {max-width: 100%; width: 50px; height: 50px; object-fit: contain; margin-bottom: 20px;}
+/* Categories Boxes Style End */
+
 /*************************
  Learn Page | Student Panel Style End
  *****************************/

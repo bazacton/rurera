@@ -11,13 +11,13 @@
 @endpush
 
 @section('content')
-<section class="member-card-header pb-20">
+<section class="member-card-header activities-header pb-20 mb-0">
     <div class="d-flex align-items-start align-items-md-center justify-content-between flex-md-row">
-        <h1 class="section-title font-22">Analytics</h1>
+        <h2 class="section-title font-36">Analytics</h2>
         <div class="dropdown db-members">
             @if(auth()->check() && (auth()->user()->isParent()))
             <div class="ms-auto last-activity profile-dropdown">
-                <a href="#" class="font-16 font-weight-normal">{{$selected_child}}</a>
+                <a href="#" class="font-18 font-weight-normal">{{$selected_child}}</a>
                 <ul>
                     <li><a href="/{{panelRoute()}}/analytics/?child=all" class="switch-user-btn"><span class="icon-box"><img src="/assets/default/svgs/switch-user.svg" alt=""></span> All Students</a></li>
                     @if( !empty( $childs ) )
@@ -37,9 +37,9 @@
 <section>
 
 
-    <div class="activities-container mt-10 p-20 p-lg-35 ">
+    <div class="activities-container p-20 p-lg-35 ">
         <div class="chart-filters p-0">
-            <div class="filters-list">
+            <div class="filters-list mb-0">
                 <a href="#" class="filter-mobile-btn">Filters Dropdown</a>
                 <ul class="analytics-type">
                     @php $link_append = (isset($_GET['child'])) ? '?child='.$_GET['child'] : ''; @endphp

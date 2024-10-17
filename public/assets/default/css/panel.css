@@ -55,10 +55,6 @@ html:has(.panel-sidebar) {
     overflow: initial;
 }
 .table-actions.dropdown .dropdown-toggle:after {display: none;}
-.action-activity .remove-btn {background-color: #ffdfe3; height: 40px; width: 40px; text-align: center; border: 1px solid #d84356; display: inline-flex; align-items: center; justify-content: center; border-radius: 3px; margin-left: 10px;}
-.db-form-tabs .list-group-item .remove-btn img,
-.action-activity .remove-btn img {max-height: 18px;max-width: 18px;min-height: 18px;min-width: 18px;filter: invert(46%) sepia(74%) saturate(4289%) hue-rotate(328deg) brightness(89%) contrast(90%);}
-
 .lms-choose-plan-selected .lms-jobs-form .input-field {margin: 0 0 15px;}
 .db-form-tabs .list-group-item .connect-user-btn {border: 1px solid var(--primary); border-radius: 30px; padding: 8px 15px; line-height: normal; display: inline-block; color: var(--primary);font-weight: 500;}
 .list-group-item span {color: #999; line-height: normal;}
@@ -221,21 +217,7 @@ li.disable-timetable label {background: #efefef; cursor: unset; user-select: non
 .profile-menu .user-thumb {display: inline-block; width: 42px; height: 42px; margin-right: -4px; vertical-align: middle; }
 .user-menu-text {width: calc(100% - 42px); display: inline-block; vertical-align: middle; margin-right: -4px; padding-left: 15px; }
 .profile-menu .user-thumb a {background-color: #ddd; height: 100%; width: 100%; display: block; border-radius: 100%;}
-.profile-dropdown {position: relative; padding-top: 5px; display: inline-block;}
-.profile-dropdown ul {position: absolute; top: 100%; left: 0; background-color: #fff; min-width: 180px; padding: 15px; box-shadow: 0 0 3px rgba(0,0,0,0.1); border-radius: 8px; z-index: 1; opacity: 0; visibility: hidden; margin-top: -10px; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -ms-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out; transition: all 0.3s ease-out;}
-.profile-dropdown:hover ul {opacity: 1; visibility: visible; margin: 0;}
-.member-card-header:hover .db-members .profile-dropdown ul {margin-top: 15px;}
-.profile-menu > ul > li .user-menu-text > a {font-weight: 600; font-size: 18px; display: block;}
-.profile-dropdown ul li {margin: 0 0 15px; padding-left: 0; }
-.profile-dropdown ul li:after {display: none;}
-.profile-dropdown ul li:last-child {margin-bottom: 0;}
-.profile-dropdown > a {font-weight: 600; color: var(--primary); position: relative;}
-.profile-dropdown > a:after {content: ""; position: absolute; right: -18px; top: 4px; height: 0; width: 0; border: 5px solid var(--primary); border-right-color: transparent; border-bottom-color: transparent; transform: rotate(-135deg); }
-.profile-dropdown ul li a {color: var(--primary); font-size: 15px; font-weight: 500; }
-.profile-dropdown .icon-box {height: 20px; width: 20px; display: inline-block; margin-right: 5px; }
-.profile-dropdown .icon-box img {max-width: 100%; border-radius: 0; border: 0; max-height: none; margin: 0; padding: 0; background-color: inherit; height: 20px; width: 20px; min-width: auto; min-height: auto; filter: invert(32%) sepia(96%) saturate(583%) hue-rotate(201deg) brightness(114%) contrast(110%);}
-.db-form-tabs .profile-dropdown ul li .connect-user-btn {padding: 0; border: 0; }
-.profile-dropdown .icon-box img[src$='.png'] {filter: none;}
+
 /*Year Tabs Style Start*/
 .Filter-lable {margin-right: 10px;}
 .year-filters select {border: 1px solid var(--primary); font-weight: 500; padding: 6px 5px; line-height: normal; min-width: 110px; color: var(--primary); border-radius: 0;}
@@ -394,26 +376,6 @@ Lms Quiz Result Logs Style End
 .topics-accordion ul {display: flex; flex-direction: column; gap: 15px;}
 /* need help page style End */
 
-/**********************************
-Lms Setup Progress Style Start
-**********************************/
-.lms-setup-progress ul {margin: 0; padding: 0; }
-.lms-setup-progress ul li {list-style: none; line-height: normal;}
-.lms-setup-progress .step-number {justify-content: center; flex: 0 0 auto; box-sizing: border-box; width: 30px; height: 30px; border-radius: 100%; font-size: 15px;}
-.lms-subscription-step .step-number {background-color: #00aeef; color: #fff;}
-.lms-subscription-step .step-name {color: #fff;}
-.lms-setup-progress .step-name {margin-left: 10px; font-size: 14px;}
-.lms-setup-progress .separator {flex: 1 0 20px; margin-left: 8px; margin-right: 8px; height: 1px; background-color: #ddd;}
-.lms-account-setup .step-number {border: 1px solid #fff; color: #fdb532;}
-.lms-confirmation-step .step-number {border: 2px solid #1eb7bd; color: #1eb7bd;}
-.lms-account-setup .step-name {color: #fff;}
-.lms-confirmation-step .step-name {color: #fff;}
-@media (min-width: 975px) {
-    .lms-setup-progress {margin-left: auto; margin-right: auto; width: 810px;}
-}
-/**********************************
-Lms Setup Progress Style End
-**********************************/
 /**********************************
 Lms Subscription Form Style Start
 **********************************/

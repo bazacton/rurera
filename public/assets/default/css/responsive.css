@@ -47,7 +47,15 @@ Lms Responsive Style Start
     .noticeboard-item > div {flex-wrap: wrap; gap: 10px;}
     body .panel-sidebar,
     .panel-page-section .panel-sidebar {width: 100px; z-index: 1; padding-left: 10px !important; padding-right: 10px !important;}
-    .panel-content {padding-left: 110px;}
+    .panel-content {
+        padding-left: 110px;
+    }
+    .parent-panel .panel-content {
+        padding-left: 0;
+    }
+    .panel-sidebar .sidebar-menu .sidenav-item {
+        justify-content: center;
+    }
     .panel-sidebar .sidebar-menu .sidenav-item .sidenav-item-icon {margin-right: 0 !important;}
     .panel-sidebar .sidebar-menu .sidenav-item .nav-sub-title {
         position: absolute;
@@ -75,30 +83,12 @@ Lms Responsive Style Start
         opacity: 1;
         margin-top: 0;
     }
-    /* body .panel-sidebar .sidebar-menu {
-        overflow: visible;
-    } */
     .sidebar-menu-holder {
         height: 100vh;
     }
     .panel-sidebar .sidebar-menu {
         padding-bottom: 15px;
         padding-left: 10px;
-    }
-    /* ===== Scrollbar CSS ===== */
-
-    .panel-sidebar .sidebar-menu::-webkit-scrollbar {
-        width: 10px;
-    }
-
-    .panel-sidebar .sidebar-menu::-webkit-scrollbar-track {
-        background: #fff;
-    }
-
-    .panel-sidebar .sidebar-menu::-webkit-scrollbar-thumb {
-        background-color: #f4f4f4;
-        border-radius: 0;
-        border: 0;
     }
     .panel-sidebar .sidebar-menu .sidenav-item .nav-sub-title:before {
         position: absolute;
@@ -120,12 +110,24 @@ Lms Responsive Style Start
         top: -1px;
         bottom: auto;
     }
-    
+    /* ===== Scrollbar CSS ===== */
+
+    .panel-sidebar .sidebar-menu::-webkit-scrollbar {
+        width: 10px;
+    }
+    .panel-sidebar .sidebar-menu::-webkit-scrollbar-track {
+        background: #fff;
+    }
+    .panel-sidebar .sidebar-menu::-webkit-scrollbar-thumb {
+        background-color: #f4f4f4;
+        border-radius: 0;
+        border: 0;
+    }
     .panel-content > .container > .row > [class*="col-"]:first-child {padding-right: 15px;}
     .panel-content > .container > .row > [class*="col-"]:last-child {padding-left: 15px;}
     .panel-content .panel-content-holder {max-width: calc(100% - 370px);}
     .panel-content .panel-right-sidebar {flex: 0 0 370px;max-width: 370px;}
-    .panel-sidebar .sidebar-menu .sidenav-item {justify-content: center;}
+    .parent-panel .panel-sidebar .sidebar-menu .sidenav-item {justify-content: center;}
     body .topbar-right {justify-content: space-between; }
     .question-number-holder {z-index: 1 !important;}
     .close-btn-holder {margin-left: auto;}
@@ -136,6 +138,7 @@ Lms Responsive Style Start
     .job-singup-sub-header h1 {font-size: 3rem !important;}
     .job-singup-sub-header h2 {font-size: 1.5rem !important;}
     .navbar1 {padding-left: 0; padding-right: 0;}
+    .db-members .rurera-tabs-frontend {margin-bottom: 30px;}
 }
 @media screen and (min-width: 992px) and (max-width: 1300px) {
     .stats-list ul li {border-left: 0;width: 100%;padding: 0 0 15px;margin: 0 0 15px;text-align: left;border-bottom: 1px solid rgba(0, 0, 0, 0.1);}
@@ -383,7 +386,6 @@ Lms Responsive Style Start
     .quiz-topbar .container-fluid > .row {gap: 15px;}
     body .panel-right-sidebar .navbar-toggler {position: relative; display: block; border: 0; padding: 0;}
     body .panel-right-sidebar .sidebar-logo {align-items: flex-start; position: relative; z-index: 1; display: inline-flex;}
-    body .sidebar-menu-holder {background-color: #fff; visibility: hidden; padding: 0; opacity: 0; position: fixed; top: 0; height: 100%; left: -150%; transition: left .4s cubic-bezier(.43, .83, .54, 1.02), opacity .4s linear; z-index: 2; width: 100%;}
     body .sidebar-menu-holder.show {opacity: 1; visibility: visible; left: 0;}
     body .panel-sidebar .sidebar-menu-holder .navbar-toggler {border: 0;padding: 0; position: absolute; top: 50%;right: 15px;z-index: 1;margin-top: 0; display: block;}
     .panel-content .search-top-banner {padding: 25px !important;}
@@ -391,6 +393,7 @@ Lms Responsive Style Start
     .panel-content > .container > .row > [class*="col-"]:first-child {padding-right: 15px;}
     body.panel-sidebar-open {overflow: hidden;}
     .sidebar-menu-top {padding: 15px 0 15px 15px; position: relative;}
+    body .sidebar-menu-holder {background-color: #fff; visibility: hidden; padding: 0; opacity: 0; position: fixed; top: 0; height: 100%; left: -150%; transition: left .4s cubic-bezier(.43, .83, .54, 1.02), opacity .4s linear; z-index: 2; width: 100%;}
     body .sidebar-menu-holder .sidebar-logo {display: flex; display: none;}
     .results-revenue-card .text-box p br {display: none;}
     .learning-start {padding: 25px 20px 0;}
@@ -609,7 +612,7 @@ Lms Responsive Style Start
     .db-members .list-group .rurera-tables-list,
     .db-members .list-group {width: 1100px;}
     .db-members .list-group:has(.rurera-tables-list) {width: 100%;}
-    .db-members .card .card-body .list-group:has(.rurera-tables-list) {padding: 35px 0 0; overflow: hidden; overflow-x: auto;}
+    .db-members .card .card-body .list-group:has(.rurera-tables-list) {padding: 42px 0 0; overflow: hidden; overflow-x: auto;}
     .db-members .card .card-body {padding: 35px 0 0; overflow: hidden; overflow-x: auto;}
     .db-members .card .card-body:has(.rurera-tables-list) {padding-top: 0;}
 }

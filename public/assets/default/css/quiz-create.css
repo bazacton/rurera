@@ -313,8 +313,8 @@ Questions Builder Right Sidebar Style Start
 .lms-quiz-create .rureraform-admin-popup-loading {position: absolute; background: #fff; top: 52px;	left: 0; z-index: 99982; width: 100%; bottom: 0; right: 0;}
 .lms-quiz-create .rureraform-admin-popup-loading i {position: absolute;	z-index: 99983;	top: 50%; left: 50%; font-size: 24px; margin-top: -12px; margin-left: -12px;}
 .lms-quiz-create .rureraform-admin-popup-buttons {box-sizing: border-box; position: relative; left: 0; right: 0; bottom: 0; height: auto; line-height: 48px; padding-right: 8px; text-align: center; border-top: 1px solid #ccc; padding-top: 15px; background-color: #f7f7f7; padding-bottom: 15px;}
-.lms-quiz-create .rureraform-admin-popup-buttons .rureraform-admin-button label {margin-left: 0;}
-.lms-quiz-create .rureraform-admin-popup-content .rureraform-tabs {margin-left: -20px; margin-right: -20px;}
+.lms-quiz-create .rureraform-admin-popup-buttons .rureraform-admin-button label {border-radius:10px;background-color: #ffa426; font-size: medium; font-weight:bold;  padding-right: 10px; padding-left: 10px;}
+.lms-quiz-create .rureraform-admin-popup-content .rureraform-tabs {margin-left: -20px; margin-right: -20px; font-size: medium; color: #ffffff;}
 /*Admin Popup Style Start*/
 
 /* Admin Popup Tabs Style Start */
@@ -895,6 +895,11 @@ table.table td .input-holder input[type=number]::-webkit-outer-spin-button,
 /*Quiz Page start-counter style start*/
 .start-counter {background-color: #fff; position: fixed; height: 100%; width: 100%; left: 0; top: 0; display: flex; align-items: center; justify-content: center; font-size: 50px; color: var(--primary);}
 /*Quiz Page start-counter style end*/
+
+/* Quiz File Attachment Style End*/
+.rureraform-element input[type="file"] {position: absolute;width: 0;height: 0;opacity: 0;}
+.choose-file-btn {background-color: var(--primary); color: #fff; padding: 12px 25px; border-radius: 5px; text-transform: capitalize; cursor: pointer;}
+/* Quiz File Attachment Style End */
 
 /**********************************
 Question Type Style End 

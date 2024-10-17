@@ -90,6 +90,33 @@ Sub Pages Style
 .book-library-sub-header .ask-msg:before {content: ""; width: 0px; height: 0px; position: absolute; border-right: 28px solid #afbbca; border-left: 10px solid transparent; border-top: 8px solid transparent; border-bottom: 8px solid transparent; left: -40px; top: 50%; transform: translateY(-50%); }
 .book-library-sub-header .ask-msg:after {content: ""; width: 0px; height: 0px; position: absolute; border-right: 28px solid #fff; border-left: 4px solid transparent; border-top: 8px solid transparent; border-bottom: 8px solid transparent; left: -25px; top: 50%; transform: translateY(-50%); }
 .book-library-sub-header .ask-msg span {color: var(--primary); font-weight: 700; line-height: normal; display: block; }
+.listing-card .read-btn, .book-btn, .try-rurera-btn {color: var(--primary); font-weight: 600; font-size: 16px; border: 1px solid var(--primary); padding: 15px 25px; border-radius: 8px; border-bottom-width: 5px; background-color: #fff; display: inline-flex; align-items: center; min-width: 206px; vertical-align: middle; position: relative; transform: translate3d(0px, 0%, 0px); overflow: hidden; transition: background 0.4s linear; text-align: center;}
+.listing-card .read-btn.bg-light-green{border-bottom-color: var(--light-green);}
+.listing-card .read-btn.bg-light-green::before{content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 50% 50% 0 0; transform: translateY(100%) scaleY(0.5); transition: all 0.6s ease; z-index: -1; background-color: #fff !important; color: var(--light-green);}
+.listing-card .read-btn.bg-light-green:hover::before,
+.listing-card .read-btn.bg-light-green:hover{color: var(--light-green);}
+.listing-card .read-btn:before,
+.book-btn:before,
+.try-rurera-btn:before {content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--primary); border-radius: 50% 50% 0 0; transform: translateY(100%) scaleY(0.5); transition: all 0.6s ease; z-index:-1;}
+.listing-card .read-btn:hover{color:#fff;background-color: var(--primary);border-color: rgba(0,0,0,0.4);}
+.book-btn:hover{color:#fff;}
+.listing-card .read-btn:hover:before,
+.book-btn:hover:before,
+.try-rurera-btn:hover:before {border-radius: 0; transform: translateY(0) scaleY(1);}
+.listing-card .read-btn:hover .btn-icon svg g {fill:#fff;}
+.listing-card .read-btn .btn-icon {display: inline-block; width: 22px; height: 18px; line-height: normal; margin-right: 12px; margin-top: 0;}
+.listing-card .read-btn .btn-icon svg {max-width: 100%;}
+.listing-card .read-btn .btn-icon svg g {fill: var(--primary);}
+.listing-card .read-btn.continue,
+.book-btn.bg-primary, .try-rurera-btn {color: #fff; border-color: rgba(0,0,0,0.4); background-color: var(--primary);}
+.listing-card .read-btn.continue:hover::before, .listing-card .read-btn.continue:hover{color: var(--primary);}
+.listing-card .read-btn.continue:hover .btn-icon svg g{fill:#fff;}
+.listing-card .read-btn.continue::before{background-color: #fff;}
+.listing-card .read-btn.continue .btn-icon svg g{fill: #fff;}
+.listing-card .read-btn.continue .btn-icon {display: none;}
+.listing-card .read-btn.read-again {background-color: #7e9500; color: #fff;}
+.listing-card .read-btn.read-again svg g {fill: #fff;}
+.listing-card .remove-btn {font-size: 18px; color: #ffbfbf; font-weight: 600; display: inline-block; vertical-align: middle; margin-right: 15px; position: absolute; left: -100px; top: 50%; transform: translateY(-50%);}
 @media screen and (max-width: 767px) {
     .progress-card {max-width: 100%;padding: 15px;flex-direction: column;}
     .progress-card .text-holder {padding: 15px 0 0;width: 100%;}
@@ -100,8 +127,8 @@ Sub Pages Style
 }
 
 /*Books Sound Card Style Start*/
-.sound-card {background-color: #e7f5fe; padding: 30px 25px 10px; border-radius: 10px; box-shadow: 0 0 0 2px #fff inset; position: relative;}
-.selective-sound {position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background-color: #fff; box-shadow: 1px 1px 0 2px #333; padding: 3px 10px; line-height: normal; display: block; font-weight: 600; font-size: 22px;}
+.sound-card {background-color: #e7f5fe; box-shadow: 0 0 0 2px #fff inset; position: relative;}
+.selective-sound {position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background-color: #fff; box-shadow: 1px 1px 0 2px #333; padding: 3px 10px; line-height: normal; display: block;}
 .sound-box {display: flex; align-items: center; gap: 10px; margin-bottom: 20px;}
 .sound-box img {margin: 0; width: 20px; height: 20px; filter: invert(33%) sepia(80%) saturate(1010%) hue-rotate(172deg) brightness(92%) contrast(103%);}
 .sound-box .icon-box {height: 35px; width: 35px; border: 2px solid var(--secondary); border-radius: 100%; display: inline-flex; align-items: center; justify-content: center;}
@@ -109,7 +136,7 @@ Sub Pages Style
 .sound-list ol {display: flex; flex-direction: column; gap: 10px; padding-left: 30px;}
 .sound-list ol li {list-style: decimal;}
 .sound-list {margin-bottom: 25px;}
-.current-sound {font-weight: 600; font-size: 18px;}
+.sound-card .close {position: absolute; right: -12px; top: -30px;}
 /*Books Sound Card Style End*/
 
 /*****************************

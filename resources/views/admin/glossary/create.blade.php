@@ -29,8 +29,8 @@
 
                                 <div class="form-group">
                                     <label>{{ trans('/admin/main.category') }}</label>
-                                    <select class="form-control @error('category_id') is-invalid @enderror year_subject_ajax_select" name="category_id">
-                                        <option {{ !empty($trend) ? '' : 'selected' }} disabled>{{ trans('admin/main.choose_category') }}</option>
+                                    <select class="form-control @error('category_id') is-invalid @enderror ajax-category-courses" name="category_id" data-course_id="{{isset( $glossary->subject_id )? $glossary->subject_id : 0}}">
+                                        <option {{ !empty($trend) ? '' : 'selected' }} disabled>{{ trans('admin/main.choose_category')  }}</option>
 
                                         @foreach($categories as $category)
                                             @if(!empty($category->subCategories) and count($category->subCategories))
@@ -50,12 +50,12 @@
                                     </div>
                                     @enderror
                                 </div>
-
-                                <div class="form-group">
+								
+								<div class="form-group">
                                     <label>Subjects</label>
                                     <select data-return_type="option"
-                                            data-default_id="{{isset( $glossary->subject_id)? $glossary->subject_id : 0}}"
-                                            class="subject_ajax_select year_subjects form-control select2 @error('subject_id') is-invalid @enderror"
+                                            data-default_id="{{isset( $glossary->subject_id)? $glossary->subject_id : 0}}" data-chapter_id="{{isset( $glossary->chapter_id )? $glossary->chapter_id : 0}}"
+                                            class="ajax-courses-dropdown year_subjects form-control select2 @error('subject_id') is-invalid @enderror"
                                             id="subject_id" name="subject_id">
                                         <option disabled selected>Subject</option>
                                     </select>
@@ -65,6 +65,37 @@
                                     </div>
                                     @enderror
                                 </div>
+								
+								<div class="form-group">
+									<label class="input-label">Topic</label>
+									<select data-sub_chapter_id="{{isset( $glossary->sub_chapter_id ) ? $glossary->sub_chapter_id : 0}}" id="chapter_id"
+											class="form-control populate ajax-chapter-dropdown @error('chapter_id') is-invalid @enderror"
+											name="chapter_id">
+										<option value="">Please select year, subject</option>
+									</select>
+									@error('chapter_id')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+
+								</div>
+								
+								<div class="form-group">
+									<label class="input-label">Sub Topic</label>
+									<select id="chapter_id"
+										class="form-control populate ajax-subchapter-dropdown @error('sub_chapter_id') is-invalid @enderror"
+										name="sub_chapter_id">
+									<option value="">Please select year, subject, Topic</option>
+								</select>
+								@error('sub_chapter_id')
+								<div class="invalid-feedback">
+									{{ $message }}
+								</div>
+								@enderror
+								
+
+								</div>
 
 
                                 <div class="form-group">
@@ -102,11 +133,58 @@
     <script src="/assets/default/vendors/sortable/jquery-ui.min.js"></script>
     <script src="/assets/default/js/admin/filters.min.js"></script>
     <script src="/assets/vendors/summernote/summernote-bs4.min.js"></script>
+
 <script type="text/javascript">
 
     $(document).ready(function () {
 
-        $(".year_subject_ajax_select").change();
+		
+		$(document).on('change', '.ajax-category-courses', function () {
+			var category_id = $(this).val();
+			var course_id = $(this).attr('data-course_id');
+			$.ajax({
+				type: "GET",
+				url: '/admin/webinars/courses_by_categories',
+				data: {'category_id': category_id, 'course_id': course_id},
+				success: function (return_data) {
+					$(".ajax-courses-dropdown").html(return_data);
+					$(".ajax-chapter-dropdown").html('<option value="">Please select year, subject</option>');
+					$('.ajax-courses-dropdown').change();
+				}
+			});
+		});
+
+		$(document).on('change', '.ajax-courses-dropdown', function () {
+			var course_id = $(this).val();
+			var chapter_id = $(this).attr('data-chapter_id');
+
+			$.ajax({
+				type: "GET",
+				url: '/admin/webinars/chapters_by_course',
+				data: {'course_id': course_id, 'chapter_id': chapter_id},
+				success: function (return_data) {
+					$(".ajax-chapter-dropdown").html(return_data);
+					$('.ajax-chapter-dropdown').change();
+				}
+			});
+		});
+
+		$(document).on('change', '.ajax-chapter-dropdown', function () {
+			var chapter_id = $(this).val();
+			var sub_chapter_id = $(this).attr('data-sub_chapter_id');
+			$.ajax({
+				type: "GET",
+				url: '/admin/webinars/sub_chapters_by_chapter',
+				data: {'chapter_id': chapter_id, 'sub_chapter_id': sub_chapter_id},
+				success: function (return_data) {
+					$(".ajax-subchapter-dropdown").html(return_data);
+				}
+			});
+		});
+        $(".ajax-category-courses").change();
+		
     });
+	
+	
 </script>
 @endpush

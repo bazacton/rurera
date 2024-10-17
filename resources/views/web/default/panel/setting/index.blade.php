@@ -1,5 +1,9 @@
-@extends(getTemplate() .'.panel.layouts.panel_layout')
-
+@php
+    $layout = auth()->check() && auth()->user()->isParent() 
+        ? getTemplate() . '.panel.layouts.panel_layout_full' 
+        : getTemplate() . '.panel.layouts.panel_layout';
+@endphp
+@extends($layout)
 @push('styles_top')
     <link rel="stylesheet" href="/assets/default/vendors/select2/select2.min.css">
 
@@ -17,33 +21,35 @@
 
 @section('content')
 
-
-    <form method="post" id="userSettingForm" class="mt-10 userSettingForm" action="{{ (!empty($new_user)) ? '/panel/manage/'. $user_type .'/new' : '/panel/setting' }}">
-        {{ csrf_field() }}
-        <input type="hidden" name="step" value="{{ !empty($currentStep) ? $currentStep : 1 }}">
-        <input type="hidden" name="next_step" value="0">
-
-        @if(!empty($organization_id))
-            <input type="hidden" name="organization_id" value="{{ $organization_id }}">
-            <input type="hidden" id="userId" name="user_id" value="{{ $user->id }}">
-        @endif
-
-        @if(!empty($new_user) or (!empty($currentStep) and $currentStep == 1))
-			@if(auth()->user()->isUser())
-				@include('web.default.panel.setting.setting_includes.basic_information')
-			@else
-				@include('web.default.panel.setting.setting_includes.parent_profile')
-			@endif
-        @endif
-		@if(!auth()->user()->isUser())
-			@include('web.default.panel.financial.summary')
+    <div class="row">
+		@if(auth()->check() && auth()->user()->isParent())
+        <div class="col-lg-8 col-md-8 col-12 mx-auto">
 		@endif
+            <form method="post" id="userSettingForm" class="mt-10 userSettingForm" action="{{ (!empty($new_user)) ? '/panel/manage/'. $user_type .'/new' : '/panel/setting' }}">
+                {{ csrf_field() }}
+                <input type="hidden" name="step" value="{{ !empty($currentStep) ? $currentStep : 1 }}">
+                <input type="hidden" name="next_step" value="0">
 
-    </form>
+                @if(!empty($organization_id))
+                    <input type="hidden" name="organization_id" value="{{ $organization_id }}">
+                    <input type="hidden" id="userId" name="user_id" value="{{ $user->id }}">
+                @endif
 
-    <div class="create-webinar-footer d-flex align-items-center justify-content-between mt-20 pt-15 border-top">
+                @if(!empty($new_user) or (!empty($currentStep) and $currentStep == 1))
+                    @if(auth()->user()->isUser())
+                        @include('web.default.panel.setting.setting_includes.basic_information')
+                    @else
+                        @include('web.default.panel.setting.setting_includes.parent_profile')
+                    @endif
+                @endif
+                @if(!auth()->user()->isUser())
+                    @include('web.default.panel.financial.summary')
+                @endif
 
-
+            </form>
+		@if(auth()->check() && auth()->user()->isParent())
+        </div>
+		@endif
     </div>
 @endsection
 

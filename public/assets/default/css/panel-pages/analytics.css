@@ -25,21 +25,13 @@ Sub Pages Style
 #analyticsAccordion .card-header > span:first-child {justify-content: flex-start;}
 #analyticsAccordion .card-header img {max-width: 25px; max-height: 20px; object-fit: contain;}
 #analyticsAccordion .card-header .analytics-cions-earned span {min-width: 35px;}
-.member-card-header {border-bottom: 0;padding: 0 0 25px;}
-.member-card-header .dropdown {margin-left: auto;}
-.member-card-header .btn, .member-card-header .db-members .profile-dropdown > a {background-color: var(--primary); box-shadow: none; border: 0; padding: 10px 20px; color: #fff; font-weight: 400; height: auto; border-radius: 20px;}
-.member-card-header .db-members .profile-dropdown a:after {display: none;}
-.member-card-header .db-members .profile-dropdown > a {position: relative; padding-right: 35px;}
-.member-card-header .db-members .profile-dropdown > a:before {content: ""; position: absolute; border: 2px solid #fff; height: 8px; width: 8px; border-top: 0; border-left: 0; -webkit-transform: rotate(45deg); -ms-transform: rotate(45deg); transform: rotate(45deg); top: 50%; margin-top: -5px; right: 18px;}
-.activities-container {padding: 0 !important;}
-.chart-filters .filters-list {margin-bottom: 20px;}
+.member-card-header.activities-header {
+  border: 1px solid #ddd;
+  border-bottom: 0;
+}
+.activities-container {padding: 40px !important; background: #fff; border: #ddd solid 1px; border-radius: 0 0 10px 10px;}
+.chart-filters .filters-list {margin-bottom: 20px; width: 100%;}
 .activities-container .chart-filters {padding: 15px 20px 0; border: 0;}
-.db-form-tabs .list-group-item h6 a {color: #334155; line-height: 22px; display: block;}
-.db-members .card .list-group-item small {display: block; line-height: normal;}
-.db-members .card .list-group-item .profile-dropdown {padding-top: 0; min-height: 38px; display: inline-flex; align-items: center; flex-direction: column;}
-.db-members .card .card-header button img,
-.member-card-header .btn img {width: 18px; height: 18px; filter: invert(100%) sepia(0%) saturate(7472%) hue-rotate(114deg) brightness(109%) contrast(97%); margin-right: 6px;}
-.db-members .card .list-group-item:nth-child(even) {background-color: #fff;}
 .chart-filters {display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; border-bottom: 2px solid #a2bad2; margin: 0 0 30px;}
 .chart-filters h3 {padding: 0 0 18px;}
 .chart-filters ul {display: inline-flex; align-items: center; gap: 20px; margin: 0;}
@@ -106,6 +98,9 @@ Sub Pages Style
 .chart-filters .analytics-data-ul a {padding-top: 0;}
 .form-control.child-analytics {background-color: inherit; border: 0; border-radius: 0; height: auto; padding: 0 5px; font-size: 15px; width: auto; display: inline-block;}
 /*analytics graph-data Style End*/
+.rurera-hide {
+  display: none;
+}
 
 /***************************
 Analytics Page | Student Panel Style End

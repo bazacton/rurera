@@ -54,13 +54,15 @@
                 </li>
             @endcan
 
+			 @can('admin_webinars')
             <li class="nav-item {{ (request()->is(getAdminPanelUrl('/schools', false))) ? 'active' : '' }}">
                 <a href="{{ getAdminPanelUrl('/schools') }}" class="nav-link">
                     <i class="fas fa-chart-pie"></i>
                     <span>Schools</span>
                 </a>
             </li>
-
+			@endcan
+			
             @if($authUser->can('admin_webinars') or
                 $authUser->can('admin_bundles') or
                 $authUser->can('admin_categories') or
@@ -204,13 +206,14 @@
                </li>
            @endcan()
 		   
-
+			@can('admin_topic_parts')
 			<li class="{{ (request()->is('admin/topics_parts*')) ? 'active' : '' }}">
 				<a class="nav-link " href="{{ getAdminPanelUrl('/topics_parts') }}">
 					<i class="fas fa-file"></i>
 					<span>Topic parts</span>
 				</a>
 			</li>
+           @endcan()
 			
             @can('admin_certificate')
             <li class="nav-item {{ (request()->is('admin/custom_quiz')) ? 'active' : '' }}">
@@ -223,7 +226,7 @@
 
             <li class="menu-header">PLANNER</li>
 
-            @can('admin_questions_bank')
+                @can('admin_certificate')
                 <li class="nav-item{{ (request()->is('admin/national_curriculum')) ? 'active' : '' }}">
                     <a href="{{ getAdminPanelUrl('/national_curriculum') }}" class="nav-link">
                         <i class="fas fa-graduation-cap"></i>
@@ -232,7 +235,7 @@
                 </li>
             @endcan()
 
-            @can('admin_questions_bank')
+            @can('admin_certificate')
                 <li class="nav-item {{ (request()->is('admin/weekly_planner')) ? 'active' : '' }}">
                     <a href="{{ getAdminPanelUrl('/weekly_planner') }}" class="nav-link">
                         <i class="fas fa-calendar-week"></i>
@@ -241,7 +244,7 @@
                 </li>
             @endcan()
 			
-			@can('admin_questions_bank')
+			@can('admin_certificate')
                 <li class="nav-item {{ (request()->is('admin/learning_journey')) ? 'active' : '' }}">
                     <a href="{{ getAdminPanelUrl('/learning_journey') }}" class="nav-link">
                         <i class="fas fa-calendar-week"></i>

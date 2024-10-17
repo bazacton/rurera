@@ -35,8 +35,8 @@ $parentTutorRoutes = function () {
     Route::group(['prefix' => 'students'], function () {
 		Route::group(['middleware' => 'user_activity_log'], function () {
 			Route::get('/', 'MembersController@index');
-			Route::get('/print-card/{id}', 'MembersController@printCard');
-			Route::get('/{username}', 'MembersController@studentProfile');
+			Route::get('/print-card/{id}', 'MembersController@printCard')->middleware('inject.css:assets/default/css/panel-pages/profile.css');
+			Route::get('/{username}', 'MembersController@studentProfile')->middleware('inject.css:assets/default/css/panel-pages/profile.css');
 		});
     });
 
@@ -334,8 +334,8 @@ $parentTutorRoutes = function () {
 
     Route::group(['prefix' => 'setting'], function () {
 		Route::group(['middleware' => 'user_activity_log'], function () {
-			Route::get('/step/{step?}', 'UserController@setting');
-			Route::get('/', 'UserController@setting');
+			Route::get('/step/{step?}', 'UserController@setting')->middleware('inject.css:assets/default/css/panel-pages/profile.css');
+			Route::get('/', 'UserController@setting')->middleware('inject.css:assets/default/css/panel-pages/profile.css');
 			Route::post('/', 'UserController@update');
 			Route::post('/metas', 'UserController@storeMetas');
 			Route::post('metas/{meta_id}/update', 'UserController@updateMeta');
@@ -347,7 +347,7 @@ $parentTutorRoutes = function () {
 			Route::post('user-settings', 'UserController@userSettings');
 			Route::post('/connect-student', 'UserController@connectStudent');
 			Route::post('/request-action', 'UserController@requestAction');
-			Route::get('/unlink-child-parent', 'UserController@unlinkChildParent');
+			Route::get('/unlink-child-parent', 'UserController@unlinkChildParent')->middleware('inject.css:assets/default/css/panel-pages/profile.css');
 			
 		});
     });
@@ -428,8 +428,8 @@ $parentTutorRoutes = function () {
     Route::group(['prefix' => 'analytics'], function () {
         Route::get('/', 'AnalyticsController@index')->middleware('inject.css:assets/default/css/panel-pages/analytics.css');
         Route::get('/graph_data', 'AnalyticsController@graph_data');
-        Route::get('/{type}', 'AnalyticsController@index');
-        Route::get('/{type}/{id}', 'AnalyticsController@index');
+        Route::get('/{type}', 'AnalyticsController@index')->middleware('inject.css:assets/default/css/panel-pages/analytics.css');
+        Route::get('/{type}/{id}', 'AnalyticsController@index')->middleware('inject.css:assets/default/css/panel-pages/analytics.css');
         Route::get('/{type}/result/{id}', 'ResultsController@results');
     });
 

@@ -12,6 +12,7 @@ use App\Models\BooksPagesInfoLinks;
 use App\Models\SubChapters;
 use App\Models\WebinarChapterItem;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Session;
 
 function getTemplate()
 {
@@ -2364,7 +2365,7 @@ function toolbar_tools()
 				'select_template' => 'question_label_select_template, html_select_template',
 				'drag_word_template' => 'question_label',
 				'hotspot_template' => 'question_label',
-				'drag_drop_template' => 'question_label,draggable_quiz',
+				'drag_drop_template' => 'question_label,draggable_question',
 				'likert_template' => 'question_label',
 				'essay_template' => 'question_label',
 			),
@@ -2461,7 +2462,7 @@ function toolbar_tools()
             'classes' => 'rurera-hide',	
             'type'  => 'other'
         ),
-		'inner_dropdown'               => array(
+		'drop_and_text'               => array(
             'title' => esc_html__('Inner Dropdown / Input', 'rureraform'),
             'icon'  => 'inner_dropdown.svg',
             'icon_type'  => 'svg',
@@ -2504,12 +2505,6 @@ function toolbar_tools()
         'heading_quiz'     => array(
             'title' => esc_html__('Text', 'rureraform'),
             'icon'  => 'fas fa-heading',
-			'classes' => 'rurera-hide',
-            'type'  => 'other'
-        ),
-        'paragraph_quiz'     => array(
-            'title' => esc_html__('Text', 'rureraform'),
-            'icon'  => 'fas fa-paragraph',
 			'classes' => 'rurera-hide',
             'type'  => 'other'
         ),
@@ -2557,6 +2552,12 @@ function toolbar_tools()
 			'icon_type' => 'svg',
             'type'  => 'other'
         ),
+		
+        'paragraph_quiz'     => array(
+            'title' => esc_html__('Text', 'rureraform'),
+            'icon'  => 'fas fa-paragraph',
+            'type'  => 'other'
+        ),
         'example_question'     => array(
             'title' => esc_html__('Example Question', 'rureraform'),
             'icon'  => 'fas fa-question',
@@ -2586,8 +2587,8 @@ function toolbar_tools()
             'classes' => 'rurera-hide',
             'type'  => 'input'
         ),
-        'draggable_quiz' => array(
-            'title' => esc_html__('Draggable Quiz', 'rureraform'),
+        'draggable_question' => array(
+            'title' => esc_html__('Draggable Question', 'rureraform'),
             'icon'  => 'draggable_quiz.svg',
             'icon_type'  => 'svg',
             'type'  => 'input'
@@ -6019,7 +6020,7 @@ function element_properties_meta($chapters)
 
         ),
 
-        'draggable_quiz' => array(
+        'draggable_question' => array(
             'basic'    => array(
                 'type'  => 'tab',
                 'value' => 'basic',
@@ -6042,6 +6043,100 @@ function element_properties_meta($chapters)
                 'tooltip' => esc_html__('This is the label of the field.', 'rureraform'),
                 'type'    => 'text'
             ),
+			
+			
+			
+			
+			
+			'no_of_fields'    => array(
+                'value'   => 1,
+                'label'   => esc_html__('No of Fields', 'rureraform'),
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        '1' => esc_html__('1', 'rureraform'),
+                        '2' => esc_html__('2', 'rureraform'),
+                        '3' => esc_html__('3', 'rureraform'),
+                        '4' => esc_html__('4', 'rureraform'),
+                        '5' => esc_html__('5', 'rureraform'),
+                    )
+            ),
+            
+            'content'       => array(
+                'value'   => esc_html__('Default Text Content.', 'rureraform') . '',
+                'label'   => esc_html__('Text', 'rureraform'),
+                'tooltip' => esc_html__('This is the content of Text.', 'rureraform'),
+                'type'    => 'html'
+            ),
+			
+			'dragarea1_answer'  => array(
+                'field_option_id' => 1,
+				'value'   => esc_html__('Correct Answer', 'rureraform'),
+                'label'        => '<div class="content_options">[DRAGAREA id="1"]</div>',
+                //'type'    => 'inner_text_field'
+				'type'    => 'inner_select_field',
+				'wrapper_class' => 'inner_select_fields',
+                'options' =>
+                    array(
+                        'Option 1' => esc_html__('Option 1', 'rureraform'),
+                    )
+            ),
+			
+			'dragarea2_answer'  => array(
+                'field_option_id' => 2,
+				'value'   => esc_html__('Correct Answer', 'rureraform'),
+                'label'        => '<div class="content_options">[DRAGAREA id="2"]</div>',
+                'type'    => 'inner_select_field',
+				'wrapper_class' => 'inner_select_fields',
+                'options' =>
+                    array(
+                        'Option 1' => esc_html__('Option 1', 'rureraform'),
+                    )
+            ),
+			
+			'dragarea3_answer'  => array(
+                'field_option_id' => 3,
+				'value'   => esc_html__('Correct Answer', 'rureraform'),
+                'label'        => '<div class="content_options">[DRAGAREA id="3"]</div>',
+                'type'    => 'inner_select_field',
+				'wrapper_class' => 'inner_select_fields',
+                'options' =>
+                    array(
+                        'Option 1' => esc_html__('Option 1', 'rureraform'),
+                    )
+            ),
+			
+			'dragarea4_answer'  => array(
+                'field_option_id' => 4,
+				'value'   => esc_html__('Correct Answer', 'rureraform'),
+                'label'        => '<div class="content_options">[DRAGAREA id="4"]</div>',
+                'type'    => 'inner_select_field',
+				'wrapper_class' => 'inner_select_fields',
+                'options' =>
+                    array(
+                        'Option 1' => esc_html__('Option 1', 'rureraform'),
+                    )
+            ),
+			
+			'dragarea5_answer'  => array(
+                'field_option_id' => 5,
+				'value'   => esc_html__('Correct Answer', 'rureraform'),
+                'label'        => '<div class="content_options">[DRAGAREA id="5"]</div>',
+                'type'    => 'inner_select_field',
+				'wrapper_class' => 'inner_select_fields',
+                'options' =>
+                    array(
+                        'Option 1' => esc_html__('Option 1', 'rureraform'),
+                    )
+            ),
+			
+			
+			
+			
+			
+			
+			
+			
             'options'  => array(
                 'multi-select' => 'on',
                 'values'       => array(
@@ -6062,13 +6157,7 @@ function element_properties_meta($chapters)
                     ),
                 ),
                 'label'        => '',
-                'type'         => 'options_label'
-            ),
-            'content'       => array(
-                'value'   => '',
-                'label'   => esc_html__('Content', 'rureraform'),
-                'tooltip' => '',
-                'type'    => 'html_toolbar_draggable'
+                'type'         => 'draggable_options_label'
             ),
 
             'elements_data' => array(
@@ -6476,7 +6565,7 @@ function element_properties_meta($chapters)
             ),
         ),
 		
-		'inner_dropdown' => array(
+		'drop_and_text' => array(
             'basic'    => array(
                 'type'  => 'tab',
                 'value' => 'basic',
@@ -6533,7 +6622,7 @@ function element_properties_meta($chapters)
                 'tooltip' => esc_html__('This is the content of Text.', 'rureraform'),
                 'type'    => 'html'
             ),
-            'inner_options1'  => array(
+            'dropdown1_options'  => array(
                 'multi-select' => 'off',
                 'option_id' => 1,
                 'values'       => array(
@@ -6547,7 +6636,7 @@ function element_properties_meta($chapters)
                 'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'rureraform'),
                 'type'         => 'options_label_minimal'
             ),
-            'inner_options2'  => array(
+            'dropdown2_options'  => array(
                 'multi-select' => 'off',
                 'option_id' => 2,
                 'values'       => array(
@@ -6561,7 +6650,7 @@ function element_properties_meta($chapters)
                 'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'rureraform'),
                 'type'         => 'options_label_minimal'
             ),
-            'inner_options3'  => array(
+            'dropdown3_options'  => array(
                 'multi-select' => 'off',
                 'option_id' => 3,
                 'values'       => array(
@@ -6575,7 +6664,7 @@ function element_properties_meta($chapters)
                 'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'rureraform'),
                 'type'         => 'options_label_minimal'
             ),
-            'inner_options4'  => array(
+            'dropdown4_options'  => array(
                 'multi-select' => 'off',
                 'option_id' => 4,
                 'values'       => array(
@@ -6589,7 +6678,7 @@ function element_properties_meta($chapters)
                 'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'rureraform'),
                 'type'         => 'options_label_minimal'
             ),
-            'inner_options5'  => array(
+            'dropdown5_options'  => array(
                 'multi-select' => 'off',
                 'option_id' => 5,
                 'values'       => array(
@@ -10233,4 +10322,15 @@ function getObjectsProperty($object_slug = ''){
 		$response = isset( $objects_array[$object_slug] )? $objects_array[$object_slug] : $default;
 	}
 	return $response;
+}
+
+function get_filter_request($field_id, $search_type){
+	$field_value = request()->get($field_id);
+	if( $field_value == ''){
+		$topics_search = Session::get($search_type);
+		$topics_search = json_decode($topics_search);
+		$field_value =  isset( $topics_search->{$field_id} )? $topics_search->{$field_id} : $field_value;
+	}
+	return $field_value;
+	
 }

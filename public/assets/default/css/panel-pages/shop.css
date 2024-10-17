@@ -42,6 +42,23 @@ Lms Search Top Banner Style Start
 .lms-call-to-action .search-icon {position: absolute; left: 15px; top: 50%; transform: translateY(-45%); height: 24px; width: 24px;}
 .lms-call-to-action .search-icon svg {height: 20px; width: 20px;}
 .lms-call-to-action .search-icon svg path {fill: #ccc;}
+/*Lms Setup Progress Style Start*/
+.lms-setup-progress ul {margin: 0; padding: 0; }
+.lms-setup-progress ul li {list-style: none; line-height: normal;}
+.lms-setup-progress .step-number {justify-content: center; flex: 0 0 auto; box-sizing: border-box; width: 30px; height: 30px; border-radius: 100%; font-size: 15px;}
+.lms-subscription-step .step-number {background-color: #00aeef; color: #fff;}
+.lms-subscription-step .step-name {color: #fff;}
+.lms-setup-progress .step-name {margin-left: 10px; font-size: 14px;}
+.lms-setup-progress .separator {flex: 1 0 20px; margin-left: 8px; margin-right: 8px; height: 1px; background-color: #ddd;}
+.lms-account-setup .step-number {border: 1px solid #fff; color: #fdb532;}
+.lms-confirmation-step .step-number {border: 2px solid #1eb7bd; color: #1eb7bd;}
+.lms-account-setup .step-name {color: #fff;}
+.lms-confirmation-step .step-name {color: #fff;}
+@media (min-width: 975px) {
+    .lms-setup-progress {margin-left: auto; margin-right: auto; width: 810px;}
+}
+/*Lms Setup Progress Style End*/
+
 /******
 Lms Search Top Banner Style End
 *****/
@@ -56,6 +73,33 @@ Lms Products Top Header Style Start
 .products-top-header {min-height: 500px; padding-top: 6rem; background: #fff;}
 .products-top-header .banner-holder {position: absolute; right: 80px; top: 50%; transform: translateY(-50%); margin-top: -30px;}
 .search-top-banner .banner-holder .education-icon-box img {position: initial;}
+.education-icon-box li {display: inline-flex; position: absolute;}
+.education-icon-box {position: absolute;left: 50%;}
+.education-icon-box li:nth-child(2) {left: 10px;top: -42px;}
+.education-icon-box li:nth-child(1) figure { width: 80px;height: 80px;}
+.education-icon-box li:nth-child(1) {left: -70px;top: 14px;}
+.education-icon-box li figure {width: 100px;height: 100px;background:#fff8f0;border-radius: 100%;padding: 6px;box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);}
+.education-icon-box li:nth-child(3) {left: 0px;top: 69px;}
+.education-icon-box li:nth-child(4) {left: 166px;top: 40px;}
+.education-icon-box li:nth-child(5) {left: 100px;top: 45px;}
+.education-icon-box li:nth-child(5) figure {width: 50px;height: 50px;}
+.education-icon-box li:nth-child(4) figure {width: 100px;height: 100px;}
+.education-icon-box li:nth-child(6) {left: 120px;top: -70px;}
+.panel-content .search-top-banner {padding: 25px 25px 0 !important; min-height: auto;}
+.panel-content .education-icon-box li:nth-child(1) {left: -38px; top: 15px; }
+.panel-content .education-icon-box li:nth-child(2) {left: 10px; top: -25px; }
+.panel-content .education-icon-box li:nth-child(3) {left: 0px; top: 50px;}
+.panel-content .education-icon-box li:nth-child(4) {left: 125px; top: 30px; }
+.panel-content .education-icon-box li:nth-child(5) {left: 70px; top: 30px;}
+.panel-content .education-icon-box li:nth-child(6) {left: 85px; top: -40px;}
+.panel-content .lms-call-to-action button {min-width: auto; padding: 0 30px;}
+.panel-content .lms-call-to-action input[type="text"] {width: 100%;}
+.panel-content .lms-setup-progress ul {flex-wrap: wrap; gap: 10px;}
+.panel-content .education-icon-box li figure {width: 70px; height: 70px;}
+.panel-content .education-icon-box li:nth-child(1) figure {width: 50px; height: 50px;}
+.panel-content .education-icon-box li:nth-child(5) figure {width: 50px; height: 50px;}
+.panel-content .lms-setup-progress {width: 100%; }
+.panel-content .products-top-header .banner-holder {margin-top: 0;}
 /*********
 Lms Products Top Header Style End
 *******/
@@ -212,6 +256,7 @@ Lms Product Card Style Start
 .product-card.medium .image-box .image-box__a {height: auto; width: 100%;}
 .product-card.medium .image-box img {border-radius: 0;}
 /* Product Medium Card Style End */
+.field-holder {position: relative;}
 .products-top-header.lms-call-to-action button {height: 50px;}
-.products-top-header.lms-call-to-action input[type="text"] {height: 50px; padding-right: 85px !important;}
+.products-top-header.lms-call-to-action input[type="text"] {height: 50px; padding-right: 85px !important; width: 100%; border: 0;}
 .products-top-header.lms-call-to-action button[type="submit"] {position: absolute; right: 0; border: 0; color: #fff; padding: 0 15px; top: 0; background-color: var(--primary); border-radius: 0; margin-top: 0;}

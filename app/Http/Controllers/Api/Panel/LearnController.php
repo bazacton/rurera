@@ -189,9 +189,62 @@ class LearnController extends Controller
 						unset($elementObj->resize);
 						unset($elementObj->height);
 						if( isset( $elementObj->content ) ){
-							$elementObj->content = strip_tags($elementObj->content);
+							//$elementObj->content = strip_tags($elementObj->content);
 						}
 						unset($elementObj->elements_data);
+						
+						
+						
+						
+						if( $elementObj->type == 'draggable_question'){							
+						
+						
+							$elementObj->dragarea_answers = array(
+								'1' => $elementObj->dragarea1_answer,
+								'2' => $elementObj->dragarea2_answer,
+								'3' => $elementObj->dragarea3_answer,
+								'4' => $elementObj->dragarea4_answer,
+								'5' => $elementObj->dragarea5_answer,
+							);
+							unset($elementObj->dragarea1_answer);
+							unset($elementObj->dragarea2_answer);
+							unset($elementObj->dragarea3_answer);
+							unset($elementObj->dragarea4_answer);
+							unset($elementObj->dragarea5_answer);
+						
+							foreach ($elementObj->options as $key => $option) {
+								if (isset($option->default)) {
+									unset($option->default);
+								}
+								
+								if (empty((array)$option)) {
+									unset($elementObj->options[$key]);
+								}
+							}
+						}
+						
+						
+						if( $elementObj->type == 'drop_and_text'){							
+						
+						
+							$elementObj->inputfield_answers = array(
+								'1' => $elementObj->inner_field1,
+								'2' => $elementObj->inner_field2,
+								'3' => $elementObj->inner_field3,
+								'4' => $elementObj->inner_field4,
+								'5' => $elementObj->inner_field5,
+							);
+							unset($elementObj->inner_field1);
+							unset($elementObj->inner_field2);
+							unset($elementObj->inner_field3);
+							unset($elementObj->inner_field4);
+							unset($elementObj->inner_field5);
+						}
+						
+						if( $elementObj->type == 'image_quiz'){
+							$elementObj->content = ($elementObj->content != '')? url('/').$elementObj->content : $elementObj->content;
+						}
+						
 						$data_array[$section_id]['question_elements'][] = $elementObj;
 					}
 				}

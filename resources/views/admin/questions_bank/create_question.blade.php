@@ -674,6 +674,7 @@ $rand_id = rand(999,99999);
 										
 											<div class="topic-parts-block">
 												<h3> Topics Parts </h3>
+												<a href="javascript:;" class="add-part-modal">Add New Part</a>
 												<div class="topic-parts-options"></div>
 											</div>
 										
@@ -696,7 +697,7 @@ $rand_id = rand(999,99999);
                                                            href="#"><label>Duplicate</label></a>
                                                         <a class="rureraform-admin-button remove-element"
                                                                                                                    href="#"><label>Remove</label></a>
-                                                        <a class="rureraform-admin-button generate-question-code"
+                                                        <a class="rureraform-admin-button generate-question-code rurera-hide"
                                                            href="#"><label>Apply Changes</label></a>
                                                     </div>
                                                     <div class="rureraform-admin-popup-loading"><i
@@ -1323,6 +1324,46 @@ $rand_id = rand(999,99999);
     </div>
 </div>
 
+<div id="add-part-modal-box" class="question_part_modal modal fade question_status_action_modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <form name="question_status_action_form" id="question_status_action_form">
+                    <div class="form-group">
+						<label>Paragraph</label>
+						<textarea class="form-control @error('paragraph') is-invalid @enderror" rows="10" name="paragraph" id="inputText" placeholder="Enter the paragraph here...">{{isset( $TopicParts->paragraph ) ? $TopicParts->paragraph : old('paragraph')}}</textarea>
+					</div>
+					<input type="hidden" name="question_id" value="{{$questionObj->id}}">
+					
+					<button id="splitTextBtn" type="button">Split Text into Parts</button>
+					<button id="addMoreBtn" type="button">Add More</button>
+
+					
+					<table id="outputTable">
+						<thead>
+							<tr>
+								<th>Unique ID</th>
+								<th>Text Part</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody id="sortableTableBody">
+							
+						</tbody>
+					</table>
+					
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="text-right">
+                    <a href="javascript:;" class="btn btn-primary question_topic_part_submit_btn">Submit</a>
+                </div>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <div id="template_display_modal" class="template_display_modal modal fade" role="dialog" data-backdrop="static">>
     <div class="modal-dialog">
@@ -1332,6 +1373,7 @@ $rand_id = rand(999,99999);
 				<h3 class="font-24 font-weight-normal mb-10">Activate Template</h3>
 				@php $saved_templates = $user->saved_templates;
 					$saved_templates = json_decode( $saved_templates );
+					$saved_templates = isset( $saved_templates->question_form )? $saved_templates->question_form : array();
 				@endphp
 				<ul class="apply-template-field">
 					@if( !empty( $saved_templates ) )
@@ -1341,16 +1383,6 @@ $rand_id = rand(999,99999);
 					@endif
 					
 				</ul>
-				<select class="apply-template-field form-control">
-				
-				@if( !empty( $saved_templates ) )
-						<option value="">Select Template</option>
-					@foreach( $saved_templates  as $template_name => $template_data)
-						<option value="{{$template_data}}"> {{$template_name}} </option>
-					@endforeach
-				@endif
-					
-				</select>
 				
 				<div class="inactivity-controls mt-10">
 					<a href="javascript:;" class="close" data-dismiss="modal" aria-label="Continue">Close</a>
@@ -1530,6 +1562,65 @@ $rand_id = rand(999,99999);
 <script src="/assets/vendors/summernote/summernote-table-headers.js"></script>
 <script src="/assets/default/vendors/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
 
+<script>
+    // Function to generate a random alphanumeric ID (6 characters: mix of letters and numbers)
+    function generateUniqueID() {
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let result = '';
+        for (let i = 0; i < 6; i++) {
+            result += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return result;
+    }
+
+    // Function to add a new row to the table
+    function addNewRow(part = '') {
+        const uniqueID = generateUniqueID();
+        const tableBody = document.getElementById('sortableTableBody');
+        const row = document.createElement('tr');
+        
+        row.innerHTML = `
+            <td>${uniqueID}</td>
+            <td><textarea name="topic_part[${uniqueID}]">${part}</textarea></td>
+            <td><button class="remove-btn" onclick="removeRow(this)">Remove</button></td>
+        `;
+        tableBody.appendChild(row);
+    }
+
+    // Function to remove a row
+    function removeRow(button) {
+        const row = button.parentElement.parentElement;
+        row.remove();
+    }
+
+    // Event listener to split the input text into parts
+    document.getElementById('splitTextBtn').addEventListener('click', function() {
+        const inputText = document.getElementById('inputText').value;
+        
+        // Split the text into sentences using basic sentence boundary detection
+        const parts = inputText.split(/(?<=[.?!])\s+/);
+        
+        const outputTableBody = document.getElementById('sortableTableBody');
+        outputTableBody.innerHTML = '';  // Clear previous output
+        
+        // Loop through each part and add it as a new row
+        parts.forEach(part => {
+            addNewRow(part);
+        });
+    });
+
+    // Event listener to add more parts dynamically
+    document.getElementById('addMoreBtn').addEventListener('click', function() {
+        addNewRow(); // Add an empty new row
+    });
+
+    // Initialize sortable functionality on the table body
+    new Sortable(document.getElementById('sortableTableBody'), {
+        animation: 150,
+        handle: 'td', // Make the table row (td) the handle for sorting
+        ghostClass: 'sortable-ghost'
+    });
+</script>
 <script type="text/javascript">
 
     $(document).ready(function () {
@@ -1560,6 +1651,12 @@ $rand_id = rand(999,99999);
 <script type="text/javascript">
     $("body").on("click", ".add-glossary-modal", function (t) {
         $("#add-glosary-modal-box").modal({backdrop: "static"});
+    });
+	
+	$("body").on("click", ".add-part-modal", function (t) {
+		$("#inputText").val('');
+		$("#sortableTableBody").html('');
+        $("#add-part-modal-box").modal({backdrop: "static"});
     });
 	
 	$("body").on("click", ".question-action-btn", function (t) {
@@ -1663,7 +1760,7 @@ $rand_id = rand(999,99999);
         $.ajax({
             type: "POST",
             url: '/admin/users/save_templates',
-            data: {'template_name': template_name, 'form_data_encoded': form_data_encoded},
+            data: {'template_type': 'question_form', 'template_name': template_name, 'form_data_encoded': form_data_encoded},
             success: function (return_data) {
                 console.log(return_data);
             }
@@ -1698,7 +1795,7 @@ $rand_id = rand(999,99999);
         $.ajax({
             type: "POST",
             url: '/admin/users/remove_template',
-            data: {'template_name': template_name},
+            data: {'template_type': 'question_form', 'template_name': template_name},
             success: function (return_data) {
                 console.log(return_data);
             }
@@ -1750,8 +1847,23 @@ $rand_id = rand(999,99999);
 	
 	
 	
-	
-
+	let isProcessing = false;
+$(document).off('click', 'body').on('click', 'body', function (event) {
+    // Check if the click is not inside .rureraform-properties-content
+    if (!$(event.target).closest('.rureraform-properties-content').length && !$(event.target).closest('.rureraform-admin-editor').length) {
+        if (!isProcessing) {
+            isProcessing = true; // Set the flag to true
+            // Check if .rureraform-admin-popup:visible contains .generate-question-code
+            if ($('.rureraform-admin-popup:visible').find('.generate-question-code').length > 0) {
+                $('.rureraform-admin-popup:visible').find('.generate-question-code').click();
+            }
+            // Reset the flag after a timeout or after the operation completes
+            setTimeout(function() {
+                isProcessing = false; // Reset the flag after a delay
+            }, 100); // Adjust the timeout duration as needed
+        }
+    }
+});
 
 </script>
 

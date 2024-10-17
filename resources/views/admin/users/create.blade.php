@@ -54,6 +54,19 @@
                                         @enderror
                                     </div>
 
+                                    <div class="form-group">
+                                        <label>Display Name</label>
+                                        <input type="text" name="display_name"
+                                               class="form-control  @error('display_name') is-invalid @enderror"
+                                               value="{{ old('display_name') }}"
+                                               placeholder="Display Name"/>
+                                        @error('display_name')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+
 
                                     <div class="form-group">
                                         <label for="username">Username:</label>

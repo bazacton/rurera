@@ -94,21 +94,7 @@ if( !empty( $emojisArray ) ){
 }
 $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptions->subscribe : (object) array();
 @endphp
-<div class="chart-filters p-0">
-	<div class="filters-list filters-v2">
-		<a href="#" class="filter-mobile-btn">Filters Dropdown</a>
-		<ul class="analytics-type">
-			@if( $childs->count() > 0)
-				@foreach( $childs as $childLinkObj)
-					@php $childObj = $childLinkObj->user; 
-					$is_active = ($childObj->id == $user->id)? 'active' : '';
-					@endphp
-					<li class="{{$is_active}}"><a href="/{{panelRoute()}}/students/{{$childObj->username}}" class="d-flex align-items-center flex-wrap"><img src="{{$childObj->getAvatar()}}" alt="{{$childObj->get_full_name()}}" class="avatar rounded-circle"> {{$childObj->get_full_name()}}</a></li>
-				@endforeach
-			@endif
-		</ul>
-	</div>
-</div>
+
 <div class="user-detail user-view-profile">
                 <div class="detail-header-profile bg-white py-25 px-30 d-flex align-items-center flex-wrap justify-content-between mb-25 pb-25">
                     <div class="info-media d-flex align-items-center flex-wrap">
