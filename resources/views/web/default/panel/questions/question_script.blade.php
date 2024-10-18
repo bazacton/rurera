@@ -42,6 +42,8 @@
 				textField.classList.add('correct');
 			}
 		}
+	}  else if (field_type === 'truefalse_quiz') {
+		
 	} else {
         var fieldInputs = document.querySelectorAll('[name="field-' + field_id + '"]');
         var correctInput = document.querySelector('[name="field-' + field_id + '"][value="' + correct_value + '"]');

@@ -401,7 +401,7 @@ class QuizController extends Controller
         ])->first();
 		
         if ($quiz) {
-			$quiz_response = $this->get_learn_quiz_data($quiz, $quiz_level, $learning_journey, $question_ids, $is_new, $test_type, $journey_item_id);
+			$quiz_response = $this->get_learn_quiz_data($quiz, $quiz_level, $learning_journey, $question_ids, $is_new, $test_type, $journey_item_id, $test_type_file);
 			$questions_list = isset( $quiz_response['questions_list'] )? $quiz_response['questions_list']  : array();
             if( empty( $questions_list ) ){
                 return view(getTemplate() . '.quizzes.unauthorized');
@@ -486,6 +486,7 @@ class QuizController extends Controller
 
             $start_layout_file = get_quiz_start_layout_file($quiz);
 			
+			
             return view(getTemplate() . '.panel.quizzes.'.$start_layout_file, $data);
             /*if ($resultLogObj->quiz_result_type == 'practice') {
                 return view(getTemplate() . '.panel.quizzes.practice_start', $data);
@@ -497,7 +498,7 @@ class QuizController extends Controller
     }
 	
 	
-	public function get_learn_quiz_data($quiz, $quiz_level, $learning_journey, $question_ids, $is_new, $test_type, $journey_item_id = 0){
+	public function get_learn_quiz_data($quiz, $quiz_level, $learning_journey, $question_ids, $is_new, $test_type, $journey_item_id = 0, $test_type_file = ''){
 		$user = getUser();
 		$user = (!isset( $user->id ) || $user->id == 0)? apiAuth() : $user;
 		$QuestionsAttemptController = new QuestionsAttemptController();

@@ -1275,8 +1275,14 @@ function _rureraform_properties_prepare(_object) {
 					
 				case 'inner_select_field':
                     options = "";
+					var field_option_id = rureraform_meta[type][key]['field_option_id'];
+					var correct_answer = properties['dragarea'+field_option_id+'_answer']
                     for (var option_key in rureraform_meta[type][key]['options']) {
                         if (rureraform_meta[type][key]['options'].hasOwnProperty(option_key)) {
+							//console.log('option_key===='+option_key);
+							//console.log('key===='+key);
+							//console.log('properties-key===='+properties[key]);
+							//console.log('field_option_id===='+field_option_id);
                             selected = "";
                             if (option_key == properties[key])
                                 selected = " selected='selected'";
@@ -1293,7 +1299,7 @@ function _rureraform_properties_prepare(_object) {
 						element_class = '';
 					}
 					
-                    html += "<div class='rureraform-properties-item rurera-inner-fields "+element_class+" "+wrapper_class+"' data-field_option_id='"+field_option_id+"' data-id='" + key + "'><div class='rureraform-properties-label'><label>" + rureraform_meta[type][key]['label'] + "</label></div><div class='rureraform-properties-tooltip'>" + tooltip_html + "</div><div class='rureraform-properties-content'><div class='rureraform-third'><select name='rureraform-" + key + "' id='rureraform-" + key + "' class='"+field_class+"'>" + options + "</select></div></div></div>";
+                    html += "<div class='rureraform-properties-item rurera-inner-fields "+element_class+" "+wrapper_class+"' data-field_option_id='"+field_option_id+"' data-id='" + key + "'><div class='rureraform-properties-label'><label>" + rureraform_meta[type][key]['label'] + "</label></div><div class='rureraform-properties-tooltip'>" + tooltip_html + "</div><div class='rureraform-properties-content'><div class='rureraform-third'><select data-correct_answer='"+correct_answer+"' name='rureraform-" + key + "' id='rureraform-" + key + "' class='"+field_class+"'>" + options + "</select></div></div></div>";
                     break;
                     
                 case 'ajax_select_new':
@@ -6655,7 +6661,7 @@ function _rureraform_build_children(_parent, _parent_col, image_styles = []) {
                         style += properties["style"];
                         options += "<div class='rureraform-col rureraform-col-" + rureraform_form_elements[i]["widths-" + j] + "'><div class='rureraform-elements' _data-parent='" + rureraform_form_elements[i]['id'] + "' _data-parent-col='" + j + "'>" + properties["html"] + "</div></div>";
                     }
-                    html += "<div id='rureraform-element-" + i + "' class='quiz-group rureraform-element-" + i + " rureraform-row containment-wrapper rureraform-element' data-type='" + rureraform_form_elements[i]["type"] + "'>" + options + "</div>";
+                    html += "<div id='rureraform-element-" + i + "' class='quiz-column-group rureraform-element-" + i + " rureraform-row containment-wrapper rureraform-element' data-type='" + rureraform_form_elements[i]["type"] + "'>" + options + "</div>";
                     break;
 
                 default:
@@ -7272,6 +7278,7 @@ function rureraform_build(image_styles = []) {
             //revert: true
         });
 
+		console.log("#" + id + " .rureraform-elements, #" + id + ".rureraform-elements");
         jQuery("#" + id + " .rureraform-elements, #" + id + ".rureraform-elements").sortable({
             connectWith: "#" + id + " .rureraform-elements, #" + id + ".rureraform-elements",
             items: ".rureraform-element",
@@ -7279,13 +7286,12 @@ function rureraform_build(image_styles = []) {
             dropOnEmpty: true,
             placeholder: "rureraform-element-placeholder",
             start: function (event, ui) {
-                jQuery(ui.helper).addClass("rureraform-element-helper");
+                jQuery(ui.helper).addClass("rureraform-element-helpers");
                 jQuery(".rureraform-context-menu").hide();
             },
             stop: function (event, ui) {
-                jQuery(".rureraform-element-helper").removeClass("rureraform-element-helper");
+                jQuery(".rureraform-element-helpers").removeClass("rureraform-element-helpers");
                 _draggable_init();
-
                 _rureraform_sync_elements();
             }
         });
@@ -9889,16 +9895,20 @@ $(document).on('keyup focus blur change', '.note-editable', function () {
 });
 
 
+
+$(document).ready(function() {
+	
 $(document).on('keyup focus blur change', '.draggable_options_label .rureraform-properties-options-label', function () {
 	var options_response = '';
+	var correct_answer = $(this).closest('.rureraform-admin-popup-inner').find('.inner_select_fields').find('select').attr('data-correct_answer');
     $(this).closest('.draggable_options_label').find('.rureraform-properties-options-label').each(function (index) {
 		var option_value = $(this).val();
-		options_response = options_response+'<option value="'+option_value+'">'+option_value+'</option>';
+		var selected = (option_value == correct_answer)? 'selected' : '';
+		options_response = options_response+'<option value="'+option_value+'" '+selected+'>'+option_value+'</option>';
 	});
-	console.log('draggable-run');
 	$(this).closest('.rureraform-admin-popup-inner').find('.inner_select_fields').find('select').html(options_response);
 });
-$(document).ready(function() {
+
 $(document).on('click', '.generate-question-code', function () {
 	console.log('generated-question-code-function');
     update_content_data();
@@ -10102,6 +10112,14 @@ $(document).on('click', '.quiz-group', function () {
 	
     rureraform_properties_open($(this));
 });
+$(document).on('click', '.quiz-column-group', function (e) {
+	
+	$(".topic-parts-block").addClass('rurera-hide');
+	 if (!$(e.target).closest('.quiz-group').length) {
+		rureraform_properties_open($(this));
+	 }
+});
+
 $(document).on('click', '.duplicate-element', function () {
     var element_id = $(this).closest('#rureraform-element-properties').attr('data-element_id');
     rureraform_element_duplicate($('#'+element_id));

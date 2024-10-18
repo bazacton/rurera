@@ -3976,6 +3976,7 @@ class QuestionsAttemptController extends Controller
 		//pre($elementObj);
 		//pre($elementObj->type, false);
         $element_unique_id = isset( $elementObj->field_id )? $elementObj->field_id : 0;
+        //pre($elementObj, false);
 		switch($elementObj->type) {
 			
 			case "question_label":
@@ -3989,6 +3990,7 @@ class QuestionsAttemptController extends Controller
 				
 			case "paragraph_quiz":
 			case "paragraph_multichoice_template":
+			case "question_label_paragraph":
                 $question_layout = view('web.default.question_layouts.paragraph_layout', ['element_unique_id' => $element_unique_id, 'element_id' => $element_id, 'elementObj' => $elementObj])->render();
 			break;
 			
@@ -4027,7 +4029,9 @@ class QuestionsAttemptController extends Controller
                 //pre($elementObj);
 				$content = preg_replace_callback('/\[DROPDOWN id="(\d+)"\]/', function($matches) use ($elementObj, $element_unique_id) {
 					$id = isset( $matches[1] )? $matches[1] : 0;
-					$property = 'inner_options' . $id;
+					$property = 'dropdown'.$id.'_options';
+					//pre($property, false);
+					//pre($elementObj);
 					$inner_options = isset($elementObj->{$property}) ? $elementObj->{$property} : array();
 					// Generate replacement HTML for each dropdown
 					$response = '';

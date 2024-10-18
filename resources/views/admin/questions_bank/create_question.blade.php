@@ -55,6 +55,13 @@ $rand_id = rand(999,99999);
 	.modal-open .modal{
 		z-index: 99999;
 	}
+	.rureraform-element-helper{
+		width:100% !important;
+	}
+	
+	.rureraform-element-helpers {
+    width: fit-content !important;
+}
 </style>
 @endpush
 
@@ -122,7 +129,7 @@ $rand_id = rand(999,99999);
                                     <div class="modal-header">
                                       <h3>
                                         All Question Types
-                                        <span>We have a great range of question types toÂ chooseÂ from.</span>
+                                        <span>We have a great range of question types to choose from.</span>
                                       </h3>
                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
@@ -693,10 +700,9 @@ $rand_id = rand(999,99999);
                                                         </div>
                                                     </div>
                                                     <div class="rureraform-admin-popup-buttons">
-                                                        <a class="rureraform-admin-button duplicate-element"
+                                                        <a class="rureraform-admin-button duplicate-element btn btn-primary"
                                                            href="#"><label>Duplicate</label></a>
-                                                        <a class="rureraform-admin-button remove-element"
-                                                                                                                   href="#"><label>Remove</label></a>
+                                                        <a class="rureraform-admin-button remove-element btn btn-danger" href="#"><label>Remove</label></a>
                                                         <a class="rureraform-admin-button generate-question-code rurera-hide"
                                                            href="#"><label>Apply Changes</label></a>
                                                     </div>
@@ -1644,7 +1650,7 @@ $rand_id = rand(999,99999);
     });
 	$(document).ready(function () {
         $('.ajax-category-courses').change();
-        $('.glossary-items').select2();
+        $('.glossary-items').select2(); 
     });
 </script>
 

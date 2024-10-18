@@ -1329,6 +1329,7 @@ class WebinarController extends Controller
         if (!empty($TopicParts)) {
             foreach ($TopicParts as $TopicPartObj) {
 				$topic_part_data = isset( $TopicPartObj->topic_part_data )? json_decode($TopicPartObj->topic_part_data) : array();
+				$response .= '<h5>'.$TopicPartObj->title.'</h5>';
 				if( !empty( $topic_part_data) ){
 					foreach( $topic_part_data as $topic_unique_id => $topicpartData){
 						$checked = in_array( $topic_unique_id, $topics_parts)? 'checked' : '';

@@ -5605,26 +5605,31 @@ function element_properties_meta($chapters)
                 'multi-select' => 'on',
                 'values'       => array(
                     array(
+                        'default' => 'on',
                         'value' => 'Option 1',
                         'label' => 'Option 1',
                         'image' => ''
                     ),
                     array(
+                        'default' => 'off',
                         'value' => 'Option 2',
                         'label' => 'Option 2',
                         'image' => ''
                     ),
                     array(
+                        'default' => 'off',
                         'value' => 'Option 3',
                         'label' => 'Option 3',
                         'image' => ''
                     ),
                     array(
+                        'default' => 'off',
                         'value' => 'Option 4',
                         'label' => 'Option 4',
                         'image' => ''
                     ),
                     array(
+                        'default' => 'off',
                         'value' => 'Option 5',
                         'label' => 'Option 5',
                         'image' => ''
@@ -7141,7 +7146,7 @@ function element_properties_meta($chapters)
                 'label' => esc_html__('Basic', 'rureraform')
             ),
             'content'       => array(
-                'value'   => "<p><b>Lorem Ipsum</b> is simply <u>dummy text</u> of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the <font color='#ffff00''' style='background-color: rgb(156, 156, 148);'''>1500s</font>, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                'value'   => "<p><b>Lorem Ipsum</b> is simply <u>dummy text</u> of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
                 <ol><li>List item # 1</li>
                 <li>List item # 2</li>
                 <li>List item # 3</li>
@@ -7308,7 +7313,7 @@ function element_properties_meta($chapters)
                 'label' => esc_html__('Basic', 'rureraform')
             ),
         'correct_answer'    => array(
-            'value'   => '',
+            'value'   => 'True',
             'label'   => esc_html__('Correct Answer', 'rureraform'),
             '',
             'type'    => 'select',

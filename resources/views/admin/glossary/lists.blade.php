@@ -28,6 +28,19 @@
                         </div>
                     </div>
 					
+					
+					
+					<div class="col-md-3">
+						<div class="form-group">	
+							<label class="input-label">Type</label>
+							<select name="glossary_type" class="form-control">
+								<option value="">Select Type</option>
+								<option value="Glossary"  {{(get_filter_request('glossary_type', 'glossary_search') == 'Glossary')? 'selected' : '' }}>Glossary</option>
+								<option value="Vocabulary"  {{(get_filter_request('glossary_type', 'glossary_search') == 'Vocabulary')? 'selected' : '' }}>Vocabulary</option>
+							</select>
+						</div>
+					</div>
+					
 					<div class="col-md-3">
                         <div class="form-group">
                             <label class="input-label">{{trans('admin/main.category')}}</label>
@@ -151,6 +164,7 @@
                             <table class="table table-striped font-14">
                                 <tr>
                                     <th class="text-left">{{ trans('admin/main.title') }}</th>
+                                    <th class="text-left">Type</th>
                                     <th class="text-left">Category</th>
                                     <th class="text-left">Added by</th>
                                     <th class="text-left">Added Date</th>
@@ -162,6 +176,7 @@
                                     <td>
                                         <span>{{ $glossaryData->title }}</span>
                                     </td>
+									<td class="text-left">{{ $glossaryData->glossary_type }}</td>
                                     <td class="text-left">{{ (isset($glossaryData->category->id))? $glossaryData->category->getTitleAttribute() : '-' }}
 									<br>
 										<small>

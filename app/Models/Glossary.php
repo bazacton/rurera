@@ -9,7 +9,7 @@ class Glossary extends Model
 
     protected $table = 'glossary';
     public $timestamps = false;
-    protected $fillable = ['category_id', 'title', 'description', 'status', 'created_at','question_id','created_by', 'subject_id', 'chapter_id', 'sub_chapter_id'];
+    protected $fillable = ['category_id', 'title', 'description', 'status', 'created_at','question_id','created_by', 'subject_id', 'chapter_id', 'sub_chapter_id', 'glossary_type'];
     
     public function category()
     {

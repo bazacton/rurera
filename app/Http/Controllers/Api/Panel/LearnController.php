@@ -193,7 +193,21 @@ class LearnController extends Controller
 						}
 						unset($elementObj->elements_data);
 						
+						if( isset( $elementObj->options )){
+							foreach ($elementObj->options as $key => $option) {
+								if (!isset($option->label)) {
+									unset($elementObj->options[$key]);
+								}
+							}
+						}
 						
+						if( isset( $elementObj->sortable_options )){
+							foreach ($elementObj->sortable_options as $key => $option) {
+								if (!isset($option->label)) {
+									unset($elementObj->sortable_options[$key]);
+								}
+							}
+						}
 						
 						
 						if( $elementObj->type == 'draggable_question'){							
@@ -281,12 +295,3 @@ class LearnController extends Controller
 	}
 	
 }
-
-
-
-
-
-
-
-
-

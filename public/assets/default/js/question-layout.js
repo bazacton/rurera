@@ -53,14 +53,16 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
     if($('.spells-quiz-from').length > 0){
         var editor_field_value = '';
         var thisObj = $(this);
-        var thisValue = thisObj.closest('.spells-quiz-from').find('.editor-field').val();
-        thisObj.closest('.spells-quiz-from').find('.editor-field-inputs').each(function() {
+		var parentObj = $('.rurera-question-block.active');
+        var thisValue = parentObj.find('.spells-quiz-from').find('.editor-field').val();
+        parentObj.find('.spells-quiz-from').find('.editor-field-inputs').each(function() {
             editor_field_value += $(this).val();
         });
-        thisObj.closest('.spells-quiz-from').find('.editor-field').val(editor_field_value);
+		console.log(editor_field_value);
+        parentObj.find('.spells-quiz-from').find('.editor-field').val(editor_field_value);
         //timePaused = true;
         if( thisValue == '' && editor_field_value != ''){
-            thisObj.closest('.spells-quiz-from').find('.question-submit-btn').click();
+            parentObj.find('.spells-quiz-from').find('.question-submit-btn').click();
         }
     }
 	
@@ -77,7 +79,6 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
     question_submit_process = true;
     returnType = rurera_validation_process(thisForm);
 	
-	returnType = false;
 
     if( rurera_is_field(bypass_validation) && bypass_validation == 'yes' ){
         returnType = true;
@@ -100,8 +101,8 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
         clearInterval(Questioninterval);
     }
 
-    //rurera_loader($(this), 'div');
-	question_submit_process = false;
+    rurera_loader($(this), 'div');
+	//question_submit_process = false;
 
     var quiz_type = $(".question-area-block").attr('data-type');
     if (!rurera_is_field(quiz_type)) {
@@ -226,6 +227,7 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
 				return_data.attempted_questions = attempted_questions;
 				return_data.correct_questions = correct_questions;
 				return_data.incorrect_questions = incorrect_questions;
+
 				afterQuestionValidation(return_data, thisForm, question_id, thisBlock);
 			}
 			
@@ -544,6 +546,7 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
 
             }
         }
+		rurera_remove_loader(thisObj, 'div');
 		question_submit_process = false;
         }
     });
@@ -878,14 +881,27 @@ function init_question_functions() {
 	
 	
 	$("body").on('click', '.questions-nav-controls .next-btn', function (e) {
-		$(".question-area-block").find('.show-notifications').html('');
-		$('.rurera-question-block.active').removeClass('active').next().addClass('active');
-		$(this).addClass('rurera-hide');
-		$('.question-next-btn').addClass('rurera-hide');
-		$('.question-submit-btn').removeClass('rurera-hide');
+		console.log('next=========='+$('.rurera-question-block.active').next('.rurera-question-block').length);
+		if( $('.rurera-question-block.active').next('.rurera-question-block').length > 0){
+			$(".question-area-block").find('.show-notifications').html('');
+			$('.rurera-question-block.active').removeClass('active').next().addClass('active');
+			$(this).addClass('rurera-hide');
+			$('.question-next-btn').addClass('rurera-hide');
+			$('.question-submit-btn').removeClass('rurera-hide');
+		}
 	});
 	
-    $("body").on('click', '.quiz-pagination ul li, .questions-nav-controls .prev-btn, .questions-nav-controls .next-btn1', function (e) {
+	$("body").on('click', '.questions-nav-controls .prev-btn', function (e) {
+		console.log('prev=========='+$('.rurera-question-block.active').prev('.rurera-question-block').length);
+		if( $('.rurera-question-block.active').prev('.rurera-question-block').length > 0){
+			$(".question-area-block").find('.show-notifications').html('');
+			$('.rurera-question-block.active').removeClass('active').prev().addClass('active');
+			$(this).addClass('rurera-hide');
+			$('.question-submit-btn').removeClass('rurera-hide');
+		}
+	});
+	
+    $("body").on('click', '.quiz-pagination ul li, .questions-nav-controls .prev-btn1, .questions-nav-controls .next-btn1', function (e) {
 
         if ($(this).hasClass('disable-btn')) {
             return;
@@ -1645,6 +1661,7 @@ function rurera_validation_process(form_name, error_dispaly_type = '') {
                 array_length = alert_messages.length;
                 alert_messages[array_length] = rurera_insert_error_message(thisObj, alert_messages, '');
                 has_empty[index_no] = true;
+				console.log(thisObj.attr('id'));
 
                 error_objects[index_no]['error_msg'] = rurera_insert_error_message(thisObj, alert_messages, '');
                 error_objects[index_no]['error_obj'] = thisObj;

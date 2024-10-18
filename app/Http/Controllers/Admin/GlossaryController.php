@@ -52,11 +52,14 @@ class GlossaryController extends Controller {
         //DB::disableQueryLog();
 
 
+		$users_list = User::where('status' , 'active')->get();
         $data = [
             'pageTitle' => 'Glossary',
             'glossary' => $glossary,
             'totalGlossary' => $totalGlossary,
             'categories' => $categories,
+            'users_list' => $users_list,
+            'user' => $user,
         ];
 
         //pre(DB::getQueryLog());
@@ -114,6 +117,7 @@ class GlossaryController extends Controller {
     private function filters($query, $request) {
         $title = get_filter_request('title', 'glossary_search'); 
         $status = get_filter_request('status', 'glossary_search');
+		$glossary_type = get_filter_request('glossary_type', 'glossary_search');
 		
 		$category_id = get_filter_request('category_id', 'glossary_search');
         $subject_id = get_filter_request('subject_id', 'glossary_search'); 
@@ -124,6 +128,9 @@ class GlossaryController extends Controller {
 
         if (!empty($title)) {
             $query->where('glossary.title', 'LIKE', "%{$title}%");
+        }
+        if ($glossary_type != '') {
+            $query->where('glossary.glossary_type', $glossary_type);
         }
 
         if ($category_id != '') {
@@ -192,6 +199,8 @@ class GlossaryController extends Controller {
                 'subject_id' => isset($data['subject_id']) ? $data['subject_id'] : 0,
                 'chapter_id' => isset($data['chapter_id']) ? $data['chapter_id'] : 0,
                 'sub_chapter_id' => isset($data['sub_chapter_id']) ? $data['sub_chapter_id'] : 0,
+				'glossary_type' => isset($data['glossary_type']) ? $data['glossary_type'] : 'glossary',
+				
             ]);
         } else {
             $this->authorize('admin_glossary_create');
@@ -206,6 +215,7 @@ class GlossaryController extends Controller {
                 'subject_id' => isset($data['subject_id']) ? $data['subject_id'] : 0,
                 'chapter_id' => isset($data['chapter_id']) ? $data['chapter_id'] : 0,
                 'sub_chapter_id' => isset($data['sub_chapter_id']) ? $data['sub_chapter_id'] : 0,
+				'glossary_type' => isset($data['glossary_type']) ? $data['glossary_type'] : 'glossary',
             ]);
         }
 

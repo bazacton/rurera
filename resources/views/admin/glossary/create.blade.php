@@ -96,6 +96,25 @@
 								
 
 								</div>
+								
+								
+								
+								<div class="form-group">
+									<label class="input-label">Type</label>
+									<select id="chapter_id"
+										class="form-control populate"
+										name="glossary_type">
+									<option value="Glossary" {{(isset( $glossary->glossary_type) && $glossary->glossary_type == 'Glossary')? 'selected' : '' }}>Glossary</option>
+									<option value="Vocabulary" {{(isset( $glossary->glossary_type) && $glossary->glossary_type == 'Vocabulary')? 'selected' : '' }}>Vocabulary</option>
+								</select>
+								@error('glossary_type')
+								<div class="invalid-feedback">
+									{{ $message }}
+								</div>
+								@enderror
+								
+
+								</div>
 
 
                                 <div class="form-group">
