@@ -238,6 +238,19 @@ span.Selectable.marking-selected {background: #fff716; cursor: pointer;}
 /* Insert Into Sentence Style End */
 
 /* Match Style Start */
+.match-question{width:100%;}
+.match-question .stems li,
+.match-question .options li {list-style: none; padding: 0.8rem 1rem; margin: 0 0 1rem; text-align: left;}
+.match-question .stems,
+.match-question .options {width: 40%; margin-right: 10%; float: left;}
+.match-question .stems li,
+.match-question .options li {background: transparent; cursor: pointer; border: 1px solid #999; border-radius: 4px; &.selected,  &.selected:hover {font-weight: bold; border-color: #70c17c;}}
+.match-question .stems li > img,
+.match-question .options li > img {margin-bottom: 10px;}
+.match-question .line {width: 100%; height: 2px; background-color: #e5e5e5; z-index: 99; &.highlighted {background-color: green; box-shadow: none; height: 3px; z-index: 99; .point {border-left: 16px solid green;}}
+  .point {width: 0; height: 0; margin: -6px -3px 0 0; border-top: 8px solid transparent; border-bottom: 8px solid transparent; border-left: 16px solid #e5e5e5; float: right;}
+}
+.match-question .stems ol {padding: 0; margin: 0;}
 /* Match Style End */
 
 /* Audio Input Style Start */
@@ -313,7 +326,6 @@ Questions Builder Right Sidebar Style Start
 .lms-quiz-create .rureraform-admin-popup-loading {position: absolute; background: #fff; top: 52px;	left: 0; z-index: 99982; width: 100%; bottom: 0; right: 0;}
 .lms-quiz-create .rureraform-admin-popup-loading i {position: absolute;	z-index: 99983;	top: 50%; left: 50%; font-size: 24px; margin-top: -12px; margin-left: -12px;}
 .lms-quiz-create .rureraform-admin-popup-buttons {box-sizing: border-box; position: relative; left: 0; right: 0; bottom: 0; height: auto; line-height: 48px; padding-right: 8px; text-align: center; border-top: 1px solid #ccc; padding-top: 15px; background-color: #f7f7f7; padding-bottom: 15px;}
-.lms-quiz-create .rureraform-admin-popup-buttons .rureraform-admin-button label {border-radius:10px;background-color: #ffa426; font-size: medium; font-weight:bold;  padding-right: 10px; padding-left: 10px;}
 .lms-quiz-create .rureraform-admin-popup-content .rureraform-tabs {margin-left: -20px; margin-right: -20px; font-size: medium; color: #ffffff;}
 /*Admin Popup Style Start*/
 
@@ -650,7 +662,7 @@ scrollbar-gutter: stable both-edges;
 .quiz-topbar .close-btn {min-width: 45px; min-height: 45px; border: 0;}
 /*Quiz Top-Bar Style End*/
 
-/*Quiz Read Content Style Start*/
+/*Quistions Type Content Default Style Start*/
 .learning-page .learning-page-content {background-color: #fff;}
 .question-review-required {font-size: 12px; background-color: #fff0f0; line-height: normal; color: crimson; box-shadow: 0 0 0 1px rgba(240,38,38,0.2) inset; padding: 6px 15px; border-radius: 3px; display: inline-flex; white-space: nowrap; gap: 15px; margin-bottom: 10px;}
 .question-layout .question-review-required {
@@ -679,8 +691,9 @@ scrollbar-gutter: stable both-edges;
 }
 .learning-page .learning-content {
 	height: calc(100vh - 105px);
+    padding-top: 50px;
 }
-/*Quiz Read Content Style End*/
+/*Quistions Type Content Default Style End*/
 /*Inactivity Modal on quiz layout page start*/
 .activity-scores {margin: 0 0 30px;}
 .activity-scores li,
@@ -703,9 +716,7 @@ scrollbar-gutter: stable both-edges;
 .activity-actions .continue-btn {background-color: #29a746; min-width: auto; border-radius: 3px; margin-right: 0;}
 /*Inactivity Modal on quiz layout page end*/
 
-/************************************ 
-pagination Learn Practice Style Start
-*************************************/
+/*pagination Learn Practice Style Start*/
 .quiz-pagination {position: relative; padding: 0 30px; margin: 0; max-width: 600px; }
 .quiz-pagination .swiper-container {margin-top: -8px; padding: 8px 2px 4px;}
 .quiz-pagination .swiper-button-next,
@@ -737,9 +748,7 @@ pagination Learn Practice Style Start
 .quiz-pagination .has-flag a:before {content: ""; position: absolute; top: -20px; height: 25px; width: 25px; left: 50%; transform: translateX(-50%); background: url(../../default/svgs/pagination-flag.svg) no-repeat; background-size: contain; margin-left: 3px; filter: invert(32%) sepia(11%) saturate(2395%) hue-rotate(195deg) brightness(92%) contrast(84%);}
 .assignment-questions-preview .quiz-pagination .swiper-container ul {flex-wrap: wrap;}
 .assignment-questions-preview .quiz-pagination .swiper-container li {margin: 6px 6px 0 0; width: 25px; max-width: 25px;}
-/************************************ 
-pagination Learn Practice Style End
-*************************************/
+/* pagination Learn Practice Style End */
 /* Quiz Status Bar Style */
 .quiz-status-bar {margin: 0 0 50px; padding-top: 30px;}
 .container-fluid.read-quiz-content .quiz-status-bar {margin-top: 18px;}

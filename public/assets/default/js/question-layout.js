@@ -53,16 +53,14 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
     if($('.spells-quiz-from').length > 0){
         var editor_field_value = '';
         var thisObj = $(this);
-		var parentObj = $('.rurera-question-block.active');
-        var thisValue = parentObj.find('.spells-quiz-from').find('.editor-field').val();
-        parentObj.find('.spells-quiz-from').find('.editor-field-inputs').each(function() {
+        var thisValue = thisObj.closest('.spells-quiz-from').find('.editor-field').val();
+        thisObj.closest('.spells-quiz-from').find('.editor-field-inputs').each(function() {
             editor_field_value += $(this).val();
         });
-		console.log(editor_field_value);
-        parentObj.find('.spells-quiz-from').find('.editor-field').val(editor_field_value);
+        thisObj.closest('.spells-quiz-from').find('.editor-field').val(editor_field_value);
         //timePaused = true;
         if( thisValue == '' && editor_field_value != ''){
-            parentObj.find('.spells-quiz-from').find('.question-submit-btn').click();
+            thisObj.closest('.spells-quiz-from').find('.question-submit-btn').click();
         }
     }
 	
@@ -1661,7 +1659,6 @@ function rurera_validation_process(form_name, error_dispaly_type = '') {
                 array_length = alert_messages.length;
                 alert_messages[array_length] = rurera_insert_error_message(thisObj, alert_messages, '');
                 has_empty[index_no] = true;
-				console.log(thisObj.attr('id'));
 
                 error_objects[index_no]['error_msg'] = rurera_insert_error_message(thisObj, alert_messages, '');
                 error_objects[index_no]['error_obj'] = thisObj;
