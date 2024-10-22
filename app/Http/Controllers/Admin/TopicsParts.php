@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Cache;
 
 
 class TopicsParts extends Controller {
@@ -84,7 +85,7 @@ class TopicsParts extends Controller {
     public function edit(Request $request, $id) {
         $this->authorize('admin_topic_parts_edit');
         $user = auth()->user();
-
+		Cache::put('mediaFolder', 'topic_parts');
         $TopicParts = TopicParts::findOrFail($id);
 		
 		
@@ -129,6 +130,7 @@ class TopicsParts extends Controller {
 
         $data = $request->all();
         $locale = $request->get('locale', getDefaultLocale());
+		
 
 		if( !isset( $data['paragraph'] ) || $data['paragraph'] == ''){
 			exit;
@@ -206,6 +208,7 @@ class TopicsParts extends Controller {
 
 
         $data = $request->all();
+		
         $locale = $request->get('locale', getDefaultLocale());
 		$rules = [];
 		if( $id == ''){
@@ -240,6 +243,7 @@ class TopicsParts extends Controller {
                 'title' => isset($data['title']) ? $data['title'] : '',
                 'paragraph' => isset($data['paragraph']) ? $data['paragraph'] : '',
                 'topic_part_data' => isset($data['topic_part']) ? json_encode($data['topic_part']) : '',
+                'topic_part_images' => isset($data['topic_images']) ? json_encode($data['topic_images']) : '',
                 'created_by' => $user->id,
                 'created_at' => time(),
             ]);
@@ -254,6 +258,7 @@ class TopicsParts extends Controller {
                 'sub_chapter_id' => isset($data['sub_chapter_id']) ? $data['sub_chapter_id'] : 0,
                 'paragraph' => isset($data['paragraph']) ? $data['paragraph'] : '',
                 'topic_part_data' => isset($data['topic_part']) ? json_encode($data['topic_part']) : '',
+                'topic_part_images' => isset($data['topic_images']) ? json_encode($data['topic_images']) : '',
                 'created_by' => $user->id,
                 'created_at' => time(),
             ]);

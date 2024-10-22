@@ -1294,12 +1294,8 @@ function _rureraform_properties_prepare(_object) {
 					var field_option_id = rureraform_meta[type][key]['field_option_id'];
 					
 					
-					var element_class = 'rurera-hide';
-					if( field_option_id == 1){
-						element_class = '';
-					}
 					
-                    html += "<div class='rureraform-properties-item rurera-inner-fields "+element_class+" "+wrapper_class+"' data-field_option_id='"+field_option_id+"' data-id='" + key + "'><div class='rureraform-properties-label'><label>" + rureraform_meta[type][key]['label'] + "</label></div><div class='rureraform-properties-tooltip'>" + tooltip_html + "</div><div class='rureraform-properties-content'><div class='rureraform-third'><select data-correct_answer='"+correct_answer+"' name='rureraform-" + key + "' id='rureraform-" + key + "' class='"+field_class+"'>" + options + "</select></div></div></div>";
+                    html += "<div class='rureraform-properties-item rurera-inner-fields  "+wrapper_class+"' data-field_option_id='"+field_option_id+"' data-id='" + key + "'><div class='rureraform-properties-label'><label>" + rureraform_meta[type][key]['label'] + "</label></div><div class='rureraform-properties-tooltip'>" + tooltip_html + "</div><div class='rureraform-properties-content'><div class='rureraform-third'><select data-correct_answer='"+correct_answer+"' name='rureraform-" + key + "' id='rureraform-" + key + "' class='"+field_class+"'>" + options + "</select></div></div></div>";
                     break;
                     
                 case 'ajax_select_new':
@@ -1588,13 +1584,21 @@ function _rureraform_properties_prepare(_object) {
 				break;
 					
 				case 'inner_text_field':
-					var field_option_id = rureraform_meta[type][key]['field_option_id'];
 					var after_html = EditorIsEmpty(rureraform_meta[type][key].after)? '' : rureraform_meta[type][key].after;
+					html += "<div class='rureraform-properties-item rurera-inner-fields ' data-id='" + key + "'><div class='rureraform-properties-label'><label>" + rureraform_meta[type][key]['label'] + "</label></div><div class='rureraform-properties-tooltip'>" + tooltip_html + "</div><div class='rureraform-properties-content'><input type='text' name='rureraform-" + key + "' id='rureraform-" + key + "' value='" + rureraform_escape_html(properties[key]) + "' placeholder='' />"+after_html+"</div></div>";
+				break;
+				
+				case 'block_start':
+					var field_option_id = rureraform_meta[type][key]['field_option_id'];
 					var element_class = 'rurera-hide';
 					if( field_option_id == 1){
 						element_class = '';
 					}
-					html += "<div class='rureraform-properties-item rurera-inner-fields "+element_class+"' data-field_option_id='"+field_option_id+"' data-id='" + key + "'><div class='rureraform-properties-label'><label>" + rureraform_meta[type][key]['label'] + "</label></div><div class='rureraform-properties-tooltip'>" + tooltip_html + "</div><div class='rureraform-properties-content'><input type='text' name='rureraform-" + key + "' id='rureraform-" + key + "' value='" + rureraform_escape_html(properties[key]) + "' placeholder='' />"+after_html+"</div></div>";
+					html += "<div class='section-block "+element_class+"' data-field_option_id='"+field_option_id+"'>" + rureraform_meta[type][key]['label'];
+				break;
+				
+				case 'block_end':
+					html += "</div>";
 				break;
 					
 				 case 'options_label_minimal11':
@@ -1898,8 +1902,8 @@ function _rureraform_properties_prepare(_object) {
 		jQuery('select[name="rureraform-no_of_fields"]').each(function () {
 			var no_of_fields = $(this).val();
 			var thisBlock = $(this).closest('.rureraform-tab-content');
-			thisBlock.find('.rurera-inner-fields').addClass('rurera-hide');
-			thisBlock.find('.rurera-inner-fields').filter(function() {
+			thisBlock.find('.section-block').addClass('rurera-hide');
+			thisBlock.find('.section-block').filter(function() {
 				return $(this).attr('data-field_option_id') <= no_of_fields;
 			}).removeClass('rurera-hide');
 		});
@@ -1956,24 +1960,59 @@ function _rureraform_properties_prepare(_object) {
             },
             callbacks: {
                 onPaste: function (e) {
-                    e.preventDefault();
+					e.preventDefault();
 
-                    var clipboardData = (e.originalEvent || e).clipboardData || window.clipboardData;
-                    var pastedData = clipboardData.getData('text/html') || clipboardData.getData('text/plain');
+					var clipboardData = (e.originalEvent || e).clipboardData || window.clipboardData;
+					var pastedData = clipboardData.getData('text/html') || clipboardData.getData('text/plain');
 
-                    // Create a temporary DOM element to parse the HTML
-                    var tempDiv = document.createElement('div');
-                    tempDiv.innerHTML = pastedData;
+					// Create a temporary DOM element to parse the HTML
+					var tempDiv = document.createElement('div');
+					tempDiv.innerHTML = pastedData;
 
-                    // Remove all inline styles from elements
-                    var elements = tempDiv.querySelectorAll('[style]');
-                    elements.forEach(function (element) {
-                        element.removeAttribute('style');
-                    });
+					// Decode HTML entities and remove &nbsp;
+					function decodeHTMLEntitiesAndClean(node) {
+						// Loop through all child nodes recursively
+						node.childNodes.forEach(function(child) {
+							if (child.nodeType === 3) { // NodeType 3 is Text Node
+								// Replace &nbsp; with regular space and other entities
+								child.nodeValue = child.nodeValue
+									.replace(/\u00A0/g, ' ') // Replace non-breaking spaces with a regular space
+									.replace(/&amp;/g, '&')
+									.replace(/&lt;/g, '<')
+									.replace(/&gt;/g, '>')
+									.replace(/&quot;/g, '"');
+							} else if (child.nodeType === 1) { // NodeType 1 is Element Node
+								decodeHTMLEntitiesAndClean(child); // Recurse for element nodes
+							}
+						});
+					}
 
-                    // Insert the cleaned content
-                    document.execCommand('insertHTML', false, tempDiv.innerHTML);
-                }
+					// Remove all inline styles from elements
+					var elementsWithStyles = tempDiv.querySelectorAll('[style]');
+					elementsWithStyles.forEach(function (element) {
+						element.removeAttribute('style');
+					});
+
+					// Remove all HTML comments
+					function removeComments(node) {
+						var childNodes = node.childNodes;
+						for (var i = childNodes.length - 1; i >= 0; i--) {
+							var child = childNodes[i];
+							if (child.nodeType === 8) { // NodeType 8 is Comment
+								node.removeChild(child);
+							} else if (child.nodeType === 1) {
+								removeComments(child); // Recurse for element nodes
+							}
+						}
+					}
+					removeComments(tempDiv);
+
+					// Clean all text nodes from unwanted entities
+					decodeHTMLEntitiesAndClean(tempDiv);
+
+					// Insert the cleaned content into the editor
+					document.execCommand('insertHTML', false, tempDiv.innerHTML);
+				}
             }
         });
     }
@@ -10163,8 +10202,8 @@ $(document).on('keyup change paste checked', 'select[name="rureraform-no_of_opti
 $(document).on('keyup change paste checked', 'select[name="rureraform-no_of_fields"]', function () {
 	var no_of_fields = $(this).val();
 	var thisBlock = $(this).closest('.rureraform-tab-content');
-	thisBlock.find('.rurera-inner-fields').addClass('rurera-hide');
-	thisBlock.find('.rurera-inner-fields').filter(function() {
+	thisBlock.find('.section-block').addClass('rurera-hide');
+	thisBlock.find('.section-block').filter(function() {
 		return $(this).attr('data-field_option_id') <= no_of_fields;
 	}).removeClass('rurera-hide');
 });

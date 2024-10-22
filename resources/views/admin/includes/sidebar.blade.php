@@ -522,6 +522,23 @@
                     </a>
                 </li>
             @endcan
+			
+			@can('admin_reports')
+			<li class="menu-header">Reports</li>
+			
+			 <li class="nav-item dropdown {{ (request()->is(getAdminPanelUrl('/reports*', false))) ? 'active' : '' }}">
+				<a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
+					<i class="fas fa-user-circle"></i> <span>Reports</span>
+				</a>
+				<ul class="dropdown-menu">
+					@can('admin_reports_topics_questions')
+						<li class="{{ (request()->is(getAdminPanelUrl('/reports/topics_questions', false))) ? 'active' : '' }}">
+							<a class="nav-link active" href="{{ getAdminPanelUrl() }}/reports/topics_questions">Topics Questions</a>
+						</li>
+					@endcan()
+				</ul>
+			</li>
+			@endcan()
 
             @if($authUser->can('admin_users') or
                 $authUser->can('admin_roles') or

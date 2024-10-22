@@ -6698,40 +6698,310 @@ function element_properties_meta($chapters)
                 'type'         => 'options_label_minimal'
             ),
 			
-			'inner_field1'  => array(
+			
+			// Block 1
+			'block_1'  => array(
                 'field_option_id' => 1,
-				'value'   => esc_html__('Correct Answer', 'rureraform'),
-                'label'        => '<div class="content_options">[INPUTFIELD id="1"]</div>',
-                'type'    => 'inner_text_field'
+                'type'    => 'block_start',
+				'label' => '<div class="content_options">[INPUTFIELD id="1"]</div>',
             ),
 			
-			'inner_field2'  => array(
+			'inner_field1_label_before'  => array(
+				'value'   => '',
+                'label'   => esc_html__('Label Before', 'rureraform'),
+                'type'    => 'text'
+            ),
+			
+			'inner_field1_label_after'  => array(
+				'value'   => '',
+                'label'   => esc_html__('Label After', 'rureraform'),
+                'type'    => 'text'
+            ),
+			
+			'inner_field1_placeholder'   => array(
+               'value' => '',
+               'label' => esc_html__('Placeholder', 'rureraform'),
+               'type'  => 'text'
+			),
+            'inner_field1_style_format'    => array(
+                'value'   => '',
+                'label'   => esc_html__('Style Format', 'rureraform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'input_box' => esc_html__('Box', 'rureraform'),
+                        'input_line' => esc_html__('Underline', 'rureraform'),
+                    )
+            ),
+            'inner_field1_text_format'    => array(
+                'value'   => '',
+                'label'   => esc_html__('Text Format', 'rureraform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'text' => esc_html__('Alpha Numeric', 'rureraform'),
+                        'number' => esc_html__('Numbers', 'rureraform'),
+                    )
+            ),
+            'inner_field1_maxlength'         => array(
+               'value' => '',
+               'label' => esc_html__('Maximum Length', 'rureraform'),
+               'type'  => 'number'
+			),
+			'inner_field1'  => array(
+				'value'   => esc_html__('Correct Answer', 'rureraform'),
+                'label'        => 'Correct Answer',
+                'type'    => 'inner_text_field'
+            ),
+			'block_1_end'  => array(
+                'type'    => 'block_end'
+            ),
+			
+			// Block 2
+			'block_2'  => array(
                 'field_option_id' => 2,
-				'value'   => esc_html__('Correct Answer', 'rureraform'),
-                'label'        => '<div class="content_options">[INPUTFIELD id="2"]</div>',
-                'type'    => 'inner_text_field'
+                'type'    => 'block_start',
+				'label' => '<div class="content_options">[INPUTFIELD id="2"]</div>',
             ),
 			
-			'inner_field3'  => array(
+			'inner_field2_label_before'  => array(
+				'value'   => '',
+                'label'   => esc_html__('Label Before', 'rureraform'),
+                'type'    => 'text'
+            ),
+			
+			'inner_field2_label_after'  => array(
+				'value'   => '',
+                'label'   => esc_html__('Label After', 'rureraform'),
+                'type'    => 'text'
+            ),
+			
+			'inner_field2_placeholder'   => array(
+               'value' => '',
+               'label' => esc_html__('Placeholder', 'rureraform'),
+               'type'  => 'text'
+			),
+            'inner_field2_style_format'    => array(
+                'value'   => '',
+                'label'   => esc_html__('Style Format', 'rureraform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'input_box' => esc_html__('Box', 'rureraform'),
+                        'input_line' => esc_html__('Underline', 'rureraform'),
+                    )
+            ),
+            'inner_field2_text_format'    => array(
+                'value'   => '',
+                'label'   => esc_html__('Text Format', 'rureraform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'text' => esc_html__('Alpha Numeric', 'rureraform'),
+                        'number' => esc_html__('Numbers', 'rureraform'),
+                    )
+            ),
+            'inner_field2_maxlength'         => array(
+               'value' => '',
+               'label' => esc_html__('Maximum Length', 'rureraform'),
+               'type'  => 'number'
+			),
+			'inner_field2'  => array(
+				'value'   => esc_html__('Correct Answer', 'rureraform'),
+                'label'        => 'Correct Answer',
+                'type'    => 'inner_text_field'
+            ),
+			'block_2_end'  => array(
+                'type'    => 'block_end'
+            ),
+			
+			
+			// Block 3
+			'block_3'  => array(
                 'field_option_id' => 3,
-				'value'   => esc_html__('Correct Answer', 'rureraform'),
-                'label'        => '<div class="content_options">[INPUTFIELD id="3"]</div>',
-                'type'    => 'inner_text_field'
+                'type'    => 'block_start',
+				'label' => '<div class="content_options">[INPUTFIELD id="3"]</div>',
             ),
 			
-			'inner_field4'  => array(
+			'inner_field3_label_before'  => array(
+				'value'   => '',
+                'label'   => esc_html__('Label Before', 'rureraform'),
+                'type'    => 'text'
+            ),
+			
+			'inner_field3_label_after'  => array(
+				'value'   => '',
+                'label'   => esc_html__('Label After', 'rureraform'),
+                'type'    => 'text'
+            ),
+			
+			'inner_field3_placeholder'   => array(
+               'value' => '',
+               'label' => esc_html__('Placeholder', 'rureraform'),
+               'type'  => 'text'
+			),
+            'inner_field3_style_format'    => array(
+                'value'   => '',
+                'label'   => esc_html__('Style Format', 'rureraform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'input_box' => esc_html__('Box', 'rureraform'),
+                        'input_line' => esc_html__('Underline', 'rureraform'),
+                    )
+            ),
+            'inner_field3_text_format'    => array(
+                'value'   => '',
+                'label'   => esc_html__('Text Format', 'rureraform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'text' => esc_html__('Alpha Numeric', 'rureraform'),
+                        'number' => esc_html__('Numbers', 'rureraform'),
+                    )
+            ),
+            'inner_field3_maxlength'         => array(
+               'value' => '',
+               'label' => esc_html__('Maximum Length', 'rureraform'),
+               'type'  => 'number'
+			),
+			'inner_field3'  => array(
+				'value'   => esc_html__('Correct Answer', 'rureraform'),
+                'label'        => 'Correct Answer',
+                'type'    => 'inner_text_field'
+            ),
+			'block_3_end'  => array(
+                'type'    => 'block_end'
+            ),
+			
+			
+			// Block 4
+			'block_4'  => array(
                 'field_option_id' => 4,
-				'value'   => esc_html__('Correct Answer', 'rureraform'),
-                'label'        => '<div class="content_options">[INPUTFIELD id="4"]</div>',
-                'type'    => 'inner_text_field'
+                'type'    => 'block_start',
+				'label' => '<div class="content_options">[INPUTFIELD id="4"]</div>',
             ),
 			
-			'inner_field5'  => array(
-                'field_option_id' => 5,
+			'inner_field4_label_before'  => array(
+				'value'   => '',
+                'label'   => esc_html__('Label Before', 'rureraform'),
+                'type'    => 'text'
+            ),
+			
+			'inner_field4_label_after'  => array(
+				'value'   => '',
+                'label'   => esc_html__('Label After', 'rureraform'),
+                'type'    => 'text'
+            ),
+			
+			'inner_field4_placeholder'   => array(
+               'value' => '',
+               'label' => esc_html__('Placeholder', 'rureraform'),
+               'type'  => 'text'
+			),
+            'inner_field4_style_format'    => array(
+                'value'   => '',
+                'label'   => esc_html__('Style Format', 'rureraform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'input_box' => esc_html__('Box', 'rureraform'),
+                        'input_line' => esc_html__('Underline', 'rureraform'),
+                    )
+            ),
+            'inner_field4_text_format'    => array(
+                'value'   => '',
+                'label'   => esc_html__('Text Format', 'rureraform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'text' => esc_html__('Alpha Numeric', 'rureraform'),
+                        'number' => esc_html__('Numbers', 'rureraform'),
+                    )
+            ),
+            'inner_field4_maxlength'         => array(
+               'value' => '',
+               'label' => esc_html__('Maximum Length', 'rureraform'),
+               'type'  => 'number'
+			),
+			'inner_field4'  => array(
 				'value'   => esc_html__('Correct Answer', 'rureraform'),
-                'label'        => '<div class="content_options">[INPUTFIELD id="5"]</div>',
+                'label'        => 'Correct Answer',
                 'type'    => 'inner_text_field'
             ),
+			'block_4_end'  => array(
+                'type'    => 'block_end'
+            ),
+			
+			// Block 5
+			'block_5'  => array(
+                'field_option_id' => 5,
+                'type'    => 'block_start',
+				'label' => '<div class="content_options">[INPUTFIELD id="5"]</div>',
+            ),
+			
+			'inner_field5_label_before'  => array(
+				'value'   => '',
+                'label'   => esc_html__('Label Before', 'rureraform'),
+                'type'    => 'text'
+            ),
+			
+			'inner_field5_label_after'  => array(
+				'value'   => '',
+                'label'   => esc_html__('Label After', 'rureraform'),
+                'type'    => 'text'
+            ),
+			
+			'inner_field5_placeholder'   => array(
+               'value' => '',
+               'label' => esc_html__('Placeholder', 'rureraform'),
+               'type'  => 'text'
+			),
+            'inner_field5_style_format'    => array(
+                'value'   => '',
+                'label'   => esc_html__('Style Format', 'rureraform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'input_box' => esc_html__('Box', 'rureraform'),
+                        'input_line' => esc_html__('Underline', 'rureraform'),
+                    )
+            ),
+            'inner_field5_text_format'    => array(
+                'value'   => '',
+                'label'   => esc_html__('Text Format', 'rureraform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'text' => esc_html__('Alpha Numeric', 'rureraform'),
+                        'number' => esc_html__('Numbers', 'rureraform'),
+                    )
+            ),
+            'inner_field5_maxlength'         => array(
+               'value' => '',
+               'label' => esc_html__('Maximum Length', 'rureraform'),
+               'type'  => 'number'
+			),
+			'inner_field5'  => array(
+				'value'   => esc_html__('Correct Answer', 'rureraform'),
+                'label'        => 'Correct Answer',
+                'type'    => 'inner_text_field'
+            ),
+			'block_5_end'  => array(
+                'type'    => 'block_end'
+            ),
+			
+			
 
             'elements_data' => array(
                 'value'   => '',

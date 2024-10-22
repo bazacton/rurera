@@ -267,7 +267,8 @@ class Quiz extends Model implements TranslatableContract
             $correct_questions = $resultObj->total_correct;
             $total_questions_count += $total_questions;
             $total_correct_questions += $correct_questions;
-            $percentage = ($correct_questions * 100)/$quiz_total_questions;
+			
+            $percentage = ($quiz_total_questions > 0 )? ($correct_questions * 100)/$quiz_total_questions : 0;
             $quiz_percentage = ($quiz_percentage <= $percentage)? round($percentage) : $quiz_percentage;
             $quiz_percentage = ($quiz_percentage > 100)? 100 : $quiz_percentage;
             $quiz_percentage = ($quiz_percentage < 0)? 0 : $quiz_percentage;

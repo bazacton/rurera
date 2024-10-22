@@ -572,24 +572,59 @@
             },
 			callbacks: {
                 onPaste: function (e) {
-                    e.preventDefault();
+					e.preventDefault();
 
-                    var clipboardData = (e.originalEvent || e).clipboardData || window.clipboardData;
-                    var pastedData = clipboardData.getData('text/html') || clipboardData.getData('text/plain');
+					var clipboardData = (e.originalEvent || e).clipboardData || window.clipboardData;
+					var pastedData = clipboardData.getData('text/html') || clipboardData.getData('text/plain');
 
-                    // Create a temporary DOM element to parse the HTML
-                    var tempDiv = document.createElement('div');
-                    tempDiv.innerHTML = pastedData;
+					// Create a temporary DOM element to parse the HTML
+					var tempDiv = document.createElement('div');
+					tempDiv.innerHTML = pastedData;
 
-                    // Remove all inline styles from elements
-                    var elements = tempDiv.querySelectorAll('[style]');
-                    elements.forEach(function (element) {
-                        element.removeAttribute('style');
-                    });
+					// Decode HTML entities and remove &nbsp;
+					function decodeHTMLEntitiesAndClean(node) {
+						// Loop through all child nodes recursively
+						node.childNodes.forEach(function(child) {
+							if (child.nodeType === 3) { // NodeType 3 is Text Node
+								// Replace &nbsp; with regular space and other entities
+								child.nodeValue = child.nodeValue
+									.replace(/\u00A0/g, ' ') // Replace non-breaking spaces with a regular space
+									.replace(/&amp;/g, '&')
+									.replace(/&lt;/g, '<')
+									.replace(/&gt;/g, '>')
+									.replace(/&quot;/g, '"');
+							} else if (child.nodeType === 1) { // NodeType 1 is Element Node
+								decodeHTMLEntitiesAndClean(child); // Recurse for element nodes
+							}
+						});
+					}
 
-                    // Insert the cleaned content
-                    document.execCommand('insertHTML', false, tempDiv.innerHTML);
-                }
+					// Remove all inline styles from elements
+					var elementsWithStyles = tempDiv.querySelectorAll('[style]');
+					elementsWithStyles.forEach(function (element) {
+						element.removeAttribute('style');
+					});
+
+					// Remove all HTML comments
+					function removeComments(node) {
+						var childNodes = node.childNodes;
+						for (var i = childNodes.length - 1; i >= 0; i--) {
+							var child = childNodes[i];
+							if (child.nodeType === 8) { // NodeType 8 is Comment
+								node.removeChild(child);
+							} else if (child.nodeType === 1) {
+								removeComments(child); // Recurse for element nodes
+							}
+						}
+					}
+					removeComments(tempDiv);
+
+					// Clean all text nodes from unwanted entities
+					decodeHTMLEntitiesAndClean(tempDiv);
+
+					// Insert the cleaned content into the editor
+					document.execCommand('insertHTML', false, tempDiv.innerHTML);
+				}
             }
         });
     }

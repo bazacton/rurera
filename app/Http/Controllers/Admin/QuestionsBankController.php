@@ -144,6 +144,8 @@ class QuestionsBankController extends Controller
             ->get();
 
         $chapters_list = get_chapters_list();
+		
+		$users_list = User::where('status' , 'active')->get();
 
         $data = [
             'pageTitle'           => 'Questions List' ,
@@ -159,6 +161,7 @@ class QuestionsBankController extends Controller
             'categories'          => $categories ,
             'totalPassedStudents' => 0 ,
             'user'                => $user ,
+            'users_list'                => $users_list ,
         ];
 
         $data['chapters'] = $chapters_list;
@@ -2279,6 +2282,7 @@ class QuestionsBankController extends Controller
         $course_id = get_filter_request('subject_id', 'questions_search'); 
         $chapter_id = get_filter_request('chapter_id', 'questions_search'); 
         $sub_chapter_id = get_filter_request('sub_chapter_id', 'questions_search'); 
+		$user_id = get_filter_request('user_id', 'glossary_search'); 
 
 
         $query = fromAndToDateFilter($from , $to , $query , 'quizzes_questions.created_at');
@@ -2365,6 +2369,11 @@ class QuestionsBankController extends Controller
 			
             $query->WhereJsonContains('quizzes_questions.category_id' , (string) $category_id);
         }
+		
+		if ($user_id != '') {
+            $query->where('quizzes_questions.creator_id' , $user_id);
+        }
+		
 		
 
         if ($chapter_id != '') {

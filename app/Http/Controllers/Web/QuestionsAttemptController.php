@@ -3761,6 +3761,7 @@ class QuestionsAttemptController extends Controller
 		}
 		if( isset( $newQuizStart->id)){
 			$questions_list = json_decode($newQuizStart->questions_list);
+			pre($questions_list);
 			$questions_list = QuizzResultQuestions::whereIn('id', $questions_list)	
 				->orderByRaw(\DB::raw("FIELD(id, " . implode(',', $questions_list) . ")"))
 				->pluck('question_id')
@@ -3948,7 +3949,6 @@ class QuestionsAttemptController extends Controller
 				$id = isset( $layout_elements->id )? $layout_elements->id : 0;
 				$inner_elements = isset( $layout_elements_array[$id] )? $layout_elements_array[$id] : array();
 				$_cols = isset( $layout_elements->_cols )? $layout_elements->_cols : 1;
-				
 				$inner_elements = ($layout_elements->type == 'columns')? $inner_elements : array($layout_elements);
 				$counter = 0;
 				//pre($layout_elements);
@@ -3958,7 +3958,9 @@ class QuestionsAttemptController extends Controller
 					$element_width = isset( $layout_elements->{'widths-'.$counter} )? $layout_elements->{'widths-'.$counter} : 12;
 					//pre($elementObj, false);
 					$question_layout .= '<div class="rureraform-col rureraform-col-'.$element_width.'">';
-					$question_layout .= $this->get_question_element_layout($element_id, $elementObj, $questionObj);
+					if( isset( $elementObj->type)){
+						$question_layout .= $this->get_question_element_layout($element_id, $elementObj, $questionObj);
+					}
 					$question_layout .= '</div>';
 					$counter++;
 				}
@@ -4024,7 +4026,6 @@ class QuestionsAttemptController extends Controller
 			break;
 			
             case "drop_and_text":
-				//pre($elementObj);
 				$content = $elementObj->content;
                 //pre($elementObj);
 				$content = preg_replace_callback('/\[DROPDOWN id="(\d+)"\]/', function($matches) use ($elementObj, $element_unique_id) {
@@ -4048,8 +4049,34 @@ class QuestionsAttemptController extends Controller
 				
 				$content = preg_replace_callback('/\[INPUTFIELD id="(\d+)"\]/', function($matches) use ($elementObj) {
 					$id = isset( $matches[1] )? $matches[1] : 0;
-					$property = 'inner_options' . $id;
-					$response = '<span class="input-holder"><span class="input-label" contenteditable="false"></span><input type="text" data-field_type="text" class="editor-field input-simple" data-id="'.$id.'" id="field-'.$id.'"> </span>';
+					$property = 'inner_field' . $id;
+					$label_before = isset($elementObj->{$property.'_label_before'}) ? $elementObj->{$property.'_label_before'} : '';
+					$label_after = isset($elementObj->{$property.'_label_after'}) ? $elementObj->{$property.'_label_after'} : '';
+					$placeholder = isset($elementObj->{$property.'_placeholder'}) ? $elementObj->{$property.'_placeholder'} : '';					
+					$style_format = isset($elementObj->{$property.'_style_format'}) ? $elementObj->{$property.'_style_format'} : 'input_box';
+					$text_format = isset($elementObj->{$property.'_text_format'}) ? $elementObj->{$property.'_text_format'} : 'text';
+					$maxlength = isset($elementObj->{$property.'_maxlength'}) ? $elementObj->{$property.'_maxlength'} : '';
+					if( $label_before != ''){
+						$label_before = '<span class="input-label" contenteditable="false">'.$label_before.'</span>';
+					}
+					if( $label_after != ''){
+						$label_after = '<span class="input-label" contenteditable="false">'.$label_after.'</span>';
+					}
+					$field_attribute = '';
+					if( $maxlength != ''){
+						$field_attribute .= 'max="'.$maxlength.'" ';
+					}
+					
+					$field_type = $text_format;
+					
+					//pre($label_before, false);
+					//pre($label_after, false);
+					//pre($placeholder, false);
+					//pre($style_format, false);
+					//pre($text_format, false);
+					//pre($maxlength);
+					
+					$response = '<span class="input-holder '.$style_format.'">'.$label_before.'<input type="'.$field_type.'" placeholder="'.$placeholder.'" '.$field_attribute.' data-field_type="text" class="editor-field input-simple" data-id="'.$id.'" id="field-'.$id.'">'.$label_after.'</span>';
 					return $response;
 				}, $content);
 
@@ -4073,7 +4100,6 @@ class QuestionsAttemptController extends Controller
 			break;
 			
 			case "image_quiz":
-				//pre($elementObj);
                 $question_layout = view('web.default.question_layouts.image_quiz_layout', ['element_unique_id' => $element_unique_id, 'element_id' => $element_id, 'elementObj' => $elementObj])->render();
 			break;
 			

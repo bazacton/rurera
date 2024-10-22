@@ -62,6 +62,13 @@ $rand_id = rand(999,99999);
 	.rureraform-element-helpers {
     width: fit-content !important;
 }
+
+.section-block {
+    background: #f5f5f5;
+    padding: 5px 10px !important;
+	margin: 5px 0px;
+	border:1px solid #ccc;
+}
 </style>
 @endpush
 

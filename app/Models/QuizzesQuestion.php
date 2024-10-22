@@ -59,4 +59,9 @@ class QuizzesQuestion extends Model implements TranslatableContract
     {
         return $this->belongsTo('App\Models\SubChapters' , 'sub_chapter_id' , 'id');
     }
+    
+     public function user()
+    {
+        return $this->belongsTo('App\User', 'creator_id', 'id');
+    }
 }

@@ -260,6 +260,10 @@ Route::group([
         });
 
         Route::group(['prefix' => 'reports'], function () {
+            Route::get('/topics_questions', 'ReportsController@topics_questions');
+			
+			
+			
             Route::get('/reasons', 'ReportsController@reasons');
             Route::post('/reasons', 'ReportsController@storeReasons');
             Route::get('/webinars', 'ReportsController@webinarsReports');

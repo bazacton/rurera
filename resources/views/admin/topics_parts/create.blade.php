@@ -46,6 +46,69 @@
                                     @enderror
                                 </div>
 								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								<div id="imagesBlock" class="form-group mt-15">
+									<label class="input-label mb-0">{{ trans('update.images') }}</label>
+
+									<div class="main-row input-group product-images-input-group mt-2">
+										<div class="input-group-prepend">
+											<button type="button" class="input-group-text admin-file-manager" data-input="images_record" data-preview="holder">
+												<i class="fa fa-upload"></i>
+											</button>
+										</div>
+										<input type="text" name="topic_images[]" id="images_record" value="" class="form-control" placeholder=""/>
+
+										<button type="button" class="btn btn-primary btn-sm add-image-btn">
+											<i class="fa fa-plus"></i>
+										</button>
+									</div>
+									@php $topic_images = isset( $TopicParts->topic_part_images )? json_decode($TopicParts->topic_part_images) : array(); @endphp
+									@if(!empty($topic_images))
+										@foreach($topic_images as $image_key => $image_path)
+											<div class="input-group product-images-input-group mt-2">
+												<div class="input-group-prepend">
+													<button type="button" class="input-group-text admin-file-manager" data-input="images_{{ $image_key }}" data-preview="holder">
+														<i class="fa fa-upload"></i>
+													</button>
+												</div>
+												<input type="text" name="topic_images[]" id="images_{{ $image_key }}" value="{{ $image_path }}" class="form-control" placeholder=""/>
+
+												<button type="button" class="btn btn-sm btn-danger remove-image-btn">
+													<i class="fa fa-times"></i>
+												</button>
+											</div>
+										@endforeach
+									@endif
+
+
+									@error('images')
+									<div class="invalid-feedback d-block">
+										{{ $message }}
+									</div>
+									@enderror
+								</div>
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
 								@if(!isset($TopicParts->id) )
                                 <div class="form-group">
                                     <label>{{ trans('/admin/main.category')  }}</label>
@@ -127,7 +190,7 @@
 								</div>
 
 								<div class="text-left">
-									<button class="btn btn-primary">Save Title</button>
+									<button class="btn btn-primary">Save Data</button>
 								</div>
                                 <div class="text-right mt-4">
 										<a href="javascript:;" class="btn btn-primary add-part-modal">Add New Part</a>
@@ -254,6 +317,7 @@
     <script src="/assets/default/vendors/sortable/jquery-ui.min.js"></script>
     <script src="/assets/default/js/admin/filters.min.js"></script>
     <script src="/assets/vendors/summernote/summernote-bs4.min.js"></script>
+    <script src="/assets/default/js/admin/new-images.js"></script>
 	
 	
 <script>

@@ -209,8 +209,27 @@
 
 					</div>
 					</div>
+					
+					
+					
+					<div class="col-md-3">
+						<div class="form-group">	
+							<label class="input-label">Author</label>
+							<select name="user_id" data-search-option="display_name" class="form-control "
+									data-placeholder="Search author">
 
-                    <div class="col-md-3">
+									<option value="">Select Author</option>
+								@if(!empty($users_list) and $users_list->count() > 0)
+									@foreach($users_list as $userObj)
+										@php $checked = (get_filter_request('user_id', 'questions_search') == $userObj->id)? 'selected' : ''; @endphp
+										<option value="{{ $userObj->id }}" {{$checked}}>{{ $userObj->get_full_name() }}</option>
+									@endforeach
+								@endif
+							</select>
+						</div>
+					</div>
+
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label class="input-label">Difficulty Level</label>
                             <select name="difficulty_level" data-plugin-selectTwo class="form-control populate">
@@ -234,7 +253,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label class="input-label">Teacher Review</label>
                             <select name="review_required" data-plugin-selectTwo class="form-control populate">
@@ -250,7 +269,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label class="input-label">{{ trans('admin/main.status') }}</label>
                             <select name="question_status" data-plugin-selectTwo class="form-control populate">
@@ -314,6 +333,7 @@
                                     <th class="text-left">{{ trans('admin/main.title') }}</th>
                                     <th class="text-left">Class / Subject / Chapter</th>
                                     <th class="text-center">Difficulty Level</th>
+                                    <th class="text-center">Added by</th>
                                     <th class="text-center">Created Date</th>
                                     <th class="text-center">Status</th>
                                     <th>{{ trans('admin/main.actions') }}</th>
@@ -336,6 +356,9 @@
                                     </td>
                                     <td>
                                         <span>{{ $questionData->question_difficulty_level }}</span>
+                                    </td>
+                                    <td>
+                                        <span>{{ $questionData->user->get_full_name() }}</span>
                                     </td>
                                     <td>
                                         <span>{{ dateTimeFormat($questionData->created_at, 'j M y | H:i') }}</span>

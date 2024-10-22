@@ -48,7 +48,8 @@ class LearnController extends Controller
 				$description = $courseObj->chapters->count().' Units and '.$courseObj->webinar_sub_chapters->count().' Lessons';
 				$course_icon = isset( $courseObj->thumbnail )? url('/').$courseObj->thumbnail : '';
 				$background_color = isset( $courseObj->background_color )? $courseObj->background_color : '#FFFFFF';
-				
+				$target_layout = 'list';
+				$target_layout = ($title == 'Maths')? 'accordion' : $target_layout;
 				$data_array[$section_id]['section_data'][] = array(
 					'title' => $title,
 					'description' => $description,
@@ -57,7 +58,7 @@ class LearnController extends Controller
 					'background' => $background_color,
 					'pageTitle' => $title,
 					'target_api' => '/panel/learn/'.$categoryObj->slug.'/'.$courseObj->slug,
-					'target_layout' => 'list',
+					'target_layout' => $target_layout,
 				);
 				
 			}
@@ -241,18 +242,33 @@ class LearnController extends Controller
 						if( $elementObj->type == 'drop_and_text'){							
 						
 						
-							$elementObj->inputfield_answers = array(
-								'1' => $elementObj->inner_field1,
-								'2' => $elementObj->inner_field2,
-								'3' => $elementObj->inner_field3,
-								'4' => $elementObj->inner_field4,
-								'5' => $elementObj->inner_field5,
-							);
-							unset($elementObj->inner_field1);
-							unset($elementObj->inner_field2);
-							unset($elementObj->inner_field3);
-							unset($elementObj->inner_field4);
-							unset($elementObj->inner_field5);
+							$properties_array = array();
+							
+							$fields_counter = 1;
+							
+							while( $fields_counter <= 5){
+								$properties_array[$fields_counter] = array(
+									'label_before' => $elementObj->{"inner_field{$fields_counter}_label_before"},
+									'label_after' => $elementObj->{"inner_field{$fields_counter}_label_after"},
+									'placeholder' => $elementObj->{"inner_field{$fields_counter}_placeholder"},
+									'style_format' => $elementObj->{"inner_field{$fields_counter}_style_format"},
+									'text_format' => $elementObj->{"inner_field{$fields_counter}_text_format"},
+									'maxlength' => $elementObj->{"inner_field{$fields_counter}_maxlength"},
+									'correct_answer' => $elementObj->{"inner_field{$fields_counter}"},
+								);
+								
+								unset($elementObj->{"inner_field{$fields_counter}_label_before"});
+								unset($elementObj->{"inner_field{$fields_counter}_label_after"});
+								unset($elementObj->{"inner_field{$fields_counter}_placeholder"});
+								unset($elementObj->{"inner_field{$fields_counter}_style_format"});
+								unset($elementObj->{"inner_field{$fields_counter}_text_format"});
+								unset($elementObj->{"inner_field{$fields_counter}_maxlength"});
+								unset($elementObj->{"inner_field{$fields_counter}"});
+								$fields_counter++;
+							}
+							
+						
+							$elementObj->inputfield_properties = $properties_array;
 						}
 						
 						if( $elementObj->type == 'image_quiz'){

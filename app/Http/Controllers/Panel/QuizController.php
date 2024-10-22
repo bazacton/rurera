@@ -933,6 +933,7 @@ class QuizController extends Controller
 				'questions_status_array' => $questions_list,
 				'actual_question_ids' => $actual_question_ids,
 				'total_points' => $total_points,
+				'results_questions_array' => $results_questions_array,
 			);
 		}
 		return $response;

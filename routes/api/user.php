@@ -21,6 +21,9 @@ Route::group([], function () {
 	
 	
 	Route::get('/{year_slug}/{spell_slug}/spelling-list', ['uses' => 'SpellsController@spelling_list']);
+	Route::get('/{year_slug}/{spell_slug}/practice', ['uses' => 'SpellsController@practice']);
+	Route::post('/{year_slug}/{spell_slug}/practice/play', ['uses' => 'SpellsController@practice_play']);
+	Route::post('/{year_slug}/{spell_slug}/submit_spell', ['uses' => 'SpellsController@submit_spell']);
 	
 	Route::group(['prefix' => '/menu'], function () {
 		Route::get('/', ['uses' => 'CommonController@menu']);

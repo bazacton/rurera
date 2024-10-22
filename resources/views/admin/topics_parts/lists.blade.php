@@ -147,6 +147,8 @@
                             <table class="table table-striped font-14">
                                 <tr>
                                     <th class="text-left">Title</th>
+                                    <th class="text-left">No of Parts</th>
+                                    <th class="text-left">Unique questions</th>
                                     <th class="text-left">No of Questions</th>
                                     <th class="text-left">Category</th>
                                     <th class="text-left">Added by</th>
@@ -156,33 +158,78 @@
 
                                 @foreach($TopicParts as $TopicPartsData)
 								
-								@php $topic_part_data = isset( $TopicPartsData->topic_part_data )? json_decode($TopicPartsData->topic_part_data) :array();
+								@php $topic_part_data = isset( $TopicPartsData->topic_part_data ) ? json_decode($TopicPartsData->topic_part_data) : array();
+									$topic_part_data = (array) $topic_part_data;
 									$unique_ids = $sumClauses = array();
 									$unique_ids_counts = [];
-										$total_counts = 0;
-									if( !empty($topic_part_data)){
-										foreach( $topic_part_data as $unique_id => $part_data){
-												$unique_ids[] = $unique_id;
+									$unique_questions = array();
+									$total_counts = 0;
+									$total_counts_two = $total_counts_three = 0;
+									$single_part_question_count = 0;
+
+									if (!empty($topic_part_data)) {
+										foreach ($topic_part_data as $unique_id => $part_data) {
+											$unique_ids[] = $unique_id;
 											$alias = "`{$unique_id}_count`";
+											// Sum the count for each unique_id
 											$sumClauses[] = "SUM(JSON_CONTAINS(topics_parts, '\"$unique_id\"')) AS $alias";
 										}
 									}
-									if( !empty( $sumClauses ) ){
+
+									if (!empty($sumClauses)) {
+										
+										
+										
+										if (!empty($unique_ids)) {
+											// Create a CASE clause to check if any of the unique_ids are present in topics_parts
+											$conditions = [];
+											foreach ($unique_ids as $unique_id) {
+												$conditions[] = "JSON_CONTAINS(topics_parts, '\"$unique_id\"')";
+											}
+
+											// Combine all conditions using OR to check if any of the unique ids are present
+											$conditionString = implode(' OR ', $conditions);
+
+											// Add the COUNT(DISTINCT id) to count only unique questions where any of the unique ids are present
+											$sumClauses[] = "COUNT(DISTINCT CASE WHEN ($conditionString) THEN id END) AS unique_question_count";
+											
+											// You can also add single_part_question_count logic if required
+											$sumClauses[] = "COUNT(CASE WHEN JSON_LENGTH(topics_parts) = 1 THEN 1 END) AS single_part_question_count";
+										}
+										
+										
+
 										$sumQuery = implode(', ', $sumClauses);
 										
 										$query = QuizzesQuestion::selectRaw($sumQuery)
-										->where('hide_question', 0)
-										->first();
+											->where('hide_question', 0)
+											->first();
+											
+
+										// Iterate over each unique_id and calculate the total counts
 										foreach ($unique_ids as $id) {
-											$total_counts += $query->{$id . '_count'};
-											$unique_ids_counts[$id] = $query->{$id . '_count'};
+											$count = $query->{$id . '_count'};
+											$total_counts += $count;
+											$unique_ids_counts[$id] = $count;
+
+											if ($count > 3) {
+												$total_counts_three++;
+											} else if ($count > 1) {
+												$total_counts_two++;
+											}
 										}
+
+										// Get the count of questions linked to only one part
+										$unique_question_count = $query->unique_question_count;
+										$single_part_question_count = $query->single_part_question_count;
 									}
 									@endphp
                                 <tr>
                                     <td>
                                         <span>{{ $TopicPartsData->title }}</span>
                                     </td>
+									<td class="text-left">{{ count($topic_part_data) }}</td>
+									<td class="text-left">{{ $unique_question_count }}</td>
 									<td class="text-left">{{ $total_counts }}</td>
                                     <td class="text-left">{{ (isset($TopicPartsData->category->id))? $TopicPartsData->category->getTitleAttribute() : '-' }}
 									<br>
