@@ -27,6 +27,7 @@ class TopicsParts extends Controller {
         //DB::enableQueryLog();
 
         $query = TopicParts::query();
+		
 
         $TotalTopicParts = deepClone($query)->count();
 
@@ -71,21 +72,46 @@ class TopicsParts extends Controller {
 
     public function create() {
         $this->authorize('admin_topic_parts_create');
-        $categories = Category::where('parent_id', null)
-                ->with('subCategories')
-                ->get();
-        $data = [
-            'pageTitle' => 'Topics Parts',
-            'categories' => $categories,
-        ];
-
-        return view('admin.topics_parts.create', $data);
+		$user = auth()->user();
+		
+		/*$TopicParts = TopicParts::get();
+		foreach( $TopicParts as $TopicPartObj){
+			$topic_part_data = isset( $TopicPartObj->topic_part_data )? json_decode($TopicPartObj->topic_part_data) : array();
+			$topic_part_data_new = array();
+			
+			if( !empty( $topic_part_data ) ){
+				foreach( $topic_part_data as $unique_id => $part_text){
+					$topic_part_data_new[$unique_id] = array(
+						'text' => $part_text,
+						'difficulty_level' => 'Moderate',
+					);
+				}
+			}
+			
+			$TopicPartObj->update(['topic_part_data' => json_encode($topic_part_data_new)]);
+		}*/
+		
+		
+		$TopicParts = TopicParts::create([
+			'title' => '',
+			'category_id' => 0,
+			'subject_id' => 0,
+			'chapter_id' => 0,
+			'sub_chapter_id' => 0,
+			'paragraph' => '',
+			'topic_part_data' => '',
+			'topic_part_images' => '',
+			'created_by' => $user->id,
+			'created_at' => time(),
+		]);
+		
+		return redirect()->route('adminEditTopicPart' , ['id' => $TopicParts->id]);
     }
 
     public function edit(Request $request, $id) {
         $this->authorize('admin_topic_parts_edit');
         $user = auth()->user();
-		Cache::put('mediaFolder', 'topic_parts');
+		Cache::put('mediaFolder', 'topic_parts/'.$id);
         $TopicParts = TopicParts::findOrFail($id);
 		
 		
@@ -233,20 +259,29 @@ class TopicsParts extends Controller {
                                 ], 422);
             }
         } else {
-            $this->validate($request, $rules);
+            $this->validate($request, $rules);	
         }
 
         if ($id != '' && $id > 0) {
             $this->authorize('admin_topic_parts_edit');
             $TopicParts = TopicParts::findOrFail($id);
-            $TopicParts->update([
+			
+			$update_data = [
                 'title' => isset($data['title']) ? $data['title'] : '',
                 'paragraph' => isset($data['paragraph']) ? $data['paragraph'] : '',
                 'topic_part_data' => isset($data['topic_part']) ? json_encode($data['topic_part']) : '',
                 'topic_part_images' => isset($data['topic_images']) ? json_encode($data['topic_images']) : '',
                 'created_by' => $user->id,
                 'created_at' => time(),
-            ]);
+            ];
+			
+			if($TopicParts->category_id == 0){
+				$update_data['category_id']	= isset($data['category_id']) ? $data['category_id'] : 0;
+				$update_data['subject_id']	= isset($data['subject_id']) ? $data['subject_id'] : 0;
+				$update_data['chapter_id']	= isset($data['chapter_id']) ? $data['chapter_id'] : 0;
+				$update_data['sub_chapter_id']	= isset($data['sub_chapter_id']) ? $data['sub_chapter_id'] : 0;
+			}
+            $TopicParts->update($update_data);
         } else {
             $this->authorize('admin_topic_parts_create');
 

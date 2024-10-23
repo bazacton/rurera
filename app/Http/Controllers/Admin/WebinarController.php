@@ -1332,9 +1332,10 @@ class WebinarController extends Controller
 				$response .= '<h5>'.$TopicPartObj->title.'</h5>';
 				if( !empty( $topic_part_data) ){
 					foreach( $topic_part_data as $topic_unique_id => $topicpartData){
+						$topicpart_text = isset( $topicpartData->text )? $topicpartData->text : '';
 						$checked = in_array( $topic_unique_id, $topics_parts)? 'checked' : '';
 						$response .= '<div class="form-field rureraform-cr-container-medium">
-											<input class="rureraform-checkbox-medium" type="checkbox" name="topics_parts[]" id="topics_parts-'.$topic_unique_id.'" value="'.$topic_unique_id.'" '.$checked.'><label for="topics_parts-'.$topic_unique_id.'">'.$topicpartData.'</label>
+											<input class="rureraform-checkbox-medium" type="checkbox" name="topics_parts[]" id="topics_parts-'.$topic_unique_id.'" value="'.$topic_unique_id.'" '.$checked.'><label for="topics_parts-'.$topic_unique_id.'">'.$topicpart_text.'</label>
 										</div>';
 					}
 				}

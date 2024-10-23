@@ -4115,6 +4115,14 @@ class QuestionsAttemptController extends Controller
                 $question_layout = view('web.default.question_layouts.draggable_quiz_layout', ['element_unique_id' => $element_unique_id, 'element_id' => $element_id,'content' => $content, 'elementObj' => $elementObj])->render();
 			break;
 			
+			case "textareafield_quiz":
+                $question_layout = view('web.default.question_layouts.textareafield_quiz_layout', ['element_unique_id' => $element_unique_id, 'element_id' => $element_id, 'elementObj' => $elementObj])->render();
+			break;
+			
+			case "textfield_quiz":
+                $question_layout = view('web.default.question_layouts.textfield_quiz_layout', ['element_unique_id' => $element_unique_id, 'element_id' => $element_id, 'elementObj' => $elementObj])->render();
+			break;
+			
 			
 		}
 		//pre($question_layout);

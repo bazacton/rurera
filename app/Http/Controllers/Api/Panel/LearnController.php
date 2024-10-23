@@ -242,28 +242,43 @@ class LearnController extends Controller
 						if( $elementObj->type == 'drop_and_text'){							
 						
 						
+							//pre($questionResultObj->question_id);
 							$properties_array = array();
 							
 							$fields_counter = 1;
 							
 							while( $fields_counter <= 5){
 								$properties_array[$fields_counter] = array(
-									'label_before' => $elementObj->{"inner_field{$fields_counter}_label_before"},
-									'label_after' => $elementObj->{"inner_field{$fields_counter}_label_after"},
-									'placeholder' => $elementObj->{"inner_field{$fields_counter}_placeholder"},
-									'style_format' => $elementObj->{"inner_field{$fields_counter}_style_format"},
-									'text_format' => $elementObj->{"inner_field{$fields_counter}_text_format"},
-									'maxlength' => $elementObj->{"inner_field{$fields_counter}_maxlength"},
-									'correct_answer' => $elementObj->{"inner_field{$fields_counter}"},
+									'label_before' => isset( $elementObj->{"inner_field{$fields_counter}_label_before"} )? $elementObj->{"inner_field{$fields_counter}_label_before"} : '',
+									'label_after' => isset( $elementObj->{"inner_field{$fields_counter}_label_after"} )? $elementObj->{"inner_field{$fields_counter}_label_after"} : '',
+									'placeholder' => isset( $elementObj->{"inner_field{$fields_counter}_placeholder"} )? $elementObj->{"inner_field{$fields_counter}_placeholder"} : '',
+									'style_format' => isset( $elementObj->{"inner_field{$fields_counter}_style_format"} )? $elementObj->{"inner_field{$fields_counter}_style_format"} : '',
+									'text_format' => isset( $elementObj->{"inner_field{$fields_counter}_text_format"} )? $elementObj->{"inner_field{$fields_counter}_text_format"} : '',
+									'maxlength' => isset( $elementObj->{"inner_field{$fields_counter}_maxlength"} )? $elementObj->{"inner_field{$fields_counter}_maxlength"} : '',
+									'correct_answer' => isset( $elementObj->{"inner_field{$fields_counter}"} )? $elementObj->{"inner_field{$fields_counter}"} : '',
 								);
 								
-								unset($elementObj->{"inner_field{$fields_counter}_label_before"});
-								unset($elementObj->{"inner_field{$fields_counter}_label_after"});
+								if( isset( $elementObj->{"inner_field{$fields_counter}_label_before"} )){
+									unset($elementObj->{"inner_field{$fields_counter}_label_before"});
+								}
+								if( isset( $elementObj->{"inner_field{$fields_counter}_label_after"} )){
+									unset($elementObj->{"inner_field{$fields_counter}_label_after"});
+								}
+								if( isset( $elementObj->{"inner_field{$fields_counter}_placeholder"} )){
 								unset($elementObj->{"inner_field{$fields_counter}_placeholder"});
-								unset($elementObj->{"inner_field{$fields_counter}_style_format"});
-								unset($elementObj->{"inner_field{$fields_counter}_text_format"});
-								unset($elementObj->{"inner_field{$fields_counter}_maxlength"});
-								unset($elementObj->{"inner_field{$fields_counter}"});
+								}
+								if( isset( $elementObj->{"inner_field{$fields_counter}_style_format"} )){
+									unset($elementObj->{"inner_field{$fields_counter}_style_format"});
+								}
+								if( isset( $elementObj->{"inner_field{$fields_counter}_text_format"} )){
+									unset($elementObj->{"inner_field{$fields_counter}_text_format"});
+								}
+								if( isset( $elementObj->{"inner_field{$fields_counter}_maxlength"} )){
+									unset($elementObj->{"inner_field{$fields_counter}_maxlength"});
+								}
+								if( isset( $elementObj->{"inner_field{$fields_counter}"} )){
+									unset($elementObj->{"inner_field{$fields_counter}"});
+								}
 								$fields_counter++;
 							}
 							

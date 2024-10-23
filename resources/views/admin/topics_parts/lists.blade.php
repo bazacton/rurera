@@ -175,6 +175,7 @@
 											$sumClauses[] = "SUM(JSON_CONTAINS(topics_parts, '\"$unique_id\"')) AS $alias";
 										}
 									}
+									$unique_question_count = 0;
 
 									if (!empty($sumClauses)) {
 										

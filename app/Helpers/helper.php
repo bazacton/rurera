@@ -10,6 +10,7 @@ use App\Models\QuizzAttempts;
 use App\Models\QuizzesResult;
 use App\Models\BooksPagesInfoLinks;
 use App\Models\SubChapters;
+use App\Models\WebinarChapter;
 use App\Models\WebinarChapterItem;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
@@ -2318,7 +2319,7 @@ function esc_html__($data)
 }
 
 
-function toolbar_tools()
+function toolbar_tools($element_slug = '')
 {
     $toolbar_tools = array(
         'columns'            => array(
@@ -2380,6 +2381,7 @@ function toolbar_tools()
             'title' => esc_html__('question_label_true_false', 'rureraform'),
             'icon'  => 'fa fa-plus',
             'classes' => 'rurera-hide',
+			'element_type' => 'supporting',
             'type'  => 'other'
         ),
 		
@@ -2387,6 +2389,7 @@ function toolbar_tools()
             'title' => esc_html__('question_label_paragraph', 'rureraform'),
             'icon'  => 'fa fa-plus',
             'classes' => 'rurera-hide',
+			'element_type' => 'supporting',
             'type'  => 'other'
         ),
 		
@@ -2399,6 +2402,7 @@ function toolbar_tools()
             'title' => esc_html__('question_label_multichoice_template', 'rureraform'),
             'icon'  => 'fa fa-plus',
             'classes' => 'rurera-hide',
+			'element_type' => 'supporting',
             'type'  => 'other'
         ),
 		
@@ -2406,6 +2410,7 @@ function toolbar_tools()
             'title' => esc_html__('paragraph_multichoice_template', 'rureraform'),
             'icon'  => 'fa fa-plus',
             'classes' => 'rurera-hide',
+			'element_type' => 'supporting',
             'type'  => 'other'
         ),
 		
@@ -2418,6 +2423,7 @@ function toolbar_tools()
             'title' => esc_html__('question_label_sequence_template', 'rureraform'),
             'icon'  => 'fa fa-plus',
             'classes' => 'rurera-hide',
+			'element_type' => 'supporting',
             'type'  => 'other'
         ),
 		
@@ -2429,6 +2435,7 @@ function toolbar_tools()
             'title' => esc_html__('question_label_select_template', 'rureraform'),
             'icon'  => 'fa fa-plus',
             'classes' => 'rurera-hide',
+			'element_type' => 'supporting',
             'type'  => 'other'
         ),
 		'html_select_template'  => array(
@@ -2445,6 +2452,7 @@ function toolbar_tools()
             'title' => esc_html__('question_label_matching_template', 'rureraform'),
             'icon'  => 'fa fa-plus',
             'classes' => 'rurera-hide',
+			'element_type' => 'supporting',
             'type'  => 'other'
         ),
 		
@@ -2460,119 +2468,140 @@ function toolbar_tools()
             'title' => esc_html__('HTML', 'rureraform'),
             'icon'  => 'fas fa-code',
             'classes' => 'rurera-hide',	
+			'element_type' => 'supporting',
             'type'  => 'other'
         ),
 		'drop_and_text'               => array(
             'title' => esc_html__('Inner Dropdown / Input', 'rureraform'),
             'icon'  => 'inner_dropdown.svg',
             'icon_type'  => 'svg',
+			'element_type' => 'main',
             'type'  => 'other'
         ),
         'multichoice_template'  => array(
             'title' => esc_html__('SUM Q', 'rureraform'),
             'icon'  => 'fa fa-plus',
             'classes' => 'rurera-hide',
+			'element_type' => 'supporting',
             'type'  => 'other'
         ),
         'multiresponse_template'  => array(
             'title' => esc_html__('SUM Q', 'rureraform'),
             'icon'  => 'fa fa-plus',
             'classes' => 'rurera-hide',
+			'element_type' => 'supporting',
             'type'  => 'other'
         ),
         'sum_quiz'           => array(
             'title' => esc_html__('SUM Q', 'rureraform'),
             'icon'  => 'fa fa-plus',
             'classes' => 'rurera-hide',
+			'element_type' => 'supporting',
             'type'  => 'other'
         ),
         'sqroot_quiz'        => array(
             'title' => esc_html__('Sqroot', 'rureraform'),
             'icon'  => 'fas fa-square-root-alt',
             'classes' => 'rurera-hide',
+			'element_type' => 'supporting',
             'type'  => 'other'
         ),
         'image_quiz_draggable'         => array(
             'title' => esc_html__('Draggable Image', 'rureraform'),
             'icon'  => 'fas fa-image',
+			'element_type' => 'main',
             'type'  => 'other'
         ),
         'image_quiz'         => array(
             'title' => esc_html__('Image', 'rureraform'),
             'icon'  => 'fas fa-image',
+			'element_type' => 'supporting',
             'type'  => 'other'
         ),
         'heading_quiz'     => array(
             'title' => esc_html__('Text', 'rureraform'),
             'icon'  => 'fas fa-heading',
 			'classes' => 'rurera-hide',
+			'element_type' => 'supporting',
             'type'  => 'other'
         ),
         'textareafield_quiz'     => array(
             'title' => esc_html__('Textarea Field', 'rureraform'),
             'icon'  => 'textareafield_quiz.svg',
             'icon_type'  => 'svg',
+			'element_type' => 'main',
             'type'  => 'other'
         ),
         'textfield_quiz'     => array(
             'title' => esc_html__('Text Input Field', 'rureraform'),
             'icon'  => 'fas fa-i-cursor',
+			'element_type' => 'supporting',
             'type'  => 'other'
         ),
         'truefalse_quiz'     => array(
             'title' => esc_html__('True/False Field', 'rureraform'),
             'icon'  => 'truefalse_quiz.svg',
+			'element_type' => 'main',
             'icon_type'  => 'svg',
             'type'  => 'other'
         ),
         'attachment_quiz'     => array(
             'title' => esc_html__('Attachment', 'rureraform'),
             'icon'  => 'fas fa-paperclip',
+			'element_type' => 'supporting',
             'type'  => 'other'
         ),
         'checkbox'           => array(
             'title' => esc_html__('Checkbox', 'rureraform'),
             'icon'  => 'far fa-check-square',
+			'element_type' => 'main',
             'type'  => 'input'
         ),
         'radio'              => array(
             'title' => esc_html__('Radio Button', 'rureraform'),
             'icon'  => 'far fa-dot-circle',
             'classes' => 'rurera-hide',
+			'element_type' => 'main',
             'type'  => 'input'
         ),
         'sortable_quiz'      => array(
             'title' => esc_html__('Sortable Quiz', 'rureraform'),
             'icon'  => 'fas fa-arrows-alt-v',
+			'element_type' => 'main',
             'type'  => 'input'
         ),
         'question_label'     => array(
             'title' => esc_html__('Question label', 'rureraform'),
             'icon'  => 'question_label.svg',
 			'icon_type' => 'svg',
+			'element_type' => 'supporting',
             'type'  => 'other'
         ),
 		
         'paragraph_quiz'     => array(
             'title' => esc_html__('Text', 'rureraform'),
             'icon'  => 'fas fa-paragraph',
+			'element_type' => 'supporting',
             'type'  => 'other'
         ),
         'example_question'     => array(
             'title' => esc_html__('Example Question', 'rureraform'),
             'icon'  => 'fas fa-question',
             'classes' => 'rurera-hide',
+			'element_type' => 'supporting',
             'type'  => 'other'
         ),
         'questions_group'     => array(
             'title' => esc_html__('Questions Group', 'rureraform'),
             'icon'  => 'fas fa-object-group',
             'classes' => 'rurera-hide',
+			'element_type' => 'supporting',
             'type'  => 'other'
         ),
         'seperator'          => array(
             'title' => esc_html__('Seperator', 'rureraform'),
             'icon'  => 'fas fa-cut',
+			'element_type' => 'supporting',
             'type'  => 'other'
         ),
         /*'question_no'        => array(
@@ -2585,24 +2614,28 @@ function toolbar_tools()
             'title' => esc_html__('Matrix Quiz', 'rureraform'),
             'icon'  => 'fas fa-table',
             'classes' => 'rurera-hide',
+			'element_type' => 'main',
             'type'  => 'input'
         ),
         'draggable_question' => array(
             'title' => esc_html__('Draggable Question', 'rureraform'),
             'icon'  => 'draggable_quiz.svg',
             'icon_type'  => 'svg',
+			'element_type' => 'main',
             'type'  => 'input'
         ),
 
         'marking_quiz' => array(
             'title' => esc_html__('Marking Quiz', 'rureraform'),
             'icon'  => 'fas fa-microphone',
+			'element_type' => 'main',
             'type'  => 'input'
         ),
 
         'insert_into_sentense' => array(
             'title' => esc_html__('Insert into Sentense', 'rureraform'),
             'icon'  => 'fas fa-question-circle',
+			'element_type' => 'main',
             'type'  => 'other'
         ),
 
@@ -2610,16 +2643,19 @@ function toolbar_tools()
             'title' => esc_html__('Match Quiz', 'rureraform'),
             'icon'  => 'match_quiz.svg',
             'icon_type'  => 'svg',
+			'element_type' => 'main',
             'type'  => 'input'
         ),
         'audio_file'     => array(
             'title' => esc_html__('Audio', 'rureraform'),
             'icon'  => 'fas fa-volume-up',
+			'element_type' => 'supporting',
             'type'  => 'other'
         ),
         'audio_recording'     => array(
             'title' => esc_html__('Audio Recording', 'rureraform'),
             'icon'  => 'fas fa-microphone',
+			'element_type' => 'supporting',
             'type'  => 'other'
         ),
 		
@@ -2639,6 +2675,10 @@ function toolbar_tools()
             ),*/
 
     );
+	
+	if( $element_slug != ''){
+		return isset( $toolbar_tools[$element_slug] )? $toolbar_tools[$element_slug] : array();
+	}
     return $toolbar_tools;
 }
 
@@ -7889,10 +7929,27 @@ function element_properties_meta($chapters)
 		
         
         'question_label' => array(
+		
+		
             'basic'         => array(
                 'type'  => 'tab',
                 'value' => 'basic',
                 'label' => esc_html__('Basic', 'rureraform')
+            ),
+			
+			'label_type'    => array(
+                'value'   => '',
+                'label'   => esc_html__('Type', 'rureraform'),
+                'type'    => 'select',
+                'value' => 'question_label',
+                'options' =>
+                    array(
+                        'question_label' => esc_html__('Question Label', 'rureraform'),
+                        'question_heading' => esc_html__('Question Heading', 'rureraform'),
+                        'h1' => esc_html__('H1', 'rureraform'),
+						'h2' => esc_html__('H2', 'rureraform'),
+						'h3' => esc_html__('H3', 'rureraform'),
+                    )
             ),
             'content'       => array(
                 'value' => esc_html__('Question Label', 'rureraform'),
@@ -8258,6 +8315,13 @@ function getSubChapterTitle($sub_chapter_id)
         ->first();
 
     return isset($data->sub_chapter_title) ? $data->sub_chapter_title : '';
+}
+
+function getChapterTitle($chapter_id)
+{
+    $data = WebinarChapter::where('id', $chapter_id)->first();
+
+    return isset($data->id) ? $data->getTitleAttribute() : '';
 }
 
 function get_chapters_list($include_lessions = true, $webinar_id = 0)
@@ -10608,4 +10672,12 @@ function get_filter_request($field_id, $search_type){
 	}
 	return $field_value;
 	
+}
+
+function hasImageInData($check_string) {
+    // Define a regular expression pattern to match common image extensions
+    $image_pattern = '/https?:\/\/.*\.(jpg|jpeg|png|gif|bmp|svg|webp)|\/.*\.(jpg|jpeg|png|gif|bmp|svg|webp)/i';
+
+    // Check if the pattern matches any part of the JSON string
+    return preg_match($image_pattern, $check_string) === 1;
 }

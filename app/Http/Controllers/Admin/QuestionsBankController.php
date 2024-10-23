@@ -2592,12 +2592,22 @@ class QuestionsBankController extends Controller
 		
 
 
+		$with_media = false;
+		$question_type = '';
         $questions_array = $columns_array = $form_pages = $elements_data = $elements_array = array();
         if (array_key_exists('form-elements' , $_POST) && is_array($_POST['form-elements'])) {
             foreach ($_POST['form-elements'] as $encoded_element) {
+				$elements_json_string = base64_decode(trim(stripslashes($encoded_element)));
+				$has_image = hasImageInData($elements_json_string);
+				$with_media = ( $with_media == false)? $has_image : $with_media;
                 $element_options = json_decode(base64_decode(trim(stripslashes($encoded_element))) , true);
                 $elements_array[] = json_decode(base64_decode(trim(stripslashes($encoded_element))));
                 if (is_array($element_options) && array_key_exists('type' , $element_options)) {
+					
+					$element_slug = isset( $element_options['type'] )? $element_options['type'] : '';
+					$element_properties = toolbar_tools($element_slug);
+					$element_type = isset( $element_properties['element_type'] )? $element_properties['element_type'] : '';
+					$question_type = ($element_type == 'main')? $element_slug : $question_type;
 
                     if ($element_options['type'] != 'columns') {
                         if ($element_options['type'] == 'signature')
@@ -2622,6 +2632,8 @@ class QuestionsBankController extends Controller
                             $element_options = array_merge($default_element_options , $element_options);
 
                             $element_content = isset($element_options['content']) ? $element_options['content'] : '';
+							
+							
                             //pre($element_content, false);
                             $attrib_arr = ( $element_content != '')? lmsParseTag($element_content , 'editor-field') : array();
 
@@ -2648,7 +2660,6 @@ class QuestionsBankController extends Controller
 
                         $element_options['elements_data'] = $fields_data;
 
-
                         $questions_array[$parent_id][] = $element_options;
                     } else {
                         $col_id = isset($element_options['id']) ? $element_options['id'] : '';
@@ -2656,7 +2667,6 @@ class QuestionsBankController extends Controller
                     }
                 }
             }
-            //pre('test');
         }
 
         $layout_elements_layout = json_encode($elements_array);
@@ -2717,13 +2727,14 @@ class QuestionsBankController extends Controller
             'search_tags'              => $search_tags,
             'review_required'              => isset($questionData['review_required']) ? $questionData['review_required'] : 0 ,
             'question_example'            => isset($questionData['question_example']) ? $questionData['question_example'] : '' ,
-            'question_type'            => isset($questionData['question_type']) ? $questionData['question_type'] : '' ,
+            'question_type'            => $question_type,
             'example_question'            => isset($questionData['example_question']) && !empty($questionData['example_question']) ? $questionData['example_question'] : 0,
             'reference_type'            => isset($questionData['reference_type']) && !empty($questionData['reference_type']) ? $questionData['reference_type'] : 'Course',
             'question_levels'            => $question_levels,
             'developer_review_required'           => isset($questionData['developer_review_required']) ? $questionData['developer_review_required'] : 0 ,
             'hide_question'           => isset($questionData['hide_question']) ? $questionData['hide_question'] : 0 ,
             'topics_parts'           => isset($questionData['topics_parts']) ? json_encode($questionData['topics_parts']) : '' ,
+			'with_media'           => $with_media ,
         ]);
 
         if (!empty($quizQuestion)) {

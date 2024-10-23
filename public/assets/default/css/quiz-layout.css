@@ -363,21 +363,26 @@ body .question-result-layout ol li {margin-top: 1.5rem; margin-left: 0;}
 .question-result-layout .input-holder .input-simple {width: 100%; }
 /* Input Text Field Style End */
 /* Question Label Style Start */
+/*question-label question_label
 .question-label span,
-.lms-quiz-section .question-label span {margin: 0;padding: 0;border-radius: 6px;line-height: normal;text-align: left;border: 0;display: inline-block;vertical-align: middle;width: 100%;position: relative; overflow: hidden; border-left: 0; color: #5e5c5c;font-weight: 700;font-size: 25px;}
+.lms-quiz-section .question-label */
+
+.question_label span {margin: 0;padding: 0;border-radius: 6px;line-height: normal;text-align: left;border: 0;display: inline-block;vertical-align: middle;width: 100%;position: relative; overflow: hidden; border-left: 0; color: #5e5c5c;font-weight: 700;font-size: 25px;}
+.question_heading span {margin: 0;padding: 0;border-radius: 6px;line-height: normal;text-align: left;border: 0;display: inline-block;vertical-align: middle;width: 100%;position: relative; overflow: hidden; border-left: 0; color: #ddd;font-weight: 700;font-size: 25px;}
+
 .spells-quiz-from .question-label {margin-bottom: 20px;padding: 0 15px 10px;}
 .spells-quiz-from .question-label span {text-align: center; line-height: 31px;}
 /* Question Label Style End */
 
 /* Question-Result-Layout Style End */
 
-/*Quistion Number Style Start*/
+/*Question Number Style Start*/
 .question-number {display: inline-block; background-color: #1e1e1b; color: #fff; margin: 12px 30px 0 0; padding: 5px 15px; border-radius: 6px; min-width: 48px; text-align: center;}
 .question-number-holder {width: 45px; text-align: center; float: left; margin-right: 20px; position: absolute; margin-top: 0; cursor: pointer; z-index: 1 !important;}
 .question-number-holder ~ .show-notifications { margin-bottom: 30px;}
 .question-number-holder .question-number {margin: 0 0 10px; }
 .question-number-holder ~ span {padding-left: 65px; font-size: 20px;}
-/*Quistion Number Style End*/
+/*Question Number Style End*/
 /*Quiz prev-next-controls Style Start*/
 .prev-next-controls {display: flex; align-items: center; justify-content: center; margin-top: 20px; position: relative; padding-left: 100px;}
 .prev-next-controls a {margin: 0 7px 0 0;}

@@ -109,7 +109,7 @@
 								
 								
 								
-								@if(!isset($TopicParts->id) )
+								@if($TopicParts->category_id == 0 )
                                 <div class="form-group">
                                     <label>{{ trans('/admin/main.category')  }}</label>
                                     <select class="form-control @error('category_id') is-invalid @enderror ajax-category-courses" name="category_id" data-course_id="{{isset( $TopicParts->subject_id )? $TopicParts->subject_id : 0}}">
@@ -192,17 +192,20 @@
 								<div class="text-left">
 									<button class="btn btn-primary">Save Data</button>
 								</div>
+								@if($TopicParts->category_id > 0 )
                                 <div class="text-right mt-4">
 										<a href="javascript:;" class="btn btn-primary add-part-modal">Add New Part</a>
-                                    
                                 </div>	
+								@endif
 								
 								
+								@if($TopicParts->category_id > 0 )
 								<div class="table-responsive">
 									<table class="table table-striped font-14">
 										<tbody>
 											<tr>
 												<th class="text-left">Unique ID</th>
+												<th class="text-left">Difficulty Level</th>
 												<th class="text-left">Text Part</th>
 												<th class="text-left">No of Questions</th>
 												<th>Actions</th>
@@ -212,10 +215,14 @@
 											@php $topic_part_data = isset( $TopicParts->topic_part_data )? json_decode($TopicParts->topic_part_data) :array(); @endphp
 											@if( !empty( $topic_part_data ))
 												@foreach( $topic_part_data as $unique_id => $part_data)
-													@php $part_questions_count = isset( $unique_ids_counts[$unique_id] )? $unique_ids_counts[$unique_id] : 0; @endphp
+													@php $part_questions_count = isset( $unique_ids_counts[$unique_id] )? $unique_ids_counts[$unique_id] : 0; 
+													$part_text = isset( $part_data->text )? $part_data->text : '';
+													$part_difficulty_level = isset( $part_data->difficulty_level )? $part_data->difficulty_level : '';
+													@endphp
 													<tr data-unique_id="{{$unique_id}}">
 														<td><span>{{$unique_id}}</span></td>
-														<td class="text-left part_text">{{$part_data}}<input type="hidden" name="topic_part[{{$unique_id}}]" value="{{$part_data}}" ></td>
+														<td class="text-left difficulty_level">{{$part_difficulty_level}}<input type="hidden" name="topic_part[{{$unique_id}}][difficulty_level]" value="{{$part_difficulty_level}}" ></td>
+														<td class="text-left part_text">{{$part_text}}<input type="hidden" name="topic_part[{{$unique_id}}][text]" value="{{$part_text}}" ></td>
 														<td class="text-left">{{ $part_questions_count}}</td>
 														<td>
 															@if( $part_questions_count == 0)
@@ -230,6 +237,7 @@
 										</tbody>
 									</table>
 								</div>
+								@endif
 
 
 								<div id="edit-part-modal-box" class="modal fade" role="dialog" data-backdrop="static">
@@ -237,9 +245,25 @@
 										<div class="modal-content">
 											<div class="modal-body">
 												<div class="form-group">
+													<label>Difficulty Level</label>
+													<select data-id="0" class="select2 part-difficulty_level"
+															id="subject_id" name="subject_id">
+														<option value="Easy">Easy</option>
+														<option value="Moderate">Moderate</option>
+														<option value="Hard">Hard</option>
+													</select>
+													@error('subject_id')
+													<div class="invalid-feedback">
+														{{ $message }}
+													</div>
+													@enderror
+												</div>
+											
+												<div class="form-group">
 													<label>Paragraph</label>
 													<textarea data-id="0" class="form-control part-paragraph" rows="10" placeholder="Enter the paragraph here..."></textarea>
 												</div>
+
 											</div>
 											<div class="modal-footer">
 												<div class="text-right">
@@ -253,8 +277,8 @@
 
 
 
-								<div id="add-part-modal-box" class="question_edit_part_modal modal fade question_status_action_modal" role="dialog" >
-									<div class="modal-fullscreen">
+								<div id="add-part-modal-box" class="modal fade question_edit_part_modal" role="dialog" data-backdrop="static">
+									<div class="modal-fullscreen modal-dialog" style="max-width:100%">
 										<div class="modal-content">
 											<div class="modal-body">
 
@@ -262,7 +286,7 @@
 
 													<div class="col-6 col-md-6 col-lg-6">
 
-														@if(isset($TopicParts->id) )
+														@if($TopicParts->category_id > 0 )
 															<div class="form-group">
 																<label>Paragraph</label>
 																<textarea class="form-control @error('paragraph') is-invalid @enderror" rows="10" name="paragraph" id="inputText" placeholder="Enter the paragraph here...">{{isset( $TopicParts->paragraph ) ? $TopicParts->paragraph : old('paragraph')}}</textarea>
@@ -274,11 +298,12 @@
 
 													</div>
 													<div class="col-6 col-md-6 col-lg-6">
-														@if(isset($TopicParts->id) )
+														@if($TopicParts->category_id > 0 )
 															<table id="outputTable">
 																<thead>
 																<tr>
 																	<th>Unique ID</th>
+																	<th>Difficulty Level</th>
 																	<th>Text Part</th>
 																	<th>Action</th>
 																</tr>
@@ -330,9 +355,12 @@
 
 	$("body").on("click", ".edit-part-modal", function (t) {
 		var part_paragraph = $(this).closest('tr').find('.part_text input').val();
+		var part_difficulty_level = $(this).closest('tr').find('.difficulty_level input').val();
 		var unique_id  = $(this).closest('tr').attr('data-unique_id');
 		$(".part-paragraph").attr('data-id', unique_id);
 		$(".part-paragraph").val(part_paragraph);
+		$(".part-difficulty_level").attr('data-id', unique_id);
+		$('.part-difficulty_level').val(part_difficulty_level).trigger('change');
 		$("#edit-part-modal-box").modal('show');
 	});
 
@@ -340,13 +368,16 @@
 	$("body").on("click", ".part-edit-submit", function (t) {
 		var part_paragraph = $(".part-paragraph").val();
 		var unique_id  = $(".part-paragraph").attr('data-id');
-		$('input[name="topic_part['+unique_id+']"]').val(part_paragraph);
+		var part_difficulty_level = $(".part-difficulty_level").val();
+		$('input[name="topic_part['+unique_id+'][text]"]').val(part_paragraph);
+		$('input[name="topic_part['+unique_id+'][difficulty_level]"]').val(part_difficulty_level);
 		$(".topic-parts-form").submit();
 	});
 
 
 	$("body").on("click", ".close-modal-box", function (t) {
 		$(this).closest('.modal').modal('hide');
+		
 	});
 
 
@@ -379,7 +410,8 @@
         
         row.innerHTML = `
             <td>${uniqueID}</td>
-            <td><textarea name="topic_part[${uniqueID}]">${part}</textarea></td>
+            <td><select name="topic_part[${uniqueID}][difficulty_level]"><option value="Easy">Easy</option><option value="Moderate" selected>Moderate</option><option value="Hard">Hard</option></select></td>
+            <td><textarea name="topic_part[${uniqueID}][text]">${part}</textarea></td>
             <td><button class="remove-btn" onclick="removeRow(this)">Remove</button></td>
         `;
         tableBody.appendChild(row);
